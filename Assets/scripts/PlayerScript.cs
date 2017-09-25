@@ -8,10 +8,6 @@ public class PlayerScript : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        if (true)
-        {
-            Destroy(this);
-        }
 	}
 	
 	// Update is called once per frame
@@ -22,5 +18,17 @@ public class PlayerScript : MonoBehaviour {
             position.y++;
             this.transform.position = position;
         }
-	}
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Vector3 position = this.transform.position;
+            position.x+--;
+            this.transform.position = position;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Vector3 position = this.transform.position;
+            position.x++;
+            this.transform.position = position;
+        }
+    }
 }
