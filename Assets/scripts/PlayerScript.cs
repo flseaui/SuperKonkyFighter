@@ -8,11 +8,13 @@ public class PlayerScript : MonoBehaviour {
     
     public static int FLOOR_HEIGHT = -2;
 
-    public static float BASE_GRAVITY = -0.163f;
+    public static float BASE_GRAVITY = -0.05f;
 
     public static float gravity; 
 
     public float yvelocity;
+
+    public static bool jumping;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +24,11 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !jumping)
         {
             Debug.Log("kek'd my b");
             yvelocity = 2;
+            jumping = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -55,6 +58,7 @@ public class PlayerScript : MonoBehaviour {
         if (this.transform.position.y < FLOOR_HEIGHT)
         {
             setY(FLOOR_HEIGHT);
+            jumping = false;
         }
     }
 
