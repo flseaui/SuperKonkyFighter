@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
     
     public float FLOOR_HEIGHT = -2;
     public float BASE_GRAVITY = -0.05f;
-    public float BUFFER = 0.1f;
+    public float BUFFER = 1f;
 
     public float gravity;
     public bool air; 
@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour {
 
         moveY(yVelocity);
         
-        if (this.transform.position.y < FLOOR_HEIGHT)
+        if (this.transform.position.y < FLOOR_HEIGHT + BUFFER)
         {
             air = false;
             yVelocity = 0;
