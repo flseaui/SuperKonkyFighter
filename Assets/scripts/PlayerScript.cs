@@ -3,32 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
-
-    public static bool controllable;
     
-    public static int FLOOR_HEIGHT = -2;
+    public float FLOOR_HEIGHT = -2;
+    public float BASE_GRAVITY = -0.05f;
+    public float BUFFER = 0.1f;
 
-    public static float BASE_GRAVITY = -0.05f;
+    public float gravity;
+    public bool air; 
 
-    public static float gravity; 
-
-    public float yvelocity;
-
-    public static bool jumping;
+    public float yVelocity;
 
 	// Use this for initialization
 	void Start () {
-        yvelocity = 0;
+        yVelocity = 0;
         gravity = BASE_GRAVITY;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.W) && !jumping)
+        if (Input.GetKey(KeyCode.W) && !air)
         {
-            Debug.Log("kek'd my b");
-            yvelocity = 2;
-            jumping = true;
+            air = true;
+            yVelocity = 2;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -38,9 +34,7 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.S))
         {
-            Vector3 position = this.transform.position;
-            position.y -= 0.04f;
-            this.transform.position = position;
+            //CROUCHING
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -51,14 +45,15 @@ public class PlayerScript : MonoBehaviour {
 
         //PHYSICS
 
-        yvelocity += gravity;
+        yVelocity += gravity;
 
-        moveY(yvelocity);
+        moveY(yVelocity);
         
         if (this.transform.position.y < FLOOR_HEIGHT)
         {
+            air = false;
+            yVelocity = 0;
             setY(FLOOR_HEIGHT);
-            jumping = false;
         }
     }
 
@@ -88,5 +83,15 @@ public class PlayerScript : MonoBehaviour {
         Vector3 position = this.transform.position;
         position.x = amm;
         this.transform.position = position;
+    }
+
+    private float getY()
+    {
+        return this.transform.position.y;
+    }
+
+    private float getX()
+    {
+        return this.transform.position.x;
     }
 }
