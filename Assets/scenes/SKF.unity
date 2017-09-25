@@ -309,11 +309,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4566663215833042, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.31879008
+      value: -1.52
       objectReference: {fileID: 0}
     - target: {fileID: 4566663215833042, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.49811146
+      value: -5.38
       objectReference: {fileID: 0}
     - target: {fileID: 4566663215833042, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
       propertyPath: m_LocalPosition.z
@@ -467,8 +467,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -5.76, y: 0}
-  - {x: 5.76, y: 0}
+  - {x: -5.820465, y: -1.845453}
+  - {x: 5.775116, y: -1.8454539}
 --- !u!212 &1115952626
 SpriteRenderer:
   m_ObjectHideFlags: 0
