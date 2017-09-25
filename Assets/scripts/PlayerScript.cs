@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
     
     public float FLOOR_HEIGHT = -2;
     public float BASE_GRAVITY = -0.05f;
-    public float BUFFER = 0.1f;
+    public float BUFFER = 1;
 
     public float gravity;
     public bool air; 
