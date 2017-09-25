@@ -12,22 +12,22 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             Vector3 position = this.transform.position;
-            position.y++;
+            position.y += 0.04f;
             this.transform.position = position;
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             Vector3 position = this.transform.position;
-            position.x--;
+            position.x -= 0.04f;
             this.transform.position = position;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             Vector3 position = this.transform.position;
-            position.x++;
+            position.x += 0.04f;
             this.transform.position = position;
         }
     }
