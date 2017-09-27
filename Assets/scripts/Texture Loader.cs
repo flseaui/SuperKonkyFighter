@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TextureLoader : MonoBehaviour {
 
-    Texture[] textures;
+    public Texture[] textures;
     string[] paths = {
         "Super Konky Fighter\\Assets\\textures\\attacktorb.png",
         "Super Konky Fighter\\Assets\\textures\\soldier.png"
