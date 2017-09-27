@@ -9,13 +9,19 @@ public class PlayerScript : MonoBehaviour {
     public float BUFFER = 1;
 
     public float gravity;
-    public bool air; 
+    public bool air;
 
-    public float yVelocity;
+    public bool stunned;
+    public int stunTimer;
+
+    public float vVelocity;
+    public float hVelocity;
+
+    public float speed;
 
 	// Use this for initialization
 	void Start () {
-        yVelocity = 0;
+        vVelocity = 0;
         gravity = BASE_GRAVITY;
 	}
 	
@@ -24,7 +30,7 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKey(KeyCode.W) && !air)
         {
             air = true;
-            yVelocity = 2;
+            vVelocity = 2;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -45,14 +51,14 @@ public class PlayerScript : MonoBehaviour {
 
         //PHYSICS
 
-        yVelocity += gravity;
+        vVelocity += gravity;
 
-        moveY(yVelocity);
+        moveY(vVelocity);
         
         if (this.transform.position.y < FLOOR_HEIGHT + BUFFER)
         {
             air = false;
-            yVelocity = 0;
+            vVelocity = 0;
             setY(FLOOR_HEIGHT);
         }
     }
@@ -93,5 +99,11 @@ public class PlayerScript : MonoBehaviour {
     private float getX()
     {
         return this.transform.position.x;
+    }
+
+    private void changeTexture()
+    {
+        Texture t = GetComponent<SpriteRenderer>().sprite.texture;
+        t.
     }
 }
