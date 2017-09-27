@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class TextureLoader : MonoBehaviour {
 
-    public Texture[] textures;
-    string[] paths = {
+    public static Texture2D[] textures;
+    private string[] paths = {
         "Super Konky Fighter\\Assets\\textures\\attacktorb.png",
         "Super Konky Fighter\\Assets\\textures\\soldier.png"
     };
 
+    public static Texture2D[] get()
+    {
+        return textures;
+    }
+
 	// Use this for initialization
 	void Start () {
         int numTextures = paths.Length;
-        textures = new Texture[numTextures];
+        textures = new Texture2D[numTextures];
         for(int i=0; i < numTextures; ++i)
         {
             textures[i] = LoadPNG(paths[i]);

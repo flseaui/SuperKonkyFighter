@@ -19,10 +19,13 @@ public class PlayerScript : MonoBehaviour {
 
     public float speed;
 
+    int texture;
+
 	// Use this for initialization
 	void Start () {
         vVelocity = 0;
         gravity = BASE_GRAVITY;
+        texture = 0;
 	}
 	
 	// Update is called once per frame
@@ -60,6 +63,15 @@ public class PlayerScript : MonoBehaviour {
             air = false;
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
+        }
+
+        if (texture==0)
+        {
+            setTexture(1);
+        }
+        else
+        {
+            setTexture(0);
         }
     }
 
@@ -101,8 +113,12 @@ public class PlayerScript : MonoBehaviour {
         return this.transform.position.x;
     }
 
-    private void changeTexture(int ek)
+    private void setTexture(int index)
     {
-
+        texture = index;
+        GetComponent<TextureLoader>().textures;
+        Texture2D oldT = this.GetComponent<SpriteRenderer>().sprite.texture;
+        oldT = newT;
+        Debug.Log(index);
     }
 }
