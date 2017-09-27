@@ -19,10 +19,8 @@ public class PlayerScript : MonoBehaviour {
 
     public float speed;
 
-    public Sprite playerSprite;
-
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         vVelocity = 0;
         gravity = BASE_GRAVITY;
 	}
@@ -103,9 +101,8 @@ public class PlayerScript : MonoBehaviour {
         return this.transform.position.x;
     }
 
-    private void changeSprite(Sprite spriteChange)
+    private void changeTexture(int ek)
     {
-        this.GetComponent<SpriteRenderer>().sprite = spriteChange;
-        
+
     }
 }
