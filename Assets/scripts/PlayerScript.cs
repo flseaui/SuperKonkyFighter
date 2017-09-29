@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour {
     public float BASE_GRAVITY = -0.05f;
     public float BUFFER = 1;
 
+    public float friction;
     public float gravity;
 
     public bool stunned;
@@ -34,6 +35,7 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (Input.GetKey(KeyCode.W) && !air)
         {
             air = true;
@@ -57,6 +59,8 @@ public class PlayerScript : MonoBehaviour {
         }
 
         //PHYSICS
+
+        hVelocity *= friction;
 
         vVelocity += gravity;
 
