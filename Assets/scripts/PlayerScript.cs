@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour {
 
     public Animator animator;
 
+    public bool air;
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
