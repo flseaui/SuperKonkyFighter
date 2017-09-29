@@ -79,7 +79,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void enable(int index)
     {
-        bool b = animator.GetBool(index);
+        bool b = animator.GetBool("forward");
         b = true;
     }
 

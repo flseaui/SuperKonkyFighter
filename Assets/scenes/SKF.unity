@@ -188,7 +188,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ac5545b55dcbba34abf4c4ffaf4548b5, type: 2}
+      objectReference: {fileID: 9100000, guid: 31457a26124280d4db298d4a2aea9c21, type: 2}
     - target: {fileID: 95493576834688524, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_Enabled
