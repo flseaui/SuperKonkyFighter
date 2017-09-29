@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 1961471759494470}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ac5545b55dcbba34abf4c4ffaf4548b5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 31457a26124280d4db298d4a2aea9c21, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -75,15 +75,13 @@ MonoBehaviour:
   BUFFER: 1
   friction: 0
   gravity: 0
-  stunned: 0
   stunTimer: 0
   vVelocity: 0
   hVelocity: 0
-  speed: 0
-  right: 0
+  forwardSpeed: 0
+  backwardSpeed: 0
+  animator: {fileID: 0}
   air: 0
-  forward: 0
-  backward: 0
 --- !u!212 &212604718681265274
 SpriteRenderer:
   m_ObjectHideFlags: 1
