@@ -21,8 +21,25 @@ public class PlayerScript : MonoBehaviour {
 
     int texture;
 
-	// Use this for initialization
-	void Start () {
+    public static Texture2D[] textures;
+    private string[] paths = {
+        "\\textures\\attacktorb.png",
+        "\\textures\\soldier.png"
+    };
+
+    public void loadTextures()
+    {
+        int numTextures = paths.Length;
+        textures = new Texture2D[numTextures];
+        for (int i = 0; i < numTextures; ++i)
+        {
+            textures[i] = (Texture2D)Resources.Load(paths[i]);
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+        loadTextures();
         vVelocity = 0;
         gravity = BASE_GRAVITY;
         texture = 0;
@@ -115,10 +132,8 @@ public class PlayerScript : MonoBehaviour {
 
     private void setTexture(int index)
     {
-        texture = index;
-        GetComponent<TextureLoader>().textures;
         Texture2D oldT = this.GetComponent<SpriteRenderer>().sprite.texture;
+        Texture2D newT = textures[index];
         oldT = newT;
-        Debug.Log(index);
     }
 }
