@@ -16,7 +16,8 @@ public class PlayerScript : MonoBehaviour {
     public float vVelocity;
     public float hVelocity;
 
-    public float speed;
+    public float forwardSpeed;
+    public float backwardSpeed;
 
     public static Sprite[] textures;
 
@@ -27,6 +28,8 @@ public class PlayerScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
+        forwardSpeed = 1f;
+        backwardSpeed = 0.5f;
         friction = 0.5f;
         vVelocity = 0;
         hVelocity = 0;
@@ -36,6 +39,8 @@ public class PlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        disable(0);
+
         if (Input.GetKey(KeyCode.W) && !air)
         {
             air = true;
@@ -43,7 +48,8 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A))
         {
-            hVelocity = -1f;
+            enable(0);
+            hVelocity = -backwardSpeed;
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -51,7 +57,7 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.D))
         {
-            hVelocity = 1f;
+            hVelocity = forwardSpeed;
         }
 
         //PHYSICS
@@ -69,6 +75,18 @@ public class PlayerScript : MonoBehaviour {
             setY(FLOOR_HEIGHT);
         }
 
+    }
+
+    private void enable(int index)
+    {
+        bool b = animator.GetBool(index);
+        b = true;
+    }
+
+    private void disable(int index)
+    {
+        bool b = animator.GetBool(index);
+        b = false;
     }
 
     private void moveX(float amm)
