@@ -11,7 +11,6 @@ public class PlayerScript : MonoBehaviour {
     public float friction;
     public float gravity;
 
-    public bool stunned;
     public int stunTimer;
 
     public float vVelocity;
@@ -21,13 +20,12 @@ public class PlayerScript : MonoBehaviour {
 
     public static Sprite[] textures;
 
-    public bool right;
-    public bool air;
-    public bool forward;
-    public bool backward;
+    public Animator animator;
 
     // Use this for initialization
     void Start () {
+        animator = GetComponent<Animator>();
+        friction = 0.5f;
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
@@ -43,9 +41,7 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A))
         {
-            Vector3 position = this.transform.position;
-            position.x -= 0.04f;
-            this.transform.position = position;
+            hVelocity = -1f;
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -53,17 +49,15 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Vector3 position = this.transform.position;
-            position.x += 0.04f;
-            this.transform.position = position;
+            hVelocity = 1f;
         }
 
         //PHYSICS
 
         hVelocity *= friction;
+        moveX(hVelocity);
 
         vVelocity += gravity;
-
         moveY(vVelocity);
         
         if (this.transform.position.y < FLOOR_HEIGHT + BUFFER)
