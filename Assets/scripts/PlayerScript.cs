@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour {
     public float BUFFER = 1;
 
     public float gravity;
-    public bool air;
 
     public bool stunned;
     public int stunTimer;
@@ -20,6 +19,11 @@ public class PlayerScript : MonoBehaviour {
     public float speed;
 
     public static Sprite[] textures;
+
+    public bool right;
+    public bool air;
+    public bool forward;
+    public bool backward;
 
     // Use this for initialization
     void Start () {
