@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void disable(int index)
     {
-        bool b = animator.GetBool(index);
+        bool b = animator.GetBool("forward");
         b = false;
     }
 
