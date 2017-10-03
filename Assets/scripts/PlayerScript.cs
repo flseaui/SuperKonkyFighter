@@ -39,7 +39,7 @@ public class PlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        aDisable(0);
+        aDisable("forward");
 
         if (Input.GetKey(KeyCode.W) && !air)
         {
@@ -48,7 +48,6 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A))
         {
-            aEnable(0);
             hVelocity = -backwardSpeed;
         }
         if (Input.GetKey(KeyCode.S))
@@ -57,6 +56,7 @@ public class PlayerScript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.D))
         {
+            aEnable("forward");
             hVelocity = forwardSpeed;
         }
 
@@ -77,16 +77,14 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
-    private void aEnable(int index)
+    private void aEnable(string index)
     {
-        bool b = animator.GetParameter(index).defaultBool;
-        b = true;
+        animator.SetBool(index, true);
     }
 
-    private void aDisable(int index)
+    private void aDisable(string index)
     {
-        bool b = animator.GetParameter(index).defaultBool;
-        b = false;
+        animator.SetBool(index,false);
     }
 
     private void moveX(float amm)
