@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
     
     public float FLOOR_HEIGHT = -2;
     public float BASE_GRAVITY = -0.05f;
-    public float BUFFER = 1;
+    public float BUFFER = 0.1f;
 
     public float friction;
     public float gravity;
@@ -24,13 +24,15 @@ public class PlayerScript : MonoBehaviour {
     public Animator animator;
 
     public bool air;
+    public bool forward;
+    public bool backward;
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        forwardSpeed = 1f;
-        backwardSpeed = 0.5f;
-        friction = 0.5f;
+        forwardSpeed = 0.25f;
+        backwardSpeed = 0.15f;
+        friction = 0f;
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
@@ -39,42 +41,55 @@ public class PlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        aDisable("forward");
+        backward = false;
+        forward = false;
 
         if (Input.GetKey(KeyCode.W) && !air)
-        {
-            air = true;
-            vVelocity = 2;
+        {  
+            vVelocity = 1f;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !air)
         {
+            backward = true;
             hVelocity = -backwardSpeed;
         }
         if (Input.GetKey(KeyCode.S))
         {
             //CROUCHING
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !air)
         {
-            aEnable("forward");
+            forward = true;
             hVelocity = forwardSpeed;
         }
 
-        //PHYSICS
-
-        hVelocity *= friction;
         moveX(hVelocity);
-
-        vVelocity += gravity;
         moveY(vVelocity);
-        
-        if (this.transform.position.y < FLOOR_HEIGHT + BUFFER)
+
+        if (getY() < FLOOR_HEIGHT)
         {
             air = false;
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
         }
+        else
+        {
+            air = true;
+        }
 
+        vVelocity += gravity;
+        if (!air) {
+            hVelocity = 0;
+        }
+
+        boolSet(air, "air");
+        boolSet(forward, "forward");
+        boolSet(backward, "backward");
+    }
+
+    private void boolSet(bool b, string s)
+    {
+            animator.SetBool(s, b);
     }
 
     private void aEnable(string index)
