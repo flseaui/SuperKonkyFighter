@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114f736aeae7a9848a356000f45f6753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FLOOR_HEIGHT: -2
+  FLOOR_HEIGHT: 0
   BASE_GRAVITY: -0.05
   BUFFER: 1
   friction: 0
@@ -69,6 +69,8 @@ MonoBehaviour:
   backwardSpeed: 0
   animator: {fileID: 0}
   air: 0
+  forward: 0
+  backward: 0
 --- !u!212 &212604718681265274
 SpriteRenderer:
   m_ObjectHideFlags: 1
