@@ -231,13 +231,13 @@ public class PlayerScript : MonoBehaviour {
             {
                 airLock = true;
                 vVelocity = jumpSpeed;
-                hVelocity = forwardSpeed;
+                hVelocity = forwardSpeed*1.2f;
             }
             else if(state == 7)
             {
                 airLock = true;
                 vVelocity = jumpSpeed;
-                hVelocity = -forwardSpeed;
+                hVelocity = -backwardSpeed*1.2f;
             }
             else if (state < 4)
             {

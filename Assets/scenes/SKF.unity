@@ -108,6 +108,36 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &763585987 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1961471759494470, guid: 67ecc353c736d5b4e844d99e43bc5191,
+    type: 2}
+  m_PrefabInternal: {fileID: 2091024814}
+--- !u!61 &763585988
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763585987}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 19.2, y: 19.2}
+    newSize: {x: 12.24, y: 11.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 19.2, y: 19.2}
+  m_EdgeRadius: 0
 --- !u!1 &1052459707
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +351,7 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.01105675
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -351,12 +381,12 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2.587
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.043499947
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -366,7 +396,7 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -391,12 +421,12 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_Pivot.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -406,6 +436,16 @@ Prefab:
     - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: FLOOR_HEIGHT
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: down
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212604718681265274, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
