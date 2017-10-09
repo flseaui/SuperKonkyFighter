@@ -41,8 +41,8 @@ public class PlayerScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        forwardSpeed = 0.25f;
-        backwardSpeed = 0.15f;
+        forwardSpeed = 0.2f;
+        backwardSpeed = 0.2f;
         jumpSpeed = 1f;
         friction = 0f;
         vVelocity = 0;
