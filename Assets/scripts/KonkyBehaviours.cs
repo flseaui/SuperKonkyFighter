@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Konky : Behaviors{
+public class KonkyBehaviours : Behaviors{
 
-    int attackState;
-
-    int[,] moveMap = new int[3,9]{
+    static int[,] konkyMoveMap = new int[3, 9]{
         {
             -1,-1,-1,
             -1, 0,-1,
@@ -24,9 +22,10 @@ public class Konky : Behaviors{
         },
     };
 
-    int[] frames = new int[]
+    static int[] konkyFrames = new int[]
     {
         40 //KONKY ELBOW
     };
 
+    public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
 }

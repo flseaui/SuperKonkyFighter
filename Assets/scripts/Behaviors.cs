@@ -4,13 +4,23 @@ using UnityEngine;
 
 public abstract class Behaviors{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private int[,] moveMap;
+
+    private int[] frames;
+
+    public Behaviors(int[,] moveMap, int[] frames)
+    {
+        this.moveMap = moveMap;
+        this.frames = frames;
+    }
+
+    public int getAttack(int str, int state)
+    {
+        return moveMap[str,state];
+    }
+
+    public int getTime(int attack)
+    {
+        return frames[attack];
+    }
 }

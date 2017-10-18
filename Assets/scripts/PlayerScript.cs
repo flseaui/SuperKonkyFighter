@@ -5,10 +5,16 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
     
     //CONSTANT
-    public float FLOOR_HEIGHT = 0;
-    public float BASE_GRAVITY = -0.05f;
-    public float BUFFER = 0.1f;
-    public int NOATTACK = -1;
+    static float FLOOR_HEIGHT = 0;
+    static float BASE_GRAVITY = -0.05f;
+    static float BUFFER = 0.1f;
+    static int NO_ATTACK_INDEX = -1;
+    static int NO_ATTACK = -1;
+    static int LIGHT_ATTACK = 0;
+    static int MEDIUM_ATTACK = 1;
+    static int HEAVY_ATTACK = 2;
+    static int ANIM_STATE = Animator.StringToHash("state");
+    static int ANIM_ATTACK_STATE = Animator.StringToHash("attack");
 
     public float friction;
     public float gravity;
@@ -25,7 +31,7 @@ public class PlayerScript : MonoBehaviour {
     public static Sprite[] textures;
 
     public Animator animator;
-    private int ANIM_STATE = Animator.StringToHash("state");
+    public Behaviors behaviors;
 
     public bool air;
     bool airLock = false;
@@ -37,23 +43,12 @@ public class PlayerScript : MonoBehaviour {
     // 1 2 3
     public int iState;//player input state, doesn't always sync up with state, but is always within control
 
-    public int attack;//attack going on rn
-    public int iAttack;//input attack
+    public int attack;//attack strength (LMH)
+    public int iAttack = -1;//input attack strength (LMH)
 
-    // Use this for initialization
-    void Start () {
-        animator = GetComponent<Animator>();
-        forwardSpeed = 0.2f;
-        backwardSpeed = 0.2f;
-        jumpSpeed = 1f;
-        friction = 0f;
-        vVelocity = 0;
-        hVelocity = 0;
-        gravity = BASE_GRAVITY;
-
-        iState = 5;
-        state = 5;
-	}
+    public int attackState;//attack going on rn
+    public bool attacking = false;//is there an attack
+    public int attackTimer = 0; //time left in attack animation
 
     int forgiveness = 4; //forgiveness in number of frames to make an input
     public int forTime = 0; //the timer for frame forgiveness
@@ -63,40 +58,67 @@ public class PlayerScript : MonoBehaviour {
     public bool down  = false;
     public bool right = false;
 
+    //start
+    void Start()
+    {
+        behaviors = new KonkyBehaviours();
+        animator = GetComponent<Animator>();
+        forwardSpeed = 0.25f;
+        backwardSpeed = 0.15f;
+        jumpSpeed = 1f;
+        friction = 0f;
+        vVelocity = 0;
+        hVelocity = 0;
+        gravity = BASE_GRAVITY;
+
+        iState = 5;
+        state = 5;
+    }
+
     // Update is called once per frame
     private void Update () {
 
+        bool forgive = false;
+
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            forgive = true;
+            iAttack = LIGHT_ATTACK;
+        }
+        if (Input.GetKey(KeyCode.Keypad5))
+        {
+            forgive = true;
+            iAttack = MEDIUM_ATTACK;
+        }
+        if (Input.GetKey(KeyCode.Keypad6))
+        {
+            forgive = true;
+            iAttack = HEAVY_ATTACK;
+        }
         if (Input.GetKey(KeyCode.W))
         {
-            if (forTime < 0)
-            {
-                forTime = forgiveness;
-            }
+            forgive = true;
             up = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            if (forTime < 0)
-            {
-                forTime = forgiveness;
-            }
+            forgive = true;
             left = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            if (forTime < 0)
-            {
-                forTime = forgiveness;
-            }
+            forgive = true;
             down = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (forTime < 0)
-            {
-                forTime = forgiveness;
-            }
+            forgive = true;
             right = true;
+        }
+
+        if (forgive && forTime < 0)
+        {
+            forTime = forgiveness;
         }
 
         //find what input state the player is in
@@ -140,11 +162,19 @@ public class PlayerScript : MonoBehaviour {
             {
                 airLock = true;
             }
+
+            //set what is inputted to what is going to happen
+            state = iState;
+            attack = iAttack;
+
+            //reset what is inputted
             up = false;
             left = false;
             down = false;
             right = false;
+            iAttack = NO_ATTACK;
 
+            //do something finally
             execute();
         }
         forTime--;
@@ -152,6 +182,7 @@ public class PlayerScript : MonoBehaviour {
         moveX(hVelocity);
         moveY(vVelocity);
 
+        //floor check
         if (getY() < FLOOR_HEIGHT)
         {
             air = false;
@@ -164,18 +195,33 @@ public class PlayerScript : MonoBehaviour {
             air = true;
         }
 
+        //gravity
         vVelocity += gravity;
         if (!air) {
             hVelocity = 0;
         }
 
+        //see what the state should be
         stateCheck();
 
+        //communicate to the animaton controller for player state and attack state VV
         animInt(ANIM_STATE,state);
+        animInt(ANIM_ATTACK_STATE,attackState);
     }
 
-    private void stateCheck() //checks on the current state, resets it if need be
+    private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
     {
+        //attack timer
+        if (attackTimer == 0)
+        {
+            attack = NO_ATTACK_INDEX;
+            attacking = false;
+        }
+        else
+        {
+            attackTimer--;
+        }
+
         if (state == 6)
         {
             if (iState == 6)
@@ -223,7 +269,17 @@ public class PlayerScript : MonoBehaviour {
         }
         else
         {
-            state = iState;
+            //set attack actually
+            if (attackState != NO_ATTACK)
+            {
+                int check = behaviors.getAttack(attackState, state);
+                if (check != NO_ATTACK_INDEX) {//don't attack for a -1 value
+                    attacking = true;
+                    attack = check;
+                    attackTimer = behaviors.getTime(attack);
+                }
+            }
+            //set movements for different states
             if (state==8)
             {
                 airLock = true;
