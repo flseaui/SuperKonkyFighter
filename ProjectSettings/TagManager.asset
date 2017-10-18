@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackDrop
+    uniqueID: 2259160629
+    locked: 0
+  - name: UI
+    uniqueID: 1572058107
+    locked: 0
+  - name: Player
+    uniqueID: 2271859255
+    locked: 0
