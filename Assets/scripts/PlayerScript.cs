@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
     
+    //CONSTANT
     public float FLOOR_HEIGHT = 0;
     public float BASE_GRAVITY = -0.05f;
     public float BUFFER = 0.1f;
+    public int NOATTACK = -1;
 
     public float friction;
     public float gravity;
@@ -34,9 +36,9 @@ public class PlayerScript : MonoBehaviour {
     // 4 5 6
     // 1 2 3
     public int iState;//player input state, doesn't always sync up with state, but is always within control
-    // 7 8 9
-    // 4 5 6
-    // 1 2 3
+
+    public int attack;//attack going on rn
+    public int iAttack;//input attack
 
     // Use this for initialization
     void Start () {

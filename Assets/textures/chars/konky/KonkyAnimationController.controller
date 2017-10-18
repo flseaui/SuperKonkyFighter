@@ -17,7 +17,7 @@ AnimatorController:
   - m_Name: attack
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 0
+    m_DefaultInt: -1
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
@@ -236,8 +236,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: state
-    m_EventTreshold: 1
+    m_ConditionEvent: attack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102587523207095866}
   m_Solo: 0
@@ -595,7 +595,7 @@ AnimatorStateMachine:
     m_Position: {x: 312, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102587523207095866}
-    m_Position: {x: 96, y: 132, z: 0}
+    m_Position: {x: 96, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102232611763078680}
     m_Position: {x: 312, y: 48, z: 0}
