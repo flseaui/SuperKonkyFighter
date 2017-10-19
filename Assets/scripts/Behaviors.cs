@@ -16,7 +16,7 @@ public abstract class Behaviors{
 
     public int getAttack(int str, int state)
     {
-        return moveMap[str,state];
+        return moveMap[str,state-1];
     }
 
     public int getTime(int attack)

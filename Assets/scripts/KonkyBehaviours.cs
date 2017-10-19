@@ -22,7 +22,7 @@ public class KonkyBehaviours : Behaviors{
         },
     };
 
-    static int[] konkyFrames = new int[]
+    static  int[] konkyFrames = new int[]
     {
         40 //KONKY ELBOW
     };
