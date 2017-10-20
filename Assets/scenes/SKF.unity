@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -276,8 +276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -182.41, y: -21.5}
-  m_SizeDelta: {x: -514.859, y: 27.31}
+  m_AnchoredPosition: {x: -182.77002, y: -21.5}
+  m_SizeDelta: {x: -514.86, y: 27.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722718579
 MonoBehaviour:
@@ -319,9 +319,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 10000
+  m_WholeNumbers: 1
+  m_Value: 10000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -784,8 +784,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 185.39001, y: -43.409973}
-  m_SizeDelta: {x: -519.61, y: 27.31}
+  m_AnchoredPosition: {x: 184.89548, y: -43.409973}
+  m_SizeDelta: {x: -519.881, y: 27.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190767311
 MonoBehaviour:
@@ -931,8 +931,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -182.41, y: -43.409973}
-  m_SizeDelta: {x: -514.86, y: 27.31}
+  m_AnchoredPosition: {x: -182.77121, y: -44.9}
+  m_SizeDelta: {x: -514.86237, y: 27.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434916753
 MonoBehaviour:
@@ -1178,6 +1178,7 @@ GameObject:
   - component: {fileID: 1895151206}
   - component: {fileID: 1895151205}
   - component: {fileID: 1895151204}
+  - component: {fileID: 1895151208}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1265,6 +1266,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1895151208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895151203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf80c0590207d74b982e164cf58c412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1961471759494470, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
+  health1: {fileID: 722718579}
+  health2: {fileID: 1961195580}
+  meter1: {fileID: 1434916753}
+  meter2: {fileID: 1190767311}
 --- !u!1 &1961195578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,8 +1314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 185.39001, y: -16.099976}
-  m_SizeDelta: {x: -519.62, y: 27.31}
+  m_AnchoredPosition: {x: 184.91899, y: -16.099976}
+  m_SizeDelta: {x: -519.87, y: 27.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961195580
 MonoBehaviour:
@@ -1340,9 +1357,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 10000
+  m_WholeNumbers: 1
+  m_Value: 10000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
