@@ -270,7 +270,7 @@ public class PlayerScript : MonoBehaviour {
         else
         {
             //set attack actually
-            if (attackState != NO_ATTACK)
+            if (attackState != NO_ATTACK && !attacking)
             {
                 int check = behaviors.getAttack(attackState, state);
                 if (check != NO_ATTACK_INDEX) {//don't attack for a -1 value
