@@ -163,6 +163,34 @@ public class PlayerScript : MonoBehaviour {
                 airLock = true;
             }
 
+            //forward dash input
+            //if (iState==6)
+            //{
+            //  check for "5" state within 8 frames
+            //  if (iState == 5)
+            //  {
+            //      check for "6" state within 8 frames
+            //      while (iState == 6)//run-type dash
+            //      {
+            //          dash
+            //      }
+            //  }
+            //}
+
+            //back dash input
+            //if (iState==4)
+            //{
+            //  check for "5" state within 8 frames
+            //  if (iState == 5)
+            //  {
+            //  check for "4" state within 8 frames
+            //      if (iState == 4)
+            //      {
+            //          dash
+            //      }
+            //  }
+            //}
+
             //set what is inputted to what is going to happen
             state = iState;
             attack = iAttack;
@@ -172,7 +200,7 @@ public class PlayerScript : MonoBehaviour {
             left = false;
             down = false;
             right = false;
-            iAttack = NO_ATTACK;
+            iAttack = NO_ATTACK;//make into AIREAL
 
             //do something finally
             execute();
