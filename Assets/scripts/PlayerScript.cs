@@ -34,8 +34,8 @@ public class PlayerScript : MonoBehaviour {
     public Behaviors behaviors;
 
     public bool air;
-    bool airLock = false;
-    bool crouching = false;
+    public bool airLock = false;
+    public bool crouching = false;
 
     public int state;//player actual state, can be out of the player's control
     // 7 8 9
@@ -46,12 +46,12 @@ public class PlayerScript : MonoBehaviour {
     public int attack;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
-    public int attackState;//attack going on rn
+    public int attackState = -1;//attack going on rn
     public bool attacking = false;//is there an attack
     public int attackTimer = 0; //time left in attack animation
 
     int forgiveness = 4; //forgiveness in number of frames to make an input
-    public int forTime = 0; //the timer for frame forgiveness
+    public int forTime = -1; //the timer for frame forgiveness
 
     public bool up    = false;
     public bool left  = false;
@@ -234,7 +234,7 @@ public class PlayerScript : MonoBehaviour {
 
         //communicate to the animaton controller for player state and attack state VV
         animInt(ANIM_STATE,state);
-        animInt(ANIM_ATTACK_STATE,attackState);
+        animInt(ANIM_ATTACK_STATE,attack);
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
@@ -242,7 +242,8 @@ public class PlayerScript : MonoBehaviour {
         //attack timer
         if (attackTimer == 0)
         {
-            attack = NO_ATTACK_INDEX;
+            attack = NO_ATTACK;
+            attackState = NO_ATTACK_INDEX;
             attacking = false;
         }
         else
@@ -298,13 +299,13 @@ public class PlayerScript : MonoBehaviour {
         else
         {
             //set attack actually
-            if (attackState != NO_ATTACK && !attacking)
+           if (attack != NO_ATTACK && !attacking)
             {
-                int check = behaviors.getAttack(attackState, state);
+                int check = behaviors.getAttack(attack, state);
                 if (check != NO_ATTACK_INDEX) {//don't attack for a -1 value
                     attacking = true;
-                    attack = check;
-                    attackTimer = behaviors.getTime(attack);
+                    attackState = check;
+                    attackTimer = behaviors.getTime(attackState);
                 }
             }
             //set movements for different states
