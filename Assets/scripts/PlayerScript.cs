@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour {
-    
+public class PlayerScript : MonoBehaviour
+{
+
     //CONSTANT
     static float FLOOR_HEIGHT = 0;
     static float BASE_GRAVITY = -0.05f;
@@ -37,6 +39,9 @@ public class PlayerScript : MonoBehaviour {
     public bool airLock = false;
     public bool crouching = false;
 
+    private int maxHealth;
+    private int health;
+
     public int state;//player actual state, can be out of the player's control
     // 7 8 9
     // 4 5 6
@@ -53,9 +58,9 @@ public class PlayerScript : MonoBehaviour {
     int forgiveness = 4; //forgiveness in number of frames to make an input
     public int forTime = -1; //the timer for frame forgiveness
 
-    public bool up    = false;
-    public bool left  = false;
-    public bool down  = false;
+    public bool up = false;
+    public bool left = false;
+    public bool down = false;
     public bool right = false;
 
     //start
@@ -76,7 +81,8 @@ public class PlayerScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update () {
+    private void Update()
+    {
 
         bool forgive = false;
 
@@ -125,13 +131,16 @@ public class PlayerScript : MonoBehaviour {
         if (up && right)
         {
             iState = 9;
-        } else if (right && down)
+        }
+        else if (right && down)
         {
             iState = 3;
-        } else if (down && left)
+        }
+        else if (down && left)
         {
             iState = 1;
-        } else if (left && up)
+        }
+        else if (left && up)
         {
             iState = 7;
         }
@@ -225,7 +234,8 @@ public class PlayerScript : MonoBehaviour {
 
         //gravity
         vVelocity += gravity;
-        if (!air) {
+        if (!air)
+        {
             hVelocity = 0;
         }
 
@@ -233,8 +243,8 @@ public class PlayerScript : MonoBehaviour {
         stateCheck();
 
         //communicate to the animaton controller for player state and attack state VV
-        animInt(ANIM_STATE,state);
-        animInt(ANIM_ATTACK_STATE,attack);
+        animInt(ANIM_STATE, state);
+        animInt(ANIM_ATTACK_STATE, attack);
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
@@ -290,6 +300,7 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
+
     private void execute()//executes your input to do something
     {
         if (airLock)
@@ -299,17 +310,18 @@ public class PlayerScript : MonoBehaviour {
         else
         {
             //set attack actually
-           if (attack != NO_ATTACK && !attacking)
+            if (attack != NO_ATTACK && !attacking)
             {
                 int check = behaviors.getAttack(attack, state);
-                if (check != NO_ATTACK_INDEX) {//don't attack for a -1 value
+                if (check != NO_ATTACK_INDEX)
+                {//don't attack for a -1 value
                     attacking = true;
                     attackState = check;
                     attackTimer = behaviors.getTime(attackState);
                 }
             }
             //set movements for different states
-            if (state==8)
+            if (state == 8)
             {
                 airLock = true;
                 vVelocity = jumpSpeed;
@@ -318,13 +330,13 @@ public class PlayerScript : MonoBehaviour {
             {
                 airLock = true;
                 vVelocity = jumpSpeed;
-                hVelocity = forwardSpeed*1.2f;
+                hVelocity = forwardSpeed * 1.2f;
             }
-            else if(state == 7)
+            else if (state == 7)
             {
                 airLock = true;
                 vVelocity = jumpSpeed;
-                hVelocity = -backwardSpeed*1.2f;
+                hVelocity = -backwardSpeed * 1.2f;
             }
             else if (state < 4)
             {
@@ -340,7 +352,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void animBool(bool b, string s)
     {
-            animator.SetBool(s, b);
+        animator.SetBool(s, b);
     }
 
     private void moveX(float amm)
@@ -379,5 +391,10 @@ public class PlayerScript : MonoBehaviour {
     private float getX()
     {
         return this.transform.position.x;
+    }
+
+    private int getMaxHealth()
+    {
+        return 0;
     }
 }
