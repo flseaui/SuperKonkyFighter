@@ -132,11 +132,11 @@ public class PlayerScript : MonoBehaviour
         {
             iState = 9;
         }
-        else if (right && down)
+        else if (right && down && !airLock)
         {
             iState = 3;
         }
-        else if (down && left)
+        else if (down && left && !airLock)
         {
             iState = 1;
         }
@@ -148,19 +148,19 @@ public class PlayerScript : MonoBehaviour
         {
             iState = 8;
         }
-        else if (right)
+        else if (right && !airLock)
         {
             iState = 6;
         }
-        else if (down)
+        else if (down && !airLock)
         {
             iState = 2;
         }
-        else if (left)
+        else if (left && !airLock)
         {
             iState = 4;
         }
-        else
+        else if (!airLock)
         {
             iState = 5;
         }
