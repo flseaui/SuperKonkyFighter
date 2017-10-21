@@ -35,6 +35,9 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public Behaviors behaviors;
 
+    //pass the ground in so that the player can collide
+    private GameObject ground;
+
     public bool air;
     public bool airLock = false;
     public bool crouching = false;
@@ -381,6 +384,16 @@ public class PlayerScript : MonoBehaviour
         Vector3 position = this.transform.position;
         position.x = amm;
         this.transform.position = position;
+    }
+
+    private float getY(GameObject obj)
+    {
+        return obj.transform.position.y;
+    }
+
+    private float getX(GameObject obj)
+    {
+        return obj.transform.position.x;
     }
 
     private float getY()
