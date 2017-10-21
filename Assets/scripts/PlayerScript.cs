@@ -35,9 +35,6 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public Behaviors behaviors;
 
-    //pass the ground in so that the player can collide
-    private GameObject ground;
-
     public bool air;
     public bool airLock = false;
     public bool crouching = false;
@@ -131,41 +128,43 @@ public class PlayerScript : MonoBehaviour
         }
 
         //find what input state the player is in
-        if (up && right)
-        {
-            iState = 9;
-        }
-        else if (right && down && !airLock)
-        {
-            iState = 3;
-        }
-        else if (down && left && !airLock)
-        {
-            iState = 1;
-        }
-        else if (left && up)
-        {
-            iState = 7;
-        }
-        else if (up)
-        {
-            iState = 8;
-        }
-        else if (right && !airLock)
-        {
-            iState = 6;
-        }
-        else if (down && !airLock)
-        {
-            iState = 2;
-        }
-        else if (left && !airLock)
-        {
-            iState = 4;
-        }
-        else if (!airLock)
-        {
-            iState = 5;
+        if (!airLock) {
+            if (up && right)
+            {
+                iState = 9;
+            }
+            else if (right && down)
+            {
+                iState = 3;
+            }
+            else if (down && left)
+            {
+                iState = 1;
+            }
+            else if (left && up)
+            {
+                iState = 7;
+            }
+            else if (up)
+            {
+                iState = 8;
+            }
+            else if (right)
+            {
+                iState = 6;
+            }
+            else if (down)
+            {
+                iState = 2;
+            }
+            else if (left)
+            {
+                iState = 4;
+            }
+            else
+            {
+                iState = 5;
+            }
         }
 
         if (forTime == 0)//time to actually do something
@@ -384,16 +383,6 @@ public class PlayerScript : MonoBehaviour
         Vector3 position = this.transform.position;
         position.x = amm;
         this.transform.position = position;
-    }
-
-    private float getY(GameObject obj)
-    {
-        return obj.transform.position.y;
-    }
-
-    private float getX(GameObject obj)
-    {
-        return obj.transform.position.x;
     }
 
     private float getY()
