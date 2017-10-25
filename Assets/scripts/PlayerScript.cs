@@ -54,13 +54,13 @@ public class PlayerScript : MonoBehaviour
     public bool attacking = false;//is there an attack
     public int attackTimer = 0; //time left in attack animation
 
-    int forgiveness = 4; //forgiveness in number of frames to make an input
-    public int forTime = -1; //the timer for frame forgiveness
-
     public bool up = false;
     public bool left = false;
     public bool down = false;
     public bool right = false;
+    public bool light = false;
+    public bool medium = false;
+    public bool heavy = false;
 
     //start
     void Start()
@@ -83,138 +83,104 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
 
-        bool forgive = false;
+        up = false;
+        right = false;
+        down = false;
+        left = false;
+        light = false;
+        medium = false;
+        heavy = false;
 
         if (Input.GetKey(KeyCode.Keypad4))
         {
-            forgive = true;
-            iAttack = LIGHT_ATTACK;
+            light = true;
         }
         if (Input.GetKey(KeyCode.Keypad5))
         {
-            forgive = true;
-            iAttack = MEDIUM_ATTACK;
+            medium = true;
         }
         if (Input.GetKey(KeyCode.Keypad6))
         {
-            forgive = true;
-            iAttack = HEAVY_ATTACK;
+            heavy = true;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            forgive = true;
             up = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            forgive = true;
             left = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            forgive = true;
             down = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            forgive = true;
             right = true;
         }
 
-        if (forgive && forTime < 0)
+        if (up && right)
         {
-            forTime = forgiveness;
+            iState = 9;
+        }
+        else if (right && down)
+        {
+            iState = 3;
+        }
+        else if (down && left)
+        {
+            iState = 1;
+        }
+        else if (left && up)
+        {
+            iState = 7;
+        }
+        else if (up)
+        {
+            iState = 8;
+        }
+        else if (right)
+        {
+            iState = 6;
+        }
+        else if (down)
+        {
+            iState = 2;
+        }
+        else if (left)
+        {
+            iState = 4;
+        }
+        else
+        {
+            iState = 5;
         }
 
-        //find what input state the player is in
-        //if (!airLock) {
-            if (up && right)
-            {
-                iState = 9;
-            }
-            else if (right && down)
-            {
-                iState = 3;
-            }
-            else if (down && left)
-            {
-                iState = 1;
-            }
-            else if (left && up)
-            {
-                iState = 7;
-            }
-            else if (up)
-            {
-                iState = 8;
-            }
-            else if (right)
-            {
-                iState = 6;
-            }
-            else if (down)
-            {
-                iState = 2;
-            }
-            else if (left)
-            {
-                iState = 4;
-            }
-            else
-            {
-                iState = 5;
-            }
-        //}
-
-        if (forTime == 0)//time to actually do something
+        if (light)
         {
-            if (air)
-            {
-                airLock = true;
-            }
-
-            //forward dash input
-            //if (iState==6)
-            //{
-            //  check for "5" state within 8 frames
-            //  if (iState == 5)
-            //  {
-            //      check for "6" state within 8 frames
-            //      while (iState == 6)//run-type dash
-            //      {
-            //          dash
-            //      }
-            //  }
-            //}
-
-            //back dash input
-            //if (iState==4)
-            //{
-            //  check for "5" state within 8 frames
-            //  if (iState == 5)
-            //  {
-            //  check for "4" state within 8 frames
-            //      if (iState == 4)
-            //      {
-            //          dash
-            //      }
-            //  }
-            //}
-
-            //set what is inputted to what is going to happen
-            attack = iAttack;
-
-            //reset what is inputted
-            up = false;
-            left = false;
-            down = false;
-            right = false;
-            iAttack = NO_ATTACK;//make into AIREAL
-
-            //do something finally
-            execute();
+            iAttack = LIGHT_ATTACK;
         }
-        forTime--;
+        else if (medium)
+        {
+            iAttack = MEDIUM_ATTACK;
+        }
+        else if (heavy)
+        {
+            iAttack = HEAVY_ATTACK;
+        }
+        else
+        {
+            iAttack = NO_ATTACK;
+        }
+
+        if (air)
+        {
+            airLock = true;
+        }
+
+        //do something finally
+        execute();
 
         moveX(hVelocity);
         moveY(vVelocity);
@@ -306,25 +272,25 @@ public class PlayerScript : MonoBehaviour
         if (!attacking)
         {
 
-
-            if (airLock)
+            attack = iAttack;
+            
+            //set attack actually
+            if (attack != NO_ATTACK && !attacking)
             {
-
-            }
-            else
-            {
-                state = iState;
-                //set attack actually
-                if (attack != NO_ATTACK && !attacking)
-                {
-                    int check = behaviors.getAttack(attack, state);
-                    if (check != NO_ATTACK_INDEX)
-                    {//don't attack for a -1 value
-                        attacking = true;
-                        attackState = check;
-                        attackTimer = behaviors.getTime(attackState);
-                    }
+                int check = behaviors.getAttack(attack, state);
+                if (check != NO_ATTACK_INDEX)
+                {//don't attack for a -1 value
+                    attacking = true;
+                    attackState = check;
+                    attackTimer = behaviors.getTime(attackState);
                 }
+            }
+
+            if (!airLock)
+            {
+
+                state = iState;
+
                 //set movements for different states
                 if (state == 8)
                 {
