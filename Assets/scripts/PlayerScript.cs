@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     //CONSTANT
     static float FLOOR_HEIGHT = 0;
     static float BASE_GRAVITY = -0.05f;
-    static float BUFFER = 0.1f;
     static int NO_ATTACK_INDEX = -1;
     static int NO_ATTACK = -1;
     static int LIGHT_ATTACK = 0;
@@ -128,7 +127,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //find what input state the player is in
-        if (!airLock) {
+        //if (!airLock) {
             if (up && right)
             {
                 iState = 9;
@@ -165,7 +164,7 @@ public class PlayerScript : MonoBehaviour
             {
                 iState = 5;
             }
-        }
+        //}
 
         if (forTime == 0)//time to actually do something
         {
@@ -203,7 +202,6 @@ public class PlayerScript : MonoBehaviour
             //}
 
             //set what is inputted to what is going to happen
-            state = iState;
             attack = iAttack;
 
             //reset what is inputted
@@ -305,44 +303,50 @@ public class PlayerScript : MonoBehaviour
 
     private void execute()//executes your input to do something
     {
-        if (airLock)
+        if (!attacking)
         {
 
-        }
-        else
-        {
-            //set attack actually
-            if (attack != NO_ATTACK && !attacking)
+
+            if (airLock)
             {
-                int check = behaviors.getAttack(attack, state);
-                if (check != NO_ATTACK_INDEX)
-                {//don't attack for a -1 value
-                    attacking = true;
-                    attackState = check;
-                    attackTimer = behaviors.getTime(attackState);
+
+            }
+            else
+            {
+                state = iState;
+                //set attack actually
+                if (attack != NO_ATTACK && !attacking)
+                {
+                    int check = behaviors.getAttack(attack, state);
+                    if (check != NO_ATTACK_INDEX)
+                    {//don't attack for a -1 value
+                        attacking = true;
+                        attackState = check;
+                        attackTimer = behaviors.getTime(attackState);
+                    }
                 }
-            }
-            //set movements for different states
-            if (state == 8)
-            {
-                airLock = true;
-                vVelocity = jumpSpeed;
-            }
-            else if (state == 9)
-            {
-                airLock = true;
-                vVelocity = jumpSpeed;
-                hVelocity = forwardSpeed * 1.2f;
-            }
-            else if (state == 7)
-            {
-                airLock = true;
-                vVelocity = jumpSpeed;
-                hVelocity = -backwardSpeed * 1.2f;
-            }
-            else if (state < 4)
-            {
-                crouching = true;
+                //set movements for different states
+                if (state == 8)
+                {
+                    airLock = true;
+                    vVelocity = jumpSpeed;
+                }
+                else if (state == 9)
+                {
+                    airLock = true;
+                    vVelocity = jumpSpeed;
+                    hVelocity = forwardSpeed * 1.2f;
+                }
+                else if (state == 7)
+                {
+                    airLock = true;
+                    vVelocity = jumpSpeed;
+                    hVelocity = -backwardSpeed * 1.2f;
+                }
+                else if (state < 4)
+                {
+                    crouching = true;
+                }
             }
         }
     }
