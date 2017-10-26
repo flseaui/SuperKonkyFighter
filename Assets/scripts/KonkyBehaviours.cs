@@ -6,9 +6,9 @@ public class KonkyBehaviours : Behaviors{
 
     static int[,] konkyMoveMap = new int[3, 9]{
         {
-            -1,-1,-1,
-            -1, 0,-1,
-            -1,-1,-1
+            0,0,0,
+            0, 0,0,
+            -0,-0,0
         },
         {
             -1,-1,-1,
