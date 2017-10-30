@@ -210,7 +210,7 @@ public class PlayerScript : MonoBehaviour
 
         //communicate to the animaton controller for player state and attack state VV
         animInt(ANIM_STATE, state);
-        animInt(ANIM_ATTACK_STATE, attack);
+        animInt(ANIM_ATTACK_STATE, attackState);
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
@@ -221,49 +221,52 @@ public class PlayerScript : MonoBehaviour
             attack = NO_ATTACK;
             attackState = NO_ATTACK_INDEX;
             attacking = false;
+
+            if (state == 6)
+            {
+                if (iState == 6)
+                {
+                    hVelocity = forwardSpeed;
+                }
+                else
+                {
+                    state = 5;
+                }
+            }
+            else if (state == 4)
+            {
+                if (iState == 4)
+                {
+                    hVelocity = -backwardSpeed;
+                }
+                else
+                {
+                    state = 5;
+                }
+            }
+            else if (state < 4)
+            {
+                if (iState > 3)
+                {
+                    state = 5;
+                    crouching = false;
+                }
+            }
+            else if (state > 6)
+            {
+                if (!air)
+                {
+                    state = 5;
+                }
+            }
         }
         else
         {
             attackTimer--;
+
         }
 
-        if (state == 6)
-        {
-            if (iState == 6)
-            {
-                hVelocity = forwardSpeed;
-            }
-            else
-            {
-                state = 5;
-            }
-        }
-        else if (state == 4)
-        {
-            if (iState == 4)
-            {
-                hVelocity = -backwardSpeed;
-            }
-            else
-            {
-                state = 5;
-            }
-        }
-        else if (state < 4)
-        {
-            if (iState > 3)
-            {
-                state = 5;
-                crouching = false;
-            }
-        }
-        else if (state > 6)
-        {
-            if (!air)
-            {
-                state = 5;
-            }
-        }
+        
     }
 
 
