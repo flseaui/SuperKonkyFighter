@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,4 +46,4 @@ public class CameraScript : MonoBehaviour {
         position.x += amm;
         o.transform.position = position;
     }
-}
+}*/
