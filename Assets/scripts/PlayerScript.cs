@@ -15,7 +15,8 @@ public class PlayerScript : MonoBehaviour
     static int MEDIUM_ATTACK = 1;
     static int HEAVY_ATTACK = 2;
     static int ANIM_STATE = Animator.StringToHash("state");
-    static int ANIM_ATTACK_STATE = Animator.StringToHash("attack");
+
+    public bool juggle;
 
     public float friction;
     public float gravity;
@@ -47,7 +48,7 @@ public class PlayerScript : MonoBehaviour
     // 1 2 3
     public int iState;//player input state, doesn't always sync up with state, but is always within control
 
-    public int attack;//attack strength (LMH)
+    public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
     public int attackState = -1;//attack going on rn
@@ -209,8 +210,18 @@ public class PlayerScript : MonoBehaviour
         stateCheck();
 
         //communicate to the animaton controller for player state and attack state VV
-        animInt(ANIM_STATE, state);
-        animInt(ANIM_ATTACK_STATE, attackState);
+        if (juggle)
+        {
+            animInt(ANIM_STATE, 0);
+        }
+        else if (attacking)
+        {
+            animInt(ANIM_STATE, 10+attackState);
+        }
+        else
+        {
+            animInt(ANIM_STATE, state);
+        }
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
@@ -218,7 +229,7 @@ public class PlayerScript : MonoBehaviour
         //attack timer
         if (attackTimer == 0)
         {
-            attack = NO_ATTACK;
+            attackStrengh = NO_ATTACK;
             attackState = NO_ATTACK_INDEX;
             attacking = false;
 
@@ -275,12 +286,12 @@ public class PlayerScript : MonoBehaviour
         if (!attacking)
         {
 
-            attack = iAttack;
+            attackStrengh = iAttack;
             
             //set attack actually
-            if (attack != NO_ATTACK && !attacking)
+            if (attackStrengh != NO_ATTACK && !attacking)
             {
-                int check = behaviors.getAttack(attack, state);
+                int check = behaviors.getAttack(attackStrengh, state);
                 if (check != NO_ATTACK_INDEX)
                 {//don't attack for a -1 value
                     attacking = true;
