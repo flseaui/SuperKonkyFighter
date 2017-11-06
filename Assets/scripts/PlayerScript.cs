@@ -55,10 +55,15 @@ public class PlayerScript : MonoBehaviour
     public bool attacking = false;//is there an attack
     public int attackTimer = 0; //time left in attack animation
 
+    public bool upLock = false;
     public bool up = false;
     public bool left = false;
     public bool down = false;
     public bool right = false;
+
+    public bool litLock = false;
+    public bool medLock = false;
+    public bool hevLock = false;
     public bool light = false;
     public bool medium = false;
     public bool heavy = false;
@@ -94,20 +99,54 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Keypad4))
         {
-            light = true;
+            if (!litLock)
+            {
+                litLock = true;
+                light = true;
+            }
+        }
+        else
+        {
+            litLock = false;
         }
         if (Input.GetKey(KeyCode.Keypad5))
         {
-            medium = true;
+            if (!medLock)
+            {
+                medLock = true;
+                medium = true;
+            }
+        }
+        else
+        {
+            medLock = false;
         }
         if (Input.GetKey(KeyCode.Keypad6))
         {
-            heavy = true;
+            if (!hevLock)
+            {
+                hevLock = true;
+                heavy = true;
+            }
         }
+        else
+        {
+            hevLock = false;
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
-            up = true;
+            if (!upLock)
+            {
+                upLock = true;
+                up = true;
+            }
         }
+        else
+        {
+            upLock = false;
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             left = true;
