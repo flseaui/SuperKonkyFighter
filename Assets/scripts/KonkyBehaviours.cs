@@ -24,7 +24,7 @@ public class KonkyBehaviours : Behaviors{
 
     static  int[] konkyFrames = new int[]
     {
-        16, //KONKY ELBOW 8
+        12, //KONKY ELBOW 8
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
