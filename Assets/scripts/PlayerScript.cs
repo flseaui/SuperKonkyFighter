@@ -72,6 +72,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         behaviors = new KonkyBehaviours();
+        animator = GetComponent<Animator>();
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1f;
@@ -260,8 +261,6 @@ public class PlayerScript : MonoBehaviour
         {
             animInt(ANIM_STATE, state);
         }
-        AnimatorClipInfo[] yeet = animator.GetCurrentAnimatorClipInfo(0);
-        yeet[0].clip.frameRate
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
