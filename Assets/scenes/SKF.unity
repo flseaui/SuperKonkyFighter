@@ -337,8 +337,8 @@ GameObject:
   m_PrefabParentObject: {fileID: 1961471759494470, guid: 67ecc353c736d5b4e844d99e43bc5191,
     type: 2}
   m_PrefabInternal: {fileID: 2091024814}
---- !u!61 &763585988
-BoxCollider2D:
+--- !u!60 &763585988
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -349,33 +349,37 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3, y: 6.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.25, y: 0}
     oldSize: {x: 19.2, y: 19.2}
     newSize: {x: 25.6, y: 25.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 13}
-  m_EdgeRadius: 0
---- !u!111 &763585993
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 763585987}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: be3426c9ffcd4b74a9b7cc01976a5f38, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Points:
+    m_Paths:
+    - - {x: 5.2000003, y: 0.2}
+      - {x: 4, y: 4.2000003}
+      - {x: 5.2000003, y: 8.400001}
+      - {x: 5.2000003, y: 9.6}
+      - {x: 4.6, y: 9.8}
+      - {x: 4.2000003, y: 9.8}
+      - {x: 3.6000001, y: 9.2}
+      - {x: 3.6000001, y: 9.8}
+      - {x: 3.8, y: 12.400001}
+      - {x: 2.8, y: 13}
+      - {x: 0.4, y: 13}
+      - {x: -1.4, y: 12.2}
+      - {x: -0.8, y: 7}
+      - {x: -3.8, y: 0.4}
+      - {x: -3.8, y: 0}
+      - {x: -1.8000001, y: 0}
+      - {x: 0.8, y: 4.6}
+      - {x: 2.8, y: 0}
+      - {x: 5.2000003, y: 0}
 --- !u!1 &981620338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,7 +1677,7 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -1713,7 +1717,7 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
@@ -1753,7 +1757,7 @@ Prefab:
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 224195443472175332, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
