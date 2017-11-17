@@ -16,7 +16,7 @@ public class KonkyBehaviours : Behaviors{
             -1,-1, 3
         },
         {
-            -1,-1,-1,
+            5,5,5,
             2,2,2,
             -1,-1,-1
         },
@@ -29,6 +29,7 @@ public class KonkyBehaviours : Behaviors{
         32, //KONKY roundhouse
         12, //konky low kick uan
         15, //Konky low punch
+        38, //konky low
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
