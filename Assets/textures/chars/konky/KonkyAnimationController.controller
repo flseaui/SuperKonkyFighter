@@ -136,6 +136,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 7
     m_ConditionEvent: state
     m_EventTreshold: 13
+  - m_ConditionMode: 7
+    m_ConditionEvent: state
+    m_EventTreshold: 14
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102971107893115304}
   m_Solo: 0
@@ -993,7 +996,7 @@ AnimatorStateMachine:
     m_Position: {x: 72, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102241339114568500}
-    m_Position: {x: 72, y: 276, z: 0}
+    m_Position: {x: 72, y: 312, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
