@@ -6,7 +6,7 @@ public class KonkyBehaviours : Behaviors{
 
     static int[,] konkyMoveMap = new int[3, 9]{
         {
-            -1 ,-1 ,-1,
+            4 ,4 ,4,
             0 ,0 , -1,
             -1 ,-1 ,-1
         },
@@ -17,7 +17,7 @@ public class KonkyBehaviours : Behaviors{
         },
         {
             -1,-1,-1,
-            -1,-1,-1,
+            2,2,2,
             -1,-1,-1
         },
     };
@@ -26,8 +26,9 @@ public class KonkyBehaviours : Behaviors{
     {
         8, //KONKY ELBOW
         16, //KONKY PUNCH 
-        0, //kek not implem
+        32, //KONKY roundhouse
         12, //konky low kick uan
+        15, //Konky low punch
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
