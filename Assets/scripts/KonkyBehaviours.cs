@@ -25,7 +25,7 @@ public class KonkyBehaviours : Behaviors{
     static  int[] konkyFrames = new int[]
     {
         8, //KONKY ELBOW
-        16, //KONKY PUNCH 
+        24, //KONKY PUNCH 
         32, //KONKY roundhouse
         12, //konky low kick uan
         15, //Konky low punch

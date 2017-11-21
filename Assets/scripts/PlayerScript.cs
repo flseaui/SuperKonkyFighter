@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     public Animator animator;
     public Behaviors behaviors;
+    public PolygonCollider2D hitbox;
 
     public bool air;
     public bool airLock = false;
@@ -72,7 +73,6 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         behaviors = new KonkyBehaviours();
-        animator = GetComponent<Animator>();
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1f;
@@ -261,6 +261,9 @@ public class PlayerScript : MonoBehaviour
         {
             animInt(ANIM_STATE, state);
         }
+
+        AnimatorClipInfo[] test = animator.GetCurrentAnimatorClipInfo(0);
+      //  test[0].clip.
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)

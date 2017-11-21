@@ -408,13 +408,18 @@ PolygonCollider2D:
       - {x: 0.8, y: 4.6}
       - {x: 2.8, y: 0}
       - {x: 5.2000003, y: 0}
+--- !u!95 &763585989 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95493576834688524, guid: 67ecc353c736d5b4e844d99e43bc5191,
+    type: 2}
+  m_PrefabInternal: {fileID: 2091024814}
 --- !u!61 &763585993
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 763585987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1881,6 +1886,26 @@ Prefab:
         type: 2}
       propertyPath: m_DrawMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 763585988}
+    - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 763585989}
+    - target: {fileID: 95493576834688524, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95493576834688524, guid: 67ecc353c736d5b4e844d99e43bc5191,
+        type: 2}
+      propertyPath: m_UpdateMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
