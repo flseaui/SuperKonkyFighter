@@ -24,12 +24,12 @@ public class KonkyBehaviours : Behaviors{
 
     static  int[] konkyFrames = new int[]
     {
-        8, //KONKY ELBOW
+        14, //KONKY ELBOW
         24, //KONKY PUNCH 
-        32, //KONKY roundhouse
-        12, //konky low kick uan
+        34, //KONKY roundhouse
+        12, //konky medium crouch
         15, //Konky low punch
-        38, //konky low
+        27, //konky low heavy
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}

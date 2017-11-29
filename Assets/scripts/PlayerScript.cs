@@ -37,8 +37,8 @@ public class PlayerScript : MonoBehaviour
     public PolygonCollider2D hitbox;
 
     public bool air;
-    public bool airLock = false;
-    public bool crouching = false;
+    public bool airLock;
+    public bool jumpcrouch;
 
     private int maxHealth;
     private int health;
@@ -302,7 +302,6 @@ public class PlayerScript : MonoBehaviour
                 if (iState > 3)
                 {
                     state = 5;
-                    crouching = false;
                 }
             }
             else if (state > 6)
@@ -367,7 +366,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 else if (state < 4)
                 {
-                    crouching = true;
+                    //of
                 }
             }
         }
