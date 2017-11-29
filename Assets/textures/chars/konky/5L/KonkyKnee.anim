@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KonkyElbow
+  m_Name: KonkyKnee
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,18 +19,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 465e4f1ea8f7a4e42bb1a95684563407, type: 3}
+      value: {fileID: 21300000, guid: 6b9ed7c2b4f760e4cad126b008f81b2f, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: bac0166e52fd1a24f9414e2a50514b71, type: 3}
-    - time: 0.15
-      value: {fileID: 21300000, guid: 58b6b9fbe9fb29f40ad284f43b4864d6, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300000, guid: 58b6b9fbe9fb29f40ad284f43b4864d6, type: 3}
+      value: {fileID: 21300000, guid: c650b2ea23cf6cd47b617cf5ad02080f, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 57db910f4748dac419fab03be2f7d1e0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -45,10 +43,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 465e4f1ea8f7a4e42bb1a95684563407, type: 3}
-    - {fileID: 21300000, guid: bac0166e52fd1a24f9414e2a50514b71, type: 3}
-    - {fileID: 21300000, guid: 58b6b9fbe9fb29f40ad284f43b4864d6, type: 3}
-    - {fileID: 21300000, guid: 58b6b9fbe9fb29f40ad284f43b4864d6, type: 3}
+    - {fileID: 21300000, guid: 6b9ed7c2b4f760e4cad126b008f81b2f, type: 3}
+    - {fileID: 21300000, guid: c650b2ea23cf6cd47b617cf5ad02080f, type: 3}
+    - {fileID: 21300000, guid: 57db910f4748dac419fab03be2f7d1e0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
