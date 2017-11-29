@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KonkyCrouch
+  m_Name: KonkyFinger
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,13 +19,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: de91df4ff1e74524f8a96c843f1cb03f, type: 3}
+      value: {fileID: 21300000, guid: 5ae3a9b085e534e45aeb67f60d7c9d1b, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 730df19871bd2dc49b5980f62d815edd, type: 3}
+      value: {fileID: 21300000, guid: f2246ba7e48e32a4d83bd66c10f0a411, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: b4289f188b3112d4d8355a6f32a13d91, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 6f6a270adb5c7f34c87097f15323a982, type: 3}
+      value: {fileID: 21300000, guid: 5111316355557a74b8e99ac59b4884b6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -45,16 +43,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: de91df4ff1e74524f8a96c843f1cb03f, type: 3}
-    - {fileID: 21300000, guid: 730df19871bd2dc49b5980f62d815edd, type: 3}
-    - {fileID: 21300000, guid: b4289f188b3112d4d8355a6f32a13d91, type: 3}
-    - {fileID: 21300000, guid: 6f6a270adb5c7f34c87097f15323a982, type: 3}
+    - {fileID: 21300000, guid: 5ae3a9b085e534e45aeb67f60d7c9d1b, type: 3}
+    - {fileID: 21300000, guid: f2246ba7e48e32a4d83bd66c10f0a411, type: 3}
+    - {fileID: 21300000, guid: 5111316355557a74b8e99ac59b4884b6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
