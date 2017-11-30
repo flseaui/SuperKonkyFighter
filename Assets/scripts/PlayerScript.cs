@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     public Animator animator;
     public Behaviors behaviors;
-    public PolygonCollider2D hitbox;
+    public BoxCollider2D hitbox;
 
     public bool air;
     public bool airLock;
@@ -88,8 +88,8 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();
+        //Destroy(GetComponent<PolygonCollider2D>());
+        //gameObject.AddComponent<PolygonCollider2D>();
 
         up = false;
         right = false;
