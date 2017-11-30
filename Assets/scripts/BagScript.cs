@@ -17,7 +17,7 @@ public class BagScript : MonoBehaviour {
 
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("GOTEM");
         hit = true;

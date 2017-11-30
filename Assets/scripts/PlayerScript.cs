@@ -35,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public Behaviors behaviors;
     public BoxCollider2D hitbox;
+    public BoxCollider2D hurtbox;
 
     public bool air;
     public bool airLock;
@@ -69,7 +70,12 @@ public class PlayerScript : MonoBehaviour
     public bool medium = false;
     public bool heavy = false;
 
-    //start
+    void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5F);
+        Gizmos.DrawCube(new Vector2(hurtbox.offset.x, hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
+    }
+
     void Start()
     {
         behaviors = new KonkyBehaviours();
@@ -83,6 +89,7 @@ public class PlayerScript : MonoBehaviour
 
         iState = 5;
         state = 5;
+
     }
 
     // Update is called once per frame
