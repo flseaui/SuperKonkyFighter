@@ -72,8 +72,11 @@ public class PlayerScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5F);
-        Gizmos.DrawCube(new Vector2(hurtbox.offset.x, hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
+        if (hurtbox.enabled)
+        {
+            Gizmos.color = new Color(1, 0, 0, 0.5F);
+            Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
+        }
     }
 
     void Start()
