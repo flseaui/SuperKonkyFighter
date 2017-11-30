@@ -263,9 +263,6 @@ public class PlayerScript : MonoBehaviour
         {
             animInt(ANIM_STATE, state);
         }
-
-        AnimatorClipInfo[] test = animator.GetCurrentAnimatorClipInfo(0);
-      //  test[0].clip.
     }
 
     private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
