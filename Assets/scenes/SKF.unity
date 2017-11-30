@@ -344,7 +344,6 @@ GameObject:
   - component: {fileID: 763585991}
   - component: {fileID: 763585990}
   - component: {fileID: 763585989}
-  - component: {fileID: 763585988}
   - component: {fileID: 763585993}
   m_Layer: 0
   m_Name: Player
@@ -353,49 +352,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!60 &763585988
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 763585987}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.25, y: 0}
-    oldSize: {x: 19.2, y: 19.2}
-    newSize: {x: 19.2, y: 19.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  m_Points:
-    m_Paths:
-    - - {x: 5.2000003, y: 0.2}
-      - {x: 4, y: 4.2000003}
-      - {x: 5.2000003, y: 8.400001}
-      - {x: 5.2000003, y: 9.6}
-      - {x: 4.6, y: 9.8}
-      - {x: 4.2000003, y: 9.8}
-      - {x: 3.6000001, y: 9.2}
-      - {x: 3.6000001, y: 9.8}
-      - {x: 3.8, y: 12.400001}
-      - {x: 2.8, y: 13}
-      - {x: 0.4, y: 13}
-      - {x: -1.4, y: 12.2}
-      - {x: -0.8, y: 7}
-      - {x: -3.8, y: 0.4}
-      - {x: -3.8, y: 0}
-      - {x: -1.8000001, y: 0}
-      - {x: 0.8, y: 4.6}
-      - {x: 2.8, y: 0}
-      - {x: 5.2000003, y: 0}
 --- !u!95 &763585989
 Animator:
   serializedVersion: 3
@@ -432,7 +388,7 @@ MonoBehaviour:
   vVelocity: 0
   hVelocity: 0
   animator: {fileID: 763585989}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 1141716368}
   air: 0
   airLock: 0
   jumpcrouch: 0
@@ -528,7 +484,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.25, y: 0}
@@ -621,8 +577,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1052459712}
   - component: {fileID: 1052459711}
-  - component: {fileID: 1052459710}
-  - component: {fileID: 1052459713}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -630,13 +584,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!92 &1052459710
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1052459707}
-  m_Enabled: 0
 --- !u!20 &1052459711
 Camera:
   m_ObjectHideFlags: 0
@@ -685,17 +632,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1052459713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1052459707}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1141716365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,13 +1322,14 @@ GameObject:
   - component: {fileID: 1723644472}
   - component: {fileID: 1723644471}
   - component: {fileID: 1723644474}
+  - component: {fileID: 1723644475}
   m_Layer: 0
   m_Name: Punching Bag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1723644471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1448,6 +1385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482bf7661d4dac54c9fcb21d516e2ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox: {fileID: 1141716368}
+  hit: 0
 --- !u!4 &1723644473
 Transform:
   m_ObjectHideFlags: 0
@@ -1478,6 +1417,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!65 &1723644475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723644470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 13, z: 0.2}
+  m_Center: {x: 0, y: 6.4, z: 0}
 --- !u!1 &1812468542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +2161,7 @@ Prefab:
         type: 2}
       propertyPath: hitbox
       value: 
-      objectReference: {fileID: 763585993}
+      objectReference: {fileID: 1141716368}
     - target: {fileID: 114673147590574086, guid: 67ecc353c736d5b4e844d99e43bc5191,
         type: 2}
       propertyPath: animator
