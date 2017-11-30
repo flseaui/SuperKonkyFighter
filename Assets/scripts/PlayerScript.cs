@@ -77,6 +77,9 @@ public class PlayerScript : MonoBehaviour
             Gizmos.color = new Color(1, 0, 0, 0.5F);
             Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
         }
+
+        Gizmos.color = new Color(0, 1, 0, 0.5F);
+        Gizmos.DrawCube(new Vector2(transform.position.x + hitbox.offset.x, transform.position.y + hitbox.offset.y), new Vector2(hitbox.size.x, hitbox.size.y));
     }
 
     void Start()
