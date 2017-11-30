@@ -27,7 +27,7 @@ public class KonkyBehaviours : Behaviors{
         16, //KONKY ELBOW
         24, //KONKY PUNCH 
         34, //KONKY roundhouse
-        12, //konky medium crouch
+        22, //konky medium crouch
         15, //Konky low punch
         27, //konky low heavy
     };
