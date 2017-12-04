@@ -403,6 +403,7 @@ public class PlayerScript : MonoBehaviour
             {
                 if (storedAttackStrength != NO_ATTACK)
                 {
+                    state = iState;
                     executeAttack(storedAttackStrength);
                 }
                 storedAttackStrength = NO_ATTACK;
