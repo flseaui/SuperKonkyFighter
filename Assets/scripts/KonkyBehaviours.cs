@@ -29,7 +29,7 @@ public class KonkyBehaviours : Behaviors{
         34, //KONKY roundhouse
         22, //konky medium crouch
         19, //Konky low kick
-        32, //konky low heavy
+        320, //konky low heavy
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
