@@ -104,8 +104,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.5F);
-        Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
         //Destroy(GetComponent<PolygonCollider2D>());
         //gameObject.AddComponent<PolygonCollider2D>();
 
