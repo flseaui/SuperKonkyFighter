@@ -22,8 +22,11 @@ public class BagScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("hit");
-        hit = true;
+        if (col.enabled)
+        {
+            Debug.Log("hit");
+            hit = true;
+        }
     }
 
 
