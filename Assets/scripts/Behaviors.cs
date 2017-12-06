@@ -23,4 +23,9 @@ public abstract class Behaviors{
     {
         return frames[attack,0];
     }
+
+    public int getRecoveryTime(int attack)
+    {
+        return frames[attack, 1];
+    }
 }

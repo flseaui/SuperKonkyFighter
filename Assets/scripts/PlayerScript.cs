@@ -53,6 +53,7 @@ public class PlayerScript : MonoBehaviour
     public int iState;//player input state, doesn't always sync up with state, but is always within control
 
     public int storedAttackStrength;
+    public int bufferFrames;
     public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
@@ -375,7 +376,14 @@ public class PlayerScript : MonoBehaviour
         {
             if (iAttack != NO_ATTACK)
             {
-                storedAttackStrength = iAttack;
+                Debug.Log("attack timer: " + attackTimer + " | buffer frames: " + bufferFrames);
+                if (attackTimer <= bufferFrames) {
+                    storedAttackStrength = iAttack;
+                }
+                else
+                {
+                    storedAttackStrength = NO_ATTACK;
+                }
             }
         }
     }
@@ -390,6 +398,7 @@ public class PlayerScript : MonoBehaviour
                 attacking = true;
                 attackState = check;
                 attackTimer = behaviors.getTotalTime(attackState);
+                bufferFrames = behaviors.getRecoveryTime(attackState);
             }
         }
     }
