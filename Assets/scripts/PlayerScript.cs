@@ -7,14 +7,16 @@ public class PlayerScript : MonoBehaviour
 {
 
     //CONSTANT
-    static float FLOOR_HEIGHT = 0;
-    static float BASE_GRAVITY = -0.05f;
-    static int NO_ATTACK_INDEX = -1;
-    static int NO_ATTACK = -1;
-    static int LIGHT_ATTACK = 0;
-    static int MEDIUM_ATTACK = 1;
-    static int HEAVY_ATTACK = 2;
-    static int ANIM_STATE = Animator.StringToHash("state");
+    float FLOOR_HEIGHT = 0;
+    float BASE_GRAVITY = -0.05f;
+    int NO_ATTACK_INDEX = -1;
+    int NO_ATTACK = -1;
+    int LIGHT_ATTACK = 0;
+    int MEDIUM_ATTACK = 1;
+    int HEAVY_ATTACK = 2;
+    int ANIM_STATE = Animator.StringToHash("state");
+    int STATUS_NORMAL = 0;
+    int STATUS_BROKEN = 1;
 
     public bool juggle;
 
@@ -50,6 +52,7 @@ public class PlayerScript : MonoBehaviour
     // 1 2 3
     public int iState;//player input state, doesn't always sync up with state, but is always within control
 
+    public int storedAttackStrength;
     public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
@@ -69,8 +72,6 @@ public class PlayerScript : MonoBehaviour
     public bool light = false;
     public bool medium = false;
     public bool heavy = false;
-
-    public bool slide = false;
 
     void OnDrawGizmos()
     {
@@ -236,8 +237,9 @@ public class PlayerScript : MonoBehaviour
             airLock = true;
         }
 
-        //do something finally
         execute();
+
+        vVelocity += gravity;
 
         moveX(hVelocity);
         moveY(vVelocity);
@@ -255,12 +257,11 @@ public class PlayerScript : MonoBehaviour
             air = true;
         }
 
-        //gravity
-        vVelocity += gravity;
         if (!air)
         {
             hVelocity = 0;
         }
+
 
         //see what the state should be
         stateCheck();
@@ -272,7 +273,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (attacking)
         {
-            animInt(ANIM_STATE, 10+attackState);
+            animInt(ANIM_STATE, 10 + attackState);
         }
         else
         {
@@ -285,9 +286,7 @@ public class PlayerScript : MonoBehaviour
         //attack timer
         if (attackTimer == 0)
         {
-            attackStrengh = NO_ATTACK;
-            attackState = NO_ATTACK_INDEX;
-            attacking = false;
+            attackEnd(STATUS_NORMAL);
 
             if (state == 6)
             {
@@ -330,7 +329,9 @@ public class PlayerScript : MonoBehaviour
         {
             attackTimer--;
 
-        }   
+        }
+
+
     }
 
     private void execute()//executes your input to do something
@@ -339,18 +340,7 @@ public class PlayerScript : MonoBehaviour
         {
 
             attackStrengh = iAttack;
-            
-            //set attack actually
-            if (attackStrengh != NO_ATTACK && !attacking)
-            {
-                int check = behaviors.getAttack(attackStrengh, state);
-                if (check != NO_ATTACK_INDEX)
-                {//don't attack for a -1 value
-                    attacking = true;
-                    attackState = check;
-                    attackTimer = behaviors.getTime(attackState);
-                }
-            }
+            executeAttack(attackStrengh);
 
             if (!airLock)
             {
@@ -379,6 +369,46 @@ public class PlayerScript : MonoBehaviour
                 {
                     //of
                 }
+            }
+        }
+        else
+        {
+            if (iAttack != NO_ATTACK)
+            {
+                storedAttackStrength = iAttack;
+            }
+        }
+    }
+
+    private void executeAttack(int strength)
+    {
+        if (strength != NO_ATTACK)
+        {
+            int check = behaviors.getAttack(strength, state);
+            if (check != NO_ATTACK_INDEX)
+            {
+                attacking = true;
+                attackState = check;
+                attackTimer = behaviors.getTime(attackState);
+            }
+        }
+    }
+
+    private void attackEnd(int status)
+    {
+        if (attacking)
+        {
+            attackStrengh = NO_ATTACK;
+            attackState = NO_ATTACK_INDEX;
+            attacking = false;
+            if (status == STATUS_NORMAL)
+            {
+                if (storedAttackStrength != NO_ATTACK)
+                {
+                    state = iState;
+                    executeAttack(storedAttackStrength);
+                }
+                storedAttackStrength = NO_ATTACK;
             }
         }
     }
