@@ -6,9 +6,9 @@ public abstract class Behaviors{
 
     private int[,] moveMap;
 
-    private int[] frames;
+    private int[,] frames;
 
-    public Behaviors(int[,] moveMap, int[] frames)
+    public Behaviors(int[,] moveMap, int[,] frames)
     {
         this.moveMap = moveMap;
         this.frames = frames;
@@ -19,8 +19,8 @@ public abstract class Behaviors{
         return moveMap[str,state-1];
     }
 
-    public int getTime(int attack)
+    public int getTotalTime(int attack)
     {
-        return frames[attack];
+        return frames[attack,0];
     }
 }

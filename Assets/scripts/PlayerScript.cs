@@ -389,7 +389,7 @@ public class PlayerScript : MonoBehaviour
             {
                 attacking = true;
                 attackState = check;
-                attackTimer = behaviors.getTime(attackState);
+                attackTimer = behaviors.getTotalTime(attackState);
             }
         }
     }
