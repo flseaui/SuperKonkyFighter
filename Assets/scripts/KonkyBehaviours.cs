@@ -18,7 +18,7 @@ public class KonkyBehaviours : Behaviors{
         {
             6, 6, 6,
             3, 3, 3,
-           -9,-9,-9,
+            9, 9, 9,
         },
     };
 

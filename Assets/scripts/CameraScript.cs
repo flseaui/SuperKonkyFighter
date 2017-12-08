@@ -38,6 +38,17 @@ public class CameraScript : MonoBehaviour
         }
         setX(background, cx * 0.5f);
         setX(self, cx);
+
+        if (getX(player1) < getX(player2))
+        {
+            player1.GetComponent<PlayerScript>().flip(true);
+            player2.GetComponent<PlayerScript>().flip(false);
+        }
+        else
+        {
+            player1.GetComponent<PlayerScript>().flip(false);
+            player2.GetComponent<PlayerScript>().flip(true);
+        }
     }
 
     private float getX(GameObject o)

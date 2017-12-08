@@ -162,6 +162,10 @@ public class PlayerScript : MonoBehaviour
                 hitbox.GetComponentInChildren<BoxCollider2D>().offset = childFacing;
             }
         }
+        else
+        {
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
 
         up = false;
         right = false;
