@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-       // setX(background, getX(self) * -0.6f);
+        // setX(background, getX(self) * -0.6f);
         //setX(self, getX(player1));
     }
 
