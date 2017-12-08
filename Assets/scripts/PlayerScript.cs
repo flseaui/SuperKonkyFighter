@@ -98,11 +98,11 @@ public class PlayerScript : MonoBehaviour
         if (hurtbox.enabled)
         {
             Gizmos.color = new Color(1, 0, 0, 0.5F);
-            Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
+            Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x * this.transform.localScale.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
         }
 
         Gizmos.color = new Color(0, 1, 0, 0.5F);
-        Gizmos.DrawCube(new Vector2(transform.position.x + hitbox.offset.x, transform.position.y + hitbox.offset.y), new Vector2(hitbox.size.x, hitbox.size.y));
+        Gizmos.DrawCube(new Vector2(transform.position.x + hitbox.offset.x * this.transform.localScale.x, transform.position.y + hitbox.offset.y), new Vector2(hitbox.size.x, hitbox.size.y));
     }
 
     void Start()
@@ -150,19 +150,19 @@ public class PlayerScript : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
 
-            if (this.GetComponent<BoxCollider2D>().offset.x > 0)
+            /*if (this.GetComponent<BoxCollider2D>().offset.x > 0)
             {
                 Vector3 facing = this.GetComponent<BoxCollider2D>().offset;
                 facing.x *= -1;
                 this.GetComponent<BoxCollider2D>().offset = facing;
-            }
+            }*/
 
-            if (hitbox.GetComponentInChildren<BoxCollider2D>().offset.x > 0)
+            /*if (hitbox.GetComponent<BoxCollider2D>().offset.x > 0)
             {
-                Vector3 childFacing = hitbox.GetComponentInChildren<BoxCollider2D>().offset;
-                childFacing.x *= -1;
-                hitbox.GetComponentInChildren<BoxCollider2D>().offset = childFacing;
-            }
+                Vector3 facing = hitbox.GetComponent<BoxCollider2D>().offset;
+                facing.x *= -1;
+                hitbox.GetComponent<BoxCollider2D>().offset = facing;
+            }*/
         }
         else
         {
@@ -346,13 +346,13 @@ public class PlayerScript : MonoBehaviour
             air = true;
         }
 
-        /*if (getX() < -42f)
+        if (getX() < -64f)
         {
-            setX(-42);
-        }else if (getX() > 42f)
+            setX(-64);
+        }else if (getX() > 64f)
         {
-            setX(42);
-        }*/
+            setX(64);
+        }
 
         if (!air)
         {
