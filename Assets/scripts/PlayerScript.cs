@@ -80,6 +80,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool facingRight;
 
+    public int playerID;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -162,30 +164,58 @@ public class PlayerScript : MonoBehaviour
             hevLock = false;
         }
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (!upLock)
+        if (playerID == 1) {
+            if (Input.GetKey(KeyCode.W))
             {
-                upLock = true;
-                up = true;
+                if (!upLock)
+                {
+                    upLock = true;
+                    up = true;
+                }
+            }
+            else
+            {
+                upLock = false;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                left = true;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                down = true;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                right = true;
             }
         }
-        else
+        else if (playerID == 2)
         {
-            upLock = false;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            left = true;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            down = true;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            right = true;
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                if (!upLock)
+                {
+                    upLock = true;
+                    up = true;
+                }
+            }
+            else
+            {
+                upLock = false;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                left = true;
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                down = true;
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                right = true;
+            }
         }
 
         if (up && right)
@@ -210,7 +240,14 @@ public class PlayerScript : MonoBehaviour
         }
         else if (right)
         {
-            iState = 6;
+            if (facingRight)
+            {
+                iState = 6;
+            }
+            else
+            {
+                iState = 4;
+            }
         }
         else if (down)
         {
@@ -218,7 +255,14 @@ public class PlayerScript : MonoBehaviour
         }
         else if (left)
         {
-            iState = 4;
+            if (facingRight)
+            {
+                iState = 4;
+            }
+            else
+            {
+                iState = 6;
+            }
         }
         else
         {
@@ -302,7 +346,14 @@ public class PlayerScript : MonoBehaviour
             {
                 if (iState == 6)
                 {
-                    hVelocity = forwardSpeed;
+                    if (facingRight)
+                    {
+                        hVelocity = forwardSpeed;
+                    }
+                    else
+                    {
+                        hVelocity = -forwardSpeed;
+                    }
                 }
                 else
                 {
@@ -313,7 +364,14 @@ public class PlayerScript : MonoBehaviour
             {
                 if (iState == 4)
                 {
-                    hVelocity = -backwardSpeed;
+                    if (facingRight)
+                    {
+                        hVelocity = -backwardSpeed;
+                    }
+                    else
+                    {
+                        hVelocity = backwardSpeed;
+                    }
                 }
                 else
                 {
