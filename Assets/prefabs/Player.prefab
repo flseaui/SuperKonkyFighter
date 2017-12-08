@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4517540524321706}
   - component: {fileID: 61717008683281332}
+  - component: {fileID: 50055904181538634}
+  - component: {fileID: 114362091746053720}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: p1HurtBox
@@ -60,6 +62,26 @@ Transform:
   m_Father: {fileID: 224196868505590566}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50055904181538634
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110115492532184}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!61 &61072014828910340
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -168,11 +190,24 @@ MonoBehaviour:
   medLock: 0
   hevLock: 0
   speLock: 0
-  light: 0
+  lite: 0
   medium: 0
   heavy: 0
   special: 0
   facingRight: 0
+  playerID: 0
+--- !u!114 &114362091746053720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110115492532184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488e8d58442b79e4fa5a3e5f5163b14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit: 0
 --- !u!120 &120323571830651014
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -318,7 +353,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646981266529194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 124.9, y: -145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4517540524321706}
@@ -327,6 +362,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1.5, y: 1.5}
   m_AnchorMax: {x: 1.5, y: 1.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 124.9, y: -145}
   m_SizeDelta: {x: 6, y: 13}
   m_Pivot: {x: 0.25, y: 0}
