@@ -24,6 +24,9 @@ public class CameraScript : MonoBehaviour
         setX(player2, 16f);
         player2.GetComponent<PlayerScript>().flip(false);
         player2.GetComponent<PlayerScript>().playerID = 2;
+
+        player1.GetComponent<PlayerScript>().otherPlayer = player2;
+        player2.GetComponent<PlayerScript>().otherPlayer = player1;
     }
 
     void Update()

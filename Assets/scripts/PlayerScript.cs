@@ -91,6 +91,8 @@ public class PlayerScript : MonoBehaviour
     private KeyCode heavyKey;
     private KeyCode specialKey;
 
+    public GameObject otherPlayer;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
