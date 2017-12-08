@@ -7,12 +7,14 @@ public class hitboxScript : MonoBehaviour {
     public bool hit;
     public bool collide;
     private PlayerScript script;
+    private PlayerScript otherScript;
 
     // Use this for initialization
     void Start () {
         hit = false;
         collide = false;
         script = this.GetComponentInParent<PlayerScript>();
+        otherScript = script.otherPlayer.GetComponent<PlayerScript>();
     }
 	
 	// Update is called once per frame
@@ -38,14 +40,30 @@ public class hitboxScript : MonoBehaviour {
         {
             Debug.Log("collide");
             collide = true;
+            if (script.facingRight)
+            {
+                script.hVelocity = -.25f;
+            }
+            else
+            {
+                script.hVelocity = .25f;
+            }
         }
     }
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.tag == "hitbox")
+        if (col.gameObject.tag == "hitbox" && script.hVelocity > 0)
         {
-            script.hVelocity = script.otherPlayer.GetComponent<PlayerScript>().hVelocity;
+            //script.hVelocity = script.otherPlayer.GetComponent<PlayerScript>().hVelocity;\
+            if (otherScript.facingRight)
+            {
+                otherScript.hVelocity = .25f;
+            }
+            else
+            {
+                otherScript.hVelocity = -.25f;
+            }
             Debug.Log("u a n");
         }
     }
