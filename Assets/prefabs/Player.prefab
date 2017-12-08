@@ -196,6 +196,7 @@ MonoBehaviour:
   special: 0
   facingRight: 0
   playerID: 0
+  otherPlayer: {fileID: 0}
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hit: 0
+  collide: 0
 --- !u!120 &120323571830651014
 LineRenderer:
   m_ObjectHideFlags: 1
