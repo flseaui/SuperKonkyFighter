@@ -153,6 +153,13 @@ public class PlayerScript : MonoBehaviour
             Vector3 facing = this.GetComponent<BoxCollider2D>().offset;
             facing.x *= -1;
             this.GetComponent<BoxCollider2D>().offset = facing;
+
+            if (hitbox.GetComponentInChildren<BoxCollider2D>().offset.x > 0)
+            {
+                Vector3 childFacing = hitbox.GetComponentInChildren<BoxCollider2D>().offset;
+                childFacing.x *= -1;
+                hitbox.GetComponentInChildren<BoxCollider2D>().offset = childFacing;
+            }
         }
 
         up = false;
