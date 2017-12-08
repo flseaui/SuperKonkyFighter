@@ -73,7 +73,7 @@ public class PlayerScript : MonoBehaviour
     public bool hevLock = false;
     public bool speLock = false;
 
-    public bool light = false;
+    public bool lite = false;
     public bool medium = false;
     public bool heavy = false;
     public bool special = false;
@@ -153,7 +153,7 @@ public class PlayerScript : MonoBehaviour
         right = false;
         down = false;
         left = false;
-        light = false;
+        lite = false;
         medium = false;
         heavy = false;
 
@@ -162,7 +162,7 @@ public class PlayerScript : MonoBehaviour
             if (!litLock)
             {
                 litLock = true;
-                light = true;
+                lite = true;
             }
         }
         else
@@ -221,7 +221,14 @@ public class PlayerScript : MonoBehaviour
 
         if (up && right)
         {
-            iState = 9;
+            if (facingRight)
+            {
+                iState = 9;
+            }
+            else
+            {
+                iState = 7;
+            }
         }
         else if (right && down)
         {
@@ -233,7 +240,14 @@ public class PlayerScript : MonoBehaviour
         }
         else if (left && up)
         {
-            iState = 7;
+            if (facingRight)
+            {
+                iState = 7;
+            }
+            else
+            {
+                iState = 9;
+            }
         }
         else if (up)
         {
@@ -270,7 +284,7 @@ public class PlayerScript : MonoBehaviour
             iState = 5;
         }
 
-        if (light)
+        if (lite)
         {
             iAttack = LIGHT_ATTACK;
         }
@@ -426,13 +440,26 @@ public class PlayerScript : MonoBehaviour
                 {
                     airLock = true;
                     vVelocity = jumpSpeed;
-                    hVelocity = forwardSpeed * 1.2f;
+                    if (facingRight) {
+                        hVelocity = forwardSpeed * 1.2f;
+                    }
+                    else
+                    {
+                        hVelocity = -forwardSpeed * 1.2f;
+                    }
                 }
                 else if (state == 7)
                 {
                     airLock = true;
                     vVelocity = jumpSpeed;
-                    hVelocity = -backwardSpeed * 1.2f;
+                    if (facingRight)
+                    {
+                        hVelocity = -backwardSpeed * 1.2f;
+                    }
+                    else
+                    {
+                        hVelocity = backwardSpeed * 1.2f;
+                    }
                 }
                 else if (state < 4)
                 {
