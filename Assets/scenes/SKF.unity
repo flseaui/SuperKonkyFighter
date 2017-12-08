@@ -430,7 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1646981266529194, guid: b36305c8cec714941a97260bd21e1956,
     type: 2}
-  background: {fileID: 0}
+  background: {fileID: 1976528747}
   self: {fileID: 1052459711}
   player1: {fileID: 0}
   player2: {fileID: 0}
@@ -1058,7 +1058,7 @@ Transform:
   m_GameObject: {fileID: 1717751412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 3.8593712}
-  m_LocalScale: {x: 5.4207907, y: 5.4207907, z: 5.4207907}
+  m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1082,7 +1082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1723644471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1759,8 +1759,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1976528747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6, y: 12.6, z: 65.9}
-  m_LocalScale: {x: 4.145819, y: 4.145819, z: 4.145819}
+  m_LocalPosition: {x: 0, y: 12, z: 65.9}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

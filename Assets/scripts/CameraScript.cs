@@ -28,8 +28,16 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        // setX(background, getX(self) * -0.6f);
-        //setX(self, getX(player1));
+        float cx = (getX(player1) + getX(player2)) / 2f;
+        if (cx > 42)
+        {
+            cx = 42;
+        }else if (cx < -42)
+        {
+            cx = -42;
+        }
+        setX(background, cx * 0.5f);
+        setX(self, cx);
     }
 
     private float getX(GameObject o)
@@ -57,7 +65,7 @@ public class CameraScript : MonoBehaviour
     private void setX(GameObject o, float amm)
     {
         Vector3 position = o.transform.position;
-        position.x += amm;
+        position.x = amm;
         o.transform.position = position;
     }
 }

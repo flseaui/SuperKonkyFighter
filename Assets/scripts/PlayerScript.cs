@@ -82,6 +82,15 @@ public class PlayerScript : MonoBehaviour
 
     public int playerID;
 
+    private KeyCode upKey;
+    private KeyCode rightKey;
+    private KeyCode downKey;
+    private KeyCode leftKey;
+    private KeyCode lightKey;
+    private KeyCode mediumKey;
+    private KeyCode heavyKey;
+    private KeyCode specialKey;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -96,6 +105,27 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        if (playerID == 1)
+        {
+            upKey = KeyCode.W;
+            rightKey = KeyCode.D;
+            downKey = KeyCode.S;
+            leftKey = KeyCode.A;
+            lightKey = KeyCode.J;
+            mediumKey = KeyCode.K;
+            heavyKey = KeyCode.L;
+        }
+        else if (playerID == 2)
+        {
+            upKey = KeyCode.UpArrow;
+            rightKey = KeyCode.RightArrow;
+            downKey = KeyCode.DownArrow;
+            leftKey = KeyCode.LeftArrow;
+            lightKey = KeyCode.Keypad4;
+            mediumKey = KeyCode.Keypad5;
+            heavyKey = KeyCode.Keypad6;
+        }
+
         storedAttackStrength = NO_ATTACK;
         behaviors = new KonkyBehaviours();
         forwardSpeed = 0.25f;
@@ -127,7 +157,7 @@ public class PlayerScript : MonoBehaviour
         medium = false;
         heavy = false;
 
-        if (Input.GetKey(KeyCode.Keypad4))
+        if (Input.GetKey(lightKey))
         {
             if (!litLock)
             {
@@ -139,7 +169,7 @@ public class PlayerScript : MonoBehaviour
         {
             litLock = false;
         }
-        if (Input.GetKey(KeyCode.Keypad5))
+        if (Input.GetKey(mediumKey))
         {
             if (!medLock)
             {
@@ -151,7 +181,7 @@ public class PlayerScript : MonoBehaviour
         {
             medLock = false;
         }
-        if (Input.GetKey(KeyCode.Keypad6))
+        if (Input.GetKey(heavyKey))
         {
             if (!hevLock)
             {
@@ -164,58 +194,29 @@ public class PlayerScript : MonoBehaviour
             hevLock = false;
         }
 
-        if (playerID == 1) {
-            if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(upKey))
+        {
+            if (!upLock)
             {
-                if (!upLock)
-                {
-                    upLock = true;
-                    up = true;
-                }
-            }
-            else
-            {
-                upLock = false;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                left = true;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                down = true;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                right = true;
+                upLock = true;
+                up = true;
             }
         }
-        else if (playerID == 2)
+        else
         {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (!upLock)
-                {
-                    upLock = true;
-                    up = true;
-                }
-            }
-            else
-            {
-                upLock = false;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                left = true;
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                down = true;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                right = true;
-            }
+            upLock = false;
+        }
+        if (Input.GetKey(leftKey))
+        {
+            left = true;
+        }
+        if (Input.GetKey(downKey))
+        {
+            down = true;
+        }
+        if (Input.GetKey(rightKey))
+        {
+            right = true;
         }
 
         if (up && right)
