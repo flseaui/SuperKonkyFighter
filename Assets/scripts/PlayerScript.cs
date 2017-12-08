@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     int HEAVY_ATTACK = 2;
     int ANIM_STATE = Animator.StringToHash("state");
     int STATUS_NORMAL = 0;
-    int STATUS_BROKEN = 1;
+    //int STATUS_BROKEN = 1;
 
     public bool juggle;
 
@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     public static Sprite[] textures;
 
+    public SpriteRenderer spriteRenderer;
     public Animator animator;
     public Behaviors behaviors;
     public BoxCollider2D hitbox;
@@ -70,9 +71,14 @@ public class PlayerScript : MonoBehaviour
     public bool litLock = false;
     public bool medLock = false;
     public bool hevLock = false;
+    public bool speLock = false;
+
     public bool light = false;
     public bool medium = false;
     public bool heavy = false;
+    public bool special = false;
+
+    public bool facingRight;
 
     void OnDrawGizmos()
     {
@@ -88,6 +94,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        storedAttackStrength = NO_ATTACK;
         behaviors = new KonkyBehaviours();
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
@@ -105,8 +112,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //Destroy(GetComponent<PolygonCollider2D>());
-        //gameObject.AddComponent<PolygonCollider2D>();
+        if (!facingRight)
+        {
+            this.transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         up = false;
         right = false;
@@ -377,7 +386,8 @@ public class PlayerScript : MonoBehaviour
             if (iAttack != NO_ATTACK)
             {
                 Debug.Log("attack timer: " + attackTimer + " | buffer frames: " + bufferFrames);
-                if (attackTimer <= bufferFrames) {
+                if (attackTimer <= bufferFrames)
+                {
                     storedAttackStrength = iAttack;
                 }
                 else
@@ -473,5 +483,10 @@ public class PlayerScript : MonoBehaviour
     private int getMaxHealth()
     {
         return 0;
+    }
+
+    public void flip(bool dir)
+    {
+        facingRight = dir;
     }
 }
