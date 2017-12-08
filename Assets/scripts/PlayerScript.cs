@@ -346,6 +346,14 @@ public class PlayerScript : MonoBehaviour
             air = true;
         }
 
+        /*if (getX() < -42f)
+        {
+            setX(-42);
+        }else if (getX() > 42f)
+        {
+            setX(42);
+        }*/
+
         if (!air)
         {
             hVelocity = 0;
