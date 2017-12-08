@@ -143,6 +143,7 @@ MonoBehaviour:
   gravity: 0
   vVelocity: 0
   hVelocity: 0
+  spriteRenderer: {fileID: 0}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 61717008683281332}
   hurtbox: {fileID: 61072014828910340}
@@ -165,10 +166,13 @@ MonoBehaviour:
   right: 0
   litLock: 0
   medLock: 0
-  hevLock: 1
+  hevLock: 0
+  speLock: 0
   light: 0
   medium: 0
   heavy: 0
+  special: 0
+  facingRight: 0
 --- !u!120 &120323571830651014
 LineRenderer:
   m_ObjectHideFlags: 1
