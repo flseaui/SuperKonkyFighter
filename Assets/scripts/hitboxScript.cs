@@ -5,6 +5,7 @@ using UnityEngine;
 public class hitboxScript : MonoBehaviour {
 
     public bool hit;
+    public bool collide;
 
     // Use this for initialization
     void Start () {
@@ -22,6 +23,15 @@ public class hitboxScript : MonoBehaviour {
         {
             Debug.Log("hit");
             hit = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "hitbox")
+        {
+            Debug.Log("collide");
+            collide = true;
         }
     }
 }
