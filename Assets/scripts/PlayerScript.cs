@@ -91,6 +91,8 @@ public class PlayerScript : MonoBehaviour
     private KeyCode heavyKey;
     private KeyCode specialKey;
 
+    public bool hit;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -147,6 +149,10 @@ public class PlayerScript : MonoBehaviour
         if (!facingRight)
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
+
+            Vector3 facing = this.GetComponent<BoxCollider2D>().offset;
+            facing.x *= -1;
+            this.GetComponent<BoxCollider2D>().offset = facing;
         }
 
         up = false;
@@ -515,6 +521,15 @@ public class PlayerScript : MonoBehaviour
                 }
                 storedAttackStrength = NO_ATTACK;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.enabled)
+        {
+            Debug.Log("hit");
+            hit = true;
         }
     }
 
