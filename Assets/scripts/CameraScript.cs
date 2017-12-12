@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class CameraScript : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
-    public GameObject p1Heath;
-    public GameObject p2Heath;
-    public GameObject p1Power;
-    public GameObject p2Power;
+
+    public Slider p1Heath;
+    public Slider p2Heath;
+    public Slider p1Power;
+    public Slider p2Power;
 
     void Start()
     {
@@ -55,6 +57,16 @@ public class CameraScript : MonoBehaviour
         {
             player1.GetComponent<PlayerScript>().flip(false);
             player2.GetComponent<PlayerScript>().flip(true);
+        }
+
+        if (player1.GetComponent<PlayerScript>().hitbox.GetComponent<hitboxScript>().hit)
+        {
+            p1Heath.GetComponent<Slider>().value -= 50;
+        }
+
+        if (player2.GetComponent<PlayerScript>().hitbox.GetComponent<hitboxScript>().hit)
+        {
+            p2Heath.GetComponent<Slider>().value -= 50;
         }
     }
 

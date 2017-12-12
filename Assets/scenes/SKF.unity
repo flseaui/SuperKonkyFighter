@@ -434,10 +434,10 @@ MonoBehaviour:
   self: {fileID: 1052459711}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  p1Heath: {fileID: 1812468542}
-  p2Heath: {fileID: 1588097977}
-  p1Power: {fileID: 387214220}
-  p2Power: {fileID: 1391644587}
+  p1Heath: {fileID: 1812468543}
+  p2Heath: {fileID: 1588097979}
+  p1Power: {fileID: 387214222}
+  p2Power: {fileID: 1391644589}
 --- !u!20 &1052459711
 Camera:
   m_ObjectHideFlags: 0
@@ -1275,9 +1275,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 10000
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 10000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
