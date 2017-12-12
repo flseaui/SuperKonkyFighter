@@ -556,45 +556,45 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool(s, b);
     }
 
-    private void moveX(float amm)
+    public void moveX(float amm)
     {
         Vector3 position = this.transform.position;
         position.x += amm;
         this.transform.position = position;
     }
 
-    private void moveY(float amm)
+    public void moveY(float amm)
     {
         Vector3 position = this.transform.position;
         position.y += amm;
         this.transform.position = position;
     }
 
-    private void setY(float amm)
+    public void setY(float amm)
     {
         Vector3 position = this.transform.position;
         position.y = amm;
         this.transform.position = position;
     }
 
-    private void setX(float amm)
+    public void setX(float amm)
     {
         Vector3 position = this.transform.position;
         position.x = amm;
         this.transform.position = position;
     }
 
-    private float getY()
+    public float getY()
     {
         return this.transform.position.y;
     }
 
-    private float getX()
+    public float getX()
     {
         return this.transform.position.x;
     }
 
-    private int getMaxHealth()
+    public int getMaxHealth()
     {
         return 0;
     }

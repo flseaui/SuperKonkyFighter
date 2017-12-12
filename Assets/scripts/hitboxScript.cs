@@ -34,7 +34,7 @@ public class hitboxScript : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    /*private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "hitbox")
         {
@@ -49,22 +49,20 @@ public class hitboxScript : MonoBehaviour {
                 script.hVelocity = .25f;
             }
         }
-    }
+    }*/
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.tag == "hitbox" && script.hVelocity > 0)
+        if (col.gameObject.tag == "hitbox")
         {
-            //script.hVelocity = script.otherPlayer.GetComponent<PlayerScript>().hVelocity;\
-            if (otherScript.facingRight)
+            if (script.facingRight)
             {
-                otherScript.hVelocity = .25f;
+                script.setX(otherScript.getX() - otherScript.hitbox.size.x / 2 - script.hitbox.size.x / 2);
             }
             else
             {
-                otherScript.hVelocity = -.25f;
+                script.setX(otherScript.getX() + otherScript.hitbox.size.x / 2 + script.hitbox.size.x / 2);
             }
-            Debug.Log("u a n");
         }
     }
 }
