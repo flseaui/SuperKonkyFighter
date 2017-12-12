@@ -25,6 +25,24 @@ public class hitboxScript : MonoBehaviour {
         }
 	}
 
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (hit)
+        {
+            Debug.Log("esit");
+            hit = false;
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (hit)
+        {
+            Debug.Log("exit");
+            hit = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.enabled)

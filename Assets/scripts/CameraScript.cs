@@ -12,6 +12,10 @@ public class CameraScript : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
+    public GameObject p1Heath;
+    public GameObject p2Heath;
+    public GameObject p1Power;
+    public GameObject p2Power;
 
     void Start()
     {
