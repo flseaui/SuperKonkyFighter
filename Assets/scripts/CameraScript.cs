@@ -19,6 +19,8 @@ public class CameraScript : MonoBehaviour
     public Slider p1Power;
     public Slider p2Power;
 
+    public bool history;
+
     void Start()
     {
         player1 = Instantiate(playerPrefab);
@@ -48,12 +50,14 @@ public class CameraScript : MonoBehaviour
         setX(background, cx * 0.5f);
         setX(self, cx);
 
-        if (getX(player1) < getX(player2))
+        history = getX(player1) < getX(player2);
+
+        if (getX(player1) < getX(player2) && getX(player1) < getX(player2) != history)
         {
             player1.GetComponent<PlayerScript>().flip(true);
             player2.GetComponent<PlayerScript>().flip(false);
         }
-        else
+        else if(getX(player1) > getX(player2) && getX(player1) > getX(player2) != history)
         {
             player1.GetComponent<PlayerScript>().flip(false);
             player2.GetComponent<PlayerScript>().flip(true);

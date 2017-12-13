@@ -16,27 +16,29 @@ public class hitboxScript : MonoBehaviour {
         script = this.GetComponentInParent<PlayerScript>();
         otherScript = script.otherPlayer.GetComponent<PlayerScript>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         float h = 12;
         float w = 12;
         float y = script.getY();
         float x = otherScript.getX();
-        if (script.facingRight)
-        {
-            float tx = x + ((w / 2) * ((y / h) - 1));
-            if (y <= (h + otherScript.getY()) && y >= otherScript.getY() && script.getX() > tx)
+        if (y <= (h + otherScript.getY()) && y >= otherScript.getY()) {
+            if (script.facingRight)
             {
-                script.setX(tx);
+                float tx = x + ((w / 2) * ((y / h) - 1));
+                if (script.getX() > tx)
+                {
+                    script.setX(tx);
+                }
             }
-        }
-        else
-        {
-            float tx = x - ((w / 2) * ((y / h) - 1));
-            if (y <= (h + otherScript.getY()) && y >= otherScript.getY() && script.getX() < tx)
+            else
             {
-                script.setX(tx);
+                float tx = x - ((w / 2) * ((y / h) - 1));
+                if (script.getX() < tx)
+                {
+                    script.setX(tx);
+                }
             }
         }
 	}
