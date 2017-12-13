@@ -19,6 +19,9 @@ public class PlayerScript : MonoBehaviour
     //int STATUS_BROKEN = 1;
 
     public bool juggle;
+    public bool flipping;
+
+    public int flipTimer;
 
     public float friction;
     public float gravity;
@@ -364,7 +367,11 @@ public class PlayerScript : MonoBehaviour
         stateCheck();
 
         //communicate to the animaton controller for player state and attack state VV
-        if (juggle)
+        if (flipping)
+        {
+            animInt(ANIM_STATE, -1);
+        }
+        else if (juggle)
         {
             animInt(ANIM_STATE, 0);
         }
@@ -442,7 +449,15 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-
+        if (flipping)
+        {
+            flipTimer--;
+            
+            if(flipTimer == 0)
+            {
+                flipping = false;
+            }
+        }
     }
 
     private void execute()//executes your input to do something
@@ -602,5 +617,7 @@ public class PlayerScript : MonoBehaviour
     public void flip(bool dir)
     {
         facingRight = dir;
+        flipping = true;
+        flipTimer = 3;
     }
 }
