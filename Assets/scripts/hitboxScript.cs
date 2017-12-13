@@ -20,13 +20,24 @@ public class hitboxScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float h = 12;
-        float w = 6;
+        float w = 12;
         float y = script.getY();
         float x = otherScript.getX();
-        float tx = (w / 2) * ((y / h) - 1);
-        if (y<=h && script.getX() < tx && script.facingRight)
+        if (script.facingRight)
         {
-            script.setX(tx);
+            float tx = x + ((w / 2) * ((y / h) - 1));
+            if (y <= (h + otherScript.getY()) && y >= otherScript.getY() && script.getX() > tx)
+            {
+                script.setX(tx);
+            }
+        }
+        else
+        {
+            float tx = x - ((w / 2) * ((y / h) - 1));
+            if (y <= (h + otherScript.getY()) && y >= otherScript.getY() && script.getX() < tx)
+            {
+                script.setX(tx);
+            }
         }
 	}
 

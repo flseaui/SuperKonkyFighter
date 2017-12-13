@@ -132,7 +132,7 @@ public class PlayerScript : MonoBehaviour
         behaviors = new KonkyBehaviours();
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
-        jumpSpeed = 1f;
+        jumpSpeed = 1.25f;
         friction = 0f;
         vVelocity = 0;
         hVelocity = 0;
