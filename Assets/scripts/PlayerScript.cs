@@ -455,7 +455,8 @@ public class PlayerScript : MonoBehaviour
             
             if(flipTimer == 0)
             {
-                flipping = false;
+				facingRight = !facingRight;
+				flipping = false;
             }
         }
     }
@@ -616,7 +617,6 @@ public class PlayerScript : MonoBehaviour
 
     public void flip(bool dir)
     {
-        facingRight = dir;
         flipping = true;
         flipTimer = 3;
     }

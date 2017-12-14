@@ -27,7 +27,7 @@ public class hitboxScript : MonoBehaviour {
         if (y <= (h + otherScript.getY()) && y >= otherScript.getY()) {
             if (script.facingRight)
             {
-                float tx = x + ((w / 2) * ((y / h) - 1));
+                float tx = x + ((w / 2) * (((y+otherScript.getY()) / h) - 1));
                 if (script.getX() > tx)
                 {
                     script.setX(tx);
@@ -35,7 +35,7 @@ public class hitboxScript : MonoBehaviour {
             }
             else
             {
-                float tx = x - ((w / 2) * ((y / h) - 1));
+                float tx = x - ((w / 2) * (((y + otherScript.getY()) / h) - 1));
                 if (script.getX() < tx)
                 {
                     script.setX(tx);
