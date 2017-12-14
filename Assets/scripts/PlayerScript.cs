@@ -19,11 +19,12 @@ public class PlayerScript : MonoBehaviour
     //int STATUS_BROKEN = 1;
 
     public bool juggle;
+
     public bool flipping;
-
     public int flipTimer;
+	private bool passDir;
 
-    public float friction;
+	public float friction;
     public float gravity;
 
     private int stunTimer;
@@ -455,7 +456,7 @@ public class PlayerScript : MonoBehaviour
             
             if(flipTimer == 0)
             {
-				facingRight = !facingRight;
+				facingRight = passDir;
 				flipping = false;
             }
         }
@@ -617,7 +618,9 @@ public class PlayerScript : MonoBehaviour
 
     public void flip(bool dir)
     {
-        flipping = true;
+		Debug.Log("BIG OLD KEK");
+		passDir = dir;
+		flipping = true;
         flipTimer = 3;
     }
 }
