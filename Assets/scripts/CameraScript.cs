@@ -35,6 +35,8 @@ public class CameraScript : MonoBehaviour
 
         player1.GetComponent<PlayerScript>().otherPlayer = player2;
         player2.GetComponent<PlayerScript>().otherPlayer = player1;
+
+        history = true;
     }
 
     void Update()
@@ -50,18 +52,22 @@ public class CameraScript : MonoBehaviour
         setX(background, cx * 0.5f);
         setX(self, cx);
 
-        history = getX(player1) < getX(player2);
+		bool now = getX(player1) < getX(player2);
 
-        if (getX(player1) < getX(player2) && getX(player1) < getX(player2) != history)
-        {
-            player1.GetComponent<PlayerScript>().flip(true);
-            player2.GetComponent<PlayerScript>().flip(false);
-        }
-        else if(getX(player1) > getX(player2) && getX(player1) > getX(player2) != history)
-        {
-            player1.GetComponent<PlayerScript>().flip(false);
-            player2.GetComponent<PlayerScript>().flip(true);
-        }
+		if (now != history) {
+			if (getX(player1) < getX(player2))
+			{
+				player1.GetComponent<PlayerScript>().flip(true);
+				player2.GetComponent<PlayerScript>().flip(false);
+			}
+			else
+			{
+				player1.GetComponent<PlayerScript>().flip(false);
+				player2.GetComponent<PlayerScript>().flip(true);
+			}
+		}
+
+        history = getX(player1) < getX(player2);
 
         if (player1.GetComponent<PlayerScript>().hitbox.GetComponent<hitboxScript>().hit)
         {

@@ -8,6 +8,7 @@ public class hitboxScript : MonoBehaviour {
     public bool collide;
     private PlayerScript script;
     private PlayerScript otherScript;
+	public LineRenderer line;
 
     // Use this for initialization
     void Start () {
@@ -43,7 +44,17 @@ public class hitboxScript : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerStay2D(Collider2D col)
+	private void OnPostRender()
+	{
+		line.positionCount = 2;
+		/*GL.Begin(GL.LINES);
+		GL.Color(Color.red);
+		GL.Vertex(new Vector3(0,0,2));
+		GL.Vertex(new Vector3(0, 1, 2));
+		GL.End();*/
+	}
+
+	private void OnTriggerStay2D(Collider2D col)
     {
         if (hit)
         {
