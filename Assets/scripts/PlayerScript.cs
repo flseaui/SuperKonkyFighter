@@ -621,6 +621,6 @@ public class PlayerScript : MonoBehaviour
 		Debug.Log("BIG OLD KEK");
 		passDir = dir;
 		flipping = true;
-        flipTimer = 3;
+        flipTimer = 6;
     }
 }
