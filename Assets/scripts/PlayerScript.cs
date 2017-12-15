@@ -24,7 +24,6 @@ public class PlayerScript : MonoBehaviour
     public int flipTimer;
 	private bool passDir;
 
-	public float friction;
     public float gravity;
 
     private int stunTimer;
@@ -36,7 +35,8 @@ public class PlayerScript : MonoBehaviour
     private float backwardSpeed;
     private float jumpSpeed;
 
-    public static Sprite[] textures;
+	public float width;
+	public float height;
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -133,19 +133,20 @@ public class PlayerScript : MonoBehaviour
         }
 
         storedAttackStrength = NO_ATTACK;
-        behaviors = new KonkyBehaviours();
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1.25f;
-        friction = 0f;
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
-
         iState = 5;
         state = 5;
 
-    }
+		//konky specific things...
+		behaviors = new KonkyBehaviours();
+		width = 6;
+		height = 8;
+	}
 
     // Update is called once per frame
     private void Update()
@@ -153,20 +154,6 @@ public class PlayerScript : MonoBehaviour
         if (!facingRight)
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
-
-            /*if (this.GetComponent<BoxCollider2D>().offset.x > 0)
-            {
-                Vector3 facing = this.GetComponent<BoxCollider2D>().offset;
-                facing.x *= -1;
-                this.GetComponent<BoxCollider2D>().offset = facing;
-            }*/
-
-            /*if (hitbox.GetComponent<BoxCollider2D>().offset.x > 0)
-            {
-                Vector3 facing = hitbox.GetComponent<BoxCollider2D>().offset;
-                facing.x *= -1;
-                hitbox.GetComponent<BoxCollider2D>().offset = facing;
-            }*/
         }
         else
         {
@@ -338,7 +325,7 @@ public class PlayerScript : MonoBehaviour
         moveY(vVelocity);
 
         //floor check
-        if (getY() < FLOOR_HEIGHT)
+        if (y() < FLOOR_HEIGHT)
         {
             air = false;
             airLock = false;
@@ -350,10 +337,10 @@ public class PlayerScript : MonoBehaviour
             air = true;
         }
 
-        if (getX() < -64f)
+        if (x() < -64f)
         {
             setX(-64);
-        }else if (getX() > 64f)
+        }else if (x() > 64f)
         {
             setX(64);
         }
@@ -363,11 +350,10 @@ public class PlayerScript : MonoBehaviour
             hVelocity = 0;
         }
 
-
         //see what the state should be
         stateCheck();
 
-        //communicate to the animaton controller for player state and attack state VV
+        //communicate to the animaton controller for player state and attack state
         if (flipping)
         {
             animInt(ANIM_STATE, -1);
@@ -516,7 +502,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (iAttack != NO_ATTACK)
             {
-                Debug.Log("attack timer: " + attackTimer + " | buffer frames: " + bufferFrames);
                 if (attackTimer <= bufferFrames)
                 {
                     storedAttackStrength = iAttack;
@@ -601,12 +586,12 @@ public class PlayerScript : MonoBehaviour
         this.transform.position = position;
     }
 
-    public float getY()
+    public float y()
     {
         return this.transform.position.y;
     }
 
-    public float getX()
+    public float x()
     {
         return this.transform.position.x;
     }

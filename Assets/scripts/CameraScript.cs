@@ -25,12 +25,12 @@ public class CameraScript : MonoBehaviour
     {
         player1 = Instantiate(playerPrefab);
         setX(player1, -16f);
-        player1.GetComponent<PlayerScript>().flip(true);
-        player1.GetComponent<PlayerScript>().playerID = 1;
+		player1.GetComponent<PlayerScript>().facingRight = true;
+		player1.GetComponent<PlayerScript>().playerID = 1;
 
         player2 = Instantiate(playerPrefab);
         setX(player2, 16f);
-        player2.GetComponent<PlayerScript>().flip(false);
+		player2.GetComponent<PlayerScript>().facingRight = false;
         player2.GetComponent<PlayerScript>().playerID = 2;
 
         player1.GetComponent<PlayerScript>().otherPlayer = player2;
