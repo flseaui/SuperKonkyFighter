@@ -16,11 +16,11 @@ public class PlayerScript : MonoBehaviour
     int HEAVY_ATTACK = 2;
     int ANIM_STATE = Animator.StringToHash("state");
     int STATUS_NORMAL = 0;
+	int CROUCHTIME = 8;
     //int STATUS_BROKEN = 1;
 
     public bool juggle;
 
-	
     public bool flipping;//flipping variables
 	public int flipTimer;
 	private bool passDir;
@@ -239,11 +239,13 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 9;
-            }
+				jumpPass = 9;
+			}
             else
             {
                 iState = 7;
-            }
+				jumpPass = 7;
+			}
         }
         else if (right && down)
         {
@@ -258,15 +260,18 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 7;
+				jumpPass = 7;
             }
             else
             {
                 iState = 9;
+				jumpPass = 9;
             }
         }
         else if (up)
         {
             iState = 8;
+			jumpPass = 8;
         }
         else if (right)
         {
@@ -362,7 +367,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			animInt(ANIM_STATE, -2);
 		}
-		if (flipping)
+		else if (flipping)
         {
             animInt(ANIM_STATE, -1);
         }
@@ -463,13 +468,14 @@ public class PlayerScript : MonoBehaviour
 			{
 				jumpCrouch = false;
 
-				//jump now 
-				if (iState == 8)
+				//jump now
+				state = jumpPass;
+				if (jumpPass == 8)
 				{
 					airLock = true;
 					vVelocity = jumpSpeed;
 				}
-				else if (iState == 9)
+				else if (jumpPass == 9)
 				{
 					airLock = true;
 					vVelocity = jumpSpeed;
@@ -482,7 +488,7 @@ public class PlayerScript : MonoBehaviour
 						hVelocity = -forwardSpeed * 1.2f;
 					}
 				}
-				else if (iState == 7)
+				else if (jumpPass == 7)
 				{
 					airLock = true;
 					vVelocity = jumpSpeed;
@@ -501,7 +507,7 @@ public class PlayerScript : MonoBehaviour
 
     private void execute()//executes your input to do something
     {
-        if (!attacking)
+        if (!attacking && !jumpCrouch)
         {
 
             attackStrengh = iAttack;
@@ -513,7 +519,7 @@ public class PlayerScript : MonoBehaviour
 				if(state > 6 && !jumpCrouch)
 				{
 					jumpCrouch = true;
-					crouchTimer = 12;
+					crouchTimer = CROUCHTIME;
 				}
             }
         }
@@ -622,7 +628,6 @@ public class PlayerScript : MonoBehaviour
 
     public void flip(bool dir)
     {
-		Debug.Log("BIG OLD KEK");
 		passDir = dir;
 		flipping = true;
         flipTimer = 6;
