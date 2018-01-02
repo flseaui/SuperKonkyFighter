@@ -165,6 +165,7 @@ MonoBehaviour:
   flipTimer: 0
   jumpCrouch: 0
   crouchTimer: 0
+  jumpPass: 0
   gravity: 0
   vVelocity: 0
   hVelocity: 0

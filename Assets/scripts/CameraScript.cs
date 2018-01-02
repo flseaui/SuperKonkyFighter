@@ -19,7 +19,15 @@ public class CameraScript : MonoBehaviour
     public Slider p1Power;
     public Slider p2Power;
 
-    public bool history;
+	public Sprite background0;
+	public Sprite background1;
+	public Sprite background2;
+	public Sprite background3;
+	public Sprite background4;
+	public Sprite background5;
+	public Sprite background6;
+
+	public bool history;
 
     void Start()
     {
@@ -37,6 +45,8 @@ public class CameraScript : MonoBehaviour
         player2.GetComponent<PlayerScript>().otherPlayer = player1;
 
         history = true;
+
+		background.GetComponent<SpriteRenderer>().sprite = background0;
     }
 
     void Update()
