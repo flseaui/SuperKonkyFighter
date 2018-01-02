@@ -20,11 +20,16 @@ public class PlayerScript : MonoBehaviour
 
     public bool juggle;
 
-    public bool flipping;
-    public int flipTimer;
+	
+    public bool flipping;//flipping variables
+	public int flipTimer;
 	private bool passDir;
+	
+	public bool jumpCrouch;//jump crouch variables
+	public int crouchTimer;
+	public int jumpPass;
 
-    public float gravity;
+	public float gravity;
 
     private int stunTimer;
 
@@ -46,7 +51,6 @@ public class PlayerScript : MonoBehaviour
 
     public bool air;
     public bool airLock;
-    public bool jumpcrouch;
 
     private int maxHealth;
     private int health;
@@ -84,7 +88,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool facingRight;
 
-    public int playerID;
+	public int playerID;
 
     private KeyCode upKey;
     private KeyCode rightKey;
@@ -353,8 +357,12 @@ public class PlayerScript : MonoBehaviour
         //see what the state should be
         stateCheck();
 
-        //communicate to the animaton controller for player state and attack state
-        if (flipping)
+		//communicate to the animaton controller for player state and attack state
+		if (jumpCrouch)
+		{
+			animInt(ANIM_STATE, -2);
+		}
+		if (flipping)
         {
             animInt(ANIM_STATE, -1);
         }
@@ -438,7 +446,7 @@ public class PlayerScript : MonoBehaviour
 
         if (flipping)
         {
-            flipTimer--;
+            --flipTimer;
             
             if(flipTimer == 0)
             {
@@ -446,6 +454,49 @@ public class PlayerScript : MonoBehaviour
 				flipping = false;
             }
         }
+
+		if (jumpCrouch)
+		{
+			--crouchTimer;
+
+			if (crouchTimer == 0)
+			{
+				jumpCrouch = false;
+
+				//jump now 
+				if (iState == 8)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+				}
+				else if (iState == 9)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+					if (facingRight)
+					{
+						hVelocity = forwardSpeed * 1.2f;
+					}
+					else
+					{
+						hVelocity = -forwardSpeed * 1.2f;
+					}
+				}
+				else if (iState == 7)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+					if (facingRight)
+					{
+						hVelocity = -backwardSpeed * 1.2f;
+					}
+					else
+					{
+						hVelocity = backwardSpeed * 1.2f;
+					}
+				}
+			}
+		}
     }
 
     private void execute()//executes your input to do something
@@ -458,44 +509,12 @@ public class PlayerScript : MonoBehaviour
 
             if (!airLock)
             {
-
                 state = iState;
-
-                //set movements for different states
-                if (state == 8)
-                {
-                    airLock = true;
-                    vVelocity = jumpSpeed;
-                }
-                else if (state == 9)
-                {
-                    airLock = true;
-                    vVelocity = jumpSpeed;
-                    if (facingRight) {
-                        hVelocity = forwardSpeed * 1.2f;
-                    }
-                    else
-                    {
-                        hVelocity = -forwardSpeed * 1.2f;
-                    }
-                }
-                else if (state == 7)
-                {
-                    airLock = true;
-                    vVelocity = jumpSpeed;
-                    if (facingRight)
-                    {
-                        hVelocity = -backwardSpeed * 1.2f;
-                    }
-                    else
-                    {
-                        hVelocity = backwardSpeed * 1.2f;
-                    }
-                }
-                else if (state < 4)
-                {
-                    //of
-                }
+				if(state > 6 && !jumpCrouch)
+				{
+					jumpCrouch = true;
+					crouchTimer = 12;
+				}
             }
         }
         else

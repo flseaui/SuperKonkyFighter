@@ -163,6 +163,8 @@ MonoBehaviour:
   juggle: 0
   flipping: 0
   flipTimer: 0
+  jumpCrouch: 0
+  crouchTimer: 0
   gravity: 0
   vVelocity: 0
   hVelocity: 0
@@ -174,7 +176,6 @@ MonoBehaviour:
   hurtbox: {fileID: 61072014828910340}
   air: 0
   airLock: 0
-  jumpcrouch: 0
   state: 0
   iState: 0
   storedAttackStrength: 0
