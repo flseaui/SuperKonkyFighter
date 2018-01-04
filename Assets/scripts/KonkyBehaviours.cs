@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors{
 
-    static int[,] konkyMoveMap = new int[3, 9]{
+    static int[,] konkyMoveMap = new int[3, 9]
         {
             4, 4, 4,
             0, 0, 0,
@@ -33,7 +33,7 @@ public class KonkyBehaviours : Behaviors{
         {20, 23},//2H  6
         {16,  7},//jL  7
         {26, 13},//jM  8
-        {12, 12},//jH  9
+        {12, 120},//jH  9
         {52, 40},//1S  10
         {26, 13},//6S  11
         {47, 34},//3S  12

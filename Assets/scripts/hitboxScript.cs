@@ -32,8 +32,8 @@ public class hitboxScript : MonoBehaviour
 					s.setX(tx);
 				}
 
-				line.SetPosition(0, new Vector3(0, s.y(), 0));
-				line.SetPosition(1, new Vector3(3, 4, 0));
+				line.SetPosition(0, new Vector3((os.x() - (s.width / 2) + ((os.width / 2) * (((s.y() + os.y()) / os.height) - 1))), s.y(), 0));
+				line.SetPosition(1, new Vector3((os.x() - (s.width / 2) + ((os.width / 2) * (((s.y() + os.y()+os.height) / os.height) - 1))), s.y()+s.height, 0));
 			}
 			else
 			{
