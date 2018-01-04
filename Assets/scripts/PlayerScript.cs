@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     public bool flipping;//flipping variables
 	public int flipTimer;
 	private bool passDir;
+	private bool waitForground;
 	
 	public bool jumpCrouch;//jump crouch variables
 	public int crouchTimer;
@@ -336,6 +337,14 @@ public class PlayerScript : MonoBehaviour
         //floor check
         if (y() < FLOOR_HEIGHT)
         {
+			if (air)
+			{
+				attackTimer = 0;
+				if (waitForground) {
+					waitForground = false;
+					flipping = true;
+				}
+			}
             air = false;
             airLock = false;
             vVelocity = 0;
@@ -628,8 +637,16 @@ public class PlayerScript : MonoBehaviour
 
     public void flip(bool dir)
     {
+		if (air) {
+			waitForground = true;
+			flipping = false;
+		}
+		else
+		{
+			waitForground = false;
+			flipping = true;
+		}
 		passDir = dir;
-		flipping = true;
         flipTimer = 6;
     }
 }
