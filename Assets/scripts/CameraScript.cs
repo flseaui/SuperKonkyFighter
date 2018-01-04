@@ -46,7 +46,7 @@ public class CameraScript : MonoBehaviour
 
         history = true;
 
-		background.GetComponent<SpriteRenderer>().sprite = background0;
+		background.GetComponent<SpriteRenderer>().sprite = background2;
     }
 
     void Update()

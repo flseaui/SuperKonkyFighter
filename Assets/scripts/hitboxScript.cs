@@ -32,7 +32,7 @@ public class hitboxScript : MonoBehaviour
 					s.setX(tx);
 				}
 
-				line.SetPosition(0, new Vector3(0, 3, 0));
+				line.SetPosition(0, new Vector3(0, s.y(), 0));
 				line.SetPosition(1, new Vector3(3, 4, 0));
 			}
 			else
