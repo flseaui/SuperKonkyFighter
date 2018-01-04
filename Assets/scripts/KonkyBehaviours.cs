@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors{
 
-    static int[,] konkyMoveMap = new int[3, 9]
+    static int[,] konkyMoveMap = new int[3, 9] {
         {
             4, 4, 4,
             0, 0, 0,
