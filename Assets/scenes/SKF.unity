@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1646981266529194, guid: b36305c8cec714941a97260bd21e1956,
     type: 2}
   background: {fileID: 1976528747}
-  ground: {fileID: 1717751412}
+  ground: {fileID: 0}
   self: {fileID: 1052459711}
   player1: {fileID: 0}
   player2: {fileID: 0}

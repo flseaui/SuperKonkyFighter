@@ -24,7 +24,7 @@ public class hitboxScript : MonoBehaviour
 	{
 		if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
 		{
-			if (s.facingRight)
+			if (s.x() < os.x())
 			{
 				float tx = os.x() - (s.width / 2) + ((os.width / 2) * (((s.y() + os.y()) / os.height) - 1));
 				if (s.x() > tx)
