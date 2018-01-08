@@ -442,14 +442,15 @@ MonoBehaviour:
   p2Power: {fileID: 1391644589}
   background0: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
   background1: {fileID: 21300000, guid: 495ac15a315ff38479eade0bb006874d, type: 3}
-  background2: {fileID: 0}
-  background3: {fileID: 0}
-  background4: {fileID: 0}
-  background5: {fileID: 0}
-  background6: {fileID: 0}
+  background2: {fileID: 21300000, guid: 161c3a6413b662e40bd3a3b2c53f6a11, type: 3}
+  background3: {fileID: 21300000, guid: cf9d9ecf9e82ed4428e0023d32a7886a, type: 3}
+  background4: {fileID: 21300000, guid: 14ce2032cacd46a4fb52498d527fd838, type: 3}
+  background5: {fileID: 21300000, guid: 075255fdc894fbf42b473b48b21a92c8, type: 3}
+  background6: {fileID: 21300000, guid: 2c0978b759f5e8f459beada7a9c42a2f, type: 3}
   ground0: {fileID: 21300000, guid: f00b59a299d5aeb4eb7fdf1a7e8f7764, type: 3}
   ground1: {fileID: 21300000, guid: 6bb5a5035a4f7bf48a57d2ee4a63b091, type: 3}
   history: 0
+  Background: []
 --- !u!20 &1052459711
 Camera:
   m_ObjectHideFlags: 0
