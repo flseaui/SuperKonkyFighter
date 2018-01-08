@@ -149,7 +149,7 @@ public class PlayerScript : MonoBehaviour
 
 		//konky specific things...
 		behaviors = new KonkyBehaviours();
-		width = 6;
+		width = 8;
 		height = 8;
 	}
 
