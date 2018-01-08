@@ -33,6 +33,8 @@ public class CameraScript : MonoBehaviour
 
 	public bool history;
 
+    public Sprite[] Background;
+
     void Start()
     {
         player1 = Instantiate(playerPrefab);
@@ -50,7 +52,9 @@ public class CameraScript : MonoBehaviour
 
         history = true;
 
-		background.GetComponent<SpriteRenderer>().sprite = background1;
+        Background = new Sprite[]{background0,background1,background2,background3,background4,background5,background6};
+
+		background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
 		ground.GetComponent<SpriteRenderer>().sprite = ground1;
     }
 
