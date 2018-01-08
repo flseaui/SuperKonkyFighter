@@ -19,22 +19,22 @@ public class MenuScript : MonoBehaviour {
         if (GUI.Button(new Rect(210, 30, 200, 60), "background2"))
         {
             SceneManager.LoadScene("SKF");
-            PlayerPrefs.SetInt("background", 0);
+            PlayerPrefs.SetInt("background", 1);
         }
         if (GUI.Button(new Rect(410, 30, 200, 60), "background3"))
         {
             SceneManager.LoadScene("SKF");
-            PlayerPrefs.SetInt("background", 0);
+            PlayerPrefs.SetInt("background", 2);
         }
         if (GUI.Button(new Rect(10, 230, 200, 60), "background4"))
         {
             SceneManager.LoadScene("SKF");
-            PlayerPrefs.SetInt("background", 0);
+            PlayerPrefs.SetInt("background", 3);
         }
         if (GUI.Button(new Rect(10, 430, 200, 60), "background5"))
         {
             SceneManager.LoadScene("SKF");
-            PlayerPrefs.SetInt("background", 0);
+            PlayerPrefs.SetInt("background", 4);
         }
 
     }
