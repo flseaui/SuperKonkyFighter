@@ -9,6 +9,7 @@ public class CameraScript : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject background;
+	public GameObject ground;
     public Camera self;
 
     public GameObject player1;
@@ -26,6 +27,9 @@ public class CameraScript : MonoBehaviour
 	public Sprite background4;
 	public Sprite background5;
 	public Sprite background6;
+
+	public Sprite ground0;
+	public Sprite ground1;
 
 	public bool history;
 
@@ -46,7 +50,8 @@ public class CameraScript : MonoBehaviour
 
         history = true;
 
-		background.GetComponent<SpriteRenderer>().sprite = background2;
+		background.GetComponent<SpriteRenderer>().sprite = background1;
+		ground.GetComponent<SpriteRenderer>().sprite = ground1;
     }
 
     void Update()

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 48083c628232e1846ac32dea59e76b4c
-timeCreated: 1514929146
+timeCreated: 1515397536
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -15,9 +15,9 @@ MonoImporter:
   - p2Heath: {instanceID: 0}
   - p1Power: {instanceID: 0}
   - p2Power: {instanceID: 0}
-  - background0: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
-  - background1: {fileID: 21300000, guid: 075255fdc894fbf42b473b48b21a92c8, type: 3}
-  - background2: {fileID: 21300000, guid: 161c3a6413b662e40bd3a3b2c53f6a11, type: 3}
+  - background0: {instanceID: 0}
+  - background1: {instanceID: 0}
+  - background2: {instanceID: 0}
   - background3: {instanceID: 0}
   - background4: {instanceID: 0}
   - background5: {instanceID: 0}
