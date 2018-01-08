@@ -432,7 +432,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1646981266529194, guid: b36305c8cec714941a97260bd21e1956,
     type: 2}
   background: {fileID: 1976528747}
-  ground: {fileID: 0}
+  ground: {fileID: 1717751412}
   self: {fileID: 1052459711}
   player1: {fileID: 0}
   player2: {fileID: 0}
