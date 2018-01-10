@@ -380,7 +380,15 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (flipping)
         {
-            animInt(ANIM_STATE, -1);
+            if (state > 4)
+            {
+                animInt(ANIM_STATE, -3);
+            }
+            else
+            {
+                animInt(ANIM_STATE, -1);
+            }
+            
         }
         else if (juggle)
         {
