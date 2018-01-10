@@ -41,6 +41,7 @@ public class PlayerScript : MonoBehaviour
     private float backwardSpeed;
     private float jumpSpeed;
 
+	public float baseHeight;
 	public float width;
 	public float height;
 
@@ -151,8 +152,8 @@ public class PlayerScript : MonoBehaviour
 
 		//konky specific things...
 		behaviors = new KonkyBehaviours();
+		baseHeight = 8;
 		width = 8;
-		height = 8;
 	}
 
     // Update is called once per frame
@@ -467,6 +468,15 @@ public class PlayerScript : MonoBehaviour
             attackTimer--;
 
         }
+
+		if (state < 4)
+		{
+			height = baseHeight / 2;
+		}
+		else
+		{
+			height = baseHeight;
+		}
 
         if (flipping)
         {
