@@ -380,7 +380,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (flipping)
         {
-            if (state > 4)
+            if (state < 4)
             {
                 animInt(ANIM_STATE, -3);
             }
