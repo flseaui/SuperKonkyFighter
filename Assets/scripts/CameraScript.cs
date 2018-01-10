@@ -34,6 +34,7 @@ public class CameraScript : MonoBehaviour
 	public bool history;
 
     public Sprite[] Background;
+    public Sprite[] Ground;
 
     void Start()
     {
@@ -53,9 +54,10 @@ public class CameraScript : MonoBehaviour
         history = true;
 
         Background = new Sprite[]{background0,background1,background2,background3,background4,background5,background6};
+        Ground = new Sprite[] { ground0, ground1 };
 
 		background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
-		ground.GetComponent<SpriteRenderer>().sprite = ground1;
+		ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground",0)];
     }
 
     void Update()
