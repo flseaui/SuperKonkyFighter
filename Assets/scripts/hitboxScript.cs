@@ -24,7 +24,7 @@ public class hitboxScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
+		/*if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
 		{
 			if (s.x() < os.x())
 			{
@@ -46,6 +46,53 @@ public class hitboxScript : MonoBehaviour
 			}
 
 			line.startColor = Color.red;
+		}*/
+
+		if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
+		{
+			if (s.x() < os.x())
+			{
+				float tx = -os.width * Mathf.Sqrt(1 - Mathf.Pow(( (s.y()-os.y()) / os.height), 2)) + os.x();
+				
+				//float tx = os.x() - (s.width / 2) + ((os.width / 2) * (((s.y() - os.y()) / os.height) - 1));
+				if (s.x() > tx)
+				{
+					if (s.hVelocity > 0)
+					{
+						s.pushing = true;
+						if (os.pushing)
+						{
+							os.hVelocity = 0;
+						}
+						else
+						{
+							os.hVelocity = s.hVelocity / 2;
+						}
+					}
+					s.setX(tx);
+				}
+			}
+			else
+			{
+				float tx = os.width * Mathf.Sqrt(1 - Mathf.Pow(( (s.y() - os.y()) / os.height), 2)) + os.x();
+				
+				//float tx = (os.x() + (s.width / 2) - ((os.width / 2) * (((s.y() - os.y()) / os.height) - 1)));
+				if (s.x() < tx)
+				{
+					if (s.hVelocity < 0)
+					{
+						s.pushing = true;
+						if (os.pushing)
+						{
+							os.hVelocity = 0;
+						}
+						else{
+							os.hVelocity = s.hVelocity / 2;
+						}
+					}
+					s.setX(tx);
+				}
+			}
 		}
 
 		//line.SetPosition(0, new Vector3((os.x() - (s.width / 2) + (os.width / 2) - 1), os.y(), 0));

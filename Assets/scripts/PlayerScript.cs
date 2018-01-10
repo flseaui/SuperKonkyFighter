@@ -56,6 +56,8 @@ public class PlayerScript : MonoBehaviour
     private int maxHealth;
     private int health;
 
+	public bool pushing;
+
     public int state;//player actual state, can be out of the player's control
     // 7 8 9
     // 4 5 6
