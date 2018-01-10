@@ -17,7 +17,8 @@ public class hitboxScript : MonoBehaviour
 		collide = false;
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
-		line.positionCount = 4;
+		line.positionCount = 3;
+		line.enabled = false;
 	}
 
 	// Update is called once per frame
@@ -47,11 +48,10 @@ public class hitboxScript : MonoBehaviour
 			line.startColor = Color.red;
 		}
 
-		line.SetPosition(0, new Vector3((os.x() - (s.width / 2) + (os.width / 2) - 1), os.y(), 0));
-		line.SetPosition(1, new Vector3((os.x() - (s.width / 2) + ((os.width / 2) - 1)), os.y() + os.height, 0));
+		//line.SetPosition(0, new Vector3((os.x() - (s.width / 2) + (os.width / 2) - 1), os.y(), 0));
+		//line.SetPosition(1, new Vector3((os.x() - (s.width / 2) + ((os.width / 2) - 1)), os.y() + os.height, 0));
 
-		//line.SetPosition(2, new Vector3((os.x() + (s.width / 2) - (os.width / 2) - 1), os.y(), 0));
-		//line.SetPosition(3, new Vector3((os.x() + (s.width / 2) - ((os.width / 2) - 1)), os.y() + os.height, 0));
+		//line.SetPosition(2, new Vector3((os.x() + (s.width / 2) - ((os.width / 2) - 1)), os.y() + os.height, 0));
 	}
 
 	private void OnPostRender()
