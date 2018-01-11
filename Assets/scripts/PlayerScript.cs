@@ -613,7 +613,10 @@ public class PlayerScript : MonoBehaviour
             {
                 if (storedAttackStrength != NO_ATTACK)
                 {
-                    state = iState;
+					if (!air) {
+						state = iState;
+					}
+					//animBool(true,"restart");
                     executeAttack(storedAttackStrength);
                 }
                 storedAttackStrength = NO_ATTACK;

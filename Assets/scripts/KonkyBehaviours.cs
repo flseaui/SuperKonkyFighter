@@ -27,7 +27,16 @@ public class KonkyBehaviours : Behaviors{
 		},
     };
 
-    static int[,] konkyFrames = new int[,]
+	//0 total frames
+	//1 recovery frames
+	//3 damage
+	//4 knockback
+	//5 hitstun
+	//6 blockstun
+	//7 hit stop
+	//8 meter consumption
+
+	static int[,] konkyFrames = new int[,]
     {
         {15,  8},//5L  0
         {20, 12},//5M  1
