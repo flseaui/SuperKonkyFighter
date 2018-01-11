@@ -36,8 +36,8 @@ public class KonkyBehaviours : Behaviors{
         {120, 12},//jH  9
         {52, 40},//1S  10
         {26, 13},//6S  11
-        {47, 34},//3S  12
-        {49, 34},//2S  13
+        {34, 20},//3S  12
+        {53, 33},//2S  13
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
