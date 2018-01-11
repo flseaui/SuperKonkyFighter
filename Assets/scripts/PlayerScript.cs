@@ -128,6 +128,7 @@ public class PlayerScript : MonoBehaviour
             lightKey = KeyCode.J;
             mediumKey = KeyCode.K;
             heavyKey = KeyCode.L;
+			specialKey = KeyCode.Question;
         }
         else if (playerID == 2)
         {
@@ -138,7 +139,8 @@ public class PlayerScript : MonoBehaviour
             lightKey = KeyCode.Keypad4;
             mediumKey = KeyCode.Keypad5;
             heavyKey = KeyCode.Keypad6;
-        }
+			specialKey = KeyCode.KeypadEnter;
+		}
 
         storedAttackStrength = NO_ATTACK;
         forwardSpeed = 0.25f;
@@ -175,6 +177,7 @@ public class PlayerScript : MonoBehaviour
         lite = false;
         medium = false;
         heavy = false;
+		special = false;
 
         if (Input.GetKey(lightKey))
         {
@@ -212,8 +215,20 @@ public class PlayerScript : MonoBehaviour
         {
             hevLock = false;
         }
+		if (Input.GetKey(specialKey))
+		{
+			if (!speLock)
+			{
+				speLock = true;
+				special = true;
+			}
+		}
+		else
+		{
+			speLock = false;
+		}
 
-        if (Input.GetKey(upKey))
+		if (Input.GetKey(upKey))
         {
             if (!upLock)
             {
