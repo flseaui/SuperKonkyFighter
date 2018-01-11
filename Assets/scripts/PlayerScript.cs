@@ -128,7 +128,7 @@ public class PlayerScript : MonoBehaviour
             lightKey = KeyCode.J;
             mediumKey = KeyCode.K;
             heavyKey = KeyCode.L;
-			specialKey = KeyCode.Question;
+			specialKey = KeyCode.Slash;
         }
         else if (playerID == 2)
         {
