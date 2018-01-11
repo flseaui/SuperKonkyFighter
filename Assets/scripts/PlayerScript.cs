@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     int LIGHT_ATTACK = 0;
     int MEDIUM_ATTACK = 1;
     int HEAVY_ATTACK = 2;
+	int SPECIAL_ATTACK = 3;
     int ANIM_STATE = Animator.StringToHash("state");
     int STATUS_NORMAL = 0;
 	int CROUCHTIME = 8;
@@ -334,7 +335,10 @@ public class PlayerScript : MonoBehaviour
         else if (heavy)
         {
             iAttack = HEAVY_ATTACK;
-        }
+        }else if (special)
+		{
+			iAttack = SPECIAL_ATTACK;
+		}
         else
         {
             iAttack = NO_ATTACK;
