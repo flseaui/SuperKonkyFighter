@@ -28,6 +28,10 @@ public class PlayerScript : MonoBehaviour
     public int dashDirectKey;
     public bool dashDirect;
     public bool PlayerDirect;
+    public bool previousDirect;
+
+    public int DashTimer;
+    bool DashCount;
 
     public bool flipping;//flipping variables
 	public int flipTimer;
@@ -260,7 +264,11 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKey(leftKey))
         {
-            if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing)
+            if(previousDirect)
+            {
+                moveTimer = 0;
+            }
+            if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
             {
                 dashing = true;
                 dashDirectKey = 0;
@@ -276,6 +284,7 @@ public class PlayerScript : MonoBehaviour
             {
                 moveTimer = 10;
                 left = true;
+                previousDirect = false;
             }
         }
         if (Input.GetKey(downKey))
@@ -284,7 +293,11 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKey(rightKey))
         {
-            if (Input.GetKeyDown(rightKey) && moveTimer > 0 && !dashing)
+            if (!previousDirect)
+            {
+                moveTimer = 0;
+            }
+            if (Input.GetKeyDown(rightKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
             {
                 dashing = true;
                 dashDirectKey = 1;
@@ -301,6 +314,7 @@ public class PlayerScript : MonoBehaviour
             {
                 moveTimer = 10;
                 right = true;
+                previousDirect = true;
             }
         }
 
@@ -399,6 +413,11 @@ public class PlayerScript : MonoBehaviour
             airLock = true;
         }
 
+        if (DashCount)
+        {
+            state = 999;
+        }
+
         execute();
 
         vVelocity += gravity;
@@ -460,7 +479,7 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        else if (dashing)
+        else if (dashing && !attacking)
         {
             if (dashDirect)
             {
@@ -568,9 +587,62 @@ public class PlayerScript : MonoBehaviour
 				flipping = false;
             }
         }
+
+        if (state == 999)
+        {
+            dashing = true;
+        }
+
         if (moveTimer != 0)
         {
             moveTimer--;
+        }
+
+        if (DashTimer != 0)
+        {
+            DashTimer--;
+        }
+        else if(DashCount)
+        {
+            dashing = false;
+            DashCount = false;
+        }
+
+        if (dashing)
+        {
+            if (!dashDirect && !air)
+            {
+                if (PlayerDirect)
+                {
+                    hVelocity = forwardSpeed * 2;
+                }
+                else
+                {
+                    hVelocity = forwardSpeed * -2;
+                }
+            }
+            else
+            {
+                if (PlayerDirect)
+                {
+                    hVelocity = forwardSpeed * -1.6f;
+                    if (!DashCount)
+                    {
+                        DashTimer = 20;
+                        DashCount = true;
+                    }
+                }
+                else
+                {
+                    hVelocity = forwardSpeed * 1.6f;
+                    if (!DashCount)
+                    {
+                        DashTimer = 20;
+                        DashCount = true;
+                    }
+                }
+            }
+
         }
 
 		if (jumpCrouch)
