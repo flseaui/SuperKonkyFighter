@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
 
     public int dashDirectKey;
     public bool dashDirect;
+    public bool PlayerDirect;
 
     public bool flipping;//flipping variables
 	public int flipTimer;
@@ -138,6 +139,7 @@ public class PlayerScript : MonoBehaviour
             mediumKey = KeyCode.K;
             heavyKey = KeyCode.L;
 			specialKey = KeyCode.Slash;
+            PlayerDirect = true;
         }
         else if (playerID == 2)
         {
@@ -149,7 +151,8 @@ public class PlayerScript : MonoBehaviour
             mediumKey = KeyCode.Keypad5;
             heavyKey = KeyCode.Keypad6;
 			specialKey = KeyCode.KeypadEnter;
-		}
+            PlayerDirect = false;
+        }
 
         storedAttackStrength = NO_ATTACK;
         forwardSpeed = 0.25f;
@@ -261,7 +264,7 @@ public class PlayerScript : MonoBehaviour
             {
                 dashing = true;
                 dashDirectKey = 0;
-                if (GetComponent<CameraScript>().history)
+                if (PlayerDirect)
                 {
                     dashDirect = true;
                 }else
@@ -281,7 +284,24 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKey(rightKey))
         {
-            right = true;
+            if (Input.GetKey(rightKey) && moveTimer > 0 && !dashing)
+            {
+                dashing = true;
+                dashDirectKey = 1;
+                if (PlayerDirect)
+                {
+                    dashDirect = false;
+                }
+                else
+                {
+                    dashDirect = true;
+                }
+            }
+            else if (!dashing)
+            {
+                moveTimer = 10;
+                right = true;
+            }
         }
 
         if (up && right)
@@ -735,5 +755,6 @@ public class PlayerScript : MonoBehaviour
 		}
 		passDir = dir;
         flipTimer = 6;
+        PlayerDirect = !PlayerDirect;
     }
 }
