@@ -284,17 +284,17 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKey(rightKey))
         {
-            if (Input.GetKey(rightKey) && moveTimer > 0 && !dashing)
+            if (Input.GetKeyDown(rightKey) && moveTimer > 0 && !dashing)
             {
                 dashing = true;
                 dashDirectKey = 1;
-                if (PlayerDirect)
+                if (!PlayerDirect)
                 {
-                    dashDirect = false;
+                    dashDirect = true;
                 }
                 else
                 {
-                    dashDirect = true;
+                    dashDirect = false;
                 }
             }
             else if (!dashing)
