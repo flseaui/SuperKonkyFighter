@@ -21,6 +21,11 @@ public class PlayerScript : MonoBehaviour
     //int STATUS_BROKEN = 1;
 
     public bool juggle;
+    public bool dashing;
+
+    public KeyCode[] dashKey;
+
+    public int dashDirect;
 
     public bool flipping;//flipping variables
 	public int flipTimer;
@@ -106,6 +111,8 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject otherPlayer;
 
+    public int moveTimer = 0;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -152,6 +159,8 @@ public class PlayerScript : MonoBehaviour
         gravity = BASE_GRAVITY;
         iState = 5;
         state = 5;
+
+        dashKey = new KeyCode[] { leftKey, rightKey };
 
 		//konky specific things...
 		behaviors = new KonkyBehaviours();
@@ -241,9 +250,22 @@ public class PlayerScript : MonoBehaviour
         {
             upLock = false;
         }
+
+        if (Input.GetKeyUp(dashKey[dashDirect])) {
+            dashing = false;
+        }
         if (Input.GetKey(leftKey))
         {
-            left = true;
+            if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing)
+            {
+                dashing = true;
+                dashDirect = 0;
+            }
+            else if (!dashing)
+            {
+                moveTimer = 10;
+                left = true;
+            }
         }
         if (Input.GetKey(downKey))
         {
@@ -410,6 +432,10 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
+        else if (dashing)
+        {
+            animInt(ANIM_STATE, -4);
+        }
         else if (juggle)
         {
             animInt(ANIM_STATE, 0);
@@ -499,13 +525,17 @@ public class PlayerScript : MonoBehaviour
 
         if (flipping)
         {
-            --flipTimer;
+            flipTimer--;
             
             if(flipTimer == 0)
             {
 				facingRight = passDir;
 				flipping = false;
             }
+        }
+        if (moveTimer != 0)
+        {
+            moveTimer--;
         }
 
 		if (jumpCrouch)
