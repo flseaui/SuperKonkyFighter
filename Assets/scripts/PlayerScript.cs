@@ -25,7 +25,8 @@ public class PlayerScript : MonoBehaviour
 
     public KeyCode[] dashKey;
 
-    public int dashDirect;
+    public int dashDirectKey;
+    public bool dashDirect;
 
     public bool flipping;//flipping variables
 	public int flipTimer;
@@ -251,7 +252,7 @@ public class PlayerScript : MonoBehaviour
             upLock = false;
         }
 
-        if (Input.GetKeyUp(dashKey[dashDirect])) {
+        if (Input.GetKeyUp(dashKey[dashDirectKey])) {
             dashing = false;
         }
         if (Input.GetKey(leftKey))
@@ -259,7 +260,14 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing)
             {
                 dashing = true;
-                dashDirect = 0;
+                dashDirectKey = 0;
+                if (GetComponent<CameraScript>().history)
+                {
+                    dashDirect = true;
+                }else
+                {
+                    dashDirect = false;
+                }
             }
             else if (!dashing)
             {
@@ -434,7 +442,14 @@ public class PlayerScript : MonoBehaviour
         }
         else if (dashing)
         {
-            animInt(ANIM_STATE, -4);
+            if (dashDirect)
+            {
+                animInt(ANIM_STATE, -5);
+            }
+            else
+            {
+                animInt(ANIM_STATE, -4);
+            }
         }
         else if (juggle)
         {
