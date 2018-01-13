@@ -418,6 +418,12 @@ public class PlayerScript : MonoBehaviour
             state = 999;
         }
 
+        if(DashTimer > 0)
+        {
+            state = 999;
+            dashing = true;
+        }
+
         execute();
 
         vVelocity += gravity;
@@ -612,7 +618,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (!dashDirect && !air)
             {
-                if (PlayerDirect)
+                if (facingRight)
                 {
                     hVelocity = forwardSpeed * 2;
                 }
