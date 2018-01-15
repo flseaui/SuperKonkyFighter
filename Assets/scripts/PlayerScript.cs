@@ -627,7 +627,7 @@ public class PlayerScript : MonoBehaviour
                     hVelocity = forwardSpeed * -2;
                 }
             }
-            else
+            else if(!air)
             {
                 if (PlayerDirect)
                 {
