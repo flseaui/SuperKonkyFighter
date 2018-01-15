@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     public bool dashDirect;
     public bool PlayerDirect;
     public bool previousDirect;
+    public bool groundDash;
 
     public int DashTimer;
     bool DashCount;
@@ -271,6 +272,10 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
             {
                 dashing = true;
+                if (!air)
+                {
+                    groundDash = true;
+                }
                 dashDirectKey = 0;
                 if (PlayerDirect)
                 {
@@ -300,6 +305,10 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(rightKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
             {
                 dashing = true;
+                if (!air)
+                {
+                    groundDash = true;
+                }
                 dashDirectKey = 1;
                 if (!PlayerDirect)
                 {
@@ -613,6 +622,12 @@ public class PlayerScript : MonoBehaviour
             dashing = false;
             DashCount = false;
         }
+        
+        if(air && groundDash)
+        {
+            dashing = false;
+            groundDash = false;
+        }
 
         if (dashing)
         {
@@ -627,7 +642,7 @@ public class PlayerScript : MonoBehaviour
                     hVelocity = forwardSpeed * -2;
                 }
             }
-            else if(!air)
+            else if(dashDirect && !air)
             {
                 if (PlayerDirect)
                 {
@@ -647,6 +662,14 @@ public class PlayerScript : MonoBehaviour
                         DashCount = true;
                     }
                 }
+            }
+            else if (!dashDirect)
+            {
+
+            }
+            else
+            {
+
             }
 
         }
