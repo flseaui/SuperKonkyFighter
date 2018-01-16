@@ -165,12 +165,9 @@ MonoBehaviour:
   dashKey: 
   dashDirectKey: 0
   dashDirect: 0
-  PlayerDirect: 0
   previousDirect: 0
   groundDash: 0
   DashTimer: 0
-  flipping: 0
-  flipTimer: 0
   jumpPass: 0
   gravity: 0
   vVelocity: 0
@@ -185,8 +182,12 @@ MonoBehaviour:
   air: 0
   airLock: 0
   pushing: 0
+  history: 
+  delays: 
+  inputTimer: 0
   state: 0
   iState: 0
+  heldState: 0
   storedAttackStrength: 0
   bufferFrames: 0
   attackStrengh: 0
@@ -195,6 +196,9 @@ MonoBehaviour:
   attacking: 0
   attackTimer: 0
   upLock: 0
+  leftLock: 0
+  downLock: 0
+  rightLock: 0
   up: 0
   left: 0
   down: 0
@@ -207,6 +211,10 @@ MonoBehaviour:
   medium: 0
   heavy: 0
   special: 0
+  up1: 0
+  left1: 0
+  down1: 0
+  right1: 0
   facingRight: 0
   playerID: 0
   otherPlayer: {fileID: 0}

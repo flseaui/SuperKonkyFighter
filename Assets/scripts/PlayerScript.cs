@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,15 +27,12 @@ public class PlayerScript : MonoBehaviour
 
     public int dashDirectKey;
     public bool dashDirect;
-    public bool PlayerDirect;
     public bool previousDirect;
     public bool groundDash;
 
     public int DashTimer;
     bool DashCount;
 
-    public bool flipping;//flipping variables
-	public int flipTimer;
 	private bool passDir;
 	private bool waitForground;
 	
@@ -69,11 +67,13 @@ public class PlayerScript : MonoBehaviour
 
 	public bool pushing;
 
-    public int state;//player actual state, can be out of the player's control
-    // 7 8 9
-    // 4 5 6
-    // 1 2 3
-    public int iState;//player input state, doesn't always sync up with state, but is always within control
+	public List<int> history;
+	public List<int> delays;
+	public int inputTimer;
+
+    public int state;
+    public int iState;
+	public int heldState;
 
     public int storedAttackStrength;
     public int bufferFrames;
@@ -84,8 +84,12 @@ public class PlayerScript : MonoBehaviour
     public bool attacking = false;//is there an attack
     public int attackTimer = 0; //time left in attack animation
 
-    public bool upLock = false;
-    public bool up = false;
+	public bool upLock = false;
+	public bool leftLock = false;
+	public bool downLock = false;
+	public bool rightLock = false;
+
+	public bool up = false;
     public bool left = false;
     public bool down = false;
     public bool right = false;
@@ -100,7 +104,12 @@ public class PlayerScript : MonoBehaviour
     public bool heavy = false;
     public bool special = false;
 
-    public bool facingRight;
+	public bool up1 = false;
+	public bool left1 = false;
+	public bool down1 = false;
+	public bool right1 = false;
+
+	public bool facingRight;
 
 	public int playerID;
 
@@ -141,7 +150,6 @@ public class PlayerScript : MonoBehaviour
             mediumKey = KeyCode.K;
             heavyKey = KeyCode.L;
 			specialKey = KeyCode.Slash;
-            PlayerDirect = true;
         }
         else if (playerID == 2)
         {
@@ -153,7 +161,6 @@ public class PlayerScript : MonoBehaviour
             mediumKey = KeyCode.Keypad5;
             heavyKey = KeyCode.Keypad6;
 			specialKey = KeyCode.KeypadEnter;
-            PlayerDirect = false;
         }
 
         storedAttackStrength = NO_ATTACK;
@@ -163,10 +170,12 @@ public class PlayerScript : MonoBehaviour
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
-        iState = 5;
-        state = 5;
 
-        dashKey = new KeyCode[] { leftKey, rightKey };
+		history = new List<int>(new int[] { 5, 5, 5, 5, 5, 5 });
+		delays = new List<int>(new int[] { 0, 0, 0, 0, 0, 0 });
+		inputTimer = 0;
+
+		dashKey = new KeyCode[] { leftKey, rightKey };
 
 		//konky specific things...
 		behaviors = new KonkyBehaviours();
@@ -188,7 +197,11 @@ public class PlayerScript : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        up = false;
+		up1 = false;
+		right1 = false;
+		down1 = false;
+		left1 = false;
+		up = false;
         right = false;
         down = false;
         left = false;
@@ -248,6 +261,7 @@ public class PlayerScript : MonoBehaviour
 
 		if (Input.GetKey(upKey))
         {
+			up1 = true;
             if (!upLock)
             {
                 upLock = true;
@@ -259,7 +273,49 @@ public class PlayerScript : MonoBehaviour
             upLock = false;
         }
 
-        if (Input.GetKeyUp(dashKey[dashDirectKey])) {
+		if (Input.GetKey(leftKey))
+		{
+			left1 = true;
+			if (!leftLock)
+			{
+				leftLock = true;
+				left = true;
+			}
+		}
+		else
+		{
+			leftLock = false;
+		}
+
+		if (Input.GetKey(downKey))
+		{
+			down1 = true;
+			if (!downLock)
+			{
+				downLock = true;
+				down = true;
+			}
+		}
+		else
+		{
+			downLock = false;
+		}
+
+		if (Input.GetKey(rightKey))
+		{
+			right1 = true;
+			if (!rightLock)
+			{
+				rightLock = true;
+				right = true;
+			}
+		}
+		else
+		{
+			rightLock = false;
+		}
+
+		/*if (Input.GetKeyUp(dashKey[dashDirectKey])) {
             dashing = false;
         }
         if (Input.GetKey(leftKey))
@@ -276,7 +332,7 @@ public class PlayerScript : MonoBehaviour
                     groundDash = true;
                 }
                 dashDirectKey = 0;
-                if (PlayerDirect)
+                if (facingRight)
                 {
                     dashDirect = true;
                 }else
@@ -290,12 +346,9 @@ public class PlayerScript : MonoBehaviour
                 left = true;
                 previousDirect = false;
             }
-        }
-        if (Input.GetKey(downKey))
-        {
-            down = true;
-        }
-        if (Input.GetKey(rightKey))
+        }*/
+
+		/*if (Input.GetKey(rightKey))
         {
             if (!previousDirect)
             {
@@ -309,7 +362,7 @@ public class PlayerScript : MonoBehaviour
                     groundDash = true;
                 }
                 dashDirectKey = 1;
-                if (!PlayerDirect)
+                if (!facingRight)
                 {
                     dashDirect = true;
                 }
@@ -324,19 +377,91 @@ public class PlayerScript : MonoBehaviour
                 right = true;
                 previousDirect = true;
             }
-        }
+        }*/
 
-        if (up && right)
+		if (up1 && right1)
+		{
+			if (facingRight)
+			{
+				heldState = 9;
+				jumpPass = 9;
+			}
+			else
+			{
+				heldState = 7;
+				jumpPass = 7;
+			}
+		}
+		else if (right1 && down1)
+		{
+			heldState = 3;
+		}
+		else if (down1 && left1)
+		{
+			heldState = 1;
+		}
+		else if (left1 && up1)
+		{
+			if (facingRight)
+			{
+				heldState = 7;
+				jumpPass = 7;
+			}
+			else
+			{
+				heldState = 9;
+				jumpPass = 9;
+			}
+		}
+		else if (up1)
+		{
+			heldState = 8;
+			jumpPass = 8;
+		}
+		else if (right1)
+		{
+			if (facingRight)
+			{
+				heldState = 6;
+				jumpPass = 9;
+			}
+			else
+			{
+				heldState = 4;
+				jumpPass = 7;
+			}
+		}
+		else if (down1)
+		{
+			heldState = 2;
+		}
+		else if (left1)
+		{
+			if (facingRight)
+			{
+				heldState = 4;
+				jumpPass = 7;
+			}
+			else
+			{
+				heldState = 6;
+				jumpPass = 9;
+			}
+		}
+		else
+		{
+			heldState = 5;
+		}
+
+		if (up && right)
         {
             if (facingRight)
             {
                 iState = 9;
-				jumpPass = 9;
 			}
             else
             {
                 iState = 7;
-				jumpPass = 7;
 			}
         }
         else if (right && down)
@@ -352,30 +477,25 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 7;
-				jumpPass = 7;
             }
             else
             {
                 iState = 9;
-				jumpPass = 9;
             }
         }
         else if (up)
         {
             iState = 8;
-			jumpPass = 8;
         }
         else if (right)
         {
             if (facingRight)
             {
                 iState = 6;
-				jumpPass = 9;
 			}
             else
             {
                 iState = 4;
-				jumpPass = 7;
 			}
         }
         else if (down)
@@ -387,12 +507,10 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 4;
-				jumpPass = 7;
 			}
             else
             {
                 iState = 6;
-				jumpPass = 9;
 			}
         }
         else
@@ -420,6 +538,32 @@ public class PlayerScript : MonoBehaviour
             iAttack = NO_ATTACK;
         }
 
+		//ADD INPUTS TO HISTORYYYYYYYYY
+		//
+		if (iState != 5)
+		{
+			history.Add(iState);
+			delays.Add(inputTimer);
+			inputTimer = 0;
+			history.RemoveAt(0);
+			delays.RemoveAt(0);
+		}
+
+		if (iAttack != NO_ATTACK)
+		{
+			history.Add(iAttack);
+			delays.Add(inputTimer);
+			inputTimer = 0;
+			history.RemoveAt(0);
+			delays.RemoveAt(0);
+		}
+
+		if (iAttack == NO_ATTACK && iState == 5)
+		{
+			++inputTimer;
+		}
+		//
+
         if (air)
         {
             airLock = true;
@@ -436,8 +580,6 @@ public class PlayerScript : MonoBehaviour
             dashing = true;
         }
 
-        execute();
-
         vVelocity += gravity;
 
         moveX(hVelocity);
@@ -448,10 +590,11 @@ public class PlayerScript : MonoBehaviour
         {
 			if (air)
 			{
+				state = 5;
 				attackTimer = 0;
 				if (waitForground) {
 					waitForground = false;
-					flipping = true;
+					executeAction(32, false);
 				}
 			}
             air = false;
@@ -480,39 +623,7 @@ public class PlayerScript : MonoBehaviour
         //see what the state should be
         stateCheck();
 
-		//communicate to the animaton controller for player state and attack state
-		/*if (jumpCrouch)
-		{
-			animInt(ANIM_STATE, -2);
-		}
-		else if (flipping)
-        {
-            if (state < 4)
-            {
-                animInt(ANIM_STATE, -3);
-            }
-            else
-            {
-                animInt(ANIM_STATE, -1);
-            }
-            
-        }
-        else if (dashing && !attacking)
-        {
-            if (dashDirect)
-            {
-                animInt(ANIM_STATE, -5);
-            }
-            else
-            {
-                animInt(ANIM_STATE, -4);
-            }
-        }
-        else if (juggle)
-        {
-            animInt(ANIM_STATE, 0);
-        }*/
-        if (attacking)//else
+        if (attacking)
         {
             animInt(ANIM_STATE, attackState);
         }
@@ -522,7 +633,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void stateCheck() //checks on the current state, resets it if need be (basically exits out of states)
+    private void stateCheck() //casual loop
     {
         //attack timer
         if (attackTimer == 0)
@@ -534,9 +645,8 @@ public class PlayerScript : MonoBehaviour
             attackTimer--;
         }
 
-		if (state == 6)
-		{
-			if (iState == 6 && !attacking)
+		if (!attacking) {
+			if (state == 6)
 			{
 				if (facingRight)
 				{
@@ -547,14 +657,7 @@ public class PlayerScript : MonoBehaviour
 					hVelocity = -forwardSpeed;
 				}
 			}
-			else
-			{
-				state = 5;
-			}
-		}
-		else if (state == 4)
-		{
-			if (iState == 4 && !attacking)
+			else if (state == 4)
 			{
 				if (facingRight)
 				{
@@ -564,10 +667,6 @@ public class PlayerScript : MonoBehaviour
 				{
 					hVelocity = backwardSpeed;
 				}
-			}
-			else
-			{
-				state = 5;
 			}
 		}
 
@@ -579,17 +678,6 @@ public class PlayerScript : MonoBehaviour
 		{
 			height = baseHeight;
 		}
-
-        if (flipping)
-        {
-            flipTimer--;
-            
-            if(flipTimer == 0)
-            {
-				facingRight = passDir;
-				flipping = false;
-            }
-        }
 
         if (state == 999)
         {
@@ -659,42 +747,34 @@ public class PlayerScript : MonoBehaviour
             {
 
             }
-
         }
-    }
 
-    private void execute()//executes your input to do something
-    {
-        if (!attacking)
-        {
+		if (!attacking)
+		{
 
-            attackStrengh = iAttack;
-            executeAction(attackStrengh, true);
+			attackStrengh = iAttack;
+			executeAction(attackStrengh, true);
 
-            if (!airLock)
-            {
-                state = iState;
-				if(state > 6)
+			if (!airLock)
+			{
+				state = heldState;
+				if (state > 6)
 				{
 					executeAction(33, false);
 				}
-            }
-        }
-        else
-        {
-            if (iAttack != NO_ATTACK)
-            {
-                if (attackTimer <= bufferFrames)
-                {
-                    storedAttackStrength = iAttack;
-                }
-                else
-                {
-                    storedAttackStrength = NO_ATTACK;
-                }
-            }
-        }
-    }
+			}
+		}
+		else
+		{
+			if (iAttack != NO_ATTACK)
+			{
+				if (attackTimer <= bufferFrames)
+				{
+					storedAttackStrength = iAttack;
+				}
+			}
+		}
+	}
 
     private void executeAction(int strength, bool actual)
     {
@@ -721,89 +801,90 @@ public class PlayerScript : MonoBehaviour
 
     private void attackEnd(int status)
     {
-        if (attacking)
+        if (status == STATUS_NORMAL)
         {
-            if (status == STATUS_NORMAL)
+			if (attackState == 32)
+			{
+				facingRight = passDir;
+			}
+			if (attackState == 33)
+			{
+				//jump now
+				state = jumpPass;
+				if (jumpPass == 8)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+				}
+				else if (jumpPass == 9)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+					if (facingRight)
+					{
+						hVelocity = forwardSpeed * 1.2f;
+					}
+					else
+					{
+						hVelocity = -forwardSpeed * 1.2f;
+					}
+				}
+				else if (jumpPass == 7)
+				{
+					airLock = true;
+					vVelocity = jumpSpeed;
+					if (facingRight)
+					{
+						hVelocity = -backwardSpeed * 1.2f;
+					}
+					else
+					{
+						hVelocity = backwardSpeed * 1.2f;
+					}
+				}
+			}
+            else if (storedAttackStrength != NO_ATTACK)
             {
-				if (attackState == 33)
+				if (!air) {
+					state = heldState;
+				}
+                executeAction(storedAttackStrength, true);
+			}
+			else
+			{
+				if (state == 6)
 				{
-					//jump now
-					state = jumpPass;
-					if (jumpPass == 8)
+					if (heldState != 6)
 					{
-						airLock = true;
-						vVelocity = jumpSpeed;
-					}
-					else if (jumpPass == 9)
-					{
-						airLock = true;
-						vVelocity = jumpSpeed;
-						if (facingRight)
-						{
-							hVelocity = forwardSpeed * 1.2f;
-						}
-						else
-						{
-							hVelocity = -forwardSpeed * 1.2f;
-						}
-					}
-					else if (jumpPass == 7)
-					{
-						airLock = true;
-						vVelocity = jumpSpeed;
-						if (facingRight)
-						{
-							hVelocity = -backwardSpeed * 1.2f;
-						}
-						else
-						{
-							hVelocity = backwardSpeed * 1.2f;
-						}
+						state = 5;
 					}
 				}
-                else if (storedAttackStrength != NO_ATTACK)
-                {
-					if (!air) {
-						state = iState;
-					}
-                    executeAction(storedAttackStrength, true);
-				}
-				else
+				else if (state == 4)
 				{
-					if (state == 6)
+					if (heldState != 4)
 					{
-						if (iState != 6)
-						{
-							state = 5;
-						}
-					}
-					else if (state == 4)
-					{
-						if (iState != 4)
-						{
-							state = 5;
-						}
-					}
-					else if (state < 4)
-					{
-						if (iState > 3)
-						{
-							state = 5;
-						}
-					}
-					else if (state > 6)
-					{
-						if (!air)
-						{
-							state = 5;
-						}
+						state = 5;
 					}
 				}
-				attackStrengh = NO_ATTACK;
-				attackState = NO_ATTACK_INDEX;
-				attacking = false;
-                storedAttackStrength = NO_ATTACK;
-            }
+				else if (state < 4)
+				{
+					if (heldState > 3)
+					{
+						state = 5;
+					}
+				}
+				else if (state > 6)
+				{
+					if (!air)
+					{
+						state = 5;
+					}
+				}
+			}
+			attackStrengh = NO_ATTACK;
+			attackState = NO_ATTACK_INDEX;
+			attacking = false;
+            storedAttackStrength = NO_ATTACK;
         }
     }
 
@@ -864,15 +945,12 @@ public class PlayerScript : MonoBehaviour
     {
 		if (air) {
 			waitForground = true;
-			flipping = false;
 		}
 		else
 		{
 			waitForground = false;
-			flipping = true;
+			executeAction(32, false);
 		}
 		passDir = dir;
-        flipTimer = 6;
-        PlayerDirect = !PlayerDirect;
     }
 }

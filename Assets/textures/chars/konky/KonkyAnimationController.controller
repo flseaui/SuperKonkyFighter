@@ -36,7 +36,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: state
-    m_EventTreshold: -1
+    m_EventTreshold: 32
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102858277765582306}
   m_Solo: 0
@@ -84,7 +84,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: state
-    m_EventTreshold: -5
+    m_EventTreshold: 34
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102355914644211136}
   m_Solo: 0
@@ -633,7 +633,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: state
-    m_EventTreshold: -4
+    m_EventTreshold: 35
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102262769232548914}
   m_Solo: 0
@@ -1257,7 +1257,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102610322864435512}
-    m_Position: {x: -648, y: -384, z: 0}
+    m_Position: {x: -864, y: -336, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102304259655138700}
     m_Position: {x: -648, y: -144, z: 0}
@@ -1299,7 +1299,7 @@ AnimatorStateMachine:
     m_Position: {x: -648, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102858277765582306}
-    m_Position: {x: -648, y: -288, z: 0}
+    m_Position: {x: -192, y: -312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102435166065394278}
     m_Position: {x: -648, y: -336, z: 0}
@@ -1320,7 +1320,7 @@ AnimatorStateMachine:
     m_Position: {x: -864, y: -96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102262769232548914}
-    m_Position: {x: -360, y: 48, z: 0}
+    m_Position: {x: -336, y: 72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102355914644211136}
     m_Position: {x: -216, y: -24, z: 0}
