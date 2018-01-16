@@ -620,7 +620,9 @@ public class PlayerScript : MonoBehaviour
             hVelocity = 0;
         }
 
-        //see what the state should be
+		//see what the state should be
+		historyCheck();
+
         stateCheck();
 
         if (attacking)
@@ -632,6 +634,48 @@ public class PlayerScript : MonoBehaviour
             animInt(ANIM_STATE, state);
         }
     }
+
+	private void historyCheck()
+	{
+		int[,] moves = new int[,]
+		{
+			{4,4},
+			{6,6}
+		};
+		int[,] times = new int[,]
+		{
+			{16,0},
+			{16,0}
+		};
+		int[] index = new int[]
+		{
+			34,
+			35,
+		};
+		for (int m = 0; m < moves.GetLength(0); ++m)
+		{
+			int counter = 0;
+			for (int i = history.Count - 1; i > history.Count - 1 - moves.GetLength(1); --i)
+			{
+				if (history[i] == moves[m,counter] && delays[i] <= times[m,counter])
+				{
+					if (counter == moves.GetLength(1) - 1)
+					{
+						executeAction(index[m], false);
+						for (int j = history.Count - 1; j > history.Count-1-moves.GetLength(1); --j)
+						{
+							history[j] = 5;
+						}
+					}
+				}
+				else
+				{
+					break;
+				}
+				++counter;
+			}
+		}
+	}
 
     private void stateCheck() //casual loop
     {
