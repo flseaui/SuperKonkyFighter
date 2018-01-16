@@ -536,7 +536,7 @@ public class PlayerScript : MonoBehaviour
 
 		if (state == 6)
 		{
-			if (iState == 6)
+			if (iState == 6 && !attacking)
 			{
 				if (facingRight)
 				{
@@ -554,7 +554,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (state == 4)
 		{
-			if (iState == 4)
+			if (iState == 4 && !attacking)
 			{
 				if (facingRight)
 				{
