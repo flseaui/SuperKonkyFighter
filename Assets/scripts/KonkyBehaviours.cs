@@ -52,7 +52,28 @@ public class KonkyBehaviours : Behaviors{
         {26, 13},//6S  11 | Knockback: , Angle: , Damage: , Meter: , Level: , P1 Scaling: 1
         {34, 20},//3S  12 | Knockback: , Angle: , Damage: , Meter: , Level: , P1 Scaling: 1
         {53, 33},//2S  13 | Knockback: , Angle: , Damage: , Meter: , Level: , P1 Scaling: 1
-		{999, 989},//4S   | Knockback: , Angle: , Damage: , Meter: , Level: , P1 Scaling: 1
+		{999, 989},//4S14 | Knockback: , Angle: , Damage: , Meter: , Level: , P1 Scaling: 1
+		{0,0 },//15
+		{0,0 },//16
+		{0,0 },//17
+		{0,0 },//18
+		{0,0 },//19
+		{0,0 },//20
+		{0,0 },//21
+		{0,0 },//22
+		{0,0 },//23
+		{0,0 },//24
+		{0,0 },//25
+		{0,0 },//26
+		{0,0 },//27
+		{0,0 },//28
+		{0,0 },//29
+		{0,0 },//30
+		{0,0 },//31
+		{6, 0},//32  TURN AROUND
+		{8, 0},//33  JUMP SQUAT
+		{20,0},//34  BACK DASH
+		{99999,0},//35 FORWARD DASH
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}

@@ -17,7 +17,6 @@ public class PlayerScript : MonoBehaviour
 	int SPECIAL_ATTACK = 3;
     int ANIM_STATE = Animator.StringToHash("state");
     int STATUS_NORMAL = 0;
-	int CROUCHTIME = 8;
     //int STATUS_BROKEN = 1;
 
     public bool juggle;
@@ -39,8 +38,6 @@ public class PlayerScript : MonoBehaviour
 	private bool passDir;
 	private bool waitForground;
 	
-	public bool jumpCrouch;//jump crouch variables
-	public int crouchTimer;
 	public int jumpPass;
 
 	public float gravity;
@@ -175,6 +172,8 @@ public class PlayerScript : MonoBehaviour
 		behaviors = new KonkyBehaviours();
 		baseHeight = 8;
 		width = 8;
+
+		//Time.timeScale = 0.1F;
 	}
 
     // Update is called once per frame
@@ -371,11 +370,13 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 6;
-            }
+				jumpPass = 9;
+			}
             else
             {
                 iState = 4;
-            }
+				jumpPass = 7;
+			}
         }
         else if (down)
         {
@@ -386,11 +387,13 @@ public class PlayerScript : MonoBehaviour
             if (facingRight)
             {
                 iState = 4;
-            }
+				jumpPass = 7;
+			}
             else
             {
                 iState = 6;
-            }
+				jumpPass = 9;
+			}
         }
         else
         {
@@ -478,7 +481,7 @@ public class PlayerScript : MonoBehaviour
         stateCheck();
 
 		//communicate to the animaton controller for player state and attack state
-		if (jumpCrouch)
+		/*if (jumpCrouch)
 		{
 			animInt(ANIM_STATE, -2);
 		}
@@ -508,10 +511,10 @@ public class PlayerScript : MonoBehaviour
         else if (juggle)
         {
             animInt(ANIM_STATE, 0);
-        }
-        else if (attacking)
+        }*/
+        if (attacking)//else
         {
-            animInt(ANIM_STATE, 10 + attackState);
+            animInt(ANIM_STATE, attackState);
         }
         else
         {
@@ -525,63 +528,48 @@ public class PlayerScript : MonoBehaviour
         if (attackTimer == 0)
         {
             attackEnd(STATUS_NORMAL);
-
-            if (state == 6)
-            {
-                if (iState == 6)
-                {
-                    if (facingRight)
-                    {
-                        hVelocity = forwardSpeed;
-                    }
-                    else
-                    {
-                        hVelocity = -forwardSpeed;
-                    }
-                }
-                else
-                {
-                    state = 5;
-                }
-            }
-            else if (state == 4)
-            {
-                if (iState == 4)
-                {
-                    if (facingRight)
-                    {
-                        hVelocity = -backwardSpeed;
-                    }
-                    else
-                    {
-                        hVelocity = backwardSpeed;
-                    }
-                }
-                else
-                {
-                    state = 5;
-                }
-            }
-            else if (state < 4)
-            {
-                if (iState > 3)
-                {
-                    state = 5;
-                }
-            }
-            else if (state > 6)
-            {
-                if (!air)
-                {
-                    state = 5;
-                }
-            }
         }
         else
         {
             attackTimer--;
-
         }
+
+		if (state == 6)
+		{
+			if (iState == 6)
+			{
+				if (facingRight)
+				{
+					hVelocity = forwardSpeed;
+				}
+				else
+				{
+					hVelocity = -forwardSpeed;
+				}
+			}
+			else
+			{
+				state = 5;
+			}
+		}
+		else if (state == 4)
+		{
+			if (iState == 4)
+			{
+				if (facingRight)
+				{
+					hVelocity = -backwardSpeed;
+				}
+				else
+				{
+					hVelocity = backwardSpeed;
+				}
+			}
+			else
+			{
+				state = 5;
+			}
+		}
 
 		if (state < 4)
 		{
@@ -644,7 +632,7 @@ public class PlayerScript : MonoBehaviour
             }
             else if(dashDirect && !air)
             {
-                if (PlayerDirect)
+                if (facingRight)
                 {
                     hVelocity = forwardSpeed * -1.6f;
                     if (!DashCount)
@@ -673,67 +661,22 @@ public class PlayerScript : MonoBehaviour
             }
 
         }
-
-		if (jumpCrouch)
-		{
-			--crouchTimer;
-
-			if (crouchTimer == 0)
-			{
-				jumpCrouch = false;
-
-				//jump now
-				state = jumpPass;
-				if (jumpPass == 8)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-				}
-				else if (jumpPass == 9)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = forwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = -forwardSpeed * 1.2f;
-					}
-				}
-				else if (jumpPass == 7)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = -backwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = backwardSpeed * 1.2f;
-					}
-				}
-			}
-		}
     }
 
     private void execute()//executes your input to do something
     {
-        if (!attacking && !jumpCrouch)
+        if (!attacking)
         {
 
             attackStrengh = iAttack;
-            executeAttack(attackStrengh);
+            executeAction(attackStrengh, true);
 
             if (!airLock)
             {
                 state = iState;
-				if(state > 6 && !jumpCrouch)
+				if(state > 6)
 				{
-					jumpCrouch = true;
-					crouchTimer = CROUCHTIME;
+					executeAction(33, false);
 				}
             }
         }
@@ -753,38 +696,112 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void executeAttack(int strength)
+    private void executeAction(int strength, bool actual)
     {
-        if (strength != NO_ATTACK)
-        {
-            int check = behaviors.getAttack(strength, state);
-            if (check != NO_ATTACK_INDEX)
-            {
-                attacking = true;
-                attackState = check;
-                attackTimer = behaviors.getTotalTime(attackState);
-                bufferFrames = behaviors.getRecoveryTime(attackState);
-            }
-        }
+		if (actual) {
+			if (strength != NO_ATTACK)
+			{
+				int check = behaviors.getAttack(strength, state);
+				if (check != NO_ATTACK_INDEX)
+				{
+					attacking = true;
+					attackState = check + 10;
+					attackTimer = behaviors.getTotalTime(check);
+					bufferFrames = behaviors.getRecoveryTime(check);
+				}
+			}
+		}
+		else
+		{
+			attacking = true;
+			attackState = strength;
+			attackTimer = behaviors.getTotalTime(attackState);
+		}
     }
 
     private void attackEnd(int status)
     {
         if (attacking)
         {
-            attackStrengh = NO_ATTACK;
-            attackState = NO_ATTACK_INDEX;
-            attacking = false;
             if (status == STATUS_NORMAL)
             {
-                if (storedAttackStrength != NO_ATTACK)
+				if (attackState == 33)
+				{
+					//jump now
+					state = jumpPass;
+					if (jumpPass == 8)
+					{
+						airLock = true;
+						vVelocity = jumpSpeed;
+					}
+					else if (jumpPass == 9)
+					{
+						airLock = true;
+						vVelocity = jumpSpeed;
+						if (facingRight)
+						{
+							hVelocity = forwardSpeed * 1.2f;
+						}
+						else
+						{
+							hVelocity = -forwardSpeed * 1.2f;
+						}
+					}
+					else if (jumpPass == 7)
+					{
+						airLock = true;
+						vVelocity = jumpSpeed;
+						if (facingRight)
+						{
+							hVelocity = -backwardSpeed * 1.2f;
+						}
+						else
+						{
+							hVelocity = backwardSpeed * 1.2f;
+						}
+					}
+				}
+                else if (storedAttackStrength != NO_ATTACK)
                 {
 					if (!air) {
 						state = iState;
 					}
-					//animBool(true,"restart");
-                    executeAttack(storedAttackStrength);
-                }
+                    executeAction(storedAttackStrength, true);
+				}
+				else
+				{
+					if (state == 6)
+					{
+						if (iState != 6)
+						{
+							state = 5;
+						}
+					}
+					else if (state == 4)
+					{
+						if (iState != 4)
+						{
+							state = 5;
+						}
+					}
+					else if (state < 4)
+					{
+						if (iState > 3)
+						{
+							state = 5;
+						}
+					}
+					else if (state > 6)
+					{
+						if (!air)
+						{
+							state = 5;
+						}
+					}
+				}
+				attackStrengh = NO_ATTACK;
+				attackState = NO_ATTACK_INDEX;
+				attacking = false;
                 storedAttackStrength = NO_ATTACK;
             }
         }
