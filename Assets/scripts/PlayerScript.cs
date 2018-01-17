@@ -33,8 +33,9 @@ public class PlayerScript : MonoBehaviour
     public int DashTimer;
     bool DashCount;
 
-	private bool passDir;
-	private bool waitForground;
+	public bool passDir;
+	public bool waitForGround;
+	public bool waitForEnd;
 	
 	public int jumpPass;
 
@@ -592,8 +593,8 @@ public class PlayerScript : MonoBehaviour
 			{
 				state = 5;
 				attackTimer = 0;
-				if (waitForground) {
-					waitForground = false;
+				if (waitForGround) {
+					waitForGround = false;
 					executeAction(32, false);
 				}
 			}
@@ -847,13 +848,26 @@ public class PlayerScript : MonoBehaviour
     {
         if (status == STATUS_NORMAL)
         {
-			if (attackState == 32)
+			if (waitForEnd)
 			{
+				waitForEnd = false;
+				if (state < 4)
+				{
+					executeAction(36, false);
+				}
+				else
+				{
+					executeAction(32, false);
+				}
+			}
+			else if (attackState == 32 || attackState == 36)
+			{
+				shutdown();
 				facingRight = passDir;
 			}
-			if (attackState == 33)
+			else if (attackState == 33)
 			{
-				//jump now
+				shutdown();
 				state = jumpPass;
 				if (jumpPass == 8)
 				{
@@ -896,6 +910,7 @@ public class PlayerScript : MonoBehaviour
 			}
 			else
 			{
+				shutdown();
 				if (state == 6)
 				{
 					if (heldState != 6)
@@ -925,12 +940,16 @@ public class PlayerScript : MonoBehaviour
 					}
 				}
 			}
-			attackStrengh = NO_ATTACK;
-			attackState = NO_ATTACK_INDEX;
-			attacking = false;
-            storedAttackStrength = NO_ATTACK;
-        }
+			storedAttackStrength = NO_ATTACK;
+		}
     }
+
+	private void shutdown()
+	{
+		attackStrengh = NO_ATTACK;
+		attackState = NO_ATTACK_INDEX;
+		attacking = false;
+	}
 
     private void animInt(int hash, int value)
     {
@@ -988,12 +1007,23 @@ public class PlayerScript : MonoBehaviour
     public void flip(bool dir)
     {
 		if (air) {
-			waitForground = true;
+			waitForGround = true;
+		}
+		else if (attacking)
+		{
+			waitForEnd = true;
 		}
 		else
 		{
-			waitForground = false;
-			executeAction(32, false);
+			waitForEnd = false;
+			waitForGround = false;
+			if (state < 4) {
+				executeAction(36, false);
+			}
+			else
+			{
+				executeAction(32, false);
+			}
 		}
 		passDir = dir;
     }

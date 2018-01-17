@@ -74,7 +74,8 @@ public class KonkyBehaviours : Behaviors{
 		{6, 0},//32  TURN AROUND
 		{8, 0},//33  JUMP SQUAT
 		{20,0},//34  BACK DASH
-		{20,0},//35 FORWARD DASH
+		{20,0},//35  FORWARD DASH
+		{6, 0},//36  GROUND TURN
     };
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
