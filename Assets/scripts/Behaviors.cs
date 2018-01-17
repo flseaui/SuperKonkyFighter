@@ -28,4 +28,9 @@ public abstract class Behaviors{
     {
         return frames[attack, 1];
     }
+
+	public int getDamage(int attack)
+	{
+		return frames[attack, 2];
+	}
 }

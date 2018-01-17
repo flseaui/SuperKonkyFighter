@@ -127,6 +127,8 @@ public class PlayerScript : MonoBehaviour
 
     public int moveTimer = 0;
 
+	int damagePass;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -833,6 +835,7 @@ public class PlayerScript : MonoBehaviour
 					attackState = check + 10;
 					attackTimer = behaviors.getTotalTime(check);
 					bufferFrames = behaviors.getRecoveryTime(check);
+					damagePass = behaviors.getDamage(check);
 				}
 			}
 		}
