@@ -429,13 +429,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48083c628232e1846ac32dea59e76b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1895151206}
+  uis: {fileID: 0}
   playerPrefab: {fileID: 1646981266529194, guid: b36305c8cec714941a97260bd21e1956,
     type: 2}
   background: {fileID: 1976528747}
   ground: {fileID: 1717751412}
   self: {fileID: 1052459711}
   player1: {fileID: 0}
+  p1s: {fileID: 0}
   player2: {fileID: 0}
+  p2s: {fileID: 0}
   p1Heath: {fileID: 1812468543}
   p2Heath: {fileID: 1588097979}
   p1Power: {fileID: 387214222}
@@ -580,8 +584,7 @@ GameObject:
   - component: {fileID: 1338733472}
   - component: {fileID: 1338733471}
   - component: {fileID: 1338733470}
-  - component: {fileID: 1338733473}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BackgroundJoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +597,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338733468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -604,7 +607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350.18, y: -175.1}
+  m_AnchoredPosition: {x: -350.18, y: -175.09961}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338733470
@@ -651,17 +654,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338733468}
---- !u!225 &1338733473
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1338733468}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &1391644587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf80c0590207d74b982e164cf58c412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1961471759494470, guid: 67ecc353c736d5b4e844d99e43bc5191, type: 2}
   health1: {fileID: 1812468543}
   health2: {fileID: 1588097979}
   meter1: {fileID: 0}
@@ -1737,7 +1728,7 @@ GameObject:
   - component: {fileID: 2036922358}
   - component: {fileID: 2036922360}
   - component: {fileID: 2036922359}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: JoyStick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1741,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2036922357}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

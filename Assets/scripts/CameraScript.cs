@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
-
+	public Canvas canvas;
+	public UIScript uis;
 
     public GameObject playerPrefab;
     public GameObject background;
@@ -13,9 +14,11 @@ public class CameraScript : MonoBehaviour
     public Camera self;
 
     public GameObject player1;
+	public PlayerScript p1s;
     public GameObject player2;
+	public PlayerScript p2s;
 
-    public Slider p1Heath;
+	public Slider p1Heath;
     public Slider p2Heath;
     public Slider p1Power;
     public Slider p2Power;
@@ -38,18 +41,22 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
+		uis = canvas.GetComponent<UIScript>();
+
         player1 = Instantiate(playerPrefab);
         setX(player1, -16f);
-		player1.GetComponent<PlayerScript>().facingRight = true;
-		player1.GetComponent<PlayerScript>().playerID = 1;
+		p1s = player1.GetComponent<PlayerScript>();
+		p1s.facingRight = true;
+		p1s.playerID = 1;
 
         player2 = Instantiate(playerPrefab);
         setX(player2, 16f);
-		player2.GetComponent<PlayerScript>().facingRight = false;
-        player2.GetComponent<PlayerScript>().playerID = 2;
+		p2s = player2.GetComponent<PlayerScript>();
+		p2s.facingRight = false;
+        p2s.playerID = 2;
 
-        player1.GetComponent<PlayerScript>().otherPlayer = player2;
-        player2.GetComponent<PlayerScript>().otherPlayer = player1;
+        p1s.otherPlayer = player2;
+        p2s.otherPlayer = player1;
 
         history = true;
 
@@ -57,8 +64,8 @@ public class CameraScript : MonoBehaviour
         Ground = new Sprite[] { ground0, ground1 };
 
 		background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
-		ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground",0)];
-    }
+		ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
+	}
 
     void Update()
     {
@@ -88,18 +95,15 @@ public class CameraScript : MonoBehaviour
 			}
 		}
 
-        history = getX(player1) < getX(player2);
+		history = getX(player1) < getX(player2);
 
-        if (player1.GetComponent<PlayerScript>().hitbox.GetComponent<hitboxScript>().hit)
-        {
-            p1Heath.GetComponent<Slider>().value -= 50;
-        }
-
-        if (player2.GetComponent<PlayerScript>().hitbox.GetComponent<hitboxScript>().hit)
-        {
-            p2Heath.GetComponent<Slider>().value -= 50;
-        }
-    }
+		uis.health1.maxValue = p1s.maxHealth;
+		uis.health1.minValue = 0;
+		uis.health2.maxValue = p2s.maxHealth;
+		uis.health2.minValue = 0;
+		uis.health1.value = p1s.health;
+		uis.health2.value = p2s.health;
+	}
 
     private float getX(GameObject o)
     {

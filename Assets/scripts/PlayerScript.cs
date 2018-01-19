@@ -63,8 +63,8 @@ public class PlayerScript : MonoBehaviour
     public bool air;
     public bool airLock;
 
-    private int maxHealth;
-    private int health;
+    public int maxHealth;
+    public int health;
 
 	public List<int> history;
 	public List<int> delays;
@@ -125,7 +125,7 @@ public class PlayerScript : MonoBehaviour
 
     public int moveTimer = 0;
 
-	int damagePass;
+	public int damagePass;
 
     void OnDrawGizmos()
     {
@@ -179,6 +179,8 @@ public class PlayerScript : MonoBehaviour
 		dashKey = new KeyCode[] { leftKey, rightKey };
 
 		//konky specific things...
+		maxHealth = 10000;
+		health = maxHealth;
 		behaviors = new KonkyBehaviours();
 		baseHeight = 8;
 		width = 8;
@@ -950,6 +952,7 @@ public class PlayerScript : MonoBehaviour
 		attackStrengh = NO_ATTACK;
 		attackState = NO_ATTACK_INDEX;
 		attacking = false;
+		damagePass = 0;
 	}
 
     private void animInt(int hash, int value)
@@ -1000,11 +1003,6 @@ public class PlayerScript : MonoBehaviour
         return this.transform.position.x;
     }
 
-    public int getMaxHealth()
-    {
-        return 0;
-    }
-
     public void flip(bool dir)
     {
 		if (air) {
@@ -1028,4 +1026,9 @@ public class PlayerScript : MonoBehaviour
 		}
 		passDir = dir;
     }
+
+	public void damage(int ammount)
+	{
+		health -= ammount;
+	}
 }

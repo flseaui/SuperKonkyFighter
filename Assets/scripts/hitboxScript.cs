@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class hitboxScript : MonoBehaviour
 {
-	public bool hit;
+	public bool alreadyHit;
 	public bool collide;
 	private PlayerScript s;
 	private PlayerScript os;
@@ -13,7 +13,7 @@ public class hitboxScript : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		hit = false;
+		alreadyHit = false;
 		collide = false;
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
@@ -80,27 +80,17 @@ public class hitboxScript : MonoBehaviour
 		//line.SetPosition(2, new Vector3((os.x() + (s.width / 2) - ((os.width / 2) - 1)), os.y() + os.height, 0));
 	}
 
-	private void OnTriggerStay2D(Collider2D col)
-	{
-		if (hit)
-		{
-			hit = false;
-		}
-	}
-
 	private void OnTriggerExit2D(Collider2D col)
 	{
-		if (hit)
-		{
-			hit = false;
-		}
+		alreadyHit = false;
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+		s.damage(os.damagePass);
 		if (col.enabled)
 		{
-			hit = true;
+			alreadyHit = true;
 		}
 	}
 }
