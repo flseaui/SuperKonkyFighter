@@ -12,16 +12,15 @@ public class JoyScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
     private Vector3 input;
 
 
-    private void start()
+    private void Start()
     {
         Debug.Log("ran");
-
         bgImg = GetComponent<Image>();
         joystick = transform.GetChild(0).GetComponent<Image>();
 
     }
 
-    public virtual void OnDrag(PointerEventData ped)
+    public void OnDrag(PointerEventData ped)
     {
         Debug.Log("ran");
         Vector2 pos;
@@ -39,13 +38,13 @@ public class JoyScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
         }
     }
 
-    public virtual void OnPointerDown(PointerEventData ped)
+    public void OnPointerDown(PointerEventData ped)
     {
         OnDrag(ped);
         Debug.Log("ran");
     }
 
-    public virtual void OnPointerUp(PointerEventData ped)
+    public void OnPointerUp(PointerEventData ped)
     {
         Debug.Log("ran");
     }
