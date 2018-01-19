@@ -87,10 +87,15 @@ public class hitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		s.damage(os.damagePass);
-		if (col.enabled)
-		{
-			alreadyHit = true;
+		if (s.state == 4 && !s.attacking) {
+			s.block();
+		}
+		else {
+			s.damage(os.damagePass);
+			if (col.enabled)
+			{
+				alreadyHit = true;
+			}
 		}
 	}
 }
