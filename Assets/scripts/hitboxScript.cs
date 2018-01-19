@@ -36,6 +36,11 @@ public class hitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity > 0)
 					{
+						if(!s.air){
+							os.hVelocity += s.hVelocity / 2;
+							s.hVelocity -= s.hVelocity / 2;
+						}
+						else if(os.air)
 						{
 							os.hVelocity += s.hVelocity / 2;
 							s.hVelocity -= s.hVelocity / 2;
@@ -53,6 +58,12 @@ public class hitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity < 0)
 					{
+						if (!s.air)
+						{
+							os.hVelocity += s.hVelocity / 2;
+							s.hVelocity -= s.hVelocity / 2;
+						}
+						else if (os.air)
 						{
 							os.hVelocity += s.hVelocity / 2;
 							s.hVelocity -= s.hVelocity / 2;
