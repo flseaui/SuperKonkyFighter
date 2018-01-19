@@ -36,25 +36,12 @@ public class hitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity > 0)
 					{
-						s.pushing = true;
-						if (os.pushing)
 						{
-							os.hVelocity = 0;
+							os.hVelocity += s.hVelocity / 2;
+							s.hVelocity -= s.hVelocity / 2;
 						}
-						else
-						{
-							os.hVelocity = s.hVelocity / 2;
-						}
-					}
-					else
-					{
-						s.pushing = false;
 					}
 					s.setX(tx);
-				}
-				else
-				{
-					s.pushing = false;
 				}
 			}
 			else
@@ -66,25 +53,12 @@ public class hitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity < 0)
 					{
-						s.pushing = true;
-						if (os.pushing)
 						{
-							os.hVelocity = 0;
+							os.hVelocity += s.hVelocity / 2;
+							s.hVelocity -= s.hVelocity / 2;
 						}
-						else
-						{
-							os.hVelocity = s.hVelocity / 2;
-						}
-					}
-					else
-					{
-						s.pushing = false;
 					}
 					s.setX(tx);
-				}
-				else
-				{
-					s.pushing = false;
 				}
 			}
 		}

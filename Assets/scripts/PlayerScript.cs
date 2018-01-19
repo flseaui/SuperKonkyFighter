@@ -66,8 +66,6 @@ public class PlayerScript : MonoBehaviour
     private int maxHealth;
     private int health;
 
-	public bool pushing;
-
 	public List<int> history;
 	public List<int> delays;
 	public int inputTimer;
