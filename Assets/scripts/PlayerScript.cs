@@ -179,7 +179,7 @@ public class PlayerScript : MonoBehaviour
 		dashKey = new KeyCode[] { leftKey, rightKey };
 
 		//konky specific things...
-		maxHealth = 10000;
+		maxHealth = 11000;
 		health = maxHealth;
 		behaviors = new KonkyBehaviours();
 		baseHeight = 8;
