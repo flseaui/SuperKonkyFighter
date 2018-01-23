@@ -12,6 +12,8 @@ public class JoyScript : MonoBehaviour
     private Vector3 input;
     public Camera Cam;
     private bool clicked;
+    private int rawState;
+    public int state;
 
 
     private void Start()
@@ -29,7 +31,6 @@ public class JoyScript : MonoBehaviour
         }
         if (Input.GetMouseButton(0) && clicked)
         {
-            Debug.Log("worked");
             Vector2 pos;
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(bgImg.rectTransform, Input.mousePosition, Cam, out pos))
             {
@@ -41,6 +42,18 @@ public class JoyScript : MonoBehaviour
 
                 joystick.rectTransform.anchoredPosition = new Vector3(input.x * (bgImg.rectTransform.sizeDelta.x / 2), (input.z * (bgImg.rectTransform.sizeDelta.y / 2)));
 
+                float angle = Mathf.Atan((Input.mousePosition.y + 128.5f)/ (Input.mousePosition.x + 303.6f));
+
+                Debug.Log(angle);
+
+                for (int i = 0; i<8; i++)
+                {
+                    if(angle >= i*45 && angle <= i * 45)
+                    {
+                        rawState = i;
+                        break;
+                    }
+                }
 
             }
         }
