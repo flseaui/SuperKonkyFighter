@@ -18,11 +18,6 @@ public class CameraScript : MonoBehaviour
     public GameObject player2;
 	public PlayerScript p2s;
 
-	public Slider p1Heath;
-    public Slider p2Heath;
-    public Slider p1Power;
-    public Slider p2Power;
-
 	public Sprite background0;
 	public Sprite background1;
 	public Sprite background2;
