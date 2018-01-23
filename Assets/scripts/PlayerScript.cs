@@ -30,6 +30,7 @@ public class PlayerScript : MonoBehaviour
     public bool previousDirect;
     public bool groundDash;
 
+	bool dashed;
     public int DashTimer;
     bool DashCount;
 
@@ -176,7 +177,7 @@ public class PlayerScript : MonoBehaviour
 		delays = new List<int>(new int[] { 0, 0, 0, 0, 0, 0 });
 		inputTimer = 0;
 
-		dashKey = new KeyCode[] { leftKey, rightKey };
+		dashed = false;
 
 		//konky specific things...
 		maxHealth = 11000;
@@ -572,45 +573,14 @@ public class PlayerScript : MonoBehaviour
             airLock = true;
         }
 
-        if (DashCount)
-        {
-            state = 999;
-        }
+		
 
-        if(DashTimer > 0)
-        {
-            state = 999;
-            dashing = true;
-        }
+		//floor check
+		
 
-        vVelocity += gravity;
+		
 
-        moveX(hVelocity);
-        moveY(vVelocity);
-
-        //floor check
-        if (y() < FLOOR_HEIGHT)
-        {
-			if (air)
-			{
-				state = 5;
-				attackTimer = 0;
-				if (waitForGround) {
-					waitForGround = false;
-					executeAction(32, false);
-				}
-			}
-            air = false;
-            airLock = false;
-            vVelocity = 0;
-            setY(FLOOR_HEIGHT);
-        }
-        else
-        {
-            air = true;
-        }
-
-        if (x() < -64f)
+		if (x() < -64f)
         {
             setX(-64);
         }else if (x() > 64f)
@@ -621,14 +591,49 @@ public class PlayerScript : MonoBehaviour
         if (!air)
         {
             hVelocity = 0;
-        }
+		}
 
-		//see what the state should be
+
+		vVelocity += gravity;
+
+		stateCheck();
+
+		
+
 		historyCheck();
 
-        stateCheck();
+		
 
-        if (attacking)
+		moveX(hVelocity);
+		moveY(vVelocity);
+
+		if (y() < FLOOR_HEIGHT)
+		{
+			if (air)
+			{
+				state = 5;
+				attackTimer = 0;
+				if (waitForGround)
+				{
+					waitForGround = false;
+					executeAction(32, false);
+				}
+			}
+			dashed = false;
+			air = false;
+			airLock = false;
+			vVelocity = 0;
+			setY(FLOOR_HEIGHT);
+		}
+		else
+		{
+			air = true;
+		}
+
+
+
+
+		if (attacking)
         {
             animInt(ANIM_STATE, attackState);
         }
@@ -647,31 +652,45 @@ public class PlayerScript : MonoBehaviour
 		};
 		int[,] times = new int[,]
 		{
-			{16,0},
-			{16,0}
+			{16,-1},
+			{16,-1}
 		};
 		int[] index = new int[]
 		{
 			34,
 			35,
 		};
-		for (int m = 0; m < moves.GetLength(0); ++m)
+		for (int m = 0; m < moves.GetLength(0); ++m)//m i sthe variable that counts thorugh the moves array starting from 0 and going to the end
 		{
+			//the counter counts up every time through the i loop
 			int counter = 0;
-			for (int i = history.Count - 1; i > history.Count - 1 - moves.GetLength(1); --i)
+			//for (int i = history.Count - 1; i >= history.Count - 1 - moves.GetLength(1); --i)//the i loop goes through history, starting at the last position and going down by a number of moves required by the move trying to be activated (2)
+			for (int i = 5; i > 3; --i)
 			{
-				if (history[i] == moves[m,counter] && delays[i] <= times[m,counter])
+				//Debug.Log(i);
+				//Debug.Log(delays[i] +" <= "+ times[m, counter]);
+				if (history[i] == moves[m,counter])
 				{
+					//Debug.Log(counter);
 					if (counter == moves.GetLength(1) - 1)
 					{
-						executeAction(index[m], false);
-						for (int j = history.Count - 1; j > history.Count-1-moves.GetLength(1); --j)
+						if (!dashed) {
+							executeAction(index[m], false);
+							dashed = true;
+						}
+						for (int j = history.Count - 1; j > history.Count - 1 - moves.GetLength(1); --j)
 						{
 							history[j] = 5;
 						}
+						break;
+						
 					}
 				}
 				else
+				{
+					break;
+				}
+				if (delays[i] > times[m, counter])
 				{
 					break;
 				}
@@ -713,6 +732,34 @@ public class PlayerScript : MonoBehaviour
 				else
 				{
 					hVelocity = backwardSpeed;
+				}
+			}
+		}
+		else{
+			if (attackState == 34)
+			{
+				if (facingRight)
+				{
+					hVelocity = -forwardSpeed * 1.5f;
+					vVelocity = 0;
+				}
+				else
+				{
+					hVelocity = forwardSpeed * 1.5f;
+					vVelocity = 0;
+				}
+			}
+			else if (attackState == 35)
+			{
+				if (facingRight)
+				{
+					hVelocity = forwardSpeed * 2;
+					vVelocity = 0;
+				}
+				else
+				{
+					hVelocity = -forwardSpeed * 2;
+					vVelocity = 0;
 				}
 			}
 		}
@@ -1030,5 +1077,10 @@ public class PlayerScript : MonoBehaviour
 	public void damage(int ammount)
 	{
 		health -= ammount;
+	}
+
+	public void block()
+	{
+		//executeAction();
 	}
 }
