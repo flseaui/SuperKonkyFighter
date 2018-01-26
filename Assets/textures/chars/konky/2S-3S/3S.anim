@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KonkyFastFire
+  m_Name: 3S
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -28,7 +28,7 @@ AnimationClip:
       value: {fileID: 21300000, guid: a0c8d78fba8d0bd45a87fd5756845e26, type: 3}
     - time: 0.21666667
       value: {fileID: 21300000, guid: f893acc32570f694cbe3eabb5e06339c, type: 3}
-    - time: 0.23333333
+    - time: 0.25
       value: {fileID: 21300000, guid: 08745a3284420e44e9dc206b4c2748e9, type: 3}
     - time: 0.36666667
       value: {fileID: 21300000, guid: 1ddac5ac1b5f5bc46a587c1720cb9fba, type: 3}
