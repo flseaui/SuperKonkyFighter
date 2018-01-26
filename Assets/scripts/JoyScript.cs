@@ -12,14 +12,19 @@ public class JoyScript : MonoBehaviour
     private Vector3 input;
     public Camera Cam;
     private bool clicked;
-    private int rawState;
-    public int state;
-
+    private float joyx;
+    private float joyy;
+    public bool Up;
+    public bool Down;
+    public bool Left;
+    public bool Right;
 
     private void Start()
     {
         bgImg = GetComponent<Image>();
         joystick = transform.GetChild(0).GetComponent<Image>();
+        joyx = joystick.transform.position.x;
+        joyy = joystick.transform.position.y;
 
     }
 
@@ -42,18 +47,9 @@ public class JoyScript : MonoBehaviour
 
                 joystick.rectTransform.anchoredPosition = new Vector3(input.x * (bgImg.rectTransform.sizeDelta.x / 2), (input.z * (bgImg.rectTransform.sizeDelta.y / 2)));
 
-                float angle = Mathf.Atan((Input.mousePosition.y + 128.5f)/ (Input.mousePosition.x + 303.6f));
-
+                float angle = (Mathf.Atan2((joystick.transform.position.y - joyy), (joystick.transform.position.x - joyx))/Mathf.PI)*180;
                 Debug.Log(angle);
-
-                for (int i = 0; i<8; i++)
-                {
-                    if(angle >= i*45 && angle <= i * 45)
-                    {
-                        rawState = i;
-                        break;
-                    }
-                }
+                Dir(angle);
 
             }
         }
@@ -61,6 +57,45 @@ public class JoyScript : MonoBehaviour
         {
             joystick.rectTransform.anchoredPosition = new Vector3(0, 0);
             clicked = false;
+        }
+    }
+
+    public void Dir(float a)
+    {
+        if(a > 135 || a < -135)
+        {
+            Left = true; 
+        }
+        else
+        {
+            Left = false;
+        }
+
+        if (a < 45 || a > -45)
+        {
+            Right = true;
+        }
+        else
+        {
+            Right = false;
+        }
+
+        if (a < 135 || a > 45)
+        {
+            Up = true;
+        }
+        else
+        {
+            Up = false;
+        }
+
+        if (a > -135 || a < -45)
+        {
+            Down = true;
+        }
+        else
+        {
+            Down = false;
         }
     }
 }
