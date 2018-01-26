@@ -34,7 +34,7 @@ public class KonkyBehaviours : Behaviors{
 	//5 blockstun
 
 	static int[,] konkyFrames = new int[,]
-    {
+    {//Total, Recovery, Damage
         {15,  8, 350},//5L  0  | Knockback: , Angle: , Damage: 350, Chip Damage: 35, Attribute: Mid, Level: 0, P1 Scaling: 1
         {20, 12, 625},//5M  1  | Knockback: , Angle: , Damage: 625, Chip Damage: 63, Attribute: Mid, Level: 1, P1 Scaling: 1
         {34, 18, 450},//6M  2  | Knockback: , Angle: , Damage: 450, Chip Damage: 45, Attribute: High, Level: 0, P1 Scaling: 1.1
@@ -78,13 +78,13 @@ public class KonkyBehaviours : Behaviors{
 
     public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
 }
-//Level | Hitstop | Hitstun | Blockstun | Scaling
-//0     | 8       | 12      | 9         | .75
-//1     | 10      | 14      | 11        | .8
-//2     | 12      | 16      | 13        | .85
-//3     | 14      | 19      | 16        | .89
-//4     | 16      | 21      | 18        | .92
-//5     | 18      | 24      | 20        | .94
+//Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
+//0     | 8       | 12      | 23         | 9         | .75
+//1     | 10      | 14      | 26         | 11        | .8
+//2     | 12      | 16      | 28         | 13        | .85
+//3     | 14      | 19      | 33         | 16        | .89
+//4     | 16      | 21      | 36         | 18        | .92
+//5     | 18      | 24      | 40         | 20        | .94
 
 //Whiff Medium/Hard Normal: 1 point
 //Whiff Special Move: 4 points
