@@ -1083,4 +1083,17 @@ public class PlayerScript : MonoBehaviour
 	{
 		//executeAction();
 	}
+
+	public void delBox()
+	{
+		//GetComponents<BoxCollider2D>;
+
+	}
+
+	public void genBox(Vector4 v)
+	{
+		BoxCollider2D box = new BoxCollider2D();
+		box.offset.Set(v.x, v.y);
+		box.size.Set(v.z, v.w);
+	}
 }
