@@ -15,9 +15,9 @@ public class JoyScript : MonoBehaviour
     private float joyx;
     private float joyy;
     public bool Up;
+    public bool Right;
     public bool Down;
     public bool Left;
-    public bool Right;
 
     private void Start()
     {
@@ -62,7 +62,7 @@ public class JoyScript : MonoBehaviour
 
     public void Dir(float a)
     {
-        if(a > 135 || a < -135)
+        if(a > 112.5 || a < -112.5)
         {
             Left = true; 
         }
@@ -71,7 +71,7 @@ public class JoyScript : MonoBehaviour
             Left = false;
         }
 
-        if (a < 45 || a > -45)
+        if (a < 67.5 && a > -67.5)
         {
             Right = true;
         }
@@ -80,7 +80,7 @@ public class JoyScript : MonoBehaviour
             Right = false;
         }
 
-        if (a < 135 || a > 45)
+        if (a < 157.5 && a > 22.5)
         {
             Up = true;
         }
@@ -89,7 +89,7 @@ public class JoyScript : MonoBehaviour
             Up = false;
         }
 
-        if (a > -135 || a < -45)
+        if (a > -157.5 && a < -22.5)
         {
             Down = true;
         }
