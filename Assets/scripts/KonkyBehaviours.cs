@@ -50,7 +50,7 @@ public class KonkyBehaviours : Behaviors{
         {34, 20, 400},//3S  12 | Knockback: , Angle: , Damage: 400, Chip Damage: 40, Attribute: Mid, Level: 4, P1 Scaling: 1
         {53, 33, 500},//2S  13 | Knockback: , Angle: , Damage: 500, Chip Damage: 50, Attribute: Mid, Level: 5, P1 Scaling: 1
 		{999, 989, 500},//4S   | Knockback: , Angle: , Damage: 400+400+600, Chip Damage: 40+40+60, Attribute: High, Level: 2+KD, P1 Scaling: 1
-        // Knockback: , Angle: , Damage: 1500, Chip Damage: -, Attribute: Throw, Level: 5, P1 Scaling: .5
+        //Throw Knockback: , Angle: , Damage: 1500, Chip Damage: -, Attribute: Throw, Level: 5+KD, P1 Scaling: .5
 		{0,0,0 },//15
 		{0,0,0 },//16
 		{0,0,0 },//17
