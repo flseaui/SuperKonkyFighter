@@ -33,6 +33,7 @@ public class JoyScript : MonoBehaviour
     private void Start()
     {
         bgImg = GetComponent<Image>();
+        bgImg.enabled = false;
         joystick = transform.GetChild(0).GetComponent<Image>();
 
         RectTransform rt = (RectTransform)bgImg.transform;
