@@ -4,35 +4,24 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors{
 
-    static int[,] konkyMoveMap = new int[4, 9] {
-        {
-            4, 4, 4,
-            0, 0, 0,
-            7, 7, 7,
-        },
-        {
-            5, 5, 5,
-            1, 1, 2,
-            8, 8, 8,
-        },
-        {
-            6, 6, 6,
-            3, 3, 3,
-            9, 9, 9,
-        },
-		{
-			10, 13, 12,
-			-1, -1, 11,
-			-1, -1, -1,
-		},
-    };
-
 	//0 total frames
 	//1 recovery frames
 	//3 damage
 	//4 chip damage DO THIS
 	//5 blockstun
 
+	private Action crouchL = new Action() {attack = true, frames = 19, startup = 6, active = 3, recovery = 10, damage = new int[] {300}, level = 0, cancels = new int[]{a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s} };
+	private Action crouchM = new Action() {attack = true, frames = 24, startup = 7, active = 4, recovery = 13, damage = new int[] {650}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+	private Action crouchH = new Action() { };
+
+	static Action[] konkyActions = new Action[]
+	{
+		crouchL,
+		crouchM,
+		crouchH,
+		new Action() {attack = true, frames = 13, startup = 4, active = 3, recovery = 6, damage = new int[]{200}, level = 0, cancels = new int[]{a1l } },
+	};
+	
 	static int[,] konkyFrames = new int[,]
     {//Total, Recovery, Damage
         {15,  8, 350},//5L  0  | Knockback: , Angle: , Damage: 350, Chip Damage: 35, Attribute: Mid, Level: 0, P1 Scaling: 1
@@ -76,7 +65,9 @@ public class KonkyBehaviours : Behaviors{
 		{100, 0, 0},//37 STANDING BLOCK
     };
 
-    public KonkyBehaviours() : base(konkyMoveMap, konkyFrames) {}
+    public KonkyBehaviours() : base(konkyActions) {
+		
+	}
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75

@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action{
+public class Action {
 
-	string name;
+	public bool attack;
 
-	bool attack;
+	public int frames;
 
-	int frames;
+	public int startup;
+	public int active;
+	public int recovery;
 
-	int startup;
-	int active;
-	int recovery;
+	public int[] damage;
+	public int level;
 
-	int[] damage;
-	int[] hitStun;
+	public int[] cancels;
 
-	int[] chipDamage;
-	int[] blockStun;
-
-	int[] meterCost;
-
-	double scaling;
+	public int[] meterCost;
 }
