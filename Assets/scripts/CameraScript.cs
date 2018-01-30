@@ -34,6 +34,8 @@ public class CameraScript : MonoBehaviour
     public Sprite[] Background;
     public Sprite[] Ground;
 
+    public JoyScript JoyScript;
+
     void Start()
     {
 		uis = canvas.GetComponent<UIScript>();
@@ -43,6 +45,8 @@ public class CameraScript : MonoBehaviour
 		p1s = player1.GetComponent<PlayerScript>();
 		p1s.facingRight = true;
 		p1s.playerID = 1;
+
+        p1s.JoyScript = JoyScript;
 
         player2 = Instantiate(playerPrefab);
         setX(player2, 16f);

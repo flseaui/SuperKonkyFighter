@@ -124,6 +124,8 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject otherPlayer;
 
+    public JoyScript JoyScript;
+
     public int moveTimer = 0;
 
 	public int damagePass;
@@ -263,7 +265,7 @@ public class PlayerScript : MonoBehaviour
 			speLock = false;
 		}
 
-		if (Input.GetKey(upKey))
+		if (Input.GetKey(upKey) || JoyScript.Up)
         {
 			up1 = true;
             if (!upLock)
@@ -277,7 +279,7 @@ public class PlayerScript : MonoBehaviour
             upLock = false;
         }
 
-		if (Input.GetKey(leftKey))
+		if (Input.GetKey(leftKey) || JoyScript.Left)
 		{
 			left1 = true;
 			if (!leftLock)
@@ -291,7 +293,7 @@ public class PlayerScript : MonoBehaviour
 			leftLock = false;
 		}
 
-		if (Input.GetKey(downKey))
+		if (Input.GetKey(downKey) || JoyScript.Down)
 		{
 			down1 = true;
 			if (!downLock)
@@ -305,7 +307,7 @@ public class PlayerScript : MonoBehaviour
 			downLock = false;
 		}
 
-		if (Input.GetKey(rightKey))
+		if (Input.GetKey(rightKey) || JoyScript.Right)
 		{
 			right1 = true;
 			if (!rightLock)
@@ -318,6 +320,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			rightLock = false;
 		}
+
 
 		/*if (Input.GetKeyUp(dashKey[dashDirectKey])) {
             dashing = false;

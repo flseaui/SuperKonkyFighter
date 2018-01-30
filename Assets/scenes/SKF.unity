@@ -452,6 +452,7 @@ MonoBehaviour:
   history: 0
   Background: []
   Ground: []
+  JoyScript: {fileID: 1338733470}
 --- !u!20 &1052459711
 Camera:
   m_ObjectHideFlags: 0
@@ -618,10 +619,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 1052459711}
+  ijoyx: 0
+  ijoyy: 0
+  joyx: 0
+  joyy: 0
   Up: 0
+  Right: 0
   Down: 0
   Left: 0
-  Right: 0
 --- !u!114 &1338733471
 MonoBehaviour:
   m_ObjectHideFlags: 0

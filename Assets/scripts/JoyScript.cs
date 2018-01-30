@@ -14,8 +14,13 @@ public class JoyScript : MonoBehaviour
 
     private bool clicked;
 
-    private float joyx;
-    private float joyy;
+    public float ijoyx;
+    public float ijoyy;
+
+    public float joyx;
+    public float joyy;
+
+    private float InCamx;
 
     private float fullr;
 
@@ -34,12 +39,17 @@ public class JoyScript : MonoBehaviour
 
         fullr = rt.rect.height/30;
 
-        joyx = joystick.transform.position.x;
-        joyy = joystick.transform.position.y;
+        ijoyx = joystick.transform.position.x;
+        ijoyy = joystick.transform.position.y;
+
+        InCamx = Cam.transform.position.x;
     }
 
     private void Update()
     {
+        joyx = ijoyx + (InCamx + Cam.transform.position.x);
+        joyy = ijoyy;
+
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.x < 350 && Input.mousePosition.y < 300)
         {
             clicked = true;
