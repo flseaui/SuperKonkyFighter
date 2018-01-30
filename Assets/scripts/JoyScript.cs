@@ -11,6 +11,7 @@ public class JoyScript : MonoBehaviour
     private Image joystick;
     private Vector3 input;
     public Camera Cam;
+    public Animator anim;
 
     private bool clicked;
 
@@ -96,37 +97,45 @@ public class JoyScript : MonoBehaviour
             if (a > 112.5 || a < -112.5)
             {
                 Left = true;
+                anim.SetBool("Left", true);
             }
             else
             {
                 Left = false;
+                anim.SetBool("Left", false);
             }
 
             if (a < 67.5 && a > -67.5)
             {
                 Right = true;
+                anim.SetBool("Right", true);
             }
             else
             {
                 Right = false;
+                anim.SetBool("Right", false);
             }
 
             if (a < 157.5 && a > 22.5)
             {
                 Up = true;
+                anim.SetBool("Up", true);
             }
             else
             {
                 Up = false;
+                anim.SetBool("Up", false);
             }
 
             if (a > -157.5 && a < -22.5)
             {
                 Down = true;
+                anim.SetBool("Down", true);
             }
             else
             {
                 Down = false;
+                anim.SetBool("Down", false);
             }
         }
         else
