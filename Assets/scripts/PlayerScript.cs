@@ -762,7 +762,7 @@ public class PlayerScript : MonoBehaviour
 			if (act != null)
 			{
 				action = true;
-				actionState = strength;
+				actionState = place;
 				actionTimer = act.frames;
 				cancel = new List<int>(act.cancels);
 
