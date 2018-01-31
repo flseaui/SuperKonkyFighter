@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.3059692, y: 4.16}
+  m_AnchoredPosition: {x: 1.3059692, y: 4.1600003}
   m_SizeDelta: {x: -5.228, y: -15.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556497143
@@ -442,8 +442,8 @@ MonoBehaviour:
   p2s: {fileID: 0}
   background0: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
   background1: {fileID: 21300000, guid: 495ac15a315ff38479eade0bb006874d, type: 3}
-  background2: {fileID: 21300000, guid: cf9d9ecf9e82ed4428e0023d32a7886a, type: 3}
-  background3: {fileID: 21300000, guid: 14ce2032cacd46a4fb52498d527fd838, type: 3}
+  background2: {fileID: 0}
+  background3: {fileID: 0}
   background4: {fileID: 0}
   background5: {fileID: 0}
   background6: {fileID: 0}
@@ -618,8 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d3c50b090563a4381680f9aa0a9770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cam: {fileID: 1052459711}
-  anim: {fileID: 1629087773}
+  Cam: {fileID: 0}
+  anim: {fileID: 0}
   ijoyx: 0
   ijoyy: 0
   joyx: 0
@@ -1489,7 +1489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.3060303, y: 4.16}
+  m_AnchoredPosition: {x: 1.3060303, y: 4.1600003}
   m_SizeDelta: {x: -5.228, y: -15.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1853558340

@@ -87,8 +87,8 @@ public class hitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (s.state == 4 && !s.attacking) {
-			s.block();
+		if (s.state == 4 && !s.action) {
+			//s.block();
 		}
 		else {
 			s.damage(os.damagePass);
