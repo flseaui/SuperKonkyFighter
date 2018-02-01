@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class hitboxScript : MonoBehaviour
 {
-	public bool alreadyHit;
-	public bool collide;
 	private PlayerScript s;
 	private PlayerScript os;
 	public LineRenderer line;
+	int selfID;
 
 	// Use this for initialization
 	void Start()
 	{
-		alreadyHit = false;
-		collide = false;
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
 		line.positionCount = 3;
@@ -80,21 +77,17 @@ public class hitboxScript : MonoBehaviour
 		//line.SetPosition(2, new Vector3((os.x() + (s.width / 2) - ((os.width / 2) - 1)), os.y() + os.height, 0));
 	}
 
-	private void OnTriggerExit2D(Collider2D col)
-	{
-		alreadyHit = false;
-	}
-
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (s.state == 4 && !s.action) {
-			//s.block();
-		}
-		else {
-			s.damage(os.damagePass);
-			if (col.enabled)
+		if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
+		{
+			if (s.state == 4 && !s.action)
 			{
-				alreadyHit = true;
+				//s.block();
+			}
+			else
+			{
+				s.damage(os.damagePass);
 			}
 		}
 	}
