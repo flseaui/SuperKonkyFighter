@@ -41,6 +41,7 @@ public class CameraScript : MonoBehaviour
 		uis = canvas.GetComponent<UIScript>();
 
         player1 = Instantiate(playerPrefab);
+		
         setX(player1, -16f);
 		p1s = player1.GetComponent<PlayerScript>();
 		p1s.facingRight = true;
@@ -68,7 +69,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        float cx = (getX(player1) + getX(player2)) / 2f;
+		float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
             cx = 42;

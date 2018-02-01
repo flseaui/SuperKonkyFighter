@@ -11,14 +11,12 @@ public class PlayerScript : MonoBehaviour
     float FLOOR_HEIGHT = 0;
     float BASE_GRAVITY = -0.05f;
     int NO_ATTACK_INDEX = -1;
-    int NO_ATTACK = -1;
+    int NO_ATTACK_STRENGTH = -1;
     int LIGHT_ATTACK = 0;
     int MEDIUM_ATTACK = 1;
     int HEAVY_ATTACK = 2;
 	int SPECIAL_ATTACK = 3;
     int ANIM_STATE = Animator.StringToHash("state");
-    int STATUS_NORMAL = 0;
-    //int STATUS_BROKEN = 1;
 
     public bool juggle;
     public bool dashing;
@@ -80,9 +78,9 @@ public class PlayerScript : MonoBehaviour
     public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
-    public int attackState = -1;//attack going on rn
-    public bool attacking = false;//is there an attack
-    public int attackTimer = 0; //time left in attack animation
+    public int actionState = -1;//attack going on rn
+    public bool action = false;//is there an attack
+    public int actionTimer = 0; //time left in attack animation
 
 	public bool upLock = false;
 	public bool leftLock = false;
@@ -126,9 +124,9 @@ public class PlayerScript : MonoBehaviour
 
     public JoyScript JoyScript;
 
-    public int moveTimer = 0;
-
+	public int[] damages;
 	public int damagePass;
+	List<int> cancel;
 
     void OnDrawGizmos()
     {
@@ -167,7 +165,7 @@ public class PlayerScript : MonoBehaviour
 			specialKey = KeyCode.KeypadEnter;
         }
 
-        storedAttackStrength = NO_ATTACK;
+        storedAttackStrength = NO_ATTACK_STRENGTH;
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1.25f;
@@ -179,6 +177,7 @@ public class PlayerScript : MonoBehaviour
 		delays = new List<int>(new int[] { 0, 0, 0, 0, 0, 0 });
 		inputTimer = 0;
 
+		cancel = new List<int>();
 		dashed = false;
 
 		//konky specific things...
@@ -320,71 +319,6 @@ public class PlayerScript : MonoBehaviour
 		{
 			rightLock = false;
 		}
-
-
-		/*if (Input.GetKeyUp(dashKey[dashDirectKey])) {
-            dashing = false;
-        }
-        if (Input.GetKey(leftKey))
-        {
-            if(previousDirect)
-            {
-                moveTimer = 0;
-            }
-            if (Input.GetKeyDown(leftKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
-            {
-                dashing = true;
-                if (!air)
-                {
-                    groundDash = true;
-                }
-                dashDirectKey = 0;
-                if (facingRight)
-                {
-                    dashDirect = true;
-                }else
-                {
-                    dashDirect = false;
-                }
-            }
-            else if (!dashing)
-            {
-                moveTimer = 10;
-                left = true;
-                previousDirect = false;
-            }
-        }*/
-
-		/*if (Input.GetKey(rightKey))
-        {
-            if (!previousDirect)
-            {
-                moveTimer = 0;
-            }
-            if (Input.GetKeyDown(rightKey) && moveTimer > 0 && !dashing && DashTimer == 0 && state > 3)
-            {
-                dashing = true;
-                if (!air)
-                {
-                    groundDash = true;
-                }
-                dashDirectKey = 1;
-                if (!facingRight)
-                {
-                    dashDirect = true;
-                }
-                else
-                {
-                    dashDirect = false;
-                }
-            }
-            else if (!dashing)
-            {
-                moveTimer = 10;
-                right = true;
-                previousDirect = true;
-            }
-        }*/
 
 		if (up1 && right1)
 		{
@@ -542,7 +476,7 @@ public class PlayerScript : MonoBehaviour
 		}
         else
         {
-            iAttack = NO_ATTACK;
+            iAttack = NO_ATTACK_STRENGTH;
         }
 
 		//ADD INPUTS TO HISTORYYYYYYYYY
@@ -556,7 +490,7 @@ public class PlayerScript : MonoBehaviour
 			delays.RemoveAt(0);
 		}
 
-		if (iAttack != NO_ATTACK)
+		if (iAttack != NO_ATTACK_STRENGTH)
 		{
 			history.Add(iAttack);
 			delays.Add(inputTimer);
@@ -565,7 +499,7 @@ public class PlayerScript : MonoBehaviour
 			delays.RemoveAt(0);
 		}
 
-		if (iAttack == NO_ATTACK && iState == 5)
+		if (iAttack == NO_ATTACK_STRENGTH && iState == 5)
 		{
 			++inputTimer;
 		}
@@ -610,12 +544,12 @@ public class PlayerScript : MonoBehaviour
 		moveX(hVelocity);
 		moveY(vVelocity);
 
-		if (y() < FLOOR_HEIGHT)
+		if (y() < FLOOR_HEIGHT)//ground snap
 		{
 			if (air)
 			{
 				state = 5;
-				attackTimer = 0;
+				actionTimer = 0;
 				if (waitForGround)
 				{
 					waitForGround = false;
@@ -633,12 +567,9 @@ public class PlayerScript : MonoBehaviour
 			air = true;
 		}
 
-
-
-
-		if (attacking)
+		if (action)//wow this is actually a lot simpler than before to send anim states to controller
         {
-            animInt(ANIM_STATE, attackState);
+            animInt(ANIM_STATE, actionState + 10);
         }
         else
         {
@@ -660,21 +591,18 @@ public class PlayerScript : MonoBehaviour
 		};
 		int[] index = new int[]
 		{
-			34,
-			35,
+			Behaviors.aBDash,
+			Behaviors.aDash,
 		};
 		for (int m = 0; m < moves.GetLength(0); ++m)//m i sthe variable that counts thorugh the moves array starting from 0 and going to the end
 		{
 			//the counter counts up every time through the i loop
 			int counter = 0;
-			//for (int i = history.Count - 1; i >= history.Count - 1 - moves.GetLength(1); --i)//the i loop goes through history, starting at the last position and going down by a number of moves required by the move trying to be activated (2)
+			//the i loop goes through history, starting at the last position and going down by a number of moves required by the move trying to be activated (2)
 			for (int i = 5; i > 3; --i)
 			{
-				//Debug.Log(i);
-				//Debug.Log(delays[i] +" <= "+ times[m, counter]);
 				if (history[i] == moves[m,counter])
 				{
-					//Debug.Log(counter);
 					if (counter == moves.GetLength(1) - 1)
 					{
 						if (!dashed) {
@@ -704,17 +632,24 @@ public class PlayerScript : MonoBehaviour
 
     private void stateCheck() //casual loop
     {
-        //attack timer
-        if (attackTimer == 0)
+		if (actionState == Behaviors.aDash)
+		{
+			if (heldState != 6)
+			{
+				shutdown();
+			}
+		}
+
+        if (actionTimer == 0)//end an action by counting down the action timer
         {
-            attackEnd(STATUS_NORMAL);
+            actionEnd();
         }
         else
         {
-            attackTimer--;
+            actionTimer--;
         }
 
-		if (!attacking) {
+		if (!action) {//set velocity when moving forward and backward
 			if (state == 6)
 			{
 				if (facingRight)
@@ -738,8 +673,9 @@ public class PlayerScript : MonoBehaviour
 				}
 			}
 		}
-		else{
-			if (attackState == 34)
+
+		else{//set velocity when dashing
+			if (actionState == Behaviors.aBDash)
 			{
 				if (facingRight)
 				{
@@ -752,22 +688,22 @@ public class PlayerScript : MonoBehaviour
 					vVelocity = 0;
 				}
 			}
-			else if (attackState == 35)
+			else if (actionState == Behaviors.aDash)
 			{
 				if (facingRight)
 				{
-					hVelocity = forwardSpeed * 2;
+					hVelocity = forwardSpeed * 2f;
 					vVelocity = 0;
 				}
 				else
 				{
-					hVelocity = -forwardSpeed * 2;
+					hVelocity = -forwardSpeed * 2f;
 					vVelocity = 0;
 				}
 			}
 		}
 
-		if (state < 4)
+		if (state < 4)//set the height for crouching
 		{
 			height = baseHeight / 2;
 		}
@@ -776,232 +712,171 @@ public class PlayerScript : MonoBehaviour
 			height = baseHeight;
 		}
 
-        if (state == 999)
-        {
-            dashing = true;
-        }
-
-        if (moveTimer != 0)
-        {
-            moveTimer--;
-        }
-
-        if (DashTimer != 0)
-        {
-            DashTimer--;
-        }
-        else if(DashCount)
-        {
-            dashing = false;
-            DashCount = false;
-        }
-        
-        if(air && groundDash)
-        {
-            dashing = false;
-            groundDash = false;
-        }
-
-        if (dashing)
-        {
-            if (!dashDirect && !air)
-            {
-                if (facingRight)
-                {
-                    hVelocity = forwardSpeed * 2;
-                }
-                else
-                {
-                    hVelocity = forwardSpeed * -2;
-                }
-            }
-            else if(dashDirect && !air)
-            {
-                if (facingRight)
-                {
-                    hVelocity = forwardSpeed * -1.6f;
-                    if (!DashCount)
-                    {
-                        DashTimer = 20;
-                        DashCount = true;
-                    }
-                }
-                else
-                {
-                    hVelocity = forwardSpeed * 1.6f;
-                    if (!DashCount)
-                    {
-                        DashTimer = 20;
-                        DashCount = true;
-                    }
-                }
-            }
-            else if (!dashDirect)
-            {
-
-            }
-            else
-            {
-
-            }
-        }
-
-		if (!attacking)
+		if (!airLock)
 		{
-
+			state = heldState;//set the god damned state
+			if (state > 6)//jump yo
+			{
+				executeAction(Behaviors.aJump, false);
+			}
+		}
+	
+		if (iAttack != NO_ATTACK_STRENGTH)
+		{
 			attackStrengh = iAttack;
-			executeAction(attackStrengh, true);
+			executeAction(attackStrengh, true);//check if you're attacking then do that
 
-			if (!airLock)
+			if (actionTimer <= bufferFrames)//check if you can buffer then do that
 			{
-				state = heldState;
-				if (state > 6)
-				{
-					executeAction(33, false);
-				}
+				storedAttackStrength = iAttack;
 			}
 		}
-		else
-		{
-			if (iAttack != NO_ATTACK)
-			{
-				if (attackTimer <= bufferFrames)
-				{
-					storedAttackStrength = iAttack;
-				}
-			}
-		}
+
 	}
 
-    private void executeAction(int strength, bool actual)
+    private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
     {
-		if (actual) {
-			if (strength != NO_ATTACK)
-			{
-				int check = behaviors.getAttack(strength, state);
-				if (check != NO_ATTACK_INDEX)
-				{
-					attacking = true;
-					attackState = check + 10;
-					attackTimer = behaviors.getTotalTime(check);
-					bufferFrames = behaviors.getRecoveryTime(check);
-					damagePass = behaviors.getDamage(check);
-				}
-			}
+		int place;//derive which place in the list of actions the requested action is
+		if (attacking)
+		{
+			place = (state - 1) * 3 + strength;
 		}
 		else
 		{
-			attacking = true;
-			attackState = strength;
-			attackTimer = behaviors.getTotalTime(attackState);
+			place = strength;
+		}
+
+		bool executeAction_pass = true;//make sure the attack in cancelable basically
+		if (action)
+		{
+			executeAction_pass = cancel.Contains(place);
+		}
+
+		if (executeAction_pass)
+		{
+
+			Action act = behaviors.getAction(place);
+	
+			if (act != null)
+			{
+				action = true;
+				actionState = place;
+				actionTimer = act.frames;
+				cancel = new List<int>(act.cancels);
+
+				if (attacking)
+				{
+					bufferFrames = act.recovery;
+					damages = act.damage;
+					damagePass = damages[0];
+				}
+			}
 		}
     }
 
-    private void attackEnd(int status)
+    private void actionEnd()
     {
-        if (status == STATUS_NORMAL)
-        {
-			if (waitForEnd)
+		delBox();
+		if (waitForEnd)
+		{
+			waitForEnd = false;
+			if (state < 4)
 			{
-				waitForEnd = false;
-				if (state < 4)
-				{
-					executeAction(36, false);
-				}
-				else
-				{
-					executeAction(32, false);
-				}
-			}
-			else if (attackState == 32 || attackState == 36)
-			{
-				shutdown();
-				facingRight = passDir;
-			}
-			else if (attackState == 33)
-			{
-				shutdown();
-				state = jumpPass;
-				if (jumpPass == 8)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-				}
-				else if (jumpPass == 9)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = forwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = -forwardSpeed * 1.2f;
-					}
-				}
-				else if (jumpPass == 7)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = -backwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = backwardSpeed * 1.2f;
-					}
-				}
-			}
-            else if (storedAttackStrength != NO_ATTACK)
-            {
-				if (!air) {
-					state = heldState;
-				}
-                executeAction(storedAttackStrength, true);
+				executeAction(36, false);
 			}
 			else
 			{
-				shutdown();
-				if (state == 6)
+				executeAction(32, false);
+			}
+		}
+		else if (actionState == Behaviors.aTurn || actionState == Behaviors.aCTurn)
+		{
+			shutdown();
+			facingRight = passDir;
+		}
+		else if (actionState == Behaviors.aJump)
+		{
+			shutdown();
+			state = jumpPass;
+			if (jumpPass == 8)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+			}
+			else if (jumpPass == 9)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+				if (facingRight)
 				{
-					if (heldState != 6)
-					{
-						state = 5;
-					}
+					hVelocity = forwardSpeed * 1.2f;
 				}
-				else if (state == 4)
+				else
 				{
-					if (heldState != 4)
-					{
-						state = 5;
-					}
-				}
-				else if (state < 4)
-				{
-					if (heldState > 3)
-					{
-						state = 5;
-					}
-				}
-				else if (state > 6)
-				{
-					if (!air)
-					{
-						state = 5;
-					}
+					hVelocity = -forwardSpeed * 1.2f;
 				}
 			}
-			storedAttackStrength = NO_ATTACK;
+			else if (jumpPass == 7)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+				if (facingRight)
+				{
+					hVelocity = -backwardSpeed * 1.2f;
+				}
+				else
+				{
+					hVelocity = backwardSpeed * 1.2f;
+				}
+			}
 		}
+        else if (storedAttackStrength != NO_ATTACK_STRENGTH)
+        {
+			if (!air) {
+				state = heldState;
+			}
+            executeAction(storedAttackStrength, true);
+		}
+		else
+		{
+			shutdown();
+			if (state == 6)
+			{
+				if (heldState != 6)
+				{
+					state = 5;
+				}
+			}
+			else if (state == 4)
+			{
+				if (heldState != 4)
+				{
+					state = 5;
+				}
+			}
+			else if (state < 4)
+			{
+				if (heldState > 3)
+				{
+					state = 5;
+				}
+			}
+			else if (state > 6)
+			{
+				if (!air)
+				{
+					state = 5;
+				}
+			}
+		}
+		storedAttackStrength = NO_ATTACK_STRENGTH;
     }
 
 	private void shutdown()
 	{
-		attackStrengh = NO_ATTACK;
-		attackState = NO_ATTACK_INDEX;
-		attacking = false;
+		attackStrengh = NO_ATTACK_STRENGTH;
+		actionState = NO_ATTACK_INDEX;
+		action = false;
 		damagePass = 0;
 	}
 
@@ -1058,7 +933,7 @@ public class PlayerScript : MonoBehaviour
 		if (air) {
 			waitForGround = true;
 		}
-		else if (attacking)
+		else if (action)
 		{
 			waitForEnd = true;
 		}
@@ -1089,14 +964,23 @@ public class PlayerScript : MonoBehaviour
 
 	public void delBox()
 	{
-		//GetComponents<BoxCollider2D>;
-
+		BoxCollider2D[] list = GetComponents<BoxCollider2D>();
+		foreach (BoxCollider2D b in list)
+		{
+			if (b.tag.Equals("h"))
+			{
+				Destroy(b);
+			}
+		}
 	}
 
-	public void genBox(Vector4 v)
+	public void genBox(String s)//fuck you unity for forcing one variable
 	{
+		char[] yeet = s.ToCharArray();
 		BoxCollider2D box = new BoxCollider2D();
-		box.offset.Set(v.x, v.y);
-		box.size.Set(v.z, v.w);
+		box.offset.Set((yeet[0] - 48) , (yeet[0] - 48) );
+		box.size.Set((yeet[0] - 48) , (yeet[0] - 48) );
+		box.tag = "h";
 	}
+
 }
