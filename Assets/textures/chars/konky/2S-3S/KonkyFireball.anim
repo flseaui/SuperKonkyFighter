@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1S-hit
+  m_Name: KonkyFireball
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,17 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 810974eb50a0306429945b2af461a3b2, type: 3}
+      value: {fileID: 21300000, guid: afae8472b3ea72d49ba9d7aea4a55fbd, type: 3}
     - time: 0.016666668
-      value: {fileID: 21300000, guid: cfcc3bcd6367e4e4eacb2a773886c715, type: 3}
-    - time: 0.033333335
-      value: {fileID: 21300000, guid: c376f09cdeb7474408eb4d8c8961ed1c, type: 3}
-    - time: 0.05
-      value: {fileID: 21300000, guid: a6c339dfd9014704f961a44ce235f3fa, type: 3}
-    - time: 0.06666667
-      value: {fileID: 21300000, guid: 1619dabb8f4609749928af4b150aef21, type: 3}
-    - time: 0.083333336
-      value: {fileID: 21300000, guid: 091789c065061864ca97fab313c3d504, type: 3}
+      value: {fileID: 21300000, guid: e452a00e4e515854d9da8738782249a3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -49,18 +41,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 810974eb50a0306429945b2af461a3b2, type: 3}
-    - {fileID: 21300000, guid: cfcc3bcd6367e4e4eacb2a773886c715, type: 3}
-    - {fileID: 21300000, guid: c376f09cdeb7474408eb4d8c8961ed1c, type: 3}
-    - {fileID: 21300000, guid: a6c339dfd9014704f961a44ce235f3fa, type: 3}
-    - {fileID: 21300000, guid: 1619dabb8f4609749928af4b150aef21, type: 3}
-    - {fileID: 21300000, guid: 091789c065061864ca97fab313c3d504, type: 3}
+    - {fileID: 21300000, guid: afae8472b3ea72d49ba9d7aea4a55fbd, type: 3}
+    - {fileID: 21300000, guid: e452a00e4e515854d9da8738782249a3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.1
+    m_StopTime: 0.033333335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
