@@ -145,9 +145,13 @@ public class JoyScript : MonoBehaviour
         else
         {
             Left = false;
+            anim.SetBool("Left", false);
             Right = false;
+            anim.SetBool("Right", false);
             Up = false;
+            anim.SetBool("Up", false);
             Down = false;
+            anim.SetBool("Down", false);
         }
     }
 }
