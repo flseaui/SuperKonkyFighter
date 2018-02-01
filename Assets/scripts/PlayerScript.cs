@@ -17,8 +17,6 @@ public class PlayerScript : MonoBehaviour
     int HEAVY_ATTACK = 2;
 	int SPECIAL_ATTACK = 3;
     int ANIM_STATE = Animator.StringToHash("state");
-    int STATUS_NORMAL = 0;
-    //int STATUS_BROKEN = 1;
 
     public bool juggle;
     public bool dashing;
@@ -644,7 +642,7 @@ public class PlayerScript : MonoBehaviour
 
         if (actionTimer == 0)//end an action by counting down the action timer
         {
-            actionEnd(STATUS_NORMAL);
+            actionEnd();
         }
         else
         {
@@ -776,104 +774,102 @@ public class PlayerScript : MonoBehaviour
 		}
     }
 
-    private void actionEnd(int status)
+    private void actionEnd()
     {
-        if (status == STATUS_NORMAL)
-        {
-			if (waitForEnd)
+		delBox();
+		if (waitForEnd)
+		{
+			waitForEnd = false;
+			if (state < 4)
 			{
-				waitForEnd = false;
-				if (state < 4)
-				{
-					executeAction(36, false);
-				}
-				else
-				{
-					executeAction(32, false);
-				}
-			}
-			else if (actionState == Behaviors.aTurn || actionState == Behaviors.aCTurn)
-			{
-				shutdown();
-				facingRight = passDir;
-			}
-			else if (actionState == Behaviors.aJump)
-			{
-				shutdown();
-				state = jumpPass;
-				if (jumpPass == 8)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-				}
-				else if (jumpPass == 9)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = forwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = -forwardSpeed * 1.2f;
-					}
-				}
-				else if (jumpPass == 7)
-				{
-					airLock = true;
-					vVelocity = jumpSpeed;
-					if (facingRight)
-					{
-						hVelocity = -backwardSpeed * 1.2f;
-					}
-					else
-					{
-						hVelocity = backwardSpeed * 1.2f;
-					}
-				}
-			}
-            else if (storedAttackStrength != NO_ATTACK_STRENGTH)
-            {
-				if (!air) {
-					state = heldState;
-				}
-                executeAction(storedAttackStrength, true);
+				executeAction(36, false);
 			}
 			else
 			{
-				shutdown();
-				if (state == 6)
+				executeAction(32, false);
+			}
+		}
+		else if (actionState == Behaviors.aTurn || actionState == Behaviors.aCTurn)
+		{
+			shutdown();
+			facingRight = passDir;
+		}
+		else if (actionState == Behaviors.aJump)
+		{
+			shutdown();
+			state = jumpPass;
+			if (jumpPass == 8)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+			}
+			else if (jumpPass == 9)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+				if (facingRight)
 				{
-					if (heldState != 6)
-					{
-						state = 5;
-					}
+					hVelocity = forwardSpeed * 1.2f;
 				}
-				else if (state == 4)
+				else
 				{
-					if (heldState != 4)
-					{
-						state = 5;
-					}
-				}
-				else if (state < 4)
-				{
-					if (heldState > 3)
-					{
-						state = 5;
-					}
-				}
-				else if (state > 6)
-				{
-					if (!air)
-					{
-						state = 5;
-					}
+					hVelocity = -forwardSpeed * 1.2f;
 				}
 			}
-			storedAttackStrength = NO_ATTACK_STRENGTH;
+			else if (jumpPass == 7)
+			{
+				airLock = true;
+				vVelocity = jumpSpeed;
+				if (facingRight)
+				{
+					hVelocity = -backwardSpeed * 1.2f;
+				}
+				else
+				{
+					hVelocity = backwardSpeed * 1.2f;
+				}
+			}
 		}
+        else if (storedAttackStrength != NO_ATTACK_STRENGTH)
+        {
+			if (!air) {
+				state = heldState;
+			}
+            executeAction(storedAttackStrength, true);
+		}
+		else
+		{
+			shutdown();
+			if (state == 6)
+			{
+				if (heldState != 6)
+				{
+					state = 5;
+				}
+			}
+			else if (state == 4)
+			{
+				if (heldState != 4)
+				{
+					state = 5;
+				}
+			}
+			else if (state < 4)
+			{
+				if (heldState > 3)
+				{
+					state = 5;
+				}
+			}
+			else if (state > 6)
+			{
+				if (!air)
+				{
+					state = 5;
+				}
+			}
+		}
+		storedAttackStrength = NO_ATTACK_STRENGTH;
     }
 
 	private void shutdown()
@@ -968,14 +964,23 @@ public class PlayerScript : MonoBehaviour
 
 	public void delBox()
 	{
-		//GetComponents<BoxCollider2D>;
-
+		BoxCollider2D[] list = GetComponents<BoxCollider2D>();
+		foreach (BoxCollider2D b in list)
+		{
+			if (b.tag.Equals("h"))
+			{
+				Destroy(b);
+			}
+		}
 	}
 
-	public void genBox(Vector4 v)
+	public void genBox(String s)//fuck you unity for forcing one variable
 	{
+		char[] yeet = s.ToCharArray();
 		BoxCollider2D box = new BoxCollider2D();
-		box.offset.Set(v.x, v.y);
-		box.size.Set(v.z, v.w);
+		box.offset.Set((yeet[0] - 48) , (yeet[0] - 48) );
+		box.size.Set((yeet[0] - 48) , (yeet[0] - 48) );
+		box.tag = "h";
 	}
+
 }
