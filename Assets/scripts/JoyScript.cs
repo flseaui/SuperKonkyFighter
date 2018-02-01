@@ -84,9 +84,13 @@ public class JoyScript : MonoBehaviour
             joystick.rectTransform.anchoredPosition = new Vector3(0, 0);
             clicked = false;
             Left = false;
+            anim.SetBool("Left", false);
             Right = false;
+            anim.SetBool("Right", false);
             Up = false;
+            anim.SetBool("Up", false);
             Down = false;
+            anim.SetBool("Down", false);
         }
     }
 
