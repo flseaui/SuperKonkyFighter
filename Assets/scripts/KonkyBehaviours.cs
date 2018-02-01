@@ -10,14 +10,14 @@ public class KonkyBehaviours : Behaviors{
 	//4 chip damage DO THIS
 	//5 blockstun
 
-	static Action crouchL = new Action() {attack = true, frames = 19, startup = 6, active = 3, recovery = 10, damage = new int[] {300}, level = 0, cancels = new int[]{a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s} };
-	static Action crouchM = new Action() {attack = true, frames = 23, startup = 7, active = 4, recovery = 13, damage = new int[] {650}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
-	static Action crouchH = new Action() {attack = true, frames = 40, startup = 8, active = 8, recovery = 24, damage = new int[] { 200, 650 }, level = 2, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s } };
-	static Action l = new Action() { attack = true, frames = 13, startup = 4, active = 3, recovery = 6, damage = new int[] { 200 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
-	static Action turns = new Action() { attack = false, frames = 6, cancels = new int[] { } };
-	static Action jump = new Action() { attack = false, frames = 8, cancels = new int[] { } };
-	static Action backDash = new Action() { attack = false, frames = 20, cancels = new int[] {aJump} };
-	static Action forwardDash = new Action() { attack = false, frames = -1, cancels = new int[] { aJump } };
+	static Action crouchL = new Action() {attack = true, frames = new int[] {0,0,0,0,0,0,1,1,1,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {300}, level = 0, cancels = new int[]{a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s} };
+	static Action crouchM = new Action() {attack = true, frames = new int[] {0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {650}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+	static Action crouchH = new Action() {attack = true, frames = new int[] {0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 200, 650 }, level = 2, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s } };
+	static Action l = new Action() { attack = true, frames = new int[] {0,0,0,0,1,1,1,3,3,3,3,3,3 }, damage = new int[] { 200 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+	static Action turns = new Action() { attack = false, frames = new int[] {3,3,3,3,3,3 }, cancels = new int[] { } };
+	static Action jump = new Action() { attack = false, frames = new int[] {3,3,3,3,3,3,3,3}, cancels = new int[] { } };
+	static Action backDash = new Action() { attack = false, frames = new int[] {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, cancels = new int[] {aJump} };
+	static Action forwardDash = new Action() { attack = false, frames = new int[] {3 }, infinite = true, cancels = new int[] { aJump } };
 
 	static Action[] konkyActions = new Action[]
 	{

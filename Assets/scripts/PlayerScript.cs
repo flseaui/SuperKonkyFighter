@@ -78,9 +78,18 @@ public class PlayerScript : MonoBehaviour
     public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
-    public int actionState = -1;//attack going on rn
-    public bool action = false;//is there an attack
-    public int actionTimer = 0; //time left in attack animation
+	private int STARTUP = 0;
+	private int ACTIVE = 1;
+	private int BREAK = 2;
+	private int RECOVERY = 3;
+    public int actionState;//attack going on rn
+    public bool action;//is there an attack
+	public int type;//current type of frame
+	public int[] attackTypes;//the list of frame types
+    public int actionFrames; //total time
+	public int actionCounter;//the timer that moves along (counting up)
+	public int damageCounter;//counts up damage amounts
+	public bool infiniteAction;//INFINTIYNIYIN
 
 	public bool upLock = false;
 	public bool leftLock = false;
@@ -535,11 +544,7 @@ public class PlayerScript : MonoBehaviour
 
 		stateCheck();
 
-		
-
 		historyCheck();
-
-		
 
 		moveX(hVelocity);
 		moveY(vVelocity);
@@ -549,7 +554,7 @@ public class PlayerScript : MonoBehaviour
 			if (air)
 			{
 				state = 5;
-				actionTimer = 0;
+				shutdown();
 				if (waitForGround)
 				{
 					waitForGround = false;
@@ -630,8 +635,34 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	private void incrementFrame()
+	{
+		++actionCounter;
+		int old = type;
+		type = attackTypes[actionCounter];
+		if (old != 1 && type == 1)
+		{
+			++damageCounter;
+			damagePass = damages[damageCounter];
+		}else if (old == 1 && type == 2)
+		{
+			delBox();
+		}
+	}
+
     private void stateCheck() //casual loop
     {
+		if (!infiniteAction) {
+			if (actionCounter == actionFrames)//end an action by counting down the action timer
+			{
+				actionEnd();
+			}
+			else
+			{
+				incrementFrame();
+			}
+		}
+
 		if (actionState == Behaviors.aDash)
 		{
 			if (heldState != 6)
@@ -639,15 +670,6 @@ public class PlayerScript : MonoBehaviour
 				shutdown();
 			}
 		}
-
-        if (actionTimer == 0)//end an action by counting down the action timer
-        {
-            actionEnd();
-        }
-        else
-        {
-            actionTimer--;
-        }
 
 		if (!action) {//set velocity when moving forward and backward
 			if (state == 6)
@@ -726,7 +748,7 @@ public class PlayerScript : MonoBehaviour
 			attackStrengh = iAttack;
 			executeAction(attackStrengh, true);//check if you're attacking then do that
 
-			if (actionTimer <= bufferFrames)//check if you can buffer then do that
+			if (type == RECOVERY)//check if you can buffer then do that
 			{
 				storedAttackStrength = iAttack;
 			}
@@ -761,12 +783,18 @@ public class PlayerScript : MonoBehaviour
 			{
 				action = true;
 				actionState = place;
-				actionTimer = act.frames;
+	
+				attackTypes = act.frames;
+				actionCounter = -1;
+				damageCounter = -1;
+				actionFrames = attackTypes.Length;
+				infiniteAction = act.infinite;
+				incrementFrame();
+
 				cancel = new List<int>(act.cancels);
 
 				if (attacking)
 				{
-					bufferFrames = act.recovery;
 					damages = act.damage;
 					damagePass = damages[0];
 				}
@@ -954,6 +982,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void damage(int ammount)
 	{
+		Debug.Log(ammount);
 		health -= ammount;
 	}
 
@@ -964,23 +993,24 @@ public class PlayerScript : MonoBehaviour
 
 	public void delBox()
 	{
-		BoxCollider2D[] list = GetComponents<BoxCollider2D>();
+		hurtbox.enabled = false;
+		/*BoxCollider2D[] list = GetComponents<BoxCollider2D>();
 		foreach (BoxCollider2D b in list)
 		{
 			if (b.tag.Equals("h"))
 			{
 				Destroy(b);
 			}
-		}
+		}*/
 	}
 
-	public void genBox(String s)//fuck you unity for forcing one variable
+	/*public void genBox(String s)//fuck you unity for forcing one variable
 	{
 		char[] yeet = s.ToCharArray();
 		BoxCollider2D box = new BoxCollider2D();
 		box.offset.Set((yeet[0] - 48) , (yeet[0] - 48) );
 		box.size.Set((yeet[0] - 48) , (yeet[0] - 48) );
 		box.tag = "h";
-	}
+	}*/
 
 }
