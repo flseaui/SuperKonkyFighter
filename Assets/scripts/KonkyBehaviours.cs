@@ -14,6 +14,7 @@ public class KonkyBehaviours : Behaviors{
 	static Action crouchM = new Action() { frames = new int[] {0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {650}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
 	static Action crouchH = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 200, 650 }, level = 2, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s } };
 	static Action standL = new Action() { frames = new int[] {0,0,0,0,1,1,1,3,3,3,3,3,3 }, damage = new int[] { 200 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+    static Action forwardM = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 450 }, level = 0,  cancels = new int[] { a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s }, };
     static Action standM = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 625 }, level = 1, cancels = new int[] { a2m, a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s } };
     static Action standH = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 3 }, level = 3, cancels = new int[] { a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
     static Action jumpL = new Action() { frames = new int[] { }, damage = new int[] { }, level = 2, cancels = new int[] { } };
@@ -44,16 +45,16 @@ public class KonkyBehaviours : Behaviors{
 		crouchL,
 		crouchM,
 		crouchH,
-		null,
-		null,
-		null,
-		standL,
-		standL,
-		standL,
-		null,
-		null,
-		null,
-		null,
+        standL,
+        standM,
+        standH,
+        standL,
+		standM,
+        standH,
+        standL,
+        forwardM,
+        standH,
+        null,
 		null,
 		null,
 		null,
