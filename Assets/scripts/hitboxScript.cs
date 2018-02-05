@@ -6,7 +6,6 @@ public class hitboxScript : MonoBehaviour
 {
 	private PlayerScript s;
 	private PlayerScript os;
-	public LineRenderer line;
 	int selfID;
 
 	// Use this for initialization
@@ -14,8 +13,6 @@ public class hitboxScript : MonoBehaviour
 	{
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
-		line.positionCount = 3;
-		line.enabled = false;
 	}
 
 	// Update is called once per frame

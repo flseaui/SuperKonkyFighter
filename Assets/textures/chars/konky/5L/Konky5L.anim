@@ -297,14 +297,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.06666667
-    functionName: genBox
-    data: '"4957"'
-    objectReferenceParameter: {fileID: 11500000, guid: d8d828e02f342724fa1f2f0309fdccdd,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.11666667
     functionName: delBox
     data: 

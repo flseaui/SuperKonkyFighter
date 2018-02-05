@@ -46,7 +46,6 @@ public class CameraScript : MonoBehaviour
 		p1s = player1.GetComponent<PlayerScript>();
 		p1s.facingRight = true;
 		p1s.playerID = 1;
-
         p1s.JoyScript = JoyScript;
 
         player2 = Instantiate(playerPrefab);

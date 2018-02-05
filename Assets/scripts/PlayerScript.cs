@@ -130,6 +130,7 @@ public class PlayerScript : MonoBehaviour
     private KeyCode specialKey;
 
     public GameObject otherPlayer;
+	public Boolean joy;
 
     public JoyScript JoyScript;
 
@@ -199,67 +200,69 @@ public class PlayerScript : MonoBehaviour
 		//Time.timeScale = 0.1F;
 	}
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!facingRight)
-        {
-            this.transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            this.transform.localScale = new Vector3(1, 1, 1);
-        }
+	// Update is called once per frame
+	private void Update()
+	{
+		joy = (JoyScript != null);
+
+		if (!facingRight)
+		{
+			this.transform.localScale = new Vector3(-1, 1, 1);
+		}
+		else
+		{
+			this.transform.localScale = new Vector3(1, 1, 1);
+		}
 
 		up1 = false;
 		right1 = false;
 		down1 = false;
 		left1 = false;
 		up = false;
-        right = false;
-        down = false;
-        left = false;
-        lite = false;
-        medium = false;
-        heavy = false;
+		right = false;
+		down = false;
+		left = false;
+		lite = false;
+		medium = false;
+		heavy = false;
 		special = false;
 
-        if (Input.GetKey(lightKey))
-        {
-            if (!litLock)
-            {
-                litLock = true;
-                lite = true;
-            }
-        }
-        else
-        {
-            litLock = false;
-        }
-        if (Input.GetKey(mediumKey))
-        {
-            if (!medLock)
-            {
-                medLock = true;
-                medium = true;
-            }
-        }
-        else
-        {
-            medLock = false;
-        }
-        if (Input.GetKey(heavyKey))
-        {
-            if (!hevLock)
-            {
-                hevLock = true;
-                heavy = true;
-            }
-        }
-        else
-        {
-            hevLock = false;
-        }
+		if (Input.GetKey(lightKey))
+		{
+			if (!litLock)
+			{
+				litLock = true;
+				lite = true;
+			}
+		}
+		else
+		{
+			litLock = false;
+		}
+		if (Input.GetKey(mediumKey))
+		{
+			if (!medLock)
+			{
+				medLock = true;
+				medium = true;
+			}
+		}
+		else
+		{
+			medLock = false;
+		}
+		if (Input.GetKey(heavyKey))
+		{
+			if (!hevLock)
+			{
+				hevLock = true;
+				heavy = true;
+			}
+		}
+		else
+		{
+			hevLock = false;
+		}
 		if (Input.GetKey(specialKey))
 		{
 			if (!speLock)
@@ -273,60 +276,121 @@ public class PlayerScript : MonoBehaviour
 			speLock = false;
 		}
 
-		if (Input.GetKey(upKey) || JoyScript.Up)
-        {
-			up1 = true;
-            if (!upLock)
-            {
-                upLock = true;
-                up = true;
-            }
-        }
-        else
-        {
-            upLock = false;
-        }
-
-		if (Input.GetKey(leftKey) || JoyScript.Left)
+		if (joy)
 		{
-			left1 = true;
-			if (!leftLock)
+			if (Input.GetKey(upKey) || JoyScript.Up)
 			{
-				leftLock = true;
-				left = true;
+				up1 = true;
+				if (!upLock)
+				{
+					upLock = true;
+					up = true;
+				}
+			}
+			else
+			{
+				upLock = false;
+			}
+
+			if (Input.GetKey(leftKey) || JoyScript.Left)
+			{
+				left1 = true;
+				if (!leftLock)
+				{
+					leftLock = true;
+					left = true;
+				}
+			}
+			else
+			{
+				leftLock = false;
+			}
+
+			if (Input.GetKey(downKey) || JoyScript.Down)
+			{
+				down1 = true;
+				if (!downLock)
+				{
+					downLock = true;
+					down = true;
+				}
+			}
+			else
+			{
+				downLock = false;
+			}
+
+			if (Input.GetKey(rightKey) || JoyScript.Right)
+			{
+				right1 = true;
+				if (!rightLock)
+				{
+					rightLock = true;
+					right = true;
+				}
+			}
+			else
+			{
+				rightLock = false;
 			}
 		}
 		else
 		{
-			leftLock = false;
-		}
-
-		if (Input.GetKey(downKey) || JoyScript.Down)
-		{
-			down1 = true;
-			if (!downLock)
+			if (Input.GetKey(upKey))
 			{
-				downLock = true;
-				down = true;
+				up1 = true;
+				if (!upLock)
+				{
+					upLock = true;
+					up = true;
+				}
 			}
-		}
-		else
-		{
-			downLock = false;
-		}
-
-		if (Input.GetKey(rightKey) || JoyScript.Right)
-		{
-			right1 = true;
-			if (!rightLock)
+			else
 			{
-				rightLock = true;
-				right = true;
+				upLock = false;
 			}
-		}
-		else
-		{
-			rightLock = false;
+
+			if (Input.GetKey(leftKey))
+			{
+				left1 = true;
+				if (!leftLock)
+				{
+					leftLock = true;
+					left = true;
+				}
+			}
+			else
+			{
+				leftLock = false;
+			}
+
+			if (Input.GetKey(downKey))
+			{
+				down1 = true;
+				if (!downLock)
+				{
+					downLock = true;
+					down = true;
+				}
+			}
+			else
+			{
+				downLock = false;
+			}
+
+			if (Input.GetKey(rightKey))
+			{
+				right1 = true;
+				if (!rightLock)
+				{
+					rightLock = true;
+					right = true;
+				}
+			}
+			else
+			{
+				rightLock = false;
+			}
 		}
 
 		if (up1 && right1)
@@ -558,7 +622,7 @@ public class PlayerScript : MonoBehaviour
 				if (waitForGround)
 				{
 					waitForGround = false;
-					executeAction(32, false);
+					executeAction(Behaviors.aTurn, false);
 				}
 			}
 			dashed = false;
@@ -652,14 +716,16 @@ public class PlayerScript : MonoBehaviour
 
     private void stateCheck() //casual loop
     {
-		if (!infiniteAction) {
-			if (actionCounter == actionFrames)//end an action by counting down the action timer
-			{
-				actionEnd();
-			}
-			else
-			{
-				incrementFrame();
+		if (action) {
+			if (!infiniteAction) {
+				if (actionCounter == actionFrames - 1)//end an action by counting down the action timer
+				{
+					actionEnd();
+				}
+				else
+				{
+					incrementFrame();
+				}
 			}
 		}
 
@@ -810,11 +876,11 @@ public class PlayerScript : MonoBehaviour
 			waitForEnd = false;
 			if (state < 4)
 			{
-				executeAction(36, false);
+				executeAction(Behaviors.aCTurn, false);
 			}
 			else
 			{
-				executeAction(32, false);
+				executeAction(Behaviors.aTurn, false);
 			}
 		}
 		else if (actionState == Behaviors.aTurn || actionState == Behaviors.aCTurn)
@@ -970,11 +1036,11 @@ public class PlayerScript : MonoBehaviour
 			waitForEnd = false;
 			waitForGround = false;
 			if (state < 4) {
-				executeAction(36, false);
+				executeAction(Behaviors.aCTurn, false);
 			}
 			else
 			{
-				executeAction(32, false);
+				executeAction(Behaviors.aTurn, false);
 			}
 		}
 		passDir = dir;
