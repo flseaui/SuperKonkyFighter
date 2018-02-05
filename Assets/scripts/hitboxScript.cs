@@ -79,16 +79,21 @@ public class hitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-        hit = true;
-		if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
-		{
-			if (s.state == 4 && !s.action)
+		
+		if (!col.CompareTag(this.tag)) {
+			Debug.Log("other tag: " + col.tag);
+			Debug.Log("this tag: " + tag);
+			hit = true;
+			if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
 			{
-				//s.block();
-			}
-			else
-			{
-				s.damage(os.damagePass);
+				if (s.state == 4 && !s.action)
+				{
+					//s.block();
+				}
+				else
+				{
+					s.damage(os.damagePass);
+				}
 			}
 		}
 	}

@@ -183,6 +183,7 @@ MonoBehaviour:
   hurtbox: {fileID: 61072014828910340}
   air: 0
   airLock: 0
+  hitStopped: 0
   maxHealth: 0
   health: 0
   history: 
@@ -193,11 +194,15 @@ MonoBehaviour:
   heldState: 0
   storedAttackStrength: 0
   bufferFrames: 0
-  attackStrengh: 0
   iAttack: -1
   actionState: -1
   action: 0
-  actionTimer: 0
+  type: 0
+  attackTypes: 
+  actionFrames: 0
+  actionCounter: 0
+  damageCounter: 0
+  infiniteAction: 0
   upLock: 0
   leftLock: 0
   downLock: 0
@@ -221,6 +226,7 @@ MonoBehaviour:
   facingRight: 0
   playerID: 0
   otherPlayer: {fileID: 0}
+  joy: 0
   JoyScript: {fileID: 0}
   damages: 
   damagePass: 0
@@ -235,9 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488e8d58442b79e4fa5a3e5f5163b14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alreadyHit: 0
-  collide: 0
-  line: {fileID: 0}
+  hit: 0
 --- !u!212 &212080011780739976
 SpriteRenderer:
   m_ObjectHideFlags: 1

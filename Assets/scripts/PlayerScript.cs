@@ -176,6 +176,10 @@ public class PlayerScript : MonoBehaviour
 			specialKey = KeyCode.KeypadEnter;
         }
 
+		this.tag = playerID.ToString();
+		hitbox.tag = playerID.ToString();
+		hurtbox.tag = playerID.ToString();
+
         storedAttackStrength = NO_ATTACK_STRENGTH;
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
@@ -880,7 +884,7 @@ public class PlayerScript : MonoBehaviour
 
     private void actionEnd()
     {
-		Debug.Log(storedAttackStrength);
+		Debug.Log("stored: "+storedAttackStrength);
 		delBox();
 		if (waitForEnd)
 		{
