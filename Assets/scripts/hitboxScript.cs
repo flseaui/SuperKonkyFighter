@@ -6,7 +6,10 @@ public class hitboxScript : MonoBehaviour
 {
 	private PlayerScript s;
 	private PlayerScript os;
+
 	int selfID;
+
+    public bool hit;
 
 	// Use this for initialization
 	void Start()
@@ -76,6 +79,7 @@ public class hitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+        hit = true;
 		if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
 		{
 			if (s.state == 4 && !s.action)
@@ -88,4 +92,9 @@ public class hitboxScript : MonoBehaviour
 			}
 		}
 	}
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        hit = false;
+    }
 }

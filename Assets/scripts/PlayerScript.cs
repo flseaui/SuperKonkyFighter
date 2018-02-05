@@ -62,6 +62,8 @@ public class PlayerScript : MonoBehaviour
     public bool air;
     public bool airLock;
 
+    public bool hitStopped;
+
     public int maxHealth;
     public int health;
 
@@ -199,8 +201,16 @@ public class PlayerScript : MonoBehaviour
 		//Time.timeScale = 0.1F;
 	}
 
-	// Update is called once per frame
-	private void Update()
+    // Update is called once per frame
+    private void Update()
+    {
+        if (!hitStopped)
+        {
+            SubUpdate();
+        }
+    }
+
+    private void SubUpdate()
 	{
 		joy = (JoyScript != null);
 

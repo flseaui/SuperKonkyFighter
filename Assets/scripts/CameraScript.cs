@@ -15,8 +15,10 @@ public class CameraScript : MonoBehaviour
 
     public GameObject player1;
 	public PlayerScript p1s;
+    public hitboxScript p1h;
     public GameObject player2;
 	public PlayerScript p2s;
+    public hitboxScript p2h;
 
 	public Sprite background0;
 	public Sprite background1;
@@ -31,6 +33,8 @@ public class CameraScript : MonoBehaviour
 
 	public bool history;
 
+    public static int hitTimer;
+
     public Sprite[] Background;
     public Sprite[] Ground;
 
@@ -44,14 +48,16 @@ public class CameraScript : MonoBehaviour
 		
         setX(player1, -16f);
 		p1s = player1.GetComponent<PlayerScript>();
-		p1s.facingRight = true;
+        p1h = player1.GetComponentInChildren<hitboxScript>();
+        p1s.facingRight = true;
 		p1s.playerID = 1;
         p1s.JoyScript = JoyScript;
 
         player2 = Instantiate(playerPrefab);
         setX(player2, 16f);
 		p2s = player2.GetComponent<PlayerScript>();
-		p2s.facingRight = false;
+        p2h = player2.GetComponentInChildren<hitboxScript>();
+        p2s.facingRight = false;
         p2s.playerID = 2;
 
         p1s.otherPlayer = player2;
@@ -68,6 +74,29 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+        if (p1h.hit || p2h.hit)
+        {
+            p1h.hit = false;
+            p1s.hitStopped = true;
+
+            p2h.hit = false;
+            p2s.hitStopped = true;
+
+            hitTimer = 10;
+            Time.timeScale = 0;
+        }
+
+        if (hitTimer != 0)
+        {
+            hitTimer--;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            p1s.hitStopped = false;
+            p2s.hitStopped = false;
+        }
+
 		float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
