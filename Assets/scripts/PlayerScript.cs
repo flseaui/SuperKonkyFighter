@@ -75,7 +75,6 @@ public class PlayerScript : MonoBehaviour
 
     public int storedAttackStrength;
     public int bufferFrames;
-    public int attackStrengh;//attack strength (LMH)
     public int iAttack = -1;//input attack strength (LMH)
 
 	private int STARTUP = 0;
@@ -811,13 +810,7 @@ public class PlayerScript : MonoBehaviour
 	
 		if (iAttack != NO_ATTACK_STRENGTH)
 		{
-			attackStrengh = iAttack;
-			executeAction(attackStrengh, true);//check if you're attacking then do that
-
-			if (type == RECOVERY)//check if you can buffer then do that
-			{
-				storedAttackStrength = iAttack;
-			}
+			executeAction(iAttack, true);//check if you're attacking then do that
 		}
 
 	}
@@ -866,10 +859,18 @@ public class PlayerScript : MonoBehaviour
 				}
 			}
 		}
+		else
+		{
+			if (type == RECOVERY)//check if you can buffer then do that
+			{
+				storedAttackStrength = iAttack;
+			}
+		}
     }
 
     private void actionEnd()
     {
+		Debug.Log(storedAttackStrength);
 		delBox();
 		if (waitForEnd)
 		{
@@ -968,7 +969,6 @@ public class PlayerScript : MonoBehaviour
 
 	private void shutdown()
 	{
-		attackStrengh = NO_ATTACK_STRENGTH;
 		actionState = NO_ATTACK_INDEX;
 		action = false;
 		damagePass = 0;
