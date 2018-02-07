@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -101,6 +100,7 @@ public class PlayerScript : MonoBehaviour
 	public int damageCounter;//counts up damage amounts
 	public bool infiniteAction;//INFINTIYNIYIN
     public int lvl;
+	public bool actionOverride;//for buffering
 
 	public bool upLock = false;
 	public bool leftLock = false;
@@ -818,6 +818,11 @@ public class PlayerScript : MonoBehaviour
 				}
 			}
 		}
+		else
+		{
+			hurtbox.enabled = false;
+			hurtbox.size = new Vector2(0f, 0f);
+		}
 
 		if (actionState == Behaviors.aDash)
 		{
@@ -921,7 +926,7 @@ public class PlayerScript : MonoBehaviour
 		bool executeAction_pass = true;//make sure the attack in cancelable basically
 		if (action)
 		{
-			executeAction_pass = cancel.Contains(place) && type == RECOVERY;
+			executeAction_pass = (cancel.Contains(place) && type == RECOVERY) || actionOverride;
 		}
 
 		if (executeAction_pass)
@@ -1018,10 +1023,12 @@ public class PlayerScript : MonoBehaviour
 		}
         else if (storedAttackStrength != NO_ATTACK_STRENGTH)
         {
-			if (!air) {
+			if (!airLock) {
 				state = heldState;
 			}
+			actionOverride = true;
             executeAction(storedAttackStrength, true);
+			actionOverride = false;
 		}
 		else
 		{
