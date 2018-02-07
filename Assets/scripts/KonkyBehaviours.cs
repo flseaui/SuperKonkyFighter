@@ -11,18 +11,18 @@ public class KonkyBehaviours : Behaviors{
 	//5 blockstun
 
 	static Action crouchL = new Action() { frames = new int[] {0,0,0,0,0,0,1,1,1,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {300}, level = 0, cancels = new int[]{a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s} };
-	static Action crouchM = new Action() { frames = new int[] {0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {650}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
-	static Action crouchH = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 200, 650 }, level = 2, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s } };
-	static Action standL = new Action() { frames = new int[] {0,0,0,0,1,1,1,3,3,3,3,3,3 }, damage = new int[] { 200 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
-    static Action forwardM = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 450 }, level = 0,  cancels = new int[] { a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s }, };
-    static Action standM = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 625 }, level = 1, cancels = new int[] { a2m, a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s } };
-    static Action standH = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 3 }, level = 3, cancels = new int[] { a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
-    static Action jumpL = new Action() { frames = new int[] { 0,0,0,0,1,1,1,1,1,3,3,3,3,3,3,3 }, damage = new int[] { 350 }, level = 2, cancels = new int[] { aJump, a7m, a8m, a9m, a7h, a8h, a9h } };
-    static Action jumpM = new Action() { frames = new int[] { 0,0,0,0,0,0,0,1,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 650 }, level = 2, cancels = new int[] { aJump, a7h, a8h, a9h } };
-    static Action jumpH = new Action() { frames = new int[] { 0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 1000 }, level = 3, cancels = new int[] { aJump, } };
+	static Action crouchM = new Action() { frames = new int[] {0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {500}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+	static Action crouchH = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 700, 700 }, level = 2, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s } };
+	static Action standL = new Action() { frames = new int[] {0,0,0,0,1,1,1,3,3,3,3,3,3 }, damage = new int[] { 300 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+    static Action forwardM = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 800 }, level = 0,  cancels = new int[] { a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s }, };
+    static Action standM = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 600 }, level = 1, cancels = new int[] { a2m, a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s } };
+    static Action standH = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 900 }, level = 3, cancels = new int[] { a2h, a1s, a2s, a3s, a4s, a5s, a6s } };
+    static Action jumpL = new Action() { frames = new int[] { 0,0,0,0,1,1,1,1,1,3,3,3,3,3,3,3 }, damage = new int[] { 300 }, level = 2, cancels = new int[] { aJump, a7m, a8m, a9m, a7h, a8h, a9h } };
+    static Action jumpM = new Action() { frames = new int[] { 0,0,0,0,0,0,0,1,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 600 }, level = 2, cancels = new int[] { aJump, a7h, a8h, a9h } };
+    static Action jumpH = new Action() { frames = new int[] { 0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 900 }, level = 3, cancels = new int[] { aJump, } };
     static Action Throw = new Action() { frames = new int[] { 0 }, damage = new int[] { 1500 }, level = 5, cancels = new int[] { aDash, aBDash } };
     static Action oneS = new Action() { frames = new int[] { 0 }, damage = new int[] { 1200 }, level = 0, cancels = new int[] { a5s } };
-    static Action twoS = new Action() { frames = new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 1000 }, level = 5, cancels = new int[] { a5s, aDash, aBDash } };
+    static Action twoS = new Action() { frames = new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 900 }, level = 5, cancels = new int[] { a5s, aDash, aBDash } };
     static Action threeS = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 800 }, level = 4, cancels = new int[] { a5s } };
     static Action fourS = new Action() { frames = new int[] {0,0,0,0,0,0,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,3,3,3,3 }, damage = new int[] {400, 400, 600}, level = 2, cancels = new int[] { a5s } };
     static Action fiveS = new Action() { frames = new int[] { 0 }, damage = new int[] { 0 }, level = 0, cancels = new int[] { } };
