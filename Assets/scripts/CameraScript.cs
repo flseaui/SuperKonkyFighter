@@ -8,17 +8,17 @@ public class CameraScript : MonoBehaviour
 	public Canvas canvas;
 	public UIScript uis;
 
-    public GameObject playerPrefab;
-    public GameObject background;
+	public GameObject playerPrefab;
+	public GameObject background;
 	public GameObject ground;
-    public Camera self;
+	public Camera self;
 
-    public GameObject player1;
+	public GameObject player1;
 	public PlayerScript p1s;
-    public hitboxScript p1h;
-    public GameObject player2;
+	public hitboxScript p1h;
+	public GameObject player2;
 	public PlayerScript p2s;
-    public hitboxScript p2h;
+	public hitboxScript p2h;
 
 	public Sprite background0;
 	public Sprite background1;
@@ -33,47 +33,47 @@ public class CameraScript : MonoBehaviour
 
 	public bool history;
 
-    public static int hitTimer;
+	public static int hitTimer;
 
-    public Sprite[] Background;
-    public Sprite[] Ground;
+	public Sprite[] Background;
+	public Sprite[] Ground;
 
-    public JoyScript JoyScript;
+	public JoyScript JoyScript;
 
-    public Button lightButton;
-    public Button mediumButton;
-    public Button heavyButton;
+	public Button lightButton;
+	public Button mediumButton;
+	public Button heavyButton;
 
-    void Start()
-    {
+	void Start()
+	{
 		uis = canvas.GetComponent<UIScript>();
 
-        player1 = Instantiate(playerPrefab);
-		
-        setX(player1, -16f);
+		player1 = Instantiate(playerPrefab);
+
+		setX(player1, -16f);
 		p1s = player1.GetComponent<PlayerScript>();
-        p1h = player1.GetComponentInChildren<hitboxScript>();
-        p1s.facingRight = true;
+		p1h = player1.GetComponentInChildren<hitboxScript>();
+		p1s.facingRight = true;
 		p1s.playerID = 1;
-        p1s.JoyScript = JoyScript;
-        p1s.lightButton = lightButton;
-        p1s.mediumButton = mediumButton;
-        p1s.heavyButton = heavyButton;
+		p1s.JoyScript = JoyScript;
+		p1s.lightButton = lightButton;
+		p1s.mediumButton = mediumButton;
+		p1s.heavyButton = heavyButton;
 
-        player2 = Instantiate(playerPrefab);
-        setX(player2, 16f);
+		player2 = Instantiate(playerPrefab);
+		setX(player2, 16f);
 		p2s = player2.GetComponent<PlayerScript>();
-        p2h = player2.GetComponentInChildren<hitboxScript>();
-        p2s.facingRight = false;
-        p2s.playerID = 2;
+		p2h = player2.GetComponentInChildren<hitboxScript>();
+		p2s.facingRight = false;
+		p2s.playerID = 2;
 
-        p1s.otherPlayer = player2;
-        p2s.otherPlayer = player1;
+		p1s.otherPlayer = player2;
+		p2s.otherPlayer = player1;
 
-        history = true;
+		history = true;
 
-        Background = new Sprite[]{background0,background1,background2,background3,background4,background5,background6};
-        Ground = new Sprite[] { ground0, ground1 };
+		Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
+		Ground = new Sprite[] { ground0, ground1 };
 
 		background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
 		ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];

@@ -921,7 +921,7 @@ public class PlayerScript : MonoBehaviour
 		bool executeAction_pass = true;//make sure the attack in cancelable basically
 		if (action)
 		{
-			executeAction_pass = cancel.Contains(place);
+			executeAction_pass = cancel.Contains(place) && type == RECOVERY;
 		}
 
 		if (executeAction_pass)
