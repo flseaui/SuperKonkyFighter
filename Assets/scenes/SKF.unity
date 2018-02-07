@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.3059692, y: 4.1600003}
+  m_AnchoredPosition: {x: 1.3059845, y: 4.1600003}
   m_SizeDelta: {x: -5.228, y: -15.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556497143
@@ -788,8 +788,8 @@ MonoBehaviour:
   Ground: []
   JoyScript: {fileID: 1338733470}
   lightButton: {fileID: 0}
-  mediumButton: {fileID: 926441346}
-  heavyButton: {fileID: 829475303}
+  mediumButton: {fileID: 0}
+  heavyButton: {fileID: 0}
 --- !u!82 &1052459709
 AudioSource:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 161561d79d97870429742c360192b0f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 39b248ea06d7c6e498c3718b4210b344, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1885,7 +1885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.3060303, y: 4.1600003}
+  m_AnchoredPosition: {x: 1.306015, y: 4.1600003}
   m_SizeDelta: {x: -5.228, y: -15.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1853558340

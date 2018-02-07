@@ -18,6 +18,15 @@ public class PlayerScript : MonoBehaviour
 	int SPECIAL_ATTACK = 3;
     int ANIM_STATE = Animator.StringToHash("state");
 
+    public float[,] levelScaling = new float[,] { 
+        { 8, 12, 23, 9, .75f }, 
+        { 10, 14, 26, 11, .8f }, 
+        { 12, 16, 28, 13, .85f }, 
+        { 14, 19, 33, 16, .89f }, 
+        { 16, 21, 36, 18, .92f }, 
+        { 18, 24, 40, 20, .94f }
+    };
+
     public bool juggle;
     public bool dashing;
 
@@ -91,6 +100,7 @@ public class PlayerScript : MonoBehaviour
 	public int actionCounter;//the timer that moves along (counting up)
 	public int damageCounter;//counts up damage amounts
 	public bool infiniteAction;//INFINTIYNIYIN
+    public int lvl;
 
 	public bool upLock = false;
 	public bool leftLock = false;
@@ -923,7 +933,8 @@ public class PlayerScript : MonoBehaviour
 			{
 				action = true;
 				actionState = place;
-	
+
+                lvl = act.level;
 				attackTypes = act.frames;
 				actionCounter = -1;
 				damageCounter = -1;
@@ -1151,7 +1162,12 @@ public class PlayerScript : MonoBehaviour
 		}*/
 	}
 
-	/*public void genBox(String s)//fuck you unity for forcing one variable
+    public float level(int wanted)
+    {
+       return levelScaling[lvl,wanted];
+    }
+
+    /*public void genBox(String s)//fuck you unity for forcing one variable
 	{
 		char[] yeet = s.ToCharArray();
 		BoxCollider2D box = new BoxCollider2D();
