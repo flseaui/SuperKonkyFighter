@@ -85,17 +85,19 @@ public class CameraScript : MonoBehaviour
         {
             p1h.hit = false;
             p1s.hitStopped = true;
+			p2s.hitStopped = true;
 
-            hitTimer = (int)p2s.level(0);
+			hitTimer = (int)p2s.level(0);
             Time.timeScale = 0;
         }
 
         if (p2h.hit)
         {
             p2h.hit = false;
-            p2s.hitStopped = true;
+			p1s.hitStopped = true;
+			p2s.hitStopped = true;
 
-            hitTimer = (int)p1s.level(0);
+			hitTimer = (int)p1s.level(0);
             Time.timeScale = 0;
         }
 
