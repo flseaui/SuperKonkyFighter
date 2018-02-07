@@ -203,6 +203,7 @@ MonoBehaviour:
   actionCounter: 0
   damageCounter: 0
   infiniteAction: 0
+  lvl: 0
   upLock: 0
   leftLock: 0
   downLock: 0
@@ -228,6 +229,10 @@ MonoBehaviour:
   otherPlayer: {fileID: 0}
   joy: 0
   JoyScript: {fileID: 0}
+  button: 0
+  lightButton: {fileID: 0}
+  mediumButton: {fileID: 0}
+  heavyButton: {fileID: 0}
   damages: 
   damagePass: 0
 --- !u!114 &114362091746053720

@@ -795,12 +795,12 @@ public class PlayerScript : MonoBehaviour
 		}
 		if (type == 0 || type == 2 || type == 3)
 		{
-			hitbox.enabled = false;
-			hitbox.size = new Vector2(0f,0f);
+			hurtbox.enabled = false;
+			hurtbox.size = new Vector2(0f,0f);
 		}
 		else
 		{
-			hitbox.enabled = true;
+			hurtbox.enabled = true;
 		}
 	}
 
@@ -963,7 +963,6 @@ public class PlayerScript : MonoBehaviour
     private void actionEnd()
     {
 		Debug.Log("stored: "+storedAttackStrength);
-		delBox();
 		if (waitForEnd)
 		{
 			waitForEnd = false;
@@ -1147,19 +1146,6 @@ public class PlayerScript : MonoBehaviour
 	public void block()
 	{
 		//executeAction();
-	}
-
-	public void delBox()
-	{
-		hurtbox.enabled = false;
-		/*BoxCollider2D[] list = GetComponents<BoxCollider2D>();
-		foreach (BoxCollider2D b in list)
-		{
-			if (b.tag.Equals("h"))
-			{
-				Destroy(b);
-			}
-		}*/
 	}
 
     public float level(int wanted)
