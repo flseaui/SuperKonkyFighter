@@ -782,9 +782,15 @@ public class PlayerScript : MonoBehaviour
 		{
 			++damageCounter;
 			damagePass = damages[damageCounter];
-		}else if (old == 1 && type == 2)
+		}
+		if (type == 0 || type == 2 || type == 3)
 		{
-			delBox();
+			hitbox.enabled = false;
+			hitbox.size = new Vector2(0f,0f);
+		}
+		else
+		{
+			hitbox.enabled = true;
 		}
 	}
 
