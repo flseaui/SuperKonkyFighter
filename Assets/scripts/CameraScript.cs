@@ -40,6 +40,10 @@ public class CameraScript : MonoBehaviour
 
     public JoyScript JoyScript;
 
+    public Button lightButton;
+    public Button mediumButton;
+    public Button heavyButton;
+
     void Start()
     {
 		uis = canvas.GetComponent<UIScript>();
@@ -52,6 +56,9 @@ public class CameraScript : MonoBehaviour
         p1s.facingRight = true;
 		p1s.playerID = 1;
         p1s.JoyScript = JoyScript;
+        p1s.lightButton = lightButton;
+        p1s.mediumButton = mediumButton;
+        p1s.heavyButton = heavyButton;
 
         player2 = Instantiate(playerPrefab);
         setX(player2, 16f);

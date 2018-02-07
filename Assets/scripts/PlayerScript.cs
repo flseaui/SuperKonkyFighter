@@ -134,6 +134,11 @@ public class PlayerScript : MonoBehaviour
 	public Boolean joy;
 
     public JoyScript JoyScript;
+    public Boolean button;
+
+    public Button lightButton;
+    public Button mediumButton;
+    public Button heavyButton;
 
 	public int[] damages;
 	public int damagePass;
@@ -218,6 +223,8 @@ public class PlayerScript : MonoBehaviour
 	{
 		joy = (JoyScript != null);
 
+        button = (lightButton != null);
+
 		if (!facingRight)
 		{
 			this.transform.localScale = new Vector3(-1, 1, 1);
@@ -240,54 +247,108 @@ public class PlayerScript : MonoBehaviour
 		heavy = false;
 		special = false;
 
-		if (Input.GetKey(lightKey))
-		{
-			if (!litLock)
-			{
-				litLock = true;
-				lite = true;
-			}
-		}
-		else
-		{
-			litLock = false;
-		}
-		if (Input.GetKey(mediumKey))
-		{
-			if (!medLock)
-			{
-				medLock = true;
-				medium = true;
-			}
-		}
-		else
-		{
-			medLock = false;
-		}
-		if (Input.GetKey(heavyKey))
-		{
-			if (!hevLock)
-			{
-				hevLock = true;
-				heavy = true;
-			}
-		}
-		else
-		{
-			hevLock = false;
-		}
-		if (Input.GetKey(specialKey))
-		{
-			if (!speLock)
-			{
-				speLock = true;
-				special = true;
-			}
-		}
-		else
-		{
-			speLock = false;
-		}
+        if (button)
+        {
+            if (Input.GetKey(lightKey) || lightButton.isActiveAndEnabled)
+            {
+                if (!litLock)
+                {
+                    litLock = true;
+                    lite = true;
+                }
+            }
+            else
+            {
+                litLock = false;
+            }
+            if (Input.GetKey(mediumKey) || mediumButton.isActiveAndEnabled)
+            {
+                if (!medLock)
+                {
+                    medLock = true;
+                    medium = true;
+                }
+            }
+            else
+            {
+                medLock = false;
+            }
+            if (Input.GetKey(heavyKey) || heavyButton.isActiveAndEnabled)
+            {
+                if (!hevLock)
+                {
+                    hevLock = true;
+                    heavy = true;
+                }
+            }
+            else
+            {
+                hevLock = false;
+            }
+            if (Input.GetKey(specialKey))
+            {
+                if (!speLock)
+                {
+                    speLock = true;
+                    special = true;
+                }
+            }
+            else
+            {
+                speLock = false;
+            }
+        }
+        else
+        {
+            if (Input.GetKey(lightKey))
+            {
+                if (!litLock)
+                {
+                    litLock = true;
+                    lite = true;
+                }
+            }
+            else
+            {
+                litLock = false;
+            }
+            if (Input.GetKey(mediumKey))
+            {
+                if (!medLock)
+                {
+                    medLock = true;
+                    medium = true;
+                }
+            }
+            else
+            {
+                medLock = false;
+            }
+            if (Input.GetKey(heavyKey))
+            {
+                if (!hevLock)
+                {
+                    hevLock = true;
+                    heavy = true;
+                }
+            }
+            else
+            {
+                hevLock = false;
+            }
+            if (Input.GetKey(specialKey))
+            {
+                if (!speLock)
+                {
+                    speLock = true;
+                    special = true;
+                }
+            }
+            else
+            {
+                speLock = false;
+            }
+        }
 
 		if (joy)
 		{
