@@ -875,12 +875,12 @@ public class PlayerScript : MonoBehaviour
 			{
 				if (facingRight)
 				{
-					hVelocity = forwardSpeed * 2f;
+					hVelocity = forwardSpeed * 3f;
 					vVelocity = 0;
 				}
 				else
 				{
-					hVelocity = -forwardSpeed * 2f;
+					hVelocity = -forwardSpeed * 3f;
 					vVelocity = 0;
 				}
 			}
