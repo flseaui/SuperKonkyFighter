@@ -22,7 +22,14 @@ public class hitboxScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+        if(stun != 0)
+        {
+            stun--;  
+        }
+        else
+        {
+            s.stunned = false;
+        }
 		if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
 		{
 			if (s.x() < os.x())
@@ -70,6 +77,7 @@ public class hitboxScript : MonoBehaviour
 					s.setX(tx);
 				}
 			}
+
 		}
 
 		//line.SetPosition(0, new Vector3((os.x() - (s.width / 2) + (os.width / 2) - 1), os.y(), 0));
@@ -90,7 +98,8 @@ public class hitboxScript : MonoBehaviour
 				if (s.state == 4 && !s.action)
 				{
                     //s.block();
-                    stun = (int)s.level(3);                    
+                    stun = (int)s.level(3);
+                    s.stunned = true;
 				}
 				else
 				{
@@ -99,10 +108,12 @@ public class hitboxScript : MonoBehaviour
                     if(s.type == 0)
                     {
                         stun = (int)s.level(2);
+                        s.stunned = true;
                     }
                     else
                     {
                         stun = (int)s.level(1);
+                        s.stunned = true;
                     }
 				}
 			}
