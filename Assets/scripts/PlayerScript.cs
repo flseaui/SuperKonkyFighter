@@ -988,7 +988,6 @@ public class PlayerScript : MonoBehaviour
 
     private void actionEnd()
     {
-		Debug.Log("stored: "+storedAttackStrength);
 		if (waitForEnd)
 		{
 			waitForEnd = false;
