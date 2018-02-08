@@ -33,6 +33,7 @@ public class KonkyBehaviours : Behaviors{
 	static Action backDash = new Action() { frames = new int[] {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, cancels = new int[] {aJump} };
 	static Action forwardDash = new Action() { frames = new int[] {3 }, infinite = true, cancels = new int[] { aJump } };
 	static Action stun = new Action() { frames = new int[] {3 }, infinite = true, cancels = new int[] { } };
+	static Action airDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels = new int[] {} };
 
 	static Action[] konkyActions = new Action[]
 	{
@@ -45,25 +46,25 @@ public class KonkyBehaviours : Behaviors{
 		crouchL,
 		crouchM,
 		crouchH,
-        standL,
-        standM,
-        standH,
-        standL,
+		standL,
 		standM,
-        standH,
-        standL,
-        forwardM,
-        standH,
-        jumpL,
-        jumpM,
-        jumpH,
-        jumpL,
-        jumpM,
-        jumpH,
-        jumpL,
-        jumpM,
-        jumpH,
-        oneS,
+		standH,
+		standL,
+		standM,
+		standH,
+		standL,
+		forwardM,
+		standH,
+		jumpL,
+		jumpM,
+		jumpH,
+		jumpL,
+		jumpM,
+		jumpH,
+		jumpL,
+		jumpM,
+		jumpH,
+		oneS,
 		twoS,
 		threeS,
 		fourS,
@@ -81,7 +82,8 @@ public class KonkyBehaviours : Behaviors{
 		null,
 		null,
 		stun,
-		null
+		null,
+		airDash,
 	};
 
 	public KonkyBehaviours() : base(konkyActions) { }

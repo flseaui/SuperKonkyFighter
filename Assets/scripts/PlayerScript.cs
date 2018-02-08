@@ -759,8 +759,21 @@ public class PlayerScript : MonoBehaviour
 					if (counter == moves.GetLength(1) - 1)
 					{
 						if (!dashed) {
-							executeAction(index[m], false);
 							dashed = true;
+							if (m==1) {
+								if (air)
+								{
+									executeAction(Behaviors.aADash, false);
+								}
+								else
+								{
+									executeAction(index[m], false);
+								}
+							}
+							else
+							{
+								executeAction(index[m], false);
+							}
 						}
 						for (int j = history.Count - 1; j > history.Count - 1 - moves.GetLength(1); --j)
 						{
@@ -871,7 +884,7 @@ public class PlayerScript : MonoBehaviour
 					vVelocity = 0;
 				}
 			}
-			else if (actionState == Behaviors.aDash)
+			else if (actionState == Behaviors.aDash || actionState == Behaviors.aADash)
 			{
 				if (facingRight)
 				{

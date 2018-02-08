@@ -51,6 +51,7 @@ public abstract class Behaviors{
 	public static int aABlock = 43;
 	public static int aStun = 44;
 	public static int aRecover = 45;
+	public static int aADash = 46;
 
 	private Action[] actions;
 
