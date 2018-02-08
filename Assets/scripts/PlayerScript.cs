@@ -820,17 +820,18 @@ public class PlayerScript : MonoBehaviour
 		type = attackTypes[actionCounter];
 		if (old != 1 && type == 1)
 		{
+			hitbox.GetComponent<hitboxScript>().already = false;
 			++damageCounter;
 			damagePass = damages[damageCounter];
 		}
-		if (type == 0 || type == 2 || type == 3)
+		if (type == 1)
 		{
-			hurtbox.enabled = false;
-			hurtbox.size = new Vector2(0f,0f);
+			hurtbox.enabled = true;
 		}
 		else
 		{
-			hurtbox.enabled = true;
+			hurtbox.enabled = false;
+			hurtbox.size = new Vector2(0f, 0f);
 		}
 	}
 

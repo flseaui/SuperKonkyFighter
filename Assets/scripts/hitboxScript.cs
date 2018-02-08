@@ -11,6 +11,8 @@ public class hitboxScript : MonoBehaviour
 
     public bool hit;
 
+	public bool already;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -80,7 +82,8 @@ public class hitboxScript : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		
-		if (!col.CompareTag(this.tag)) {
+		if (!col.CompareTag(this.tag) && !already) {
+			already = true;
 			Debug.Log("other tag: " + col.tag);
 			Debug.Log("this tag: " + tag);
 			hit = true;
