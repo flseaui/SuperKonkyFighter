@@ -8,7 +8,6 @@ public class hitboxScript : MonoBehaviour
 	private PlayerScript os;
 
 	int selfID;
-    public int stun;
 
     public bool hit;
 
@@ -22,14 +21,6 @@ public class hitboxScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        if(stun != 0)
-        {
-            stun--;  
-        }
-        else
-        {
-            s.stunned = false;
-        }
 		if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
 		{
 			if (s.x() < os.x())
@@ -98,8 +89,6 @@ public class hitboxScript : MonoBehaviour
 				if (s.state == 4 && !s.action)
 				{
                     //s.block();
-                    stun = (int)s.level(3);
-                    s.stunned = true;
 				}
 				else
 				{
@@ -107,14 +96,12 @@ public class hitboxScript : MonoBehaviour
                     
                     if(s.type == 0)
                     {
-                        stun = (int)s.level(2);
-                        s.stunned = true;
+						s.stun((int)s.level(2));
                     }
                     else
                     {
-                        stun = (int)s.level(1);
-                        s.stunned = true;
-                    }
+						s.stun((int)s.level(1));
+					}
 				}
 			}
 		}

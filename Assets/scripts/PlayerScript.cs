@@ -245,10 +245,19 @@ public class PlayerScript : MonoBehaviour
 			this.transform.localScale = new Vector3(1, 1, 1);
 		}
 
-        if (!stunned)
+        if (stunned)
         {
-            input();
-        }
+			--stunTimer;
+			if (stunTimer == 0)
+			{
+				shutdown();
+				stunned = false;
+			}
+		}
+		else
+		{
+			input();
+		}
 
 		//floor check
 		
@@ -1180,13 +1189,11 @@ public class PlayerScript : MonoBehaviour
        return levelScaling[lvl,wanted];
     }
 
-    /*public void genBox(String s)//fuck you unity for forcing one variable
+	public void stun(int time)
 	{
-		char[] yeet = s.ToCharArray();
-		BoxCollider2D box = new BoxCollider2D();
-		box.offset.Set((yeet[0] - 48) , (yeet[0] - 48) );
-		box.size.Set((yeet[0] - 48) , (yeet[0] - 48) );
-		box.tag = "h";
-	}*/
+		stunned = true;
+		stunTimer = time;
+		executeAction(Behaviors.aStun, false);
+	}
 
 }
