@@ -8,6 +8,7 @@ public class hitboxScript : MonoBehaviour
 	private PlayerScript os;
 
 	int selfID;
+    public int stun;
 
     public bool hit;
 
@@ -88,11 +89,21 @@ public class hitboxScript : MonoBehaviour
 			{
 				if (s.state == 4 && !s.action)
 				{
-					//s.block();
+                    //s.block();
+                    stun = (int)s.level(3);                    
 				}
 				else
 				{
 					s.damage(os.damagePass);
+                    
+                    if(s.type == 0)
+                    {
+                        stun = (int)s.level(2);
+                    }
+                    else
+                    {
+                        stun = (int)s.level(1);
+                    }
 				}
 			}
 		}
