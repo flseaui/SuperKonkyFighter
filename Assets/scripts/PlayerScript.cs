@@ -1182,7 +1182,9 @@ public class PlayerScript : MonoBehaviour
 
 	public void block()
 	{
-		//executeAction();
+        stunned = true;
+        stunTimer = (int)level(3);
+        executeAction(Behaviors.aBlock, false);
 	}
 
     public float level(int wanted)

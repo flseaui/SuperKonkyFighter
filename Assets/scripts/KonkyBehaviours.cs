@@ -33,6 +33,7 @@ public class KonkyBehaviours : Behaviors{
 	static Action backDash = new Action() { frames = new int[] {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, cancels = new int[] {aJump} };
 	static Action forwardDash = new Action() { frames = new int[] {3 }, infinite = true, cancels = new int[] { aJump } };
 	static Action stun = new Action() { frames = new int[] {3 }, infinite = true, cancels = new int[] { } };
+    static Action block = new Action() { frames = new int[] { 4 }, infinite = true, cancels = new int[] { } };
 	static Action airDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels = new int[] {} };
 
 	static Action[] konkyActions = new Action[]
@@ -78,7 +79,7 @@ public class KonkyBehaviours : Behaviors{
 		jump,
 		backDash,
 		forwardDash,
-		null,
+		block,
 		null,
 		null,
 		stun,

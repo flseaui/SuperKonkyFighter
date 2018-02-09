@@ -91,7 +91,7 @@ public class hitboxScript : MonoBehaviour
 			{
 				if (s.state == 4 && !s.action)
 				{
-                    //s.block();
+                    s.block();
 				}
 				else
 				{
