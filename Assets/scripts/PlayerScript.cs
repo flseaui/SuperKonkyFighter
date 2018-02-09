@@ -268,9 +268,9 @@ public class PlayerScript : MonoBehaviour
             setX(64);
         }
 
-        if (!air)
+        if (!air && !GetComponentInChildren<hitboxScript>().colliding)
         {
-            //hVelocity = 0;
+            hVelocity = 0;
 		}
 
 
