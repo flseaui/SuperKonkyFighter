@@ -1177,10 +1177,10 @@ public class PlayerScript : MonoBehaviour
 		health -= ammount;
 	}
 
-	public void block()
+	public void block(int amm)
 	{
         stunned = true;
-        stunTimer = (int)level(3);
+        stunTimer = amm;
         executeAction(Behaviors.aBlock, false);
 	}
 
