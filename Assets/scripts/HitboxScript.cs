@@ -35,27 +35,18 @@ public class HitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity > 0)
 					{
-						if(!s.air){
-                            Debug.Log("collide");
-                            os.hVelocity = (s.hVelocity + os.hVelocity) / 2;
-                            //s.hVelocity -= s.hVelocity / 2;
-                            s.hVelocity = -os.hVelocity;
-
-                            colliding = true;
-                        }
-						else if(os.air)
+						if (!s.air || os.air)
 						{
 							os.hVelocity += s.hVelocity / 2;
 							s.hVelocity -= s.hVelocity / 2;
-
-                            colliding = true;
+							colliding = true;
 						}
 					}
 					s.setX(tx);
                 }
                 else
                 {
-                    //colliding = false;
+                    colliding = false;
                 }
 			}
 			else
@@ -67,13 +58,7 @@ public class HitboxScript : MonoBehaviour
 				{
 					if (s.hVelocity < 0)
 					{
-						if (!s.air)
-						{
-							os.hVelocity += s.hVelocity / 2;
-							s.hVelocity -= s.hVelocity / 2;
-                            colliding = true;
-                        }
-						else if (os.air)
+						if (!s.air || os.air)
 						{
 							os.hVelocity += s.hVelocity / 2;
 							s.hVelocity -= s.hVelocity / 2;
