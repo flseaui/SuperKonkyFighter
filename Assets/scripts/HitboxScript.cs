@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hitboxScript : MonoBehaviour
+public class HitboxScript : MonoBehaviour
 {
 	private PlayerScript s;
 	private PlayerScript os;
