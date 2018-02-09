@@ -816,7 +816,7 @@ public class PlayerScript : MonoBehaviour
 		type = attackTypes[actionCounter];
 		if (old != 1 && type == 1)
 		{
-			hitbox.GetComponent<hitboxScript>().already = false;
+			otherPlayer.GetComponentInChildren<hitboxScript>().already = false;
 			++damageCounter;
 			damagePass = damages[damageCounter];
 		}
@@ -973,6 +973,7 @@ public class PlayerScript : MonoBehaviour
 				actionFrames = attackTypes.Length;
 				infiniteAction = act.infinite;
 				incrementFrame();
+				otherPlayer.GetComponentInChildren<hitboxScript>().already = false;
 
 				cancel = new List<int>(act.cancels);
 
@@ -1192,7 +1193,9 @@ public class PlayerScript : MonoBehaviour
 	{
 		stunned = true;
 		stunTimer = time;
+		actionOverride = true;
 		executeAction(Behaviors.aStun, false);
+		actionOverride = false;
 	}
 
 }
