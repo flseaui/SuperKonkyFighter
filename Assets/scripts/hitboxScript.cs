@@ -12,6 +12,7 @@ public class hitboxScript : MonoBehaviour
     public bool hit;
 
 	public bool already;
+    public bool colliding;
 
 	// Use this for initialization
 	void Start()
@@ -35,9 +36,14 @@ public class hitboxScript : MonoBehaviour
 					if (s.hVelocity > 0)
 					{
 						if(!s.air){
-							os.hVelocity += s.hVelocity / 2;
-							s.hVelocity -= s.hVelocity / 2;
-						}
+                            Debug.Log("collide");
+                            //os.hVelocity = (s.hVelocity + os.hVelocity) / 2;
+                            //s.hVelocity -= s.hVelocity / 2;
+
+                            os.hVelocity = 99999;
+                            s.hVelocity = 99999;
+                            colliding = true;
+                        }
 						else if(os.air)
 						{
 							os.hVelocity += s.hVelocity / 2;

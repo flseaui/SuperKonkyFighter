@@ -270,7 +270,7 @@ public class PlayerScript : MonoBehaviour
 
         if (!air)
         {
-            hVelocity = 0;
+            //hVelocity = 0;
 		}
 
 
