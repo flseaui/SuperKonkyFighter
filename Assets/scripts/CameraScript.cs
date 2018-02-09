@@ -15,10 +15,10 @@ public class CameraScript : MonoBehaviour
 
 	public GameObject player1;
 	public PlayerScript p1s;
-	public hitboxScript p1h;
+	public HitboxScript p1h;
 	public GameObject player2;
 	public PlayerScript p2s;
-	public hitboxScript p2h;
+	public HitboxScript p2h;
 
 	public Sprite background0;
 	public Sprite background1;
@@ -52,7 +52,7 @@ public class CameraScript : MonoBehaviour
 
 		setX(player1, -16f);
 		p1s = player1.GetComponent<PlayerScript>();
-		p1h = player1.GetComponentInChildren<hitboxScript>();
+		p1h = player1.GetComponentInChildren<HitboxScript>();
 		p1s.facingRight = true;
 		p1s.playerID = 1;
 		p1s.JoyScript = JoyScript;
@@ -63,7 +63,7 @@ public class CameraScript : MonoBehaviour
 		player2 = Instantiate(playerPrefab);
 		setX(player2, 16f);
 		p2s = player2.GetComponent<PlayerScript>();
-		p2h = player2.GetComponentInChildren<hitboxScript>();
+		p2h = player2.GetComponentInChildren<HitboxScript>();
 		p2s.facingRight = false;
 		p2s.playerID = 2;
 
