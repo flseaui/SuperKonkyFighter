@@ -106,7 +106,7 @@ public class hitboxScript : MonoBehaviour
 			hit = true;
 			if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
 			{
-				if (s.state == 4 && !s.action)
+				if (s.state == 4 && (!s.action || s.actionState == Behaviors.aBlock))
 				{
                     s.block((int)os.level(3));
                     s.damage(os.damagePass/10);
