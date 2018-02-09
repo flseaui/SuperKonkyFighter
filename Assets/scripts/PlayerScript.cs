@@ -103,30 +103,30 @@ public class PlayerScript : MonoBehaviour
     public int lvl;
 	public bool actionOverride;//for buffering
 
-	public bool upLock = false;
-	public bool leftLock = false;
-	public bool downLock = false;
-	public bool rightLock = false;
+	public bool upLock;
+	public bool leftLock;
+	public bool downLock;
+	public bool rightLock;
 
-	public bool up = false;
-    public bool left = false;
-    public bool down = false;
-    public bool right = false;
+	public bool up;
+    public bool left;
+    public bool down;
+    public bool right;
 
-    public bool litLock = false;
-    public bool medLock = false;
-    public bool hevLock = false;
-    public bool speLock = false;
+    public bool litLock;
+    public bool medLock;
+    public bool hevLock;
+    public bool speLock;
 
-    public bool lite = false;
-    public bool medium = false;
-    public bool heavy = false;
-    public bool special = false;
+    public bool lite;
+    public bool medium;
+    public bool heavy;
+    public bool special;
 
-	public bool up1 = false;
-	public bool left1 = false;
-	public bool down1 = false;
-	public bool right1 = false;
+	public bool up1;
+	public bool left1;
+	public bool down1;
+	public bool right1;
 
 	public bool facingRight;
 
@@ -260,10 +260,6 @@ public class PlayerScript : MonoBehaviour
 		}
 
 		//floor check
-		
-
-		
-
 		if (x() < -64f)
         {
             setX(-64);
