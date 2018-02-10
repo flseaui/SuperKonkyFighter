@@ -228,6 +228,11 @@ public class PlayerScript : MonoBehaviour
         {
             SubUpdate();
         }
+        else if (stunned)
+        {
+            executeAction(Behaviors.aStun, false);
+            Debug.Log("stun animation played");
+        }
     }
 
     private void SubUpdate()
