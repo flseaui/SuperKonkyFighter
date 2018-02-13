@@ -902,7 +902,7 @@ public class PlayerScript : MonoBehaviour
 
         if (vKnockback != 0)
         {
-            vKnockback *= .75f;
+            vKnockback *= .85f;
             if (Mathf.Abs(vKnockback) < 0.005f)
             {
                 vKnockback = 0;
