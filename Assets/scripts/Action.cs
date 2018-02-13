@@ -17,4 +17,7 @@ public class Action {
     public int gAngle;
     public float gStrength;
 
+    public int aAngle;
+    public float aStrength;
+
 }

@@ -10,7 +10,7 @@ public class KonkyBehaviours : Behaviors{
     //4 chip damage DO THIS
     //5 blockstun
 
-    static Action crouchL = new Action() { frames = new int[] { 0,0,0,0,0,0,1,1,1,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 300 }, level = 0, cancels = new int[] { a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s }, gAngle = 0, gStrength = 1 };
+    static Action crouchL = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, damage = new int[] { 300 }, level = 0, cancels = new int[] { a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s }, gAngle = 0, gStrength = 1, aAngle = 0, aStrength = 0 };
 	static Action crouchM = new Action() { frames = new int[] {0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] {500}, level = 1, cancels = new int[] {a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s }, gAngle = 0, gStrength = 2 };
 	static Action crouchH = new Action() { frames = new int[] {0,0,0,0,0,0,0,0,1,1,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 }, damage = new int[] { 700, 700 }, level = 3, cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s }, gAngle = 80, gStrength = 6 };
 	static Action standL = new Action() { frames = new int[] {0,0,0,0,1,1,1,3,3,3,3,3,3 }, damage = new int[] { 300 }, level = 0, cancels = new int[] {a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s }, gAngle = 0, gStrength = 1 };

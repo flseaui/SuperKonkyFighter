@@ -1216,12 +1216,12 @@ public class PlayerScript : MonoBehaviour
 		passDir = dir;
     }
 
-	public void damage(int ammount, float k, int angle)
-	{
-		Debug.Log(ammount);
-		health -= ammount;
-        hKnockback = k * Mathf.Cos(((float)angle/180f) * Mathf.PI) * (facingRight ? -1 : 1);
-        vKnockback = k * Mathf.Sin(((float)angle/180f)*Mathf.PI);
+    public void damage(int ammount, float k, int angle)
+    {
+        Debug.Log(ammount);
+        health -= ammount;
+        hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
+        vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
     }
 
 	public void block(int amm)
