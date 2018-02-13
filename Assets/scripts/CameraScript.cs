@@ -113,11 +113,28 @@ public class CameraScript : MonoBehaviour
 			if (p1s.state == 4 && (!p1s.action || p1s.actionState == Behaviors.aBlock))
 			{
 				p1s.block((int)p2s.level(3));
-				p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass);
+
+                if (p1s.air)
+                {
+                    p1s.damage(p2s.damagePass / 10, p2s.aKnockpass / 2, p2s.aAnglePass);
+                }
+                else
+                {
+                    p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass);
+                }
+				
 			}
 			else
 			{
-				p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass);
+                if (p1s.air)
+                {
+                    p1s.damage(p2s.damagePass, p2s.aKnockpass, p2s.aAnglePass);
+                }
+                else
+                {
+                    p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass);
+                }
+                
 				if (p1s.type == 0)
 				{
 					p1s.stun((int)p1s.level(2));
@@ -137,13 +154,30 @@ public class CameraScript : MonoBehaviour
 
 			if (p2s.state == 4 && (!p2s.action || p2s.actionState == Behaviors.aBlock))
 			{
+
 				p2s.block((int)p2s.level(3));
-				p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass);
-			}
-			else
-			{
-				p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass);
-				if (p2s.type == 0)
+                if (p2s.air)
+                {
+                    p2s.damage(p1s.damagePass / 10, p1s.aKnockpass / 2, p1s.aAnglePass);
+                }
+                else
+                {
+                    p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass);
+                }
+
+            }
+            else
+            {
+                if (p2s.air)
+                {
+                    p2s.damage(p1s.damagePass, p1s.aKnockpass, p1s.aAnglePass);
+                }
+                else
+                {
+                    p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass);
+                }
+
+                if (p2s.type == 0)
 				{
 					p2s.stun((int)p2s.level(2));
 				}

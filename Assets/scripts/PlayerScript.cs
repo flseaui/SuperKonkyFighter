@@ -104,6 +104,8 @@ public class PlayerScript : MonoBehaviour
 	public bool actionOverride;//for buffering
     public int gAnglePass;
     public float gKnockpass;
+    public int aAnglePass;
+    public float aKnockpass;
 
 
     public bool upLock;
@@ -307,7 +309,7 @@ public class PlayerScript : MonoBehaviour
 
 		historyCheck();
 
-		moveX(hVelocity+hKnockback);
+		moveX(hVelocity + hKnockback);
 		moveY(vVelocity + vKnockback);
 
 		if (y() < FLOOR_HEIGHT)//ground snap
@@ -1020,6 +1022,8 @@ public class PlayerScript : MonoBehaviour
 				damageCounter = -1;
                 gAnglePass = act.gAngle;
                 gKnockpass = act.gStrength;
+                aAnglePass = act.aAngle;
+                aKnockpass = act.aStrength;
                 actionFrames = attackTypes.Length;
 				infiniteAction = act.infinite;
 				incrementFrame();
@@ -1227,6 +1231,9 @@ public class PlayerScript : MonoBehaviour
         health -= ammount;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+        Debug.Log("angle " + angle);
+        Debug.Log("Cos " + (float)angle / 180f);
+        Debug.Log("Down " + vKnockback);
     }
 
 	public void block(int amm)
