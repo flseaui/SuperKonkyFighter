@@ -9,10 +9,10 @@ public class HitboxScript : MonoBehaviour
 
 	int selfID;
 
-    public bool hit;
+	public bool hit;
 
 	public bool already;
-    public bool colliding;
+	public bool colliding;
 
 	// Use this for initialization
 	void Start()
@@ -43,11 +43,11 @@ public class HitboxScript : MonoBehaviour
 						}
 					}
 					s.setX(tx);
-                }
-                else
-                {
-                    colliding = false;
-                }
+				}
+				else
+				{
+					colliding = false;
+				}
 			}
 			else
 			{
@@ -62,16 +62,16 @@ public class HitboxScript : MonoBehaviour
 						{
 							os.hVelocity += s.hVelocity / 2;
 							s.hVelocity -= s.hVelocity / 2;
-                            colliding = true;
-                        }
+							colliding = true;
+						}
 					}
 					s.setX(tx);
 				}
-                else
-                {
-                    colliding = false;
-                }
-            }
+				else
+				{
+					colliding = false;
+				}
+			}
 
 		}
 
@@ -83,32 +83,13 @@ public class HitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		
-		if (!col.CompareTag(this.tag) && !already) {
+
+		if (!col.CompareTag(this.tag) && !already && col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
+		{
 			already = true;
 			Debug.Log("other tag: " + col.tag);
 			Debug.Log("this tag: " + tag);
 			hit = true;
-			if (col.enabled && col.GetComponentInParent<PlayerScript>().playerID != selfID)
-			{
-				if (s.state == 4 && (!s.action || s.actionState == Behaviors.aBlock))
-				{
-                    s.block((int)os.level(3));
-                    s.damage(os.damagePass/10, os.gKnockpass/2, os.gAnglePass);
-                }
-				else
-				{
-                    s.damage(os.damagePass, os.gKnockpass, os.gAnglePass);
-                    if (s.type == 0)
-                    {
-						s.stun((int)s.level(2));
-                    }
-                    else
-                    {
-						s.stun((int)s.level(1));
-					}
-				}
-			}
 		}
 	}
 }

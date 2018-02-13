@@ -237,9 +237,21 @@ public class PlayerScript : MonoBehaviour
         else if (stunned)
         {
             executeAction(Behaviors.aStun, false);
-            Debug.Log("stun animation played");
+         //   Debug.Log("stun animation played");
         }
-    }
+	}
+
+	public void updateAnimation()
+	{
+		if (action)//wow this is actually a lot simpler than before to send anim states to controller
+		{
+			animInt(ANIM_STATE, actionState + 10);
+		}
+		else
+		{
+			animInt(ANIM_STATE, state);
+		}
+	}
 
     private void SubUpdate()
 	{
@@ -321,15 +333,8 @@ public class PlayerScript : MonoBehaviour
 			air = true;
 		}
 
-		if (action)//wow this is actually a lot simpler than before to send anim states to controller
-        {
-            animInt(ANIM_STATE, actionState + 10);
-        }
-        else
-        {
-            animInt(ANIM_STATE, state);
-        }
-    }
+		updateAnimation();
+	}
 
 	private void historyCheck()
 	{

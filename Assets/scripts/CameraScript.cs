@@ -44,6 +44,10 @@ public class CameraScript : MonoBehaviour
 	public Button mediumButton;
 	public Button heavyButton;
 
+	private int megaKek;
+
+	public bool shake;
+
 	void Start()
 	{
 		uis = canvas.GetComponent<UIScript>();
@@ -81,25 +85,72 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+		if (megaKek == 1)
+		{
+			p1s.hitStopped = true;
+			p2s.hitStopped = true;
+			megaKek = 0;
+			hitTimer = (int)p2s.level(0);
+			Time.timeScale = 0;
+		}
+		else if (megaKek == 2)
+		{
+			p1s.hitStopped = true;
+			p2s.hitStopped = true;
+			megaKek = 0;
+			hitTimer = (int)p1s.level(0);
+			Time.timeScale = 0;
+		}
+
         if (p1h.hit)
         {
-            p1h.hit = false;
-            p1s.hitStopped = true;
-			p2s.hitStopped = true;
+			megaKek = 1;
 
-			hitTimer = (int)p2s.level(0);
-            Time.timeScale = 0;
-        }
+			p1h.hit = false;
+
+			if (p1s.state == 4 && (!p1s.action || p1s.actionState == Behaviors.aBlock))
+			{
+				p1s.block((int)p2s.level(3));
+				p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass);
+			}
+			else
+			{
+				p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass);
+				if (p1s.type == 0)
+				{
+					p1s.stun((int)p1s.level(2));
+				}
+				else
+				{
+					p1s.stun((int)p1s.level(1));
+				}
+			}
+		}
 
         if (p2h.hit)
         {
-            p2h.hit = false;
-			p1s.hitStopped = true;
-			p2s.hitStopped = true;
+			megaKek = 2;
 
-			hitTimer = (int)p1s.level(0);
-            Time.timeScale = 0;
-        }
+			p2h.hit = false;
+
+			if (p2s.state == 4 && (!p2s.action || p2s.actionState == Behaviors.aBlock))
+			{
+				p2s.block((int)p2s.level(3));
+				p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass);
+			}
+			else
+			{
+				p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass);
+				if (p2s.type == 0)
+				{
+					p2s.stun((int)p2s.level(2));
+				}
+				else
+				{
+					p2s.stun((int)p2s.level(1));
+				}
+			}
+		}
 
         if (hitTimer != 0)
         {
