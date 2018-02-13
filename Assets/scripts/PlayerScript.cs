@@ -286,6 +286,10 @@ public class PlayerScript : MonoBehaviour
 
 
 		vVelocity += gravity;
+		if (vVelocity < -1)
+		{
+			vVelocity = -1;
+		}
 
 		stateCheck();
 
@@ -872,11 +876,21 @@ public class PlayerScript : MonoBehaviour
 
         if (hKnockback != 0)
         {
-            hKnockback *= .75f;
-            if(Mathf.Abs(hKnockback) < 0.005f)
-            {
-                hKnockback = 0;
-            }
+			if (!air) {
+				hKnockback *= .75f;
+				if (Mathf.Abs(hKnockback) < 0.005f)
+				{
+					hKnockback = 0;
+				}
+			}
+			else
+			{
+				hKnockback *= .5f;
+				if (Mathf.Abs(hKnockback) < 0.005f)
+				{
+					hKnockback = 0;
+				}
+			}
         }
 
         if (vKnockback != 0)
