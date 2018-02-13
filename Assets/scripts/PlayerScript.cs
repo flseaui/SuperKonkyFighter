@@ -102,8 +102,11 @@ public class PlayerScript : MonoBehaviour
 	public bool infiniteAction;//INFINTIYNIYIN
     public int lvl;
 	public bool actionOverride;//for buffering
+    public int gAnglePass;
+    public float gKnockpass;
 
-	public bool upLock;
+
+    public bool upLock;
 	public bool leftLock;
 	public bool downLock;
 	public bool rightLock;
@@ -289,7 +292,7 @@ public class PlayerScript : MonoBehaviour
 		historyCheck();
 
 		moveX(hVelocity+hKnockback);
-		moveY(vVelocity + vKnockback);
+		moveY(vVelocity - vKnockback);
 
 		if (y() < FLOOR_HEIGHT)//ground snap
 		{
@@ -867,7 +870,25 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 
-		if (!action) {//set velocity when moving forward and backward
+        if (hKnockback != 0)
+        {
+            hKnockback *= .75f;
+            if(Mathf.Abs(hKnockback) < 0.005f)
+            {
+                hKnockback = 0;
+            }
+        }
+
+        if (vKnockback != 0)
+        {
+            vKnockback *= .75f;
+            if (Mathf.Abs(vKnockback) < 0.005f)
+            {
+                vKnockback = 0;
+            }
+        }
+
+        if (!action) {//set velocity when moving forward and backward
 			if (state == 6)
 			{
 				if (facingRight)
@@ -978,7 +999,9 @@ public class PlayerScript : MonoBehaviour
 				attackTypes = act.frames;
 				actionCounter = -1;
 				damageCounter = -1;
-				actionFrames = attackTypes.Length;
+                gAnglePass = act.gAngle;
+                gKnockpass = act.gStrength;
+                actionFrames = attackTypes.Length;
 				infiniteAction = act.infinite;
 				incrementFrame();
 				otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
@@ -1179,12 +1202,13 @@ public class PlayerScript : MonoBehaviour
 		passDir = dir;
     }
 
-	public void damage(int ammount,  int hk, int vk, int angle)
+	public void damage(int ammount, float k, int angle)
 	{
 		Debug.Log(ammount);
 		health -= ammount;
-        hKnockback = hk * Mathf.Sin(angle) * (facingRight ? -1 : 1) ;
-	}
+        hKnockback = k * Mathf.Cos(angle) * (facingRight ? -1 : 1);
+        vKnockback = k * Mathf.Sin(angle) * 5;
+    }
 
 	public void block(int amm)
 	{
