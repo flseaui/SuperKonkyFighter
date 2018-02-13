@@ -292,7 +292,7 @@ public class PlayerScript : MonoBehaviour
 		historyCheck();
 
 		moveX(hVelocity+hKnockback);
-		moveY(vVelocity - vKnockback);
+		moveY(vVelocity + vKnockback);
 
 		if (y() < FLOOR_HEIGHT)//ground snap
 		{
@@ -1206,8 +1206,8 @@ public class PlayerScript : MonoBehaviour
 	{
 		Debug.Log(ammount);
 		health -= ammount;
-        hKnockback = k * Mathf.Cos(angle) * (facingRight ? -1 : 1);
-        vKnockback = k * Mathf.Sin(angle) * 5;
+        hKnockback = k * Mathf.Cos(((float)angle/180f) * Mathf.PI) * (facingRight ? -1 : 1);
+        vKnockback = k * Mathf.Sin(((float)angle/180f)*Mathf.PI) * 5;
     }
 
 	public void block(int amm)
