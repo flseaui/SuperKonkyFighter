@@ -238,7 +238,7 @@ public class CameraScript : MonoBehaviour
 		uis.health2.value = p2s.health;
 
 		if (shake)
-		{
+		{            
 			shakeX = Random.Range(-1,1);
 			shakeY = Random.Range(-1, 1);
 			setX(self, cx + shakeX);
