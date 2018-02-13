@@ -94,12 +94,11 @@ public class HitboxScript : MonoBehaviour
 				if (s.state == 4 && (!s.action || s.actionState == Behaviors.aBlock))
 				{
                     s.block((int)os.level(3));
-                    s.damage(os.damagePass/10);
+                    s.damage(os.damagePass/10, os. );
                 }
 				else
 				{
-					s.damage(os.damagePass);
-                    
+					s.damage(os.damagePass, );
                     if(s.type == 0)
                     {
 						s.stun((int)s.level(2));

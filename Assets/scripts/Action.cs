@@ -13,4 +13,8 @@ public class Action {
 	public int[] cancels;
 
 	public int[] meterCost;
+
+    public int gAngle;
+    public int gStrength;
+
 }

@@ -153,7 +153,10 @@ public class PlayerScript : MonoBehaviour
 
 	public int[] damages;
 	public int damagePass;
-	List<int> cancel;
+    List<int> cancel;
+
+    public float hKnockback;
+    public float vKnockback;
 
     void OnDrawGizmos()
     {
@@ -285,8 +288,8 @@ public class PlayerScript : MonoBehaviour
 
 		historyCheck();
 
-		moveX(hVelocity);
-		moveY(vVelocity);
+		moveX(hVelocity+hKnockback);
+		moveY(vVelocity + vKnockback);
 
 		if (y() < FLOOR_HEIGHT)//ground snap
 		{
@@ -1176,10 +1179,11 @@ public class PlayerScript : MonoBehaviour
 		passDir = dir;
     }
 
-	public void damage(int ammount)
+	public void damage(int ammount,  int hk, int vk, int angle)
 	{
 		Debug.Log(ammount);
 		health -= ammount;
+        hKnockback = hk * Mathf.Sin(angle) * (facingRight ? -1 : 1) ;
 	}
 
 	public void block(int amm)
