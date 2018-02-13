@@ -46,6 +46,8 @@ public class CameraScript : MonoBehaviour
 
 	private int megaKek;
 
+	public int shakeX;
+	public int shakeY;
 	public bool shake;
 
 	void Start()
@@ -154,10 +156,13 @@ public class CameraScript : MonoBehaviour
 
         if (hitTimer != 0)
         {
+			shake = true;
             hitTimer--;
         }
         else
         {
+			setY(self,12);
+			shake = false;
             Time.timeScale = 1;
             p1s.hitStopped = false;
             p2s.hitStopped = false;
@@ -197,6 +202,14 @@ public class CameraScript : MonoBehaviour
 		uis.health2.minValue = 0;
 		uis.health1.value = p1s.health;
 		uis.health2.value = p2s.health;
+
+		if (shake)
+		{
+			shakeX = Random.Range(-1,1);
+			shakeY = Random.Range(-1, 1);
+			setX(self, cx + shakeX);
+			setY(self, 12 + shakeY);
+		}
 	}
 
     private float getX(GameObject o)
@@ -227,4 +240,11 @@ public class CameraScript : MonoBehaviour
         position.x = amm;
         o.transform.position = position;
     }
+
+	private void setY(Camera o, float amm)
+	{
+		Vector3 position = o.transform.position;
+		position.y = amm;
+		o.transform.position = position;
+	}
 }
