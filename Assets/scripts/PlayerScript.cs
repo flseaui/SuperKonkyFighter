@@ -1231,9 +1231,7 @@ public class PlayerScript : MonoBehaviour
         health -= ammount;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
-        Debug.Log("angle " + angle);
-        Debug.Log("Cos " + (float)angle / 180f);
-        Debug.Log("Down " + vKnockback);
+        vVelocity = 0;
     }
 
 	public void block(int amm)
