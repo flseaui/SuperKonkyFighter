@@ -329,11 +329,11 @@ public class PlayerScript : MonoBehaviour
 	}
 
 	private void incrementFrame()
-	{
-		actionCounter++;
+	{	
 		int previousFrame = currentFrame;
 		currentFrame = attackTypes[actionCounter];
-		if (previousFrame != 1 && currentFrame == 1)
+        actionCounter++;
+        if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
 			damagePass = damages[damageCounter];
