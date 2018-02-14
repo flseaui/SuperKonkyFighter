@@ -515,7 +515,7 @@ public class PlayerScript : MonoBehaviour
 
                 lvl = act.level;
 				attackTypes = act.frames;
-				actionCounter = -1;
+				actionCounter = 0;
 				damageCounter = 0;
                 gAnglePass = act.gAngle;
                 gKnockpass = act.gStrength;

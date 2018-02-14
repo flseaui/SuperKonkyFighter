@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KonkyBehaviours : Behaviors{
+public class KonkyBehaviours : Behaviors {
 
     //0 total frames
     //1 recovery frames
