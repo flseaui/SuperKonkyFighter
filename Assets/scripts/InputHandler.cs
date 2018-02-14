@@ -29,22 +29,22 @@ public class InputHandler : MonoBehaviour {
         {
             if (Input.GetKeyDown(lightKey) || lightButton.isActiveAndEnabled)
             {
-                    light= true;
+                light= true;
             }
 
             if (Input.GetKeyDown(mediumKey) || mediumButton.isActiveAndEnabled)
             {
-                    medLock = true;
+                medium= true;
             }
 
             if (Input.GetKeyDown(heavyKey) || heavyButton.isActiveAndEnabled)
             {
-                    hevLock = true;
+                heavy = true;
             }
 
             if (Input.GetKeyDown(specialKey))
             {
-                    special = true;
+                special = true;
             }
 
         }
@@ -52,51 +52,23 @@ public class InputHandler : MonoBehaviour {
         {
             if (Input.GetKeyDown(lightKey))
             {
-                if (!lightLock)
-                {
-                    lightLock = true;
-                    light= true;
-                }
+                light= true;
             }
-            else
-            {
-                lightLock = false;
-            }
+
             if (Input.GetKeyDown(mediumKey))
             {
-                if (!medLock)
-                {
-                    medLock = true;
-                    medium = true;
-                }
+
+                medium = true;
             }
-            else
-            {
-                medLock = false;
-            }
+
             if (Input.GetKeyDown(heavyKey))
             {
-                if (!hevLock)
-                {
-                    hevLock = true;
-                    heavy = true;
-                }
+                heavy = true;
             }
-            else
-            {
-                hevLock = false;
-            }
+
             if (Input.GetKeyDown(specialKey))
             {
-                if (!speLock)
-                {
-                    speLock = true;
-                    special = true;
-                }
-            }
-            else
-            {
-                speLock = false;
+                special = true;
             }
         }
 
