@@ -13,8 +13,8 @@ public class UIScript : MonoBehaviour {
     public GameObject back;
 
     // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
         Vector3 position = back.transform.position;
         position.x = 0;
         back.transform.position = position;
