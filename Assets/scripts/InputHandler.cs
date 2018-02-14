@@ -20,26 +20,26 @@ public class InputHandler : MonoBehaviour {
         right = false;
         down = false;
         left = false;
-        lite = false;
+        light= false;
         medium = false;
         heavy = false;
         special = false;
 
         if (button)
         {
-            if (Input.GetKey(lightKey) || lightButton.isActiveAndEnabled)
+            if (Input.GetKeyDown(lightKey) || lightButton.isActiveAndEnabled)
             {
-                if (!litLock)
+                if (!lightLock)
                 {
-                    litLock = true;
-                    lite = true;
+                    lightLock = true;
+                    light= true;
                 }
             }
             else
             {
-                litLock = false;
+                lightLock = false;
             }
-            if (Input.GetKey(mediumKey) || mediumButton.isActiveAndEnabled)
+            if (Input.GetKeyDown(mediumKey) || mediumButton.isActiveAndEnabled)
             {
                 if (!medLock)
                 {
@@ -51,7 +51,7 @@ public class InputHandler : MonoBehaviour {
             {
                 medLock = false;
             }
-            if (Input.GetKey(heavyKey) || heavyButton.isActiveAndEnabled)
+            if (Input.GetKeyDown(heavyKey) || heavyButton.isActiveAndEnabled)
             {
                 if (!hevLock)
                 {
@@ -63,7 +63,7 @@ public class InputHandler : MonoBehaviour {
             {
                 hevLock = false;
             }
-            if (Input.GetKey(specialKey))
+            if (Input.GetKeyDown(specialKey))
             {
                 if (!speLock)
                 {
@@ -78,19 +78,19 @@ public class InputHandler : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKey(lightKey))
+            if (Input.GetKeyDown(lightKey))
             {
-                if (!litLock)
+                if (!lightLock)
                 {
-                    litLock = true;
-                    lite = true;
+                    lightLock = true;
+                    light= true;
                 }
             }
             else
             {
-                litLock = false;
+                lightLock = false;
             }
-            if (Input.GetKey(mediumKey))
+            if (Input.GetKeyDown(mediumKey))
             {
                 if (!medLock)
                 {
@@ -102,7 +102,7 @@ public class InputHandler : MonoBehaviour {
             {
                 medLock = false;
             }
-            if (Input.GetKey(heavyKey))
+            if (Input.GetKeyDown(heavyKey))
             {
                 if (!hevLock)
                 {
@@ -114,7 +114,7 @@ public class InputHandler : MonoBehaviour {
             {
                 hevLock = false;
             }
-            if (Input.GetKey(specialKey))
+            if (Input.GetKeyDown(specialKey))
             {
                 if (!speLock)
                 {
@@ -130,7 +130,7 @@ public class InputHandler : MonoBehaviour {
 
         if (joy)
         {
-            if (Input.GetKey(upKey) || JoyScript.Up)
+            if (Input.GetKeyDown(upKey) || JoyScript.Up)
             {
                 up1 = true;
                 if (!upLock)
@@ -144,7 +144,7 @@ public class InputHandler : MonoBehaviour {
                 upLock = false;
             }
 
-            if (Input.GetKey(leftKey) || JoyScript.Left)
+            if (Input.GetKeyDown(leftKey) || JoyScript.Left)
             {
                 left1 = true;
                 if (!leftLock)
@@ -158,7 +158,7 @@ public class InputHandler : MonoBehaviour {
                 leftLock = false;
             }
 
-            if (Input.GetKey(downKey) || JoyScript.Down)
+            if (Input.GetKeyDown(downKey) || JoyScript.Down)
             {
                 down1 = true;
                 if (!downLock)
@@ -172,7 +172,7 @@ public class InputHandler : MonoBehaviour {
                 downLock = false;
             }
 
-            if (Input.GetKey(rightKey) || JoyScript.Right)
+            if (Input.GetKeyDown(rightKey) || JoyScript.Right)
             {
                 right1 = true;
                 if (!rightLock)
@@ -188,7 +188,7 @@ public class InputHandler : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKey(upKey))
+            if (Input.GetKeyDown(upKey))
             {
                 up1 = true;
                 if (!upLock)
@@ -202,7 +202,7 @@ public class InputHandler : MonoBehaviour {
                 upLock = false;
             }
 
-            if (Input.GetKey(leftKey))
+            if (Input.GetKeyDown(leftKey))
             {
                 left1 = true;
                 if (!leftLock)
@@ -216,7 +216,7 @@ public class InputHandler : MonoBehaviour {
                 leftLock = false;
             }
 
-            if (Input.GetKey(downKey))
+            if (Input.GetKeyDown(downKey))
             {
                 down1 = true;
                 if (!downLock)
@@ -230,7 +230,7 @@ public class InputHandler : MonoBehaviour {
                 downLock = false;
             }
 
-            if (Input.GetKey(rightKey))
+            if (Input.GetKeyDown(rightKey))
             {
                 right1 = true;
                 if (!rightLock)

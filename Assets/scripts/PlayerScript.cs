@@ -108,7 +108,6 @@ public class PlayerScript : MonoBehaviour
     public float aKnockpass;
     public int classPass;
 
-
     public bool upLock;
 	public bool leftLock;
 	public bool downLock;
