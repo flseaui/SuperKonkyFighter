@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - hitbox
-  - 1
-  - 2
+  tags: [hitbox, 1, 2, hitbox, 1, 2]
   layers:
   - Default
   - TransparentFX
@@ -16,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Controls
   - 
   - 
   - 
@@ -41,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Controls
+    uniqueID: 189249055
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackDrop
+    uniqueID: 259746081
+    locked: 0
+  - name: UI
+    uniqueID: 305988655
+    locked: 0
+  - name: Player
+    uniqueID: 3890755909
     locked: 0

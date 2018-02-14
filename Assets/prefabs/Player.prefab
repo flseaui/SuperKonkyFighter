@@ -206,6 +206,11 @@ MonoBehaviour:
   infiniteAction: 0
   lvl: 0
   actionOverride: 0
+  gAnglePass: 0
+  gKnockpass: 0
+  aAnglePass: 0
+  aKnockpass: 0
+  classPass: 0
   upLock: 0
   leftLock: 0
   downLock: 0
@@ -237,6 +242,9 @@ MonoBehaviour:
   heavyButton: {fileID: 0}
   damages: 
   damagePass: 0
+  hKnockback: 0
+  vKnockback: 0
+  meter: 0
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: 0
   already: 0
+  colliding: 0
 --- !u!212 &212080011780739976
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -259,7 +268,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -275,13 +283,12 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2023108041
+  m_SortingLayerID: -404211387
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 299d129206238674e89741a1db731fa4, type: 3}
@@ -292,8 +299,6 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 19.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
 --- !u!224 &224196868505590566
 RectTransform:
   m_ObjectHideFlags: 1
