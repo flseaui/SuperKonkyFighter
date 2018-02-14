@@ -251,7 +251,6 @@ public class PlayerScript : MonoBehaviour
 			}
 			dashed = false;
 			air = false;
-			airLock = false;
 			vVelocity = 0;
 			setY(FLOOR_HEIGHT);
 		}
