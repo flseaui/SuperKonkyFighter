@@ -349,11 +349,11 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-    private void stateCheck() //casual loop
+    private void stateCheck()
     {
 		if (action) {
 			if (!infiniteAction) {
-				if (actionCounter == actionFrames - 1)//end an action by counting down the action timer
+				if (actionCounter == actionFrames - 1) //end an action by counting down the action timer
 				{
 					actionEnd();
 				}
