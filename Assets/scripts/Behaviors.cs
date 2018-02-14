@@ -64,5 +64,4 @@ public abstract class Behaviors {
 	{
 		return actions[attack];
 	}
-
 }

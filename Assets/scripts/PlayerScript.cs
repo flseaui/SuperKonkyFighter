@@ -18,8 +18,8 @@ public class PlayerScript : MonoBehaviour
     int ANIM_STATE = Animator.StringToHash("state");
 
     public float[,] levelScaling = new float[,] { 
-        { 8, 12, 23, 9, .75f }, 
-        { 10, 14, 26, 11, .8f }, 
+        { 8,  12, 23, 9,  .75f }, 
+        { 10, 14, 26, 11, .8f  }, 
         { 12, 16, 28, 13, .85f }, 
         { 14, 19, 33, 16, .89f }, 
         { 16, 21, 36, 18, .92f }, 
@@ -99,11 +99,6 @@ public class PlayerScript : MonoBehaviour
     public float aKnockpass;
     public int classPass;
 
-	public bool up1;
-	public bool left1;
-	public bool down1;
-	public bool right1;
-
 	public bool facingRight;
 	public int playerID;
 
@@ -120,6 +115,8 @@ public class PlayerScript : MonoBehaviour
     public int meter;
 
     InputHandler inputHandler;
+
+    int bufferedMove;
 
     void OnDrawGizmos()
     {
@@ -164,9 +161,9 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         if (!hitStopped)
-        {
             SubUpdate();
-        }
+        else
+            buffer(state, );
         if (stunned)
         {
             executeAction(Behaviors.aStun, false);
@@ -259,71 +256,22 @@ public class PlayerScript : MonoBehaviour
 		updateAnimation();
 	}
 
-	private void historyCheck()
+	private void buffer(int currentMove, int nextInput)
 	{
-		int[,] moves = new int[,]
-		{
-			{4,4},
-			{6,6}
-		};
-		int[,] times = new int[,]
-		{
-			{16,-1},
-			{16,-1}
-		};
-		int[] index = new int[]
-		{
-			Behaviors.aBDash,
-			Behaviors.aDash,
-		};
-		for (int m = 0; m < moves.GetLength(0); ++m)//m i sthe variable that counts thorugh the moves array starting from 0 and going to the end
-		{
-			//the counter counts up every time through the i loop
-			int counter = 0;
-			//the i loop goes through history, starting at the last position and going down by a number of moves required by the move trying to be activated (2)
-			for (int i = 5; i > 3; --i)
-			{
-				if (history[i] == moves[m,counter])
-				{
-					if (counter == moves.GetLength(1) - 1)
-					{
-						if (!dashed) {
-							dashed = true;
-							if (m==1) {
-								if (air)
-								{
-									executeAction(Behaviors.aADash, false);
-								}
-								else
-								{
-									executeAction(index[m], false);
-								}
-							}
-							else
-							{
-								executeAction(index[m], false);
-							}
-						}
-						for (int j = history.Count - 1; j > history.Count - 1 - moves.GetLength(1); --j)
-						{
-							history[j] = 5;
-						}
-						break;
-						
-					}
-				}
-				else
-				{
-					break;
-				}
-				if (delays[i] > times[m, counter])
-				{
-					break;
-				}
-				++counter;
-			}
-		}
+        foreach(int move in behaviors.getAction(currentMove).cancels)
+            if (nextInput == move)
+                bufferedMove = nextInput;
 	}
+
+    private void cancelMove()
+    {
+
+    }
+
+    private void dash()
+    {
+
+    }
 
 	private void incrementFrame()
 	{	
