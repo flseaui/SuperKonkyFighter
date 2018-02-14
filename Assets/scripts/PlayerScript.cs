@@ -237,12 +237,11 @@ public class PlayerScript : MonoBehaviour
     {
         if (!hitStopped)
         {
+            if (stunned)
+            {
+                executeAction(Behaviors.aStun, false);
+            }
             SubUpdate();
-        }
-        else if (stunned)
-        {
-            executeAction(Behaviors.aStun, false);
-         //   Debug.Log("stun animation played");
         }
 	}
 
