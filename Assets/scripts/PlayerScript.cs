@@ -336,9 +336,9 @@ public class PlayerScript : MonoBehaviour
 		if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
-			++damageCounter;
 			damagePass = damages[damageCounter];
-		}
+            ++damageCounter;
+        }
 		if (currentFrame == 1)
 		{
 			hurtbox.enabled = true;
@@ -516,7 +516,7 @@ public class PlayerScript : MonoBehaviour
                 lvl = act.level;
 				attackTypes = act.frames;
 				actionCounter = -1;
-				damageCounter = -1;
+				damageCounter = 0;
                 gAnglePass = act.gAngle;
                 gKnockpass = act.gStrength;
                 aAnglePass = act.aAngle;
