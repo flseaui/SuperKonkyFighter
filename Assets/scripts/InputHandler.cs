@@ -23,7 +23,7 @@ public class InputHandler
                   mediumButton,
                   heavyButton;
 
-    InputHandler(int playerID)
+    public InputHandler(int playerID)
     {
         if (playerID == 1)
         {
@@ -54,7 +54,7 @@ public class InputHandler
      * inputType = 0 : keyboard
      * inputType = 1 : joystick 
      */
-    void pollInput(int inputType)
+    public void pollInput(int inputType)
     {
         switch (inputType)
         {
@@ -95,7 +95,7 @@ public class InputHandler
     }
 
     // Handles player input
-    void handleInput()
+    public void handleInput()
     {
         pollInput(0);
 

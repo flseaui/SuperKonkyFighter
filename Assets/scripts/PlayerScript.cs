@@ -68,7 +68,6 @@ public class PlayerScript : MonoBehaviour
     public BoxCollider2D hurtbox;
 
     public bool air;
-    public bool airLock;
 
     public bool hitStopped;
     public bool stunned;
@@ -76,17 +75,10 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth;
     public int health;
 
-	public List<int> history;
-	public List<int> delays;
-	public int inputTimer;
-
     public int state;
-    public int iState;
-	public int heldState;
 
     public int storedAttackStrength;
     public int bufferFrames;
-    public int iAttack = -1;//input attack strength (LMH)
 
 	private int STARTUP = 0;
 	private int ACTIVE = 1;
@@ -114,14 +106,10 @@ public class PlayerScript : MonoBehaviour
 	public bool right1;
 
 	public bool facingRight;
-
 	public int playerID;
 
     public GameObject otherPlayer;
-	public Boolean joy;
-
     public JoyScript JoyScript;
-    public Boolean button;
 
 	public int[] damages;
 	public int damagePass;
@@ -131,6 +119,8 @@ public class PlayerScript : MonoBehaviour
     public float vKnockback;
 
     public int meter;
+
+    InputHandler inputHandler;
 
     void OnDrawGizmos()
     {
@@ -146,8 +136,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        
-
 		this.tag = playerID.ToString();
 		hitbox.tag = playerID.ToString();
 		hurtbox.tag = playerID.ToString();
@@ -160,10 +148,6 @@ public class PlayerScript : MonoBehaviour
         hVelocity = 0;
         gravity = BASE_GRAVITY;
 
-		history = new List<int>(new int[] { 5, 5, 5, 5, 5, 5 });
-		delays = new List<int>(new int[] { 0, 0, 0, 0, 0, 0 });
-		inputTimer = 0;
-
 		cancel = new List<int>();
 		dashed = false;
 
@@ -174,7 +158,9 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-		//Time.timeScale = 0.1F;
+        //Time.timeScale = 0.1F;
+
+        inputHandler = new InputHandler(0);
 	}
 
     // Update is called once per frame
@@ -182,8 +168,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (!hitStopped)
         {
-
-
             SubUpdate();
         }
         if (stunned)
@@ -206,18 +190,10 @@ public class PlayerScript : MonoBehaviour
 
     private void SubUpdate()
 	{
-		joy = (JoyScript != null);
+        inputHandler.pollInput(0);
 
-        button = (lightButton != null);
-
-		if (!facingRight)
-		{
-			this.transform.localScale = new Vector3(-1, 1, 1);
-		}
-		else
-		{
-			this.transform.localScale = new Vector3(1, 1, 1);
-		}
+        // If facing right flip x-scale right, otherwise flip x-scale left
+        this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
         if (stunned)
         {
@@ -230,7 +206,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{
-			input();
+            inputHandler.handleInput();
 		}
 
 		//floor check
@@ -512,12 +488,12 @@ public class PlayerScript : MonoBehaviour
 		{
 			executeAction(iAttack, true);//check if you're attacking then do that
 		}
-
 	}
 
     private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
     {
 		int place;//derive which place in the list of actions the requested action is
+
 		if (attacking)
 		{
 			place = (state - 1) * 3 + strength;
