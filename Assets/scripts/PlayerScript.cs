@@ -237,13 +237,15 @@ public class PlayerScript : MonoBehaviour
     {
         if (!hitStopped)
         {
-            if (stunned)
-            {
-                executeAction(Behaviors.aStun, false);
-            }
+
+
             SubUpdate();
         }
-	}
+        if (stunned)
+        {
+            executeAction(Behaviors.aStun, false);
+        }
+    }
 
 	public void updateAnimation()
 	{
