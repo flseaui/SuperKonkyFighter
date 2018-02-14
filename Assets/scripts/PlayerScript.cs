@@ -1235,6 +1235,11 @@ public class PlayerScript : MonoBehaviour
         health -= ammount;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+        if(vKnockback > 0)
+        {
+            air = true;
+            airLock = true;
+        }
         vVelocity = 0;
         if (!bl)
         {
@@ -1272,11 +1277,13 @@ public class PlayerScript : MonoBehaviour
 
 	public void stun(int time)
 	{
+        shutdown();
 		stunned = true;
 		stunTimer = time;
 		actionOverride = true;
 		executeAction(Behaviors.aStun, false);
 		actionOverride = false;
+        Debug.Log("stunend");
 	}
 
 }
