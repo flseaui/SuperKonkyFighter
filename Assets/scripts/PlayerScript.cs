@@ -328,11 +328,6 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-    private void input()
-    {
-       
-    }
-
 	private void incrementFrame()
 	{
 		++actionCounter;
