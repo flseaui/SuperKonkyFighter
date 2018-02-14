@@ -734,7 +734,6 @@ public class PlayerScript : MonoBehaviour
         if(vKnockback > 0)
         {
             air = true;
-            airLock = true;
         }
         vVelocity = 0;
         if (!bl)
@@ -781,5 +780,4 @@ public class PlayerScript : MonoBehaviour
 		actionOverride = false;
         Debug.Log("stunend");
 	}
-
 }
