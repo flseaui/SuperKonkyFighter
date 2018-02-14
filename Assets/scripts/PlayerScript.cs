@@ -86,7 +86,7 @@ public class PlayerScript : MonoBehaviour
 	private int RECOVERY = 3;
     public int actionState;//attack going on rn
     public bool action;//is there an attack
-	public int type;//current type of frame
+	public int currentFrame;//current type of frame
 	public int[] attackTypes;//the list of frame types
     public int actionFrames; //total time
 	public int actionCounter;//the timer that moves along (counting up)
@@ -330,16 +330,16 @@ public class PlayerScript : MonoBehaviour
 
 	private void incrementFrame()
 	{
-		++actionCounter;
-		int old = type;
-		type = attackTypes[actionCounter];
-		if (old != 1 && type == 1)
+		actionCounter++;
+		int previousFrame = currentFrame;
+		currentFrame = attackTypes[actionCounter];
+		if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
 			++damageCounter;
 			damagePass = damages[damageCounter];
 		}
-		if (type == 1)
+		if (currentFrame == 1)
 		{
 			hurtbox.enabled = true;
 		}
@@ -500,7 +500,7 @@ public class PlayerScript : MonoBehaviour
 		bool executeAction_pass = true;//make sure the attack in cancelable basically
 		if (action)
 		{
-			executeAction_pass = (cancel.Contains(place) && type == RECOVERY) || actionOverride;
+			executeAction_pass = (cancel.Contains(place) && currentFrame == RECOVERY) || actionOverride;
 		}
 
 		if (executeAction_pass)
@@ -538,7 +538,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{
-			if (type == RECOVERY)//check if you can buffer then do that
+			if (currentFrame == RECOVERY)//check if you can buffer then do that
 			{
 				storedAttackStrength = iAttack;
 			}
