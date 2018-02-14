@@ -158,8 +158,6 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-        //Time.timeScale = 0.1F;
-
         inputHandler = new InputHandler(0);
 	}
 
@@ -223,8 +221,8 @@ public class PlayerScript : MonoBehaviour
             hVelocity = 0;
 		}
 
-
 		vVelocity += gravity;
+
 		if (vVelocity < -1)
 		{
 			vVelocity = -1;
