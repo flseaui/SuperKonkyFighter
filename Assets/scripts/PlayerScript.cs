@@ -241,13 +241,13 @@ public class PlayerScript : MonoBehaviour
 			{
 				state = 5;
 				shutdown();
+
 				if (waitForGround)
 				{
 					waitForGround = false;
 					executeAction(Behaviors.aTurn, false);
 				}
 			}
-			dashed = false;
 			air = false;
 			vVelocity = 0;
 			setY(FLOOR_HEIGHT);
@@ -696,8 +696,6 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{
-			waitForEnd = false;
-			waitForGround = false;
 			if (state < 4) {
 				executeAction(Behaviors.aCTurn, false);
 			}
