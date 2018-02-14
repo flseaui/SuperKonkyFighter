@@ -29,52 +29,24 @@ public class InputHandler : MonoBehaviour {
         {
             if (Input.GetKeyDown(lightKey) || lightButton.isActiveAndEnabled)
             {
-                if (!lightLock)
-                {
-                    lightLock = true;
                     light= true;
-                }
             }
-            else
-            {
-                lightLock = false;
-            }
+
             if (Input.GetKeyDown(mediumKey) || mediumButton.isActiveAndEnabled)
             {
-                if (!medLock)
-                {
                     medLock = true;
-                    medium = true;
-                }
             }
-            else
-            {
-                medLock = false;
-            }
+
             if (Input.GetKeyDown(heavyKey) || heavyButton.isActiveAndEnabled)
             {
-                if (!hevLock)
-                {
                     hevLock = true;
-                    heavy = true;
-                }
             }
-            else
-            {
-                hevLock = false;
-            }
+
             if (Input.GetKeyDown(specialKey))
             {
-                if (!speLock)
-                {
-                    speLock = true;
                     special = true;
-                }
             }
-            else
-            {
-                speLock = false;
-            }
+
         }
         else
         {
