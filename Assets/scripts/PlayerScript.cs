@@ -137,24 +137,11 @@ public class PlayerScript : MonoBehaviour
 
 	public int playerID;
 
-    private KeyCode upKey;
-    private KeyCode rightKey;
-    private KeyCode downKey;
-    private KeyCode leftKey;
-    private KeyCode lightKey;
-    private KeyCode mediumKey;
-    private KeyCode heavyKey;
-    private KeyCode specialKey;
-
     public GameObject otherPlayer;
 	public Boolean joy;
 
     public JoyScript JoyScript;
     public Boolean button;
-
-    public Button lightButton;
-    public Button mediumButton;
-    public Button heavyButton;
 
 	public int[] damages;
 	public int damagePass;
@@ -179,28 +166,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        if (playerID == 1)
-        {
-            upKey = KeyCode.W;
-            rightKey = KeyCode.D;
-            downKey = KeyCode.S;
-            leftKey = KeyCode.A;
-            lightKey = KeyCode.J;
-            mediumKey = KeyCode.K;
-            heavyKey = KeyCode.L;
-			specialKey = KeyCode.Slash;
-        }
-        else if (playerID == 2)
-        {
-            upKey = KeyCode.UpArrow;
-            rightKey = KeyCode.RightArrow;
-            downKey = KeyCode.DownArrow;
-            leftKey = KeyCode.LeftArrow;
-            lightKey = KeyCode.Keypad4;
-            mediumKey = KeyCode.Keypad5;
-            heavyKey = KeyCode.Keypad6;
-			specialKey = KeyCode.KeypadEnter;
-        }
+        
 
 		this.tag = playerID.ToString();
 		hitbox.tag = playerID.ToString();

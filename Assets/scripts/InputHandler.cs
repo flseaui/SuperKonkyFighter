@@ -1,14 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class InputHandler : MonoBehaviour {
+public class InputHandler
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    private KeyCode upKey,
+                    rightKey,
+                    downKey,
+                    leftKey,
+                    lightKey,
+                    mediumKey,
+                    heavyKey,
+                    specialKey;
+
+    public Button lightButton,
+                  mediumButton,
+                  heavyButton;
+
+    InputHandler(int playerID)
+    {
+        if (playerID == 1)
+        {
+            upKey = KeyCode.W;
+            rightKey = KeyCode.D;
+            downKey = KeyCode.S;
+            leftKey = KeyCode.A;
+            lightKey = KeyCode.J;
+            mediumKey = KeyCode.K;
+            heavyKey = KeyCode.L;
+            specialKey = KeyCode.Slash;
+        }
+        else if (playerID == 2)
+        {
+            upKey = KeyCode.UpArrow;
+            rightKey = KeyCode.RightArrow;
+            downKey = KeyCode.DownArrow;
+            leftKey = KeyCode.LeftArrow;
+            lightKey = KeyCode.Keypad4;
+            mediumKey = KeyCode.Keypad5;
+            heavyKey = KeyCode.Keypad6;
+            specialKey = KeyCode.KeypadEnter;
+        }
+    }
+
+    bool[] getInput()
+    {
+
+        return new bool[];
+    }
+
     // Handles player input
     void handleInput()
     {
@@ -20,7 +62,7 @@ public class InputHandler : MonoBehaviour {
         right = false;
         down = false;
         left = false;
-        light= false;
+        light = false;
         medium = false;
         heavy = false;
         special = false;
@@ -29,17 +71,17 @@ public class InputHandler : MonoBehaviour {
         {
             if (Input.GetKeyDown(lightKey) || lightButton.isActiveAndEnabled)
             {
-                light= true;
+                light = true;
             }
 
             if (Input.GetKeyDown(mediumKey) || mediumButton.isActiveAndEnabled)
             {
-                medium= true;
+                medLock = true;
             }
 
             if (Input.GetKeyDown(heavyKey) || heavyButton.isActiveAndEnabled)
             {
-                heavy = true;
+                hevLock = true;
             }
 
             if (Input.GetKeyDown(specialKey))
@@ -52,23 +94,51 @@ public class InputHandler : MonoBehaviour {
         {
             if (Input.GetKeyDown(lightKey))
             {
-                light= true;
+                if (!lightLock)
+                {
+                    lightLock = true;
+                    light = true;
+                }
             }
-
+            else
+            {
+                lightLock = false;
+            }
             if (Input.GetKeyDown(mediumKey))
             {
-
-                medium = true;
+                if (!medLock)
+                {
+                    medLock = true;
+                    medium = true;
+                }
             }
-
+            else
+            {
+                medLock = false;
+            }
             if (Input.GetKeyDown(heavyKey))
             {
-                heavy = true;
+                if (!hevLock)
+                {
+                    hevLock = true;
+                    heavy = true;
+                }
             }
-
+            else
+            {
+                hevLock = false;
+            }
             if (Input.GetKeyDown(specialKey))
             {
-                special = true;
+                if (!speLock)
+                {
+                    speLock = true;
+                    special = true;
+                }
+            }
+            else
+            {
+                speLock = false;
             }
         }
 
@@ -381,8 +451,9 @@ public class InputHandler : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
