@@ -333,12 +333,14 @@ public class PlayerScript : MonoBehaviour
 		int previousFrame = currentFrame;
 		currentFrame = attackTypes[actionCounter];
         actionCounter++;
+
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
 			damagePass = damages[damageCounter];
             ++damageCounter;
         }
+
 		if (currentFrame == 1)
 		{
 			hurtbox.enabled = true;
