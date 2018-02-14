@@ -185,7 +185,7 @@ public class CameraScript : MonoBehaviour
                     p2s.meter += 2;
                 }
 
-                if (p2s.type == 0)
+                if (p2s.currentFrame == 0)
 				{
 					p2s.stun((int)p2s.level(2));
 				}

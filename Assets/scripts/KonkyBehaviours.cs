@@ -135,7 +135,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 3,
-        cancels     = new int[] { aJump, },
+        cancels     = new int[] { aJump },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -90,
