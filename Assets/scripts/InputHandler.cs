@@ -8,6 +8,15 @@ public class InputHandler
 
     bool[] currentInput;
 
+    public bool up = false,
+                right = false,
+                down = false,
+                left = false,
+                light = false,
+                medium = false,
+                heavy = false,
+                special = false;
+
     JoyScript joyScript;
 
     private KeyCode upKey,
@@ -98,15 +107,6 @@ public class InputHandler
     public void handleInput()
     {
         pollInput(0);
-
-        bool up = false,
-            right = false,
-            down = false,
-            left = false,
-            light = false,
-            medium = false,
-            heavy = false,
-            special = false;
 
         up      = currentInput[0];
         down    = currentInput[1];

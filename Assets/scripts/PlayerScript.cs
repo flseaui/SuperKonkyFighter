@@ -342,9 +342,8 @@ public class PlayerScript : MonoBehaviour
         }
 
 		if (currentFrame == 1)
-		{
 			hurtbox.enabled = true;
-		}
+
 		else
 		{
 			hurtbox.enabled = false;
@@ -471,19 +470,12 @@ public class PlayerScript : MonoBehaviour
 			height = baseHeight;
 		}
 
-		if (!airLock)
-		{
-			state = heldState;//set the god damned state
-			if (state > 6)//jump yo
-			{
-				executeAction(Behaviors.aJump, false);
-			}
-		}
+        // If airborn and state > 6: jump
+		if (!air && state > 6)
+			executeAction(Behaviors.aJump, false);
 	
-		if (iAttack != NO_ATTACK_STRENGTH)
-		{
-			executeAction(iAttack, true);//check if you're attacking then do that
-		}
+        // TODO need to figure out way to get current attack
+		//executeAction(, true);
 	}
 
     private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
@@ -728,6 +720,7 @@ public class PlayerScript : MonoBehaviour
         if(vKnockback > 0)
         {
             air = true;
+            airLock = true;
         }
         vVelocity = 0;
         if (!bl)
@@ -774,4 +767,5 @@ public class PlayerScript : MonoBehaviour
 		actionOverride = false;
         Debug.Log("stunend");
 	}
+
 }
