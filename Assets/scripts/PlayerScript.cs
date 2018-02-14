@@ -572,12 +572,10 @@ public class PlayerScript : MonoBehaviour
 			state = jumpPass;
 			if (jumpPass == 8)
 			{
-				airLock = true;
 				vVelocity = jumpSpeed;
 			}
 			else if (jumpPass == 9)
 			{
-				airLock = true;
 				vVelocity = jumpSpeed;
 				if (facingRight)
 				{
@@ -590,7 +588,6 @@ public class PlayerScript : MonoBehaviour
 			}
 			else if (jumpPass == 7)
 			{
-				airLock = true;
 				vVelocity = jumpSpeed;
 				if (facingRight)
 				{
@@ -604,9 +601,6 @@ public class PlayerScript : MonoBehaviour
 		}
         else if (storedAttackStrength != NO_ATTACK_STRENGTH)
         {
-			if (!airLock) {
-				state = heldState;
-			}
 			actionOverride = true;
             executeAction(storedAttackStrength, true);
 			actionOverride = false;
