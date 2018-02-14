@@ -235,7 +235,7 @@ public class PlayerScript : MonoBehaviour
 		moveX(hVelocity + hKnockback);
 		moveY(vVelocity + vKnockback);
 
-		if (y() < FLOOR_HEIGHT)//ground snap
+		if (y() < FLOOR_HEIGHT) //ground snap
 		{
 			if (air)
 			{
