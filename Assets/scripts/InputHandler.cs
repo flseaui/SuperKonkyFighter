@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class InputHandler
 {
 
+    bool[] currentInput;
+
+    JoyScript joyScript;
+
     private KeyCode upKey,
                     rightKey,
                     downKey,
@@ -45,219 +49,77 @@ public class InputHandler
         }
     }
 
-    bool[] getInput()
+    /* 
+     * Polls user input
+     * inputType = 0 : keyboard
+     * inputType = 1 : joystick 
+     */
+    void pollInput(int inputType)
     {
-
-        return new bool[];
+        switch (inputType)
+        {
+            case 0:
+                // Keyboard
+                currentInput[0] = (Input.GetKeyDown(upKey));
+                currentInput[1] = (Input.GetKeyDown(downKey));
+                currentInput[2] = (Input.GetKeyDown(leftKey));
+                currentInput[3] = (Input.GetKeyDown(rightKey));
+                currentInput[4] = (Input.GetKeyDown(lightKey));
+                currentInput[5] = (Input.GetKeyDown(mediumKey));
+                currentInput[6] = (Input.GetKeyDown(heavyKey));
+                currentInput[7] = (Input.GetKeyDown(specialKey));
+                break;
+            case 1:
+                // Joystick
+                currentInput[0] = (joyScript.Up);
+                currentInput[1] = (joyScript.Down);
+                currentInput[2] = (joyScript.Left);
+                currentInput[3] = (joyScript.Right);
+                //currentInput[4] = (light button);
+                //currentInput[5] = (medium button);
+                //currentInput[6] = (heavy button);
+                //currentInput[7] = (specialbutton);
+                break;
+            default:
+                // Default - Keyboard
+                currentInput[0] = (Input.GetKeyDown(upKey));
+                currentInput[1] = (Input.GetKeyDown(downKey));
+                currentInput[2] = (Input.GetKeyDown(leftKey));
+                currentInput[3] = (Input.GetKeyDown(rightKey));
+                currentInput[4] = (Input.GetKeyDown(lightKey));
+                currentInput[5] = (Input.GetKeyDown(mediumKey));
+                currentInput[6] = (Input.GetKeyDown(heavyKey));
+                currentInput[7] = (Input.GetKeyDown(specialKey));
+                break;
+        }
     }
 
     // Handles player input
     void handleInput()
     {
-        up1 = false;
-        right1 = false;
-        down1 = false;
-        left1 = false;
-        up = false;
-        right = false;
-        down = false;
-        left = false;
-        light = false;
-        medium = false;
-        heavy = false;
-        special = false;
+        pollInput(0);
 
-        if (button)
-        {
-            if (Input.GetKeyDown(lightKey) || lightButton.isActiveAndEnabled)
-            {
-                light = true;
-            }
+        bool up1 = false,
+            right1 = false,
+            down1 = false,
+            left1 = false,
+            up = false,
+            right = false,
+            down = false,
+            left = false,
+            light = false,
+            medium = false,
+            heavy = false,
+            special = false;
 
-            if (Input.GetKeyDown(mediumKey) || mediumButton.isActiveAndEnabled)
-            {
-                medLock = true;
-            }
-
-            if (Input.GetKeyDown(heavyKey) || heavyButton.isActiveAndEnabled)
-            {
-                hevLock = true;
-            }
-
-            if (Input.GetKeyDown(specialKey))
-            {
-                special = true;
-            }
-
-        }
-        else
-        {
-            if (Input.GetKeyDown(lightKey))
-            {
-                if (!lightLock)
-                {
-                    lightLock = true;
-                    light = true;
-                }
-            }
-            else
-            {
-                lightLock = false;
-            }
-            if (Input.GetKeyDown(mediumKey))
-            {
-                if (!medLock)
-                {
-                    medLock = true;
-                    medium = true;
-                }
-            }
-            else
-            {
-                medLock = false;
-            }
-            if (Input.GetKeyDown(heavyKey))
-            {
-                if (!hevLock)
-                {
-                    hevLock = true;
-                    heavy = true;
-                }
-            }
-            else
-            {
-                hevLock = false;
-            }
-            if (Input.GetKeyDown(specialKey))
-            {
-                if (!speLock)
-                {
-                    speLock = true;
-                    special = true;
-                }
-            }
-            else
-            {
-                speLock = false;
-            }
-        }
-
-        if (joy)
-        {
-            if (Input.GetKeyDown(upKey) || JoyScript.Up)
-            {
-                up1 = true;
-                if (!upLock)
-                {
-                    upLock = true;
-                    up = true;
-                }
-            }
-            else
-            {
-                upLock = false;
-            }
-
-            if (Input.GetKeyDown(leftKey) || JoyScript.Left)
-            {
-                left1 = true;
-                if (!leftLock)
-                {
-                    leftLock = true;
-                    left = true;
-                }
-            }
-            else
-            {
-                leftLock = false;
-            }
-
-            if (Input.GetKeyDown(downKey) || JoyScript.Down)
-            {
-                down1 = true;
-                if (!downLock)
-                {
-                    downLock = true;
-                    down = true;
-                }
-            }
-            else
-            {
-                downLock = false;
-            }
-
-            if (Input.GetKeyDown(rightKey) || JoyScript.Right)
-            {
-                right1 = true;
-                if (!rightLock)
-                {
-                    rightLock = true;
-                    right = true;
-                }
-            }
-            else
-            {
-                rightLock = false;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(upKey))
-            {
-                up1 = true;
-                if (!upLock)
-                {
-                    upLock = true;
-                    up = true;
-                }
-            }
-            else
-            {
-                upLock = false;
-            }
-
-            if (Input.GetKeyDown(leftKey))
-            {
-                left1 = true;
-                if (!leftLock)
-                {
-                    leftLock = true;
-                    left = true;
-                }
-            }
-            else
-            {
-                leftLock = false;
-            }
-
-            if (Input.GetKeyDown(downKey))
-            {
-                down1 = true;
-                if (!downLock)
-                {
-                    downLock = true;
-                    down = true;
-                }
-            }
-            else
-            {
-                downLock = false;
-            }
-
-            if (Input.GetKeyDown(rightKey))
-            {
-                right1 = true;
-                if (!rightLock)
-                {
-                    rightLock = true;
-                    right = true;
-                }
-            }
-            else
-            {
-                rightLock = false;
-            }
-        }
+        up      = currentInput[0];
+        down    = currentInput[1];
+        left    = currentInput[2];
+        right   = currentInput[3];
+        light   = currentInput[4];
+        medium  = currentInput[5];
+        heavy   = currentInput[6];
+        special = currentInput[7];
 
         if (up1 && right1)
         {
