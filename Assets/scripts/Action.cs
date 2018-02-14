@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Action {
 
+    public int attackClass;
+
 	public bool infinite;
 	public int[] frames;
 

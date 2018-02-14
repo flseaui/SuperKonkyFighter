@@ -116,11 +116,13 @@ public class CameraScript : MonoBehaviour
 
                 if (p1s.air)
                 {
-                    p1s.damage(p2s.damagePass / 10, p2s.aKnockpass / 2, p2s.aAnglePass);
+                    p2s.meter += p1s.damage(p2s.damagePass / 10, p2s.aKnockpass / 2, p2s.aAnglePass, p2s.classPass, true);
+                    p1s.meter += 2;
                 }
                 else
                 {
-                    p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass);
+                    p2s.meter += p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass, p2s.classPass, true);
+                    p1s.meter += 2;
                 }
 				
 			}
@@ -128,11 +130,13 @@ public class CameraScript : MonoBehaviour
 			{
                 if (p1s.air)
                 {
-                    p1s.damage(p2s.damagePass, p2s.aKnockpass, p2s.aAnglePass);
+                    p2s.meter += p1s.damage(p2s.damagePass, p2s.aKnockpass, p2s.aAnglePass, p2s.classPass, false);
+                    p1s.meter += 2;
                 }
                 else
                 {
-                    p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass);
+                    p2s.meter += p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass, p2s.classPass, false);
+                    p1s.meter += 2;
                 }
                 
 				if (p1s.type == 0)
@@ -158,11 +162,13 @@ public class CameraScript : MonoBehaviour
 				p2s.block((int)p2s.level(3));
                 if (p2s.air)
                 {
-                    p2s.damage(p1s.damagePass / 10, p1s.aKnockpass / 2, p1s.aAnglePass);
+                    p1s.meter += p2s.damage(p1s.damagePass / 10, p1s.aKnockpass / 2, p1s.aAnglePass, p1s.classPass, true);
+                    p2s.meter += 2;
                 }
                 else
                 {
-                    p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass);
+                    p1s.meter += p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass, p1s.classPass, true);
+                    p2s.meter += 2;
                 }
 
             }
@@ -170,11 +176,13 @@ public class CameraScript : MonoBehaviour
             {
                 if (p2s.air)
                 {
-                    p2s.damage(p1s.damagePass, p1s.aKnockpass, p1s.aAnglePass);
+                    p1s.meter += p2s.damage(p1s.damagePass, p1s.aKnockpass, p1s.aAnglePass, p1s.classPass, false);
+                    p2s.meter += 2;
                 }
                 else
                 {
-                    p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass);
+                    p1s.meter += p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass, p1s.classPass, false);
+                    p2s.meter += 2;
                 }
 
                 if (p2s.type == 0)
@@ -235,9 +243,11 @@ public class CameraScript : MonoBehaviour
 		uis.health2.maxValue = p2s.maxHealth;
 		uis.health2.minValue = 0;
 		uis.health1.value = p1s.health;
+        uis.meter1.value = p1s.meter;
 		uis.health2.value = p2s.health;
+        uis.meter2.value = p2s.meter;
 
-		if (shake)
+        if (shake)
 		{            
 			shakeX = Random.Range(-1,1);
 			shakeY = Random.Range(-1, 1);

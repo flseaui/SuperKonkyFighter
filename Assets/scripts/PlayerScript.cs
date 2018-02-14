@@ -106,6 +106,7 @@ public class PlayerScript : MonoBehaviour
     public float gKnockpass;
     public int aAnglePass;
     public float aKnockpass;
+    public int classPass;
 
 
     public bool upLock;
@@ -162,6 +163,8 @@ public class PlayerScript : MonoBehaviour
 
     public float hKnockback;
     public float vKnockback;
+
+    public int meter;
 
     void OnDrawGizmos()
     {
@@ -1024,6 +1027,7 @@ public class PlayerScript : MonoBehaviour
                 gKnockpass = act.gStrength;
                 aAnglePass = act.aAngle;
                 aKnockpass = act.aStrength;
+                classPass = act.attackClass;
                 actionFrames = attackTypes.Length;
 				infiniteAction = act.infinite;
 				incrementFrame();
@@ -1225,13 +1229,33 @@ public class PlayerScript : MonoBehaviour
 		passDir = dir;
     }
 
-    public void damage(int ammount, float k, int angle)
+    public int damage(int ammount, float k, int angle, int ac, bool bl)
     {
         Debug.Log(ammount);
         health -= ammount;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
         vVelocity = 0;
+        if (!bl)
+        {
+            switch (ac)
+            {
+                case 0:
+                    return 4;
+                case 1:
+                    return 8;
+                case 2:
+                    return 12;
+                case 3:
+                    return 8;
+                default:
+                    return 2;
+            }
+        }
+        else
+        {
+            return 2;
+        }
     }
 
 	public void block(int amm)
