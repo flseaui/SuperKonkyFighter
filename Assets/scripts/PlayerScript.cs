@@ -26,7 +26,6 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    public bool juggle;
     public bool dashing;
 
     public KeyCode[] dashKey;
@@ -373,7 +372,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			if (heldState != 6)
 			{
-				shutdown();
+                shutdown();
 			}
 		}
 
