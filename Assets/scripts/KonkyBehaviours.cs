@@ -8,14 +8,16 @@ public class KonkyBehaviours : Behaviors {
     /* 
      * ID FORMAT
      * id = numpad + power
-     * - light   = + 0
-     * - medium  = + 10
-     * - heavy   = + 20
-     * - special = + 30
+     * - light    = + 0
+     * - medium   = + 10
+     * - heavy    = + 20
+     * - special  = + 30
+     * - advanced = + 40
      * example: standM = 5 + 10 = 15
      */
 
     IDictionary<int, Attack> attackIds;
+    IDictionary<int, Advanced> advancedIds;
 
     public KonkyBehaviours()
     {
@@ -63,6 +65,17 @@ public class KonkyBehaviours : Behaviors {
             { 34, fourS  },
             { 35, fiveS  },
             { 36, sixS   }
+        };
+
+        advancedIds = new Dictionary<int, Advanced>()
+        {
+            { 1,    forwardDash},
+            { 2,       backDash},
+            { 3, forwardAirDash},
+            { 4,    backAirDash},
+            { 5,          stun },
+            { 6,         block },
+            { 7,         turns }
         };
     }
 
@@ -334,7 +347,7 @@ public class KonkyBehaviours : Behaviors {
     private Attack jump = new Attack()        { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3                                     },                  cancels  = new int[] {       } };
 
     // Back Dash
-    private Attack backDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {aJump  } };
+    private Attack backDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] { aJump } };
 
     // Forward Dash
     private Attack forwardDash = new Attack() { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] { aJump } };
@@ -346,7 +359,8 @@ public class KonkyBehaviours : Behaviors {
     private Attack block = new Attack()       { frames = new int[] { 4                                                          }, infinite = true, cancels  = new int[] {       } };
 
     // Air Dash
-    private Attack airDash = new Attack()     { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
+    private Attack forwardAirDash = new Attack() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
+    private Attack backAirDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
