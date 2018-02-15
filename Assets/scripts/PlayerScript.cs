@@ -362,7 +362,17 @@ public class PlayerScript : MonoBehaviour
 			hurtbox.size = new Vector2(0f, 0f);
 		}
 
-        if (AttackState)
+        if (currentFrame == 3)
+        {
+            if (bufferedMove != 0)
+            {
+                storedAttack = bufferedMove;
+                bufferedMove = 0;
+            }
+
+            if (AttackState != 0)
+                storedAttack = AttackState;
+        }
 	}
 
     private void stateCheck()
