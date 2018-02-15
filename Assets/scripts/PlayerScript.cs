@@ -348,16 +348,11 @@ public class PlayerScript : MonoBehaviour
     private void stateCheck()
     {
 		if (action) {
-			if (!infiniteAction) {
+			if (!infiniteAction)
 				if (actionCounter == actionFrames - 1) //end an action by counting down the action timer
-				{
 					actionEnd();
-				}
 				else
-				{
 					incrementFrame();
-				}
-			}
 		}
 		else
 		{
@@ -366,29 +361,21 @@ public class PlayerScript : MonoBehaviour
 		}
 
 		if (actionState == Behaviors.aDash)
-		{
 			if (heldState != 6)
-			{
                 shutdown();
-			}
-		}
 
         if (hKnockback != 0)
         {
 			if (!air) {
 				hKnockback *= .75f;
 				if (Mathf.Abs(hKnockback) < 0.005f)
-				{
 					hKnockback = 0;
-				}
 			}
 			else
 			{
 				hKnockback *= .5f;
 				if (Mathf.Abs(hKnockback) < 0.005f)
-				{
 					hKnockback = 0;
-				}
 			}
         }
 

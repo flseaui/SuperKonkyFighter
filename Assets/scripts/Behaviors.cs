@@ -5,55 +5,55 @@ using UnityEngine;
 
 public abstract class Behaviors {
 
-	public static int a1l       = 0;
-	public static int a1m       = 1;
-	public static int a1h       = 2;
-	public static int a2l       = 3;
-	public static int a2m       = 4;
-	public static int a2h       = 5;
-	public static int a3l       = 6;
-	public static int a3m       = 7;
-	public static int a3h       = 8;
-	public static int a4l       = 9;
-	public static int a4m       = 10;
-	public static int a4h       = 11;
-	public static int a5l       = 12;
-	public static int a5m       = 13;
-	public static int a5h       = 14;
-	public static int a6l       = 15;
-	public static int a6m       = 16;
-	public static int a6h       = 17;
-	public static int a7l       = 18;
-	public static int a7m       = 19;
-	public static int a7h       = 20;
-	public static int a8l       = 21;
-	public static int a8m       = 22;
-	public static int a8h       = 23;
-	public static int a9l       = 24;
-	public static int a9m       = 25;
-	public static int a9h       = 26;
-	public static int a1s       = 27;
-	public static int a2s       = 28;
-	public static int a3s       = 29;
-	public static int a4s       = 30;
-	public static int a5s       = 31;
-	public static int a6s       = 32;
-	public static int a7s       = 33;
-	public static int a8s       = 34;
-	public static int a9s       = 35;
-	public static int aTurn     = 36;
-	public static int aCTurn    = 37;
-	public static int aJump     = 38;
-	public static int aBDash    = 39;
-	public static int aDash     = 40;
-	public static int aBlock    = 41;
-	public static int aCBlock   = 42;
-	public static int aABlock   = 43;
-	public static int aStun     = 44;
-	public static int aRecover  = 45;
-	public static int aADash    = 46;
+    public enum ATTACK_IDS : byte
+    {
+        // DOWN BACK
+        _1L = 1,
+        _1M = 11,
+        _1H = 21,
 
-	private Action[] actions;
+        // DOWN
+        _2L = 2,
+        _2M = 12,
+        _2H = 22,
+
+        // DOWN FORWARD
+        _3L = 3,
+        _3M = 13,
+        _3H = 23,
+
+        // BACK
+        _4L = 4,
+        _4M = 14,
+        _4H = 24,
+
+        // NEUTRAL
+        _5L = 5,
+        _5M = 15,
+        _5H = 25,
+
+        // FORWARD
+        _6L = 6,
+        _6M = 16,
+        _6H = 26,
+
+        // UP BACK
+        _7L = 7,
+        _7M = 17,
+        _7H = 27,
+
+        // UP
+        _8L = 8,
+        _8M = 18,
+        _8H = 28,
+
+        // UP FORWARD
+        _9L = 9,
+        _9M = 19,
+        _9H = 29
+    };
+
+    private Action[] actions;
 
     public Behaviors(Action[] ac)
     {

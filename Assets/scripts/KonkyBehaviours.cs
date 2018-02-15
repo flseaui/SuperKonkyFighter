@@ -4,20 +4,68 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors {
 
+    enum KONKY_ATTACK_IDS : ATTACK_IDS
+    {
+        // DOWN BACK
+        _1L = 1,
+        _1M = 11,
+        _1H = 21,
+
+        // DOWN
+        _2L = 2,
+        _2M = 12,
+        _2H = 22,
+
+        // DOWN FORWARD
+        _3L = 3,
+        _3M = 13,
+        _3H = 23,
+
+        // BACK
+        _4L = 4,
+        _4M = 14,
+        _4H = 24,
+
+        // NEUTRAL
+        _5L = 5,
+        _5M = 15,
+        _5H = 25,
+
+        // FORWARD
+        _6L = 6,
+        _6M = 16,
+        _6H = 26,
+
+        // UP BACK
+        _7L = 7,
+        _7M = 17,
+        _7H = 27,
+
+        // UP
+        _8L = 8,
+        _8M = 18,
+        _8H = 28,
+
+        // UP FORWARD
+        _9L = 9,
+        _9M = 19,
+        _9H = 29
+    };
+
     //0 total frames
     //1 recovery frames
     //3 damage
     //4 chip damage DO THIS
     //5 blockstun
 
-    //attack class:
-    //0 = light
-    //1 = medium
-    //2 = heavy
-    //3 = super
+        //attack class:
+        //0 = light
+        //1 = medium
+        //2 = heavy
+        //3 = super
 
-    // Standing Light
-    static Action standL = new Action()
+        // Standing Light
+    private Attack standL = new Attack()
     {
         attackClass = 0,
         frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
@@ -31,7 +79,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Standing Medium
-    static Action standM = new Action()
+    private Attack standM = new Attack()
     {
         attackClass = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -45,7 +93,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Standing Heavy
-    static Action standH = new Action()
+    private Attack standH = new Attack()
     {
         attackClass = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -59,7 +107,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Crouching Light
-    static Action crouchL = new Action()
+    private Attack crouchL = new Attack()
     {
         attackClass = 0,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -73,7 +121,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Crouching Medium
-    static Action crouchM = new Action()
+    private Attack crouchM = new Attack()
     {
         attackClass = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -87,7 +135,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Crouching Heavy
-    static Action crouchH = new Action()
+    private Attack crouchH = new Attack()
     {
         attackClass = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -101,7 +149,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Jumping Light
-    static Action jumpL = new Action()
+    private Attack jumpL = new Attack()
     {
         attackClass = 0,
         frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3 },
@@ -115,7 +163,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Jumping Medium
-    static Action jumpM = new Action()
+    private Attack jumpM = new Attack()
     {
         attackClass = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -129,7 +177,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Jumping Heavy
-    static Action jumpH = new Action()
+    private Attack jumpH = new Attack()
     {
         attackClass = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -143,7 +191,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Forward Medium
-    static Action forwardM = new Action()
+    private Attack forwardM = new Attack()
     {
         attackClass = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -158,7 +206,7 @@ public class KonkyBehaviours : Behaviors {
 
 
     // One Super
-    static Action oneS = new Action()
+    private Attack oneS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0 },
@@ -172,7 +220,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Two Super
-    static Action twoS = new Action()
+    private Attack twoS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -186,7 +234,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Three Super
-    static Action threeS = new Action()
+    private Attack threeS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -200,7 +248,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Four Super
-    static Action fourS = new Action()
+    private Attack fourS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3 },
@@ -214,7 +262,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Five Super
-    static Action fiveS = new Action()
+    private Attack fiveS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3 },
@@ -228,7 +276,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Six Super
-    static Action sixS = new Action()
+    private Attack sixS = new Attack()
     {
         attackClass = 3,
         frames      = new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
@@ -242,7 +290,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Throw
-    static Action Throw = new Action()
+    private Attack Throw = new Attack()
     {
         attackClass = 2,
         frames      = new int[] { 0 },
@@ -256,78 +304,27 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Turns
-    static Action turns = new Action()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           },                  cancels  = new int[] {       } };
+    private Attack turns = new Attack()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           },                  cancels  = new int[] {       } };
 
     // Jump
-    static Action jump = new Action()        { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3                                     },                  cancels  = new int[] {       } };
+    private Attack jump = new Attack()        { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3                                     },                  cancels  = new int[] {       } };
 
     // Back Dash
-    static Action backDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {aJump  } };
+    private Attack backDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {aJump  } };
 
     // Forward Dash
-    static Action forwardDash = new Action() { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] { aJump } };
+    private Attack forwardDash = new Attack() { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] { aJump } };
 
     // Stun
-    static Action stun = new Action()        { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] {       } };
+    private Attack stun = new Attack()        { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] {       } };
 
     // Block
-    static Action block = new Action()       { frames = new int[] { 4                                                          }, infinite = true, cancels  = new int[] {       } };
+    private Attack block = new Attack()       { frames = new int[] { 4                                                          }, infinite = true, cancels  = new int[] {       } };
 
     // Air Dash
-    static Action airDash = new Action()     { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
+    private Attack airDash = new Attack()     { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
 
-    static Action[] konkyActions = new Action[]
-    {
-        crouchL,
-        crouchM,
-        crouchH,
-        crouchL,
-        crouchM,
-        crouchH,
-        crouchL,
-        crouchM,
-        crouchH,
-        standL,
-        standM,
-        standH,
-        standL,
-        standM,
-        standH,
-        standL,
-        forwardM,
-        standH,
-        jumpL,
-        jumpM,
-        jumpH,
-        jumpL,
-        jumpM,
-        jumpH,
-        jumpL,
-        jumpM,
-        jumpH,
-        oneS,
-        twoS,
-        threeS,
-        fourS,
-        fiveS,
-        sixS,
-        null,
-        null,
-        null,
-        turns,
-        turns,
-        jump,
-        backDash,
-        forwardDash,
-        block,
-        null,
-        null,
-        stun,
-        null,
-		airDash,
-	};
-
-	public KonkyBehaviours() : base(konkyActions) { }
+	public KonkyBehaviours() : base(konkyAttacks) { }
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
