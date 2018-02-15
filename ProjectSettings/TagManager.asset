@@ -42,9 +42,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Controls
-    uniqueID: 316886215
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -56,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2271859255
+    locked: 0
+  - name: Controls
+    uniqueID: 316886215
     locked: 0
