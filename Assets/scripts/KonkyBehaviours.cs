@@ -43,8 +43,8 @@ public class KonkyBehaviours : Behaviors{
         damage = new int[] { 700, 700 },
         level = 3,
         cancels = new int[] {aJump, a1s, a2s, a3s, a4s, a5s, a6s },
-        gAngle = 80, gStrength = 4,
-        aAngle = 80, aStrength = 4 };
+        gAngle = 80, gStrength = 3.5f,
+        aAngle = 80, aStrength = 3.5f };
 
     //5L
 	static Action standL = new Action() {
