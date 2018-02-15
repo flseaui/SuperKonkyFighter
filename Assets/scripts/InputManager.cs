@@ -69,10 +69,10 @@ public class InputManager
         {
             case 0:
                 // Keyboard
-                currentInput[0] = (Input.GetKeyDown(upKey));
-                currentInput[1] = (Input.GetKeyDown(downKey));
-                currentInput[2] = (Input.GetKeyDown(leftKey));
-                currentInput[3] = (Input.GetKeyDown(rightKey));
+                currentInput[0] = (Input.GetKey(upKey));
+                currentInput[1] = (Input.GetKey(downKey));
+                currentInput[2] = (Input.GetKey(leftKey));
+                currentInput[3] = (Input.GetKey(rightKey));
                 currentInput[4] = (Input.GetKeyDown(lightKey));
                 currentInput[5] = (Input.GetKeyDown(mediumKey));
                 currentInput[6] = (Input.GetKeyDown(heavyKey));
@@ -91,10 +91,10 @@ public class InputManager
                 break;
             default:
                 // Default - Keyboard
-                currentInput[0] = (Input.GetKeyDown(upKey));
-                currentInput[1] = (Input.GetKeyDown(downKey));
-                currentInput[2] = (Input.GetKeyDown(leftKey));
-                currentInput[3] = (Input.GetKeyDown(rightKey));
+                currentInput[0] = (Input.GetKey(upKey));
+                currentInput[1] = (Input.GetKey(downKey));
+                currentInput[2] = (Input.GetKey(leftKey));
+                currentInput[3] = (Input.GetKey(rightKey));
                 currentInput[4] = (Input.GetKeyDown(lightKey));
                 currentInput[5] = (Input.GetKeyDown(mediumKey));
                 currentInput[6] = (Input.GetKeyDown(heavyKey));

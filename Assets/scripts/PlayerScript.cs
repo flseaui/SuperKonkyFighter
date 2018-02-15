@@ -123,7 +123,13 @@ public class PlayerScript : MonoBehaviour
 
     bool damageDealt;
 
-    public int storedAttack;
+    public int inputAttack;
+    public int inputAdv;
+
+    public int[] jump;
+
+    public int dashTimer;
+    public int dashTrack;
 
     void OnDrawGizmos()
     {
@@ -201,7 +207,7 @@ public class PlayerScript : MonoBehaviour
         bool[] input = getInput.currentInput;
 
         BasicState = inputConvert(input);
-        setAttackState(input);
+        setAttackInput(input);
 
 
 
@@ -276,15 +282,10 @@ public class PlayerScript : MonoBehaviour
 
 	private void buffer(int bufferedInput)
 	{
-        foreach (int action in getAction(storedAttack).cancels)
+        foreach (int action in getAction(inputAttack).cancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
 	}
-
-    private void cancelMove()
-    {
-
-    }
     
     private int inputConvert(bool[] input)
     {
@@ -326,18 +327,52 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void setAttackState(bool[] input)
+    private void getAdvancedInput(bool[] input)
+    {
+        if (input[2] && dashTrack == 0 && dashTimer != 0)
+        {
+            if (facingRight) { }
+            //back dash
+            else { }
+            //forward dash
+
+        }else if (input[3] && dashTrack == 1 && dashTimer != 0)
+        {
+            if (facingRight) { }
+            //forward dash
+            else { }
+            //back dash
+
+        }
+
+        if (input[2] || input[3])
+        {
+            dashTimer = 15;
+            if (input[2])
+                dashTrack = 0;
+            else
+                dashTrack = 1;
+        }
+
+        if (flip)
+            dashTimer = 0;
+            
+        if (!(input[2] || input[3]) && dashTimer != 0)
+            dashTimer--;
+    }
+
+    private void setAttackInput(bool[] input)
     {
         if (input[4])
-            AttackState = BasicState;
+            inputAttack = BasicState;
         else if (input[5])
-            AttackState = BasicState + 10;
+            inputAttack = BasicState + 10;
         else if (input[6])
-            AttackState = BasicState + 20;
+            inputAttack = BasicState + 20;
         else if (input[7])
-            AttackState = BasicState + 30;
+            inputAttack = BasicState + 30;
         else
-            AttackState = 0;
+            inputAttack = 0;
     }
 
 	private void incrementFrame()
@@ -366,12 +401,10 @@ public class PlayerScript : MonoBehaviour
         {
             if (bufferedMove != 0)
             {
-                storedAttack = bufferedMove;
+                AttackState = bufferedMove;
                 bufferedMove = 0;
-            }
-
-            if (AttackState != 0)
-                storedAttack = AttackState;
+            }else if (inputAttack != 0)
+                AttackState = inputAttack;
         }
 	}
 
