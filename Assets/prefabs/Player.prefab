@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 6.5}
+  m_Offset: {x: 1, y: 6.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.4, y: 13}
+  m_Size: {x: 6, y: 12.5}
   m_EdgeRadius: 0
 --- !u!95 &95060079290894174
 Animator:
@@ -206,6 +206,11 @@ MonoBehaviour:
   infiniteAction: 0
   lvl: 0
   actionOverride: 0
+  gAnglePass: 0
+  gKnockpass: 0
+  aAnglePass: 0
+  aKnockpass: 0
+  classPass: 0
   upLock: 0
   leftLock: 0
   downLock: 0
@@ -237,6 +242,9 @@ MonoBehaviour:
   heavyButton: {fileID: 0}
   damages: 
   damagePass: 0
+  hKnockback: 0
+  vKnockback: 0
+  meter: 0
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: 0
   already: 0
+  colliding: 0
 --- !u!212 &212080011780739976
 SpriteRenderer:
   m_ObjectHideFlags: 1
