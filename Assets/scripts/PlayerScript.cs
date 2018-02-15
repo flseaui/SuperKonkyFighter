@@ -226,8 +226,8 @@ public class PlayerScript : MonoBehaviour
 		maxHealth = 11000;
 		health = maxHealth;
 		behaviors = new KonkyBehaviours();
-		baseHeight = 8;
-		width = 4;
+		baseHeight = 12.5F;
+		width = 6;
 
 		//Time.timeScale = 0.1F;
 	}

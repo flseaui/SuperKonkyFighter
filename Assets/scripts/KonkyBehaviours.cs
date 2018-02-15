@@ -94,7 +94,7 @@ public class KonkyBehaviours : Behaviors{
         level = 2,
         cancels = new int[] { aJump, a7m, a8m, a9m, a7h, a8h, a9h },
         gAngle = 0, gStrength = 1,
-        aAngle = 45, aStrength = 3 };
+        aAngle = 30, aStrength = 3 };
 
     //jM
     static Action jumpM = new Action() {
@@ -104,7 +104,7 @@ public class KonkyBehaviours : Behaviors{
         level = 2,
         cancels = new int[] { aJump, a7h, a8h, a9h },
         gAngle = 0, gStrength = 1,
-        aAngle = 45, aStrength = 5 };
+        aAngle = 30, aStrength = 5 };
 
     //jH
     static Action jumpH = new Action() {
