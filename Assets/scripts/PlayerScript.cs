@@ -117,6 +117,7 @@ public class PlayerScript : MonoBehaviour
     InputHandler inputHandler;
 
     int BasicState;
+    int AttackState;
 
     int bufferedMove;
 
@@ -193,7 +194,11 @@ public class PlayerScript : MonoBehaviour
 	{
         inputHandler.pollInput(0);
 
-        BasicState = inputConvert(inputHandler.currentInput);
+        bool[] input = inputHandler.currentInput;
+
+        BasicState = inputConvert(input);
+
+        setAttackState(input);
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -296,7 +301,22 @@ public class PlayerScript : MonoBehaviour
             return 4;
         else if (input[3])
             return 6;
-        else return 5;
+        else
+            return 5;
+    }
+
+    private void setAttackState(bool[] input)
+    {
+        if (input[4])
+            AttackState = BasicState;
+        else if (input[5])
+            AttackState = BasicState + 10;
+        else if (input[6])
+            AttackState = BasicState + 20;
+        else if (input[7])
+            AttackState = BasicState + 30;
+        else
+            AttackState = 0;
     }
 
 	private void incrementFrame()
