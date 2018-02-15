@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Attack {
 
-    public int[] cancels;
+    public int[] attackCancels;
+    public int[] advCancels;
     public int[] meterCost;
     public int[] frames;
     public int[] damage;
