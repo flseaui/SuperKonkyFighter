@@ -4,63 +4,73 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors {
 
-    // Konky Attack Ids
-    public enum K : int
+
+    /* 
+     * ID FORMAT
+     * id = numpad + power
+     * - light   = + 0
+     * - medium  = + 10
+     * - heavy   = + 20
+     * - special = + 30
+     * example: standM = 5 + 10 = 15
+     */
+
+    IDictionary<int, Attack> attackIds;
+
+    public KonkyBehaviours()
     {
-        // DOWN BACK
-        _1L = _2L,
-        _1M = _2M,
-        _1H = _2H,
+        attackIds = new Dictionary<int, Attack>()
+        {
+            { 1,  crouchL },
+            { 11, crouchM },
+            { 21, crouchH },
 
-        // DOWN
-        _2L = 2,
-        _2M = 12,
-        _2H = 22,
+            { 2,  crouchL },
+            { 12, crouchM },
+            { 22, crouchH },
 
-        // DOWN FORWARD
-        _3L = _2L,
-        _3M = _2M,
-        _3H = _2H,
+            { 3,  crouchL },
+            { 13, crouchM },
+            { 23, crouchH },
 
-        // BACK
-        _4L = _5L,
-        _4M = _5M,
-        _4H = _5H,
+            { 4,  standL },
+            { 14, standM },
+            { 24, standH },
 
-        // NEUTRAL
-        _5L = 5,
-        _5M = 15,
-        _5H = 25,
+            { 5,  standL },
+            { 15, standM },
+            { 25, standH },
 
-        // FORWARD
-        _6L = _5L,
-        _6M = 16,
-        _6H = _5H,
+            { 6,  standL   },
+            { 16, forwardM },
+            { 26, standH   },
 
-        // UP BACK
-        _7L = _8L,
-        _7M = _8M,
-        _7H = _8H,
+            { 7,  jumpL },
+            { 17, jumpM },
+            { 27, jumpH },
 
-        // UP
-        _8L = 8,
-        _8M = 18,
-        _8H = 28,
+            { 8,  jumpL },
+            { 18, jumpM },
+            { 28, jumpH },
 
-        // UP FORWARD
-        _9L = _8L,
-        _9M = _8M,
-        _9H = _8H,
+            { 9,  jumpL },
+            { 19, jumpM },
+            { 29, jumpH },
 
-        // SPECIALS
-        _1S = 31,
-        _2S = 32,
-        _3S = 33,
-        _4S = 34,
-        _5S = 35,
-        _6S = 36
-    };
+            { 31, oneS   },
+            { 32, twoS   },
+            { 33, threeS },
+            { 34, fourS  },
+            { 35, fiveS  },
+            { 36, sixS   }
+        };
+    }
 
+    // Returns attack object from given id
+    Attack getAttack(int id)
+    {
+        return attackIds[id];
+    }
 
     //0 total frames
     //1 recovery frames
@@ -81,7 +91,7 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
         damage = new int[] { 300 },
         level = 0,
-        cancels = new int[] { (int) K._5L, (int) K._2L, (int) K._5M, (int) K._2M, (int) K._6M, (int) K._5H, (int) K._2H, (int) K._1S, (int) K._2S, (int) K._3S, (int) K._4S, (int) K._5S, (int) K._6S },
+        cancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -95,7 +105,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 1,
-        cancels     = new int[] { a2m, a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -109,7 +119,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 2,
-        cancels     = new int[] { a2h, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 4,
         aAngle      = 30,
@@ -123,7 +133,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 0,
-        cancels     = new int[] { a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -137,7 +147,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 500 },
         level       = 1,
-        cancels     = new int[] { a5m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -151,7 +161,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 700, 700 },
         level       = 3,
-        cancels     = new int[] { aJump, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { aJump, 31, 32, 33, 34, 35, 36 },
         gAngle      = 80,
         gStrength   = 4,
         aAngle      = 80,
@@ -165,7 +175,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 2,
-        cancels     = new int[] { aJump, a7m, a8m, a9m, a7h, a8h, a9h },
+        cancels     = new int[] { aJump, 17, 18, 19, 27, 28, 29 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -179,7 +189,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 2,
-        cancels     = new int[] { aJump, a7h, a8h, a9h },
+        cancels     = new int[] { aJump, 27, 28, 29 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -207,7 +217,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 0,
-        cancels     = new int[] { a5h, a5h, a1s, a2s, a3s, a4s, a5s, a6s },
+        cancels     = new int[] { 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 180,
         gStrength   = 2,
         aAngle      = 330,
@@ -222,7 +232,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0 },
         damage      = new int[] { 1200 },
         level       = 0,
-        cancels     = new int[] { a5s },
+        cancels     = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 0,
@@ -236,7 +246,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 5,
-        cancels     = new int[] { a5s, aDash, aBDash },
+        cancels     = new int[] { 35, aDash, aBDash },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -250,7 +260,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 4,
-        cancels     = new int[] { a5s },
+        cancels     = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -264,7 +274,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3 },
         damage      = new int[] { 400, 400, 600 },
         level       = 2,
-        cancels     = new int[] { a5s },
+        cancels     = new int[] { 35 },
         gAngle      = 45,
         gStrength   = 1,
         aAngle      = 45,
@@ -292,7 +302,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 1500 },
         level       = 5,
-        cancels     = new int[] { a5s },
+        cancels     = new int[] { 35 },
         gAngle      = 60,
         gStrength   = 8,
         aAngle      = 60,
