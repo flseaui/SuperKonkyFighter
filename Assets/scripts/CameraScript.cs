@@ -225,7 +225,7 @@ public class CameraScript : MonoBehaviour
 		{
 			cy = 12;
 		}
-		setY(background, cy * 0.5f);
+		setY(background, cy * 0.5f+8);
 		setY(self, cy);
 
 		bool now = getX(player1) < getX(player2);
