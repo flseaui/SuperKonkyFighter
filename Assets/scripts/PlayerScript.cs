@@ -114,7 +114,7 @@ public class PlayerScript : MonoBehaviour
 
     public int meter;
 
-    InputManager getInput;
+    InputManager inputManager;
 
     int BasicState;
     int AttackState;
@@ -167,8 +167,7 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-
-        getInput = new InputManager(0);
+        InputManager = new InputManager(0);
 	}
 
     // Update is called once per frame
@@ -203,14 +202,10 @@ public class PlayerScript : MonoBehaviour
 
     private void GameUpdate()
 	{
-        getInput.pollInput(0);
+        inputManager.pollInput(0);
 
-        bool[] input = getInput.currentInput;
-
-        BasicState = inputConvert(input);
-        setAttackInput(input);
-
-
+        BasicState = inputConvert(inputManager.currentInput);
+        setAttackInput(inputManager.currentInput);
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -226,7 +221,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{
-            getInput.handleInput();
+            inputManager.handleInput();
             
 		}
 
@@ -288,7 +283,7 @@ public class PlayerScript : MonoBehaviour
                 bufferedMove = bufferedInput;
 
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
-            if (action + 40 == bufferedInput)
+            if (action == bufferedInput)
                 bufferedMove = bufferedInput;
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
             if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
