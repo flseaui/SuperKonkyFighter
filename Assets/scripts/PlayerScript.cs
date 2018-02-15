@@ -161,9 +161,12 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         if (!hitStopped)
+        {
             SubUpdate();
-        else
+        } else{
             buffer(state, );
+        }
+
         if (stunned)
         {
             executeAction(Behaviors.aStun, false);
@@ -201,6 +204,7 @@ public class PlayerScript : MonoBehaviour
 		else
 		{
             inputHandler.handleInput();
+            
 		}
 
 		//floor check
@@ -225,8 +229,6 @@ public class PlayerScript : MonoBehaviour
 		}
 
 		stateCheck();
-
-		historyCheck();
 
 		moveX(hVelocity + hKnockback);
 		moveY(vVelocity + vKnockback);
@@ -267,10 +269,28 @@ public class PlayerScript : MonoBehaviour
     {
 
     }
-
-    private void dash()
+    
+    private int inputConvert(bool[] input)
     {
-
+        if (input[0])
+            if (input[2])
+                return 7;
+            else if (input[3])
+                return 9;
+            else
+                return 8;
+        else if (input[1])
+            if (input[2])
+                return 1;
+            else if (input[3])
+                return 3;
+            else
+                return 2;
+        else if (input[2])
+            return 4;
+        else if (input[3])
+            return 6;
+        else return 5;
     }
 
 	private void incrementFrame()
