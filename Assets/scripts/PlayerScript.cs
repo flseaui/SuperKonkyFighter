@@ -197,7 +197,6 @@ public class PlayerScript : MonoBehaviour
         bool[] input = inputHandler.currentInput;
 
         BasicState = inputConvert(input);
-
         setAttackState(input);
 
         // If facing right flip x-scale right, otherwise flip x-scale left
@@ -284,19 +283,23 @@ public class PlayerScript : MonoBehaviour
     private int inputConvert(bool[] input)
     {
         if (input[0])
+        {
             if (input[2])
                 return 7;
             else if (input[3])
                 return 9;
             else
                 return 8;
+        }
         else if (input[1])
+        {
             if (input[2])
                 return 1;
             else if (input[3])
                 return 3;
             else
                 return 2;
+        }
         else if (input[2])
             return 4;
         else if (input[3])
