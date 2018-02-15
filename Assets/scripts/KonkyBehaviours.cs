@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors {
 
-
     /* 
-     * ID FORMAT
+     * ATTACK ID FORMAT
      * id = numpad + power
      * - light    = + 0
      * - medium   = + 10
@@ -17,6 +16,20 @@ public class KonkyBehaviours : Behaviors {
      */
 
     IDictionary<int, Attack> attackIds;
+
+    /* 
+       * ADVANCED ID FORMAT
+       * 1 - Forward Dash
+       * 2 - Back Dash
+       * 3 - Forward Air Dash
+       * 4 - Back Air Dash
+       * 5 - Stun
+       * 6 - Block
+       * 7 - Turn
+       * Other
+       * 0 - Jump
+       */
+
     IDictionary<int, Advanced> advancedIds;
 
     public KonkyBehaviours()
@@ -83,6 +96,11 @@ public class KonkyBehaviours : Behaviors {
     Attack getAttack(int id)
     {
         return attackIds[id];
+    }
+
+    Advanced getAdvanced(int id)
+    {
+        return advancedIds[id];
     }
 
     //0 total frames
@@ -175,7 +193,7 @@ public class KonkyBehaviours : Behaviors {
         damage = new int[] { 700, 700 },
         level = 3,
         attackCancels = new int[] { 31, 32, 33, 34, 35, 36 },
-        advCancels = new int[] {aJump},
+        advCancels = new int[] { 0 },
         gAngle      = 80,
         gStrength   = 4,
         aAngle      = 80,
@@ -190,7 +208,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 300 },
         level       = 2,
         attackCancels     = new int[] { 17, 18, 19, 27, 28, 29 },
-        advCancels = new int[] {aJump},
+        advCancels = new int[] { 0 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -205,7 +223,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 600 },
         level       = 2,
         attackCancels     = new int[] { 27, 28, 29 },
-        advCancels = new int[] { aJump },
+        advCancels = new int[] { 0 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -219,7 +237,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 3,
-        advCancels     = new int[] { aJump },
+        advCancels     = new int[] { 0 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -90,
@@ -263,7 +281,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 900 },
         level       = 5,
         attackCancels     = new int[] { 35,},
-        advCancels = new int[] { aDash, aBDash },
+        advCancels = new int[] { 1, 2 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -333,7 +351,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0 },
         damage      = new int[] { 1500 },
         level       = 5,
-        attackCancels     = new int[] { aDash, aBDash },
+        attackCancels     = new int[] { 1, 2 },
         gAngle      = 30,
         gStrength   = 10,
         aAngle      = 0,
@@ -341,26 +359,23 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Turns
-    private Attack turns = new Attack()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           },                  cancels  = new int[] {       } };
-
-    // Jump
-    private Attack jump = new Attack()        { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3                                     },                  cancels  = new int[] {       } };
+    private Advanced turns = new Advanced()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           }, cancels  = new int[] {       } };
 
     // Back Dash
-    private Attack backDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] { aJump } };
+    private Advanced backDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] { 0 } };
 
     // Forward Dash
-    private Attack forwardDash = new Attack() { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] { aJump } };
+    private Advanced forwardDash = new Advanced() { frames = new int[] { 3                                                          }, cancels  = new int[] { 0 } };
 
     // Stun
-    private Attack stun = new Attack()        { frames = new int[] { 3                                                          }, infinite = true, cancels  = new int[] {       } };
+    private Advanced stun = new Advanced()        { frames = new int[] { 3                                                          }, cancels  = new int[] {       } };
 
     // Block
-    private Attack block = new Attack()       { frames = new int[] { 4                                                          }, infinite = true, cancels  = new int[] {       } };
+    private Advanced block = new Advanced()       { frames = new int[] { 4                                                          }, cancels  = new int[] {       } };
 
     // Air Dash
-    private Attack forwardAirDash = new Attack() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
-    private Attack backAirDash = new Attack()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
+    private Advanced forwardAirDash = new Advanced() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] {       } };
+    private Advanced backAirDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] {       } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
