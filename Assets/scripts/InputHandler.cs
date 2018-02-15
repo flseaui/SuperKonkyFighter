@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InputHandler
 {
 
-    bool[] currentInput;
+    public bool[] currentInput;
 
     public bool up = false,
                 right = false,

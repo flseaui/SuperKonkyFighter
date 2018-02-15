@@ -116,6 +116,8 @@ public class PlayerScript : MonoBehaviour
 
     InputHandler inputHandler;
 
+    int BasicState;
+
     int bufferedMove;
 
     void OnDrawGizmos()
@@ -162,8 +164,10 @@ public class PlayerScript : MonoBehaviour
     {
         if (!hitStopped)
         {
-            SubUpdate();
-        } else{
+            GameUpdate();
+        }
+        else
+        {
             buffer(state, );
         }
 
@@ -185,9 +189,11 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-    private void SubUpdate()
+    private void GameUpdate()
 	{
         inputHandler.pollInput(0);
+
+        BasicState = inputConvert(inputHandler.currentInput);
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -676,16 +682,17 @@ public class PlayerScript : MonoBehaviour
 
     public int damage(int ammount, float k, int angle, int ac, bool bl)
     {
-        Debug.Log(ammount);
         health -= ammount;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+
         if(vKnockback > 0)
         {
             air = true;
-            airLock = true;
         }
+
         vVelocity = 0;
+
         if (!bl)
         {
             switch (ac)
