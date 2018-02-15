@@ -114,7 +114,7 @@ public class PlayerScript : MonoBehaviour
 
     public int meter;
 
-    InputHandler inputHandler;
+    InputManager getInput;
 
     int BasicState;
     int AttackState;
@@ -157,7 +157,7 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-        inputHandler = new InputHandler(0);
+        getInput = new InputManager(0);
 	}
 
     // Update is called once per frame
@@ -192,9 +192,9 @@ public class PlayerScript : MonoBehaviour
 
     private void GameUpdate()
 	{
-        inputHandler.pollInput(0);
+        getInput.pollInput(0);
 
-        bool[] input = inputHandler.currentInput;
+        bool[] input = getInput.currentInput;
 
         BasicState = inputConvert(input);
         setAttackState(input);
@@ -213,7 +213,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{
-            inputHandler.handleInput();
+            getInput.handleInput();
             
 		}
 
@@ -268,7 +268,7 @@ public class PlayerScript : MonoBehaviour
 		updateAnimation();
 	}
 
-	private void buffer(int currentMove, int nextInput)
+	private void buffer( int bufferedInput)
 	{
         foreach(int move in behaviors.getAction(currentMove).cancels)
             if (nextInput == move)
@@ -282,30 +282,42 @@ public class PlayerScript : MonoBehaviour
     
     private int inputConvert(bool[] input)
     {
-        if (input[0])
+        if (air)
         {
             if (input[2])
                 return 7;
             else if (input[3])
-                return 9;
-            else
                 return 8;
-        }
-        else if (input[1])
-        {
-            if (input[2])
-                return 1;
-            else if (input[3])
-                return 3;
             else
-                return 2;
+                return 9;
         }
-        else if (input[2])
-            return 4;
-        else if (input[3])
-            return 6;
         else
-            return 5;
+        {
+            if (input[0])
+            {
+                if (input[2])
+                    return 7;
+                else if (input[3])
+                    return 9;
+                else
+                    return 8;
+            }
+            else if (input[1])
+            {
+                if (input[2])
+                    return 1;
+                else if (input[3])
+                    return 3;
+                else
+                    return 2;
+            }
+            else if (input[2])
+                return 4;
+            else if (input[3])
+                return 6;
+            else
+                return 5;
+        }
     }
 
     private void setAttackState(bool[] input)

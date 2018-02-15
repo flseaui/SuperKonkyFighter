@@ -32,7 +32,7 @@ public class InputManager
                   mediumButton,
                   heavyButton;
 
-    public InputHandler(int playerID)
+    public InputManager(int playerID)
     {
         if (playerID == 1)
         {
