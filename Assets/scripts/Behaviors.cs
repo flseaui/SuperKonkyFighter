@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Behaviors {
 
-    public enum ATTACK_IDS : byte
+    enum ATTACK_IDS
     {
         // DOWN BACK
         _1L = 1,
@@ -50,18 +50,29 @@ public abstract class Behaviors {
         // UP FORWARD
         _9L = 9,
         _9M = 19,
-        _9H = 29
+        _9H = 29,
+
+        // SPECIALS
+        _1S = 31,
+        _2S = 32,
+        _3S = 33,
+        _4S = 34,
+        _5S = 35,
+        _6S = 36
     };
 
-    private Action[] actions;
+    private Attack[] actions;
 
-    public Behaviors(Action[] ac)
+    public Behaviors()
     {
-        this.actions = ac;
+       
     }
 
-	public Action getAction(int attack)
+	public Attack getAction(int attack)
 	{
 		return actions[attack];
 	}
+
+
 }
+

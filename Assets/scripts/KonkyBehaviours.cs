@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors {
 
-    enum KONKY_ATTACK_IDS : ATTACK_IDS
+    // Konky Attack Ids
+    public enum K : int
     {
         // DOWN BACK
-        _1L = 1,
-        _1M = 11,
-        _1H = 21,
+        _1L = _2L,
+        _1M = _2M,
+        _1H = _2H,
 
         // DOWN
         _2L = 2,
@@ -17,14 +18,14 @@ public class KonkyBehaviours : Behaviors {
         _2H = 22,
 
         // DOWN FORWARD
-        _3L = 3,
-        _3M = 13,
-        _3H = 23,
+        _3L = _2L,
+        _3M = _2M,
+        _3H = _2H,
 
         // BACK
-        _4L = 4,
-        _4M = 14,
-        _4H = 24,
+        _4L = _5L,
+        _4M = _5M,
+        _4H = _5H,
 
         // NEUTRAL
         _5L = 5,
@@ -32,14 +33,14 @@ public class KonkyBehaviours : Behaviors {
         _5H = 25,
 
         // FORWARD
-        _6L = 6,
+        _6L = _5L,
         _6M = 16,
-        _6H = 26,
+        _6H = _5H,
 
         // UP BACK
-        _7L = 7,
-        _7M = 17,
-        _7H = 27,
+        _7L = _8L,
+        _7M = _8M,
+        _7H = _8H,
 
         // UP
         _8L = 8,
@@ -47,10 +48,19 @@ public class KonkyBehaviours : Behaviors {
         _8H = 28,
 
         // UP FORWARD
-        _9L = 9,
-        _9M = 19,
-        _9H = 29
+        _9L = _8L,
+        _9M = _8M,
+        _9H = _8H,
+
+        // SPECIALS
+        _1S = 31,
+        _2S = 32,
+        _3S = 33,
+        _4S = 34,
+        _5S = 35,
+        _6S = 36
     };
+
 
     //0 total frames
     //1 recovery frames
@@ -58,20 +68,20 @@ public class KonkyBehaviours : Behaviors {
     //4 chip damage DO THIS
     //5 blockstun
 
-        //attack class:
-        //0 = light
-        //1 = medium
-        //2 = heavy
-        //3 = super
+    //attack class:
+    //0 = light
+    //1 = medium
+    //2 = heavy
+    //3 = super
 
-        // Standing Light
+    // Standing Light
     private Attack standL = new Attack()
     {
         attackClass = 0,
-        frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
-        damage      = new int[] { 300 },
-        level       = 0,
-        cancels     = new int[] { a5l, a2l, a5m, a2m, a6m, a5h, a2h, a1s, a2s, a3s, a4s, a5s, a6s },
+        frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
+        damage = new int[] { 300 },
+        level = 0,
+        cancels = new int[] { (int) K._5L, (int) K._2L, (int) K._5M, (int) K._2M, (int) K._6M, (int) K._5H, (int) K._2H, (int) K._1S, (int) K._2S, (int) K._3S, (int) K._4S, (int) K._5S, (int) K._6S },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -323,8 +333,6 @@ public class KonkyBehaviours : Behaviors {
 
     // Air Dash
     private Attack airDash = new Attack()     { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },                  cancels  = new int[] {       } };
-
-	public KonkyBehaviours() : base(konkyAttacks) { }
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
