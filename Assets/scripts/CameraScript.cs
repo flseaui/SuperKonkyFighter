@@ -203,7 +203,6 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-			setY(self,12);
 			shake = false;
             Time.timeScale = 1;
             p1s.hitStopped = false;
@@ -220,6 +219,14 @@ public class CameraScript : MonoBehaviour
         }
         setX(background, cx * 0.5f);
         setX(self, cx);
+
+		float cy = ((getY(player1)+p1s.baseHeight / 2-8) + (getY(player2)+p2s.baseHeight/2-8)) / 2f + 8;
+		if (cy < 12)
+		{
+			cy = 12;
+		}
+		setY(background, cy * 0.5f);
+		setY(self, cy);
 
 		bool now = getX(player1) < getX(player2);
 
@@ -248,11 +255,12 @@ public class CameraScript : MonoBehaviour
         uis.meter2.value = p2s.meter;
 
         if (shake)
-		{            
+		{
+			Handheld.Vibrate();
 			shakeX = Random.Range(-1,1);
 			shakeY = Random.Range(-1, 1);
 			setX(self, cx + shakeX);
-			setY(self, 12 + shakeY);
+			setY(self, cy + shakeY);
 		}
 	}
 
@@ -260,7 +268,11 @@ public class CameraScript : MonoBehaviour
     {
         return o.transform.position.x;
     }
-    private float getX(Camera o)
+	private float getY(GameObject o)
+	{
+		return o.transform.position.y;
+	}
+	private float getX(Camera o)
     {
         return o.transform.position.x;
     }
@@ -286,6 +298,13 @@ public class CameraScript : MonoBehaviour
     }
 
 	private void setY(Camera o, float amm)
+	{
+		Vector3 position = o.transform.position;
+		position.y = amm;
+		o.transform.position = position;
+	}
+
+	private void setY(GameObject o, float amm)
 	{
 		Vector3 position = o.transform.position;
 		position.y = amm;
