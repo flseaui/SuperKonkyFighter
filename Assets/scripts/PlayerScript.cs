@@ -283,10 +283,18 @@ public class PlayerScript : MonoBehaviour
 
 	private void buffer(int bufferedInput)
 	{
-        foreach (int action in getAction(inputAttack).cancels)
+        foreach (int action in getAttack(inputAttack).cancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
-	}
+
+        foreach (int action in getAdvanced(inputAdv).cancels)
+            if (action + 40 == bufferedInput)
+                bufferedMove = bufferedInput;
+        foreach (int action in getAdvanced(inputAdv).cancels)
+            if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
+                bufferedMove == bufferedInput;
+
+    }
     
     private int inputConvert(bool[] input)
     {
