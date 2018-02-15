@@ -292,7 +292,7 @@ public class PlayerScript : MonoBehaviour
                 bufferedMove = bufferedInput;
         foreach (int action in getAdvanced(inputAdv).cancels)
             if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
-                bufferedMove == bufferedInput;
+                bufferedMove = bufferedInput;
 
     }
     
