@@ -121,6 +121,10 @@ public class PlayerScript : MonoBehaviour
 
     int bufferedMove;
 
+    bool damageDealt;
+
+    public int storedAttack;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -169,7 +173,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            buffer(state, );
+            buffer();
         }
 
         if (stunned)
@@ -198,6 +202,8 @@ public class PlayerScript : MonoBehaviour
 
         BasicState = inputConvert(input);
         setAttackState(input);
+
+
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -268,11 +274,11 @@ public class PlayerScript : MonoBehaviour
 		updateAnimation();
 	}
 
-	private void buffer( int bufferedInput)
+	private void buffer(int bufferedInput)
 	{
-        foreach(int move in behaviors.getAction(currentMove).cancels)
-            if (nextInput == move)
-                bufferedMove = nextInput;
+        foreach (int action in getAction(storedAttack).cancels)
+            if (action == bufferedInput)
+                bufferedMove = bufferedInput;
 	}
 
     private void cancelMove()
@@ -340,7 +346,7 @@ public class PlayerScript : MonoBehaviour
 		currentFrame = attackTypes[actionCounter];
         actionCounter++;
 
-        if (previousFrame != 1 && currentFrame == 1)
+        if (!damageDealt && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
 			damagePass = damages[damageCounter];
@@ -349,12 +355,14 @@ public class PlayerScript : MonoBehaviour
 
 		if (currentFrame == 1)
 			hurtbox.enabled = true;
-
 		else
 		{
 			hurtbox.enabled = false;
+            damageDealt = false;
 			hurtbox.size = new Vector2(0f, 0f);
 		}
+
+        if (AttackState)
 	}
 
     private void stateCheck()
@@ -705,6 +713,7 @@ public class PlayerScript : MonoBehaviour
     public int damage(int ammount, float k, int angle, int ac, bool bl)
     {
         health -= ammount;
+        damageDealt = true;
         hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
