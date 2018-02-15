@@ -114,7 +114,7 @@ public class KonkyBehaviours : Behaviors{
         level = 3,
         cancels = new int[] { aJump, },
         gAngle = 0, gStrength = 2,
-        aAngle = -75, aStrength = 6 };
+        aAngle = -45, aStrength = 6 };
 
     //Throw
     static Action Throw = new Action() {
