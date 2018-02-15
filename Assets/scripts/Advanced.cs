@@ -5,7 +5,8 @@ using UnityEngine;
 public class Advanced
 {
 
-    public int[] cancels;
+    public int[] attackCancels;
+    public int[] advCancels;
     public int[] frames;
 
 }

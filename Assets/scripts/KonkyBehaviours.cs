@@ -15,7 +15,7 @@ public class KonkyBehaviours : Behaviors {
      * example: standM = 5 + 10 = 15
      */
 
-    IDictionary<int, Attack> attackIds;
+    IDictionary<int, Attack> konkyAttackIds;
 
     /* 
        * ADVANCED ID FORMAT
@@ -30,11 +30,11 @@ public class KonkyBehaviours : Behaviors {
        * 0 - Jump
        */
 
-    IDictionary<int, Advanced> advancedIds;
+    IDictionary<int, Advanced> konkyAdvancedIds;
 
     public KonkyBehaviours()
     {
-        attackIds = new Dictionary<int, Attack>()
+        konkyAttackIds = new Dictionary<int, Attack>()
         {
             { 1,  crouchL },
             { 11, crouchM },
@@ -80,27 +80,18 @@ public class KonkyBehaviours : Behaviors {
             { 36, sixS   }
         };
 
-        advancedIds = new Dictionary<int, Advanced>()
+        konkyAdvancedIds = new Dictionary<int, Advanced>()
         {
-            { 1,    forwardDash},
-            { 2,       backDash},
-            { 3, forwardAirDash},
-            { 4,    backAirDash},
-            { 5,          stun },
-            { 6,         block },
-            { 7,         turns }
+            { 41,    forwardDash},
+            { 42,       backDash},
+            { 43, forwardAirDash},
+            { 44,    backAirDash},
+            { 45,          stun },
+            { 46,         block },
+            { 47,         turns }
         };
-    }
 
-    // Returns attack object from given id
-    Attack getAttack(int id)
-    {
-        return attackIds[id];
-    }
-
-    Advanced getAdvanced(int id)
-    {
-        return advancedIds[id];
+        setIds(konkyAttackIds, konkyAdvancedIds);
     }
 
     //0 total frames
@@ -193,7 +184,7 @@ public class KonkyBehaviours : Behaviors {
         damage = new int[] { 700, 700 },
         level = 3,
         attackCancels = new int[] { 31, 32, 33, 34, 35, 36 },
-        advCancels = new int[] { 0 },
+        advCancels = new int[] { 40 },
         gAngle      = 80,
         gStrength   = 4,
         aAngle      = 80,
@@ -208,7 +199,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 300 },
         level       = 2,
         attackCancels     = new int[] { 17, 18, 19, 27, 28, 29 },
-        advCancels = new int[] { 0 },
+        advCancels = new int[] { 40 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -223,7 +214,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 600 },
         level       = 2,
         attackCancels     = new int[] { 27, 28, 29 },
-        advCancels = new int[] { 0 },
+        advCancels = new int[] { 40 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -237,7 +228,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 3,
-        advCancels     = new int[] { 0 },
+        advCancels     = new int[] { 40 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -90,
@@ -281,7 +272,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 900 },
         level       = 5,
         attackCancels     = new int[] { 35,},
-        advCancels = new int[] { 1, 2 },
+        advCancels = new int[] { 41, 42 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -359,23 +350,23 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Turns
-    private Advanced turns = new Advanced()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           }, cancels  = new int[] {       } };
+    private Advanced turns = new Advanced()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           }, attackCancels  = new int[] {       } };
 
     // Back Dash
-    private Advanced backDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] { 0 } };
+    private Advanced backDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, advCancels  = new int[] { 40 } };
 
     // Forward Dash
-    private Advanced forwardDash = new Advanced() { frames = new int[] { 3                                                          }, cancels  = new int[] { 0 } };
+    private Advanced forwardDash = new Advanced() { frames = new int[] { 3                                                          }, advCancels  = new int[] { 40 } };
 
     // Stun
-    private Advanced stun = new Advanced()        { frames = new int[] { 3                                                          }, cancels  = new int[] {       } };
+    private Advanced stun = new Advanced()        { frames = new int[] { 3                                                          }, attackCancels = new int[] {       } };
 
     // Block
-    private Advanced block = new Advanced()       { frames = new int[] { 4                                                          }, cancels  = new int[] {       } };
+    private Advanced block = new Advanced()       { frames = new int[] { 4                                                          }, attackCancels = new int[] {       } };
 
     // Air Dash
-    private Advanced forwardAirDash = new Advanced() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] {       } };
-    private Advanced backAirDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, cancels  = new int[] {       } };
+    private Advanced forwardAirDash = new Advanced() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, attackCancels = new int[] {       } };
+    private Advanced backAirDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, attackCancels = new int[] {       } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75

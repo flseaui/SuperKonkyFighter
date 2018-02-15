@@ -167,6 +167,7 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
+
         getInput = new InputManager(0);
 	}
 
