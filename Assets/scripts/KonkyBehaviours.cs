@@ -83,8 +83,8 @@ public class KonkyBehaviours : Behaviors{
         damage = new int[] { 900 },
         level = 2,
         cancels = new int[] { a2h, a1s, a2s, a3s, a4s, a5s, a6s },
-        gAngle = 0, gStrength = 4,
-        aAngle = 30, aStrength = 4 };
+        gAngle = 0, gStrength = 5,
+        aAngle = 5, aStrength = 15 };
 
     //jL
     static Action jumpL = new Action() {
