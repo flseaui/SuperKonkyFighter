@@ -360,6 +360,7 @@ public class PlayerScript : MonoBehaviour
 
         if (flip)
             dashTimer = 0;
+        //
             
         if (!(input[2] || input[3]) && dashTimer != 0)
             dashTimer--;
