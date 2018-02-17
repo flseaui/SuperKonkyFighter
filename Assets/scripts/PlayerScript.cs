@@ -522,55 +522,6 @@ public class PlayerScript : MonoBehaviour
 		//executeAction(, true);
 	*/
 
-    private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
-    {
-		int place;
-		bool executeAction_pass = true;
-
-        place = attacking ? (state - 1) * 3 + strength : strength;
-        executeAction_pass = action ? (cancel.Contains(place) && currentFrame == RECOVERY) || actionOverride : executeAction_pass;
-
-		if (executeAction_pass)
-		{
-
-			Action act = behaviors.getAction(place);
-	
-			if (act != null)
-			{
-				action = true;
-				actionState = place;
-
-                lvl = act.level;
-				attackTypes = act.frames;
-				actionCounter = 0;
-				damageCounter = 0;
-                gAnglePass = act.gAngle;
-                gKnockpass = act.gStrength;
-                aAnglePass = act.aAngle;
-                aKnockpass = act.aStrength;
-                classPass = act.attackClass;
-                actionFrames = attackTypes.Length;
-				infiniteAction = act.infinite;
-				incrementFrame();
-				otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
-
-				cancel = new List<int>(act.cancels);
-
-				if (attacking)
-				{
-					damages = act.damage;
-					damagePass = damages[0];
-				}
-			}
-		}
-		else
-		{
-			if (currentFrame == RECOVERY)//check if you can buffer then do that
-			{
-				storedAttackStrength = iAttack;
-			}
-		}
-    }
 
     private void actionEnd()
     {

@@ -88,7 +88,7 @@ public class KonkyBehaviours : Behaviors {
             { 44,    backAirDash},
             { 45,          stun },
             { 46,         block },
-            { 47,         turns }
+            { 47,         flip  }
         };
 
         setIds(konkyAttackIds, konkyAdvancedIds);
@@ -350,7 +350,7 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Turns
-    private Advanced turns = new Advanced()       { frames = new int[] { 3, 3, 3, 3, 3, 3                                           }, attackCancels  = new int[] {       } };
+    private Advanced flip = new Advanced()       { frames = new int[] { 0, 0, 0,                                                    }, attackCancels  = new int[] {       } };
 
     // Back Dash
     private Advanced backDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, advCancels  = new int[] { 40 } };
