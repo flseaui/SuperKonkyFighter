@@ -25,7 +25,7 @@ public class KonkyBehaviours : Behaviors {
        * 4 - Back Air Dash
        * 5 - Stun
        * 6 - Block
-       * 7 - Turn
+       * 7 - Flip
        * Other
        * 0 - Jump
        */
