@@ -183,12 +183,12 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            buffer(inputConvert(inputManager.currentInput));
+            buffer();
         }
 
         if (stunned)
         {
-           
+            executeAction(Behaviors.aStun, false);
         }
     }
 
@@ -223,7 +223,7 @@ public class PlayerScript : MonoBehaviour
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
-        /*if (stunned)
+        if (stunned)
         {
 			--stunTimer;
 			if (stunTimer == 0)
@@ -233,10 +233,10 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 		else
-		{*/
+		{
             inputManager.handleInput();
-
-        // }
+            
+		}
 
 		//floor check
 		if (x() < -64f)
@@ -269,6 +269,13 @@ public class PlayerScript : MonoBehaviour
 			if (air)
 			{
 				state = 5;
+				shutdown();
+
+				if (waitForGround)
+				{
+					waitForGround = false;
+					executeAction(Behaviors.aTurn, false);
+				}
 			}
 			air = false;
 			vVelocity = 0;
@@ -287,7 +294,6 @@ public class PlayerScript : MonoBehaviour
         foreach (int action in behaviors.getAttack(AttackState).attackCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
-
         foreach (int action in behaviors.getAttack(AdvState).advCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
@@ -598,6 +604,28 @@ public class PlayerScript : MonoBehaviour
         return this.transform.position.x;
     }
 
+    public void flipFlap(bool dir)
+    {
+		if (air) {
+			waitForGround = true;
+		}
+		else if (action)
+		{
+			waitForEnd = true;
+		}
+		else
+		{
+			if (state < 4) {
+				executeAction(Behaviors.aCTurn, false);
+			}
+			else
+			{
+				executeAction(Behaviors.aTurn, false);
+			}
+		}
+		passDir = dir;
+    }
+
     public int damage(int ammount, float k, int angle, int ac, bool bl)
     {
         health -= ammount;
@@ -636,17 +664,25 @@ public class PlayerScript : MonoBehaviour
 
 	public void block(int amm)
 	{
-        
+        stunned = true;
+        stunTimer = amm;
+        executeAction(Behaviors.aBlock, false);
 	}
 
     public float level(int wanted)
     {
-       return levelScaling[lvl, wanted];
+       return levelScaling[lvl,wanted];
     }
 
 	public void stun(int time)
 	{
-       
+        shutdown();
+		stunned = true;
+		stunTimer = time;
+		actionOverride = true;
+		executeAction(Behaviors.aStun, false);
+		actionOverride = false;
+        Debug.Log("stunend");
 	}
 
     public void knockbackDecrease()
