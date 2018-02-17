@@ -118,6 +118,7 @@ public class PlayerScript : MonoBehaviour
 
     int BasicState;
     int AttackState;
+    int AdvState;
 
     int bufferedMove;
 
@@ -167,7 +168,7 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-        InputManager = new InputManager(0);
+        inputManager = new InputManager(0);
 	}
 
     // Update is called once per frame
@@ -206,6 +207,7 @@ public class PlayerScript : MonoBehaviour
 
         BasicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
+        getAdvancedInput(inputManager.currentInput);
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -331,21 +333,21 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void getAdvancedInput(bool[] input)
+    private void setAdvancedInput(bool[] input)
     {
         if (input[2] && dashTrack == 0 && dashTimer != 0)
         {
-            if (facingRight) { }
-            //back dash
-            else { }
-            //forward dash
+            if (facingRight)
+                AdvState = 2;
+            else
+                AdvState = 1;
 
         }else if (input[3] && dashTrack == 1 && dashTimer != 0)
         {
-            if (facingRight) { }
-            //forward dash
-            else { }
-            //back dash
+            if (facingRight)
+                AdvState = 1;
+            else
+                AdvState = 2;
 
         }
 
