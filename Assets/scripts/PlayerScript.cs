@@ -443,10 +443,10 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        hVelocity = (basicState == 6 ? 
-                    (facingRight ? forwardSpeed : -forwardSpeed) : 
-                    (basicState == 7 ? 
-                    (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
+        hVelocity = basicState == 6 ? 
+                    facingRight ? forwardSpeed : -forwardSpeed : 
+                    basicState == 7 ? 
+                    facingRight ? -backwardSpeed : backwardSpeed : hVelocity;
     }
 
     /*
