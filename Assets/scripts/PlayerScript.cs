@@ -293,14 +293,12 @@ public class PlayerScript : MonoBehaviour
         foreach (int action in behaviors.getAttack(inputAttack).attackCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
-
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
             if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
                 bufferedMove = bufferedInput;
-
     }
     
     private int inputConvert(bool[] input)
@@ -370,9 +368,8 @@ public class PlayerScript : MonoBehaviour
                 dashTrack = 1;
         }
 
-        if (flip)
-            dashTimer = 0;
-        //
+        //if (flip)
+        //  dashTimer = 0;
             
         if (!(input[2] || input[3]) && dashTimer != 0)
             dashTimer--;
