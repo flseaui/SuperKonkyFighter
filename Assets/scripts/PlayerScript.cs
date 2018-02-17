@@ -132,6 +132,8 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int dashTrack;
 
+    public int currentAction;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -207,7 +209,15 @@ public class PlayerScript : MonoBehaviour
 
         BasicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
-        getAdvancedInput(inputManager.currentInput);
+        setAdvancedInput(inputManager.currentInput);
+
+        if (currentAction >= 40)
+            incrementFrame(behaviors.getAdvanced(currentAction).frames);
+        else
+            incrementFrame(behaviors.getAttack(currentAction).frames);
+        
+
+        stateCheck();
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
@@ -382,7 +392,7 @@ public class PlayerScript : MonoBehaviour
             inputAttack = 0;
     }
 
-	private void incrementFrame()
+	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
 		currentFrame = attackTypes[actionCounter];
