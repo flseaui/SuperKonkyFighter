@@ -9,4 +9,5 @@ public class Advanced
     public int[] advCancels;
     public int[] frames;
 
+    public bool infinite;
 }
