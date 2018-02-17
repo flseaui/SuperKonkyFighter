@@ -116,7 +116,7 @@ public class PlayerScript : MonoBehaviour
 
     InputManager inputManager;
 
-    int BasicState;
+    int basicState;
     int AttackState;
     int AdvState;
 
@@ -204,7 +204,7 @@ public class PlayerScript : MonoBehaviour
 	{
         inputManager.pollInput(0);
 
-        BasicState = inputConvert(inputManager.currentInput);
+        basicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
@@ -349,7 +349,8 @@ public class PlayerScript : MonoBehaviour
             else
                 AdvState = 1;
 
-        }else if (input[3] && dashTrack == 1 && dashTimer != 0)
+        }
+        else if (input[3] && dashTrack == 1 && dashTimer != 0)
         {
             if (facingRight)
                 AdvState = 1;
@@ -378,13 +379,13 @@ public class PlayerScript : MonoBehaviour
     private void setAttackInput(bool[] input)
     {
         if (input[4])
-            AttackState = BasicState;
+            AttackState = basicState;
         else if (input[5])
-            AttackState = BasicState + 10;
+            AttackState = basicState + 10;
         else if (input[6])
-            AttackState = BasicState + 20;
+            AttackState = basicState + 20;
         else if (input[7])
-            AttackState = BasicState + 30;
+            AttackState = basicState + 30;
         else
             AttackState = 0;
     }
@@ -442,28 +443,10 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        if (BasicState == 6)
-        {
-            if (facingRight)
-            {
-                hVelocity = forwardSpeed;
-            }
-            else
-            {
-                hVelocity = -forwardSpeed;
-            }
-        }
-        else if (BasicState == 4)
-        {
-            if (facingRight)
-            {
-                hVelocity = -backwardSpeed;
-            }
-            else
-            {
-                hVelocity = backwardSpeed;
-            }
-        }
+        hVelocity = (basicState == 6 ? 
+                    (facingRight ? forwardSpeed : -forwardSpeed) : 
+                    (basicState == 7 ? 
+                    (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
     }
 
     /*
@@ -541,22 +524,11 @@ public class PlayerScript : MonoBehaviour
 
     private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
     {
-		int place;//derive which place in the list of actions the requested action is
+		int place;
+		bool executeAction_pass = true;
 
-		if (attacking)
-		{
-			place = (state - 1) * 3 + strength;
-		}
-		else
-		{
-			place = strength;
-		}
-
-		bool executeAction_pass = true;//make sure the attack in cancelable basically
-		if (action)
-		{
-			executeAction_pass = (cancel.Contains(place) && currentFrame == RECOVERY) || actionOverride;
-		}
+        place = attacking ? (state - 1) * 3 + strength : strength;
+        executeAction_pass = action ? (cancel.Contains(place) && currentFrame == RECOVERY) || actionOverride : executeAction_pass;
 
 		if (executeAction_pass)
 		{
@@ -606,13 +578,9 @@ public class PlayerScript : MonoBehaviour
 		{
 			waitForEnd = false;
 			if (state < 4)
-			{
 				executeAction(Behaviors.aCTurn, false);
-			}
 			else
-			{
 				executeAction(Behaviors.aTurn, false);
-			}
 		}
 		else if (actionState == Behaviors.aTurn || actionState == Behaviors.aCTurn)
 		{
@@ -624,32 +592,22 @@ public class PlayerScript : MonoBehaviour
 			shutdown();
 			state = jumpPass;
 			if (jumpPass == 8)
-			{
 				vVelocity = jumpSpeed;
-			}
 			else if (jumpPass == 9)
 			{
 				vVelocity = jumpSpeed;
 				if (facingRight)
-				{
 					hVelocity = forwardSpeed * 1.2f;
-				}
 				else
-				{
 					hVelocity = -forwardSpeed * 1.2f;
-				}
 			}
 			else if (jumpPass == 7)
 			{
 				vVelocity = jumpSpeed;
 				if (facingRight)
-				{
 					hVelocity = -backwardSpeed * 1.2f;
-				}
 				else
-				{
 					hVelocity = backwardSpeed * 1.2f;
-				}
 			}
 		}
         else if (storedAttackStrength != NO_ATTACK_STRENGTH)
@@ -664,30 +622,22 @@ public class PlayerScript : MonoBehaviour
 			if (state == 6)
 			{
 				if (heldState != 6)
-				{
 					state = 5;
-				}
 			}
 			else if (state == 4)
 			{
 				if (heldState != 4)
-				{
 					state = 5;
-				}
 			}
 			else if (state < 4)
 			{
 				if (heldState > 3)
-				{
 					state = 5;
-				}
 			}
 			else if (state > 6)
 			{
 				if (!air)
-				{
 					state = 5;
-				}
 			}
 		}
 		storedAttackStrength = NO_ATTACK_STRENGTH;
