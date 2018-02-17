@@ -392,7 +392,7 @@ public class PlayerScript : MonoBehaviour
 	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
-		currentFrame = attackTypes[actionCounter];
+		currentFrame = frames[actionCounter];
         actionCounter++;
 
         if (!damageDealt && currentFrame == 1)
@@ -417,8 +417,13 @@ public class PlayerScript : MonoBehaviour
             {
                 AttackState = bufferedMove;
                 bufferedMove = 0;
-            }else if (inputAttack != 0)
+                ActionEnd();
+            }
+            else if (inputAttack != 0)
+            {
                 AttackState = inputAttack;
+                ActionEnd();
+            }
         }
 	}
 
@@ -690,11 +695,10 @@ public class PlayerScript : MonoBehaviour
 		storedAttackStrength = NO_ATTACK_STRENGTH;
     }
 
-	private void shutdown()
+	private void ActionEnd()
 	{
-		actionState = NO_ATTACK_INDEX;
-		action = false;
-		damagePass = 0;
+        currentAction = 0;
+        currentFrame = 0;
 	}
 
     private void animInt(int hash, int value)
