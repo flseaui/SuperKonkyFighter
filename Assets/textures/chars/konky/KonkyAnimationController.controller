@@ -7,13 +7,7 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: KonkyAnimationController
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: state
-    m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1981,6 +1975,9 @@ AnimatorStateMachine:
     m_State: {fileID: 1102971107893115304}
     m_Position: {x: -876, y: -252, z: 0}
   - serializedVersion: 1
+    m_State: {fileID: 1102971107893115304}
+    m_Position: {x: -1020, y: -228, z: 0}
+  - serializedVersion: 1
     m_State: {fileID: 1102278574859519780}
     m_Position: {x: -864, y: -60, z: 0}
   - serializedVersion: 1
@@ -2099,8 +2096,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -408, y: -216, z: 0}
-  m_EntryPosition: {x: -12, y: -204, z: 0}
+  m_AnyStatePosition: {x: -432, y: -216, z: 0}
+  m_EntryPosition: {x: -936, y: -408, z: 0}
   m_ExitPosition: {x: 108, y: -324, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102971107893115304}
