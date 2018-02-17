@@ -131,6 +131,10 @@ public class PlayerScript : MonoBehaviour
 
     public int currentAction;
 
+    public bool flipFacing;
+    public bool flip;
+
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -369,8 +373,21 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (flip)
-            dashTimer = 0;
-        //
+            if (currentAction != 0)
+                waitForEnd = true;
+            else if (air)
+                waitForGround = true;
+            else
+            {
+                AdvState = 7;
+                dashTimer = 0;
+            }
+
+        if (waitForGround && !air)
+        {
+            waitForGround = false;
+            AdvState = 7;
+        }
             
         if (!(input[2] || input[3]) && dashTimer != 0)
             dashTimer--;
@@ -414,15 +431,21 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
+            if (!air && waitForEnd)
+            {
+                waitForEnd = false;
+                AdvState = 7;
+                actionEnd();
+            }
             if (bufferedMove != 0)
             {
                 AttackState = bufferedMove;
                 bufferedMove = 0;
-                ActionEnd();
+                actionEnd();
             }
             else if (AttackState != 0)
             {
-                ActionEnd();
+                actionEnd();
             }
         }
 	}
@@ -434,9 +457,15 @@ public class PlayerScript : MonoBehaviour
                 if (infiniteAction)
                     actionCounter--;
                 else
-                    ActionEnd();
-            else if (AdvState != 0)
+                    actionEnd();
+            else if (AdvState != 0 || waitForEnd) {
+                if (waitForEnd)
+                {
+                    waitForEnd = false;
+                    AdvState = 7;
+                }
                 currentAction = AdvState + 40;
+            }
             else if (AttackState != 0)
                 currentAction = AttackState;
     }
@@ -576,7 +605,7 @@ public class PlayerScript : MonoBehaviour
         return this.transform.position.x;
     }
 
-    public void flip(bool dir)
+    public void flipFlap(bool dir)
     {
 		if (air) {
 			waitForGround = true;
