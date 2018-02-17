@@ -62,9 +62,9 @@ public class CameraScript : MonoBehaviour
 		p1s.facingRight = true;
 		p1s.playerID = 1;
 		p1s.JoyScript = JoyScript;
-		p1s.lightButton = lightButton;
-		p1s.mediumButton = mediumButton;
-		p1s.heavyButton = heavyButton;
+		//p1s.lightButton = lightButton;
+		//p1s.mediumButton = mediumButton;
+		//p1s.heavyButton = heavyButton;
 
 		player2 = Instantiate(playerPrefab);
 		setX(player2, 16f);
@@ -110,7 +110,7 @@ public class CameraScript : MonoBehaviour
 
 			p1h.hit = false;
 
-			if (p1s.state == 4 && (!p1s.action || p1s.actionState == Behaviors.aBlock))
+			if (p1s.state == 4 && (!p1s.action))//|| p1s.actionState == Behaviors.aBlock))
 			{
 				p1s.block((int)p2s.level(3));
 
@@ -139,14 +139,14 @@ public class CameraScript : MonoBehaviour
                     p1s.meter += 2;
                 }
                 
-				if (p1s.type == 0)
+				/*if (p1s.type == 0)
 				{
 					p1s.stun((int)p1s.level(2));
 				}
 				else
 				{
 					p1s.stun((int)p1s.level(1));
-				}
+				}*/
 			}
 		}
 
@@ -156,7 +156,7 @@ public class CameraScript : MonoBehaviour
 
 			p2h.hit = false;
 
-			if (p2s.state == 4 && (!p2s.action || p2s.actionState == Behaviors.aBlock))
+            if (p2s.state == 4 && (!p2s.action))//|| p2s.actionState == Behaviors.aBlock))
 			{
 
 				p2s.block((int)p2s.level(3));
@@ -226,14 +226,18 @@ public class CameraScript : MonoBehaviour
 		if (now != history) {
 			if (getX(player1) < getX(player2))
 			{
-				player1.GetComponent<PlayerScript>().flip(true);
-				player2.GetComponent<PlayerScript>().flip(false);
-			}
+                player1.GetComponent<PlayerScript>().flipFacing = true;
+                player1.GetComponent<PlayerScript>().flip = true;
+                player2.GetComponent<PlayerScript>().flipFacing = false;
+                player2.GetComponent<PlayerScript>().flip = true;
+            }
 			else
 			{
-				player1.GetComponent<PlayerScript>().flip(false);
-				player2.GetComponent<PlayerScript>().flip(true);
-			}
+                player1.GetComponent<PlayerScript>().flipFacing = false;
+                player1.GetComponent<PlayerScript>().flip = true;
+                player2.GetComponent<PlayerScript>().flipFacing = true;
+                player2.GetComponent<PlayerScript>().flip = true;
+            }
 		}
 
 		history = getX(player1) < getX(player2);
