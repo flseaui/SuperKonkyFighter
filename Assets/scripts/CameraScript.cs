@@ -70,7 +70,7 @@ public class CameraScript : MonoBehaviour
 		setX(player2, 16f);
 		p2s = player2.GetComponent<PlayerScript>();
 		p2h = player2.GetComponentInChildren<HitboxScript>();
-		p2s.facingRight = false;
+        p2s.facingRight = false;
 		p2s.playerID = 2;
 
 		p1s.otherPlayer = player2;
