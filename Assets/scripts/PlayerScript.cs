@@ -293,12 +293,14 @@ public class PlayerScript : MonoBehaviour
         foreach (int action in behaviors.getAttack(inputAttack).attackCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
+
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
         foreach (int action in behaviors.getAttack(inputAdv).advCancels)
             if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
                 bufferedMove = bufferedInput;
+
     }
     
     private int inputConvert(bool[] input)
@@ -368,8 +370,9 @@ public class PlayerScript : MonoBehaviour
                 dashTrack = 1;
         }
 
-        //if (flip)
-        //  dashTimer = 0;
+        if (flip)
+            dashTimer = 0;
+        //
             
         if (!(input[2] || input[3]) && dashTimer != 0)
             dashTimer--;
@@ -429,46 +432,25 @@ public class PlayerScript : MonoBehaviour
 
     private void stateCheck()
     {
-		if (action) {
-			if (!infiniteAction)
-				if (actionCounter == actionFrames - 1) //end an action by counting down the action timer
-					actionEnd();
-				else
-					incrementFrame();
-		}
-		else
-		{
-			hurtbox.enabled = false;
-			hurtbox.size = new Vector2(0f, 0f);
-		}
+        if (action) {
+            if (!infiniteAction)
+                if (actionCounter == actionFrames - 1) //end an action by counting down the action timer
+                    actionEnd();
+                else
+                    incrementFrame();
+        }
+        else
+        {
+            hurtbox.enabled = false;
+            hurtbox.size = new Vector2(0f, 0f);
+        }
 
-		if (actionState == Behaviors.aDash)
-			if (heldState != 6)
+        if (actionState == Behaviors.aDash)
+            if (heldState != 6)
                 shutdown();
+    }
 
-        if (hKnockback != 0)
-        {
-			if (!air) {
-				hKnockback *= .75f;
-				if (Mathf.Abs(hKnockback) < 0.005f)
-					hKnockback = 0;
-			}
-			else
-			{
-				hKnockback *= .5f;
-				if (Mathf.Abs(hKnockback) < 0.005f)
-					hKnockback = 0;
-			}
-        }
-
-        if (vKnockback != 0)
-        {
-            vKnockback *= .85f;
-            if (Mathf.Abs(vKnockback) < 0.005f)
-            {
-                vKnockback = 0;
-            }
-        }
+    /*
 
         if (!action) {//set velocity when moving forward and backward
 			if (state == 6)
@@ -539,7 +521,7 @@ public class PlayerScript : MonoBehaviour
 	
         // TODO need to figure out way to get current attack
 		//executeAction(, true);
-	}
+	*/
 
     private void executeAction(int strength, bool attacking)//new and improved! lots of canceling!
     {
@@ -829,5 +811,33 @@ public class PlayerScript : MonoBehaviour
 		actionOverride = false;
         Debug.Log("stunend");
 	}
+
+    public void knockbackDecrease()
+    {
+        if (hKnockback != 0)
+        {
+            if (!air)
+            {
+                hKnockback *= .75f;
+                if (Mathf.Abs(hKnockback) < 0.005f)
+                    hKnockback = 0;
+            }
+            else
+            {
+                hKnockback *= .5f;
+                if (Mathf.Abs(hKnockback) < 0.005f)
+                    hKnockback = 0;
+            }
+        }
+
+        if (vKnockback != 0)
+        {
+            vKnockback *= .85f;
+            if (Mathf.Abs(vKnockback) < 0.005f)
+            {
+                vKnockback = 0;
+            }
+        }
+    }
 
 }
