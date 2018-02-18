@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InputManager
 {
 
-    public bool[] currentInput = new bool[8];
+    public bool[] currentInput = new bool[10];
 
     public bool up = false,
                 right = false,
@@ -77,6 +77,8 @@ public class InputManager
                 currentInput[5] = (Input.GetKeyDown(mediumKey));
                 currentInput[6] = (Input.GetKeyDown(heavyKey));
                 currentInput[7] = (Input.GetKeyDown(specialKey));
+                currentInput[8] = (Input.GetKeyDown(leftKey));
+                currentInput[9] = (Input.GetKeyDown(rightKey));
                 break;
             case 1:
                 // Joystick
