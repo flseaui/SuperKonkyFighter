@@ -353,10 +353,10 @@ public class KonkyBehaviours : Behaviors {
     private Advanced flip = new Advanced()       { frames = new int[] { 0, 0, 0,                                                    }, attackCancels  = new int[] {       } };
 
     // Back Dash
-    private Advanced backDash = new Advanced()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, advCancels  = new int[] { 40 } };
+    private Advanced backDash = new Advanced()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, advCancels  = new int[] { 40 } };
 
     // Forward Dash
-    private Advanced forwardDash = new Advanced() { frames = new int[] { 3                                                          }, advCancels  = new int[] { 40 }, infinite = true };
+    private Advanced forwardDash = new Advanced() { frames = new int[] { 0                                                          }, advCancels  = new int[] { 40 }, infinite = true };
 
     // Stun
     private Advanced stun = new Advanced()        { frames = new int[] { 3                                                          }, attackCancels = new int[] {       } };

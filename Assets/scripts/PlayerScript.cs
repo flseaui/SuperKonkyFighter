@@ -400,7 +400,6 @@ public class PlayerScript : MonoBehaviour
 	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
-        Debug.Log(actionCounter);
 		currentFrame = frames[actionCounter];
         actionCounter++;
 
@@ -447,7 +446,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentFrame == frameCheck(currentAction).Length)
             {
-                if (infiniteAction)
+                if (behaviors.getAdvanced(currentAction).infinite || behaviors.getAttack(currentAction).infinite)
                     actionCounter--;
                 else
                     actionEnd();
