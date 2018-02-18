@@ -9,12 +9,12 @@ public class PlayerScript : MonoBehaviour
     //CONSTANT
     float FLOOR_HEIGHT = 0;
     float BASE_GRAVITY = -0.05f;
-    int NO_ATTACK_INDEX = -1;
-    int NO_ATTACK_STRENGTH = -1;
-    int LIGHT_ATTACK = 0;
-    int MEDIUM_ATTACK = 1;
-    int HEAVY_ATTACK = 2;
-	int SPECIAL_ATTACK = 3;
+    int NO_Action_INDEX = -1;
+    int NO_Action_STRENGTH = -1;
+    int LIGHT_Action = 0;
+    int MEDIUM_Action = 1;
+    int HEAVY_Action = 2;
+	int SPECIAL_Action = 3;
     int ANIM_STATE = Animator.StringToHash("state");
 
     public float[,] levelScaling = new float[,] { 
@@ -76,17 +76,17 @@ public class PlayerScript : MonoBehaviour
 
     public int state;
 
-    public int storedAttackStrength;
+    public int storedActionStrength;
     public int bufferFrames;
 
 	private int STARTUP = 0;
 	private int ACTIVE = 1;
 	private int BREAK = 2;
 	private int RECOVERY = 3;
-    public int actionState;//attack going on rn
-    public bool action;//is there an attack
+    public int actionState;//Action going on rn
+    public bool action;//is there an Action
 	public int currentFrame;//current type of frame
-	public int[] attackTypes;//the list of frame types
+	public int[] ActionTypes;//the list of frame types
     public int actionFrames; //total time
 	public int actionCounter;//the timer that moves along (counting up)
 	public int damageCounter;//counts up damage amounts
@@ -117,7 +117,7 @@ public class PlayerScript : MonoBehaviour
     InputManager inputManager;
 
     public int basicState;
-    public int AttackState;
+    public int ActionState;
     public int AdvState;
 
     int bufferedMove;
@@ -152,7 +152,7 @@ public class PlayerScript : MonoBehaviour
 		hitbox.tag = playerID.ToString();
 		hurtbox.tag = playerID.ToString();
 
-        storedAttackStrength = NO_ATTACK_STRENGTH;
+        storedActionStrength = NO_Action_STRENGTH;
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1.25f;
@@ -208,7 +208,7 @@ public class PlayerScript : MonoBehaviour
         inputManager.pollInput(0);
 
         basicState = inputConvert(inputManager.currentInput);
-        setAttackInput(inputManager.currentInput);
+        setActionInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
         if (currentAction != 0)
@@ -281,14 +281,14 @@ public class PlayerScript : MonoBehaviour
 
 	private void buffer(int bufferedInput)
 	{
-        foreach (int action in behaviors.getAttack(AttackState).attackCancels)
+        foreach (int action in behaviors.getAction(ActionState).ActionCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
 
-        foreach (int action in behaviors.getAttack(AdvState).advCancels)
+        foreach (int action in behaviors.getAction(AdvState).advCancels)
             if (action == bufferedInput)
                 bufferedMove = bufferedInput;
-        foreach (int action in behaviors.getAttack(AdvState).advCancels)
+        foreach (int action in behaviors.getAction(AdvState).advCancels)
             if (action == 40 && (bufferedInput == 7 || bufferedInput == 8 || bufferedInput == 9))
                 bufferedMove = bufferedInput;
 
@@ -383,18 +383,18 @@ public class PlayerScript : MonoBehaviour
             dashTimer--;
     }
 
-    private void setAttackInput(bool[] input)
+    private void setActionInput(bool[] input)
     {
         if (input[4])
-            AttackState = basicState;
+            ActionState = basicState;
         else if (input[5])
-            AttackState = basicState + 10;
+            ActionState = basicState + 10;
         else if (input[6])
-            AttackState = basicState + 20;
+            ActionState = basicState + 20;
         else if (input[7])
-            AttackState = basicState + 30;
+            ActionState = basicState + 30;
         else
-            AttackState = 0;
+            ActionState = 0;
     }
 
 	private void incrementFrame(int[] frames)
@@ -429,11 +429,11 @@ public class PlayerScript : MonoBehaviour
             }
             if (bufferedMove != 0)
             {
-                AttackState = bufferedMove;
+                ActionState = bufferedMove;
                 bufferedMove = 0;
                 actionEnd();
             }
-            else if (AttackState != 0)
+            else if (ActionState != 0)
             {
                 actionEnd();
             }
@@ -446,7 +446,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentFrame >= frameCheck(currentAction).Length)
             {
-                if (behaviors.getAdvanced(currentAction).infinite || behaviors.getAttack(currentAction).infinite)
+                if (behaviors.getAction(currentAction).infinite)
                     actionCounter--;
                 else
                     actionEnd();
@@ -461,8 +461,8 @@ public class PlayerScript : MonoBehaviour
             }
             currentAction = AdvState + 40;
         }
-        else if (AttackState != 0)
-            currentAction = AttackState;
+        else if (ActionState != 0)
+            currentAction = ActionState;
         else
             basicMove();
     }
@@ -544,12 +544,13 @@ public class PlayerScript : MonoBehaviour
 		if (!air && state > 6)
 			executeAction(Behaviors.aJump, false);
 	
-        // TODO need to figure out way to get current attack
+        // TODO need to figure out way to get current Action
 		//executeAction(, true);
 	*/
 
 	private void actionEnd()
 	{
+        Debug.Log("action end");
         currentAction = 0;
         currentFrame = 0;
         actionCounter = 0;
@@ -684,10 +685,7 @@ public class PlayerScript : MonoBehaviour
 
     public int[] frameCheck(int calledAction)
     {
-        if (calledAction >= 40)
-            return behaviors.getAdvanced(currentAction).frames;
-        else
-            return behaviors.getAttack(currentAction).frames;
+            return behaviors.getAction(currentAction).frames;
     }
 
 }

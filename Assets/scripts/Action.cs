@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack {
+public class Action {
 
-    public int[] attackCancels;
+    public int[] ActionCancels;
     public int[] advCancels;
     public int[] meterCost;
     public int[] frames;
     public int[] damage;
 
-    public int attackClass;
+    public int ActionClass;
 	public int level;
     public int gAngle;
     public int aAngle;

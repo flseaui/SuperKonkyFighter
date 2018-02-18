@@ -5,24 +5,17 @@ using UnityEngine;
 
 public abstract class Behaviors {
 
-    IDictionary<int, Attack> attackIds;
-    IDictionary<int, Advanced> advancedIds;
+    IDictionary<int, Action> ActionIds;
 
-    // Returns attack object from given id
-    public Attack getAttack(int id)
+    // Returns Action object from given id
+    public Action getAction(int id)
     {
-        return attackIds[id];
+        return ActionIds[id];
     }
 
-    public Advanced getAdvanced(int id)
+    protected void setIds(IDictionary<int, Action> ActionIds)
     {
-        return advancedIds[id];
-    }
-
-    protected void setIds(IDictionary<int, Attack> attackIds, IDictionary<int, Advanced> advancedIds)
-    {
-        this.attackIds = attackIds;
-        this.advancedIds = advancedIds;
+        this.ActionIds = ActionIds;
     }
 
 }
