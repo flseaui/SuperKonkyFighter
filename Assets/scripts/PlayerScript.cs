@@ -444,7 +444,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
-            if (currentFrame == frameCheck(currentAction).Length)
+            if (currentFrame >= frameCheck(currentAction).Length)
             {
                 if (behaviors.getAdvanced(currentAction).infinite || behaviors.getAttack(currentAction).infinite)
                     actionCounter--;
