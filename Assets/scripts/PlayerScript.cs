@@ -134,7 +134,6 @@ public class PlayerScript : MonoBehaviour
     public bool flipFacing;
     public bool flip;
 
-
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -171,7 +170,7 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-        inputManager = new InputManager(0);
+        inputManager = new InputManager(1);
 	}
 
     // Update is called once per frame
