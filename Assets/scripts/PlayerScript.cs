@@ -240,7 +240,8 @@ public class PlayerScript : MonoBehaviour
 		if (x() < -64f)
         {
             setX(-64);
-        }else if (x() > 64f)
+        }
+        else if (x() > 64f)
         {
             setX(64);
         }
