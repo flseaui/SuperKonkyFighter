@@ -116,9 +116,9 @@ public class PlayerScript : MonoBehaviour
 
     InputManager inputManager;
 
-    int basicState;
-    int AttackState;
-    int AdvState;
+    public int basicState;
+    public int AttackState;
+    public int AdvState;
 
     int bufferedMove;
 
@@ -353,7 +353,7 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-        if (input[2] || input[3])
+        if (!input[2] || !input[3])
         {
             dashTimer = 15;
             if (input[2])
