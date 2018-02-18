@@ -101,6 +101,8 @@ public class InputManager
                 currentInput[5] = (Input.GetKeyDown(mediumKey));
                 currentInput[6] = (Input.GetKeyDown(heavyKey));
                 currentInput[7] = (Input.GetKeyDown(specialKey));
+                currentInput[8] = (Input.GetKeyDown(leftKey));
+                currentInput[9] = (Input.GetKeyDown(rightKey));
                 break;
         }
     }

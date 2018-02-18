@@ -400,6 +400,7 @@ public class PlayerScript : MonoBehaviour
 	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
+        Debug.Log(actionCounter);
 		currentFrame = frames[actionCounter];
         actionCounter++;
 
