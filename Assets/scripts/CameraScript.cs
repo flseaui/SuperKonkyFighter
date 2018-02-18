@@ -110,7 +110,7 @@ public class CameraScript : MonoBehaviour
 
 			p1h.hit = false;
 
-			if (p1s.state == 4 && (!p1s.action))//|| p1s.actionState == Behaviors.aBlock))
+			if (p1s.state == 4 && (!p1s.Attack))//|| p1s.actionState == Behaviors.aBlock))
 			{
 				p1s.block((int)p2s.level(3));
 
@@ -156,7 +156,7 @@ public class CameraScript : MonoBehaviour
 
 			p2h.hit = false;
 
-            if (p2s.state == 4 && (!p2s.action))//|| p2s.actionState == Behaviors.aBlock))
+            if (p2s.state == 4 && (!p2s.Attack))//|| p2s.actionState == Behaviors.aBlock))
 			{
 
 				p2s.block((int)p2s.level(3));
