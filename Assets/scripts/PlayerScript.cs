@@ -212,9 +212,7 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
-        if (currentAction == 0)
-            basicMove();
-        else 
+        if (currentAction != 0)
             incrementFrame(frameCheck(currentAction));
         
 
@@ -446,21 +444,28 @@ public class PlayerScript : MonoBehaviour
     private void stateCheck()
     {
         if (currentAction != 0)
+        {
             if (currentFrame == frameCheck(currentAction).Length)
+            {
                 if (infiniteAction)
                     actionCounter--;
                 else
                     actionEnd();
-            else if (AdvState != 0 || waitForEnd) {
-                if (waitForEnd)
-                {
-                    waitForEnd = false;
-                    AdvState = 7;
-                }
-                currentAction = AdvState + 40;
             }
-            else if (AttackState != 0)
-                currentAction = AttackState;
+        }
+        else if (AdvState != 0 || waitForEnd)
+        {
+            if (waitForEnd)
+            {
+                waitForEnd = false;
+                AdvState = 7;
+            }
+            currentAction = AdvState + 40;
+        }
+        else if (AttackState != 0)
+            currentAction = AttackState;
+        else
+            basicMove();
     }
 
     private void basicMove()
