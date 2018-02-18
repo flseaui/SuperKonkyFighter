@@ -553,6 +553,7 @@ public class PlayerScript : MonoBehaviour
 	{
         currentAction = 0;
         currentFrame = 0;
+        actionCounter = 0;
 	}
 
     private void animInt(int hash, int value)
