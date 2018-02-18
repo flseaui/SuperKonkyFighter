@@ -336,7 +336,7 @@ public class PlayerScript : MonoBehaviour
 
     private void setAdvancedInput(bool[] input)
     {
-        if (input[2] && dashTrack == 0 && dashTimer != 0)
+        if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
                 AdvState = 2;
@@ -344,7 +344,7 @@ public class PlayerScript : MonoBehaviour
                 AdvState = 1;
 
         }
-        else if (input[3] && dashTrack == 1 && dashTimer != 0)
+        else if (input[9] && dashTrack == 1 && dashTimer != 0)
         {
             if (facingRight)
                 AdvState = 1;
@@ -353,7 +353,7 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-        if (!input[2] || !input[3])
+        if (input[8] || input[9])
         {
             dashTimer = 15;
             if (input[2])
@@ -379,7 +379,7 @@ public class PlayerScript : MonoBehaviour
             AdvState = 7;
         }
             
-        if (!(input[2] || input[3]) && dashTimer != 0)
+        if ((!input[8] || !input[9]) && dashTimer != 0)
             dashTimer--;
     }
 
