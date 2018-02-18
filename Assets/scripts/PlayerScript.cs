@@ -471,7 +471,7 @@ public class PlayerScript : MonoBehaviour
     {
         hVelocity = (basicState == 6 ? 
                     (facingRight ? forwardSpeed : -forwardSpeed) : 
-                    (basicState == 7 ? 
+                    (basicState == 4 ? 
                     (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
     }
 
