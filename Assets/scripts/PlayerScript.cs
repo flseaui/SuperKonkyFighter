@@ -171,8 +171,11 @@ public class PlayerScript : MonoBehaviour
 		baseHeight = 8;
 		width = 4;
 
-        inputManager = new InputManager(1);
-	}
+        if (CompareTag("1"))
+            inputManager = new InputManager(1);
+        else if (CompareTag("2"))
+            inputManager = new InputManager(2);
+    }
 
     // Update is called once per frame
     void Update()
