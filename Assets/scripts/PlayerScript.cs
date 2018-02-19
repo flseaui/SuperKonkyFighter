@@ -476,27 +476,22 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        Debug.Log("https://www.twitch.tv/trilll");
         if (!air)
         {
-            Debug.Log("https://www.twitch.tv/trilll2");
             if (basicState == 8)
                 vVelocity = jumpSpeed;
             else if (basicState == 7)
             {
-                Debug.Log("https://www.twitch.tv/trilll3");
                 vVelocity = jumpSpeed;
                 hVelocity = -backwardSpeed;
             }
             else if (basicState == 9)
             {
-                Debug.Log("https://www.twitch.tv/trilll4");
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
             }
             else
             {
-                Debug.Log("https://www.twitch.tv/trilllllllll");
                 hVelocity = (basicState == 6 ?
                             (facingRight ? forwardSpeed : -forwardSpeed) :
                             (basicState == 4 ?
