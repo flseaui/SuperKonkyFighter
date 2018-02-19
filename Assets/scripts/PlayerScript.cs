@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour
 	public int currentFrame;//current type of frame
 	public int[] AttackTypes;//the list of frame types
     public int AttackFrames; //total time
-	public int AttackCounter;//the timer that moves along (counting up)
+	public int ActionCounter;//the timer that moves along (counting up)
 	public int damageCounter;//counts up damage amounts
 	public bool infiniteAttack;//INFINTIYNIYIN
     public int lvl;
@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int dashTrack;
 
-    public int CurrentAction;
+    public int currentAction;
 
     public bool flipFacing;
     public bool flip;
@@ -212,8 +212,8 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
-        if (CurrentAction != 0)
-            incrementFrame(frameCheck(CurrentAction));
+        if (currentAction != 0)
+            incrementFrame(behaviors.getAction(currentAction).frames);
         
 
         stateCheck();
@@ -365,7 +365,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (flip)
-            if (CurrentAction != 0)
+            if (currentAction != 0)
                 waitForEnd = true;
             else if (air)
                 waitForGround = true;
@@ -402,8 +402,8 @@ public class PlayerScript : MonoBehaviour
 	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
-		currentFrame = frames[AttackCounter];
-        AttackCounter++;
+		currentFrame = frames[ActionCounter];
+        ActionCounter++;
 
         if (previousFrame != 1 && currentFrame == 1)
 		{
@@ -444,12 +444,16 @@ public class PlayerScript : MonoBehaviour
 
     private void stateCheck()
     {
-        if (CurrentAction != 0)
+        if (currentAction != 0)
         {
-            if (currentFrame >= frameCheck(CurrentAction).Length)
+            Debug.Log("l" + currentFrame);
+            Debug.Log("sd" + behaviors.getAction(currentAction).frames.Length);
+            if (currentFrame >= behaviors.getAction(currentAction).frames.Length)
             {
-                if (behaviors.getAction(CurrentAction).infinite)
-                    AttackCounter--;
+                if (behaviors.getAction(currentAction).infinite)
+                {
+                    ActionCounter--;
+                }
                 else
                     ActionEnd();
             }
@@ -461,10 +465,10 @@ public class PlayerScript : MonoBehaviour
                 waitForEnd = false;
                 AdvState = 7;
             }
-            CurrentAction = AdvState + 40;
+            currentAction = AdvState + 40;
         }
         else if (AttackState != 0)
-            CurrentAction = AttackState;
+            currentAction = AttackState;
         else
             basicMove();
     }
@@ -571,9 +575,9 @@ public class PlayerScript : MonoBehaviour
 	private void ActionEnd()
 	{
         Debug.Log("Action end");
-        CurrentAction = 0;
+        currentAction = 0;
         currentFrame = 0;
-        AttackCounter = 0;
+        ActionCounter = 0;
 	}
 
     private void animInt(int hash, int value)
@@ -701,11 +705,6 @@ public class PlayerScript : MonoBehaviour
                 vKnockback = 0;
             }
         }
-    }
-
-    public int[] frameCheck(int calledAttack)
-    {
-            return behaviors.getAction(CurrentAction).frames;
     }
 
 }
