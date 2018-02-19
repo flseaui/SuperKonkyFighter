@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int dashTrack;
 
-    public int currentAttack;
+    public int CurrentAction;
 
     public bool flipFacing;
     public bool flip;
@@ -212,8 +212,8 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
-        if (currentAttack != 0)
-            incrementFrame(frameCheck(currentAttack));
+        if (CurrentAction != 0)
+            incrementFrame(frameCheck(CurrentAction));
         
 
         stateCheck();
@@ -365,7 +365,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (flip)
-            if (currentAttack != 0)
+            if (CurrentAction != 0)
                 waitForEnd = true;
             else if (air)
                 waitForGround = true;
@@ -427,31 +427,31 @@ public class PlayerScript : MonoBehaviour
             {
                 waitForEnd = false;
                 AdvState = 7;
-                AttackEnd();
+                ActionEnd();
             }
             if (bufferedMove != 0)
             {
                 AttackState = bufferedMove;
                 bufferedMove = 0;
-                AttackEnd();
+                ActionEnd();
             }
             else if (AttackState != 0)
             {
-                AttackEnd();
+                ActionEnd();
             }
         }
 	}
 
     private void stateCheck()
     {
-        if (currentAttack != 0)
+        if (CurrentAction != 0)
         {
-            if (currentFrame >= frameCheck(currentAttack).Length)
+            if (currentFrame >= frameCheck(CurrentAction).Length)
             {
-                if (behaviors.getAction(currentAttack).infinite)
+                if (behaviors.getAction(CurrentAction).infinite)
                     AttackCounter--;
                 else
-                    AttackEnd();
+                    ActionEnd();
             }
         }
         else if (AdvState != 0 || waitForEnd)
@@ -461,10 +461,10 @@ public class PlayerScript : MonoBehaviour
                 waitForEnd = false;
                 AdvState = 7;
             }
-            currentAttack = AdvState + 40;
+            CurrentAction = AdvState + 40;
         }
         else if (AttackState != 0)
-            currentAttack = AttackState;
+            CurrentAction = AttackState;
         else
             basicMove();
     }
@@ -568,10 +568,10 @@ public class PlayerScript : MonoBehaviour
 		//executeAttack(, true);
 	*/
 
-	private void AttackEnd()
+	private void ActionEnd()
 	{
-        Debug.Log("Attack end");
-        currentAttack = 0;
+        Debug.Log("Action end");
+        CurrentAction = 0;
         currentFrame = 0;
         AttackCounter = 0;
 	}
@@ -705,7 +705,7 @@ public class PlayerScript : MonoBehaviour
 
     public int[] frameCheck(int calledAttack)
     {
-            return behaviors.getAction(currentAttack).frames;
+            return behaviors.getAction(CurrentAction).frames;
     }
 
 }
