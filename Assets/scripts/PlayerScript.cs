@@ -299,9 +299,9 @@ public class PlayerScript : MonoBehaviour
             if (input[2])
                 return 7;
             else if (input[3])
-                return 8;
-            else
                 return 9;
+            else
+                return 8;
         }
         else
         {
