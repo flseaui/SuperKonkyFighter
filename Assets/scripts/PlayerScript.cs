@@ -246,11 +246,6 @@ public class PlayerScript : MonoBehaviour
             setX(64);
         }
 
-        if (!air && !GetComponentInChildren<HitboxScript>().colliding)
-        {
-            hVelocity = 0;
-		}
-
 		vVelocity += gravity;
 
 		if (vVelocity < -1)
