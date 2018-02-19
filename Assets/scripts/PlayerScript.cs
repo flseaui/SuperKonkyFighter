@@ -125,7 +125,7 @@ public class PlayerScript : MonoBehaviour
 
     bool damageDealt;
 
-    public int[] jump;
+    public int jump;
 
     public int dashTimer;
     public int dashTrack;
@@ -285,9 +285,9 @@ public class PlayerScript : MonoBehaviour
             if (input[2])
                 return 7;
             else if (input[3])
-                return 8;
-            else
                 return 9;
+            else
+                return 8;
         }
         else
         {
@@ -467,17 +467,24 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
+        if (!air)
+        {
             if (basicState == 8)
+            {
                 vVelocity = jumpSpeed;
+                jump = basicState;
+            }
             else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = -backwardSpeed;
+                jump = basicState;
             }
             else if (basicState == 9)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
+                jump = basicState;
             }
             else if (basicState == 5)
             {
@@ -490,6 +497,15 @@ public class PlayerScript : MonoBehaviour
                             (facingRight ? forwardSpeed : -forwardSpeed) :
                             (basicState == 4 ?
                             (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
+            }
+
+            if (basicState > 4)
+                hVelocity = 0;
+        }
+
+        if (air)
+        {
+            basicState = state;
         }
     }
 
