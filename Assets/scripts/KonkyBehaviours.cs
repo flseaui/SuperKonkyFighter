@@ -114,11 +114,10 @@ public class KonkyBehaviours : Behaviors {
         setIds(konkyActionIds, konkyAnimAction);
     }
 
-    //0 total frames
-    //1 recovery frames
-    //3 damage
-    //4 chip damage DO THIS
-    //5 blockstun
+    //0 - Startup
+    //1 - Active
+    //2 - Multihit Recovery
+    //3 - Recovery
 
     //Action class:
     //0 = light

@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth;
     public int health;
     public int currentFrame;
-    public int ActionCounter;
+    public int currentActionFrame;
     public int damageCounter;
     public int playerID;
 
@@ -260,6 +260,15 @@ public class PlayerScript : MonoBehaviour
         if (dashTimer == 0 && AdvState <= 4)
             AdvState = 0;
 
+        if (input[10] || input[11])
+        {
+            dashTimer = 15;
+            if (input[10])
+                dashTrack = 0;
+            else
+                dashTrack = 1;
+        }
+
         if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
@@ -296,15 +305,6 @@ public class PlayerScript : MonoBehaviour
             
         if ((!input[8] || !input[9]) && dashTimer != 0)
             dashTimer--;
-
-        if (input[8] || input[9])
-        {
-            dashTimer = 15;
-            if (input[8])
-                dashTrack = 0;
-            else
-                dashTrack = 1;
-        }
     }
 
     private void setAttackInput(bool[] input)
@@ -324,14 +324,13 @@ public class PlayerScript : MonoBehaviour
 	private void incrementFrame(int[] frames)
 	{	
 		int previousFrame = currentFrame;
-		currentFrame = frames[ActionCounter];
-        ActionCounter++;
+		currentFrame = frames[currentActionFrame];
+        currentActionFrame++;
 
-        Debug.Log("ActionCounter" + ActionCounter);
+        Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
 		{
-			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
-			//damagePass = damages[damageCounter];
+			otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
             ++damageCounter;
         }
 
@@ -381,10 +380,10 @@ public class PlayerScript : MonoBehaviour
             if (!air)
                 hVelocity = 0;
             Debug.Log("CurrentAction");
-            if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
+            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
                 if (behaviors.getAction(currentAction).infinite)
-                    ActionCounter--;
+                    currentActionFrame--;
                 else
                     ActionEnd();
             }
@@ -458,16 +457,13 @@ public class PlayerScript : MonoBehaviour
 
     private void advancedMove()
     {
-        switch(currentAction-40)
+        switch(currentAction)
         {
             case 1:
-                hVelocity = forwardSpeed * 3;
-                Debug.Log(dashTrack);
-                if ((inputManager.currentInput[10] && dashTrack == 0) || (inputManager.currentInput[11] && dashTrack == 1))
-                    ActionEnd();
+                hVelocity = forwardSpeed;
                 break;
             case 2:
-                hVelocity = -backwardSpeed * 1.5f;
+                hVelocity = -backwardSpeed;
                 break;
             case 3:
                 break;
@@ -487,7 +483,7 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("Action end");
         currentAction = 0;
         currentFrame = 0;
-        ActionCounter = 0;
+        currentActionFrame = 0;
 	}
 
     private void animInt(int hash, int value)
