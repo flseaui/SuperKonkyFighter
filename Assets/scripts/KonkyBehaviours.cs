@@ -95,6 +95,7 @@ public class KonkyBehaviours : Behaviors {
 
             {standL, 5 },
             {standM, 15 },
+            {forwardM, 16 },
             {standH, 25 },
 
             {jumpL, 8 },
