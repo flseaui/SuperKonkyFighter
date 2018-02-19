@@ -490,6 +490,11 @@ public class PlayerScript : MonoBehaviour
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
             }
+            else if (basicState == 5)
+            {
+                vVelocity = 0;
+                hVelocity = 0;
+            }
             else
             {
                 hVelocity = (basicState == 6 ?
@@ -499,79 +504,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-
-    /*
-
-        if (!Attack) {//set velocity when moving forward and backward
-			if (state == 6)
-			{
-				if (facingRight)
-				{
-					hVelocity = forwardSpeed;
-				}
-				else
-				{
-					hVelocity = -forwardSpeed;
-				}
-			}
-			else if (state == 4)
-			{
-				if (facingRight)
-				{
-					hVelocity = -backwardSpeed;
-				}
-				else
-				{
-					hVelocity = backwardSpeed;
-				}
-			}
-		}
-
-		else{//set velocity when dashing
-			if (AttackState == Behaviors.aBDash)
-			{
-				if (facingRight)
-				{
-					hVelocity = -forwardSpeed * 1.5f;
-					vVelocity = 0;
-				}
-				else
-				{
-					hVelocity = forwardSpeed * 1.5f;
-					vVelocity = 0;
-				}
-			}
-			else if (AttackState == Behaviors.aDash || AttackState == Behaviors.aADash)
-			{
-				if (facingRight)
-				{
-					hVelocity = forwardSpeed * 3f;
-					vVelocity = 0;
-				}
-				else
-				{
-					hVelocity = -forwardSpeed * 3f;
-					vVelocity = 0;
-				}
-			}
-		}
-
-		if (state < 4)//set the height for crouching
-		{
-			height = baseHeight / 2;
-		}
-		else
-		{
-			height = baseHeight;
-		}
-
-        // If airborn and state > 6: jump
-		if (!air && state > 6)
-			executeAttack(Behaviors.aJump, false);
-	
-        // TODO need to figure out way to get current Attack
-		//executeAttack(, true);
-	*/
 
 	private void ActionEnd()
 	{
