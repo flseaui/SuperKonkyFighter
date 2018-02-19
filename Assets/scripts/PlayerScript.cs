@@ -461,6 +461,7 @@ public class PlayerScript : MonoBehaviour
             case 1:
                 hVelocity = forwardSpeed * 3;
                 if ((!inputManager.currentInput[2] && dashTrack == 0) || (!inputManager.currentInput[3] && dashTrack == 1))
+                    hVelocity = 0;
                     ActionEnd();
                 break;
             case 2:
