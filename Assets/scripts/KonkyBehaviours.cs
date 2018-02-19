@@ -16,6 +16,7 @@ public class KonkyBehaviours : Behaviors {
      */
 
     IDictionary<int, Action> konkyActionIds;
+    IDictionary<Action, int> konkyAnimAction;
 
     /* 
        * ADVANCED ID FORMAT
@@ -86,7 +87,22 @@ public class KonkyBehaviours : Behaviors {
             { 47,         flip  }
         };
 
-        setIds(konkyActionIds);
+        konkyAnimAction = new Dictionary<Action, int>()
+        {
+            {crouchL, 2 },
+            {crouchM, 12 },
+            {crouchH, 22 },
+
+            {standL, 5 },
+            {standM, 15 },
+            {standH, 25 },
+
+            {jumpL, 8 },
+            {jumpM, 18 },
+            {jumpH, 28 },
+        };
+
+        setIds(konkyActionIds, konkyAnimAction);
     }
 
     //0 total frames
