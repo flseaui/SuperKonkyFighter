@@ -276,7 +276,7 @@ public class PlayerScript : MonoBehaviour
 			air = true;
 		}
 
-		updateAnimation();
+		//updateAnimation();
 	}
 
 	private void buffer(int bufferedInput)
@@ -448,23 +448,19 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
-            Debug.Log("l" + currentFrame);
-            Debug.Log("sd" + behaviors.getAction(currentAction).frames.Length);
+            Debug.Log("CurrentAction");
             if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
             {
                 
                 if (behaviors.getAction(currentAction).infinite)
-                {
-                    Debug.Log("Inf");
                     ActionCounter--;
-                }
                 else
-                    Debug.Log("Ended");
-                ActionEnd();
+                    ActionEnd();
             }
         }
         else if (AdvState != 0 || waitForEnd)
         {
+            Debug.Log("AdvState");
             if (waitForEnd)
             {
                 waitForEnd = false;
@@ -473,9 +469,15 @@ public class PlayerScript : MonoBehaviour
             currentAction = AdvState + 40;
         }
         else if (AttackState != 0)
+        {
+            Debug.Log("AttackState");
             currentAction = AttackState;
+        }
         else
+        {
+            Debug.Log("BasicMove");
             basicMove();
+        }
     }
 
     private void basicMove()
