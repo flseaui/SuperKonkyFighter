@@ -125,7 +125,7 @@ public class PlayerScript : MonoBehaviour
 
     bool damageDealt;
 
-    public int jump;
+    public int[] jump;
 
     public int dashTimer;
     public int dashTrack;
@@ -199,13 +199,11 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (currentAction != 0)
 		{
-			animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
-            animInt(Animator.StringToHash("Basic"), 0);
-        }
+			animInt(Animator.StringToHash("Action"), currentAction);
+		}
 		else
 		{
             animInt(Animator.StringToHash("Basic"), basicState);
-            animInt(Animator.StringToHash("Action"), 0);
         }
 	}
 
@@ -226,20 +224,6 @@ public class PlayerScript : MonoBehaviour
 
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
-        /*if (stunned)
-        {
-			--stunTimer;
-			if (stunTimer == 0)
-			{
-				shutdown();
-				stunned = false;
-			}
-		}
-		else
-		{*/
-
-        // }
 
 		//floor check
 		if (x() < -64f)
@@ -301,9 +285,9 @@ public class PlayerScript : MonoBehaviour
             if (input[2])
                 return 7;
             else if (input[3])
-                return 9;
-            else
                 return 8;
+            else
+                return 9;
         }
         else
         {
@@ -451,6 +435,7 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("CurrentAction");
             if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
             {
+                
                 if (behaviors.getAction(currentAction).infinite)
                     ActionCounter--;
                 else
@@ -480,47 +465,29 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        if (!air)
-        {
             if (basicState == 8)
-            {
                 vVelocity = jumpSpeed;
-                jump = 8;
-            }
             else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = -backwardSpeed;
-                jump = 7;
             }
             else if (basicState == 9)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
-                jump = 9;
             }
             else if (basicState == 5)
             {
                 vVelocity = 0;
                 hVelocity = 0;
             }
-            else if (basicState == 6 || basicState == 4)
+            else
             {
                 hVelocity = (basicState == 6 ?
                             (facingRight ? forwardSpeed : -forwardSpeed) :
                             (basicState == 4 ?
                             (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
-            }
-
-            if (basicState < 4)
-            {
-                hVelocity = 0;
-            }
-        }
-
-        if (air)
-        {
-            basicState = jump;
         }
     }
 
@@ -529,7 +496,10 @@ public class PlayerScript : MonoBehaviour
         switch(currentAction)
         {
             case 1:
-                hVelocity = forwardSpeed;
+                if (dashTrack == 1)
+                    hVelocity = forwardSpeed;
+                else
+                    ActionEnd();
                 break;
             case 2:
                 hVelocity = -backwardSpeed;
