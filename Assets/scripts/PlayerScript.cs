@@ -219,6 +219,9 @@ public class PlayerScript : MonoBehaviour
             incrementFrame(behaviors.getAction(currentAction).frames);
         stateCheck();
 
+        if (currentAction >= 40)
+            advancedMove();
+
         // If facing right flip x-scale right, otherwise flip x-scale left
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
@@ -476,8 +479,6 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        if (!air)
-        {
             if (basicState == 8)
                 vVelocity = jumpSpeed;
             else if (basicState == 7)
@@ -501,7 +502,29 @@ public class PlayerScript : MonoBehaviour
                             (facingRight ? forwardSpeed : -forwardSpeed) :
                             (basicState == 4 ?
                             (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
-            }
+        }
+    }
+
+    private void advancedMove()
+    {
+        switch(currentAction)
+        {
+            case 1:
+                hVelocity = forwardSpeed;
+                break;
+            case 2:
+                hVelocity = -backwardSpeed;
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
         }
     }
 
