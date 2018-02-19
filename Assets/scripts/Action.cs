@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Action {
 
-    public int[] ActionCancels;
-    public int[] advCancels;
+    public int[] actionCancels;
     public int[] meterCost;
     public int[] frames;
     public int[] damage;

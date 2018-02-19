@@ -133,7 +133,7 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
         damage = new int[] { 300 },
         level = 0,
-        ActionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -147,7 +147,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 1,
-        ActionCancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
+        actionCancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -161,7 +161,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 2,
-        ActionCancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 4,
         aAngle      = 30,
@@ -175,7 +175,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 0,
-        ActionCancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -189,7 +189,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 500 },
         level       = 1,
-        ActionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -203,8 +203,7 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage = new int[] { 700, 700 },
         level = 3,
-        ActionCancels = new int[] { 31, 32, 33, 34, 35, 36 },
-        advCancels = new int[] { 40 },
+        actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle      = 80,
         gStrength   = 4,
         aAngle      = 80,
@@ -218,8 +217,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 2,
-        ActionCancels     = new int[] { 17, 18, 19, 27, 28, 29 },
-        advCancels = new int[] { 40 },
+        actionCancels     = new int[] { 17, 18, 19, 27, 28, 29, 40 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -233,8 +231,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 2,
-        ActionCancels     = new int[] { 27, 28, 29 },
-        advCancels = new int[] { 40 },
+        actionCancels     = new int[] { 27, 28, 29, 40 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -248,7 +245,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 3,
-        advCancels     = new int[] { 40 },
+        actionCancels     = new int[] { 40 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -90,
@@ -262,7 +259,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 0,
-        ActionCancels     = new int[] { 25, 31, 32, 33, 34, 35, 36 },
+        actionCancels     = new int[] { 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 180,
         gStrength   = 2,
         aAngle      = 330,
@@ -277,7 +274,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0 },
         damage      = new int[] { 1200 },
         level       = 0,
-        ActionCancels     = new int[] { 35 },
+        actionCancels     = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 0,
@@ -291,8 +288,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 5,
-        ActionCancels     = new int[] { 35,},
-        advCancels = new int[] { 41, 42 },
+        actionCancels     = new int[] { 35, 41, 42 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -306,7 +302,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 4,
-        ActionCancels     = new int[] { 35 },
+        actionCancels     = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -320,7 +316,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3 },
         damage      = new int[] { 400, 400, 600 },
         level       = 2,
-        ActionCancels     = new int[] { 35 },
+        actionCancels     = new int[] { 35 },
         gAngle      = 45,
         gStrength   = 1,
         aAngle      = 45,
@@ -334,7 +330,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3 },
         damage      = new int[] { 0 },
         level       = 0,
-        ActionCancels     = new int[] { },
+        actionCancels     = new int[] { },
         gAngle      = 0,
         gStrength   = 5,
         aAngle      = 0,
@@ -348,7 +344,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 1500 },
         level       = 5,
-        ActionCancels     = new int[] { 35 },
+        actionCancels     = new int[] { 35 },
         gAngle      = 60,
         gStrength   = 8,
         aAngle      = 60,
@@ -362,7 +358,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0 },
         damage      = new int[] { 1500 },
         level       = 5,
-        ActionCancels     = new int[] { 1, 2 },
+        actionCancels     = new int[] { 1, 2 },
         gAngle      = 30,
         gStrength   = 10,
         aAngle      = 0,
@@ -370,23 +366,23 @@ public class KonkyBehaviours : Behaviors {
     };
 
     // Turns
-    private Action flip = new Action()       { frames = new int[] { 0, 0, 0,                                                    }, ActionCancels  = new int[] {       } };
+    private Action flip = new Action()       { frames = new int[] { 0, 0, 0,                                                    }, actionCancels  = new int[] {       } };
 
     // Back Dash
-    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, advCancels  = new int[] { 40 } };
+    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] { 40 } };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 0                                                          }, advCancels  = new int[] { 40 }, infinite = true };
+    private Action forwardDash = new Action() { frames = new int[] { 0                                                          }, actionCancels = new int[] { 40 }, infinite = true };
 
     // Stun
-    private Action stun = new Action()        { frames = new int[] { 3                                                          }, ActionCancels = new int[] {       } };
+    private Action stun = new Action()        { frames = new int[] { 3                                                          }, actionCancels = new int[] {       } };
 
     // Block
-    private Action block = new Action()       { frames = new int[] { 4                                                          }, ActionCancels = new int[] {       } };
+    private Action block = new Action()       { frames = new int[] { 4                                                          }, actionCancels = new int[] {       } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, ActionCancels = new int[] {       } };
-    private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, ActionCancels = new int[] {       } };
+    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
+    private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
