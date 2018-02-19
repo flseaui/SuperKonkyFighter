@@ -471,6 +471,18 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
+        if (inputConvert(inputManager.currentInput) == 8) 
+            vVelocity = jumpSpeed;
+        if (inputConvert(inputManager.currentInput) == 7)
+        {
+            vVelocity = jumpSpeed;
+            hVelocity = jumpSpeed;
+        }
+        else if (inputConvert(inputManager.currentInput) == 9)
+        {
+            vVelocity = jumpSpeed;
+            hVelocity = -jumpSpeed;
+        }
         hVelocity = (basicState == 6 ? 
                     (facingRight ? forwardSpeed : -forwardSpeed) : 
                     (basicState == 4 ? 
