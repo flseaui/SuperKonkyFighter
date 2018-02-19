@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     public bool flip;
     public bool facingRight;
 
-    public int bufferedMove;
+           int bufferedMove;
     public int maxHealth;
     public int health;
     public int currentFrame;
@@ -108,7 +108,14 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameUpdate();
+        if (!hitStopped)
+        {
+            GameUpdate();
+        }
+        else
+        {
+            buffer(inputConvert(inputManager.currentInput));
+        }
 
         if (stunned)
         {
@@ -138,78 +145,68 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
-        if (hitStopped)
+        if (currentAction != 0)
+            incrementFrame(behaviors.getAction(currentAction).frames);
+        stateCheck();
+
+        if (currentAction >= 40)
+            advancedMove();
+
+        // If facing right flip x-scale right, otherwise flip x-scale left
+        this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+
+        /*if (stunned)
         {
-            if (AdvState != 0)
-                buffer(AdvState + 40);
-            else if (AttackState != 0)
-                buffer(currentAction = AttackState);
-        }
-        else
+			--stunTimer;
+			if (stunTimer == 0)
+			{
+				shutdown();
+				stunned = false;
+			}
+		}
+		else
+		{*/
+
+        // }
+
+		//floor check
+		if (x() < -64f)
         {
-            if (currentAction != 0)
-                incrementFrame(behaviors.getAction(currentAction).frames);
-            stateCheck();
-
-            if (currentAction >= 40)
-                advancedMove();
-            // If facing right flip x-scale right, otherwise flip x-scale left
-            this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
-            /*if (stunned)
-            {
-			    --stunTimer;
-			    if (stunTimer == 0)
-			    {
-				    shutdown();
-				    stunned = false;
-			    }
-		    }
-		    else
-		    {*/
-
-            // }
-
-            //floor check
-            if (x() < -64f)
-            {
-                setX(-64);
-            }
-            else if (x() > 64f)
-            {
-                setX(64);
-            }
-
-            vVelocity += gravity;
-
-            if (vVelocity < -1)
-            {
-                vVelocity = -1;
-            }
-
-            moveX(hVelocity + hKnockback);
-            moveY(vVelocity + vKnockback);
-
-            if (y() < FLOOR_HEIGHT) //ground snap
-            {
-                if (air)
-                    ActionEnd();
-                air = false;
-                vVelocity = 0;
-                setY(FLOOR_HEIGHT);
-            }
-            else
-            {
-                air = true;
-            }
-
-            updateAnimation();
+            setX(-64);
         }
+        else if (x() > 64f)
+        {
+            setX(64);
+        }
+
+		vVelocity += gravity;
+
+		if (vVelocity < -1)
+		{
+			vVelocity = -1;
+		}
+
+		moveX(hVelocity + hKnockback);
+		moveY(vVelocity + vKnockback);
+
+		if (y() < FLOOR_HEIGHT) //ground snap
+		{
+            if (air)
+                ActionEnd();
+			air = false;
+			vVelocity = 0;
+			setY(FLOOR_HEIGHT);
+		}
+		else
+		{
+			air = true;
+		}
+
+		updateAnimation();
 	}
 
 	private void buffer(int bufferedInput)
 	{
-        Debug.Log(bufferedInput);
         foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
@@ -331,7 +328,6 @@ public class PlayerScript : MonoBehaviour
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
-			//damagePass = damages[damageCounter];
             ++damageCounter;
         }
 
