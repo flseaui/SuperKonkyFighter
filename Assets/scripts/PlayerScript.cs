@@ -293,18 +293,12 @@ public class PlayerScript : MonoBehaviour
             waitForGround = false;
             AdvState = 7;
         }
-            
-        if ((!input[8] || !input[9]) && dashTimer != 0)
+
+        if (dashTimer != 0)
             dashTimer--;
 
-        if (input[8] || input[9])
-        {
-            dashTimer = 15;
-            if (input[8])
-                dashTrack = 0;
-            else
-                dashTrack = 1;
-        }
+        dashTrack = input[8] ? 0 : 1;
+        dashTimer = input[8] || input[9] ? 15 : dashTimer;
     }
 
     private void setAttackInput(bool[] input)
