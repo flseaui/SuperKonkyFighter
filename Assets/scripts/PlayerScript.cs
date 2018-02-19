@@ -260,15 +260,6 @@ public class PlayerScript : MonoBehaviour
         if (dashTimer == 0 && AdvState <= 4)
             AdvState = 0;
 
-        if (input[10] || input[11])
-        {
-            dashTimer = 15;
-            if (input[10])
-                dashTrack = 0;
-            else
-                dashTrack = 1;
-        }
-
         if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
@@ -305,6 +296,15 @@ public class PlayerScript : MonoBehaviour
             
         if ((!input[8] || !input[9]) && dashTimer != 0)
             dashTimer--;
+
+        if (input[8] || input[9])
+        {
+            dashTimer = 15;
+            if (input[8])
+                dashTrack = 0;
+            else
+                dashTrack = 1;
+        }
     }
 
     private void setAttackInput(bool[] input)
@@ -463,7 +463,7 @@ public class PlayerScript : MonoBehaviour
             case 1:
                 hVelocity = forwardSpeed * 3;
                 Debug.Log(dashTrack);
-                if ((!inputManager.currentInput[2] && dashTrack == 0) || (!inputManager.currentInput[3] && dashTrack == 1))
+                if ((!inputManager.currentInput[3] && dashTrack == 0) || (!inputManager.currentInput[2] && dashTrack == 0))
                     ActionEnd();
                 break;
             case 2:
