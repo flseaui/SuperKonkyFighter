@@ -260,15 +260,6 @@ public class PlayerScript : MonoBehaviour
         if (dashTimer == 0 && AdvState <= 4)
             AdvState = 0;
 
-        if (input[10] || input[11])
-        {
-            dashTimer = 15;
-            if (input[10])
-                dashTrack = 0;
-            else
-                dashTrack = 1;
-        }
-
         if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
@@ -305,6 +296,15 @@ public class PlayerScript : MonoBehaviour
             
         if ((!input[8] || !input[9]) && dashTimer != 0)
             dashTimer--;
+
+        if (input[8] || input[9])
+        {
+            dashTimer = 15;
+            if (input[8])
+                dashTrack = 0;
+            else
+                dashTrack = 1;
+        }
     }
 
     private void setAttackInput(bool[] input)
@@ -454,16 +454,17 @@ public class PlayerScript : MonoBehaviour
             basicState = jump;
         }
     }
-
     private void advancedMove()
     {
-        switch(currentAction)
+        switch (currentAction - 40)
         {
             case 1:
-                hVelocity = forwardSpeed;
+                hVelocity = forwardSpeed * 3;
+                if ((inputManager.currentInput[10] && dashTrack == 0) || (inputManager.currentInput[11] && dashTrack == 1))
+                    ActionEnd();
                 break;
             case 2:
-                hVelocity = -backwardSpeed;
+                hVelocity = -backwardSpeed * 1.5f;
                 break;
             case 3:
                 break;
@@ -478,7 +479,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-	private void ActionEnd()
+    private void ActionEnd()
 	{
         Debug.Log("Action end");
         currentAction = 0;
