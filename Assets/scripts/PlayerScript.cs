@@ -484,14 +484,14 @@ public class PlayerScript : MonoBehaviour
     {
         if (!air)
         {
-            if (inputConvert(inputManager.currentInput) == 8)
+            if (basicState == 8)
                 vVelocity = jumpSpeed;
-            else if (inputConvert(inputManager.currentInput) == 7)
+            else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = -backwardSpeed;
             }
-            else if (inputConvert(inputManager.currentInput) == 9)
+            else if (basicState == 9)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
