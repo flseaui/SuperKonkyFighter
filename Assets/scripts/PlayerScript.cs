@@ -501,7 +501,7 @@ public class PlayerScript : MonoBehaviour
                 if (dashTrack == 1)
                     hVelocity = forwardSpeed;
                 else
-                    ActionEnd();
+                   ActionEnd();
                 break;
             case 2:
                 hVelocity = -backwardSpeed;
