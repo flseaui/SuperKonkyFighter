@@ -199,7 +199,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (currentAction != 0)
 		{
-			animInt(Animator.StringToHash("Action"), currentAction);
+			animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
 		else
