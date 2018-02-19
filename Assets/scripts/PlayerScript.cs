@@ -5,17 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-
-    //CONSTANT
     float FLOOR_HEIGHT = 0;
     float BASE_GRAVITY = -0.05f;
-    int NO_Attack_INDEX = -1;
-    int NO_Attack_STRENGTH = -1;
-    int LIGHT_Attack = 0;
-    int MEDIUM_Attack = 1;
-    int HEAVY_Attack = 2;
-	int SPECIAL_Attack = 3;
-    int ANIM_STATE = Animator.StringToHash("state");
 
     public float[,] levelScaling = new float[,]
     { 
@@ -27,113 +18,54 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    public bool dashing;
-
-    public KeyCode[] dashKey;
-
-    public int dashDirectKey;
-    public bool dashDirect;
-    public bool previousDirect;
-    public bool groundDash;
-
-	bool dashed;
-    public int DashTimer;
-    bool DashCount;
-
-	public bool passDir;
-	public bool waitForGround;
+           bool damageDealt;
+    public bool waitForGround;
 	public bool waitForEnd;
-	
-	public int jumpPass;
+    public bool air;
+    public bool hitStopped;
+    public bool stunned;
+    public bool flipFacing;
+    public bool flip;
+    public bool facingRight;
 
-	public float gravity;
+           int bufferedMove;
+    public int maxHealth;
+    public int health;
+    public int currentFrame;
+    public int ActionCounter;
+    public int damageCounter;
+    public int playerID;
 
+    public int meter;
+    public int basicState;
+    public int AttackState;
+    public int AdvState;
+    public int jump;
+    public int dashTimer;
+    public int dashTrack;
+    public int currentAction;
     private int stunTimer;
 
+    public float hKnockback;
+    public float vKnockback;
+    public float gravity;
     public float vVelocity;
     public float hVelocity;
-
-    private float forwardSpeed;
-    private float backwardSpeed;
-    private float jumpSpeed;
-
 	public float baseHeight;
 	public float width;
 	public float height;
+    private float forwardSpeed;
+    private float backwardSpeed;
+    private float jumpSpeed;
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public Behaviors behaviors;
     public BoxCollider2D hitbox;
     public BoxCollider2D hurtbox;
-
-    public bool air;
-
-    public bool hitStopped;
-    public bool stunned;
-
-    public int maxHealth;
-    public int health;
-
-    public int state;
-
-    public int storedAttackStrength;
-    public int bufferFrames;
-
-	private int STARTUP = 0;
-	private int ACTIVE = 1;
-	private int BREAK = 2;
-	private int RECOVERY = 3;
-    public int ActionState;//Attack going on rn
-    public bool Attack;//is there an Attack
-	public int currentFrame;//current type of frame
-	public int[] AttackTypes;//the list of frame types
-    public int AttackFrames; //total time
-	public int ActionCounter;//the timer that moves along (counting up)
-	public int damageCounter;//counts up damage amounts
-	public bool infiniteAttack;//INFINTIYNIYIN
-    public int lvl;
-	public bool AttackOverride;//for buffering
-    public int gAnglePass;
-    public float gKnockpass;
-    public int aAnglePass;
-    public float aKnockpass;
-    public int classPass;
-
-	public bool facingRight;
-	public int playerID;
-
     public GameObject otherPlayer;
     public JoyScript JoyScript;
-
-	public int[] damages;
-	public int damagePass;
-    List<int> cancel;
-
-    public float hKnockback;
-    public float vKnockback;
-
-    public int meter;
-
-    InputManager inputManager;
-
-    public int basicState;
-    public int AttackState;
-    public int AdvState;
-
-    int bufferedMove;
-
-    bool damageDealt;
-
-    public int jump;
-
-    public int dashTimer;
-    public int dashTrack;
-
-    public int currentAction;
-
-    public bool flipFacing;
-    public bool flip;
+           InputManager inputManager;
 
     void OnDrawGizmos()
     {
@@ -153,16 +85,12 @@ public class PlayerScript : MonoBehaviour
 		hitbox.tag = playerID.ToString();
 		hurtbox.tag = playerID.ToString();
 
-        storedAttackStrength = NO_Attack_STRENGTH;
         forwardSpeed = 0.25f;
         backwardSpeed = 0.15f;
         jumpSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
-
-		cancel = new List<int>();
-		dashed = false;
 
 		//konky specific things...
 		maxHealth = 11000;
@@ -263,10 +191,6 @@ public class PlayerScript : MonoBehaviour
 
 		if (y() < FLOOR_HEIGHT) //ground snap
 		{
-			if (air)
-			{
-				state = 5;
-			}
 			air = false;
 			vVelocity = 0;
 			setY(FLOOR_HEIGHT);
@@ -410,7 +334,7 @@ public class PlayerScript : MonoBehaviour
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
-			damagePass = damages[damageCounter];
+			//damagePass = damages[damageCounter];
             ++damageCounter;
         }
 
