@@ -352,14 +352,23 @@ public class PlayerScript : MonoBehaviour
                 AdvState = 7;
                 ActionEnd();
             }
+            else if (AdvState != 0)
+            {
+                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
+                    if (Actions == AdvState + 40)
+                        bufferedMove = AdvState + 40;
+            }
+            else if (AttackState != 0)
+            {
+                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
+                    if (Actions == AttackState)
+                        bufferedMove = AttackState;
+            }
+
             if (bufferedMove != 0)
             {
                 AttackState = bufferedMove;
                 bufferedMove = 0;
-                ActionEnd();
-            }
-            else if (AttackState != 0)
-            {
                 ActionEnd();
             }
         }
