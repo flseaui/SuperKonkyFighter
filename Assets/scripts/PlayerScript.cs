@@ -458,13 +458,16 @@ public class PlayerScript : MonoBehaviour
 
     private void advancedMove()
     {
-        switch(currentAction)
+        switch(currentAction-40)
         {
             case 1:
-                hVelocity = forwardSpeed;
+                hVelocity = forwardSpeed * 3;
+                Debug.Log(dashTrack);
+                if ((!inputManager.currentInput[2] && dashTrack == 0) || (!inputManager.currentInput[3] && dashTrack == 1))
+                    ActionEnd();
                 break;
             case 2:
-                hVelocity = -backwardSpeed;
+                hVelocity = -backwardSpeed * 1.5f;
                 break;
             case 3:
                 break;
