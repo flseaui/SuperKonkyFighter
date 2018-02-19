@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     public bool flip;
     public bool facingRight;
 
-           int bufferedMove;
+    public int bufferedMove;
     public int maxHealth;
     public int health;
     public int currentFrame;
@@ -108,14 +108,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hitStopped)
-        {
-            GameUpdate();
-        }
-        else
-        {
-            buffer(inputConvert(inputManager.currentInput));
-        }
+        GameUpdate();
 
         if (stunned)
         {
@@ -145,69 +138,79 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
-        if (currentAction != 0)
-            incrementFrame(behaviors.getAction(currentAction).frames);
-        stateCheck();
-
-        if (currentAction >= 40)
-            advancedMove();
-
-        // If facing right flip x-scale right, otherwise flip x-scale left
-        this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
-        /*if (stunned)
+        if (hitStopped)
         {
-			--stunTimer;
-			if (stunTimer == 0)
-			{
-				shutdown();
-				stunned = false;
-			}
-		}
-		else
-		{*/
-
-        // }
-
-		//floor check
-		if (x() < -64f)
-        {
-            setX(-64);
+            if (AdvState != 0)
+                buffer(AdvState + 40);
+            else if (AttackState != 0)
+                buffer(currentAction = AttackState);
         }
-        else if (x() > 64f)
+        else
         {
-            setX(64);
+            if (currentAction != 0)
+                incrementFrame(behaviors.getAction(currentAction).frames);
+            stateCheck();
+
+            if (currentAction >= 40)
+                advancedMove();
+            // If facing right flip x-scale right, otherwise flip x-scale left
+            this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+
+            /*if (stunned)
+            {
+			    --stunTimer;
+			    if (stunTimer == 0)
+			    {
+				    shutdown();
+				    stunned = false;
+			    }
+		    }
+		    else
+		    {*/
+
+            // }
+
+            //floor check
+            if (x() < -64f)
+            {
+                setX(-64);
+            }
+            else if (x() > 64f)
+            {
+                setX(64);
+            }
+
+            vVelocity += gravity;
+
+            if (vVelocity < -1)
+            {
+                vVelocity = -1;
+            }
+
+            moveX(hVelocity + hKnockback);
+            moveY(vVelocity + vKnockback);
+
+            if (y() < FLOOR_HEIGHT) //ground snap
+            {
+                if (air)
+                    ActionEnd();
+                air = false;
+                vVelocity = 0;
+                setY(FLOOR_HEIGHT);
+            }
+            else
+            {
+                air = true;
+            }
+
+            updateAnimation();
         }
-
-		vVelocity += gravity;
-
-		if (vVelocity < -1)
-		{
-			vVelocity = -1;
-		}
-
-		moveX(hVelocity + hKnockback);
-		moveY(vVelocity + vKnockback);
-
-		if (y() < FLOOR_HEIGHT) //ground snap
-		{
-            if (air)
-                ActionEnd();
-			air = false;
-			vVelocity = 0;
-			setY(FLOOR_HEIGHT);
-		}
-		else
-		{
-			air = true;
-		}
-
-		updateAnimation();
 	}
 
 	private void buffer(int bufferedInput)
 	{
-        foreach (int Actions in behaviors.getAction(currentAction).ActionCancels)
+        Debug.Log(bufferedInput);
+        foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
     }
