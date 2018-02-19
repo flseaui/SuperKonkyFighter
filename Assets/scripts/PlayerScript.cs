@@ -191,6 +191,8 @@ public class PlayerScript : MonoBehaviour
 
 		if (y() < FLOOR_HEIGHT) //ground snap
 		{
+            if (air)
+                ActionEnd();
 			air = false;
 			vVelocity = 0;
 			setY(FLOOR_HEIGHT);
