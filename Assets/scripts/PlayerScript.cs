@@ -451,7 +451,6 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("CurrentAction");
             if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
             {
-                
                 if (behaviors.getAction(currentAction).infinite)
                     ActionCounter--;
                 else
@@ -481,6 +480,8 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
+        if (!air)
+        {
             if (basicState == 8)
                 vVelocity = jumpSpeed;
             else if (basicState == 7)
@@ -498,12 +499,18 @@ public class PlayerScript : MonoBehaviour
                 vVelocity = 0;
                 hVelocity = 0;
             }
-            else
+            else if (basicState == 6 || basicState == 4)
             {
                 hVelocity = (basicState == 6 ?
                             (facingRight ? forwardSpeed : -forwardSpeed) :
                             (basicState == 4 ?
                             (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
+            }
+
+            if (basicState < 4)
+            {
+                hVelocity = 0;
+            }
         }
     }
 
