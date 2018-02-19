@@ -336,6 +336,15 @@ public class PlayerScript : MonoBehaviour
         if (dashTimer == 0 && AdvState <= 4)
             AdvState = 0;
 
+        if (input[10] || input[11])
+        {
+            dashTimer = 15;
+            if (input[10])
+                dashTrack = 0;
+            else
+                dashTrack = 1;
+        }
+
         if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
@@ -352,16 +361,6 @@ public class PlayerScript : MonoBehaviour
                 AdvState = 2;
             dashTimer = 0;
         }
-
-        if (input[8] || input[9])
-        {
-            dashTimer = 15;
-            if (input[2])
-                dashTrack = 0;
-            else
-                dashTrack = 1;
-        }
-
 
         if (flip)
             if (currentAction != 0)
