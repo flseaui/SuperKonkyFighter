@@ -200,10 +200,12 @@ public class PlayerScript : MonoBehaviour
 		if (currentAction != 0)
 		{
 			animInt(Animator.StringToHash("Action"), currentAction);
-		}
+            animInt(Animator.StringToHash("Basic"), 0);
+        }
 		else
 		{
             animInt(Animator.StringToHash("Basic"), basicState);
+            animInt(Animator.StringToHash("Action"), 0);
         }
 	}
 
