@@ -432,6 +432,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
+            if (!air)
+                hVelocity = 0;
             Debug.Log("CurrentAction");
             if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
             {
