@@ -101,6 +101,14 @@ public class KonkyBehaviours : Behaviors {
             {jumpL, 8 },
             {jumpM, 18 },
             {jumpH, 28 },
+
+            {forwardDash, 41},
+            {backDash, 42},
+            {forwardAirDash, 43},
+            {backAirDash, 44},
+            {stun, 45 },
+            {block, 46 },
+            {flip, 47 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
