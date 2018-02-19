@@ -214,8 +214,6 @@ public class PlayerScript : MonoBehaviour
 
         if (currentAction != 0)
             incrementFrame(behaviors.getAction(currentAction).frames);
-        
-
         stateCheck();
 
         // If facing right flip x-scale right, otherwise flip x-scale left
@@ -232,7 +230,6 @@ public class PlayerScript : MonoBehaviour
 		}
 		else
 		{*/
-            inputManager.handleInput();
 
         // }
 
@@ -257,8 +254,6 @@ public class PlayerScript : MonoBehaviour
 		{
 			vVelocity = -1;
 		}
-
-		stateCheck();
 
 		moveX(hVelocity + hKnockback);
 		moveY(vVelocity + vKnockback);
@@ -338,13 +333,16 @@ public class PlayerScript : MonoBehaviour
 
     private void setAdvancedInput(bool[] input)
     {
+        if (dashTimer == 0 && AdvState <= 4)
+            AdvState = 0;
+
         if (input[8] && dashTrack == 0 && dashTimer != 0)
         {
             if (facingRight)
                 AdvState = 2;
             else
                 AdvState = 1;
-
+            dashTimer = 0;
         }
         else if (input[9] && dashTrack == 1 && dashTimer != 0)
         {
@@ -352,7 +350,7 @@ public class PlayerScript : MonoBehaviour
                 AdvState = 1;
             else
                 AdvState = 2;
-
+            dashTimer = 0;
         }
 
         if (input[8] || input[9])
@@ -363,6 +361,7 @@ public class PlayerScript : MonoBehaviour
             else
                 dashTrack = 1;
         }
+
 
         if (flip)
             if (currentAction != 0)
@@ -405,6 +404,7 @@ public class PlayerScript : MonoBehaviour
 		currentFrame = frames[ActionCounter];
         ActionCounter++;
 
+        Debug.Log("ActionCounter" + ActionCounter);
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().already = false;
@@ -448,14 +448,17 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("l" + currentFrame);
             Debug.Log("sd" + behaviors.getAction(currentAction).frames.Length);
-            if (currentFrame >= behaviors.getAction(currentAction).frames.Length)
+            if (ActionCounter >= behaviors.getAction(currentAction).frames.Length)
             {
+                
                 if (behaviors.getAction(currentAction).infinite)
                 {
+                    Debug.Log("Inf");
                     ActionCounter--;
                 }
                 else
-                    ActionEnd();
+                    Debug.Log("Ended");
+                ActionEnd();
             }
         }
         else if (AdvState != 0 || waitForEnd)
