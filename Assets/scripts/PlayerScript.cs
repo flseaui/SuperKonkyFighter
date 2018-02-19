@@ -572,7 +572,7 @@ public class PlayerScript : MonoBehaviour
 
     public float level(int wanted)
     {
-       return levelScaling[lvl, wanted];
+       return levelScaling[behaviors.getAction(currentAction).level, wanted];
     }
 
 	public void stun(int time)

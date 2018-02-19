@@ -121,7 +121,7 @@ public class KonkyBehaviours : Behaviors {
     // Standing Light
     private Action standL = new Action()
     {
-        ActionClass = 0,
+        tier = 0,
         frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
         damage = new int[] { 300 },
         level = 0,
@@ -135,7 +135,7 @@ public class KonkyBehaviours : Behaviors {
     // Standing Medium
     private Action standM = new Action()
     {
-        ActionClass = 1,
+        tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 1,
@@ -149,7 +149,7 @@ public class KonkyBehaviours : Behaviors {
     // Standing Heavy
     private Action standH = new Action()
     {
-        ActionClass = 2,
+        tier = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 2,
@@ -163,7 +163,7 @@ public class KonkyBehaviours : Behaviors {
     // Crouching Light
     private Action crouchL = new Action()
     {
-        ActionClass = 0,
+        tier = 0,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 0,
@@ -177,7 +177,7 @@ public class KonkyBehaviours : Behaviors {
     // Crouching Medium
     private Action crouchM = new Action()
     {
-        ActionClass = 1,
+        tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 500 },
         level       = 1,
@@ -191,7 +191,7 @@ public class KonkyBehaviours : Behaviors {
     // Crouching Heavy
     private Action crouchH = new Action()
     {
-        ActionClass = 2,
+        tier = 2,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage = new int[] { 700, 700 },
         level = 3,
@@ -206,7 +206,7 @@ public class KonkyBehaviours : Behaviors {
     // Jumping Light
     private Action jumpL = new Action()
     {
-        ActionClass = 0,
+        tier = 0,
         frames      = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 300 },
         level       = 2,
@@ -221,7 +221,7 @@ public class KonkyBehaviours : Behaviors {
     // Jumping Medium
     private Action jumpM = new Action()
     {
-        ActionClass = 1,
+        tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 600 },
         level       = 2,
@@ -236,7 +236,7 @@ public class KonkyBehaviours : Behaviors {
     // Jumping Heavy
     private Action jumpH = new Action()
     {
-        ActionClass = 2,
+        tier = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 3,
@@ -250,7 +250,7 @@ public class KonkyBehaviours : Behaviors {
     // Forward Medium
     private Action forwardM = new Action()
     {
-        ActionClass = 1,
+        tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 0,
@@ -265,7 +265,7 @@ public class KonkyBehaviours : Behaviors {
     // One Super
     private Action oneS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0 },
         damage      = new int[] { 1200 },
         level       = 0,
@@ -279,7 +279,7 @@ public class KonkyBehaviours : Behaviors {
     // Two Super
     private Action twoS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 900 },
         level       = 5,
@@ -294,7 +294,7 @@ public class KonkyBehaviours : Behaviors {
     // Three Super
     private Action threeS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 800 },
         level       = 4,
@@ -308,7 +308,7 @@ public class KonkyBehaviours : Behaviors {
     // Four Super
     private Action fourS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3 },
         damage      = new int[] { 400, 400, 600 },
         level       = 2,
@@ -322,7 +322,7 @@ public class KonkyBehaviours : Behaviors {
     // Five Super
     private Action fiveS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3 },
         damage      = new int[] { 0 },
         level       = 0,
@@ -336,7 +336,7 @@ public class KonkyBehaviours : Behaviors {
     // Six Super
     private Action sixS = new Action()
     {
-        ActionClass = 3,
+        tier = 3,
         frames      = new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 1500 },
         level       = 5,
@@ -350,7 +350,7 @@ public class KonkyBehaviours : Behaviors {
     // Throw
     private Action Throw = new Action()
     {
-        ActionClass = 2,
+        tier = 2,
         frames      = new int[] { 0 },
         damage      = new int[] { 1500 },
         level       = 5,

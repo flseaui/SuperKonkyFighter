@@ -110,18 +110,27 @@ public class CameraScript : MonoBehaviour
 
 			p1h.hit = false;
 
-			if (p1s.state == 4 && (!p1s.Attack))//|| p1s.actionState == Behaviors.aBlock))
+            Action currentAction = p2s.behaviors.getAction(p2s.currentAction);
+
+            int damage = currentAction.damage[p2s.damageCounter];
+            float aKnockback = currentAction.aStrength;
+            float gKnockback = currentAction.gStrength;
+            int aAngle = currentAction.aAngle;
+            int gAngle = currentAction.gAngle;
+            int tier = currentAction.tier;
+
+            if (p1s.basicState == 4 && p1s.currentAction == 0 || p1s.currentAction == /*put block value here*/100000)
 			{
 				p1s.block((int)p2s.level(3));
 
                 if (p1s.air)
                 {
-                    p2s.meter += p1s.damage(p2s.damagePass / 10, p2s.aKnockpass / 2, p2s.aAnglePass, p2s.classPass, true);
+                    p2s.meter += p1s.damage(damage / 10, aKnockback / 2, aAngle, tier, true);
                     p1s.meter += 2;
                 }
                 else
                 {
-                    p2s.meter += p1s.damage(p2s.damagePass / 10, p2s.gKnockpass / 2, p2s.gAnglePass, p2s.classPass, true);
+                    p2s.meter += p1s.damage(damage / 10, gKnockback / 2, gAngle, tier, true);
                     p1s.meter += 2;
                 }
 				
@@ -130,12 +139,12 @@ public class CameraScript : MonoBehaviour
 			{
                 if (p1s.air)
                 {
-                    p2s.meter += p1s.damage(p2s.damagePass, p2s.aKnockpass, p2s.aAnglePass, p2s.classPass, false);
+                    p2s.meter += p1s.damage(damage, aKnockback, aAngle, tier, false);
                     p1s.meter += 2;
                 }
                 else
                 {
-                    p2s.meter += p1s.damage(p2s.damagePass, p2s.gKnockpass, p2s.gAnglePass, p2s.classPass, false);
+                    p2s.meter += p1s.damage(damage, gKnockback, gAngle, tier, false);
                     p1s.meter += 2;
                 }
                 
@@ -156,18 +165,27 @@ public class CameraScript : MonoBehaviour
 
 			p2h.hit = false;
 
-            if (p2s.state == 4 && (!p2s.Attack))//|| p2s.actionState == Behaviors.aBlock))
+            Action currentAction = p1s.behaviors.getAction(p1s.currentAction);
+
+            int damage = currentAction.damage[p1s.damageCounter];
+            float aKnockback = currentAction.aStrength;
+            float gKnockback = currentAction.gStrength;
+            int aAngle = currentAction.aAngle;
+            int gAngle = currentAction.gAngle;
+            int tier = currentAction.tier;
+
+            if (p2s.basicState == 4 && p2s.currentAction == 0 || p2s.currentAction == /*put block value here*/ 10000)
 			{
 
 				p2s.block((int)p2s.level(3));
                 if (p2s.air)
                 {
-                    p1s.meter += p2s.damage(p1s.damagePass / 10, p1s.aKnockpass / 2, p1s.aAnglePass, p1s.classPass, true);
+                    p1s.meter += p2s.damage(damage / 10, aKnockback / 2, aAngle, tier, true);
                     p2s.meter += 2;
                 }
                 else
                 {
-                    p1s.meter += p2s.damage(p1s.damagePass / 10, p1s.gKnockpass / 2, p1s.gAnglePass, p1s.classPass, true);
+                    p1s.meter += p2s.damage(damage / 10, gKnockback / 2, gAngle, tier, true);
                     p2s.meter += 2;
                 }
 
@@ -176,12 +194,12 @@ public class CameraScript : MonoBehaviour
             {
                 if (p2s.air)
                 {
-                    p1s.meter += p2s.damage(p1s.damagePass, p1s.aKnockpass, p1s.aAnglePass, p1s.classPass, false);
+                    p1s.meter += p2s.damage(damage, aKnockback, aAngle, tier, false);
                     p2s.meter += 2;
                 }
                 else
                 {
-                    p1s.meter += p2s.damage(p1s.damagePass, p1s.gKnockpass, p1s.gAnglePass, p1s.classPass, false);
+                    p1s.meter += p2s.damage(damage, gKnockback, gAngle, tier, false);
                     p2s.meter += 2;
                 }
 

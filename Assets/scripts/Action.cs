@@ -10,7 +10,7 @@ public class Action {
     public int[] frames;
     public int[] damage;
 
-    public int ActionClass;
+    public int tier;
 	public int level;
     public int gAngle;
     public int aAngle;
