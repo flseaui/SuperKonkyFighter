@@ -197,14 +197,14 @@ public class PlayerScript : MonoBehaviour
 
 	public void updateAnimation()
 	{
-		if (Attack)//wow this is actually a lot simpler than before to send anim states to controller
+		if (currentAction != 0)
 		{
-			animInt(ANIM_STATE, AttackState + 10);
+			animInt(Animator.StringToHash("Action"), currentAction);
 		}
 		else
 		{
-			animInt(ANIM_STATE, state);
-		}
+            animInt(Animator.StringToHash("Basic"), basicState);
+        }
 	}
 
     private void GameUpdate()
@@ -271,7 +271,7 @@ public class PlayerScript : MonoBehaviour
 			air = true;
 		}
 
-		//updateAnimation();
+		updateAnimation();
 	}
 
 	private void buffer(int bufferedInput)
