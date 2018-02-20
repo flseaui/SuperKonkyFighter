@@ -196,7 +196,8 @@ public class PlayerScript : MonoBehaviour
             setX(64);
         }
 
-        vVelocity += gravity;
+        if (currentAction != 43 && currentAction != 44)
+            vVelocity += gravity;
 
         if (vVelocity < -1)
         {
@@ -495,8 +496,12 @@ public class PlayerScript : MonoBehaviour
                 hVelocity = backwardSpeed * 1.5f;
                 break;
             case 3:
+                vVelocity = 0;
+                hVelocity = forwardSpeed * 3;
                 break;
             case 4:
+                vVelocity = 0;
+                hVelocity = backwardSpeed * 1.5f;
                 break;
             case 5:
                 break;
