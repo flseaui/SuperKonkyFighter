@@ -18,4 +18,20 @@ public class Action {
 
     public bool infinite;
 
+    public rect[,] hitboxData;
+
+    public struct rect
+    {
+        float x, y, width, height, timeActive;
+
+        public rect(float x, float y, float width, float height, float timeActive)
+        {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.timeActive = timeActive;
+        }
+    }
+
 }

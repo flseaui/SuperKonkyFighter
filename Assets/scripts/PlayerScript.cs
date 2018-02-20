@@ -9,18 +9,18 @@ public class PlayerScript : MonoBehaviour
     float BASE_GRAVITY = -0.05f;
 
     public float[,] levelScaling = new float[,]
-    { 
-        { 8,  12, 23, 9,  .75f }, 
-        { 10, 14, 26, 11, .8f  }, 
-        { 12, 16, 28, 13, .85f }, 
-        { 14, 19, 33, 16, .89f }, 
-        { 16, 21, 36, 18, .92f }, 
+    {
+        { 8,  12, 23, 9,  .75f },
+        { 10, 14, 26, 11, .8f  },
+        { 12, 16, 28, 13, .85f },
+        { 14, 19, 33, 16, .89f },
+        { 16, 21, 36, 18, .92f },
         { 18, 24, 40, 20, .94f }
     };
 
-           bool damageDealt;
+    bool damageDealt;
     public bool waitForGround;
-	public bool waitForEnd;
+    public bool waitForEnd;
     public bool air;
     public bool hitStopped;
     public bool stunned;
@@ -50,9 +50,9 @@ public class PlayerScript : MonoBehaviour
     public float gravity;
     public float vVelocity;
     public float hVelocity;
-	public float baseHeight;
-	public float width;
-	public float height;
+    public float baseHeight;
+    public float width;
+    public float height;
     private float forwardSpeed;
     private float backwardSpeed;
     private float jumpSpeed;
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour
     public BoxCollider2D hurtbox;
     public GameObject otherPlayer;
     public JoyScript JoyScript;
-           InputManager inputManager;
+    InputManager inputManager;
 
     void OnDrawGizmos()
     {
@@ -80,9 +80,9 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-		this.tag = playerID.ToString();
-		hitbox.tag = playerID.ToString();
-		hurtbox.tag = playerID.ToString();
+        this.tag = playerID.ToString();
+        hitbox.tag = playerID.ToString();
+        hurtbox.tag = playerID.ToString();
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
@@ -91,12 +91,12 @@ public class PlayerScript : MonoBehaviour
         hVelocity = 0;
         gravity = BASE_GRAVITY;
 
-		//konky specific things...
-		maxHealth = 11000;
-		health = maxHealth;
-		behaviors = new KonkyBehaviours();
-		baseHeight = 8;
-		width = 4;
+        //konky specific things...
+        maxHealth = 11000;
+        health = maxHealth;
+        behaviors = new KonkyBehaviours();
+        baseHeight = 8;
+        width = 4;
 
         if (CompareTag("1"))
             inputManager = new InputManager(1);
@@ -111,26 +111,26 @@ public class PlayerScript : MonoBehaviour
 
         if (stunned)
         {
-           
+
         }
     }
 
-	public void updateAnimation()
-	{
-		if (currentAction != 0)
-		{
-			animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
+    public void updateAnimation()
+    {
+        if (currentAction != 0)
+        {
+            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
-		else
-		{
+        else
+        {
             animInt(Animator.StringToHash("Basic"), basicState);
             animInt(Animator.StringToHash("Action"), 0);
         }
-	}
+    }
 
     private void GameUpdate()
-	{
+    {
         inputManager.pollInput(0);
 
         basicState = inputConvert(inputManager.currentInput);
@@ -175,10 +175,10 @@ public class PlayerScript : MonoBehaviour
 
             updateAnimation();
         }
-	}
+    }
 
-	private void buffer(int bufferedInput)
-	{
+    private void buffer(int bufferedInput)
+    {
         Debug.Log(bufferedInput);
         foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
@@ -219,7 +219,7 @@ public class PlayerScript : MonoBehaviour
             air = true;
         }
     }
-    
+
     private int inputConvert(bool[] input)
     {
         if (air)
@@ -329,27 +329,27 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
     }
 
-	private void incrementFrame(int[] frames)
-	{	
-		int previousFrame = currentFrame;
-		currentFrame = frames[currentActionFrame];
+    private void incrementFrame(int[] frames)
+    {
+        int previousFrame = currentFrame;
+        currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-       // Debug.Log("currentActionFrame" + currentActionFrame);
+        // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
-		{
-			otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
+        {
+            otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
             ++damageCounter;
         }
 
-		if (currentFrame == 1)
-			hurtbox.enabled = true;
-		else
-		{
-			hurtbox.enabled = false;
+        if (currentFrame == 1)
+            hurtbox.enabled = true;
+        else
+        {
+            hurtbox.enabled = false;
             damageDealt = false;
-			hurtbox.size = new Vector2(0f, 0f);
-		}
+            hurtbox.size = new Vector2(0f, 0f);
+        }
 
         if (currentFrame == 3)
         {
@@ -379,11 +379,12 @@ public class PlayerScript : MonoBehaviour
                 ActionEnd();
             }
         }
-	}
+    }
 
     private void stateCheck()
-    {if (currentAction != 0)
-        
+    {
+        if (currentAction != 0)
+
         {
             if (!air)
                 hVelocity = 0;
@@ -463,7 +464,7 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("fdash");
                 if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
                     hVelocity = 0;
-                    ActionEnd();
+                ActionEnd();
                 break;
             case 2:
                 hVelocity = backwardSpeed * 1.5f;
@@ -482,10 +483,10 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void ActionEnd()
-	{
+    {
         Debug.Log("Action end");
 
-        if(currentAction == 47)
+        if (currentAction == 47)
         {
             facingRight = flipFacing;
         }
@@ -495,7 +496,7 @@ public class PlayerScript : MonoBehaviour
         AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
-	}
+    }
 
     private void animInt(int hash, int value)
     {
@@ -581,25 +582,25 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-	public void block(int amm)
-	{
-        
-	}
+    public void block(int amm)
+    {
+
+    }
 
     public float level(int wanted)
     {
-       return levelScaling[behaviors.getAction(currentAction).level, wanted];
+        return levelScaling[behaviors.getAction(currentAction).level, wanted];
     }
 
-	public void stun(int time)
-	{
-       
-	}
+    public void stun(int time)
+    {
+
+    }
 
     public void knockbackDecrease()
     {
         if (hKnockback != 0)
-        { 
+        {
             if (!air)
             {
                 hKnockback *= .75f;
