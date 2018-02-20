@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
 		hurtbox.tag = playerID.ToString();
 
         forwardSpeed = 0.25f;
-        backwardSpeed = 0.15f;
+        backwardSpeed = -0.15f;
         jumpSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
@@ -203,7 +203,7 @@ public class PlayerScript : MonoBehaviour
             vVelocity = -1;
         }
 
-        moveX(hVelocity + hKnockback);
+        moveX((facingRight ? hVelocity : -hVelocity) + hKnockback);
         moveY(vVelocity + vKnockback);
 
         if (y() < FLOOR_HEIGHT) //ground snap
@@ -430,7 +430,7 @@ public class PlayerScript : MonoBehaviour
             else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
-                hVelocity = -backwardSpeed;
+                hVelocity = backwardSpeed;
                 jump = 7;
             }
             else if (basicState == 9)
@@ -472,7 +472,7 @@ public class PlayerScript : MonoBehaviour
                     ActionEnd();
                 break;
             case 2:
-                hVelocity = -backwardSpeed * 1.5f;
+                hVelocity = backwardSpeed * 1.5f;
                 break;
             case 3:
                 break;
