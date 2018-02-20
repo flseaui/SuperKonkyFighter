@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
 		hurtbox.tag = playerID.ToString();
 
         forwardSpeed = 0.25f;
-        backwardSpeed = -0.15f;
+        backwardSpeed = 0.15f;
         jumpSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
@@ -170,8 +170,37 @@ public class PlayerScript : MonoBehaviour
             // }
 
             //floor check
+            if (x() < -64f)
+            {
+                setX(-64);
+            }
+            else if (x() > 64f)
+            {
+                setX(64);
+            }
 
-            movePlayer();
+            vVelocity += gravity;
+
+            if (vVelocity < -1)
+            {
+                vVelocity = -1;
+            }
+
+            moveX(hVelocity + hKnockback);
+            moveY(vVelocity + vKnockback);
+
+            if (y() < FLOOR_HEIGHT) //ground snap
+            {
+                if (air)
+                    ActionEnd();
+                air = false;
+                vVelocity = 0;
+                setY(FLOOR_HEIGHT);
+            }
+            else
+            {
+                air = true;
+            }
 
             updateAnimation();
         }
@@ -183,41 +212,6 @@ public class PlayerScript : MonoBehaviour
         foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
-    }
-
-    private void movePlayer()
-    {
-        if (x() < -64f)
-        {
-            setX(-64);
-        }
-        else if (x() > 64f)
-        {
-            setX(64);
-        }
-
-        vVelocity += gravity;
-
-        if (vVelocity < -1)
-        {
-            vVelocity = -1;
-        }
-
-        moveX((facingRight ? hVelocity : -hVelocity) + hKnockback);
-        moveY(vVelocity + vKnockback);
-
-        if (y() < FLOOR_HEIGHT) //ground snap
-        {
-            if (air)
-                ActionEnd();
-            air = false;
-            vVelocity = 0;
-            setY(FLOOR_HEIGHT);
-        }
-        else
-        {
-            air = true;
-        }
     }
     
     private int inputConvert(bool[] input)
@@ -285,8 +279,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (flip)
-        {
-            flip = false;
             if (currentAction != 0)
                 waitForEnd = true;
             else if (air)
@@ -295,8 +287,8 @@ public class PlayerScript : MonoBehaviour
             {
                 advState = 7;
                 dashTimer = 0;
+                flip = false;
             }
-        }
 
         if (waitForGround && !air)
         {
@@ -315,7 +307,7 @@ public class PlayerScript : MonoBehaviour
                 dashDirection = 1;
             else
                 dashDirection = 2;
-           // Debug.Log("dir change to: " + dashDirection);
+            Debug.Log("dir change to: " + dashDirection);
         }
 
         dashTimer = input[8] || input[9] ? 15 : dashTimer;
@@ -341,7 +333,7 @@ public class PlayerScript : MonoBehaviour
 		currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-       // Debug.Log("currentActionFrame" + currentActionFrame);
+        Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
@@ -405,6 +397,11 @@ public class PlayerScript : MonoBehaviour
         else if (advState != 0 || waitForEnd)
         {
             Debug.Log("advState");
+            if (waitForEnd)
+            {
+                waitForEnd = false;
+                advState = 7;
+            }
             currentAction = advState + 40;
         }
         else if (AttackState != 0)
@@ -430,7 +427,7 @@ public class PlayerScript : MonoBehaviour
             else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
-                hVelocity = backwardSpeed;
+                hVelocity = -backwardSpeed;
                 jump = 7;
             }
             else if (basicState == 9)
@@ -446,7 +443,10 @@ public class PlayerScript : MonoBehaviour
             }
             else if (basicState == 6 || basicState == 4)
             {
-                hVelocity = (basicState == 6 ? forwardSpeed : backwardSpeed);
+                hVelocity = (basicState == 6 ?
+                            (facingRight ? forwardSpeed : -forwardSpeed) :
+                            (basicState == 4 ?
+                            (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
             }
 
             if (basicState < 4)
@@ -472,7 +472,7 @@ public class PlayerScript : MonoBehaviour
                     ActionEnd();
                 break;
             case 2:
-                hVelocity = backwardSpeed * 1.5f;
+                hVelocity = -backwardSpeed * 1.5f;
                 break;
             case 3:
                 break;
@@ -483,7 +483,6 @@ public class PlayerScript : MonoBehaviour
             case 6:
                 break;
             case 7:
-                facingRight = flipFacing;
                 break;
         }
     }
@@ -492,8 +491,6 @@ public class PlayerScript : MonoBehaviour
 	{
         Debug.Log("Action end");
         currentAction = 0;
-        advState = 0;
-        AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
 	}
