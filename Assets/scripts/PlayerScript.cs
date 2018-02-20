@@ -389,8 +389,11 @@ public class PlayerScript : MonoBehaviour
             if (!air)
                 hVelocity = 0;
             Debug.Log("CurrentAction");
+            Debug.Log(currentActionFrame);
+            Debug.Log(behaviors.getAction(currentAction).frames.Length);
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
+                Debug.Log(behaviors.getAction(currentAction).infinite);
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
                 else
@@ -463,8 +466,10 @@ public class PlayerScript : MonoBehaviour
                 hVelocity = forwardSpeed * 3;
                 Debug.Log("fdash");
                 if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
+                {
                     hVelocity = 0;
-                ActionEnd();
+                    ActionEnd();
+                }
                 break;
             case 2:
                 hVelocity = backwardSpeed * 1.5f;
