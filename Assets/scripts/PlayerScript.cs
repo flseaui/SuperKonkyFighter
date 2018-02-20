@@ -362,6 +362,7 @@ public class PlayerScript : MonoBehaviour
             if (!air && waitForEnd)
             {
                 waitForEnd = false;
+                facingRight = flipFacing;
                 advState = 7;
                 ActionEnd();
             }
