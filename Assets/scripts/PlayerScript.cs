@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     public int jump;
     public int dashTimer;
     public int currentAction;
-    public int dashDirection; // 0 = left, 1 = right, 2 = neutral
+    public bool dashDirection; // 0 = left, 1 = right, 2 = neutral
     private int stunTimer;
 
     public float hKnockback;
@@ -265,18 +265,16 @@ public class PlayerScript : MonoBehaviour
         if (dashTimer == 0 && advState <= 4)
             advState = 0;
 
-        if (input[8] && dashDirection == 0 && dashTimer > 0)
+        if (input[8] && !dashDirection && dashTimer != 0)
         {
-            Debug.Log("left dash");
             if (facingRight)
                 advState = 2;
             else
                 advState = 1;
             dashTimer = 0;
         }
-        else if (input[9] && dashDirection == 1 && dashTimer > 0)
+        else if (input[9] && dashDirection && dashTimer != 0)
         {
-            Debug.Log("right dash");
             if (facingRight)
                 advState = 1;
             else
@@ -304,21 +302,17 @@ public class PlayerScript : MonoBehaviour
             advState = 7;
         }
 
-        if (dashTimer > 0)
+        if ((!input[8] || !input[9]) && dashTimer != 0)
             dashTimer--;
 
-        if (!(currentAction == 41 || currentAction == 42))
+        if (input[8] || input[9])
         {
-            if (input[8] && !input[9])
-                dashDirection = 0;
-            else if (input[9] && !input[8])
-                dashDirection = 1;
+            dashTimer = 15;
+            if (input[8])
+                dashDirection = false;
             else
-                dashDirection = 2;
-           // Debug.Log("dir change to: " + dashDirection);
+                dashDirection = true;
         }
-
-        dashTimer = input[8] || input[9] ? 15 : dashTimer;
     }
 
     private void setAttackInput(bool[] input)
@@ -362,7 +356,6 @@ public class PlayerScript : MonoBehaviour
             if (!air && waitForEnd)
             {
                 waitForEnd = false;
-                facingRight = flipFacing;
                 advState = 7;
                 ActionEnd();
             }
@@ -468,7 +461,7 @@ public class PlayerScript : MonoBehaviour
             case 1:
                 hVelocity = forwardSpeed * 3;
                 Debug.Log("fdash");
-                if ((!inputManager.currentInput[2] && dashDirection == 0) || (!inputManager.currentInput[3] && dashDirection == 1))
+                if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
                     hVelocity = 0;
                     ActionEnd();
                 break;
