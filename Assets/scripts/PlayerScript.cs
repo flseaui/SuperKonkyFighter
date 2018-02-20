@@ -170,37 +170,8 @@ public class PlayerScript : MonoBehaviour
             // }
 
             //floor check
-            if (x() < -64f)
-            {
-                setX(-64);
-            }
-            else if (x() > 64f)
-            {
-                setX(64);
-            }
 
-            vVelocity += gravity;
-
-            if (vVelocity < -1)
-            {
-                vVelocity = -1;
-            }
-
-            moveX(hVelocity + hKnockback);
-            moveY(vVelocity + vKnockback);
-
-            if (y() < FLOOR_HEIGHT) //ground snap
-            {
-                if (air)
-                    ActionEnd();
-                air = false;
-                vVelocity = 0;
-                setY(FLOOR_HEIGHT);
-            }
-            else
-            {
-                air = true;
-            }
+            movePlayer();
 
             updateAnimation();
         }
@@ -212,6 +183,41 @@ public class PlayerScript : MonoBehaviour
         foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
+    }
+
+    private void movePlayer()
+    {
+        if (x() < -64f)
+        {
+            setX(-64);
+        }
+        else if (x() > 64f)
+        {
+            setX(64);
+        }
+
+        vVelocity += gravity;
+
+        if (vVelocity < -1)
+        {
+            vVelocity = -1;
+        }
+
+        moveX(hVelocity + hKnockback);
+        moveY(vVelocity + vKnockback);
+
+        if (y() < FLOOR_HEIGHT) //ground snap
+        {
+            if (air)
+                ActionEnd();
+            air = false;
+            vVelocity = 0;
+            setY(FLOOR_HEIGHT);
+        }
+        else
+        {
+            air = true;
+        }
     }
     
     private int inputConvert(bool[] input)
@@ -440,10 +446,7 @@ public class PlayerScript : MonoBehaviour
             }
             else if (basicState == 6 || basicState == 4)
             {
-                hVelocity = (basicState == 6 ?
-                            (facingRight ? forwardSpeed : -forwardSpeed) :
-                            (basicState == 4 ?
-                            (facingRight ? -backwardSpeed : backwardSpeed) : hVelocity));
+                hVelocity = (basicState == 6 ? forwardSpeed : backwardSpeed);
             }
 
             if (basicState < 4)
