@@ -483,7 +483,6 @@ public class PlayerScript : MonoBehaviour
             case 6:
                 break;
             case 7:
-                facingRight = flipFacing;
                 break;
         }
     }
@@ -491,6 +490,12 @@ public class PlayerScript : MonoBehaviour
     private void ActionEnd()
 	{
         Debug.Log("Action end");
+
+        if(currentAction == 47)
+        {
+            facingRight = flipFacing;
+        }
+
         currentAction = 0;
         advState = 0;
         AttackState = 0;
