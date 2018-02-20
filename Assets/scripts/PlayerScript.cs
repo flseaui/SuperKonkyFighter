@@ -309,7 +309,7 @@ public class PlayerScript : MonoBehaviour
                 dashDirection = 1;
             else
                 dashDirection = 2;
-            Debug.Log("dir change to: " + dashDirection);
+           // Debug.Log("dir change to: " + dashDirection);
         }
 
         dashTimer = input[8] || input[9] ? 15 : dashTimer;
@@ -335,7 +335,7 @@ public class PlayerScript : MonoBehaviour
 		currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        Debug.Log("currentActionFrame" + currentActionFrame);
+       // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
 		{
 			otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
@@ -399,11 +399,6 @@ public class PlayerScript : MonoBehaviour
         else if (advState != 0 || waitForEnd)
         {
             Debug.Log("advState");
-            if (waitForEnd)
-            {
-                waitForEnd = false;
-                advState = 7;
-            }
             currentAction = advState + 40;
         }
         else if (AttackState != 0)
@@ -494,6 +489,8 @@ public class PlayerScript : MonoBehaviour
 	{
         Debug.Log("Action end");
         currentAction = 0;
+        advState = 0;
+        AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
 	}
