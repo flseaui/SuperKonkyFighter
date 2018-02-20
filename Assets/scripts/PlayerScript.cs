@@ -470,6 +470,7 @@ public class PlayerScript : MonoBehaviour
             case 6:
                 break;
             case 7:
+                facingRight = flipFacing;
                 break;
         }
     }
