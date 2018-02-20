@@ -286,6 +286,7 @@ public class PlayerScript : MonoBehaviour
             {
                 AdvState = 7;
                 dashTimer = 0;
+                flip = false;
             }
 
         if (waitForGround && !air)
@@ -368,8 +369,8 @@ public class PlayerScript : MonoBehaviour
 	}
 
     private void stateCheck()
-    {
-        if (currentAction != 0)
+    {if (currentAction != 0)
+        
         {
             if (!air)
                 hVelocity = 0;
