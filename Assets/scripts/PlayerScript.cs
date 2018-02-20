@@ -225,9 +225,9 @@ public class PlayerScript : MonoBehaviour
         if (air)
         {
             if (input[2])
-                return 7;
+                return (facingRight ? 7 : 9);
             else if (input[3])
-                return 9;
+                return (facingRight ? 9 : 7);
             else
                 return 8;
         }
@@ -236,25 +236,25 @@ public class PlayerScript : MonoBehaviour
             if (input[0])
             {
                 if (input[2])
-                    return 7;
+                    return (facingRight ? 7 : 9);
                 else if (input[3])
-                    return 9;
+                    return (facingRight ? 9 : 7);
                 else
                     return 8;
             }
             else if (input[1])
             {
                 if (input[2])
-                    return 1;
+                    return (facingRight ? 1 : 3);
                 else if (input[3])
-                    return 3;
+                    return (facingRight ? 3 : 1);
                 else
                     return 2;
             }
             else if (input[2])
-                return 4;
+                return (facingRight ? 4 : 6);
             else if (input[3])
-                return 6;
+                return (facingRight ? 6 : 4);
             else
                 return 5;
         }
