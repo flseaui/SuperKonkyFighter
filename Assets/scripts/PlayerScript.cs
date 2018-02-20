@@ -268,17 +268,37 @@ public class PlayerScript : MonoBehaviour
         if (input[8] && !dashDirection && dashTimer != 0)
         {
             if (facingRight)
-                advState = 2;
+            {
+                if (air)
+                    advState = 4;
+                else
+                    advState = 2;
+            }
             else
-                advState = 1;
+            {
+                if (air)
+                    advState = 3;
+                else
+                    advState = 1;
+            }
             dashTimer = 0;
         }
         else if (input[9] && dashDirection && dashTimer != 0)
         {
             if (facingRight)
-                advState = 1;
+            {
+                if (air)
+                    advState = 3;
+                else
+                    advState = 1;
+            }
             else
-                advState = 2;
+            {
+                if (air)
+                    advState = 4;
+                else
+                    advState = 2;
+            }
             dashTimer = 0;
         }
 
