@@ -35,15 +35,14 @@ public class PlayerScript : MonoBehaviour
     public int currentActionFrame;
     public int damageCounter;
     public int playerID;
-
     public int meter;
     public int basicState;
     public int AttackState;
-    public int AdvState;
+    public int advState;
     public int jump;
     public int dashTimer;
-    public int dashTrack;
     public int currentAction;
+    public int dashDirection; // 0 = left, 1 = right, 2 = neutral
     private int stunTimer;
 
     public float hKnockback;
@@ -140,8 +139,8 @@ public class PlayerScript : MonoBehaviour
 
         if (hitStopped)
         {
-            if (AdvState != 0)
-                buffer(AdvState + 40);
+            if (advState != 0)
+                buffer(advState + 40);
             else if (AttackState != 0)
                 buffer(currentAction = AttackState);
         }
@@ -257,23 +256,25 @@ public class PlayerScript : MonoBehaviour
 
     private void setAdvancedInput(bool[] input)
     {
-        if (dashTimer == 0 && AdvState <= 4)
-            AdvState = 0;
+        if (dashTimer == 0 && advState <= 4)
+            advState = 0;
 
-        if (input[8] && dashTrack == 0 && dashTimer != 0)
+        if (input[8] && dashDirection == 0 && dashTimer > 0)
         {
+            Debug.Log("left dash");
             if (facingRight)
-                AdvState = 2;
+                advState = 2;
             else
-                AdvState = 1;
+                advState = 1;
             dashTimer = 0;
         }
-        else if (input[9] && dashTrack == 1 && dashTimer != 0)
+        else if (input[9] && dashDirection == 1 && dashTimer > 0)
         {
+            Debug.Log("right dash");
             if (facingRight)
-                AdvState = 1;
+                advState = 1;
             else
-                AdvState = 2;
+                advState = 2;
             dashTimer = 0;
         }
 
@@ -284,7 +285,7 @@ public class PlayerScript : MonoBehaviour
                 waitForGround = true;
             else
             {
-                AdvState = 7;
+                advState = 7;
                 dashTimer = 0;
                 flip = false;
             }
@@ -292,13 +293,23 @@ public class PlayerScript : MonoBehaviour
         if (waitForGround && !air)
         {
             waitForGround = false;
-            AdvState = 7;
+            advState = 7;
         }
 
-        if (dashTimer != 0)
+        if (dashTimer > 0)
             dashTimer--;
 
-        dashTrack = input[8] ? 0 : 1;
+        if (!(currentAction == 41 || currentAction == 42))
+        {
+            if (input[8] && !input[9])
+                dashDirection = 0;
+            else if (input[9] && !input[8])
+                dashDirection = 1;
+            else
+                dashDirection = 2;
+            Debug.Log("dir change to: " + dashDirection);
+        }
+
         dashTimer = input[8] || input[9] ? 15 : dashTimer;
     }
 
@@ -343,14 +354,14 @@ public class PlayerScript : MonoBehaviour
             if (!air && waitForEnd)
             {
                 waitForEnd = false;
-                AdvState = 7;
+                advState = 7;
                 ActionEnd();
             }
-            else if (AdvState != 0)
+            else if (advState != 0)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == AdvState + 40)
-                        bufferedMove = AdvState + 40;
+                    if (Actions == advState + 40)
+                        bufferedMove = advState + 40;
             }
             else if (AttackState != 0)
             {
@@ -383,15 +394,15 @@ public class PlayerScript : MonoBehaviour
                     ActionEnd();
             }
         }
-        else if (AdvState != 0 || waitForEnd)
+        else if (advState != 0 || waitForEnd)
         {
-            Debug.Log("AdvState");
+            Debug.Log("advState");
             if (waitForEnd)
             {
                 waitForEnd = false;
-                AdvState = 7;
+                advState = 7;
             }
-            currentAction = AdvState + 40;
+            currentAction = advState + 40;
         }
         else if (AttackState != 0)
         {
@@ -455,7 +466,8 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                if ((!inputManager.currentInput[2] && dashTrack == 0) || (!inputManager.currentInput[3] && dashTrack == 1))
+                Debug.Log("fdash");
+                if ((!inputManager.currentInput[2] && dashDirection == 0) || (!inputManager.currentInput[3] && dashDirection == 1))
                     hVelocity = 0;
                     ActionEnd();
                 break;
@@ -471,7 +483,6 @@ public class PlayerScript : MonoBehaviour
             case 6:
                 break;
             case 7:
-                facingRight = flipFacing;
                 break;
         }
     }
