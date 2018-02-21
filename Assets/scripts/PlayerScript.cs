@@ -563,8 +563,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         currentAction = 0;
-        advState = 0;
-        AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
 
@@ -575,7 +573,6 @@ public class PlayerScript : MonoBehaviour
             waitForEnd = false;
             currentAction = 47;
         }
-
     }
 
     private void animInt(int hash, int value)
