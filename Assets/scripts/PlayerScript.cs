@@ -405,7 +405,6 @@ public class PlayerScript : MonoBehaviour
     private void stateCheck()
     {
         if (currentAction != 0)
-
         {
             if (!air)
                 hVelocity = 0;
@@ -421,7 +420,7 @@ public class PlayerScript : MonoBehaviour
                     ActionEnd();
             }
         }
-        else if (advState != 0 || waitForEnd)
+        else if (advState != 0)
         {
             Debug.Log("advState");
             currentAction = advState + 40;
