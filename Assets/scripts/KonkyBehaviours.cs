@@ -84,7 +84,10 @@ public class KonkyBehaviours : Behaviors {
             { 44,    backAirDash},
             { 45,          stun },
             { 46,         block },
-            { 47,         flip  }
+            { 47,   crouchBlock },
+            { 48,      airBlock },
+            { 49,          flip },
+            { 50,    crouchFlip }
         };
 
         konkyAnimAction = new Dictionary<Action, int>()
@@ -372,6 +375,9 @@ public class KonkyBehaviours : Behaviors {
     // Turns
     private Action flip = new Action()       { frames = new int[] { 0, 0, 0,                                                    }, actionCancels  = new int[] {       } };
 
+    // crouch Turns
+    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { } };
+
     // Back Dash
     private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] {  } };
 
@@ -382,7 +388,13 @@ public class KonkyBehaviours : Behaviors {
     private Action stun = new Action()        { frames = new int[] { 3                                                          }, actionCancels = new int[] {       } };
 
     // Block
-    private Action block = new Action()       { frames = new int[] { 4                                                          }, actionCancels = new int[] {       } };
+    private Action block = new Action()       { frames = new int[] { 0                                                          }, actionCancels = new int[] {       } };
+
+    // Crouching Block
+    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+
+    // Air Block
+    private Action airBlock = new Action()    { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
     private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };

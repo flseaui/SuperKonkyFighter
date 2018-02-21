@@ -157,24 +157,7 @@ public class PlayerScript : MonoBehaviour
             if (currentAction >= 40)
                 advancedMove();
 
-            // If facing right flip x-scale right, otherwise flip x-scale left
             this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
-            /*if (stunned)
-            {
-			    --stunTimer;
-			    if (stunTimer == 0)
-			    {
-				    shutdown();
-				    stunned = false;
-			    }
-		    }
-		    else
-		    {*/
-
-            // }
-
-            //floor check
 
             movePlayer();
 
@@ -326,7 +309,7 @@ public class PlayerScript : MonoBehaviour
                 else
                     dashDirection = true;
             }
-        }        
+        }
 
         if (flip)
         {
@@ -365,8 +348,6 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        placeHitboxes();
-
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
         {
@@ -385,7 +366,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
-            if (!air && waitForEnd && !waitForGround)
+            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
             {
                 Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
@@ -396,6 +377,22 @@ public class PlayerScript : MonoBehaviour
                     if (Actions == advState + 40)
                         bufferedMove = advState + 40;
             }
+            else if (basicState >= 7)
+            {
+                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
+                    if (Actions == 40)
+                    {
+                        bufferedMove = 40;
+                        if (basicState == 7)
+                            jump = 7;
+                        else if (basicState == 8)
+                            jump = 8;
+                        else
+                            jump = 9;
+
+
+                    }
+            }
             else if (AttackState != 0)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
@@ -405,7 +402,15 @@ public class PlayerScript : MonoBehaviour
 
             if (bufferedMove != 0)
             {
-                AttackState = bufferedMove;
+                if (bufferedMove > 40)
+                    advState = bufferedMove;
+                else if (bufferedMove == 40)
+                {
+                    advState = 0;
+                    AttackState = 0;
+                }
+                else
+                    AttackState = bufferedMove;
                 bufferedMove = 0;
                 ActionEnd();
             }
@@ -441,6 +446,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
+            advState = 0;
+            AttackState = 0;
             if (!air)
                 hVelocity = 0;
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
@@ -548,8 +555,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         currentAction = 0;
-        advState = 0;
-        AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
 
@@ -560,7 +565,6 @@ public class PlayerScript : MonoBehaviour
             waitForEnd = false;
             currentAction = 47;
         }
-
     }
 
     private void animInt(int hash, int value)
@@ -691,3 +695,4 @@ public class PlayerScript : MonoBehaviour
     }
 
 }
+
