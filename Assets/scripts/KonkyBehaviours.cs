@@ -132,8 +132,8 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(0, 0, 20, 10, 4),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            { new Action.rect(10, 15, 20, 10, 2) } // Frame 2 - 1 hitbox lasts 2 frames
+            { new Action.rect(0, 0, 20, 10, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(10, 15, 20, 10, 2, 1) } // Frame 2 - 1 hitbox lasts 2 frames
         },
         damage = new int[] { 300 },
         level = 0,

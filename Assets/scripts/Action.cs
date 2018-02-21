@@ -22,15 +22,17 @@ public class Action {
 
     public struct rect
     {
-        float x, y, width, height, timeActive;
+        public float x, y, width, height, timeActive;
+        public int id;
 
-        public rect(float x, float y, float width, float height, float timeActive)
+        public rect(float x, float y, float width, float height, float timeActive, int id)
         {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
             this.timeActive = timeActive;
+            this.id = id;
         }
     }
 

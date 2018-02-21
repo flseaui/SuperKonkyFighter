@@ -73,12 +73,12 @@ public class HitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (!col.CompareTag(this.tag) && !initialFrame && col.enabled)
+		/*if (!col.CompareTag(this.tag) && !initialFrame && col.enabled)
 		{
 			initialFrame = true;
 			Debug.Log("other tag: " + col.tag);
 			Debug.Log("this tag: " + tag);
 			hit = true;
-		}
+		}*/
 	}
 }

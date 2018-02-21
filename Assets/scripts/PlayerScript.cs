@@ -66,6 +66,8 @@ public class PlayerScript : MonoBehaviour
     public JoyScript JoyScript;
     InputManager inputManager;
 
+    List<Vector2> livingHitboxes;
+
     void OnDrawGizmos()
     {
         if (hurtbox.enabled)
@@ -97,6 +99,8 @@ public class PlayerScript : MonoBehaviour
         behaviors = new KonkyBehaviours();
         baseHeight = 8;
         width = 4;
+
+        livingHitboxes = new List<Vector2>();
 
         if (CompareTag("1"))
             inputManager = new InputManager(1);
@@ -404,6 +408,22 @@ public class PlayerScript : MonoBehaviour
                 ActionEnd();
             }
         }
+    }
+
+    private void placeHitboxes()
+    {
+        foreach (Action.rect hitbox in behaviors.getAction(currentAction).hitboxData)
+        {
+            livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
+            addBoxCollider2D(new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+        }
+    }
+
+    private void addBoxCollider2D(Vector2 size, Vector2 offset)
+    {
+        BoxCollider2D boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
+        boxCollider2D.size = size;
+        boxCollider2D.offset = offset;
     }
 
     private void stateCheck()
