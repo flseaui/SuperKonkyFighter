@@ -111,7 +111,10 @@ public class KonkyBehaviours : Behaviors {
             {backAirDash, 44},
             {stun, 45 },
             {block, 46 },
-            {flip, 47 }
+            {crouchBlock, 47 },
+            {airBlock, 48 },
+            {flip, 49 },
+            {crouchFlip, 50 },
         };
 
         setIds(konkyActionIds, konkyAnimAction);
