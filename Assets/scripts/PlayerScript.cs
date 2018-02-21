@@ -43,6 +43,7 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int currentAction;
     public bool dashDirection; // false = left, true = right
+    public bool airDashed;
     private int stunTimer;
 
     public float hKnockback;
@@ -197,8 +198,11 @@ public class PlayerScript : MonoBehaviour
         if (y() < FLOOR_HEIGHT) //ground snap
         {
             if (air)
+            {
+                air = false;
                 ActionEnd();
-            air = false;
+                airDashed = false;
+            }
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
         }
@@ -260,14 +264,26 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                        advState = 4;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 4;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 2;
                 }
                 else
                 {
                     if (air)
-                        advState = 3;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 3;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 1;
                 }
@@ -278,14 +294,26 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                        advState = 3;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 3;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 1;
                 }
                 else
                 {
                     if (air)
-                        advState = 4;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 4;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 2;
                 }
