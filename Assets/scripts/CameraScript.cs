@@ -242,7 +242,6 @@ public class CameraScript : MonoBehaviour
 		bool now = getX(player1) < getX(player2);
 
 		if (now != history) {
-            Debug.Log("overCall");
 			if (getX(player1) < getX(player2))
 			{
                 player1.GetComponent<PlayerScript>().flipFacing = true;

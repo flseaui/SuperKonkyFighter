@@ -179,7 +179,6 @@ public class PlayerScript : MonoBehaviour
 
     private void buffer(int bufferedInput)
     {
-        Debug.Log(bufferedInput);
         foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
@@ -378,6 +377,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (!air && waitForEnd && !waitForGround)
             {
+                Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
             }
             else if (advState != 0)
@@ -408,12 +408,8 @@ public class PlayerScript : MonoBehaviour
         {
             if (!air)
                 hVelocity = 0;
-            Debug.Log("CurrentAction");
-            Debug.Log(currentActionFrame);
-            Debug.Log(behaviors.getAction(currentAction).frames.Length);
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
-                Debug.Log(behaviors.getAction(currentAction).infinite);
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
                 else
@@ -422,12 +418,10 @@ public class PlayerScript : MonoBehaviour
         }
         else if (advState != 0)
         {
-            Debug.Log("advState");
             currentAction = advState + 40;
         }
         else if (AttackState != 0)
         {
-            Debug.Log("AttackState");
             currentAction = AttackState;
         }
         else
@@ -484,7 +478,6 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                Debug.Log("fdash");
                 if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
                 {
                     hVelocity = 0;
@@ -513,17 +506,9 @@ public class PlayerScript : MonoBehaviour
 
     private void ActionEnd()
     {
-        Debug.Log("Action end");
-
         if (currentAction == 47)
         {
             facingRight = flipFacing;
-        }
-
-        if (waitForEnd && !waitForGround)
-        {
-            waitForEnd = false;
-            advState = 7;
         }
 
         currentAction = 0;
@@ -531,6 +516,15 @@ public class PlayerScript : MonoBehaviour
         AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
+
+        if (waitForEnd && !waitForGround)
+        {
+            Debug.Log("WaitForEnd Flip");
+
+            waitForEnd = false;
+            currentAction = 47;
+        }
+
     }
 
     private void animInt(int hash, int value)
