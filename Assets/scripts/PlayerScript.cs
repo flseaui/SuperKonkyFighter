@@ -365,6 +365,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
+        placeHitboxes();
+
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
         {
@@ -383,7 +385,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
-            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
+            if (!air && waitForEnd && !waitForGround)
             {
                 Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
@@ -394,22 +396,6 @@ public class PlayerScript : MonoBehaviour
                     if (Actions == advState + 40)
                         bufferedMove = advState + 40;
             }
-            else if (basicState >= 7)
-            {
-                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == 40)
-                    {
-                        bufferedMove = 40;
-                        if (basicState == 7)
-                            jump = 7;
-                        else if (basicState == 8)
-                            jump = 8;
-                        else
-                            jump = 9;
-
-                       
-                    }
-            }
             else if (AttackState != 0)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
@@ -419,15 +405,7 @@ public class PlayerScript : MonoBehaviour
 
             if (bufferedMove != 0)
             {
-                if(bufferedMove > 40)
-                    advState = bufferedMove;
-                else if (bufferedMove == 40)
-                {
-                    advState = 0;
-                    AttackState = 0;
-                }
-                else
-                    AttackState = bufferedMove;
+                AttackState = bufferedMove;
                 bufferedMove = 0;
                 ActionEnd();
             }
@@ -436,10 +414,19 @@ public class PlayerScript : MonoBehaviour
 
     private void placeHitboxes()
     {
-        foreach (Action.rect hitbox in behaviors.getAction(currentAction).hitboxData)
+        Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
+        int height = behaviors.getAction(currentAction).hitboxData.GetLength(1);
+        for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(0); i++)
         {
-            livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
-            addBoxCollider2D(new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+            for (int j = 0; j < height; j++)
+            {
+                Action.rect hitbox = hitboxData[i, j];
+                if (livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
+                    livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
+                livingHitboxes[i * height + j].Set(livingHitboxes[i].x, livingHitboxes[i].y - 1);
+                if (livingHitboxes[i].y >= hitbox.timeActive)
+                    addBoxCollider2D(new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+            }
         }
     }
 
@@ -454,8 +441,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
-            advState = 0;
-            AttackState = 0;
             if (!air)
                 hVelocity = 0;
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
@@ -563,6 +548,8 @@ public class PlayerScript : MonoBehaviour
         }
 
         currentAction = 0;
+        advState = 0;
+        AttackState = 0;
         currentFrame = 0;
         currentActionFrame = 0;
 
@@ -573,6 +560,7 @@ public class PlayerScript : MonoBehaviour
             waitForEnd = false;
             currentAction = 47;
         }
+
     }
 
     private void animInt(int hash, int value)
