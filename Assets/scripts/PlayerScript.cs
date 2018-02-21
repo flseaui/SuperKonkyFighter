@@ -152,6 +152,7 @@ public class PlayerScript : MonoBehaviour
 
             if (currentAction >= 40)
                 advancedMove();
+
             // If facing right flip x-scale right, otherwise flip x-scale left
             this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
@@ -262,45 +263,66 @@ public class PlayerScript : MonoBehaviour
 
     private void setAdvancedInput(bool[] input)
     {
-        if (dashTimer == 0 && advState <= 4)
-            advState = 0;
+        if (currentAction != 41)
+        {
+            if (dashTimer == 0 && advState <= 4)
+                advState = 0;
 
-        if (input[8] && !dashDirection && dashTimer != 0)
-        {
-            if (facingRight)
+            if (input[8] && !dashDirection && dashTimer != 0)
             {
-                if (air)
-                    advState = 4;
+                if (facingRight)
+                {
+                    if (air)
+                        advState = 4;
+                    else
+                        advState = 2;
+                }
                 else
-                    advState = 2;
+                {
+                    if (air)
+                        advState = 3;
+                    else
+                        advState = 1;
+                }
+                dashTimer = 0;
             }
-            else
+            else if (input[9] && dashDirection && dashTimer != 0)
             {
-                if (air)
-                    advState = 3;
+                if (facingRight)
+                {
+                    if (air)
+                        advState = 3;
+                    else
+                        advState = 1;
+                }
                 else
-                    advState = 1;
+                {
+                    if (air)
+                        advState = 4;
+                    else
+                        advState = 2;
+                }
+                dashTimer = 0;
             }
-            dashTimer = 0;
-        }
-        else if (input[9] && dashDirection && dashTimer != 0)
-        {
-            if (facingRight)
+
+            if (waitForGround && !air)
             {
-                if (air)
-                    advState = 3;
-                else
-                    advState = 1;
+                waitForGround = false;
+                advState = 7;
             }
-            else
+
+            if ((!input[8] || !input[9]) && dashTimer != 0)
+                dashTimer--;
+
+            if (input[8] || input[9])
             {
-                if (air)
-                    advState = 4;
+                dashTimer = 15;
+                if (input[8])
+                    dashDirection = false;
                 else
-                    advState = 2;
+                    dashDirection = true;
             }
-            dashTimer = 0;
-        }
+        }        
 
         if (flip)
         {
@@ -310,30 +332,12 @@ public class PlayerScript : MonoBehaviour
 
             if (air)
                 waitForGround = true;
-            
+
             if (!air && currentAction == 0)
             {
                 advState = 7;
                 dashTimer = 0;
             }
-        }
-
-        if (waitForGround && !air)
-        {
-            waitForGround = false;
-            advState = 7;
-        }
-
-        if ((!input[8] || !input[9]) && dashTimer != 0)
-            dashTimer--;
-
-        if (input[8] || input[9])
-        {
-            dashTimer = 15;
-            if (input[8])
-                dashDirection = false;
-            else
-                dashDirection = true;
         }
     }
 
@@ -478,6 +482,7 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
+                Debug.Log("Dashing");
                 if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
                 {
                     hVelocity = 0;
