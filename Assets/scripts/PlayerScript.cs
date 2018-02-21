@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     public int jump;
     public int dashTimer;
     public int currentAction;
-    public bool dashDirection; // 0 = left, 1 = right, 2 = neutral
+    public bool dashDirection; // false = left, true = right
     private int stunTimer;
 
     public float hKnockback;
