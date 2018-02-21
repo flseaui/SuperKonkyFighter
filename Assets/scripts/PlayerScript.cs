@@ -308,9 +308,11 @@ public class PlayerScript : MonoBehaviour
             flip = false;
             if (currentAction != 0)
                 waitForEnd = true;
-            else if (air)
+
+            if (air)
                 waitForGround = true;
-            else
+            
+            if (!air && currentAction == 0)
             {
                 advState = 7;
                 dashTimer = 0;
@@ -374,10 +376,8 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
-            if (!air && waitForEnd)
+            if (!air && waitForEnd && !waitForGround)
             {
-                waitForEnd = false;
-                advState = 7;
                 ActionEnd();
             }
             else if (advState != 0)
@@ -519,6 +519,12 @@ public class PlayerScript : MonoBehaviour
         if (currentAction == 47)
         {
             facingRight = flipFacing;
+        }
+
+        if (waitForEnd && !waitForGround)
+        {
+            waitForEnd = false;
+            advState = 7;
         }
 
         currentAction = 0;
