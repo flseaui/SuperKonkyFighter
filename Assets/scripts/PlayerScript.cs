@@ -43,7 +43,6 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int currentAction;
     public bool dashDirection; // false = left, true = right
-    public bool airDashed;
     private int stunTimer;
 
     public float hKnockback;
@@ -67,7 +66,7 @@ public class PlayerScript : MonoBehaviour
     public JoyScript JoyScript;
     InputManager inputManager;
 
-    List<Vector2> livingHitboxes;
+    public List<Vector2> livingHitboxes;
 
     void OnDrawGizmos()
     {
@@ -198,11 +197,8 @@ public class PlayerScript : MonoBehaviour
         if (y() < FLOOR_HEIGHT) //ground snap
         {
             if (air)
-            {
-                air = false;
                 ActionEnd();
-                airDashed = false;
-            }
+            air = false;
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
         }
@@ -264,26 +260,14 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                    {
-                        if (!airDashed)
-                        {
-                            advState = 4;
-                            airDashed = true;
-                        }
-                    }
+                        advState = 4;
                     else
                         advState = 2;
                 }
                 else
                 {
                     if (air)
-                    {
-                        if (!airDashed)
-                        {
-                            advState = 3;
-                            airDashed = true;
-                        }
-                    }
+                        advState = 3;
                     else
                         advState = 1;
                 }
@@ -294,26 +278,14 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                    {
-                        if (!airDashed)
-                        {
-                            advState = 3;
-                            airDashed = true;
-                        }
-                    }
+                        advState = 3;
                     else
                         advState = 1;
                 }
                 else
                 {
                     if (air)
-                    {
-                        if (!airDashed)
-                        {
-                            advState = 4;
-                            airDashed = true;
-                        }
-                    }
+                        advState = 4;
                     else
                         advState = 2;
                 }
@@ -376,21 +348,23 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        // Debug.Log("currentActionFrame" + currentActionFrame);
-        if (previousFrame != 1 && currentFrame == 1)
-        {
-            otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
-            ++damageCounter;
-        }
+        placeHitboxes();
 
-        if (currentFrame == 1)
-            hurtbox.enabled = true;
-        else
-        {
-            hurtbox.enabled = false;
-            damageDealt = false;
-            hurtbox.size = new Vector2(0f, 0f);
-        }
+        // Debug.Log("currentActionFrame" + currentActionFrame);
+        /*  if (previousFrame != 1 && currentFrame == 1)
+          {
+              otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
+              ++damageCounter;
+          }
+
+          if (currentFrame == 1)
+              hurtbox.enabled = true;
+          else
+          {
+              hurtbox.enabled = false;
+              damageDealt = false;
+              hurtbox.size = new Vector2(0f, 0f);
+          }*/
 
         if (currentFrame == 3)
         {
@@ -454,7 +428,7 @@ public class PlayerScript : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 Action.rect hitbox = hitboxData[i, j];
-                if (livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
+                if (!livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
                     livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
                 livingHitboxes[i * height + j].Set(livingHitboxes[i].x, livingHitboxes[i].y - 1);
                 if (livingHitboxes[i].y >= hitbox.timeActive)
