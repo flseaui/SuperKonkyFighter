@@ -373,10 +373,10 @@ public class KonkyBehaviours : Behaviors {
     private Action flip = new Action()       { frames = new int[] { 0, 0, 0,                                                    }, actionCancels  = new int[] {       } };
 
     // Back Dash
-    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] { 40 } };
+    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] {  } };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 0                                                          }, actionCancels = new int[] { 40 }, infinite = true };
+    private Action forwardDash = new Action() { frames = new int[] { 3                                                         }, actionCancels = new int[] { 40 }, infinite = true };
 
     // Stun
     private Action stun = new Action()        { frames = new int[] { 3                                                          }, actionCancels = new int[] {       } };

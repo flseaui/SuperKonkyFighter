@@ -383,7 +383,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
-            if (!air && waitForEnd && !waitForGround)
+            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
             {
                 Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
@@ -394,6 +394,22 @@ public class PlayerScript : MonoBehaviour
                     if (Actions == advState + 40)
                         bufferedMove = advState + 40;
             }
+            else if (basicState >= 7)
+            {
+                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
+                    if (Actions == 40)
+                    {
+                        bufferedMove = 40;
+                        if (basicState == 7)
+                            jump = 7;
+                        else if (basicState == 8)
+                            jump = 8;
+                        else
+                            jump = 9;
+
+                       
+                    }
+            }
             else if (AttackState != 0)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
@@ -403,7 +419,15 @@ public class PlayerScript : MonoBehaviour
 
             if (bufferedMove != 0)
             {
-                AttackState = bufferedMove;
+                if(bufferedMove > 40)
+                    advState = bufferedMove;
+                else if (bufferedMove == 40)
+                {
+                    advState = 0;
+                    AttackState = 0;
+                }
+                else
+                    AttackState = bufferedMove;
                 bufferedMove = 0;
                 ActionEnd();
             }
@@ -430,6 +454,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
+            advState = 0;
+            AttackState = 0;
             if (!air)
                 hVelocity = 0;
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
