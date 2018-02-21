@@ -84,19 +84,19 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 60fcc0c42d3652c4ba35d53fe545d94d, type: 3}
-    - time: 0.033333335
+    - time: 0.05
       value: {fileID: 21300000, guid: f84d6d7f68d28474291e9b9b023274cf, type: 3}
-    - time: 0.06666667
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 75bd39381758daf4f9def6e0da1b3ea3, type: 3}
     - time: 0.11666667
       value: {fileID: 21300000, guid: a45f5fa1cd1f87346afd7d035533b3fb, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: 3d1c70b20dad98f489ddf9a5ba104046, type: 3}
-    - time: 0.23333333
+    - time: 0.26666668
       value: {fileID: 21300000, guid: adb3a7f20ade15c4b8a9183f82a76b4f, type: 3}
-    - time: 0.3
+    - time: 0.33333334
       value: {fileID: 21300000, guid: dbabe94bf1176714f949e2cc36c6ae92, type: 3}
-    - time: 0.38333333
+    - time: 0.4
       value: {fileID: 21300000, guid: 15b8a778ac2f65c49ab8ff576081a78a, type: 3}
     - time: 0.45
       value: {fileID: 21300000, guid: 15b8a778ac2f65c49ab8ff576081a78a, type: 3}
