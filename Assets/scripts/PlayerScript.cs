@@ -43,6 +43,7 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;
     public int currentAction;
     public bool dashDirection; // false = left, true = right
+    public bool airDashed;
     private int stunTimer;
 
     public float hKnockback;
@@ -197,8 +198,11 @@ public class PlayerScript : MonoBehaviour
         if (y() < FLOOR_HEIGHT) //ground snap
         {
             if (air)
+            {
+                air = false;
                 ActionEnd();
-            air = false;
+                airDashed = false;
+            }
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
         }
@@ -260,14 +264,26 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                        advState = 4;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 4;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 2;
                 }
                 else
                 {
                     if (air)
-                        advState = 3;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 3;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 1;
                 }
@@ -278,14 +294,26 @@ public class PlayerScript : MonoBehaviour
                 if (facingRight)
                 {
                     if (air)
-                        advState = 3;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 3;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 1;
                 }
                 else
                 {
                     if (air)
-                        advState = 4;
+                    {
+                        if (!airDashed)
+                        {
+                            advState = 4;
+                            airDashed = true;
+                        }
+                    }
                     else
                         advState = 2;
                 }
@@ -348,23 +376,21 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        placeHitboxes();
-
         // Debug.Log("currentActionFrame" + currentActionFrame);
-        /*  if (previousFrame != 1 && currentFrame == 1)
-          {
-              otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
-              ++damageCounter;
-          }
+        if (previousFrame != 1 && currentFrame == 1)
+        {
+            otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
+            ++damageCounter;
+        }
 
-          if (currentFrame == 1)
-              hurtbox.enabled = true;
-          else
-          {
-              hurtbox.enabled = false;
-              damageDealt = false;
-              hurtbox.size = new Vector2(0f, 0f);
-          }*/
+        if (currentFrame == 1)
+            hurtbox.enabled = true;
+        else
+        {
+            hurtbox.enabled = false;
+            damageDealt = false;
+            hurtbox.size = new Vector2(0f, 0f);
+        }
 
         if (currentFrame == 3)
         {
@@ -697,4 +723,5 @@ public class PlayerScript : MonoBehaviour
     }
 
 }
+
 
