@@ -12,6 +12,8 @@ public class MenuScript : MonoBehaviour {
 
 	public int screen;
 
+	public List<GameObject> buttons;
+
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("background", 0);
@@ -19,19 +21,38 @@ public class MenuScript : MonoBehaviour {
 		PlayerPrefs.SetInt("character1", 0);
 		PlayerPrefs.SetInt("character2", 0);
 
-		GameObject playButton = Instantiate(buttonPrefab);
-		//playButton.transform.SetParent(canvas.transform);
-		Vector3 v = playButton.transform.position;
-		v.z = 0;
-		playButton.transform.position = v;
-		v = playButton.transform.localScale;
-		v.x = 1 / 45f;
-		v.y = 1 / 45f;
-		v.z = 1 / 45f;
-		v= playButton.transform.localScale;
-		playButton.GetComponent<Button>().onClick.AddListener(beginGame);
+		makeButton(10, 2, 0, 0, "feck");
 	}
 	
+	//20 by 34 yo
+	public void makeButton(int width, int height, int x, int y, string text)
+	{
+		GameObject button = Instantiate(buttonPrefab);
+		Vector3 v = button.transform.position;
+		v.x = x;
+		v.y = y;
+		button.transform.position = v;
+		v = button.transform.localScale;
+		v.x = width;
+		v.y = height;
+		button.transform.localScale = v;
+
+		//TextureScale.Point(button.GetComponent<SpriteRenderer>().sprite.texture, 1, 2);
+
+		button.GetComponent<Button>().onClick.AddListener(beginGame);
+		button.GetComponentInChildren<Text>().text = text;
+		buttons.Add(button);
+	}
+
+	public void clearButtons()
+	{
+		foreach (GameObject i in buttons)
+		{
+			Destroy(i);
+		}
+		buttons.Clear();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		//if ()
@@ -64,4 +85,22 @@ public class MenuScript : MonoBehaviour {
 		PlayerPrefs.SetInt("ground", stage);
 	}
 
+	private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
+	{
+		Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
+		Color[] rpixels = result.GetPixels(0);
+		float incX = (1.0f / (float)targetWidth);
+		float incY = (1.0f / (float)targetHeight);
+		for (int px = 0; px < rpixels.Length; px++)
+		{
+			rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth), incY * ((float)Mathf.Floor(px / targetWidth)));
+		}
+		result.SetPixels(rpixels, 0);
+		result.Apply();
+
+		source = result;
+
+		return result;
+	}
 }
+
