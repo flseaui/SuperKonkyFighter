@@ -214,16 +214,7 @@ public class PlayerScript : MonoBehaviour
 
     private int inputConvert(bool[] input)
     {
-        if (air)
-        {
-            if (input[2])
-                return (facingRight ? 7 : 9);
-            else if (input[3])
-                return (facingRight ? 9 : 7);
-            else
-                return 8;
-        }
-        else
+        if (!air)
         {
             if (input[0])
             {
@@ -249,6 +240,10 @@ public class PlayerScript : MonoBehaviour
                 return (facingRight ? 6 : 4);
             else
                 return 5;
+        }
+        else
+        {
+            return basicState;
         }
     }
 
@@ -323,7 +318,7 @@ public class PlayerScript : MonoBehaviour
             if (waitForGround && !air)
             {
                 waitForGround = false;
-                advState = 7;
+                advState = 9;
             }
 
             if ((!input[8] || !input[9]) && dashTimer != 0)
@@ -408,8 +403,9 @@ public class PlayerScript : MonoBehaviour
             else if (basicState >= 7)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == 40)
+                    if (Actions == 40 && inputManager.currentInput[12])
                     {
+                        Debug.Log("JumpCancled");
                         bufferedMove = 40;
                         if (basicState == 7)
                             jump = 7;
@@ -504,22 +500,19 @@ public class PlayerScript : MonoBehaviour
     {
         if (!air)
         {
+            jump = 0;
+
             if (basicState == 8)
-            {
                 vVelocity = jumpSpeed;
-                jump = 8;
-            }
             else if (basicState == 7)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = backwardSpeed;
-                jump = 7;
             }
             else if (basicState == 9)
             {
                 vVelocity = jumpSpeed;
                 hVelocity = forwardSpeed;
-                jump = 9;
             }
             else if (basicState == 5)
             {
@@ -539,7 +532,18 @@ public class PlayerScript : MonoBehaviour
 
         if (air)
         {
-            basicState = jump;
+            if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
+                jump = 7;
+            else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
+                jump = 9;
+            else if (inputManager.currentInput[12])
+                jump = 8;
+
+            if (!airDashed && jump >= 7)
+            {
+                vVelocity = jumpSpeed;
+                airDashed = true;
+            }
         }
     }
     private void advancedMove()
@@ -556,7 +560,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 break;
             case 2:
-                hVelocity = backwardSpeed * 1.5f;
+                hVelocity = backwardSpeed * 3f;
                 break;
             case 3:
                 vVelocity = 0;
@@ -564,7 +568,7 @@ public class PlayerScript : MonoBehaviour
                 break;
             case 4:
                 vVelocity = 0;
-                hVelocity = backwardSpeed * 1.5f;
+                hVelocity = backwardSpeed * 3f;
                 break;
             case 5:
                 break;
@@ -577,7 +581,7 @@ public class PlayerScript : MonoBehaviour
 
     private void ActionEnd()
     {
-        if (currentAction == 47)
+        if (currentAction == 49)
         {
             facingRight = flipFacing;
         }
@@ -591,7 +595,7 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("WaitForEnd Flip");
 
             waitForEnd = false;
-            currentAction = 47;
+            currentAction = 49;
         }
     }
 
@@ -723,5 +727,3 @@ public class PlayerScript : MonoBehaviour
     }
 
 }
-
-
