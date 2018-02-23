@@ -405,7 +405,7 @@ public class PlayerScript : MonoBehaviour
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == 40 && inputManager.currentInput[12])
                     {
-                        Debug.Log("JumpCancled");
+                        Debug.Log("Jump Cancled");
                         bufferedMove = 40;
                         if (basicState == 7)
                             jump = 7;
