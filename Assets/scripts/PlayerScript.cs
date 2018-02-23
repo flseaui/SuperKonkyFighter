@@ -216,6 +216,8 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         hPush = (hVelocity + otherVel) / 2;
+        if (x() > otherPlayer.GetComponent<PlayerScript>().x())
+            setX(otherPlayer.GetComponent<PlayerScript>().x() - width);
     }
 
     private int inputConvert(bool[] input)

@@ -74,14 +74,7 @@ public class HitboxScript : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D col)
 	{
 		if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
-		{
-            //  PlayerScript thisPlayerScript = GetComponentInParent<PlayerScript>();
-            //  PlayerScript otherPlayerScript = col.GetComponentInParent<PlayerScript>();
             s.onPush(os.hVelocity);
-            //os.hPush = (s.hVelocity + os.hVelocity) / 2;
-			Debug.Log("other tag: " + col.collider.tag);
-			Debug.Log("this tag: " + tag);
-		}
 	}
 
     private void OnCollisionExit2D(Collision2D collision)
