@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         this.tag = playerID.ToString();
-        hitbox.tag = playerID.ToString();
+        hitbox.tag = "collisionHitbox" + playerID.ToString();
         hurtbox.tag = playerID.ToString();
 
         forwardSpeed = 0.25f;
@@ -192,10 +192,8 @@ public class PlayerScript : MonoBehaviour
         {
             vVelocity = -1;
         }
-        hPush = 10;
-
-        Debug.Log("lllllllllllllllllll: " + hPush);
-        moveX((facingRight ? hVelocity + hPush : -hVelocity - hPush) + hKnockback);
+        
+        moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
         if (y() <= FLOOR_HEIGHT) //ground snap
@@ -213,6 +211,11 @@ public class PlayerScript : MonoBehaviour
         {
             air = true;
         }
+    }
+
+    public void onPush(float otherVel)
+    {
+        hPush = (hVelocity + otherVel) / 2;
     }
 
     private int inputConvert(bool[] input)

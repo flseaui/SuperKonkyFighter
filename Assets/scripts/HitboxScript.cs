@@ -19,8 +19,6 @@ public class HitboxScript : MonoBehaviour
 	{
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
-
-        tag = "collisionHitbox";
 	}
 
 	// Update is called once per frame
@@ -73,15 +71,22 @@ public class HitboxScript : MonoBehaviour
         }
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
+	private void OnCollisionEnter2D(Collision2D col)
 	{
-		if (col.CompareTag("collisionHitbox"))
+		if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
 		{
-          //  PlayerScript thisPlayerScript = GetComponentInParent<PlayerScript>();
-          //  PlayerScript otherPlayerScript = col.GetComponentInParent<PlayerScript>();
-            os.hPush = (s.hVelocity + os.hVelocity) / 2;
-			Debug.Log("other tag: " + col.tag);
+            //  PlayerScript thisPlayerScript = GetComponentInParent<PlayerScript>();
+            //  PlayerScript otherPlayerScript = col.GetComponentInParent<PlayerScript>();
+            s.onPush(os.hVelocity);
+            //os.hPush = (s.hVelocity + os.hVelocity) / 2;
+			Debug.Log("other tag: " + col.collider.tag);
 			Debug.Log("this tag: " + tag);
 		}
 	}
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        os.hPush = 0;
+    }
+
 }

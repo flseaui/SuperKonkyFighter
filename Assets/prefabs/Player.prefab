@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114362091746053720}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: collisionHitbox
+  m_TagString: hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
