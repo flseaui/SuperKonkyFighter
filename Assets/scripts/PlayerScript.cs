@@ -216,10 +216,13 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         hPush = (hVelocity + otherVel) / 2;
-        if (hitbox.transform.position.x + hitbox.transform.localScale.x > otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x)
-            hPush += ((hitbox.transform.position.x + hitbox.transform.localScale.x) - otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
-        else if (hitbox.transform.position.x < otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x)
-            hPush += (hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x));
+        if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
+        {
+            if (hitbox.transform.position.x + hitbox.transform.localScale.x > otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x)
+                hPush += ((hitbox.transform.position.x + hitbox.transform.localScale.x) - otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
+            else if (hitbox.transform.position.x < otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x)
+                hPush += (hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x));
+        }
     }
 
     private int inputConvert(bool[] input)
