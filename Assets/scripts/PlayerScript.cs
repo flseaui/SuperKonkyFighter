@@ -345,7 +345,7 @@ public class PlayerScript : MonoBehaviour
 
             if (!air && currentAction == 0)
             {
-                advState = 7;
+                advState = 9;
                 dashTimer = 0;
             }
         }
@@ -389,18 +389,18 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 3)
         {
-            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
+            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite && damageDealt)
             {
                 Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
             }
-            else if (advState != 0)
+            else if (advState != 0 && !waitForEnd)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == advState + 40)
                         bufferedMove = advState + 40;
             }
-            else if (basicState >= 7)
+            else if (basicState >= 7 && !waitForEnd)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == 40 && inputManager.currentInput[12])
@@ -417,14 +417,14 @@ public class PlayerScript : MonoBehaviour
 
                     }
             }
-            else if (AttackState != 0)
+            else if (AttackState != 0 && !waitForEnd)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == AttackState)
                         bufferedMove = AttackState;
             }
 
-            if (bufferedMove != 0)
+            if (bufferedMove != 0 && !waitForEnd)
             {
                 if (bufferedMove > 40)
                     advState = bufferedMove;
@@ -533,16 +533,37 @@ public class PlayerScript : MonoBehaviour
         if (air)
         {
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
+            {       
                 jump = 7;
+                basicState = 7;
+            }
             else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
+            {
                 jump = 9;
+                basicState = 9;
+            }
             else if (inputManager.currentInput[12])
+            {
                 jump = 8;
+                basicState = 8;
+            }
 
             if (!airDashed && jump >= 7)
             {
-                vVelocity = jumpSpeed;
                 airDashed = true;
+
+                if (jump == 7)
+                {
+                    vVelocity = jumpSpeed;
+                    hVelocity = backwardSpeed;
+                }
+                else if (jump == 9)
+                {
+                    vVelocity = jumpSpeed;
+                    hVelocity = forwardSpeed;
+                }
+                else
+                    vVelocity = jumpSpeed;
             }
         }
     }
