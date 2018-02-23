@@ -216,8 +216,9 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         hPush = (hVelocity + otherVel) / 2;
-        if (x() < otherPlayer.GetComponent<PlayerScript>().x())
-            setX(otherPlayer.GetComponent<PlayerScript>().x() + width);
+        System.Random that_man = new System.Random();
+        int peeing_with_my_boy_scott = that_man.Next(0, 10);
+        hPush += peeing_with_my_boy_scott;
     }
 
     private int inputConvert(bool[] input)
