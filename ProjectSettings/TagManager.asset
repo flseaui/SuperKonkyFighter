@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: [hitbox, 1, 2, hitbox, 1, 2]
+  tags:
+  - hitbox
+  - 1
+  - 2
+  - collisionHitbox
   layers:
   - Default
   - TransparentFX

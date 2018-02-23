@@ -54,6 +54,7 @@ public class PlayerScript : MonoBehaviour
     public float baseHeight;
     public float width;
     public float height;
+    public float hPush;
     private float forwardSpeed;
     private float backwardSpeed;
     private float jumpSpeed;
@@ -191,8 +192,10 @@ public class PlayerScript : MonoBehaviour
         {
             vVelocity = -1;
         }
+        hPush = 10;
 
-        moveX((facingRight ? hVelocity : -hVelocity) + hKnockback);
+        Debug.Log("lllllllllllllllllll: " + hPush);
+        moveX((facingRight ? hVelocity + hPush : -hVelocity - hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
         if (y() <= FLOOR_HEIGHT) //ground snap

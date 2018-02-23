@@ -19,6 +19,8 @@ public class HitboxScript : MonoBehaviour
 	{
 		s = GetComponentInParent<PlayerScript>();
 		os = s.otherPlayer.GetComponent<PlayerScript>();
+
+        tag = "collisionHitbox";
 	}
 
 	// Update is called once per frame
@@ -73,12 +75,13 @@ public class HitboxScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		/*if (!col.CompareTag(this.tag) && !initialFrame && col.enabled)
+		if (col.CompareTag("collisionHitbox"))
 		{
-			initialFrame = true;
+          //  PlayerScript thisPlayerScript = GetComponentInParent<PlayerScript>();
+          //  PlayerScript otherPlayerScript = col.GetComponentInParent<PlayerScript>();
+            os.hPush = (s.hVelocity + os.hVelocity) / 2;
 			Debug.Log("other tag: " + col.tag);
 			Debug.Log("this tag: " + tag);
-			hit = true;
-		}*/
+		}
 	}
 }
