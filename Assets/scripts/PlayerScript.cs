@@ -345,7 +345,10 @@ public class PlayerScript : MonoBehaviour
 
             if (!air && currentAction == 0)
             {
-                advState = 9;
+                if (basicState <= 3)
+                    advState = 10;
+                else
+                    advState = 9;
                 dashTimer = 0;
             }
         }
@@ -603,7 +606,7 @@ public class PlayerScript : MonoBehaviour
 
     private void ActionEnd()
     {
-        if (currentAction == 49)
+        if (currentAction == 49 || currentAction == 50)
         {
             facingRight = flipFacing;
         }
@@ -617,7 +620,10 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("WaitForEnd Flip");
 
             waitForEnd = false;
-            currentAction = 49;
+            if (basicState <= 3)
+                currentAction = 50;
+            else
+                currentAction = 49;
         }
     }
 

@@ -90,7 +90,8 @@ public class KonkyBehaviours : Behaviors {
             { 47,   crouchBlock },
             { 48,      airBlock },
             { 49,          flip },
-            { 50,    crouchFlip }
+            { 50,    crouchFlip },
+            { 51,     jumpSquat }
         };
 
         konkyAnimAction = new Dictionary<Action, int>()
@@ -118,6 +119,7 @@ public class KonkyBehaviours : Behaviors {
             {airBlock, 48 },
             {flip, 49 },
             {crouchFlip, 50 },
+            {jumpSquat, 51 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -377,6 +379,10 @@ public class KonkyBehaviours : Behaviors {
         aAngle      = 0,
         aStrength   = 0
     };
+
+
+    // Jump Squat
+    private Action jumpSquat = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { } };
 
     // Turns
     private Action flip = new Action()       { frames = new int[] { 0, 0, 0                                                     }, actionCancels  = new int[] {       } };
