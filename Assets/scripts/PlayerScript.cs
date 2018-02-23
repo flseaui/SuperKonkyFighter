@@ -216,9 +216,10 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         hPush = (hVelocity + otherVel) / 2;
-        System.Random that_man = new System.Random();
-        int peeing_with_my_boy_scott = that_man.Next(0, 10);
-        hPush += peeing_with_my_boy_scott;
+        if (hitbox.transform.position.x + hitbox.transform.localScale.x > otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x)
+            hPush += ((hitbox.transform.position.x + hitbox.transform.localScale.x) - otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
+        else if (hitbox.transform.position.x < otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x)
+            hPush += (hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x));
     }
 
     private int inputConvert(bool[] input)
