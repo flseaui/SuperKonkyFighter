@@ -426,8 +426,9 @@ public class PlayerScript : MonoBehaviour
 
             if (bufferedMove != 0 && !waitForEnd)
             {
+                Debug.Log("Buffered");
                 if (bufferedMove > 40)
-                    advState = bufferedMove;
+                    advState = bufferedMove - 40;
                 else if (bufferedMove == 40)
                 {
                     advState = 0;
