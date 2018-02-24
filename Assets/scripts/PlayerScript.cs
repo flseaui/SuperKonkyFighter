@@ -215,119 +215,37 @@ public class PlayerScript : MonoBehaviour
 
     public void onPush(float otherVel)
     {
-            float diff;
+        float diff;
 
         if (facingRight)
             hPush = (hVelocity + otherVel) / 2;
         else
-        {
             hPush = (otherVel + hVelocity) / 2;
-        }
-
-
-            Debug.Log("hPush " + hPush);
-
-            Debug.Log("HTP.X " + hitbox.transform.position.x);
-            Debug.Log("HBs.X " + hitbox.size.x);
-            Debug.Log("OPHTP.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
-            Debug.Log("HTBs.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.size.x);
-
-            if (facingRight)
+        if (facingRight)
+        {
+            if ((hitbox.transform.position.x + (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
             {
-
-                Debug.Log("Facing Right shit  " + (hitbox.transform.position.x + (hitbox.size.x / 2)));
-
-                Debug.Log("Facing Right shit 2 " + (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)));
-
-                Debug.Log("Facing Right garbage " + (((hitbox.transform.position.x + (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))));
-
-                if ((hitbox.transform.position.x + (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
-                {
-                    diff = (hitbox.transform.position.x + (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2));
-                }
-                else
-                    diff = 0;
+                diff = (hitbox.transform.position.x + (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2));
             }
             else
-            {
-                if ((hitbox.transform.position.x - (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
-                {
-                    diff = ((hitbox.transform.position.x - (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)));
-                }
-                else
-                    diff = 0;
-            }
-
-            Debug.Log("DIIIIIIIFFFFFFFFFFF:" + diff);
-
-            if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
-                hPush += diff;
-            else if (hVelocity == otherPlayer.GetComponent<PlayerScript>().hVelocity)
-                hPush += diff / 2;
-        
-        
-
-
-            /*
-             Push = average of player speeds 
-
-
-    if (player.speed < otherPlayer.speed){
-
-    Push += absolute value of difference between edges of players ptp boxes
-
-    }
-    Else if (player.speed = otherPlayer.speed){
-
-    Push += absolute value of difference between edges of players ptp boxes / 2
-
-    }
-
-
-            If(facing right) {
-                If(player.position + (ptpbox.width / 2)) > (otherplayer.position - (otherplayer.ptpbox.width / 2)) {
-                    Diff = (player.position + (ptpbox.width / 2)) - (otherplayer.position - (otherplayer.ptpbox.width / 2)
-           }else
-    Diff = 0
-    }
+                diff = 0;
         }
-        Else {
-       If(player.position - (ptpbox.width / 2)) > (otherplayer.position + (otherplayer.ptpbox.width/ 2)) {
-        Diff =  (player.position - (ptpbox.width / 2)) - (otherplayer.position + (otherplayer.ptpbox.width/ 2)
-    }
-    else
-    Diff = 0
-    } 
-    } 
-
-
-
-
-
-
-
-
-
-
-            hPush = (hVelocity + otherVel) / 2;
-
-        Debug.Log("HTP.X " + hitbox.transform.position.x);
-        Debug.Log("HTLs.X " + hitbox.transform.localScale.x);
-        Debug.Log("HTBs.X " + hitbox.size.x);
-        Debug.Log("OPHTP.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
-        Debug.Log("OPHTLs.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x);
-        Debug.Log("HTBs.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.size.x);
-
-        if (hVelocity > otherPlayer.GetComponent<PlayerScript>().hVelocity)
+        else
         {
-            if (hitbox.transform.position.x + hitbox.size.x / 2 > otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - hitbox.size.x / 2)
+            if ((hitbox.transform.position.x - (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
             {
-                otherPlayer.GetComponent<PlayerScript>().hPush += ((hitbox.transform.position.x + hitbox.size.x / 2) - otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2);
+                diff = ((hitbox.transform.position.x - (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)));
             }
-            //else if (hitbox.transform.position.x < otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x)
-               // hPush += (hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.localScale.x));
+            else
+                diff = 0;
+        }
 
-        */
+        Debug.Log("DIIIIIIIFFFFFFFFFFF:" + diff);
+
+        if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
+            hPush += diff;
+        else if (hVelocity == otherPlayer.GetComponent<PlayerScript>().hVelocity)
+            hPush += diff / 2;
     }
 
     private int inputConvert(bool[] input)
