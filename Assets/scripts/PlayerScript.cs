@@ -176,15 +176,6 @@ public class PlayerScript : MonoBehaviour
 
     private void movePlayer()
     {
-        if (x() < -64f)
-        {
-            setX(-64);
-        }
-        else if (x() > 64f)
-        {
-            setX(64);
-        }
-
         if (currentAction != 43 && currentAction != 44)
             vVelocity += gravity;
 
@@ -195,6 +186,19 @@ public class PlayerScript : MonoBehaviour
 
         moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
+
+        if (x() < -64f)
+        {
+            if (hPush != 0)
+                otherPlayer.GetComponent<PlayerScript>().moveX(hPush);
+            setX(-64);
+        }
+        else if (x() > 64f)
+        {
+            if (hPush != 0)
+                otherPlayer.GetComponent<PlayerScript>().moveX(-hPush);
+            setX(64);
+        }
 
         if (y() <= FLOOR_HEIGHT) //ground snap
         {
@@ -216,6 +220,8 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         float diff;
+
+        Debug.Log(hitbox.transform.position.y);
 
         if (facingRight)
             hPush = (hVelocity + otherVel) / 2;
@@ -239,8 +245,6 @@ public class PlayerScript : MonoBehaviour
             else
                 diff = 0;
         }
-
-        Debug.Log("DIIIIIIIFFFFFFFFFFF:" + diff);
 
         if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
             hPush += diff;
