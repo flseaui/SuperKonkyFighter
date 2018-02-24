@@ -16,8 +16,8 @@ public class GreyshirtBehaviours : Behaviors
      * example: standM = 5 + 10 = 15
      */
 
-    IDictionary<float, Action> greyshirtActionIds;
-    IDictionary<Action, float> greyshirtAnimAction;
+    IDictionary<int, Action> greyshirtActionIds;
+    IDictionary<Action, int> greyshirtAnimAction;
 
     /* 
        * ADVANCED ID FORMAT
@@ -37,7 +37,7 @@ public class GreyshirtBehaviours : Behaviors
 
     public GreyshirtBehaviours()
     {
-        greyshirtActionIds = new Dictionary<float, Action>()
+        greyshirtActionIds = new Dictionary<int, Action>()
         {
             { 1,  crouchL },
             { 11, crouchM },
@@ -90,7 +90,7 @@ public class GreyshirtBehaviours : Behaviors
             { 50,    crouchFlip }
         };
 
-        greyshirtAnimAction = new Dictionary<Action, float>()
+        greyshirtAnimAction = new Dictionary<Action, int>()
         {
             {crouchL, 2 },
             {crouchM, 12 },
@@ -134,15 +134,15 @@ public class GreyshirtBehaviours : Behaviors
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new float[] {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 20, 10, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
             { new Action.rect(10, 15, 20, 10, 2, 1) } // Frame 2 - 1 hitbox lasts 2 frames
         },
-        damage = new float[] {  },
+        damage = new int[] {  },
         level = 0,
-        actionCancels = new float[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
@@ -153,10 +153,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 2,
-        actionCancels = new float[] { 12, 25, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
         aAngle = 30,
@@ -167,10 +167,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 1,
-        actionCancels = new float[] { 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 4,
         aAngle = 30,
@@ -181,10 +181,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 0,
-        actionCancels = new float[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
@@ -195,10 +195,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 1,
-        actionCancels = new float[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
         aAngle = 30,
@@ -209,10 +209,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchH = new Action()
     {
         tier = 2,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 3,
-        actionCancels = new float[] { 31, 32, 33, 34, 35, 36, 40 },
+        actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle = 80,
         gStrength = 4,
         aAngle = 80,
@@ -223,10 +223,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 2,
-        actionCancels = new float[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
+        actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
@@ -237,10 +237,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 2,
-        actionCancels = new float[] { 27, 28, 29, 40, 43, 44 },
+        actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
@@ -251,10 +251,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 3,
-        actionCancels = new float[] {  },
+        actionCancels = new int[] {  },
         gAngle = 0,
         gStrength = 2,
         aAngle = -90,
@@ -265,10 +265,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new float[] { 0 },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] { 0 },//  |  | 
+        damage = new int[] {  },
         level = 0,
-        actionCancels = new float[] { 35 },
+        actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 0,
@@ -279,10 +279,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 5,
-        actionCancels = new float[] { 35, 41, 42 },
+        actionCancels = new int[] { 35, 41, 42 },
         gAngle = 0,
         gStrength = 2,
         aAngle = 30,
@@ -293,10 +293,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 4,
-        actionCancels = new float[] { 35 },
+        actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
@@ -307,10 +307,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 2,
-        actionCancels = new float[] { 35 },
+        actionCancels = new int[] { 35 },
         gAngle = 45,
         gStrength = 1,
         aAngle = 45,
@@ -321,10 +321,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action fiveS = new Action()
     {
         tier = 3,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] { 0 },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] { 0 },
         level = 0,
-        actionCancels = new float[] { },
+        actionCancels = new int[] { },
         gAngle = 0,
         gStrength = 5,
         aAngle = 0,
@@ -335,10 +335,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action sixS = new Action()
     {
         tier = 3,
-        frames = new float[] {  },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] {  },//  |  | 
+        damage = new int[] {  },
         level = 5,
-        actionCancels = new float[] { 35 },
+        actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
         aAngle = 60,
@@ -349,10 +349,10 @@ public class GreyshirtBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new float[] { 0 },//  |  | 
-        damage = new float[] {  },
+        frames = new int[] { 0 },//  |  | 
+        damage = new int[] {  },
         level = 5,
-        actionCancels = new float[] { 1, 2 },
+        actionCancels = new int[] { 1, 2 },
         gAngle = 30,
         gStrength = 10,
         aAngle = 0,
@@ -360,32 +360,32 @@ public class GreyshirtBehaviours : Behaviors
     };
 
     // Turns
-    private Action flip = new Action() { frames = new float[] { 0, 0, 0 }, actionCancels = new float[] { } };
+    private Action flip = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { } };
 
     // crouch Turns
-    private Action crouchFlip = new Action() { frames = new float[] { 0, 0, 0, }, actionCancels = new float[] { } };
+    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { } };
 
     // Back Dash
-    private Action backDash = new Action() { frames = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new float[] { } };
+    private Action backDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new int[] { } };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new float[] { 3 }, actionCancels = new float[] { 40 }, infinite = true };
+    private Action forwardDash = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { 40 }, infinite = true };
 
     // Stun
-    private Action stun = new Action() { frames = new float[] { 3 }, actionCancels = new float[] { } };
+    private Action stun = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { } };
 
     // Block
-    private Action block = new Action() { frames = new float[] { 0 }, actionCancels = new float[] { } };
+    private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Crouching Block
-    private Action crouchBlock = new Action() { frames = new float[] { 0 }, actionCancels = new float[] { } };
+    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Block
-    private Action airBlock = new Action() { frames = new float[] { 0 }, actionCancels = new float[] { } };
+    private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new float[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new float[] { } };
-    private Action backAirDash = new Action() { frames = new float[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new float[] { } };
+    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
+    private Action backAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
@@ -395,13 +395,13 @@ public class GreyshirtBehaviours : Behaviors
 //4     | 16      | 21      | 36         | 18        | .92
 //5     | 18      | 24      | 40         | 20        | .94
 
-//Whiff Medium/Hard Normal: 1 pofloat
-//Whiff Special Move: 4 pofloats
-//Connect Light: 4 pofloats
-//Connect Medium: 8 pofloats
-//Connect Heavy: 12 pofloats
-//Connect Special: 8 pofloats
-//Land Throw: 5 pofloats
-//Have an Action Blocked: 2 pofloats
-//Take Damage: 2 pofloats
+//Whiff Medium/Hard Normal: 1 point
+//Whiff Special Move: 4 points
+//Connect Light: 4 points
+//Connect Medium: 8 points
+//Connect Heavy: 12 points
+//Connect Special: 8 points
+//Land Throw: 5 points
+//Have an Action Blocked: 2 points
+//Take Damage: 2 points
 //Meter Size: 70
