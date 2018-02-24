@@ -217,7 +217,16 @@ public class PlayerScript : MonoBehaviour
     {
             float diff;
 
+        if (facingRight)
             hPush = (hVelocity - otherVel) / 2;
+        else
+        {
+            if (otherVel > hVelocity)
+                hPush = (hVelocity - otherVel) / 2;
+            else
+                hPush = (hVelocity - otherVel) / -2;
+        }
+
 
             Debug.Log("hPush " + hPush);
 
