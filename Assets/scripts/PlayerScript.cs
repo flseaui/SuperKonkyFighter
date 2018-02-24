@@ -193,7 +193,7 @@ public class PlayerScript : MonoBehaviour
             vVelocity = -1;
         }
         
-        moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
+        moveX((facingRight ? hVelocity - hPush : -hVelocity - hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
         if (y() <= FLOOR_HEIGHT) //ground snap
