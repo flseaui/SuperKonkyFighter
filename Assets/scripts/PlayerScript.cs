@@ -221,8 +221,6 @@ public class PlayerScript : MonoBehaviour
     {
         float diff;
 
-        Debug.Log(hitbox.transform.position.y);
-
         if (facingRight)
             hPush = (hVelocity + otherVel) / 2;
         else
