@@ -73,8 +73,37 @@ public class HitboxScript : MonoBehaviour
 
 	private void OnCollisionStay2D(Collision2D col)
 	{
-        if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
-            s.onPush(os.hVelocity);
+        /*
+         If ( player.y - otherplayer.y >= “triangle height) {
+            If (player.x^2 + player.y^2 <= hitbox.width^2)
+	            player.onPush
+         }
+         else 
+	        player.onPush
+
+    */
+
+        if (this.transform.position.y - os.hitbox.transform.position.y >= 3)
+        {
+            Debug.Log("yes");
+
+            if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
+            {
+
+                Debug.Log((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x));
+
+
+                if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
+                    s.onPush(os.hVelocity);
+            }
+        }
+        else
+        {
+            if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
+                s.onPush(os.hVelocity);
+        }
+
+
 	}
 
     private void OnCollisionExit2D(Collision2D collision)
