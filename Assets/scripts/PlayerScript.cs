@@ -219,7 +219,7 @@ public class PlayerScript : MonoBehaviour
 
         hPush = (hVelocity + otherVel) / 2;
 
-        Debug.Log("HTP.X " + hitbox.transform.position.x);
+        /*Debug.Log("HTP.X " + hitbox.transform.position.x);
         Debug.Log("HBs.X " + hitbox.size.x);
         Debug.Log("OPHTP.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x);
         Debug.Log("HTBs.X " + otherPlayer.GetComponent<PlayerScript>().hitbox.size.x);
