@@ -9,15 +9,13 @@ public class CameraScript : MonoBehaviour
 	public UIScript uis;
 
 	public GameObject playerPrefab;
-    public GameObject ghostObjeect;
-    public GameObject ghost;
 	public GameObject background;
 	public GameObject ground;
 	public Camera self;
 
 	public GameObject player1;
-    public PlayerScript p1s;
-    public HitboxScript p1h;
+	public PlayerScript p1s;
+	public HitboxScript p1h;
 	public GameObject player2;
 	public PlayerScript p2s;
 	public HitboxScript p2h;
@@ -60,30 +58,27 @@ public class CameraScript : MonoBehaviour
 
 		setX(player1, -16f);
 		p1s = player1.GetComponent<PlayerScript>();
-        p1h = player1.GetComponentInChildren<HitboxScript>();
+		p1h = player1.GetComponentInChildren<HitboxScript>();
 		p1s.facingRight = true;
 		p1s.playerID = 1;
 		p1s.JoyScript = JoyScript;
-        //p1s.lightButton = lightButton;
-        //p1s.mediumButton = mediumButton;
-        //p1s.heavyButton = heavyButton;
+		//p1s.lightButton = lightButton;
+		//p1s.mediumButton = mediumButton;
+		//p1s.heavyButton = heavyButton;
 
-        player2 = Instantiate(playerPrefab);
+		player2 = Instantiate(playerPrefab);
 		setX(player2, 16f);
 		p2s = player2.GetComponent<PlayerScript>();
-        p2h = player2.GetComponentInChildren<HitboxScript>();
+		p2h = player2.GetComponentInChildren<HitboxScript>();
         p2s.facingRight = false;
 		p2s.playerID = 2;
 
-        p1s.otherPlayer = player2;
+		p1s.otherPlayer = player2;
 		p2s.otherPlayer = player1;
 
 		history = true;
 
-        Debug.Log(ghost.tag);
-        ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
-
-        Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
+		Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
 		Ground = new Sprite[] { ground0, ground1 };
 
 		background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
