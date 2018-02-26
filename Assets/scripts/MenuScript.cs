@@ -13,11 +13,11 @@ public class MenuScript : MonoBehaviour {
 	public int screen;
 
 	public List<GameObject> buttons;
+	public List<int> links;
 
 	// Use this for initialization
 	void Start () {
-        PlayerPrefs.SetInt("background", 0);
-        PlayerPrefs.SetInt("ground", 0);
+        PlayerPrefs.SetInt("stage", 0);
 		PlayerPrefs.SetInt("character1", 0);
 		PlayerPrefs.SetInt("character2", 0);
 
@@ -36,11 +36,6 @@ public class MenuScript : MonoBehaviour {
 		v.x = width;
 		v.y = height;
 		button.transform.localScale = v;
-
-		//TextureScale.Point(button.GetComponent<SpriteRenderer>().sprite.texture, 1, 2);
-
-		button.GetComponent<Button>().onClick.AddListener(beginGame);
-		button.GetComponentInChildren<Text>().text = text;
 		buttons.Add(button);
 	}
 
@@ -53,15 +48,7 @@ public class MenuScript : MonoBehaviour {
 		buttons.Clear();
 	}
 
-	// Update is called once per frame
 	void Update () {
-		//if ()
-		{
-			
-		}
-		
-			
-		
 
     }
 
@@ -81,8 +68,7 @@ public class MenuScript : MonoBehaviour {
 	{
 		SceneManager.LoadScene("SKF");
 		int stage = Random.Range(1, 2);
-		PlayerPrefs.SetInt("background", stage);
-		PlayerPrefs.SetInt("ground", stage);
+		PlayerPrefs.SetInt("stage", stage);
 	}
 
 	private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)

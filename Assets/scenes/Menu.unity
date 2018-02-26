@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 505551296}
   - component: {fileID: 505551295}
   m_Layer: 0
-  m_Name: attacktorb
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 880323880}
   - component: {fileID: 880323879}
   - component: {fileID: 880323883}
+  - component: {fileID: 880323884}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -279,8 +280,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd610497a3236544b5fcc1023b11478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 1930105424740920, guid: b5ae808477828444c961bcf44ad3eb77,
+  buttonPrefab: {fileID: 1790849469800962, guid: b5ae808477828444c961bcf44ad3eb77,
     type: 2}
   canvas: {fileID: 0}
   screen: 0
   buttons: []
+  links: 
+--- !u!114 &880323884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 880323878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
