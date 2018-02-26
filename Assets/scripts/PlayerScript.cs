@@ -45,6 +45,7 @@ public class PlayerScript : MonoBehaviour
     public bool dashDirection; // false = left, true = right
     public bool airDashed;
     private int stunTimer;
+    public int updateEnd;
 
     public float hKnockback;
     public float vKnockback;
@@ -149,6 +150,8 @@ public class PlayerScript : MonoBehaviour
                 buffer(advState + 40);
             else if (AttackState != 0)
                 buffer(currentAction = AttackState);
+
+            updateEnd = 1;
         }
         else
         {
@@ -159,12 +162,17 @@ public class PlayerScript : MonoBehaviour
             if (currentAction >= 40)
                 advancedMove();
 
-            this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-
-            movePlayer();
-
-            updateAnimation();
+            updateEnd = 2;
         }
+    }
+
+    public void UpdateEnd()
+    {
+        this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+
+        movePlayer();
+
+        updateAnimation();
     }
 
     private void buffer(int bufferedInput)
