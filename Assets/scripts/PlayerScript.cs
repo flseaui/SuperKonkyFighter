@@ -227,30 +227,23 @@ public class PlayerScript : MonoBehaviour
 
     public void onPush(float otherVel)
     {
-        float diff;
+        BoxCollider2D hitbox = otherPlayer.GetComponent<PlayerScript>().hitbox;
+        float xPos = hitbox.transform.position.x,
+              hitboxWidth = hitbox.size.x,
+              diff = 0;
+        
+        hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
 
         if (facingRight)
-            hPush = (hVelocity + otherVel) / 2;
-        else
-            hPush = (otherVel + hVelocity) / 2;
-        if (facingRight)
-        {
-            if ((hitbox.transform.position.x + (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
-            {
-                diff = (hitbox.transform.position.x + (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x - (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2));
-            }
+            if ((xPos + (hitboxWidth / 2)) > (xPos - (hitboxWidth / 2)))
+                diff = (xPos + (hitboxWidth / 2)) - (xPos - (hitboxWidth / 2));
             else
                 diff = 0;
-        }
         else
-        {
-            if ((hitbox.transform.position.x - (hitbox.size.x / 2)) > (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)))
-            {
-                diff = ((hitbox.transform.position.x - (hitbox.size.x / 2)) - (otherPlayer.GetComponent<PlayerScript>().hitbox.transform.position.x + (otherPlayer.GetComponent<PlayerScript>().hitbox.size.x / 2)));
-            }
+            if ((xPos - (hitboxWidth / 2)) > (xPos + (hitboxWidth / 2)))
+                diff = ((xPos - (hitboxWidth / 2)) - (xPos + (hitboxWidth / 2)));
             else
                 diff = 0;
-        }
 
         if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
             hPush += diff;
