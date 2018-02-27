@@ -64,12 +64,19 @@ public class BackGroundScript : MonoBehaviour {
 
         for (int i = 0; i < 2; i++)
         {
+            Debug.Log(player[i].updateEnd);
+
             if (player[i].updateEnd != 0)
             {
+                Debug.Log("beef");
+
                 player[i].hPush += diff[i];
 
                 if (player[i].updateEnd == 2)
                 {
+
+                    Debug.Log("beefy");
+
                     player[i].updateEnd = 0;
                     player[i].UpdateEnd();
                 }

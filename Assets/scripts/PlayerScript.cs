@@ -169,6 +169,7 @@ public class PlayerScript : MonoBehaviour
 
     public void UpdateEnd()
     {
+
         this.transform.localScale = facingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
 
         movePlayer();
