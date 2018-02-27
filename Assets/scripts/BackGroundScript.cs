@@ -22,7 +22,7 @@ public class BackGroundScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float[] diff = new float[] { };
+        float[] diff = new float[2];
 
         if (p1s.coll)
         {
@@ -72,9 +72,10 @@ public class BackGroundScript : MonoBehaviour {
 
                 player[i].hPush += diff[i];
 
+                Debug.Log(player[i].updateEnd);
+
                 if (player[i].updateEnd == 2)
                 {
-
                     Debug.Log("beefy");
 
                     player[i].updateEnd = 0;
