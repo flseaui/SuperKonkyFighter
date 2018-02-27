@@ -225,7 +225,8 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-   /* public void onPush(float otherVel)
+    /*
+     *  public void onPush(float otherVel)
     {
         float diff;
 
@@ -256,7 +257,8 @@ public class PlayerScript : MonoBehaviour
             hPush += diff;
         else if (hVelocity == otherPlayer.GetComponent<PlayerScript>().hVelocity)
             hPush += diff / 2;
-    }*/
+    }
+    */
 
     public void onPush(float otherVel)
     {
@@ -264,7 +266,7 @@ public class PlayerScript : MonoBehaviour
         float xPos = hitbox.transform.position.x,
               hitboxWidth = hitbox.size.x,
               diff = 0;
-
+        
         hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
 
         if (facingRight)
@@ -272,10 +274,11 @@ public class PlayerScript : MonoBehaviour
                 diff = (xPos + (hitboxWidth / 2)) - (xPos - (hitboxWidth / 2));
             else
                 diff = 0;
-        else if ((xPos - (hitboxWidth / 2)) > (xPos + (hitboxWidth / 2)))
-                diff = ((xPos - (hitboxWidth / 2)) - (xPos + (hitboxWidth / 2)));
         else
-            diff = 0;
+            if ((xPos - (hitboxWidth / 2)) > (xPos + (hitboxWidth / 2)))
+                diff = ((xPos - (hitboxWidth / 2)) - (xPos + (hitboxWidth / 2)));
+            else
+                diff = 0;
 
         if (hVelocity < otherPlayer.GetComponent<PlayerScript>().hVelocity)
             hPush += diff;
@@ -826,3 +829,4 @@ public class PlayerScript : MonoBehaviour
     }
 
 }
+ 

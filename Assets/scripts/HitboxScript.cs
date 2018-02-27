@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -102,7 +102,6 @@ public class HitboxScript : MonoBehaviour
             if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
                 s.onPush(os.hVelocity);
         }
-
 
 	}
 
