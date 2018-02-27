@@ -57,8 +57,8 @@ public class BackGroundScript : MonoBehaviour {
 
             if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
             {
-                diff[0] = (p1s.hitbox.size.x + 0.000001f) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
-                diff[1] = (p2s.hitbox.size.x + 0.000001f) - Vector3.Distance(p2s.transform.position, p1s.transform.position);
+                diff[0] = (p1s.hitbox.size.x + 0.01f) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
+                diff[1] = (p2s.hitbox.size.x + 0.01f) - Vector3.Distance(p2s.transform.position, p1s.transform.position);
             }
         }
 

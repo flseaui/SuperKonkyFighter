@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +70,7 @@ public class PlayerScript : MonoBehaviour
     public JoyScript JoyScript;
     InputManager inputManager;
 
-    public List<Vector2> livingHitboxes;
+    public ArrayList livingHitboxes;
 
     void OnDrawGizmos()
     {
@@ -104,7 +104,7 @@ public class PlayerScript : MonoBehaviour
         baseHeight = 8;
         width = 4;
 
-        livingHitboxes = new List<Vector2>();
+        livingHitboxes = new ArrayList();
 
         if (CompareTag("1"))
             inputManager = new InputManager(1);
@@ -477,12 +477,28 @@ public class PlayerScript : MonoBehaviour
                 Action.rect hitbox = hitboxData[i, j];
                 if (!livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
                     livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
+
+            }
+        }
+    }
+
+   /* private void placeHitboxes2()
+    {
+        Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
+        int height = behaviors.getAction(currentAction).hitboxData.GetLength(1);
+        for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(0); i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                Action.rect hitbox = hitboxData[i, j];
+                if (!livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
+                    livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
                 livingHitboxes[i * height + j].Set(livingHitboxes[i].x, livingHitboxes[i].y - 1);
                 if (livingHitboxes[i].y >= hitbox.timeActive)
                     addBoxCollider2D(new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
             }
         }
-    }
+    }*/
 
     private void addBoxCollider2D(Vector2 size, Vector2 offset)
     {
