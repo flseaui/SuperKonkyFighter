@@ -46,6 +46,7 @@ public class PlayerScript : MonoBehaviour
     public bool airDashed;
     private int stunTimer;
     public int updateEnd;
+    public bool coll;
 
     public float hKnockback;
     public float vKnockback;

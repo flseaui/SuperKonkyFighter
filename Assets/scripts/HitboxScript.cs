@@ -82,25 +82,25 @@ public class HitboxScript : MonoBehaviour
 	        player.onPush
 
     */
-
-        if (this.transform.position.y - os.hitbox.transform.position.y >= 3)
+        if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
         {
-            Debug.Log("yes");
+            s.coll = true;
 
-            if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
+            if (this.transform.position.y - os.hitbox.transform.position.y >= 3)
             {
+                Debug.Log("yes");
 
-                Debug.Log((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x));
+                if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
+                {
 
-
-                if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
+                    Debug.Log((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x));
                     s.onPush(os.hVelocity);
+                }
             }
-        }
-        else
-        {
-            if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
+            else
+            {
                 s.onPush(os.hVelocity);
+            }
         }
 
 	}
@@ -108,6 +108,7 @@ public class HitboxScript : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         os.hPush = 0;
+        s.coll = false;
     }
 
 }
