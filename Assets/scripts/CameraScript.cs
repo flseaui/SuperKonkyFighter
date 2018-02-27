@@ -9,7 +9,6 @@ public class CameraScript : MonoBehaviour
 	public UIScript uis;
 
 	public GameObject playerPrefab;
-    public GameObject ghostObjeect;
     public GameObject ghost;
 	public GameObject background;
 	public GameObject ground;
@@ -80,7 +79,6 @@ public class CameraScript : MonoBehaviour
 
 		history = true;
 
-        Debug.Log(ghost.tag);
         ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
 
         Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };

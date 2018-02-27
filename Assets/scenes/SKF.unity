@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -810,7 +810,6 @@ MonoBehaviour:
   uis: {fileID: 1895151208}
   playerPrefab: {fileID: 1646981266529194, guid: b36305c8cec714941a97260bd21e1956,
     type: 2}
-  ghostObjeect: {fileID: 78444080}
   ghost: {fileID: 78444080}
   background: {fileID: 1976528747}
   ground: {fileID: 1717751412}
