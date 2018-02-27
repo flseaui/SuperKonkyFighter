@@ -33,24 +33,32 @@ public class BackGroundScript : MonoBehaviour {
                 hitboxWidth = player[i].hitbox.size.x,
                 otherHitboxWidth = player[i + 1].hitbox.size.x;
 
-                Debug.Log(i +"player and " + (xPos + (hitboxWidth / 2)));
-
                 if (player[i].facingRight)
                 {
-                   // Debug.Log(xPos);
+                   Debug.Log(i + "player and " + (xPos + (hitboxWidth / 2)));
+                    // Debug.Log(xPos);
                     //Debug.Log(otherXPos);
-                    if ((xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush) - (hitboxWidth / 2)) >= (otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush) + (otherHitboxWidth / 2)))
-                        diff[i] = (xPos - (hitboxWidth / 2)) - (otherXPos + (otherHitboxWidth / 2));
+                    if ((xPos + (hitboxWidth / 2)) < (otherXPos - (otherHitboxWidth / 2)))
+                        diff[i] = (xPos + (hitboxWidth / 2)) - (otherXPos - (otherHitboxWidth / 2));
                     else
                         diff[i] = 0;
 
                 }
                 else
-                    if ((xPos - (hitboxWidth / 2)) >= (otherXPos + (otherHitboxWidth / 2)))
-                    diff[i] = ((xPos + (hitboxWidth / 2)) - (otherXPos - (otherHitboxWidth / 2)));
-                else
-                    diff[i] = 0;
+                {
+                    Debug.Log(i + "player and " + (xPos - (hitboxWidth / 2)));
 
+                    if ((xPos - (hitboxWidth / 2)) > (otherXPos + (otherHitboxWidth / 2)))
+                        diff[i] = ((xPos - (hitboxWidth / 2)) - (otherXPos + (otherHitboxWidth / 2)));
+                    else
+                        diff[i] = 0;
+                }
+            }
+
+            if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
+            {
+                diff[0] = 0.01f;
+                diff[1] = 0.01f;
             }
         }
 
