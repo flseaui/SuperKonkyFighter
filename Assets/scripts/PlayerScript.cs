@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +70,8 @@ public class PlayerScript : MonoBehaviour
     public JoyScript JoyScript;
     InputManager inputManager;
 
-    public ArrayList livingHitboxes;
+    public List<float> livingHitboxesIds;
+    public List<float> livingHitboxesLifespans;
 
     void OnDrawGizmos()
     {
@@ -104,7 +105,8 @@ public class PlayerScript : MonoBehaviour
         baseHeight = 8;
         width = 4;
 
-        livingHitboxes = new ArrayList();
+        livingHitboxesIds = new List<float>();
+        livingHitboxesLifespans = new List<float>();
 
         if (CompareTag("1"))
             inputManager = new InputManager(1);
@@ -395,6 +397,9 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
+        //if (currentAction < 10)
+           // placeHitboxes(currentActionFrame);
+
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
         {
@@ -466,18 +471,38 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void placeHitboxes()
+    private void placeHitboxes(int frame)
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        int height = behaviors.getAction(currentAction).hitboxData.GetLength(1);
-        for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(0); i++)
+        if (frame <= hitboxData.GetLength(1))
         {
-            for (int j = 0; j < height; j++)
+            for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
             {
-                Action.rect hitbox = hitboxData[i, j];
-                if (!livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
-                    livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
-
+                Action.rect hitbox = hitboxData[frame, i];
+                if (livingHitboxesIds.Contains(hitbox.id))
+                    if (livingHitboxesLifespans[i] > 0)
+                        livingHitboxesLifespans[i]--;
+                    else
+                    {
+                        livingHitboxesIds.RemoveAt(i);
+                        livingHitboxesLifespans.RemoveAt(i);
+                        Debug.Log("destroy");
+                    }
+                else
+                {
+                    livingHitboxesIds.Add(hitbox.id);
+                    livingHitboxesLifespans.Add(hitbox.timeActive);
+                    Debug.Log("create");
+                }
+            }
+        }
+        else if (livingHitboxesIds.Count > 0)
+        {
+            for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
+            {
+                livingHitboxesIds.RemoveAt(i);
+                livingHitboxesLifespans.RemoveAt(i);
+                Debug.Log("create");
             }
         }
     }
