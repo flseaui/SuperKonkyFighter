@@ -243,7 +243,7 @@ public class KonkyBehaviours : Behaviors {
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 17
         damage      = new int[] { 600 },
         level       = 2,
         actionCancels     = new int[] { 27, 28, 29, 40, 43, 44 },
@@ -257,13 +257,13 @@ public class KonkyBehaviours : Behaviors {
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 4 | 23
         damage      = new int[] { 900 },
         level       = 3,
         actionCancels     = new int[] { 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 2,
-        aAngle      = -90,
+        aAngle      = -80,
         aStrength   = 6
     };
 
