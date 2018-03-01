@@ -26,13 +26,28 @@ public class BackGroundScript : MonoBehaviour {
 
         if (p1s.coll)
         {
+            Debug.Log("Colliding");
+
+            if (player[0].hPush < 0)
+                player[0].hPush = 0;
+            if (player[1].hPush < 0)
+                player[1].hPush = 0;
+
             for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
+                xPosFuture = xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
                 otherXPos = player[i + 1].hitbox.transform.position.x,
+                otherXPosFuture = otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
                 hitboxWidth = player[i].hitbox.size.x,
                 otherHitboxWidth = player[i + 1].hitbox.size.x;
 
+                if(Mathf.Abs((xPosFuture + 100) - (otherXPosFuture + 100)) < (hitboxWidth / 2 + otherHitboxWidth / 2))
+                {
+                    diff[i] = (hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture));                  
+                }
+
+                /*
                 if (player[i].facingRight)
                 {
                   // Debug.Log(i + "player and " + (xPos + (hitboxWidth / 2)));
@@ -66,21 +81,28 @@ public class BackGroundScript : MonoBehaviour {
                        // Debug.Log(i + "no diff");
                     }
                 }
+
+    */
             }
 
             if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
             {
-                diff[0] = (p1s.hitbox.size.x + 1) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
-                diff[1] = (p2s.hitbox.size.x + 1) - Vector3.Distance(p2s.transform.position, p1s.transform.position);
+                diff[0] = (p1s.hitbox.size.x ) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
+                diff[1] = (p2s.hitbox.size.x ) - Vector3.Distance(p2s.transform.position, p1s.transform.position);            
             }
+        }
+        else
+        {
+            diff[0] = 0;
+            diff[1] = 0;
         }
 
         for (int i = 0; i < 2; i++)
         {
-
-            if (player[i].hVelocity == player[i + 1].hVelocity)
+            if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
+                diff[i] = 0;
+            else if (player[i].hVelocity == player[i + 1].hVelocity)
                 diff[i] = diff[i] / 2;
-
         }
 
         for (int i = 0; i < 2; i++)
@@ -94,21 +116,7 @@ public class BackGroundScript : MonoBehaviour {
                     player[i].updateEnd = 0;
                     player[i].UpdateEnd();
                 }
-
             }
-
-            if (Mathf.Abs(player[i].transform.position.x - player[i+1].transform.position.x) < player[i].width)
-            {
-                Debug.Log("Clipping");
-            }
-            else
-            {
-                //Debug.Log("Clip1 " + player[i].transform.position.x);
-               // Debug.Log("Clip2 " + player[i + 1].transform.position.x);
-                Debug.Log("Clipper" + Mathf.Abs(player[i].transform.position.x - player[i + 1].transform.position.x));
-                Debug.Log(diff[i]);
-            }
-
         }
     }
 }
