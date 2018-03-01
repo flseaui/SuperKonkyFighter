@@ -397,8 +397,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        //if (currentAction < 10)
-           // placeHitboxes(currentActionFrame);
+        if (currentAction < 10)
+            placeHitboxes(currentActionFrame);
 
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
@@ -486,13 +486,15 @@ public class PlayerScript : MonoBehaviour
                     {
                         livingHitboxesIds.RemoveAt(i);
                         livingHitboxesLifespans.RemoveAt(i);
+                        removeBoxCollider2D(hitbox.id.ToString());
                         Debug.Log("destroy");
                     }
                 else
                 {
                     livingHitboxesIds.Add(hitbox.id);
                     livingHitboxesLifespans.Add(hitbox.timeActive);
-                    Debug.Log("create");
+                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+                    Debug.Log("create1");
                 }
             }
         }
@@ -502,7 +504,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHitboxesIds.RemoveAt(i);
                 livingHitboxesLifespans.RemoveAt(i);
-                Debug.Log("create");
+                Debug.Log("create2");
             }
         }
     }
@@ -525,11 +527,29 @@ public class PlayerScript : MonoBehaviour
         }
     }*/
 
-    private void addBoxCollider2D(Vector2 size, Vector2 offset)
+    private void addBoxCollider2D(String tag, Vector2 size, Vector2 offset)
     {
-        BoxCollider2D boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
+        GameObject childbox = new GameObject();
+        childbox.name = tag;
+        BoxCollider2D boxCollider2D = childbox.AddComponent<BoxCollider2D>();
+
         boxCollider2D.size = size;
         boxCollider2D.offset = offset;
+        childbox.transform.parent = gameObject.transform;
+        Instantiate(childbox);
+    }
+
+    private void removeBoxCollider2D(String tag)
+    {
+        Debug.Log("ya dude");
+        foreach(Transform child in transform)
+        {
+            Debug.Log(child.name);
+            if (child.gameObject.name.Equals(tag))
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     private void stateCheck()
