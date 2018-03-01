@@ -201,14 +201,10 @@ public class PlayerScript : MonoBehaviour
 
         if (x() < -64f)
         {
-            if (hPush != 0)
-                otherPlayer.GetComponent<PlayerScript>().moveX(hPush);
             setX(-64);
         }
         else if (x() > 64f)
         {
-            if (hPush != 0)
-                otherPlayer.GetComponent<PlayerScript>().moveX(-hPush);
             setX(64);
         }
 

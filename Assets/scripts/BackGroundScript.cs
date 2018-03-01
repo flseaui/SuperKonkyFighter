@@ -33,6 +33,11 @@ public class BackGroundScript : MonoBehaviour {
             if (player[1].hPush < 0)
                 player[1].hPush = 0;
 
+            if (Mathf.Abs(player[0].x()) > 64)
+                player[1].hPush = -player[1].hPush;
+            if (Mathf.Abs(player[1].x()) > 64)
+                player[1].hPush = -player[0].hPush;
+
             for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
@@ -63,7 +68,10 @@ public class BackGroundScript : MonoBehaviour {
         for (int i = 0; i < 2; i++)
         {
             if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
-                diff[i] = 0;
+            {
+                if (Mathf.Abs(player[i + 1].x()) < 64)
+                    diff[i] = 0;
+            }
             else if (player[i].hVelocity == player[i + 1].hVelocity)
                 diff[i] = diff[i] / 2;
         }
