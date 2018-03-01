@@ -75,7 +75,6 @@ public class BackGroundScript : MonoBehaviour {
             else if (player[i].hVelocity == player[i + 1].hVelocity)
                 diff[i] = diff[i] / 2;
         }
-
         for (int i = 0; i < 2; i++)
         {
             if (player[i].updateEnd != 0)

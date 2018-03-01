@@ -88,6 +88,12 @@ public class HitboxScript : MonoBehaviour
     */
         if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
         {
+
+            //air to air collision
+
+            //air to ground collision
+
+
             if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
             {
                 s.coll = false;
@@ -108,11 +114,12 @@ public class HitboxScript : MonoBehaviour
             }
             else
             {
+                //ground to ground collision
+
                 s.coll = true;
                 s.onPush(os.hVelocity);
             }
         }
-
 	}
 
     private void OnCollisionExit2D(Collision2D collision)
