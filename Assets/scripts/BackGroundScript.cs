@@ -46,43 +46,6 @@ public class BackGroundScript : MonoBehaviour {
                 {
                     diff[i] = (hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture));                  
                 }
-
-                /*
-                if (player[i].facingRight)
-                {
-                  // Debug.Log(i + "player and " + (xPos + (hitboxWidth / 2)));
-                    // Debug.Log(xPos);
-                    //Debug.Log(otherXPos);
-                    if ((xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush) + (hitboxWidth / 2)) > ((otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush)) - (otherHitboxWidth / 2)))
-                    {
-                        //diff[i] = (xPos + (hitboxWidth / 2)) - (otherXPos - (otherHitboxWidth / 2));
-                        diff[i] = (player[i].hitbox.size.x) - Mathf.Abs((xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush)) - (otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush)));
-                    }
-                    else
-                    {
-                        diff[i] = 0;
-                      //  Debug.Log(i + "no diff");
-                    }
-
-                }
-                else
-                {
-                   // Debug.Log(i + "player and " + (xPos - (hitboxWidth / 2)));
-
-                    if ((xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush) - (hitboxWidth / 2)) < ((otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush)) + (otherHitboxWidth / 2)))
-                    {
-                        //diff[i] = ((xPos - (hitboxWidth / 2)) - (otherXPos + (otherHitboxWidth / 2)));
-                        diff[i] = (player[i].hitbox.size.x) - Mathf.Abs((xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush)) - (otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush)));
-
-                    }
-                    else
-                    {
-                        diff[i] = 0;
-                       // Debug.Log(i + "no diff");
-                    }
-                }
-
-    */
             }
 
             if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
