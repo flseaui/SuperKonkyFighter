@@ -162,7 +162,7 @@ public class PlayerScript : MonoBehaviour
                 incrementFrame(behaviors.getAction(currentAction).frames);
             stateCheck();
 
-            if (currentAction >= 40)
+            if (currentAction == 40)
                 advancedMove();
 
             updateEnd = 2;
