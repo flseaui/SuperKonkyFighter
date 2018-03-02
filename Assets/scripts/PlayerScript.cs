@@ -162,7 +162,7 @@ public class PlayerScript : MonoBehaviour
                 incrementFrame(behaviors.getAction(currentAction).frames);
             stateCheck();
 
-            if (currentAction == 40)
+            if (currentAction > 40)
                 advancedMove();
 
             updateEnd = 2;
@@ -189,7 +189,7 @@ public class PlayerScript : MonoBehaviour
     private void movePlayer()
     {
         if (currentAction != 43 && currentAction != 44)
-            vVelocity += gravity;
+            vVelocity += gravity;   
 
         if (vVelocity < -1)
         {
@@ -393,8 +393,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        if (currentAction < 10)
-            placeHitboxes(currentActionFrame);
+       // if (currentAction < 10)
+         //   placeHitboxes(currentActionFrame);
 
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
