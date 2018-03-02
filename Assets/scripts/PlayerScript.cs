@@ -90,6 +90,7 @@ public class PlayerScript : MonoBehaviour
         this.tag = playerID.ToString();
         hitbox.tag = "collisionHitbox" + playerID.ToString();
         hurtbox.tag = playerID.ToString();
+        //set hex tags
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;

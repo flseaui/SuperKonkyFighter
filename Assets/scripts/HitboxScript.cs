@@ -89,28 +89,12 @@ public class HitboxScript : MonoBehaviour
         if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
         {
 
-            //air to air collision
-
-            //air to ground collision
-
-
-            if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
+            if (s.air || os.air)
             {
-                s.coll = false;
-                Debug.Log("yes");
-                /*
-                if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
+                if (true)
                 {
-
-                    Debug.Log((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x));
-                    s.coll = true;
-                    s.onPush(os.hVelocity);
+                    //this is for hex to hx col
                 }
-                else
-                {
-                    s.coll = false;
-                }
-                */
             }
             else
             {

@@ -10,6 +10,7 @@ TagManager:
   - collisionHitbox1
   - collisionHitbox2
   - scott
+  - Hex
   layers:
   - Default
   - TransparentFX
