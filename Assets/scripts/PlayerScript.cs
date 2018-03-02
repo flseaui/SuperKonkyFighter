@@ -645,7 +645,10 @@ public class PlayerScript : MonoBehaviour
                     hVelocity = forwardSpeed;
                 }
                 else
+                {
                     vVelocity = jumpSpeed;
+                    hVelocity = 0;
+                }
             }
         }
     }
