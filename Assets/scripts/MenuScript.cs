@@ -21,7 +21,9 @@ public class MenuScript : MonoBehaviour {
 		PlayerPrefs.SetInt("character1", 0);
 		PlayerPrefs.SetInt("character2", 0);
 
-		makeButton(10, 2, 0, 0, "feck");
+		startScreen(0);
+
+		makeButton(10, 2, 0, 0, "play");
 	}
 	
 	//20 by 34 yo
@@ -37,6 +39,11 @@ public class MenuScript : MonoBehaviour {
 		v.y = height;
 		button.transform.localScale = v;
 		buttons.Add(button);
+		button.GetComponentInChildren<TextMesh>().text = text;
+		v = button.transform.GetChild(0).transform.localScale;
+		v.x = 1f/width;
+		v.y = 1f/height;
+		button.transform.GetChild(0).transform.localScale = v;
 	}
 
 	public void clearButtons()

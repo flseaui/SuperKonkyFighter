@@ -18,6 +18,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
+
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
