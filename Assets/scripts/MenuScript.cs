@@ -22,28 +22,37 @@ public class MenuScript : MonoBehaviour {
 		PlayerPrefs.SetInt("character2", 0);
 
 		startScreen(0);
-
-		makeButton(10, 2, 0, 0, "play");
 	}
 	
 	//20 by 34 yo
 	public void makeButton(int width, int height, int x, int y, string text)
 	{
 		GameObject button = Instantiate(buttonPrefab);
+
+		Vector2 p = button.GetComponent<RectTransform>().sizeDelta;
+		p.x = width;
+		p.y = height;
+		button.GetComponent<RectTransform>().sizeDelta = p;
+		
+		p = button.GetComponent<BoxCollider2D>().size;
+		p.x = width;
+		p.y = height;
+		button.GetComponent<BoxCollider2D>().size = p;
+
 		Vector3 v = button.transform.position;
 		v.x = x;
 		v.y = y;
 		button.transform.position = v;
-		v = button.transform.localScale;
-		v.x = width;
-		v.y = height;
-		button.transform.localScale = v;
-		buttons.Add(button);
+
+		LineRenderer line = button.GetComponent<LineRenderer>();
+		line.SetPosition(0, new Vector3(x - width / 2, y - height / 2, 0));
+		line.SetPosition(1, new Vector3(x - width / 2, y + height / 2, 0));
+		line.SetPosition(2, new Vector3(x + width / 2, y + height / 2, 0));
+		line.SetPosition(3, new Vector3(x + width / 2, y - height / 2, 0));
+
 		button.GetComponentInChildren<TextMesh>().text = text;
-		v = button.transform.GetChild(0).transform.localScale;
-		v.x = 1f/width;
-		v.y = 1f/height;
-		button.transform.GetChild(0).transform.localScale = v;
+
+		buttons.Add(button);
 	}
 
 	public void clearButtons()
@@ -63,10 +72,10 @@ public class MenuScript : MonoBehaviour {
 	{
 		switch (no) {
 			case 0:
-				//GameObject playbutton = Instantiate(buttonPrefab);
+				makeButton(10, 2, 0, 0, "play");
 				break;
 			default:
-				//GameObject playbutton = Instantiate(buttonPrefab);
+				makeButton(10, 2, 0, 0, "kek");
 				break;
 		}
 	}
