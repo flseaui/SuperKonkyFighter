@@ -403,7 +403,7 @@ public class PlayerScript : MonoBehaviour
         if (currentFrame == 1)
         {
             hurtbox.enabled = true;
-            if (currentAction < 10)
+            if (currentAction < 40)
                 placeHitboxes(currentActionFrame);
         }
         else
@@ -478,23 +478,23 @@ public class PlayerScript : MonoBehaviour
             for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
             {
                 Action.rect hitbox = hitboxData[frame - startup, i];
-                if (livingHitboxesIds.Contains(hitbox.id))
-                    if (livingHitboxesLifespans[i] > 0)
-                        livingHitboxesLifespans[i]--;
-                    else
-                    {
-                        livingHitboxesIds.RemoveAt(i);
-                        livingHitboxesLifespans.RemoveAt(i);
-                        removeBoxCollider2D(hitbox.id.ToString());
-                        Debug.Log("destroy");
-                    }
-                else
+                for (int j = 0; j < livingHitboxesLifespans.Count; j++)
+                        if (livingHitboxesLifespans[j] > 0)
+                            livingHitboxesLifespans[j]--;
+                        else
+                        {
+                            livingHitboxesIds.RemoveAt(i);
+                            livingHitboxesLifespans.RemoveAt(i);
+                            removeBoxCollider2D(hitbox.id.ToString());
+                            Debug.Log("destroy");
+                        }
+                if (!livingHitboxesIds.Contains(hitbox.id))
                 {
-                    livingHitboxesIds.Add(hitbox.id);
-                    livingHitboxesLifespans.Add(hitbox.timeActive);
-                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
-                    Debug.Log("create1");
-                }
+                        livingHitboxesIds.Add(hitbox.id);
+                        livingHitboxesLifespans.Add(hitbox.timeActive);
+                        addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+                        Debug.Log("create1");
+                    }
             }
         }
     }
