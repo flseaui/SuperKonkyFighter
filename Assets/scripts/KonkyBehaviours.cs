@@ -141,6 +141,7 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 0,
         frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 3 | 9
+        startup = 5,
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 20, 10, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames

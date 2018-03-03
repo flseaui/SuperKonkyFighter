@@ -393,9 +393,6 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-       // if (currentAction < 10)
-         //   placeHitboxes(currentActionFrame);
-
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
         {
@@ -404,7 +401,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (currentFrame == 1)
+        {
             hurtbox.enabled = true;
+            if (currentAction < 10)
+                placeHitboxes(currentActionFrame);
+        }
         else
         {
             hurtbox.enabled = false;
@@ -470,11 +471,13 @@ public class PlayerScript : MonoBehaviour
     private void placeHitboxes(int frame)
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        if (frame <= hitboxData.GetLength(1))
+        int startup = behaviors.getAction(currentAction).startup;
+        Debug.Log("place: " + frame);
+        if (frame > startup)
         {
             for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
             {
-                Action.rect hitbox = hitboxData[frame, i];
+                Action.rect hitbox = hitboxData[frame - startup, i];
                 if (livingHitboxesIds.Contains(hitbox.id))
                     if (livingHitboxesLifespans[i] > 0)
                         livingHitboxesLifespans[i]--;
@@ -492,15 +495,6 @@ public class PlayerScript : MonoBehaviour
                     addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
                     Debug.Log("create1");
                 }
-            }
-        }
-        else if (livingHitboxesIds.Count > 0)
-        {
-            for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
-            {
-                livingHitboxesIds.RemoveAt(i);
-                livingHitboxesLifespans.RemoveAt(i);
-                Debug.Log("create2");
             }
         }
     }
