@@ -408,8 +408,6 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            foreach (float id in livingHitboxesIds)
-                removeBoxCollider2D(id.ToString());
             hurtbox.enabled = false;
             damageDealt = false;
             hurtbox.size = new Vector2(0f, 0f);
@@ -474,53 +472,39 @@ public class PlayerScript : MonoBehaviour
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
         int startup = behaviors.getAction(currentAction).startup;
-        Debug.Log("place: " + frame);
+        Debug.Log("placeHitboxes called on frame: " + frame);
         if (frame > startup)
         {
             for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(1); i++)
             {
                 Action.rect hitbox = hitboxData[frame - startup, i];
                 for (int j = 0; j < livingHitboxesLifespans.Count; j++)
-                        if (livingHitboxesLifespans[j] > 0)
-                            livingHitboxesLifespans[j]--;
-                        else
-                        {
-                            livingHitboxesIds.RemoveAt(i);
-                            livingHitboxesLifespans.RemoveAt(i);
-                            removeBoxCollider2D(hitbox.id.ToString());
-                            Debug.Log("destroy");
-                        }
+                    if (livingHitboxesLifespans[j] > 0)
+                    {
+                        livingHitboxesLifespans[j]--;
+                        Debug.Log("Hitbox " + j + " decremented");
+                    }
+                    else
+                    {
+                        livingHitboxesIds.RemoveAt(i);
+                        livingHitboxesLifespans.RemoveAt(i);
+                        removeBoxCollider2D(hitbox.id.ToString());
+                        Debug.Log("Hitbox Destroyed");
+                    }
                 if (!livingHitboxesIds.Contains(hitbox.id))
                 {
-                        livingHitboxesIds.Add(hitbox.id);
-                        livingHitboxesLifespans.Add(hitbox.timeActive);
-                        addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
-                        Debug.Log("create1");
-                    }
+                    livingHitboxesIds.Add(hitbox.id);
+                    livingHitboxesLifespans.Add(hitbox.timeActive);
+                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+                    Debug.Log("Hitbox Created");
+                }
             }
         }
     }
 
-   /* private void placeHitboxes2()
-    {
-        Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        int height = behaviors.getAction(currentAction).hitboxData.GetLength(1);
-        for (int i = 0; i < behaviors.getAction(currentAction).hitboxData.GetLength(0); i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                Action.rect hitbox = hitboxData[i, j];
-                if (!livingHitboxes.Contains(new Vector2(hitbox.id, 1)))
-                    livingHitboxes.Add(new Vector2(hitbox.id, hitbox.timeActive));
-                livingHitboxes[i * height + j].Set(livingHitboxes[i].x, livingHitboxes[i].y - 1);
-                if (livingHitboxes[i].y >= hitbox.timeActive)
-                    addBoxCollider2D(new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
-            }
-        }
-    }*/
-
     private void addBoxCollider2D(String tag, Vector2 size, Vector2 offset)
     {
+        Debug.Log("Add Box Collider");
         GameObject childbox = new GameObject();
         childbox.name = tag;
         BoxCollider2D boxCollider2D = childbox.AddComponent<BoxCollider2D>();
@@ -533,7 +517,7 @@ public class PlayerScript : MonoBehaviour
 
     private void removeBoxCollider2D(String tag)
     {
-        Debug.Log("ya dude");
+        Debug.Log("Remove Box Collider");
         foreach(Transform child in transform)
         {
             Debug.Log(child.name);
