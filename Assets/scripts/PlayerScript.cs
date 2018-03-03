@@ -90,7 +90,6 @@ public class PlayerScript : MonoBehaviour
         this.tag = playerID.ToString();
         hitbox.tag = "collisionHitbox" + playerID.ToString();
         hurtbox.tag = playerID.ToString();
-        //set hex tags
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
@@ -394,8 +393,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-        if (currentAction < 10)
-            placeHitboxes(currentActionFrame);
+       // if (currentAction < 10)
+         //   placeHitboxes(currentActionFrame);
 
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
