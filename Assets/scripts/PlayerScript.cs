@@ -408,6 +408,8 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            foreach (float id in livingHitboxesIds)
+                removeBoxCollider2D(id.ToString());
             hurtbox.enabled = false;
             damageDealt = false;
             hurtbox.size = new Vector2(0f, 0f);
