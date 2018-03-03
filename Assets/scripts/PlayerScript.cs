@@ -394,8 +394,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
 
-       // if (currentAction < 10)
-         //   placeHitboxes(currentActionFrame);
+        if (currentAction < 10)
+            placeHitboxes(currentActionFrame);
 
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
