@@ -518,7 +518,7 @@ public class PlayerScript : MonoBehaviour
 
         boxCollider2D.size = size;
         boxCollider2D.offset = offset;
-        childbox.transform.parent = gameObject.transform;
+        childbox.transform.parent = transform;
         Instantiate(childbox);
     }
 
