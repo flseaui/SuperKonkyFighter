@@ -516,9 +516,10 @@ public class PlayerScript : MonoBehaviour
         childbox.name = tag;
         BoxCollider2D boxCollider2D = childbox.AddComponent<BoxCollider2D>();
 
+
+        childbox.transform.parent = transform;
         boxCollider2D.size = size;
         boxCollider2D.offset = offset;
-        childbox.transform.parent = transform;
         Instantiate(childbox);
     }
 
