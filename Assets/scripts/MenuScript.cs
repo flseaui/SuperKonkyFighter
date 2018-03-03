@@ -15,6 +15,10 @@ public class MenuScript : MonoBehaviour {
 	public List<GameObject> buttons;
 	public List<int> links;
 
+	public GameObject background;
+
+	Color buttonColor;
+
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("stage", 0);
@@ -39,11 +43,16 @@ public class MenuScript : MonoBehaviour {
 		p.y = height;
 		button.GetComponent<BoxCollider2D>().size = p;
 
+		p = button.GetComponent<SpriteRenderer>().size;
+		p.x = width;
+		p.y = height;
+		button.GetComponent<SpriteRenderer>().size = p;
+
 		Vector3 v = button.transform.position;
 		v.x = x;
 		v.y = y;
 		button.transform.position = v;
-
+	
 		LineRenderer line = button.GetComponent<LineRenderer>();
 		line.SetPosition(0, new Vector3(x - width / 2, y - height / 2, 0));
 		line.SetPosition(1, new Vector3(x - width / 2, y + height / 2, 0));
@@ -51,6 +60,8 @@ public class MenuScript : MonoBehaviour {
 		line.SetPosition(3, new Vector3(x + width / 2, y - height / 2, 0));
 
 		button.GetComponentInChildren<TextMesh>().text = text;
+
+		button.GetComponent<SpriteRenderer>().color = buttonColor;
 
 		buttons.Add(button);
 	}
@@ -72,6 +83,8 @@ public class MenuScript : MonoBehaviour {
 	{
 		switch (no) {
 			case 0:
+				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.09f, 0.1f, 0.502f);
+				buttonColor = new Color(0.118f, 0.565f, 1f);
 				makeButton(10, 2, 0, 0, "play");
 				break;
 			default:

@@ -9,6 +9,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private float lastPixelHeight = -1;
 	private TextMesh textMesh;
+	private Animator animator;
 
 	void Start()
 	{
@@ -17,45 +18,41 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		addEventSystem();
 
 		textMesh = GetComponentInChildren<TextMesh>();
+
+		animator = GetComponent<Animator>();
+		animator.SetInteger("state", 0);
 	}
 
 	void Update()
 	{
-		//if (Camera.main.pixelHeight != lastPixelHeight || (Application.isEditor && !Application.isPlaying)) resize();
-	}
 
-	private void resize()
-	{
-		float ph = Camera.main.pixelHeight;
-		float ch = Camera.main.orthographicSize;
-		float pixelRatio = (ch * 2.0f) / ph;
-		float targetRes = 128f;
-		textMesh.characterSize = pixelRatio * Camera.main.orthographicSize / Mathf.Max(transform.localScale.x, transform.localScale.y);
-		textMesh.fontSize = (int)Mathf.Round(targetRes / textMesh.characterSize);
-		lastPixelHeight = ph;
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-
+		Debug.Log("kek");
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		animator.SetInteger("state", 2);
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
+		animator.SetInteger("state", 1);
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-	}
-	public void OnPointerExit(PointerEventData eventData)
-	{
+		animator.SetInteger("state", 1);
 	}
 
-	//Add Event System to the Camera
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		animator.SetInteger("state",0);
+	}
+
 	void addEventSystem()
 	{
 		GameObject eventSystem = null;
