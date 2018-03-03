@@ -34,6 +34,8 @@ public class KonkyBehaviours : Behaviors {
        * 0 - Jump
        */
 
+    private static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
+
     public KonkyBehaviours()
     {
         konkyActionIds = new Dictionary<int, Action>()
@@ -145,7 +147,9 @@ public class KonkyBehaviours : Behaviors {
         active = 3,
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(4, 9, 5, 9, 3000, 30),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(4, 9, 5, 9, 3, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, }
             //{ new Action.rect(10, 15, 20, 10, 1, 1) } // Frame 2 - 1 hitbox lasts 2 frames
         },
         damage = new int[] { 300 },

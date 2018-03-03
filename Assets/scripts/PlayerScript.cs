@@ -75,11 +75,14 @@ public class PlayerScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        /*
         if (hurtbox.enabled)
         {
             Gizmos.color = new Color(1, 0, 0, 0.5F);
             Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x * this.transform.localScale.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
         }
+
+    */
 
         Gizmos.color = new Color(0, 1, 0, 0.5F);
         Gizmos.DrawCube(new Vector2(transform.position.x + hitbox.offset.x * this.transform.localScale.x, transform.position.y + hitbox.offset.y), new Vector2(hitbox.size.x, hitbox.size.y));
@@ -89,7 +92,6 @@ public class PlayerScript : MonoBehaviour
     {
         this.tag = playerID.ToString();
         hitbox.tag = "collisionHitbox" + playerID.ToString();
-        hurtbox.tag = playerID.ToString();
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
@@ -404,15 +406,12 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrame == 1)
         {
-            hurtbox.enabled = true;
             if (currentAction < 40)
                 placeHitboxes(currentActionFrame -1);
         }
         else
         {
-            hurtbox.enabled = false;
             damageDealt = false;
-            hurtbox.size = new Vector2(0f, 0f);
         }
 
         if (currentFrame == 3)
