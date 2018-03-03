@@ -147,6 +147,8 @@ public class PlayerScript : MonoBehaviour
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
+        hPush = 0;
+
         if (hitStopped)
         {
             if (advState != 0)
@@ -476,7 +478,7 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("placeHitboxes called on frame: " + frame);
         if (frame >= startup && frame <= startup + active)
         {
-            for (int i = 0; i < hitboxData.GetLength(0); i++)
+            for (int i = 0; i < hitboxData.GetLength(1); i++)
             {
                 Action.rect hitbox = hitboxData[frame - startup, i];
               
@@ -485,7 +487,7 @@ public class PlayerScript : MonoBehaviour
                     livingHitboxesIds.Add(hitbox.id);
                     livingHitboxesLifespans.Add(hitbox.timeActive);
                     Debug.Log("HERP " + livingHitboxesLifespans.Count);
-                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2(hitbox.x, hitbox.y));
+                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)));
                     Debug.Log("Hitbox Created");
                 }
             }
@@ -516,8 +518,10 @@ public class PlayerScript : MonoBehaviour
         childbox.name = tag;
         BoxCollider2D boxCollider2D = childbox.AddComponent<BoxCollider2D>();
 
-
         childbox.transform.parent = transform;
+        childbox.transform.position = transform.position;
+        Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
+
         boxCollider2D.size = size;
         boxCollider2D.offset = offset;
         Instantiate(childbox);
