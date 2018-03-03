@@ -183,6 +183,8 @@ MonoBehaviour:
   currentAction: 0
   dashDirection: 0
   airDashed: 0
+  updateEnd: 0
+  coll: 0
   hKnockback: 0
   vKnockback: 0
   gravity: 0
@@ -198,7 +200,8 @@ MonoBehaviour:
   hurtbox: {fileID: 61072014828910340}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
-  livingHitboxes: []
+  livingHitboxesIds: []
+  livingHitboxesLifespans: []
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1

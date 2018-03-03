@@ -510,29 +510,27 @@ public class PlayerScript : MonoBehaviour
             }
     }
 
-    private void addBoxCollider2D(String tag, Vector2 size, Vector2 offset)
+    private void addBoxCollider2D(String name, Vector2 size, Vector2 offset)
     {
         Debug.Log("Add Box Collider");
-        GameObject childbox = new GameObject();
-        childbox.name = tag;
-        BoxCollider2D boxCollider2D = childbox.AddComponent<BoxCollider2D>();
+        GameObject childbox = new GameObject(name);
+        childbox.AddComponent<BoxCollider2D>();
 
-        childbox.transform.parent = transform;
         childbox.transform.position = transform.position;
         Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
 
-        boxCollider2D.size = size;
-        boxCollider2D.offset = offset;
-        Instantiate(childbox);
+        childbox.GetComponent<BoxCollider2D>().size = size;
+        childbox.GetComponent<BoxCollider2D>().offset = offset;
+        Instantiate(childbox, transform);
     }
 
-    private void removeBoxCollider2D(String tag)
+    private void removeBoxCollider2D(String name)
     {
         Debug.Log("Remove Box Collider");
         foreach(Transform child in transform)
         {
             Debug.Log(child.name);
-            if (child.gameObject.name.Equals(tag))
+            if (child.gameObject.name.Equals(name))
             {
                 Destroy(child.gameObject);
             }
