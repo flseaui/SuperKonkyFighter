@@ -480,8 +480,8 @@ public class PlayerScript : MonoBehaviour
             for (int i = 0; i < hitboxData.GetLength(1); i++)
             {
                 Action.rect hitbox = hitboxData[frame - startup, i];
-              
-                if (!livingHitboxesIds.Contains(hitbox.id))
+
+                if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
                 {
                     livingHitboxesIds.Add(hitbox.id);
                     livingHitboxesLifespans.Add(hitbox.timeActive);
