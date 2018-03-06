@@ -511,16 +511,14 @@ public class PlayerScript : MonoBehaviour
     {
         Debug.Log("Add Box Collider");
         GameObject childbox = new GameObject(name);
-        childbox.AddComponent<BoxCollider2D>();
 
         childbox.transform.position = transform.position;
-        childbox.transform.parent = transform.parent;
+        childbox.transform.SetParent(transform);
         Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
 
+        childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
-        Destroy(childbox);
-        Instantiate(childbox, transform.parent);
     }
 
     private void removeBoxCollider2D(String name)
