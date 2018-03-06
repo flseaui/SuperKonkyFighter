@@ -199,11 +199,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -258,12 +258,52 @@ Prefab:
     - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
         type: 2}
       propertyPath: ShapeModule.randomPositionAmount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
         type: 2}
       propertyPath: ShapeModule.m_Scale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: looping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: TrailModule.worldSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199799936193755788, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
+        type: 2}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
@@ -502,7 +542,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 894008437
+  randomSeed: 2033702034
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -953,7 +993,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 90}
-    m_Scale: {x: 1, y: 16, z: 1}
+    m_Scale: {x: 0, y: 16, z: 1}
     placementMode: 1
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -965,7 +1005,7 @@ ParticleSystem:
     alignToDirection: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 0
-    randomPositionAmount: 0
+    randomPositionAmount: 1
     radius:
       value: 0.01
       mode: 0
@@ -3182,7 +3222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3823,7 +3863,7 @@ Transform:
   m_PrefabInternal: {fileID: 804905510}
   m_GameObject: {fileID: 945590018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: -10, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

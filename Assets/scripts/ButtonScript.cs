@@ -7,7 +7,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 								  IPointerUpHandler, IPointerExitHandler
 {
 
-	private float lastPixelHeight = -1;
+	public MenuScript menuScript;
+
 	private TextMesh textMesh;
 	private Animator animator;
 
@@ -19,8 +20,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 		textMesh = GetComponentInChildren<TextMesh>();
 
-		animator = GetComponent<Animator>();
-		animator.SetInteger("state", 0);
+		//animator = GetComponent<Animator>();
+		//animator.SetInteger("state", 0);
 	}
 
 	void Update()
@@ -31,26 +32,27 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		Debug.Log("kek");
+		menuScript.startScreen(1);
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		animator.SetInteger("state", 2);
+		//animator.SetInteger("state", 2);
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		animator.SetInteger("state", 1);
+		//animator.SetInteger("state", 1);
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		animator.SetInteger("state", 1);
+		//animator.SetInteger("state", 1);
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		animator.SetInteger("state",0);
+		//animator.SetInteger("state",0);
 	}
 
 	void addEventSystem()

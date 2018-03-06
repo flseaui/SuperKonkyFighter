@@ -29,39 +29,37 @@ public class MenuScript : MonoBehaviour {
 	}
 	
 	//20 by 34 yo
-	public void makeButton(int width, int height, int x, int y, string text)
+	public void makeButton(Vector3[] points, string text)
 	{
 		GameObject button = Instantiate(buttonPrefab);
 
-		Vector2 p = button.GetComponent<RectTransform>().sizeDelta;
-		p.x = width;
-		p.y = height;
-		button.GetComponent<RectTransform>().sizeDelta = p;
-		
-		p = button.GetComponent<BoxCollider2D>().size;
-		p.x = width;
-		p.y = height;
-		button.GetComponent<BoxCollider2D>().size = p;
+		button.GetComponent<ButtonScript>().menuScript = this;
 
-		p = button.GetComponent<SpriteRenderer>().size;
-		p.x = width;
-		p.y = height;
-		button.GetComponent<SpriteRenderer>().size = p;
+		Vector2[] l = button.GetComponent<PolygonCollider2D>().points;
+		for (int i =0; i < points.Length; ++i)
+		{
+			l[i] = points[i];
+		}
+		button.GetComponent<PolygonCollider2D>().points = l;
 
-		Vector3 v = button.transform.position;
-		v.x = x;
-		v.y = y;
-		button.transform.position = v;
-	
 		LineRenderer line = button.GetComponent<LineRenderer>();
-		line.SetPosition(0, new Vector3(x - width / 2, y - height / 2, 0));
-		line.SetPosition(1, new Vector3(x - width / 2, y + height / 2, 0));
-		line.SetPosition(2, new Vector3(x + width / 2, y + height / 2, 0));
-		line.SetPosition(3, new Vector3(x + width / 2, y - height / 2, 0));
+		line.SetPosition(0, points[0]);
+		line.SetPosition(1, points[1]);
+		line.SetPosition(2, points[2]);
+		line.SetPosition(3, points[3]);
+
+		Mesh m = button.GetComponent<MeshFilter>().mesh;
+		m = new Mesh();
+		m.vertices = points;
+		int[] meshTri = m.triangles;
+		meshTri = new int[] {0,1,2,2,3,0 };
+		m.triangles = meshTri;
+		button.GetComponent<MeshFilter>().mesh = m;
+		
 
 		button.GetComponentInChildren<TextMesh>().text = text;
 
-		button.GetComponent<SpriteRenderer>().color = buttonColor;
+		//button.GetComponent<SpriteRenderer>().color = buttonColor;
 
 		buttons.Add(button);
 	}
@@ -76,19 +74,24 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	void Update () {
-
     }
 
 	public void startScreen(int no)
 	{
+		clearButtons();
 		switch (no) {
 			case 0:
-				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.09f, 0.1f, 0.502f);
-				buttonColor = new Color(0.118f, 0.565f, 1f);
-				makeButton(10, 2, 0, 0, "play");
+				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.101960784f, 0f, 0f);
+				buttonColor = new Color(1f, 0.3f, 0.3f);
+				makeButton(new Vector3[] {new Vector2(-6, -3) , new Vector2(6, -3) , new Vector2(6, 3) , new Vector2(-6, 3) }, "play");
 				break;
-			default:
-				makeButton(10, 2, 0, 0, "kek");
+			case 1:
+				makeButton(new Vector3[] { new Vector2(-15, 0), new Vector2(-7, 0), new Vector2(-7, -8), new Vector2(-15, -8) }, "");
+				makeButton(new Vector3[] { new Vector2(7, 0), new Vector2(15, 0), new Vector2(15, -8), new Vector2(7, -8) }, "");
+				makeButton(new Vector3[] { new Vector2(-6, 0), new Vector2(6, 0), new Vector2(6, -4), new Vector2(-6, -4) }, "");
+				makeButton(new Vector3[] { new Vector2(-15, 8), new Vector2(-10, 8), new Vector2(-7, 1), new Vector2(-11, 1) }, "");
+				makeButton(new Vector3[] { new Vector2(-10, 8), new Vector2(-5, 8), new Vector2(-3, 1), new Vector2(-7, 1) }, "");
+				makeButton(new Vector3[] { new Vector2(-5, 8), new Vector2(0, 8), new Vector2(0, 1), new Vector2(-3, 1) }, "");
 				break;
 		}
 	}
