@@ -238,7 +238,7 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherHVel, float otherVVelocity)
     {
         hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
-        vPush = (vVelocity + otherVVelocity) / 2;
+        vPush = air ? (vVelocity + otherVVelocity) / 2 : 0;
     }
 
     private int inputConvert(bool[] input)
