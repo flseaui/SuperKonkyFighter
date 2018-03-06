@@ -77,6 +77,9 @@ public class PlayerScript : MonoBehaviour
     public List<float> livingHurtboxesIds;
     public List<float> livingHurtboxesLifespans;
 
+    public int previousBasicState;
+    public int basicAnimFrame;
+
     void OnDrawGizmos()
     {
         /*
@@ -687,6 +690,19 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
+
+        if (previousBasicState == basicState)
+        {
+            placeHurtboxes(basicAnimFrame);
+            basicAnimFrame++;
+        }
+        else
+        {
+            placeHurtboxes(0);
+            basicAnimFrame = 1;
+            previousBasicState = basicState;
+        }
+
     }
     private void advancedMove()
     {
