@@ -209,6 +209,8 @@ MonoBehaviour:
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
   livingHurtboxesLifespans: []
+  previousBasicState: 0
+  basicAnimFrame: 0
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -590,15 +590,27 @@ public class KonkyBehaviours : Behaviors {
     private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
     private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
 
-
-
-
-
     private Action crouch = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -615,30 +627,30 @@ public class KonkyBehaviours : Behaviors {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            {nullBox, nullBox }
         },
     };
     private Action idle = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -649,10 +661,11 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action walkForward = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ,3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -663,12 +676,10 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action jumpBack = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 5, 1), new Action.rect(1.5f, 9f, 4, 8, 5, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -677,12 +688,10 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action jump = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 5, 1), new Action.rect(1.5f, 9f, 4, 8, 5, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -691,14 +700,10 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action jumpForward = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 2, 1), new Action.rect(1.5f, 9f, 4, 8, 2, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox }
