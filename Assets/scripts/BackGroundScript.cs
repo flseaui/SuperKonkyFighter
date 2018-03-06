@@ -22,6 +22,11 @@ public class BackGroundScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Point 0 - left, Point 2 - right
+        Vector2[] points1 = p1s.hitbox.GetComponent<PolygonCollider2D>().points;
+        Vector2[] points2 = p2s.hitbox.GetComponent<PolygonCollider2D>().points;
+        Debug.Log(diffBetweenPoints(p1s.facingRight ? points1[2] : points1[0], p2s.facingRight ? points2[0] : points2[2]));
+
         pushing();
 
         player[0].decreaseHitboxLifespan();
@@ -98,4 +103,10 @@ public class BackGroundScript : MonoBehaviour {
             }
         }
     }
+
+    private Vector2 diffBetweenPoints(Vector2 point1, Vector2 point2)
+    {
+        return new Vector2(point1.x - point2.x, point1.y - point2.y);
+    }
+
 }
