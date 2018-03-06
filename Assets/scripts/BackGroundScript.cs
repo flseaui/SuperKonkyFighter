@@ -57,7 +57,8 @@ public class BackGroundScript : MonoBehaviour {
 
                 if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
                 {
-                    diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture))+.01f);
+                    diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
+                    player[i].vPush = 0;
                 }
             }
         }
