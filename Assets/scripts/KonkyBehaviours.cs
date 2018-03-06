@@ -594,7 +594,19 @@ public class KonkyBehaviours : Behaviors {
 
 
 
-    private Action crouch = new Action() { };
+    private Action crouch = new Action() {
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 17, 1), new Action.rect(1.5f, 9f, 4, 8, 17, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
     private Action walkBack = new Action() { };
     private Action idle = new Action() { };
     private Action walkForward = new Action() { };
