@@ -695,6 +695,9 @@ public class PlayerScript : MonoBehaviour
         {
             placeHurtboxes(basicAnimFrame);
             basicAnimFrame++;
+
+            if (basicAnimFrame > behaviors.getAction(basicState + 100).frames.Length)
+                basicAnimFrame = 0;
         }
         else
         {
