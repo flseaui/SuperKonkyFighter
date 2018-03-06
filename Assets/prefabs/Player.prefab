@@ -200,6 +200,7 @@ MonoBehaviour:
   width: 0
   height: 0
   hPush: 0
+  vPush: 0
   spriteRenderer: {fileID: 0}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 61717008683281332}
@@ -208,6 +209,8 @@ MonoBehaviour:
   JoyScript: {fileID: 0}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
+  livingHurtboxesIds: []
+  livingHurtboxesLifespans: []
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
