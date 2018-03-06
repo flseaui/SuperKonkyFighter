@@ -180,7 +180,6 @@ public class PlayerScript : MonoBehaviour
 
     public void UpdateEnd()
     {
-
         GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
 
         movePlayer();
@@ -399,7 +398,6 @@ public class PlayerScript : MonoBehaviour
 
     private void incrementFrame(int[] frames)
     {
-
         placeHurtboxes(currentFrame);
 
         int previousFrame = currentFrame;
@@ -483,6 +481,7 @@ public class PlayerScript : MonoBehaviour
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
         Debug.Log("placeHitboxes called on frame: " + activeCounter);
+
         for (int i = 0; i < hitboxData.GetLength(1); i++)
         {
             Action.rect hitbox = hitboxData[activeCounter, i];
@@ -517,7 +516,7 @@ public class PlayerScript : MonoBehaviour
 
     private void placeHurtboxes(int frame)
     {
-        Action.rect[,] hurtboxData;
+        Action.rect[,] hurtboxData = behaviors.getAction(currentAction).hurtboxData;
 
         if (currentAction != 0)
             hurtboxData = behaviors.getAction(currentAction).hurtboxData;
@@ -533,7 +532,7 @@ public class PlayerScript : MonoBehaviour
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
                 Debug.Log("HERP " + livingHurtboxesLifespans.Count);
-                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), true);
+                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
                 Debug.Log("hurtbox Created");
             }
         }
@@ -565,7 +564,7 @@ public class PlayerScript : MonoBehaviour
         childbox.transform.SetParent(transform);
         Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
 
-        childbox.tag = (boxType ? "Hitbox" + playerID.ToString() : "Hurtbox" + playerID.ToString());
+        childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
 
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;

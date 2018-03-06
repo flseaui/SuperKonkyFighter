@@ -26,6 +26,8 @@ public class BackGroundScript : MonoBehaviour {
 
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
+        player[0].decreaseHurtboxLifespan();
+        player[1].decreaseHurtboxLifespan();
     }
 
     private void pushing()

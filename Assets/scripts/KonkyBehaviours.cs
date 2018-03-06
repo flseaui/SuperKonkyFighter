@@ -160,6 +160,26 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, },
             {nullBox, }
         },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(4, 9, 20, 20, 17, 1),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage = new int[] { 300 },
         level = 0,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },

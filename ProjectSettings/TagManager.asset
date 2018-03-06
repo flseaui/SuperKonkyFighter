@@ -10,6 +10,10 @@ TagManager:
   - collisionHitbox1
   - collisionHitbox2
   - scott
+  - hitbox1
+  - hitbox2
+  - hurtbox1
+  - hurtbox2
   layers:
   - Default
   - TransparentFX
