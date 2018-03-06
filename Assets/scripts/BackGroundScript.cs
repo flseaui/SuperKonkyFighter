@@ -22,6 +22,14 @@ public class BackGroundScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        pushing();
+
+        player[0].decreaseHitboxLifespan();
+        player[1].decreaseHitboxLifespan();
+    }
+
+    private void pushing()
+    {
         float[] diff = new float[2];
 
         if (p1s.coll)
@@ -47,16 +55,16 @@ public class BackGroundScript : MonoBehaviour {
                 hitboxWidth = player[i].hitbox.size.x,
                 otherHitboxWidth = player[i + 1].hitbox.size.x;
 
-                if(Mathf.Abs((xPosFuture + 100) - (otherXPosFuture + 100)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
+                if (Mathf.Abs((xPosFuture + 100) - (otherXPosFuture + 100)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
                 {
-                    diff[i] = (hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture));                  
+                    diff[i] = (hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture));
                 }
             }
 
             if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
             {
-                diff[0] = (p1s.hitbox.size.x ) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
-                diff[1] = (p2s.hitbox.size.x ) - Vector3.Distance(p2s.transform.position, p1s.transform.position);            
+                diff[0] = (p1s.hitbox.size.x) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
+                diff[1] = (p2s.hitbox.size.x) - Vector3.Distance(p2s.transform.position, p1s.transform.position);
             }
         }
         else
@@ -88,9 +96,5 @@ public class BackGroundScript : MonoBehaviour {
                 }
             }
         }
-
-
-        player[0].decreaseHitboxLifespan();
-        player[1].decreaseHitboxLifespan();
     }
 }
