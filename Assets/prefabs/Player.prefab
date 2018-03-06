@@ -105,12 +105,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 13}
-      - {x: 3.5, y: 8}
-      - {x: 3.5, y: 5}
+    - - {x: -3.5, y: 6.5}
+      - {x: 0, y: 13}
+      - {x: 3.5, y: 6.5}
       - {x: 0, y: 0}
-      - {x: -3.5, y: 5}
-      - {x: -3.5, y: 8}
 --- !u!61 &61717008683281332
 BoxCollider2D:
   m_ObjectHideFlags: 1
