@@ -58,6 +58,7 @@ public class PlayerScript : MonoBehaviour
     public float width;
     public float height;
     public float hPush;
+    public float vPush;
     private float forwardSpeed;
     private float backwardSpeed;
     private float jumpSpeed;
@@ -202,7 +203,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback);
+        moveY(vVelocity + vKnockback + hPush);
 
         if (x() < -64f)
         {
@@ -234,6 +235,7 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherVel)
     {
         hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
+        vPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
     }
     
     private int inputConvert(bool[] input)
