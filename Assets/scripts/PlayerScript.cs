@@ -484,7 +484,7 @@ public class PlayerScript : MonoBehaviour
                 livingHitboxesIds.Add(hitbox.id);
                 livingHitboxesLifespans.Add(hitbox.timeActive);
                 Debug.Log("HERP " + livingHitboxesLifespans.Count);
-                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)));
+                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)), true);
                 Debug.Log("Hitbox Created");
             }
         }
@@ -507,7 +507,7 @@ public class PlayerScript : MonoBehaviour
             }
     }
 
-    private void addBoxCollider2D(String name, Vector2 size, Vector2 offset)
+    private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
     {
         Debug.Log("Add Box Collider");
         GameObject childbox = new GameObject(name);
@@ -515,6 +515,8 @@ public class PlayerScript : MonoBehaviour
         childbox.transform.position = transform.position;
         childbox.transform.SetParent(transform);
         Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
+
+        childbox.tag =  (boxType ? "Hitbox" + playerID.ToString() : "Hurtbox" + playerID.ToString());
 
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
