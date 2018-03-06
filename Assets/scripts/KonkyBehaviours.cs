@@ -93,7 +93,17 @@ public class KonkyBehaviours : Behaviors {
             { 48,      airBlock },
             { 49,          flip },
             { 50,    crouchFlip },
-            { 51,     jumpSquat }
+            { 51,     jumpSquat },
+
+            { 101, crouch},
+            { 102, crouch},
+            { 103, crouch},
+            { 104, walkBack},
+            { 105, crouch},
+            { 106, walkForward},
+            { 107, jumpBack},
+            { 108, jump},
+            { 109, jumpForward}
         };
 
         konkyAnimAction = new Dictionary<Action, int>()
@@ -415,6 +425,26 @@ public class KonkyBehaviours : Behaviors {
     // Air Dash
     private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
     private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
+
+
+
+
+
+    private Action crouch = new Action() { };
+    private Action walkBack = new Action() { };
+    private Action idle = new Action() { };
+    private Action walkForward = new Action() { };
+    private Action jumpBack = new Action() { };
+    private Action jump = new Action() { };
+    private Action jumpForward = new Action() { };
+
+
+
+
+
+
+
+
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75
