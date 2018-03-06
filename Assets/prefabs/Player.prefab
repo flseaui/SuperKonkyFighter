@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 212080011780739976}
   - component: {fileID: 114237799369803098}
   - component: {fileID: 95060079290894174}
-  - component: {fileID: 61072014828910340}
+  - component: {fileID: 60284349136062402}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -81,19 +81,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &61072014828910340
-BoxCollider2D:
+--- !u!60 &60284349136062402
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646981266529194}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 999, y: 999}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.25, y: 0}
@@ -103,9 +103,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -4, y: 6.5}
+      - {x: 0.12, y: 13}
+      - {x: 4, y: 6.5}
+      - {x: 0, y: 0}
 --- !u!61 &61717008683281332
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -173,6 +176,7 @@ MonoBehaviour:
   currentFrame: 0
   currentActionFrame: 0
   damageCounter: 0
+  activeCounter: 0
   playerID: 0
   meter: 0
   basicState: 0
@@ -197,7 +201,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 61717008683281332}
-  hurtbox: {fileID: 61072014828910340}
+  hurtbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
   livingHitboxesIds: []
@@ -250,7 +254,7 @@ SpriteRenderer:
   m_SortingLayerID: -404211387
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 299d129206238674e89741a1db731fa4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95a5e6323e3805c4e9cd92dec1e59854, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -258,7 +262,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 19.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!224 &224196868505590566
 RectTransform:
