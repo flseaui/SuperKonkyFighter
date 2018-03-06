@@ -198,7 +198,7 @@ public class PlayerScript : MonoBehaviour
     private void movePlayer()
     {
         if (currentAction != 43 && currentAction != 44)
-            vVelocity += gravity;   
+            vVelocity += gravity;
 
         if (vVelocity < -1)
         {
@@ -206,7 +206,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback + hPush);
+        moveY(vVelocity + vKnockback + vPush);
 
         if (x() < -64f)
         {
@@ -235,12 +235,12 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    public void onPush(float otherVel)
+    public void onPush(float otherHVel, float otherVVelocity)
     {
-        hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
-        vPush = (vVelocity + otherVel) / 2;
+        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
+        vPush = (vVelocity + otherVVelocity) / 2;
     }
-    
+
     private int inputConvert(bool[] input)
     {
         if (!air)
@@ -489,7 +489,7 @@ public class PlayerScript : MonoBehaviour
                 livingHitboxesIds.Add(hitbox.id);
                 livingHitboxesLifespans.Add(hitbox.timeActive);
                 Debug.Log("HERP " + livingHitboxesLifespans.Count);
-                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)), true);
+                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight ? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)), true);
                 Debug.Log("Hitbox Created");
             }
         }
@@ -512,47 +512,6 @@ public class PlayerScript : MonoBehaviour
             }
     }
 
-    private void placeHurtboxes(int frame)
-    {
-        Action.rect[,] hurtboxData;
-
-        if (currentAction != 0)
-            hurtboxData = behaviors.getAction(currentAction).hurtboxData;
-        else
-            hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
-        Debug.Log("placeHurtboxes called on frame: " + activeCounter);
-        for (int i = 0; i < hurtboxData.GetLength(1); i++)
-        {
-            Action.rect hurtbox = hurtboxData[frame, i];
-
-            if (!livingHurtboxesIds.Contains(hurtbox.id) && hurtbox.id != -1)
-            {
-                livingHurtboxesIds.Add(hurtbox.id);
-                livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                Debug.Log("HERP " + livingHurtboxesLifespans.Count);
-                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), (facingRight ? new Vector2(hurtbox.x, hurtbox.y) : new Vector2(-hurtbox.x, -hurtbox.y)), true);
-                Debug.Log("hurtbox Created");
-            }
-        }
-    }
-
-    public void decreaseHurtboxLifespan()
-    {
-        for (int j = 0; j < livingHurtboxesLifespans.Count; j++)
-            if (livingHurtboxesLifespans[j] > 0)
-            {
-                livingHurtboxesLifespans[j]--;
-                Debug.Log("hurtbox " + j + " decremented");
-            }
-            else
-            {
-                removeBoxCollider2D(livingHurtboxesIds[j].ToString());
-                livingHurtboxesIds.RemoveAt(j);
-                livingHurtboxesLifespans.RemoveAt(j);
-                Debug.Log("hurtbox Destroyed");
-            }
-    }
-
     private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
     {
         Debug.Log("Add Box Collider");
@@ -562,7 +521,7 @@ public class PlayerScript : MonoBehaviour
         childbox.transform.SetParent(transform);
         Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
 
-        childbox.tag =  (boxType ? "Hitbox" + playerID.ToString() : "Hurtbox" + playerID.ToString());
+        childbox.tag = (boxType ? "Hitbox" + playerID.ToString() : "Hurtbox" + playerID.ToString());
 
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
@@ -572,7 +531,7 @@ public class PlayerScript : MonoBehaviour
     private void removeBoxCollider2D(String name)
     {
         Debug.Log("Remove Box Collider");
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             Debug.Log(child.name);
             if (child.gameObject.name.Equals(name))
@@ -649,7 +608,7 @@ public class PlayerScript : MonoBehaviour
         if (air)
         {
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
-            {       
+            {
                 jump = 7;
                 basicState = 7;
             }
@@ -871,4 +830,3 @@ public class PlayerScript : MonoBehaviour
     }
 
 }
- 
