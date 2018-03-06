@@ -52,8 +52,8 @@ public class BackGroundScript : MonoBehaviour {
                 xPosFuture = xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
                 otherXPos = player[i + 1].hitbox.transform.position.x,
                 otherXPosFuture = otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
-                hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().transform.localScale.x,
-                otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().transform.localScale.x;
+                hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
+                otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
 
                 if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
                 {
