@@ -146,7 +146,8 @@ public class KonkyBehaviours : Behaviors {
     //0 = light
     //1 = medium
     //2 = heavy
-    //3 = super
+    //3 = special
+    //4 = super
 
     // Standing Light
     private Action standL = new Action()
@@ -413,7 +414,7 @@ public class KonkyBehaviours : Behaviors {
     // Five Super
     private Action fiveS = new Action()
     {
-        tier = 3,
+        tier = 4,
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3 },
         damage      = new int[] { 0 },
         level       = 0,
