@@ -206,7 +206,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback + vPush);
+        moveY(vVelocity + vKnockback + hPush);
 
         if (x() < -64f)
         {
@@ -235,10 +235,10 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    public void onPush(float otherHVel, float otherVVelocity)
+    public void onPush(float otherVel)
     {
-        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
-        vPush = (vVelocity + otherVVelocity) / 2;
+        hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
+        vPush = (vVelocity + otherVel) / 2;
     }
     
     private int inputConvert(bool[] input)
@@ -509,6 +509,47 @@ public class PlayerScript : MonoBehaviour
                 livingHitboxesIds.RemoveAt(j);
                 livingHitboxesLifespans.RemoveAt(j);
                 Debug.Log("Hitbox Destroyed");
+            }
+    }
+
+    private void placeHurtboxes(int frame)
+    {
+        Action.rect[,] hurtboxData;
+
+        if (currentAction != 0)
+            hurtboxData = behaviors.getAction(currentAction).hurtboxData;
+        else
+            hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
+        Debug.Log("placeHurtboxes called on frame: " + activeCounter);
+        for (int i = 0; i < hurtboxData.GetLength(1); i++)
+        {
+            Action.rect hurtbox = hurtboxData[frame, i];
+
+            if (!livingHurtboxesIds.Contains(hurtbox.id) && hurtbox.id != -1)
+            {
+                livingHurtboxesIds.Add(hurtbox.id);
+                livingHurtboxesLifespans.Add(hurtbox.timeActive);
+                Debug.Log("HERP " + livingHurtboxesLifespans.Count);
+                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), (facingRight ? new Vector2(hurtbox.x, hurtbox.y) : new Vector2(-hurtbox.x, -hurtbox.y)), true);
+                Debug.Log("hurtbox Created");
+            }
+        }
+    }
+
+    public void decreaseHurtboxLifespan()
+    {
+        for (int j = 0; j < livingHurtboxesLifespans.Count; j++)
+            if (livingHurtboxesLifespans[j] > 0)
+            {
+                livingHurtboxesLifespans[j]--;
+                Debug.Log("hurtbox " + j + " decremented");
+            }
+            else
+            {
+                removeBoxCollider2D(livingHurtboxesIds[j].ToString());
+                livingHurtboxesIds.RemoveAt(j);
+                livingHurtboxesLifespans.RemoveAt(j);
+                Debug.Log("hurtbox Destroyed");
             }
     }
 
