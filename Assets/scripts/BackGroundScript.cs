@@ -41,6 +41,11 @@ public class BackGroundScript : MonoBehaviour {
             if (player[1].hPush < 0)
                 player[1].hPush = 0;
 
+            if (player[0].vPush < 0)
+                player[0].vPush = 0;
+            if (player[1].vPush < 0)
+                player[1].vPush = 0;
+
             if (Mathf.Abs(player[0].x()) > 64)
                 player[1].hPush = -player[1].hPush;
             if (Mathf.Abs(player[1].x()) > 64)
