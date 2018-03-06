@@ -399,6 +399,9 @@ public class PlayerScript : MonoBehaviour
 
     private void incrementFrame(int[] frames)
     {
+
+        placeHurtboxes(currentFrame);
+
         int previousFrame = currentFrame;
         currentFrame = frames[currentActionFrame];
         currentActionFrame++;
@@ -530,7 +533,7 @@ public class PlayerScript : MonoBehaviour
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
                 Debug.Log("HERP " + livingHurtboxesLifespans.Count);
-                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), (facingRight ? new Vector2(hurtbox.x, hurtbox.y) : new Vector2(-hurtbox.x, -hurtbox.y)), true);
+                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), true);
                 Debug.Log("hurtbox Created");
             }
         }
