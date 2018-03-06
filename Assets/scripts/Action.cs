@@ -13,8 +13,6 @@ public class Action {
 	public int level;
     public int gAngle;
     public int aAngle;
-    public int startup;
-    public int active;
     public float gStrength;
     public float aStrength;
 

@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour
     public int currentFrame;
     public int currentActionFrame;
     public int damageCounter;
+    public int activeCounter;
     public int playerID;
     public int meter;
     public int basicState;
@@ -408,6 +409,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentAction < 40)
                 placeHitboxes(currentActionFrame -1);
+            activeCounter++;
         }
         else
         {
@@ -472,23 +474,18 @@ public class PlayerScript : MonoBehaviour
     private void placeHitboxes(int frame)
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        int startup = behaviors.getAction(currentAction).startup;
-        int active = behaviors.getAction(currentAction).active;
         Debug.Log("placeHitboxes called on frame: " + frame);
-        if (frame >= startup && frame <= startup + active)
+        for (int i = 0; i < hitboxData.GetLength(1); i++)
         {
-            for (int i = 0; i < hitboxData.GetLength(1); i++)
-            {
-                Action.rect hitbox = hitboxData[frame - startup, i];
+            Action.rect hitbox = hitboxData[activeCounter, i];
 
-                if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
-                {
-                    livingHitboxesIds.Add(hitbox.id);
-                    livingHitboxesLifespans.Add(hitbox.timeActive);
-                    Debug.Log("HERP " + livingHitboxesLifespans.Count);
-                    addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)));
-                    Debug.Log("Hitbox Created");
-                }
+            if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
+            {
+                livingHitboxesIds.Add(hitbox.id);
+                livingHitboxesLifespans.Add(hitbox.timeActive);
+                Debug.Log("HERP " + livingHitboxesLifespans.Count);
+                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), (facingRight? new Vector2(hitbox.x, hitbox.y) : new Vector2(-hitbox.x, -hitbox.y)));
+                Debug.Log("Hitbox Created");
             }
         }
     }
@@ -686,6 +683,7 @@ public class PlayerScript : MonoBehaviour
         currentAction = 0;
         currentFrame = 0;
         currentActionFrame = 0;
+        activeCounter = 0;
 
         if (waitForEnd && !waitForGround)
         {
