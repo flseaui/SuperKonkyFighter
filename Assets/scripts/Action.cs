@@ -19,7 +19,6 @@ public class Action {
     public bool infinite;
 
     public rect[,] hitboxData;
-    public rect[,] hurtboxData;
 
     public struct rect
     {
