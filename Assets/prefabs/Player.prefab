@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61717008683281332}
   - component: {fileID: 50055904181538634}
   - component: {fileID: 114362091746053720}
+  - component: {fileID: 60838223460420844}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: hitbox
@@ -40,7 +41,6 @@ GameObject:
   - component: {fileID: 212080011780739976}
   - component: {fileID: 114237799369803098}
   - component: {fileID: 95060079290894174}
-  - component: {fileID: 60284349136062402}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -81,16 +81,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!60 &60284349136062402
+--- !u!60 &60838223460420844
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646981266529194}
+  m_GameObject: {fileID: 1110115492532184}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -105,17 +105,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -4, y: 6.5}
-      - {x: 0.12, y: 13}
-      - {x: 4, y: 6.5}
-      - {x: 0, y: 0}
+    - - {x: 0.5, y: 13}
+      - {x: 4, y: 8}
+      - {x: 4, y: 5}
+      - {x: 0.5, y: 0}
+      - {x: -3, y: 5}
+      - {x: -3, y: 8}
 --- !u!61 &61717008683281332
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110115492532184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

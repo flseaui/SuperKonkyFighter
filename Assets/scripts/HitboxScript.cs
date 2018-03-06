@@ -23,56 +23,8 @@ public class HitboxScript : MonoBehaviour
 
 	// Update is called once per frame
 	void Update()
-	{
-        /*
+    {
 
-        if (s.y() <= (os.height + os.y()) && s.y() >= os.y())
-        {
-            if (s.x() < os.x())
-            {
-                float tx = -os.width * Mathf.Sqrt(1 - Mathf.Pow(((s.y() - os.y()) / os.height), 2)) + os.x();
-                if (s.x() > tx)
-                {
-                    if (s.hVelocity > 0)
-                    {
-                        if (!s.air || os.air)
-                        {
-                            os.hVelocity += s.hVelocity / 2;
-                            s.hVelocity -= s.hVelocity / 2;
-                            colliding = true;
-                        }
-                    }
-                    s.setX(tx);
-                }
-                else
-                {
-                    colliding = false;
-                }
-            }
-            else
-            {
-                float tx = os.width * Mathf.Sqrt(1 - Mathf.Pow(((s.y() - os.y()) / os.height), 2)) + os.x();
-                if (s.x() < tx)
-                {
-                    if (s.hVelocity < 0)
-                    {
-                        if (!s.air || os.air)
-                        {
-                            os.hVelocity += s.hVelocity / 2;
-                            s.hVelocity -= s.hVelocity / 2;
-                            colliding = true;
-                        }
-                    }
-                    s.setX(tx);
-                }
-                else
-                {
-                    colliding = false;
-                }
-            }
-        }
-
-        */
 	}
 
 	private void OnCollisionStay2D(Collision2D col)
@@ -92,7 +44,6 @@ public class HitboxScript : MonoBehaviour
             //air to air collision
 
             //air to ground collision
-
 
             if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
             {
@@ -127,5 +78,4 @@ public class HitboxScript : MonoBehaviour
         os.hPush = 0;
         s.coll = false;
     }
-
 }
