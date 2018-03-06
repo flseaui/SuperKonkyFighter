@@ -158,7 +158,6 @@ public class KonkyBehaviours : Behaviors {
             { new Action.rect(4, 9, 5, 9, 3, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, },
             {nullBox, }
-            //{ new Action.rect(10, 15, 20, 10, 1, 1) } // Frame 2 - 1 hitbox lasts 2 frames
         },
         damage = new int[] { 300 },
         level = 0,
@@ -175,6 +174,11 @@ public class KonkyBehaviours : Behaviors {
         tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 | 12
         damage      = new int[] { 600 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(5, 10, 6, 1, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, }
+        },
         level       = 2,
         actionCancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
@@ -188,6 +192,13 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 9 | 4 | 17
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(8, 6.5f, 7, 2, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 900 },
         level       = 1,
         actionCancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
@@ -202,6 +213,12 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 0,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 6 | 3 | 10
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(3, 0.5f, 8, 1, 3, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 300 },
         level       = 0,
         actionCancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -216,6 +233,13 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 4 | 13
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(2, 6, 8, 7, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 500 },
         level       = 1,
         actionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -230,6 +254,16 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 2,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (1) 5 | 24
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(6, 3, 4, 5, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            { new Action.rect(7, 9, 6, 14, 5, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage = new int[] { 700, 700 },
         level = 3,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
@@ -244,6 +278,14 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 0,
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 5 | 13
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(3.5f, 6, 9, 3, 5, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 300 },
         level       = 2,
         actionCancels     = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
@@ -258,6 +300,15 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 17
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(6, 10, 6, 5, 6, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 600 },
         level       = 2,
         actionCancels     = new int[] { 27, 28, 29, 40, 43, 44 },
@@ -272,6 +323,13 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 2,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 4 | 23
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(5, 9, 7, 9, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 900 },
         level       = 3,
         actionCancels     = new int[] { 40, 43, 44 },
