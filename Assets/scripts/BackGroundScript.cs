@@ -60,12 +60,6 @@ public class BackGroundScript : MonoBehaviour {
                     diff[i] = (hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture));
                 }
             }
-
-            if (p1s.hVelocity == 0 && p2s.hVelocity == 0)
-            {
-                diff[0] = (p1s.hitbox.size.x) - Vector3.Distance(p1s.transform.position, p2s.transform.position);
-                diff[1] = (p2s.hitbox.size.x) - Vector3.Distance(p2s.transform.position, p1s.transform.position);
-            }
         }
         else
         {
