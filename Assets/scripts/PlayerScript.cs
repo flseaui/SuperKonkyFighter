@@ -154,6 +154,7 @@ public class PlayerScript : MonoBehaviour
         setAdvancedInput(inputManager.currentInput);
 
         hPush = 0;
+        vPush = 0;
 
         if (hitStopped)
         {
