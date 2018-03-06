@@ -74,6 +74,8 @@ public class PlayerScript : MonoBehaviour
 
     public List<float> livingHitboxesIds;
     public List<float> livingHitboxesLifespans;
+    public List<float> livingHurtboxesIds;
+    public List<float> livingHurtboxesLifespans;
 
     void OnDrawGizmos()
     {
@@ -410,7 +412,7 @@ public class PlayerScript : MonoBehaviour
         if (currentFrame == 1)
         {
             if (currentAction < 40)
-                placeHitboxes(currentActionFrame -1);
+                placeHitboxes();
             activeCounter++;
         }
         else
@@ -473,10 +475,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void placeHitboxes(int frame)
+    private void placeHitboxes()
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        Debug.Log("placeHitboxes called on frame: " + frame);
+        Debug.Log("placeHitboxes called on frame: " + activeCounter);
         for (int i = 0; i < hitboxData.GetLength(1); i++)
         {
             Action.rect hitbox = hitboxData[activeCounter, i];
