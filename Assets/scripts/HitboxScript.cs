@@ -68,7 +68,7 @@ public class HitboxScript : MonoBehaviour
                 //ground to ground collision
 
                 s.coll = true;
-                s.onPush(os.hVelocity);
+                s.onPush(os.hVelocity, os.vVelocity);
             }
         }
 	}
@@ -76,6 +76,7 @@ public class HitboxScript : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         os.hPush = 0;
+        os.vPush = 0;
         s.coll = false;
     }
 }

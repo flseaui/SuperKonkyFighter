@@ -205,7 +205,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback + hPush);
+        moveY(vVelocity + vKnockback + vPush);
 
         if (x() < -64f)
         {
@@ -234,10 +234,10 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    public void onPush(float otherVel)
+    public void onPush(float otherHVel, float otherVVelocity)
     {
-        hPush = facingRight ? (hVelocity + otherVel) / 2 : (otherVel + hVelocity) / 2;
-        vPush = (vVelocity + otherVel) / 2;
+        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
+        vPush = (vVelocity + otherVVelocity) / 2;
     }
     
     private int inputConvert(bool[] input)
