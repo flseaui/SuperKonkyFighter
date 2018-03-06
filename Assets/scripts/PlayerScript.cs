@@ -519,7 +519,7 @@ public class PlayerScript : MonoBehaviour
 
     private void placeHurtboxes(int frame)
     {
-        Action.rect[,] hurtboxData = behaviors.getAction(currentAction).hurtboxData;
+        Action.rect[,] hurtboxData;
 
         if (currentAction != 0)
             hurtboxData = behaviors.getAction(currentAction).hurtboxData;
