@@ -99,7 +99,7 @@ public class KonkyBehaviours : Behaviors {
             { 102, crouch},
             { 103, crouch},
             { 104, walkBack},
-            { 105, crouch},
+            { 105, idle},
             { 106, walkForward},
             { 107, jumpBack},
             { 108, jump},
