@@ -525,7 +525,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                addBoxCollider2D(hurtbox.id.ToString()+100, new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
+                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
             }
         }
     }
@@ -760,6 +760,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = 0;
         currentActionFrame = 0;
         activeCounter = 0;
+        killAllHurtboxes();
+        killAllHitboxes();
 
         if (waitForEnd && !waitForGround)
         {
