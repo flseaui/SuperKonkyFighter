@@ -399,16 +399,16 @@ public class KonkyBehaviours : Behaviors {
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 5, 5, 19, 1), },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 22, 1), new Action.rect(1.5f, 9f, 4, 8, 22, 2), },
+            { new Action.rect(0.5f, 2.5f, 5, 5, 19, 1), nullBox },
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            {nullBox, nullBox},
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 22, 1), new Action.rect(1.5f, 9f, 4, 8, 22, 2) },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -694,7 +694,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
             {nullBox, nullBox }
         },
     };
@@ -768,7 +767,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
             {nullBox, nullBox }
         },
     };
@@ -777,7 +775,6 @@ public class KonkyBehaviours : Behaviors {
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 20, 1), new Action.rect(1.5f, 9f, 4, 8, 20, 2), },
-            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -817,7 +814,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
             {nullBox, nullBox }
         },
     };
@@ -834,7 +830,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
             {nullBox, nullBox }
         },
     };
@@ -843,7 +838,6 @@ public class KonkyBehaviours : Behaviors {
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 2, 1), new Action.rect(1.5f, 9f, 4, 8, 2, 2), },
-            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
