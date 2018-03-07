@@ -525,7 +525,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
+                addBoxCollider2D(hurtbox.id.ToString()+100, new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
             }
         }
     }
@@ -554,7 +554,7 @@ public class PlayerScript : MonoBehaviour
         childbox.transform.position = transform.position;
         childbox.transform.SetParent(transform);
 
-        childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
+        childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString();
 
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
