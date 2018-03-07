@@ -496,16 +496,16 @@ public class PlayerScript : MonoBehaviour
 
     public void decreaseHitboxLifespan()
     {
-        for (int j = 0; j < livingHitboxesLifespans.Count; j++)
-            if (livingHitboxesLifespans[j] > 0)
+        for (int j = livingHitboxesLifespans.Count; j > 0; j--)
+            if (livingHitboxesLifespans[j - 1] > 0)
             {
-                livingHitboxesLifespans[j]--;
+                livingHitboxesLifespans[j - 1]--;
             }
             else
             {
-                removeBoxCollider2D(livingHitboxesIds[j].ToString());
-                livingHitboxesIds.RemoveAt(j);
-                livingHitboxesLifespans.RemoveAt(j);
+                removeBoxCollider2D(livingHitboxesIds[j - 1].ToString());
+                livingHitboxesIds.RemoveAt(j - 1);
+                livingHitboxesLifespans.RemoveAt(j - 1);
             }
     }
 
