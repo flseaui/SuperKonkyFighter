@@ -99,7 +99,7 @@ public class KonkyBehaviours : Behaviors {
             { 102, crouch},
             { 103, crouch},
             { 104, walkBack},
-            { 105, crouch},
+            { 105, idle},
             { 106, walkForward},
             { 107, jumpBack},
             { 108, jump},
@@ -682,7 +682,7 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 5, 5, 40, 1), new Action.rect(1.5f, 6, 4, 4, 40, 2) },
+            { new Action.rect(0.5f, 2.5f, 5, 5, 40, 3), new Action.rect(1.5f, 6, 4, 4, 40, 4) },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
