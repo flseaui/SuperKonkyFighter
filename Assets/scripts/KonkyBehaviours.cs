@@ -496,14 +496,14 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 17
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(6, 10, 6, 5, 6, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(6, 10, 6, 5, 6, 0), }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, },
+            { new Action.rect(6, 10, 6, 5, 6, 0), },
             {nullBox, },
-            {nullBox, },
-            {nullBox, },
+            { new Action.rect(6, 10, 6, 5, 6, 0), },
             {nullBox, }
         },
-        damage      = new int[] { 600 },
+        damage      = new int[] { 200, 200, 200 },
         level       = 2,
         actionCancels     = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle      = 0,
