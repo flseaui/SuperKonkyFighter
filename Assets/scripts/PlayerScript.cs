@@ -532,17 +532,19 @@ public class PlayerScript : MonoBehaviour
 
     public void decreaseHurtboxLifespan()
     {
-        for (int j = 0; j < livingHurtboxesLifespans.Count; j++)
-            if (livingHurtboxesLifespans[j] > 0)
+        for (int j = livingHurtboxesLifespans.Count; j > 0; j--)
+        {
+            if (livingHurtboxesLifespans[j - 1] > 1)
             {
-                livingHurtboxesLifespans[j]--;
+                livingHurtboxesLifespans[j - 1]--;
             }
             else
             {
-                removeBoxCollider2D(livingHurtboxesIds[j].ToString());
-                livingHurtboxesIds.RemoveAt(j);
-                livingHurtboxesLifespans.RemoveAt(j);
+                removeBoxCollider2D(livingHurtboxesIds[j - 1].ToString());
+                livingHurtboxesIds.RemoveAt(j - 1);
+                livingHurtboxesLifespans.RemoveAt(j - 1);
             }
+        }
     }
 
     private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
@@ -676,8 +678,11 @@ public class PlayerScript : MonoBehaviour
 
         if (previousBasicState == basicState)
         {
+            Debug.Log(basicAnimFrame);
+
             placeHurtboxes(basicAnimFrame);
             basicAnimFrame++;
+
 
             if (basicAnimFrame >= behaviors.getAction(basicState + 100).frames.Length)
                 basicAnimFrame = 0;
