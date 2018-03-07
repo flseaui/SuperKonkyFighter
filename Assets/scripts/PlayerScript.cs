@@ -572,6 +572,28 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void killAllHurtboxes()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.tag.Equals("hurtbox1") || child.gameObject.tag.Equals("hurtbox2"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void killAllHitboxes()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.tag.Equals("hitbox1") || child.gameObject.tag.Equals("hitbox2"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
     private void stateCheck()
     {
         if (currentAction != 0)
