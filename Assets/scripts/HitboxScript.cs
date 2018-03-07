@@ -48,7 +48,6 @@ public class HitboxScript : MonoBehaviour
             if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
             {
                 s.coll = false;
-                Debug.Log("yes");
                 /*
                 if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
                 {

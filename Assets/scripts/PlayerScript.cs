@@ -429,7 +429,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite && damageDealt)
             {
-                Debug.Log("WaitForEnd ActionEnd");
                 ActionEnd();
             }
             else if (advState != 0 && !waitForEnd)
@@ -443,7 +442,6 @@ public class PlayerScript : MonoBehaviour
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == 40 && inputManager.currentInput[12])
                     {
-                        Debug.Log("Jump Cancled");
                         bufferedMove = 40;
                         if (basicState == 7)
                             jump = 7;
@@ -464,7 +462,6 @@ public class PlayerScript : MonoBehaviour
 
             if (bufferedMove != 0 && !waitForEnd)
             {
-                Debug.Log("Buffered");
                 if (bufferedMove > 40)
                     advState = bufferedMove - 40;
                 else if (bufferedMove == 40)
@@ -483,7 +480,6 @@ public class PlayerScript : MonoBehaviour
     private void placeHitboxes()
     {
         Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
-        Debug.Log("placeHitboxes called on frame: " + activeCounter);
 
         for (int i = 0; i < hitboxData.GetLength(1); i++)
         {
@@ -493,9 +489,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHitboxesIds.Add(hitbox.id);
                 livingHitboxesLifespans.Add(hitbox.timeActive);
-                Debug.Log("HERP " + livingHitboxesLifespans.Count);
                 addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
-                Debug.Log("Hitbox Created");
             }
         }
     }
@@ -506,14 +500,12 @@ public class PlayerScript : MonoBehaviour
             if (livingHitboxesLifespans[j] > 0)
             {
                 livingHitboxesLifespans[j]--;
-                Debug.Log("Hitbox " + j + " decremented");
             }
             else
             {
                 removeBoxCollider2D(livingHitboxesIds[j].ToString());
                 livingHitboxesIds.RemoveAt(j);
                 livingHitboxesLifespans.RemoveAt(j);
-                Debug.Log("Hitbox Destroyed");
             }
     }
 
@@ -525,7 +517,6 @@ public class PlayerScript : MonoBehaviour
             hurtboxData = behaviors.getAction(currentAction).hurtboxData;
         else
             hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
-        Debug.Log("placeHurtboxes called on frame: " + activeCounter);
         for (int i = 0; i < hurtboxData.GetLength(1); i++)
         {
             Action.rect hurtbox = hurtboxData[frame, i];
@@ -534,9 +525,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                Debug.Log("HERP " + livingHurtboxesLifespans.Count);
                 addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
-                Debug.Log("hurtbox Created");
             }
         }
     }
@@ -547,25 +536,21 @@ public class PlayerScript : MonoBehaviour
             if (livingHurtboxesLifespans[j] > 0)
             {
                 livingHurtboxesLifespans[j]--;
-                Debug.Log("hurtbox " + j + " decremented");
             }
             else
             {
                 removeBoxCollider2D(livingHurtboxesIds[j].ToString());
                 livingHurtboxesIds.RemoveAt(j);
                 livingHurtboxesLifespans.RemoveAt(j);
-                Debug.Log("hurtbox Destroyed");
             }
     }
 
     private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
     {
-        Debug.Log("Add Box Collider");
         GameObject childbox = new GameObject(name);
 
         childbox.transform.position = transform.position;
         childbox.transform.SetParent(transform);
-        Debug.Log("childbox.transform.parent: " + childbox.transform.position.x);
 
         childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
 
@@ -576,10 +561,8 @@ public class PlayerScript : MonoBehaviour
 
     private void removeBoxCollider2D(String name)
     {
-        Debug.Log("Remove Box Collider");
         foreach (Transform child in transform)
         {
-            Debug.Log(child.name);
             if (child.gameObject.name.Equals(name))
             {
                 Destroy(child.gameObject);
@@ -713,7 +696,6 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                Debug.Log("Dashing");
                 if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
                 {
                     hVelocity = 0;
@@ -754,7 +736,6 @@ public class PlayerScript : MonoBehaviour
 
         if (waitForEnd && !waitForGround)
         {
-            Debug.Log("WaitForEnd Flip");
 
             waitForEnd = false;
             if (basicState <= 3)

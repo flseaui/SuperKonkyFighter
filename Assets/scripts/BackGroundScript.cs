@@ -25,7 +25,6 @@ public class BackGroundScript : MonoBehaviour {
         // Point 0 - left, Point 2 - right
         Vector2[] points1 = p1s.hitbox.GetComponent<PolygonCollider2D>().points;
         Vector2[] points2 = p2s.hitbox.GetComponent<PolygonCollider2D>().points;
-        Debug.Log(diffBetweenPoints(p1s.facingRight ? points1[2] : points1[0], p2s.facingRight ? points2[0] : points2[2]));
 
         pushing();
 
@@ -41,7 +40,6 @@ public class BackGroundScript : MonoBehaviour {
 
         if (p1s.coll)
         {
-            Debug.Log("Colliding");
 
             if (player[0].hPush < 0)
                 player[0].hPush = 0;
