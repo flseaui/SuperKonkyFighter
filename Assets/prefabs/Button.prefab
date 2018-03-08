@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuScript: {fileID: 0}
-  defaultMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  defaultMaterial: {fileID: 2100000, guid: 3e49644a383012a489ae6410cf94f027, type: 2}
   glowMaterial: {fileID: 2100000, guid: 954d80c3fadded949a60a8e40fcf77bb, type: 2}
 --- !u!120 &120842669755777684
 LineRenderer:
@@ -255,8 +255,8 @@ LineRenderer:
       m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
-      key1: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 0.37254903}
+      key1: {r: 0, g: 0, b: 0, a: 0.53333336}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

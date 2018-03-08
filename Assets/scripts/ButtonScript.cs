@@ -31,9 +31,9 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	{
 		if (glow)
 		{
-			lineRenderer.widthMultiplier = 1.9f;
+			lineRenderer.widthMultiplier = 0.8f;
 			lineRenderer.material = glowMaterial;
-			lineRenderer.numCornerVertices = 9;
+			lineRenderer.numCornerVertices = 8;
 			lineRenderer.sortingOrder = 99;
 			GradientColorKey gck = new GradientColorKey();
 			gck.color = Color.white;
@@ -48,11 +48,11 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 			lineRenderer.widthMultiplier = 0.3f;
 			lineRenderer.material = defaultMaterial;
 			lineRenderer.numCornerVertices = 0;
-			lineRenderer.sortingOrder = 1;
+			lineRenderer.sortingOrder = 2;
 			GradientColorKey gck = new GradientColorKey();
-			gck.color = Color.black;
+			gck.color = Color.white;
 			GradientAlphaKey gak = new GradientAlphaKey();
-			gak.alpha = 1f;
+			gak.alpha = 0.75f;
 			Gradient g = new Gradient();
 			g.SetKeys(new GradientColorKey[] { gck}, new GradientAlphaKey[] { gak });
 			lineRenderer.colorGradient = g;
