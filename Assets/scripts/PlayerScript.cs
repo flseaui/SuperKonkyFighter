@@ -535,6 +535,10 @@ public class PlayerScript : MonoBehaviour
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
                 addBoxCollider2D((hurtbox.id + 100).ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
             }
+            else if (livingHurtboxesIds.Contains(hurtbox.id))
+            {
+                Debug.Log("repeat call");
+            }
         }
     }
 
@@ -715,14 +719,16 @@ public class PlayerScript : MonoBehaviour
 
         if (previousBasicState == basicState)
         {
+            if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.GetLength(0))
+            {
+                killAllBoxes();
+                basicAnimFrame = 0;
+            }
+
             Debug.Log(basicAnimFrame);
 
             placeHurtboxes(basicAnimFrame);
             basicAnimFrame++;
-
-
-            if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.GetLength(0))
-                basicAnimFrame = 0;
         }
         else
         {
