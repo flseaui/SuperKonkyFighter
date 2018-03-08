@@ -580,6 +580,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void killAllBoxes()
+    {
+        killAllHitboxes();
+        killAllHurtboxes();
+    }
+
     private void killAllHurtboxes()
     {
         foreach (Transform child in transform)
