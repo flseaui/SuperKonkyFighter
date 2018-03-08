@@ -22,10 +22,6 @@ public class BackGroundScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        // Point 0 - left, Point 2 - right
-        Vector2[] points1 = p1s.hitbox.GetComponent<PolygonCollider2D>().points;
-        Vector2[] points2 = p2s.hitbox.GetComponent<PolygonCollider2D>().points;
-
         pushing();
         damage();
         knockback();
@@ -117,9 +113,10 @@ public class BackGroundScript : MonoBehaviour {
 
     private void checkCollisions()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in p1s.transform)
         {
-            Debug.Log(child.name + "colliding is " + child.GetComponent<PeeinWithMyBoyScottDesuNe>().hitting);
+            if (child.tag.Equals("hitbox1"))
+                Debug.Log(child.name + " colliding is " + child.GetComponent<PeeinWithMyBoyScottDesuNe>().hitting);
         }
     }
 

@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4517540524321706}
-  - component: {fileID: 61717008683281332}
   - component: {fileID: 50055904181538634}
   - component: {fileID: 114362091746053720}
   - component: {fileID: 60838223460420844}
@@ -109,31 +108,6 @@ PolygonCollider2D:
       - {x: 0, y: 13}
       - {x: 3.5, y: 6.5}
       - {x: 0, y: 0}
---- !u!61 &61717008683281332
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110115492532184}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 6.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.4, y: 13}
-  m_EdgeRadius: 0
 --- !u!95 &95060079290894174
 Animator:
   serializedVersion: 3
@@ -201,8 +175,7 @@ MonoBehaviour:
   vPush: 0
   spriteRenderer: {fileID: 0}
   animator: {fileID: 95060079290894174}
-  hitbox: {fileID: 61717008683281332}
-  hurtbox: {fileID: 0}
+  hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
   livingHitboxesIds: []

@@ -66,8 +66,7 @@ public class PlayerScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public Behaviors behaviors;
-    public BoxCollider2D hitbox;
-    public BoxCollider2D hurtbox;
+    public PolygonCollider2D hitbox;
     public GameObject otherPlayer;
     public JoyScript JoyScript;
     InputManager inputManager;
@@ -92,13 +91,11 @@ public class PlayerScript : MonoBehaviour
     */
 
         Gizmos.color = new Color(0, 1, 0, 0.5F);
-        Gizmos.DrawCube(new Vector2(transform.position.x + hitbox.offset.x * this.transform.localScale.x, transform.position.y + hitbox.offset.y), new Vector2(hitbox.size.x, hitbox.size.y));
     }
 
     void Start()
     {
         this.tag = playerID.ToString();
-        hitbox.tag = "collisionHitbox" + playerID.ToString();
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
