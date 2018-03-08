@@ -150,8 +150,8 @@ public class PlayerScript : MonoBehaviour
         inputManager.pollInput(0);
 
         basicState = inputConvert(inputManager.currentInput);
-        //sicState = 6;
         setAttackInput(inputManager.currentInput);
+        //AttackState = 5;
         setAdvancedInput(inputManager.currentInput);
 
         hPush = 0;
@@ -173,6 +173,7 @@ public class PlayerScript : MonoBehaviour
                 if (previousBasicState != 0)
                 {
                     previousBasicState = 0;
+                    Debug.Log("BEEP BEEP");
                     killAllBoxes();
                 }
 
@@ -738,6 +739,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            Debug.Log("basic Move ran");
             killAllBoxes();
             placeHurtboxes(0);
             basicAnimFrame = 1;
@@ -779,6 +781,8 @@ public class PlayerScript : MonoBehaviour
 
     private void ActionEnd()
     {
+        Debug.Log("action end");
+
         if (currentAction == 49 || currentAction == 50)
         {
             facingRight = flipFacing;
