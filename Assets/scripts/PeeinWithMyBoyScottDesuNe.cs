@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PeeinWithMyBoyScottDesuNe : MonoBehaviour {
+    public bool hitting;
 
-	// Use this for initialization
-	void Start () {
-		//ur mom gay
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//peein with ur boy my name ur mom jeff
-	}
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if ((this.CompareTag("hitbox1") && col.collider.CompareTag("hurtbox2")) || (this.CompareTag("hitbox2") && col.collider.CompareTag("hurtbox1")))
+        {
+            hitting = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        hitting = false;
+    }
 }
