@@ -171,7 +171,15 @@ public class PlayerScript : MonoBehaviour
         else
         {
             if (currentAction != 0)
+            {
+                if (previousBasicState != 0)
+                {
+                    previousBasicState = 0;
+                    killAllBoxes();
+                }
+
                 incrementFrame(behaviors.getAction(currentAction).frames);
+            }
             stateCheck();
 
             if (currentAction > 40)
