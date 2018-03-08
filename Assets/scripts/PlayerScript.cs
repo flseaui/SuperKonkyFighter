@@ -533,7 +533,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHurtboxesIds.Add(hurtbox.id);
                 livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                addBoxCollider2D((hurtbox.id + 100).ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
+                addBoxCollider2D(hurtbox.id.ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
             }
         }
     }
@@ -548,7 +548,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString());
+                removeBoxCollider2D(livingHurtboxesIds[j - 1].ToString());
                 livingHurtboxesIds.RemoveAt(j - 1);
                 livingHurtboxesLifespans.RemoveAt(j - 1);
             }
@@ -586,6 +586,7 @@ public class PlayerScript : MonoBehaviour
         killAllHurtboxes();
     }
 
+
     private void killAllHurtboxes()
     {
         foreach (Transform child in transform)
@@ -616,7 +617,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
             if (!air)
                 hVelocity = 0;
-            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
+            if (currentActionFrame >= behaviors.getAction(currentAction).frames.GetLength(0))
             {
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
@@ -720,11 +721,12 @@ public class PlayerScript : MonoBehaviour
             basicAnimFrame++;
 
 
-            if (basicAnimFrame >= behaviors.getAction(basicState + 100).frames.Length)
+            if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.Length)
                 basicAnimFrame = 0;
         }
         else
         {
+            killAllBoxes();
             placeHurtboxes(0);
             basicAnimFrame = 1;
             previousBasicState = basicState;
@@ -774,8 +776,7 @@ public class PlayerScript : MonoBehaviour
         currentFrame = 0;
         currentActionFrame = 0;
         activeCounter = 0;
-        killAllHurtboxes();
-        killAllHitboxes();
+        killAllBoxes();
 
         if (waitForEnd && !waitForGround)
         {
