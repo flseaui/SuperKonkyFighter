@@ -455,7 +455,7 @@ public class KonkyBehaviours : Behaviors {
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(1, 10, 5, 5, 23, 1),  new Action.rect(3, 6, 8, 2, 5, 0),},
+            { new Action.rect(1, 9, 4, 6, 23, 1),  new Action.rect(3, 6, 8, 2, 5, 0),},
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -611,6 +611,48 @@ public class KonkyBehaviours : Behaviors {
     {
         tier = 1,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 13 | 2 | 19
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(5, 3, 9, 6, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, }
+        },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(-0.5f, 7, 6, 14, 13, 1), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(0, 3, 20, 6, 2, 1), },
+            {nullBox, },
+            { new Action.rect(0, 4, 15, 8, 19, 1), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
         damage      = new int[] { 800 },
         level       = 0,
         actionCancels     = new int[] { 25, 31, 32, 33, 34, 35, 36 },
