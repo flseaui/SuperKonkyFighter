@@ -569,7 +569,9 @@ public class PlayerScript : MonoBehaviour
         childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
 
         childbox.AddComponent<BoxCollider2D>();
-        childbox.AddComponent<PeeinWithMyBoyScottDesuNe>();
+
+        if (boxType) childbox.AddComponent<PeeinWithMyBoyScottDesuNe>();
+
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
     }
