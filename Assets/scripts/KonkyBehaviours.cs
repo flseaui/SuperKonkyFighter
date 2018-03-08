@@ -389,13 +389,13 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (1) 5 | 24
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(6, 3, 4, 5, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            {nullBox, },
-            { new Action.rect(7, 9, 6, 14, 5, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, }
+            { new Action.rect(6, 3, 4, 5, 2, 0), nullBox,  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, nullBox, },
+            { new Action.rect(7, 9, 6, 14, 5, 0), new Action.rect(7, 9, 6, 14, 5, 0), }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, }
         },
         hurtboxData = new Action.rect[,]
         {
