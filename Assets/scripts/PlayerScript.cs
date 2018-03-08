@@ -617,7 +617,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
             if (!air)
                 hVelocity = 0;
-            if (currentActionFrame >= behaviors.getAction(currentAction).frames.GetLength(0))
+            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
@@ -721,7 +721,7 @@ public class PlayerScript : MonoBehaviour
             basicAnimFrame++;
 
 
-            if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.Length)
+            if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.GetLength(0))
                 basicAnimFrame = 0;
         }
         else
