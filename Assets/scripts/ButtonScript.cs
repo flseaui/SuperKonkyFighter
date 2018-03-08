@@ -9,8 +9,12 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public MenuScript menuScript;
 
-	private TextMesh textMesh;
-	private Animator animator;
+	private LineRenderer lineRenderer;
+
+	private bool glow;
+
+	public Material defaultMaterial;
+	public Material glowMaterial;
 
 	void Start()
 	{
@@ -18,15 +22,41 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 		addEventSystem();
 
-		textMesh = GetComponentInChildren<TextMesh>();
+		lineRenderer = GetComponent<LineRenderer>();
 
-		//animator = GetComponent<Animator>();
-		//animator.SetInteger("state", 0);
+		glow = false;
 	}
 
 	void Update()
 	{
-
+		if (glow)
+		{
+			lineRenderer.widthMultiplier = 1.9f;
+			lineRenderer.material = glowMaterial;
+			lineRenderer.numCornerVertices = 9;
+			lineRenderer.sortingOrder = 99;
+			GradientColorKey gck = new GradientColorKey();
+			gck.color = Color.white;
+			GradientAlphaKey gak = new GradientAlphaKey();
+			gak.alpha = 1f;
+			Gradient g = new Gradient();
+			g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+			lineRenderer.colorGradient = g;
+		}
+		else
+		{
+			lineRenderer.widthMultiplier = 0.3f;
+			lineRenderer.material = defaultMaterial;
+			lineRenderer.numCornerVertices = 0;
+			lineRenderer.sortingOrder = 1;
+			GradientColorKey gck = new GradientColorKey();
+			gck.color = Color.black;
+			GradientAlphaKey gak = new GradientAlphaKey();
+			gak.alpha = 1f;
+			Gradient g = new Gradient();
+			g.SetKeys(new GradientColorKey[] { gck}, new GradientAlphaKey[] { gak });
+			lineRenderer.colorGradient = g;
+		}
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
@@ -42,7 +72,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		//animator.SetInteger("state", 1);
+		glow = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -52,7 +82,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		//animator.SetInteger("state",0);
+		glow = false;
 	}
 
 	void addEventSystem()

@@ -17,8 +17,6 @@ public class MenuScript : MonoBehaviour {
 
 	public GameObject background;
 
-	Color buttonColor;
-
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("stage", 0);
@@ -29,7 +27,7 @@ public class MenuScript : MonoBehaviour {
 	}
 	
 	//20 by 34 yo
-	public void makeButton(Vector3[] points, string text)
+	public void makeButton(Vector3[] points, string text, Color color)
 	{
 		GameObject button = Instantiate(buttonPrefab);
 
@@ -55,11 +53,11 @@ public class MenuScript : MonoBehaviour {
 		meshTri = new int[] {0,1,2,2,3,0 };
 		m.triangles = meshTri;
 		button.GetComponent<MeshFilter>().mesh = m;
-		
 
 		button.GetComponentInChildren<TextMesh>().text = text;
 
-		//button.GetComponent<SpriteRenderer>().color = buttonColor;
+		Material mat = button.GetComponent<MeshRenderer>().material;
+		mat.color = color;
 
 		buttons.Add(button);
 	}
@@ -81,17 +79,22 @@ public class MenuScript : MonoBehaviour {
 		clearButtons();
 		switch (no) {
 			case 0:
-				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.101960784f, 0f, 0f);
-				buttonColor = new Color(1f, 0.3f, 0.3f);
-				makeButton(new Vector3[] {new Vector2(-6, -3) , new Vector2(6, -3) , new Vector2(6, 3) , new Vector2(-6, 3) }, "play");
+				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.6705882352941176f, 0f, 0f);
+				Color buttonColor = new Color(0.8f, 0f, 0f, 0.75f);
+				makeButton(new Vector3[] {new Vector2(-6, -3) , new Vector2(6, -3) , new Vector2(6, 3) , new Vector2(-6, 3) }, "play", buttonColor);
 				break;
 			case 1:
-				makeButton(new Vector3[] { new Vector2(-15, 0), new Vector2(-7, 0), new Vector2(-7, -8), new Vector2(-15, -8) }, "");
-				makeButton(new Vector3[] { new Vector2(7, 0), new Vector2(15, 0), new Vector2(15, -8), new Vector2(7, -8) }, "");
-				makeButton(new Vector3[] { new Vector2(-6, 0), new Vector2(6, 0), new Vector2(6, -4), new Vector2(-6, -4) }, "");
-				makeButton(new Vector3[] { new Vector2(-15, 8), new Vector2(-10, 8), new Vector2(-7, 1), new Vector2(-11, 1) }, "");
-				makeButton(new Vector3[] { new Vector2(-10, 8), new Vector2(-5, 8), new Vector2(-3, 1), new Vector2(-7, 1) }, "");
-				makeButton(new Vector3[] { new Vector2(-5, 8), new Vector2(0, 8), new Vector2(0, 1), new Vector2(-3, 1) }, "");
+				buttonColor = new Color(0.8f, 0f, 0f, 0.75f);
+				makeButton(new Vector3[] { new Vector2(-15, 0), new Vector2(-7, 0), new Vector2(-7, -8), new Vector2(-15, -8) }, "", buttonColor);
+				makeButton(new Vector3[] { new Vector2(7, 0), new Vector2(15, 0), new Vector2(15, -8), new Vector2(7, -8) }, "", buttonColor);
+				makeButton(new Vector3[] { new Vector2(-6, 0), new Vector2(6, 0), new Vector2(6, -4), new Vector2(-6, -4) }, "", buttonColor);
+
+				makeButton(new Vector3[] { new Vector2(-15, 8), new Vector2(-10, 8), new Vector2(-7, 1), new Vector2(-11, 1) }, "", new Color(0.25f, 0.2f, 0.2f, 0.75f));
+				makeButton(new Vector3[] { new Vector2(-10, 8), new Vector2(-5, 8), new Vector2(-3, 1), new Vector2(-7, 1) }, "", new Color(1f, 0.5f, 0.5f, 0.75f));
+				makeButton(new Vector3[] { new Vector2(-5, 8), new Vector2(0, 8), new Vector2(0, 1), new Vector2(-3, 1) }, "", new Color(0.1f, 0.9f, 0.1f, 0.75f));
+				makeButton(new Vector3[] { new Vector2(0, 8), new Vector2(5, 8), new Vector2(3, 1), new Vector2(0, 1) }, "", new Color(0.9f, 0.6f, 0.1f, 0.75f));
+				makeButton(new Vector3[] { new Vector2(5, 8), new Vector2(10, 8), new Vector2(7, 1), new Vector2(3, 1) }, "", new Color(0.00f, 0.1f, 0.9f, 0.75f));
+				makeButton(new Vector3[] { new Vector2(10, 8), new Vector2(15, 8), new Vector2(11, 1), new Vector2(7, 1) }, "", new Color(0.6f, 0.6f, 0.6f, 0.75f));
 				break;
 		}
 	}
@@ -101,24 +104,6 @@ public class MenuScript : MonoBehaviour {
 		SceneManager.LoadScene("SKF");
 		int stage = Random.Range(1, 2);
 		PlayerPrefs.SetInt("stage", stage);
-	}
-
-	private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
-	{
-		Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
-		Color[] rpixels = result.GetPixels(0);
-		float incX = (1.0f / (float)targetWidth);
-		float incY = (1.0f / (float)targetHeight);
-		for (int px = 0; px < rpixels.Length; px++)
-		{
-			rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth), incY * ((float)Mathf.Floor(px / targetWidth)));
-		}
-		result.SetPixels(rpixels, 0);
-		result.Apply();
-
-		source = result;
-
-		return result;
 	}
 }
 
