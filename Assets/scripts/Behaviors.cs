@@ -25,5 +25,26 @@ public abstract class Behaviors {
         return AnimAction[id];
     }
 
+    public void populateHitboxes(IDictionary<int, Action> actions, Action.rect filler)
+    {
+        for (int i = 0; i < actions.Count; i++)
+        {
+            for (int j = 0; j < actions[i].hitboxFrames; j++)
+            {
+                for (int k = 0; k < actions[i].hitboxData.GetLength(1); k++)
+                {
+                    Action.rect hitboxData = actions[i].hitboxData[j, k];
+                    if (hitboxData.Equals(null))
+                        hitboxData = filler;
+                }
+            }
+        }
+    }
+
+    public void populateHurtboxes()
+    {
+
+    }
+
 }
 
