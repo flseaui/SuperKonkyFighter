@@ -572,6 +572,13 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void killAllBoxes()
+    {
+        killAllHitboxes();
+        killAllHurtboxes();
+    }
+
+
     private void killAllHurtboxes()
     {
         foreach (Transform child in transform)
@@ -711,6 +718,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            killAllBoxes();
             placeHurtboxes(0);
             basicAnimFrame = 1;
             previousBasicState = basicState;
@@ -760,8 +768,7 @@ public class PlayerScript : MonoBehaviour
         currentFrame = 0;
         currentActionFrame = 0;
         activeCounter = 0;
-        killAllHurtboxes();
-        killAllHitboxes();
+        killAllBoxes();
 
         if (waitForEnd && !waitForGround)
         {
