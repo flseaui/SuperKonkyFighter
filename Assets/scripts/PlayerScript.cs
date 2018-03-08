@@ -150,6 +150,7 @@ public class PlayerScript : MonoBehaviour
         inputManager.pollInput(0);
 
         basicState = inputConvert(inputManager.currentInput);
+        //sicState = 6;
         setAttackInput(inputManager.currentInput);
         setAdvancedInput(inputManager.currentInput);
 
@@ -586,6 +587,7 @@ public class PlayerScript : MonoBehaviour
 
     private void killAllBoxes()
     {
+        Debug.Log("all kill");
         killAllHitboxes();
         killAllHurtboxes();
     }
@@ -593,6 +595,9 @@ public class PlayerScript : MonoBehaviour
 
     private void killAllHurtboxes()
     {
+        livingHurtboxesIds.Clear();
+        livingHurtboxesLifespans.Clear();
+
         foreach (Transform child in transform)
         {
             if (child.gameObject.tag.Equals("hurtbox1") || child.gameObject.tag.Equals("hurtbox2"))
@@ -604,6 +609,9 @@ public class PlayerScript : MonoBehaviour
 
     private void killAllHitboxes()
     {
+        livingHitboxesIds.Clear();
+        livingHitboxesLifespans.Clear();
+
         foreach (Transform child in transform)
         {
             if (child.gameObject.tag.Equals("hitbox1") || child.gameObject.tag.Equals("hitbox2"))
@@ -721,11 +729,9 @@ public class PlayerScript : MonoBehaviour
         {
             if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.GetLength(0))
             {
-                killAllBoxes();
+                //killAllBoxes();
                 basicAnimFrame = 0;
             }
-
-            Debug.Log(basicAnimFrame);
 
             placeHurtboxes(basicAnimFrame);
             basicAnimFrame++;
