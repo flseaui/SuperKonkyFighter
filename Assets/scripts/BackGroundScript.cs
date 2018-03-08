@@ -27,11 +27,24 @@ public class BackGroundScript : MonoBehaviour {
         Vector2[] points2 = p2s.hitbox.GetComponent<PolygonCollider2D>().points;
 
         pushing();
+        damage();
+        knockback();
+        checkCollisions();
 
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
         player[1].decreaseHurtboxLifespan();
+    }
+
+    public void damage()
+    {
+        
+    }
+
+    private void knockback()
+    {
+
     }
 
     private void pushing()
@@ -97,6 +110,26 @@ public class BackGroundScript : MonoBehaviour {
                 {
                     player[i].updateEnd = 0;
                     player[i].UpdateEnd();
+                }
+            }
+        }
+    }
+
+    private void checkCollisions()
+    {
+        foreach (BoxCollider2D hitbox in p1s.GetComponentsInChildren<BoxCollider2D>())
+        {
+            if (hitbox.tag.Equals("hitbox1") || hitbox.tag.Equals("hitbox2"))
+            {
+                foreach (BoxCollider2D hurtbox in p2s.GetComponentsInChildren<BoxCollider2D>())
+                {
+                    if (hurtbox.tag.Equals("hurtbox1") || hurtbox.tag.Equals("hurtbox2"))
+                    {
+                        if (hitbox.IsTouching(hurtbox))
+                        {
+                            Debug.Log(hitbox.name + " collided with " + hurtbox.name);
+                        }
+                    }
                 }
             }
         }
