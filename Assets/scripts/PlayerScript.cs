@@ -497,7 +497,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHitboxesIds.Add(hitbox.id);
                 livingHitboxesLifespans.Add(hitbox.timeActive);
-                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
+                addBoxCollider2D((hitbox.id + 100).ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
             }
         }
     }
@@ -548,7 +548,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                removeBoxCollider2D(livingHurtboxesIds[j - 1].ToString());
+                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString());
                 livingHurtboxesIds.RemoveAt(j - 1);
                 livingHurtboxesLifespans.RemoveAt(j - 1);
             }
