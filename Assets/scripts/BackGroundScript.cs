@@ -119,19 +119,7 @@ public class BackGroundScript : MonoBehaviour {
     {
         foreach (BoxCollider2D hitbox in p1s.GetComponentsInChildren<BoxCollider2D>())
         {
-            if (hitbox.tag.Equals("hitbox1") || hitbox.tag.Equals("hitbox2"))
-            {
-                foreach (BoxCollider2D hurtbox in p2s.GetComponentsInChildren<BoxCollider2D>())
-                {
-                    if (hurtbox.tag.Equals("hurtbox1") || hurtbox.tag.Equals("hurtbox2"))
-                    {
-                        if (hitbox.IsTouching(hurtbox))
-                        {
-                            Debug.Log(hitbox.name + " collided with " + hurtbox.name);
-                        }
-                    }
-                }
-            }
+            Debug.Log(hitbox.name + "colliding is " + hitbox.GetComponent<PeeinWithMyBoyScottDesuNe>().hitting);
         }
     }
 
