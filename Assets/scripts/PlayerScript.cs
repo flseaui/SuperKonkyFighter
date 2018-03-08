@@ -776,6 +776,8 @@ public class PlayerScript : MonoBehaviour
         currentFrame = 0;
         currentActionFrame = 0;
         activeCounter = 0;
+        basicAnimFrame = 0;
+        previousBasicState = 0;
         killAllBoxes();
 
         if (waitForEnd && !waitForGround)
