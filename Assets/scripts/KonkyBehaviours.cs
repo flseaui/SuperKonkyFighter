@@ -721,22 +721,58 @@ public class KonkyBehaviours : Behaviors {
 
 
     // Jump Squat
-    private Action jumpSquat = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { } };
+    private Action jumpSquat = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { }
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(0.5f, 9f, 4, 8, 40, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
 
     // Turns
-    private Action flip = new Action()       { frames = new int[] { 0, 0, 0                                                     }, actionCancels  = new int[] {       } };
+    private Action flip = new Action()       { frames = new int[] { 0, 0, 0                                                     }, actionCancels  = new int[] {       }
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(0.5f, 9f, 4, 8, 40, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
 
     // crouch Turns
-    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { } };
+    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { }
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 4, 7, 8, 40, 5), },
+            {nullBox },
+            {nullBox },
+        },
+    };
 
     // Back Dash
-    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] {  } };
+    private Action backDash = new Action()    { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] {  }
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
+        },
+    };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 3                                                         }, actionCancels = new int[] { 40 }, infinite = true };
+    private Action forwardDash = new Action() { frames = new int[] { 3                                                         }, actionCancels = new int[] { 40 }, infinite = true
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
+        },
+    };
 
     // Stun
-    private Action stun = new Action()        { frames = new int[] { 3                                                          }, actionCancels = new int[] {       } };
+    private Action stun = new Action()        { frames = new int[] { 3                                                          }, actionCancels = new int[] {       }
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
+        },
+    };
 
     // Block
     private Action block = new Action()       { frames = new int[] { 0                                                          }, actionCancels = new int[] {       } };
@@ -748,8 +784,56 @@ public class KonkyBehaviours : Behaviors {
     private Action airBlock = new Action()    { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
-    private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       } };
+    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0, 3, 3, 6, 3, 11), new Action.rect(2, 9, 4, 8, 3, 12), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
+    private Action backAirDash = new Action()    { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       }
+        hurtboxData = new Action.rect[,]
+        {
+            {  new Action.rect(3, 3, 3, 6, 3, 8), new Action.rect(1, 9, 3, 6, 3, 9),  },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
 
     private Action crouch = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
