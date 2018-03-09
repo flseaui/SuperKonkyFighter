@@ -11,10 +11,10 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private LineRenderer lineRenderer;
 
-	private bool glow;
-
 	public Material defaultMaterial;
 	public Material glowMaterial;
+
+	private bool invis;
 
 	void Start()
 	{
@@ -24,38 +24,50 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 		lineRenderer = GetComponent<LineRenderer>();
 
-		glow = false;
+		glowSwitch(false);
 	}
 
-	void Update()
+	public void hide()
 	{
-		if (glow)
-		{
-			lineRenderer.widthMultiplier = 0.8f;
-			lineRenderer.material = glowMaterial;
-			lineRenderer.numCornerVertices = 8;
-			lineRenderer.sortingOrder = 99;
-			GradientColorKey gck = new GradientColorKey();
-			gck.color = Color.white;
-			GradientAlphaKey gak = new GradientAlphaKey();
-			gak.alpha = 1f;
-			Gradient g = new Gradient();
-			g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-			lineRenderer.colorGradient = g;
+		invis = true;
+	}
+
+	private void glowSwitch(bool glow)
+	{
+		if (!invis) {
+			if (glow)
+			{
+				lineRenderer.widthMultiplier = 0.8f;
+				lineRenderer.material = glowMaterial;
+				lineRenderer.numCornerVertices = 8;
+				lineRenderer.sortingOrder = 99;
+				GradientColorKey gck = new GradientColorKey();
+				gck.color = Color.white;
+				GradientAlphaKey gak = new GradientAlphaKey();
+				gak.alpha = 1f;
+				Gradient g = new Gradient();
+				g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+				lineRenderer.colorGradient = g;
+			}
+			else
+			{
+				lineRenderer.widthMultiplier = 0.3f;
+				lineRenderer.material = defaultMaterial;
+				lineRenderer.numCornerVertices = 0;
+				lineRenderer.sortingOrder = 2;
+				GradientColorKey gck = new GradientColorKey();
+				gck.color = Color.white;
+				GradientAlphaKey gak = new GradientAlphaKey();
+				gak.alpha = 0.75f;
+				Gradient g = new Gradient();
+				g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+				lineRenderer.colorGradient = g;
+			}
 		}
 		else
 		{
-			lineRenderer.widthMultiplier = 0.3f;
-			lineRenderer.material = defaultMaterial;
-			lineRenderer.numCornerVertices = 0;
-			lineRenderer.sortingOrder = 2;
-			GradientColorKey gck = new GradientColorKey();
-			gck.color = Color.white;
-			GradientAlphaKey gak = new GradientAlphaKey();
-			gak.alpha = 0.75f;
-			Gradient g = new Gradient();
-			g.SetKeys(new GradientColorKey[] { gck}, new GradientAlphaKey[] { gak });
-			lineRenderer.colorGradient = g;
+			lineRenderer.enabled = false;
+			GetComponent<MeshRenderer>().enabled = false;
 		}
 	}
 
@@ -72,7 +84,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		glow = true;
+		glowSwitch(true);
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -82,7 +94,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		glow = false;
+		glowSwitch(false);
 	}
 
 	void addEventSystem()

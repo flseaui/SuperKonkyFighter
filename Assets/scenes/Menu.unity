@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 505551294}
   - component: {fileID: 505551295}
+  - component: {fileID: 505551296}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -138,7 +139,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 945590021}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -191,12 +193,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &505551296
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 505551293}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 275fb5e869b403647a205ba73d423909, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &804905510
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 505551294}
     m_Modifications:
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -204,11 +223,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -228,7 +247,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4595037053541568, guid: 3c5633bc8140dbc47bde711427a301c2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198622480570966014, guid: 3c5633bc8140dbc47bde711427a301c2,
         type: 2}
@@ -406,13 +425,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd610497a3236544b5fcc1023b11478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleSprite: {fileID: 21300000, guid: f9212b6797e8ced4b8351465c2ff20a9, type: 3}
+  playButtonSprite: {fileID: 21300000, guid: 68633417014e0d841b55c41bbe4c8d59, type: 3}
+  playButtonAnimator: {fileID: 9100000, guid: c1d4751b4672f394bb5fb12de76af254, type: 2}
   buttonPrefab: {fileID: 1790849469800962, guid: b5ae808477828444c961bcf44ad3eb77,
     type: 2}
-  canvas: {fileID: 0}
-  screen: 0
+  spritePrefab: {fileID: 1273148210904142, guid: 67579316177363f4eb5d4dadd8ee06d0,
+    type: 2}
+  background: {fileID: 505551293}
   buttons: []
   links: 
-  background: {fileID: 505551293}
 --- !u!1 &945590018
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +569,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2033702034
+  randomSeed: -719230455
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3868,9 +3890,9 @@ Transform:
   m_PrefabInternal: {fileID: 804905510}
   m_GameObject: {fileID: 945590018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 20}
+  m_LocalPosition: {x: 0, y: -8, z: -80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 505551294}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,17 +7,22 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour {
 
-	public GameObject buttonPrefab;
-	public Canvas canvas;
+	public Sprite titleSprite;
+	public Sprite playButtonSprite;
+	public RuntimeAnimatorController playButtonAnimator;
 
-	public int screen;
+	//-------------------------------------------//
+
+	public GameObject buttonPrefab;
+	public GameObject spritePrefab;
+
+	public GameObject background;
 
 	public List<GameObject> buttons;
 	public List<int> links;
 
-	public GameObject background;
+	private int screen;
 
-	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("stage", 0);
 		PlayerPrefs.SetInt("character1", 0);
@@ -26,8 +31,7 @@ public class MenuScript : MonoBehaviour {
 		startScreen(0);
 	}
 	
-	//20 by 34 yo
-	public void makeButton(Vector3[] points, string text, Color color)
+	public ButtonScript makeButton(Vector3[] points, string text, Color color)
 	{
 		GameObject button = Instantiate(buttonPrefab);
 
@@ -60,6 +64,34 @@ public class MenuScript : MonoBehaviour {
 		mat.color = color;
 
 		buttons.Add(button);
+
+		return button.GetComponent<ButtonScript>();
+	}
+
+	public void makeSprite(int x, int y, int width, int height, Sprite sprite, RuntimeAnimatorController animator)
+	{
+		GameObject spriteObject = Instantiate(spritePrefab);
+
+		RectTransform rect = spriteObject.GetComponent<RectTransform>();
+		Vector3 position = rect.position;
+		position.x = x;
+		position.y = y;
+		rect.position = position;
+
+		Vector2 size = rect.sizeDelta;
+		size.x = width;
+		size.y = height;
+		rect.sizeDelta = size;
+
+		SpriteRenderer render = spriteObject.GetComponent<SpriteRenderer>();
+		render.sprite = sprite;
+		render.size = size;
+
+		if (animator != null)
+		{
+			spriteObject.GetComponent<Animator>().runtimeAnimatorController = playButtonAnimator;
+		}
+		buttons.Add(spriteObject);
 	}
 
 	public void clearButtons()
@@ -81,7 +113,9 @@ public class MenuScript : MonoBehaviour {
 			case 0:
 				Color c = background.GetComponent<SpriteRenderer>().color = new Color(0.6705882352941176f, 0f, 0f);
 				Color buttonColor = new Color(0.8f, 0f, 0f, 0.75f);
-				makeButton(new Vector3[] {new Vector2(-6, -3) , new Vector2(6, -3) , new Vector2(6, 3) , new Vector2(-6, 3) }, "play", buttonColor);
+				makeButton(new Vector3[] {new Vector2(-6, -7) , new Vector2(6, -7) , new Vector2(6, -2) , new Vector2(-6, -2) }, "", buttonColor).hide();
+				makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
+				makeSprite(0, 3, 26, 11, titleSprite, null);
 				break;
 			case 1:
 				buttonColor = new Color(0.8f, 0f, 0f, 0.75f);
