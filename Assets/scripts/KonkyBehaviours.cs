@@ -1090,10 +1090,15 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action jumpForward = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 3, 3, 6, 3, 11), new Action.rect(2, 9, 4, 8, 3, 12), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
