@@ -799,14 +799,11 @@ public class KonkyBehaviours : Behaviors {
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
-        },
-    };
-
-    // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 }, actionCancels = new int[] { 40 }, infinite = true,
-        hurtboxData = new Action.rect[,]
-        {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
@@ -821,6 +818,28 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, }
+        },
+    };
+
+    // Forward Dash
+    private Action forwardDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 }, actionCancels = new int[] { 40 }, infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 14, 1), new Action.rect(1.5f, 9f, 4, 8, 14, 2), },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 1), new Action.rect(1.5f, 9f, 4, 8, 1, 2), }
         },
     };
 
