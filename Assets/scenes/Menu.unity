@@ -428,6 +428,8 @@ MonoBehaviour:
   titleSprite: {fileID: 21300000, guid: f9212b6797e8ced4b8351465c2ff20a9, type: 3}
   playButtonSprite: {fileID: 21300000, guid: 68633417014e0d841b55c41bbe4c8d59, type: 3}
   playButtonAnimator: {fileID: 9100000, guid: c1d4751b4672f394bb5fb12de76af254, type: 2}
+  platformSprite: {fileID: 21300000, guid: c155635ab4fbd324c9689450c9958402, type: 3}
+  konkySelect: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
   buttonPrefab: {fileID: 1790849469800962, guid: b5ae808477828444c961bcf44ad3eb77,
     type: 2}
   spritePrefab: {fileID: 1273148210904142, guid: 67579316177363f4eb5d4dadd8ee06d0,

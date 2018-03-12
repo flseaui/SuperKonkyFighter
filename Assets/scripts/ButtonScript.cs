@@ -16,6 +16,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private bool invis;
 
+	public int triggerID;
+
 	void Start()
 	{
 		Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
