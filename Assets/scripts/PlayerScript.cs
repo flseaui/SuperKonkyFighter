@@ -408,7 +408,7 @@ public class PlayerScript : MonoBehaviour
 
     private void incrementFrame(int[] frames)
     {
-        placeHurtboxes(currentFrame);
+        placeHurtboxes(currentActionFrame);
 
         int previousFrame = currentFrame;
         currentFrame = frames[currentActionFrame];
@@ -521,9 +521,14 @@ public class PlayerScript : MonoBehaviour
         Action.rect[,] hurtboxData;
 
         if (currentAction != 0)
+        {
+            Debug.Log("call");
             hurtboxData = behaviors.getAction(currentAction).hurtboxData;
+        }
         else
+        {
             hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
+        }
         for (int i = 0; i < hurtboxData.GetLength(1); i++)
         {
             Action.rect hurtbox = hurtboxData[frame, i];
@@ -536,6 +541,7 @@ public class PlayerScript : MonoBehaviour
             }
             else if (livingHurtboxesIds.Contains(hurtbox.id))
             {
+                Debug.Log(livingHurtboxesIds.Count);
                 Debug.Log("repeat call");
             }
         }
