@@ -96,6 +96,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         this.tag = playerID.ToString();
+        this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
