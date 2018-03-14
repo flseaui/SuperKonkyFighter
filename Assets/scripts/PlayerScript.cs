@@ -511,7 +511,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                removeBoxCollider2D(livingHitboxesIds[j - 1].ToString());
+                removeBoxCollider2D(livingHitboxesIds[j - 1].ToString(), hitbox);
                 livingHitboxesIds.RemoveAt(j - 1);
                 livingHitboxesLifespans.RemoveAt(j - 1);
             }
@@ -557,7 +557,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString());
+                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString(), false);
                 livingHurtboxesIds.RemoveAt(j - 1);
                 livingHurtboxesLifespans.RemoveAt(j - 1);
             }
@@ -569,7 +569,7 @@ public class PlayerScript : MonoBehaviour
         GameObject childbox = new GameObject(name);
 
         childbox.transform.position = transform.position;
-        childbox.transform.SetParent(transform);
+        childbox.transform.SetParent(boxType ? transform.GetChild(1) : transform.GetChild(2));
 
         childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
 
@@ -578,16 +578,15 @@ public class PlayerScript : MonoBehaviour
         else
             childbox.AddComponent<RealHitboxScript>();
 
-        childbox.AddComponent<Rigidbody2D>();
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
-        childbox.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
-    private void removeBoxCollider2D(String name)
+    private void removeBoxCollider2D(String name, bool boxType)
     {
-        foreach (Transform child in transform)
+        //boxType true = hitbox, false = hurtbox
+        foreach (Transform child in boxType ? transform.GetChild(1) : transform.GetChild(2))
         {
             if (child.gameObject.name.Equals(name))
             {
@@ -608,7 +607,7 @@ public class PlayerScript : MonoBehaviour
         livingHurtboxesIds.Clear();
         livingHurtboxesLifespans.Clear();
 
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(2))
         {
             if (child.gameObject.tag.Equals("hurtbox1") || child.gameObject.tag.Equals("hurtbox2"))
             {
@@ -622,7 +621,7 @@ public class PlayerScript : MonoBehaviour
         livingHitboxesIds.Clear();
         livingHitboxesLifespans.Clear();
 
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(1))
         {
             if (child.gameObject.tag.Equals("hitbox1") || child.gameObject.tag.Equals("hitbox2"))
             {
