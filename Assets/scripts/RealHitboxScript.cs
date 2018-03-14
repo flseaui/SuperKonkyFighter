@@ -13,5 +13,4 @@ public class RealHitboxScript : MonoBehaviour
         col.GetContacts(contactPoints);
         Debug.Log("testin with ya boi scott: " + contactPoints[0]);
     }
-
 }
