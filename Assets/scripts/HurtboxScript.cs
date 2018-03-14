@@ -8,13 +8,13 @@ public class HurtboxScript : MonoBehaviour {
     string oppositeBox;
     bool hit;
 
-    private void Start()
+    void Start()
     {
         oppositeBox = (tag == "hurtbox1" ? "hitbox2" : "hitbox1");
         Debug.Log(oppositeBox);
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("COSMPEFPSEFMPSEMFPSEFM");
         if (col.collider.CompareTag(oppositeBox))
