@@ -582,6 +582,7 @@ public class PlayerScript : MonoBehaviour
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
+        childbox.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     private void removeBoxCollider2D(String name)
