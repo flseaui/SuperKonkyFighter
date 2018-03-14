@@ -175,7 +175,6 @@ public class PlayerScript : MonoBehaviour
                 if (previousBasicState != 0)
                 {
                     previousBasicState = 0;
-                    Debug.Log("BEEP BEEP");
                     killAllBoxes();
                 }
 
@@ -524,7 +523,6 @@ public class PlayerScript : MonoBehaviour
 
         if (currentAction != 0)
         {
-            Debug.Log("call");
             hurtboxData = behaviors.getAction(currentAction).hurtboxData;
         }
         else
@@ -598,7 +596,6 @@ public class PlayerScript : MonoBehaviour
 
     private void killAllBoxes()
     {
-        Debug.Log("all kill");
         killAllHitboxes();
         killAllHurtboxes();
     }

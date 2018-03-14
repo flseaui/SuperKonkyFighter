@@ -6,10 +6,12 @@ public class RealHitboxScript : MonoBehaviour
 {
 
     string tag;
+    ContactPoint2D[] contactPoints;
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionStay2D(Collision2D col)
     {
-        Debug.Log("testin with ya boi scott: " + col.collider.tag);
+        col.GetContacts(contactPoints);
+        Debug.Log("testin with ya boi scott: " + contactPoints[0]);
     }
 
 }

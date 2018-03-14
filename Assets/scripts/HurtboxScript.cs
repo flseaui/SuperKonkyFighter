@@ -16,6 +16,7 @@ public class HurtboxScript : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D col)
     {
+        Debug.Log("COSMPEFPSEFMPSEMFPSEFM");
         if (col.collider.CompareTag(oppositeBox))
         {
             hit = true;
