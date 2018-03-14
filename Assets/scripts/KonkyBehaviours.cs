@@ -199,7 +199,7 @@ public class KonkyBehaviours : Behaviors {
         damage      = new int[] { 600 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(5, 10, 6, 1, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(5, 9, 6, 2, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, }
         },
         hurtboxData = new Action.rect[,]
@@ -624,7 +624,7 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 13 | 2 | 19
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(5, 3, 9, 6, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(8, 2, 12, 4, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, }
         },
         hurtboxData = new Action.rect[,]
@@ -642,9 +642,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, },
             {nullBox, },
             {nullBox, },
-            { new Action.rect(0, 3, 20, 6, 2, 1), },
+            { new Action.rect(4, 4, 15, 8, 21, 1), },
             {nullBox, },
-            { new Action.rect(0, 4, 15, 8, 19, 1), },
+            {nullBox, },
             {nullBox, },
             {nullBox, },
             {nullBox, },
@@ -1044,7 +1044,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox }
         },
     };
     private Action idle = new Action() {
