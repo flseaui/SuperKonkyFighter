@@ -14,7 +14,7 @@ public class HurtboxScript : MonoBehaviour {
         Debug.Log(oppositeBox);
     }
 
-    private void OnCollisionStay2D(Collision2D col)
+    public void OnCollisionStay2D(Collision2D col)
     {
         Debug.Log("COSMPEFPSEFMPSEMFPSEFM");
         if (col.collider.CompareTag(oppositeBox))
