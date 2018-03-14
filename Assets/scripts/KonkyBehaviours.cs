@@ -391,9 +391,9 @@ public class KonkyBehaviours : Behaviors {
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (1) 5 | 24
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(6, 3, 4, 5, 2, 0), nullBox,  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(5.5f, 3, 4, 5, 2, 0), nullBox,  }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, nullBox, },
-            { new Action.rect(7, 9, 6, 14, 5, 0), new Action.rect(7, 9, 6, 14, 5, 0), }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect(6, 9.5f, 4, 14, 5, 0), new Action.rect(9, 10, 3, 8, 5, 1), }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
@@ -401,16 +401,18 @@ public class KonkyBehaviours : Behaviors {
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 4, 7, 8, 9, 1), nullBox },
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            {nullBox, nullBox},
-            { new Action.rect(2, 2.5f, 8, 5, 27, 1), new Action.rect(3.5f, 9f, 4, 8, 27, 2), },
+            { new Action.rect(0.5f, 4, 7, 8, 11, 2), nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(2, 2.5f, 8, 5, 27, 2), new Action.rect(3.5f, 9f, 4, 8, 27, 3), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -435,9 +437,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {new Action.rect(0.5f, 4, 7, 8, 4, 1), nullBox },
+            {new Action.rect(0.5f, 4, 7, 8, 4, 2), nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox }
