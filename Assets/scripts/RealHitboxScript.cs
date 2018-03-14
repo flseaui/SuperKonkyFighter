@@ -9,7 +9,7 @@ public class RealHitboxScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("testin with ya boi scott");
+        Debug.Log("testin with ya boi scott: " + col.collider.tag);
     }
 
 }

@@ -581,9 +581,6 @@ public class PlayerScript : MonoBehaviour
             childbox.AddComponent<RealHitboxScript>();
 
         childbox.AddComponent<BoxCollider2D>();
-
-        if (boxType) childbox.AddComponent<PeeinWithMyBoyScottDesuNe>();
-
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
     }

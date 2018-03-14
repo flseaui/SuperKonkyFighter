@@ -113,11 +113,7 @@ public class BackGroundScript : MonoBehaviour {
 
     private void checkCollisions()
     {
-        foreach (Transform child in p1s.transform)
-        {
-            if (child.tag.Equals("hitbox1"))
-                Debug.Log(child.name + " colliding is " + child.GetComponent<PeeinWithMyBoyScottDesuNe>().hitting);
-        }
+        
     }
 
     private Vector2 diffBetweenPoints(Vector2 point1, Vector2 point2)
