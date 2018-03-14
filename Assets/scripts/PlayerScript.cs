@@ -419,7 +419,7 @@ public class PlayerScript : MonoBehaviour
         // Debug.Log("currentActionFrame" + currentActionFrame);
         if (previousFrame != 1 && currentFrame == 1)
         {
-            otherPlayer.GetComponentInChildren<HitboxScript>().initialFrame = false;
+            otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
             ++damageCounter;
         }
 
