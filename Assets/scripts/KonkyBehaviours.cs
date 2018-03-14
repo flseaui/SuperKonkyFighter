@@ -343,10 +343,10 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 4 | 13
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(2, 6, 8, 7, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            {nullBox, },
-            {nullBox, },
-            {nullBox, }
+            { new Action.rect(2, 6, 8, 7, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { nullBox, },
+            { new Action.rect(2, 6, 8, 7, 2, 0), },
+            { nullBox, }
         },
         hurtboxData = new Action.rect[,]
         {
@@ -375,7 +375,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, },
             {nullBox, }
         },
-        damage      = new int[] { 500 },
+        damage      = new int[] { 250, 250 },
         level       = 1,
         actionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
