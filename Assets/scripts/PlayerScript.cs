@@ -581,6 +581,8 @@ public class PlayerScript : MonoBehaviour
         childbox.AddComponent<BoxCollider2D>();
         childbox.GetComponent<BoxCollider2D>().size = size;
         childbox.GetComponent<BoxCollider2D>().offset = offset;
+        if (!boxType)
+            childbox.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     private void removeBoxCollider2D(String name, bool boxType)

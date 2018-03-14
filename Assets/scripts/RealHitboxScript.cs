@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class RealHitboxScript : MonoBehaviour
 {
-
     string tag;
-    ContactPoint2D[] contactPoints;
+    public bool hurt;
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        col.GetContacts(contactPoints);
-        Debug.Log("testin with ya boi scott: " + contactPoints[0]);
+        hurt = true;
+        Debug.Log("hittin with ya boi scott");
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        hurt = false;
     }
 }

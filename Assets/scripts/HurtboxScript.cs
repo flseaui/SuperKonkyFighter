@@ -6,7 +6,7 @@ public class HurtboxScript : MonoBehaviour {
 
     string tag;
     string oppositeBox;
-    bool hit;
+    public bool hit;
 
     void Start()
     {
@@ -14,14 +14,18 @@ public class HurtboxScript : MonoBehaviour {
         Debug.Log(oppositeBox);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("COSMPEFPSEFMPSEMFPSEFM");
-        if (col.collider.CompareTag(oppositeBox))
+        if (col.CompareTag(oppositeBox))
         {
             hit = true;
-            Debug.Log("hittin with ya boy scott");
+            Debug.Log("gettin hit with ya boy scott");
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        hit = false;
     }
 
 }
