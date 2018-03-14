@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224088527039735418}
   - component: {fileID: 50152677301926184}
+  - component: {fileID: 114336376607787406}
   m_Layer: 0
   m_Name: Hurtboxes
   m_TagString: hitboxes
@@ -54,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224373964462076988}
   - component: {fileID: 50594633158383284}
+  - component: {fileID: 114047437690632120}
   m_Layer: 0
   m_Name: Hitboxes
   m_TagString: hurtboxes
@@ -197,6 +199,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114047437690632120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381016441221424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2d06ce88e38b14bb1153f0724fda75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114237799369803098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,6 +269,17 @@ MonoBehaviour:
   livingHurtboxesLifespans: []
   previousBasicState: 0
   basicAnimFrame: 0
+--- !u!114 &114336376607787406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330600056199474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3f3a993d6747546b48726744e7ce18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
