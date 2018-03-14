@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RealHitboxScript : MonoBehaviour
+public class HitboxScript : MonoBehaviour
 {
     string tag;
     public bool hurt;
@@ -13,7 +13,7 @@ public class RealHitboxScript : MonoBehaviour
         Debug.Log("hittin with ya boi scott");
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         hurt = false;
     }

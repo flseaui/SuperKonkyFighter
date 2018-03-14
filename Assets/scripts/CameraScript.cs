@@ -90,7 +90,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-		if (megaKek == 1)
+		/*if (megaKek == 1)
 		{
 			p1s.hitStopped = true;
 			p2s.hitStopped = true;
@@ -122,7 +122,7 @@ public class CameraScript : MonoBehaviour
             int gAngle = currentAction.gAngle;
             int tier = currentAction.tier;
 
-            if (p1s.basicState == 4 && p1s.currentAction == 0 || p1s.currentAction == /*put block value here*/100000)
+            if (p1s.basicState == 4 && p1s.currentAction == 0 || p1s.currentAction == 100000)
 			{
 				p1s.block((int)p2s.level(3));
 
@@ -158,7 +158,7 @@ public class CameraScript : MonoBehaviour
 				else
 				{
 					p1s.stun((int)p1s.level(1));
-				}*/
+				}
 			}
 		}
 
@@ -177,7 +177,7 @@ public class CameraScript : MonoBehaviour
             int gAngle = currentAction.gAngle;
             int tier = currentAction.tier;
 
-            if (p2s.basicState == 4 && p2s.currentAction == 0 || p2s.currentAction == /*put block value here*/ 10000)
+            if (p2s.basicState == 4 && p2s.currentAction == 0 || p2s.currentAction == 10000)
 			{
 
 				p2s.block((int)p2s.level(3));
@@ -279,6 +279,7 @@ public class CameraScript : MonoBehaviour
 			setX(self, cx + shakeX);
 			setY(self, 12 + shakeY);
 		}
+*/
 	}
 
     private float getX(GameObject o)

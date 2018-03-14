@@ -865,12 +865,12 @@ public class PlayerScript : MonoBehaviour
         return this.transform.position.x;
     }
 
-    public int damage(int ammount, float k, int angle, int ac, bool bl)
+    public void damage(int damage, float knockback, int angle)
     {
-        health -= ammount;
+        health -= damage;
         damageDealt = true;
-        hKnockback = k * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
-        vKnockback = k * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
+        vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
         if (vKnockback > 0)
         {
@@ -879,7 +879,7 @@ public class PlayerScript : MonoBehaviour
 
         vVelocity = 0;
 
-        if (!bl)
+       /* if (!bl)
         {
             switch (ac)
             {
@@ -898,7 +898,7 @@ public class PlayerScript : MonoBehaviour
         else
         {
             return 2;
-        }
+        }*/
     }
 
     public void block(int amm)

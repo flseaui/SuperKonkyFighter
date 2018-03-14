@@ -19,7 +19,7 @@ public class HurtboxScript : MonoBehaviour {
         if (col.CompareTag(oppositeBox))
         {
             hit = true;
-            Debug.Log("gettin hit with ya boy scott");
+            Debug.Log("gettin hit with ya boy scott " + oppositeBox);
         }
     }
 
