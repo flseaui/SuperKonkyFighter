@@ -576,9 +576,9 @@ public class PlayerScript : MonoBehaviour
         childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
 
         if (!boxType)
-        {
             childbox.AddComponent<HurtboxScript>();
-        }  
+        else
+            childbox.AddComponent<RealHitboxScript>();
 
         childbox.AddComponent<BoxCollider2D>();
 
