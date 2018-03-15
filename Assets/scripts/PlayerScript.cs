@@ -235,6 +235,9 @@ public class PlayerScript : MonoBehaviour
             {
                 air = false;
                 airDashed = false;
+
+                if (currentAction > 0)
+                    ActionEnd();
             }
             vVelocity = 0;
             setY(FLOOR_HEIGHT);
@@ -886,6 +889,7 @@ public class PlayerScript : MonoBehaviour
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
         ActionEnd();
+        Debug.Log("stun");
         currentAction = 45;
 
         if (vKnockback > 0)
