@@ -193,6 +193,8 @@ public class PlayerScript : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
 
+        knockbackDecrease();
+
         movePlayer();
 
         updateAnimation();
