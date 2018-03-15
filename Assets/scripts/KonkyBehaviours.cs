@@ -1093,7 +1093,7 @@ public class KonkyBehaviours : Behaviors {
         },
     };
     private Action walkForward = new Action() {
-        frames = new List < int > { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ,3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ,3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 25, 6), new Action.rect(1.5f, 9f, 4, 8, 25, 7), },

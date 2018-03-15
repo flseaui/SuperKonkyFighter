@@ -408,7 +408,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
     }
 
-    private void incrementFrame(List<int> frames)
+    private void incrementFrame(int[] frames)
     {
         placeHurtboxes(currentActionFrame);
 
@@ -640,7 +640,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
             if (!air)
                 hVelocity = 0;
-            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Count)
+            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
@@ -868,6 +868,15 @@ public class PlayerScript : MonoBehaviour
     public float x()
     {
         return this.transform.position.x;
+    }
+
+    public void stun(int stunLength)
+    {
+        currentAction = 45;
+        for (int i = 0; i < stunLength; i++)
+        {
+            incrementFrame(behaviors.getAction(45).frames);
+        }
     }
 
     public void damage(int damage, float knockback, int angle)

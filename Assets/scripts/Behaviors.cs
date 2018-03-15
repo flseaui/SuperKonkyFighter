@@ -25,7 +25,7 @@ public abstract class Behaviors {
         return AnimAction[id];
     }
 
-    public void populateHitboxes(IDictionary<int, Action> actions, Action.rect filler)
+    public void populateStunboxes(Action.rect filler)
     {
         for (int i = 0; i < actions.Count; i++)
         {

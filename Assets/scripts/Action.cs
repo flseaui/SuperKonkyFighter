@@ -22,8 +22,6 @@ public class Action {
 
     public rect[,] hitboxData;
     public rect[,] hurtboxData;
-    public List<int> hitframes;
-    public List<Action.rect> hurtboxes;
 
     public struct rect
     {
