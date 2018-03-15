@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class HurtboxScript : MonoBehaviour {
 
-    string tag;
+    int tag;
     string oppositeBox;
     public bool hit;
 
     void Start()
     {
-        oppositeBox = (tag == "hurtbox1" ? "hitbox2" : "hitbox1");
+        tag = GetComponentInParent<PlayerScript>().playerID;
+        oppositeBox = (tag == 1 ? "hitbox2" : "hitbox1");
         Debug.Log(oppositeBox);
     }
 

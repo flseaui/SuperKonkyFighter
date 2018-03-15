@@ -571,7 +571,7 @@ public class PlayerScript : MonoBehaviour
         childbox.transform.position = transform.position;
         childbox.transform.SetParent(boxType ? transform.GetChild(1) : transform.GetChild(2));
 
-        childbox.tag = (boxType ? "hitbox" + playerID.ToString() : "hurtbox" + playerID.ToString());
+        childbox.tag = (boxType ? "hitbox" + playerID : "hurtbox" + playerID);
 
         /*if (!boxType)
             childbox.AddComponent<HurtboxScript>();
