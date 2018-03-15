@@ -134,7 +134,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 20, 10, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
@@ -153,7 +153,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 2,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
@@ -167,7 +167,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 1,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
@@ -181,7 +181,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 0,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -195,7 +195,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 1,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -209,7 +209,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchH = new Action()
     {
         tier = 2,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 3,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
@@ -223,7 +223,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 2,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
@@ -237,7 +237,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 2,
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
@@ -251,7 +251,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 3,
         actionCancels = new int[] {  },
@@ -265,7 +265,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new List<int> { 0 },//  |  | 
+        frames = new int[] { 0 },//  |  | 
         damage = new int[] {  },
         level = 0,
         actionCancels = new int[] { 35 },
@@ -279,7 +279,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 5,
         actionCancels = new int[] { 35, 41, 42 },
@@ -293,7 +293,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 4,
         actionCancels = new int[] { 35 },
@@ -307,7 +307,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 2,
         actionCancels = new int[] { 35 },
@@ -321,7 +321,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action fiveS = new Action()
     {
         tier = 3,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] { 0 },
         level = 0,
         actionCancels = new int[] { },
@@ -335,7 +335,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action sixS = new Action()
     {
         tier = 3,
-        frames = new List<int> {  },//  |  | 
+        frames = new int[] {  },//  |  | 
         damage = new int[] {  },
         level = 5,
         actionCancels = new int[] { 35 },
@@ -349,7 +349,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new List<int> { 0 },//  |  | 
+        frames = new int[] { 0 },//  |  | 
         damage = new int[] {  },
         level = 5,
         actionCancels = new int[] { 1, 2 },
@@ -360,32 +360,32 @@ public class GreyshirtBehaviours : Behaviors
     };
 
     // Turns
-    private Action flip = new Action() { frames = new List<int> { 0, 0, 0 }, actionCancels = new int[] { } };
+    private Action flip = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { } };
 
     // crouch Turns
-    private Action crouchFlip = new Action() { frames = new List<int> { 0, 0, 0, }, actionCancels = new int[] { } };
+    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { } };
 
     // Back Dash
-    private Action backDash = new Action() { frames = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new int[] { } };
+    private Action backDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new int[] { } };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new List<int> { 3 }, actionCancels = new int[] { 40 }, infinite = true };
+    private Action forwardDash = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { 40 }, infinite = true };
 
     // Stun
-    private Action stun = new Action() { frames = new List<int> { 3 }, actionCancels = new int[] { } };
+    private Action stun = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { } };
 
     // Block
-    private Action block = new Action() { frames = new List<int> { 0 }, actionCancels = new int[] { } };
+    private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Crouching Block
-    private Action crouchBlock = new Action() { frames = new List<int> { 0 }, actionCancels = new int[] { } };
+    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Block
-    private Action airBlock = new Action() { frames = new List<int> { 0 }, actionCancels = new int[] { } };
+    private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
-    private Action backAirDash = new Action() { frames = new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
+    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
+    private Action backAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
 }
 //Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
 //0     | 8       | 12      | 23         | 9         | .75

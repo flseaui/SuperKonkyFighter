@@ -926,11 +926,7 @@ public class PlayerScript : MonoBehaviour
     {
         return levelScaling[behaviors.getAction(currentAction).level, wanted];
     }
-
-    public void stun(int time)
-    {
-
-    }
+    
 
     public void knockbackDecrease()
     {
