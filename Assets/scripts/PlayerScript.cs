@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour
     public bool flipFacing;
     public bool flip;
     public bool facingRight;
+    public bool onTheRight;
 
     public int bufferedMove;
     public int maxHealth;
@@ -233,7 +234,6 @@ public class PlayerScript : MonoBehaviour
             if (air)
             {
                 air = false;
-                ActionEnd();
                 airDashed = false;
             }
             vVelocity = 0;
@@ -448,7 +448,7 @@ public class PlayerScript : MonoBehaviour
             else if (basicState >= 7 && !waitForEnd)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == 40 && inputManager.currentInput[12])
+                    if (Actions == 40 && inputManager.currentInput[12] && !airDashed)
                     {
                         bufferedMove = 40;
                         if (basicState == 7)
@@ -884,6 +884,9 @@ public class PlayerScript : MonoBehaviour
         health -= damage;
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+
+        ActionEnd();
+        currentAction = 45;
 
         if (vKnockback > 0)
         {
