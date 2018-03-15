@@ -115,11 +115,14 @@ public class BackGroundScript : MonoBehaviour {
     {
         if (p1s.GetComponentInChildren<HurtboxScript>().hit)
         {
-           Action action = p2s.behaviors.getAction(p2s.currentAction);
-           p1s.damage(action.damage[0], action.gStrength, action.gAngle);
+            Debug.Log("p1 hit");
+            Action action = p2s.behaviors.getAction(p2s.currentAction);
+            
+            p1s.damage(action.damage[0], action.gStrength, action.gAngle);
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit)
         {
+            Debug.Log("p2 hit");
             Action action = p1s.behaviors.getAction(p1s.currentAction);
             p2s.damage(action.damage[0], action.gStrength, action.gAngle);
         }

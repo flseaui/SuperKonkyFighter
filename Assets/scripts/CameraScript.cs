@@ -90,7 +90,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-		/*if (megaKek == 1)
+		if (megaKek == 1)
 		{
 			p1s.hitStopped = true;
 			p2s.hitStopped = true;
@@ -107,7 +107,7 @@ public class CameraScript : MonoBehaviour
 			Time.timeScale = 0;
 		}
 
-        if (p1h.hit)
+     /*   if (p1h.hit)
         {
 			megaKek = 1;
 
@@ -151,7 +151,7 @@ public class CameraScript : MonoBehaviour
                     p1s.meter += 2;
                 }
                 
-				/*if (p1s.type == 0)
+				if (p1s.type == 0)
 				{
 					p1s.stun((int)p1s.level(2));
 				}
@@ -216,7 +216,7 @@ public class CameraScript : MonoBehaviour
 				}
 			}
 		}
-
+        */
         if (hitTimer != 0)
         {
 			shake = true;
@@ -230,7 +230,7 @@ public class CameraScript : MonoBehaviour
             p1s.hitStopped = false;
             p2s.hitStopped = false;
         }
-
+        
 		float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
@@ -241,7 +241,7 @@ public class CameraScript : MonoBehaviour
         }
         setX(background, cx * 0.5f);
         setX(self, cx);
-
+ 
 		bool now = getX(player1) < getX(player2);
 
 		if (now != history) {
@@ -279,7 +279,7 @@ public class CameraScript : MonoBehaviour
 			setX(self, cx + shakeX);
 			setY(self, 12 + shakeY);
 		}
-*/
+
 	}
 
     private float getX(GameObject o)
