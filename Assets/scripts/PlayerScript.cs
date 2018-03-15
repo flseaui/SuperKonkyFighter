@@ -701,17 +701,22 @@ public class PlayerScript : MonoBehaviour
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
             {
                 jump = 7;
-                basicState = 7;
+
+                if (!airDashed)
+                    basicState = 7;
             }
             else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
             {
                 jump = 9;
-                basicState = 9;
+
+                if (!airDashed)
+                    basicState = 9;
             }
             else if (inputManager.currentInput[12])
             {
                 jump = 8;
-                basicState = 8;
+                if (!airDashed)
+                    basicState = 8;
             }
 
             if (!airDashed && jump >= 7)
