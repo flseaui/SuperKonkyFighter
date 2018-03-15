@@ -331,9 +331,9 @@ public class KonkyBehaviours : Behaviors {
         level       = 0,
         actionCancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
-        gStrength   = 1,
+        gStrength   = .5f,
         aAngle      = 30,
-        aStrength   = 1
+        aStrength   = .5f
     };
 
     // Crouching Medium
@@ -379,9 +379,9 @@ public class KonkyBehaviours : Behaviors {
         level       = 1,
         actionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
-        gStrength   = 2,
+        gStrength   = 1,
         aAngle      = 30,
-        aStrength   = 2
+        aStrength   = 1
     };
 
     // Crouching Heavy
@@ -446,9 +446,9 @@ public class KonkyBehaviours : Behaviors {
         level = 3,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle      = 80,
-        gStrength   = 4,
+        gStrength   = 3,
         aAngle      = 80,
-        aStrength   = 5
+        aStrength   = 4
     };
 
     // Jumping Light
