@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    bool damageDealt;
     public bool waitForGround;
     public bool waitForEnd;
     public bool air;
@@ -31,9 +30,8 @@ public class PlayerScript : MonoBehaviour
     public int bufferedMove;
     public int maxHealth;
     public int health;
-    public int currentFrame;
+    public int currentFrameType;
     public int currentActionFrame;
-    public int damageCounter;
     public int activeCounter;
     public int playerID;
     public int meter;
@@ -413,31 +411,26 @@ public class PlayerScript : MonoBehaviour
     {
         placeHurtboxes(currentActionFrame);
 
-        int previousFrame = currentFrame;
-        currentFrame = frames[currentActionFrame];
+        int previousFrame = currentFrameType;
+        currentFrameType = frames[currentActionFrame];
         currentActionFrame++;
 
         // Debug.Log("currentActionFrame" + currentActionFrame);
-        if (previousFrame != 1 && currentFrame == 1)
+        if (previousFrame != 1 && currentFrameType == 1)
         {
             otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
-            ++damageCounter;
         }
 
-        if (currentFrame == 1)
+        if (currentFrameType == 1)
         {
             if (currentAction < 40)
                 placeHitboxes();
             activeCounter++;
         }
-        else
-        {
-            damageDealt = false;
-        }
 
-        if (currentFrame == 3)
+        if (currentFrameType == 3)
         {
-            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite && damageDealt)
+            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
             {
                 ActionEnd();
             }
@@ -801,7 +794,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         currentAction = 0;
-        currentFrame = 0;
+        currentFrameType = 0;
         currentActionFrame = 0;
         activeCounter = 0;
         basicAnimFrame = 0;
@@ -870,7 +863,6 @@ public class PlayerScript : MonoBehaviour
     public void damage(int damage, float knockback, int angle)
     {
         health -= damage;
-        damageDealt = true;
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
