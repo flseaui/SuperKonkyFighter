@@ -46,6 +46,7 @@ public class PlayerScript : MonoBehaviour
     private int stunTimer;
     public int updateEnd;
     public bool coll;
+    public bool damagedealt;
 
     public float hKnockback;
     public float vKnockback;
@@ -426,6 +427,10 @@ public class PlayerScript : MonoBehaviour
             if (currentAction < 40)
                 placeHitboxes();
             activeCounter++;
+        }
+        else
+        {
+            damagedealt = false;
         }
 
         if (currentFrameType == 3)

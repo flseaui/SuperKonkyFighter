@@ -113,17 +113,19 @@ public class BackGroundScript : MonoBehaviour {
 
     private void checkCollisions()
     {
-        if (p1s.GetComponentInChildren<HurtboxScript>().hit)
+        if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
         {
             Debug.Log("p1 hit");
             Action action = p2s.behaviors.getAction(p2s.currentAction);
             p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
+            p2s.damagedealt = true;
         }
-        if (p2s.GetComponentInChildren<HurtboxScript>().hit)
+        if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
         {
             Debug.Log("p2 hit");
             Action action = p1s.behaviors.getAction(p1s.currentAction);
             p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
+            p1s.damagedealt = true;
         }
     }
 
