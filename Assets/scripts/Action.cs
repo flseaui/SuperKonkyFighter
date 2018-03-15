@@ -6,7 +6,7 @@ public class Action {
 
     public int[] actionCancels;
     public int[] meterCost;
-    public int[] frames;
+    public List<int> frames;
     public int[] damage;
 
     public int tier;

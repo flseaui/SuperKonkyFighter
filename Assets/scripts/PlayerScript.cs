@@ -407,7 +407,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
     }
 
-    private void incrementFrame(int[] frames)
+    private void incrementFrame(List<int> frames)
     {
         placeHurtboxes(currentActionFrame);
 
@@ -635,7 +635,7 @@ public class PlayerScript : MonoBehaviour
             AttackState = 0;
             if (!air)
                 hVelocity = 0;
-            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
+            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Count)
             {
                 if (behaviors.getAction(currentAction).infinite)
                     currentActionFrame--;
