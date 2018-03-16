@@ -272,7 +272,7 @@ public class MenuScript : MonoBehaviour {
 				unstickAll();
 				backgroundPass = 3;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
-				backgroundText.GetComponent<TextMesh>().text = "alley";
+				backgroundText.GetComponent<TextMesh>().text = "midnight park";
 				backgroundGoButton.GetComponent<ButtonScript>().show();
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
