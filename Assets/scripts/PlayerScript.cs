@@ -889,8 +889,9 @@ public class PlayerScript : MonoBehaviour
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
         ActionEnd();
-        Debug.Log("stun");
         currentAction = 45;
+        
+        //stun(4);
 
         if (vKnockback > 0)
         {
