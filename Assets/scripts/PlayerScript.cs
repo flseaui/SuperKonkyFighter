@@ -155,7 +155,9 @@ public class PlayerScript : MonoBehaviour
 
         basicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
-        //AttackState = 5;
+
+        if (AttackState % 10 >= 7 && !air)
+            AttackState = 0;
         setAdvancedInput(inputManager.currentInput);
 
         hPush = 0;
