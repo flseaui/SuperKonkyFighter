@@ -116,17 +116,19 @@ public class BackGroundScript : MonoBehaviour {
 
     private void hitStop()
     {
-        if (stopTimer != 0)
+        if (stopTimer > 0)
         {
-            Debug.Log("hit stopping"); 
+            Debug.Log("hit stopping");
             // shake = true;
+            Time.timeScale = 0;
             stopTimer--;
         }
         else
         {
-           // setY(self, 12);
-           // shake = false;
-            Time.timeScale = 0;
+            // setY(self, 12);
+            // shake = false;
+            Debug.Log("stoppin hitstop with ya boi scott");
+            Time.timeScale = 1;
             p1s.hitStopped = false;
             p2s.hitStopped = false;
         }
