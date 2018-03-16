@@ -496,7 +496,7 @@ public class KonkyBehaviours : Behaviors {
         actionCancels     = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 1,
-        aAngle      = 30,
+        aAngle      = 45,
         aStrength   = 1
     };
 
@@ -552,7 +552,7 @@ public class KonkyBehaviours : Behaviors {
         actionCancels     = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 1,
-        aAngle      = 30,
+        aAngle      = 45,
         aStrength   = 1
     };
 
