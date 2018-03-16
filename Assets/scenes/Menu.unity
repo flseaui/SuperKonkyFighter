@@ -430,10 +430,20 @@ MonoBehaviour:
   playButtonAnimator: {fileID: 9100000, guid: c1d4751b4672f394bb5fb12de76af254, type: 2}
   platformSprite: {fileID: 21300000, guid: c155635ab4fbd324c9689450c9958402, type: 3}
   konkySelect: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
+  GreyshirtSelect: {fileID: 21300000, guid: 74586aef65a341a42860a23afa6eb459, type: 3}
+  PlayerSelectText: {fileID: 21300000, guid: d7c5180793f8068449f3ed336a17ca52, type: 3}
+  StageSelectText: {fileID: 21300000, guid: 6bf3500f4670a9a4fadab2255f42a839, type: 3}
+  BackgroundNSprite: {fileID: 21300000, guid: 366e16781bf711548aa549d973509e53, type: 3}
+  backgroundRSprite: {fileID: 21300000, guid: 8c8e9e2838d6d044b9bb4d15f3d8abbb, type: 3}
+  background0Sprite: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
+  background1Sprite: {fileID: 21300000, guid: 495ac15a315ff38479eade0bb006874d, type: 3}
+  background2Sprite: {fileID: 21300000, guid: 14ce2032cacd46a4fb52498d527fd838, type: 3}
+  background3Sprite: {fileID: 21300000, guid: cf9d9ecf9e82ed4428e0023d32a7886a, type: 3}
   buttonPrefab: {fileID: 1790849469800962, guid: b5ae808477828444c961bcf44ad3eb77,
     type: 2}
   spritePrefab: {fileID: 1273148210904142, guid: 67579316177363f4eb5d4dadd8ee06d0,
     type: 2}
+  textPrefab: {fileID: 1977824317857002, guid: 57620ae16949859459f1fa1add0faef3, type: 2}
   background: {fileID: 505551293}
   buttons: []
   links: 

@@ -11,92 +11,176 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private LineRenderer lineRenderer;
 
+	private Material color;
+
+	//-----------FLAGS------------------//
+
+	public const int FLAG_HIDDEN = 0;
+	public const int FLAG_STICKY = 1;
+	public const int FLAG_DUMMY  = 2;
+	public const int FLAG_STUCK  = 3;
+
+	//--------------line types----------//
 	public Material defaultMaterial;
 	public Material glowMaterial;
+	//------------------------------------//
 
-	private bool invis;
+	public bool disable;
+	public bool sticky;
 
 	public int triggerID;
 
 	void Start()
 	{
+		
+	}
+
+	public void startFlags(int[] flags)
+	{
+
 		Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
-
 		addEventSystem();
-
 		lineRenderer = GetComponent<LineRenderer>();
+		color = GetComponent<MeshRenderer>().material;
 
-		glowSwitch(false);
+		unGlow();
+
+		foreach (int i in flags)
+		{
+			switch (i)
+			{
+				case FLAG_HIDDEN:
+
+					lineRenderer.enabled = false;
+					GetComponent<MeshRenderer>().enabled = false;
+					break;
+
+				case FLAG_STICKY:
+
+					sticky = true;
+					break;
+
+				case FLAG_DUMMY:
+
+					disable = true;
+					break;
+
+				case FLAG_STUCK:
+
+					sticky = true;
+					disable = true;
+					glow();
+					break;
+			}
+		}
 	}
 
 	public void hide()
 	{
-		invis = true;
+		lineRenderer.enabled = false;
+		GetComponent<MeshRenderer>().enabled = false;
 	}
 
-	private void glowSwitch(bool glow)
+	public void show()
 	{
-		if (!invis) {
-			if (glow)
-			{
-				lineRenderer.widthMultiplier = 0.8f;
-				lineRenderer.material = glowMaterial;
-				lineRenderer.numCornerVertices = 8;
-				lineRenderer.sortingOrder = 99;
-				GradientColorKey gck = new GradientColorKey();
-				gck.color = Color.white;
-				GradientAlphaKey gak = new GradientAlphaKey();
-				gak.alpha = 1f;
-				Gradient g = new Gradient();
-				g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-				lineRenderer.colorGradient = g;
-			}
-			else
-			{
-				lineRenderer.widthMultiplier = 0.3f;
-				lineRenderer.material = defaultMaterial;
-				lineRenderer.numCornerVertices = 0;
-				lineRenderer.sortingOrder = 2;
-				GradientColorKey gck = new GradientColorKey();
-				gck.color = Color.white;
-				GradientAlphaKey gak = new GradientAlphaKey();
-				gak.alpha = 0.75f;
-				Gradient g = new Gradient();
-				g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-				lineRenderer.colorGradient = g;
-			}
+		lineRenderer.enabled = true;
+		GetComponent<MeshRenderer>().enabled = true;
+	}
+
+	public void enable()
+	{
+		disable = false;
+	}
+
+	public void kek()
+	{
+		disable = true;
+	}
+
+	public void unlock()
+	{
+		if (disable) {
+			disable = false;
+			unGlow();
 		}
-		else
-		{
-			lineRenderer.enabled = false;
-			GetComponent<MeshRenderer>().enabled = false;
-		}
+	}
+
+	private void glow()
+	{
+		lineRenderer.widthMultiplier = 0.8f;
+		lineRenderer.material = glowMaterial;
+		lineRenderer.numCornerVertices = 8;
+		lineRenderer.sortingOrder = 3;
+
+		GradientColorKey gck0 = new GradientColorKey();
+		gck0.color = new Color(0.4f, 0.6f, 1f);
+		gck0.time = 0;
+
+		GradientColorKey gck1 = new GradientColorKey();
+		gck1.color = Color.black;
+		gck1.time = 0.66f;
+
+		GradientColorKey gck2 = new GradientColorKey();
+		gck2.color = new Color(0.4f, 0.6f, 1f);
+		gck2.time = 1;
+
+		GradientAlphaKey gak = new GradientAlphaKey();
+		gak.alpha = 1f;
+
+		Gradient g = new Gradient();
+		g.SetKeys(new GradientColorKey[] { gck0, gck1, gck2 }, new GradientAlphaKey[] { gak });
+		lineRenderer.colorGradient = g;
+	}
+
+	private void unGlow()
+	{
+		lineRenderer.widthMultiplier = 0.3f;
+		lineRenderer.material = defaultMaterial;
+		lineRenderer.numCornerVertices = 0;
+		lineRenderer.sortingOrder = 2;
+		GradientColorKey gck = new GradientColorKey();
+		gck.color = Color.white;
+		GradientAlphaKey gak = new GradientAlphaKey();
+		gak.alpha = 0.75f;
+		Gradient g = new Gradient();
+		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+		lineRenderer.colorGradient = g;
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		Debug.Log("kek");
-		menuScript.startScreen(1);
+		if (!disable) {
+			menuScript.triggerEvent(triggerID);
+			if (sticky)
+			{
+				disable = true;
+			}
+		}
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		//animator.SetInteger("state", 2);
+	
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		glowSwitch(true);
+		if (!disable) {
+			glow();
+		}
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		//animator.SetInteger("state", 1);
+	
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		glowSwitch(false);
+		if (!disable)
+		{
+			unGlow();
+		}
 	}
 
 	void addEventSystem()
