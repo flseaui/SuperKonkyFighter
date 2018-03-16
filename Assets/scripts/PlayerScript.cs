@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
     public int currentAction;
     public bool dashDirection; // false = left, true = right
     public bool airDashed;
-    private int stunTimer;
+    public int stunTimer;
     public int updateEnd;
     public bool coll;
     public bool damagedealt;
@@ -792,6 +792,8 @@ public class PlayerScript : MonoBehaviour
                 stunTimer--;
                 if (stunTimer <= 0)
                 {
+                    Time.timeScale = 1;
+                    hitStopped = false;
                     ActionEnd();
                 }
                 break;
@@ -894,7 +896,6 @@ public class PlayerScript : MonoBehaviour
 
         ActionEnd();
         currentAction = 45;
-        stunTimer = (int) level(1);
 
         if (vKnockback > 0)
         {
