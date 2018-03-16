@@ -789,6 +789,11 @@ public class PlayerScript : MonoBehaviour
                 hVelocity = backwardSpeed * 3f;
                 break;
             case 5:
+                stunTimer--;
+                if (stunTimer <= 0)
+                {
+                    ActionEnd();
+                }
                 break;
             case 6:
                 break;
@@ -875,7 +880,6 @@ public class PlayerScript : MonoBehaviour
 
     public void stun(int stunLength)
     {
-        currentAction = 45;
         for (int i = 0; i < stunLength; i++)
         {
             incrementFrame(behaviors.getAction(45).frames);
@@ -890,8 +894,7 @@ public class PlayerScript : MonoBehaviour
 
         ActionEnd();
         currentAction = 45;
-        
-        //stun(4);
+        stunTimer = (int) level(1);
 
         if (vKnockback > 0)
         {

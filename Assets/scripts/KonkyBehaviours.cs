@@ -854,6 +854,7 @@ public class KonkyBehaviours : Behaviors {
 
     // Stun
     private Action stun = new Action()        {frames = new int[] { 3                                                          }, actionCancels = new int[] {       },
+        infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
