@@ -777,7 +777,7 @@ public class KonkyBehaviours : Behaviors {
     private Action jumpSquat = new Action() {frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(0.5f, 9f, 4, 8, 40, 2), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
@@ -787,7 +787,7 @@ public class KonkyBehaviours : Behaviors {
     private Action flip = new Action()       {frames = new int[] { 0, 0, 0                                                     }, actionCancels  = new int[] {       },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(0.5f, 9f, 4, 8, 40, 2), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
@@ -797,7 +797,7 @@ public class KonkyBehaviours : Behaviors {
     private Action crouchFlip = new Action() {frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 4, 7, 8, 40, 5), },
+            { new Action.rect(0.5f, 4, 7, 8, 3, 5), },
             {nullBox },
             {nullBox },
         },
@@ -848,7 +848,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
-            { new Action.rect(-4, 2.5f, 8, 5, 14, 1), new Action.rect(2.5f, 7, 5, 8, 14, 2), }
+            { new Action.rect(-4, 2.5f, 8, 5, 1, 1), new Action.rect(2.5f, 7, 5, 8, 1, 2), }
         },
     };
 
