@@ -34,8 +34,6 @@ public class CameraScript : MonoBehaviour
 
 	public bool history;
 
-	public static int hitTimer;
-
 	public Sprite[] Background;
 	public Sprite[] Ground;
 
@@ -90,22 +88,6 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-		if (megaKek == 1)
-		{
-			p1s.hitStopped = true;
-			p2s.hitStopped = true;
-			megaKek = 0;
-			hitTimer = (int)p2s.level(0);
-			Time.timeScale = 0;
-		}
-		else if (megaKek == 2)
-		{
-			p1s.hitStopped = true;
-			p2s.hitStopped = true;
-			megaKek = 0;
-			hitTimer = (int)p1s.level(0);
-			Time.timeScale = 0;
-		}
 
      /*   if (p1h.hit)
         {
@@ -217,25 +199,11 @@ public class CameraScript : MonoBehaviour
 			}
 		}
         */
-        if (hitTimer != 0)
-        {
-			shake = true;
-            hitTimer--;
-        }
-        else
-        {
-			setY(self,12);
-			shake = false;
-            Time.timeScale = 1;
-            p1s.hitStopped = false;
-            p2s.hitStopped = false;
-        }
-        
 		float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
             cx = 42;
-        }else if (cx < -42)
+        } else if (cx < -42)
         {
             cx = -42;
         }

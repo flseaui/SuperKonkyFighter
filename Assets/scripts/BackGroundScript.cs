@@ -8,6 +8,8 @@ public class BackGroundScript : MonoBehaviour
     public PlayerScript p1s;
     public PlayerScript p2s;
     public PlayerScript[] player;
+    public bool hitStopped;
+    public int stopTimer;
 
     // Use this for initialization
     void Start() { }
@@ -25,14 +27,26 @@ public class BackGroundScript : MonoBehaviour
     {
 
         pushing();
-        damage();
-        knockback();
-        checkCollisions();
 
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
         player[1].decreaseHurtboxLifespan();
+
+        if (hitStopped)
+        {
+            stopTimer--;
+            Time.timeScale = 0;
+            if (stopTimer <= 0)
+            {
+                hitStopped = false;
+                p1s.hitStopped = false;
+                p2s.hitStopped = false;
+                Time.timeScale = 1;
+            }
+        }
+
+        checkCollisions();
     }
 
     public void damage()
@@ -43,6 +57,14 @@ public class BackGroundScript : MonoBehaviour
     private void knockback()
     {
 
+    }
+
+    private void hitStop(int stopLength)
+    {
+        hitStopped = true;
+        p1s.hitStopped = true;
+        p2s.hitStopped = true;
+        stopTimer = stopLength;
     }
 
     private void pushing()
@@ -106,6 +128,7 @@ public class BackGroundScript : MonoBehaviour
 
                 if (player[i].updateEnd == 2)
                 {
+                    Debug.Log("ENDIN UPDATE WITH YA BOI SCOTT");
                     player[i].updateEnd = 0;
                     player[i].UpdateEnd();
                 }
@@ -121,6 +144,8 @@ public class BackGroundScript : MonoBehaviour
             Action action = p2s.behaviors.getAction(p2s.currentAction);
             p2s.damagedealt = true;
             p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
+            if (!hitStopped)
+                hitStop((int)p2s.level(0));
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
         {
@@ -128,6 +153,8 @@ public class BackGroundScript : MonoBehaviour
             Action action = p1s.behaviors.getAction(p1s.currentAction);
             p1s.damagedealt = true;
             p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
+            if (!hitStopped)
+                hitStop((int)p1s.level(0));
         }
     }
 

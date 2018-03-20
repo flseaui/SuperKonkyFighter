@@ -137,6 +137,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentAction != 0)
         {
+            Debug.Log("CURRENT ACTIONNN: " + currentAction);
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
@@ -903,27 +904,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         vVelocity = 0;
-
-       /* if (!bl)
-        {
-            switch (ac)
-            {
-                case 0:
-                    return 4;
-                case 1:
-                    return 8;
-                case 2:
-                    return 12;
-                case 3:
-                    return 8;
-                default:
-                    return 2;
-            }
-        }
-        else
-        {
-            return 2;
-        }*/
     }
 
     public void block(int amm)
