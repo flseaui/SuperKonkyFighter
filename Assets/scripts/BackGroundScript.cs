@@ -2,33 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackGroundScript : MonoBehaviour {
+public class BackGroundScript : MonoBehaviour
+{
 
     public PlayerScript p1s;
     public PlayerScript p2s;
     public PlayerScript[] player;
-    public int stopTimer;
 
     // Use this for initialization
-    void Start () { }
-	
+    void Start() { }
+
     public void setScripts(PlayerScript p1s, PlayerScript p2s)
     {
         this.p1s = p1s;
         this.p2s = p2s;
 
-        player = new PlayerScript[]{ p1s, p2s, p1s};  
+        player = new PlayerScript[] { p1s, p2s, p1s };
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
         pushing();
         damage();
         knockback();
-        hitStop();
         checkCollisions();
-
 
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
@@ -38,7 +37,7 @@ public class BackGroundScript : MonoBehaviour {
 
     public void damage()
     {
-        
+
     }
 
     private void knockback()
@@ -114,26 +113,6 @@ public class BackGroundScript : MonoBehaviour {
         }
     }
 
-    private void hitStop()
-    {
-        if (stopTimer > 0)
-        {
-            Debug.Log("hit stopping");
-            // shake = true;
-            Time.timeScale = 0;
-            stopTimer--;
-        }
-        else
-        {
-            // setY(self, 12);
-            // shake = false;
-            Debug.Log("stoppin hitstop with ya boi scott");
-            Time.timeScale = 1;
-            p1s.hitStopped = false;
-            p2s.hitStopped = false;
-        }
-    }
-
     private void checkCollisions()
     {
         if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
@@ -141,15 +120,6 @@ public class BackGroundScript : MonoBehaviour {
             Debug.Log("p1 hit");
             Action action = p2s.behaviors.getAction(p2s.currentAction);
             p2s.damagedealt = true;
-            if (stopTimer == 0)
-            {
-                Debug.Log("p1 hitstopped");
-                p1s.hitStopped = true;
-                p2s.hitStopped = true;
-                p2s.stunTimer = (int)p1s.level(1);
-                stopTimer = (int)p1s.level(0);
-                Time.timeScale = 0;
-            }
             p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
@@ -157,15 +127,6 @@ public class BackGroundScript : MonoBehaviour {
             Debug.Log("p2 hit");
             Action action = p1s.behaviors.getAction(p1s.currentAction);
             p1s.damagedealt = true;
-            if (stopTimer == 0)
-            {
-                Debug.Log("p2 hitstopped");
-                p1s.hitStopped = true;
-                p2s.hitStopped = true;
-                p1s.stunTimer = (int)p2s.level(1);
-                stopTimer = (int)p2s.level(0);
-                Time.timeScale = 0;
-            }
             p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
         }
     }

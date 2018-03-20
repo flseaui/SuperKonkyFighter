@@ -795,8 +795,6 @@ public class PlayerScript : MonoBehaviour
                 stunTimer--;
                 if (stunTimer <= 0)
                 {
-                    Time.timeScale = 1;
-                    hitStopped = false;
                     ActionEnd();
                 }
                 break;
@@ -883,12 +881,10 @@ public class PlayerScript : MonoBehaviour
         return this.transform.position.x;
     }
 
-    public void stun(int stunLength)
+    public void stun()
     {
-        for (int i = 0; i < stunLength; i++)
-        {
-            incrementFrame(behaviors.getAction(45).frames);
-        }
+        currentAction = 45;
+        stunTimer = (int) otherPlayer.GetComponent<PlayerScript>().level(1);
     }
 
     public void damage(int damage, float knockback, int angle)
@@ -898,7 +894,8 @@ public class PlayerScript : MonoBehaviour
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
         ActionEnd();
-        currentAction = 45;
+
+        stun();
 
         if (vKnockback > 0)
         {
