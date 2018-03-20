@@ -26,8 +26,6 @@ public class BackGroundScript : MonoBehaviour
     void Update()
     {
 
-        pushing();
-
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
@@ -46,6 +44,7 @@ public class BackGroundScript : MonoBehaviour
             }
         }
 
+        pushing();
         checkCollisions();
     }
 
