@@ -10,6 +10,7 @@ public class BackGroundScript : MonoBehaviour
     public PlayerScript[] player;
     public bool hitStopped;
     public int stopTimer;
+    
 
     // Use this for initialization
     void Start() { }
@@ -44,8 +45,8 @@ public class BackGroundScript : MonoBehaviour
             }
         }
 
-        pushing();
         checkCollisions();
+        pushing();
     }
 
     public void damage()
@@ -144,7 +145,10 @@ public class BackGroundScript : MonoBehaviour
             p2s.damagedealt = true;
             p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
             if (!hitStopped)
+            {
                 hitStop((int)p2s.level(0));
+                //Debug.Log("BACK FRAME: " + p1s.frameTimer);
+            }
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
         {
@@ -153,8 +157,11 @@ public class BackGroundScript : MonoBehaviour
             p1s.damagedealt = true;
             p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
             if (!hitStopped)
+            {
                 hitStop((int)p1s.level(0));
-        }
+                //Debug.Log("BACK FRAME: " + p2s.frameTimer);
+            }
+         }
     }
 
     private Vector2 diffBetweenPoints(Vector2 point1, Vector2 point2)

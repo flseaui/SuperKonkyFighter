@@ -49,6 +49,8 @@ public class PlayerScript : MonoBehaviour
     public bool coll;
     public bool damagedealt;
 
+    public int frameTimer;
+
     public float hKnockback;
     public float vKnockback;
     public float gravity;
@@ -125,6 +127,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        frameTimer++;
         GameUpdate();
 
         if (stunned)
@@ -135,6 +138,7 @@ public class PlayerScript : MonoBehaviour
 
     public void updateAnimation()
     {
+        //Debug.Log("FRAME: " + frameTimer);
         if (currentAction != 0)
         {
             Debug.Log("CURRENT ACTIONNN: " + currentAction);
