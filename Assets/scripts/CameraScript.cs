@@ -47,7 +47,6 @@ public class CameraScript : MonoBehaviour
 
 	public int shakeX;
 	public int shakeY;
-	public bool shake;
 
 	void Start()
 	{
@@ -240,7 +239,7 @@ public class CameraScript : MonoBehaviour
 		uis.health2.value = p2s.health;
         uis.meter2.value = p2s.meter;
 
-        if (shake)
+        if (ghost.GetComponent<BackGroundScript>().shake)
 		{            
 			shakeX = Random.Range(-1,1);
 			shakeY = Random.Range(-1, 1);

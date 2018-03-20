@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BackGroundScript : MonoBehaviour
 {
-
     public PlayerScript p1s;
     public PlayerScript p2s;
     public PlayerScript[] player;
-    public bool hitStopped;
+    public bool hitStopped, shake;
     public int stopTimer, stopNextFrame = 0;
 
     // Use this for initialization
@@ -40,6 +39,7 @@ public class BackGroundScript : MonoBehaviour
                 hitStopped = false;
                 p1s.hitStopped = false;
                 p2s.hitStopped = false;
+                shake = false;
                 Time.timeScale = 1;
             }
         }
@@ -60,21 +60,12 @@ public class BackGroundScript : MonoBehaviour
         pushing();
     }
 
-    public void damage()
-    {
-
-    }
-
-    private void knockback()
-    {
-
-    }
-
     private void hitStop(int stopLength)
     {
         hitStopped = true;
         p1s.hitStopped = true;
         p2s.hitStopped = true;
+        shake = true;
         stopTimer = stopLength;
     }
 
