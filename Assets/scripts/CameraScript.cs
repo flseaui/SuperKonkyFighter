@@ -45,8 +45,8 @@ public class CameraScript : MonoBehaviour
 
 	private int megaKek;
 
-	public int shakeX;
-	public int shakeY;
+	public float shakeX;
+	public float shakeY;
 
 	void Start()
 	{
@@ -240,9 +240,9 @@ public class CameraScript : MonoBehaviour
         uis.meter2.value = p2s.meter;
 
         if (ghost.GetComponent<BackGroundScript>().shake)
-		{            
-			shakeX = Random.Range(-1,1);
-			shakeY = Random.Range(-1, 1);
+		{
+            shakeX = Random.Range(-0.5f, 0.5f);
+			shakeY = Random.Range(-0.5f, 0.5f);
 			setX(self, cx + shakeX);
 			setY(self, 12 + shakeY);
 		}
