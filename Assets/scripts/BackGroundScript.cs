@@ -31,18 +31,6 @@ public class BackGroundScript : MonoBehaviour
         player[0].decreaseHurtboxLifespan();
         player[1].decreaseHurtboxLifespan();
 
-        switch (stopNextFrame)
-        {
-            case 1:
-                stopNextFrame = 0;
-                hitStop((int)p1s.level(0));
-                break;
-            case 2:
-                stopNextFrame = 0;
-                hitStop((int)p2s.level(0));
-                break;
-        }
-
         if (hitStopped)
         {
             stopTimer--;
@@ -54,6 +42,18 @@ public class BackGroundScript : MonoBehaviour
                 p2s.hitStopped = false;
                 Time.timeScale = 1;
             }
+        }
+
+        switch (stopNextFrame)
+        {
+            case 1:
+                stopNextFrame = 0;
+                hitStop((int)p1s.level(0));
+                break;
+            case 2:
+                stopNextFrame = 0;
+                hitStop((int)p2s.level(0));
+                break;
         }
 
         checkCollisions();
