@@ -48,8 +48,6 @@ public class PlayerScript : MonoBehaviour
     public int updateEnd;
     public bool coll;
     public bool damagedealt;
-    public bool jumpLocked;
-    public bool jumptimer;
 
     public float hKnockback;
     public float vKnockback;
@@ -191,6 +189,7 @@ public class PlayerScript : MonoBehaviour
 
             updateEnd = 2;
         }
+        Debug.Log("SDFSDFSDFSDFSDFSD: " + Time.timeScale);
     }
 
     public void UpdateEnd()
@@ -675,31 +674,19 @@ public class PlayerScript : MonoBehaviour
         {
             jump = 0;
 
-            if (jumpLocked && jumptimer)
+            if (basicState == 8)
+                vVelocity = jumpSpeed;
+            else if (basicState == 7)
             {
-                jumpLocked = false;
-
-                if (basicState == 8)
-                    vVelocity = jumpSpeed;
-                else if (basicState == 7)
-                {
-                    vVelocity = jumpSpeed;
-                    hVelocity = backwardSpeed;
-                }
-                else if (basicState == 9)
-                {
-                    vVelocity = jumpSpeed;
-                    hVelocity = forwardSpeed;
-                }
+                vVelocity = jumpSpeed;
+                hVelocity = backwardSpeed;
             }
-            else if (!jumpLocked && basicState >= 7)
+            else if (basicState == 9)
             {
-                jumptimer = false;
-                jumpLocked = true;
-                currentAction = 51;
+                vVelocity = jumpSpeed;
+                hVelocity = forwardSpeed;
             }
-
-            if (basicState == 5)
+            else if (basicState == 5)
             {
                 vVelocity = 0;
                 hVelocity = 0;
@@ -716,7 +703,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (air)
-        {          
+        {
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
             {
                 jump = 7;
@@ -827,11 +814,6 @@ public class PlayerScript : MonoBehaviour
         if (currentAction == 49 || currentAction == 50)
         {
             facingRight = flipFacing;
-        }
-
-        if (currentAction == 51)
-        {
-            jumptimer = true;
         }
 
         currentAction = 0;

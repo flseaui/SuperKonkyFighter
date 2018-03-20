@@ -23,6 +23,8 @@ public class Action {
     public rect[,] hitboxData;
     public rect[,] hurtboxData;
 
+    public List<rect> currentStun;
+
     public struct rect
     {
         public float x, y, width, height, timeActive;

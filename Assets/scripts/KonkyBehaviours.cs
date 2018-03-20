@@ -34,8 +34,6 @@ public class KonkyBehaviours : Behaviors {
        * 0 - Jump
        */
 
-    private static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
-
     public KonkyBehaviours()
     {
         konkyActionIds = new Dictionary<int, Action>()
@@ -153,7 +151,7 @@ public class KonkyBehaviours : Behaviors {
     private Action standL = new Action()
     {
         tier = 0,
-       frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 3 | 9
+        frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 3 | 9
         damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxFrames = 3,
         hurtboxFrames = 17,

@@ -8,6 +8,8 @@ public abstract class Behaviors {
     IDictionary<int, Action> ActionIds;
     IDictionary<Action, int> AnimAction;
 
+    public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
+
     // Returns Action object from given id
     public Action getAction(int id)
     {
@@ -25,7 +27,7 @@ public abstract class Behaviors {
         return AnimAction[id];
     }
 
-    public void populateStunboxes(Action.rect filler)
+    public void populateStunboxes(int numBoxes)
     {
        
     }
