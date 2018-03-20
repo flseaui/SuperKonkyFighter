@@ -9,8 +9,7 @@ public class BackGroundScript : MonoBehaviour
     public PlayerScript p2s;
     public PlayerScript[] player;
     public bool hitStopped;
-    public int stopTimer;
-    
+    public int stopTimer, stopNextFrame = 0;
 
     // Use this for initialization
     void Start() { }
@@ -31,6 +30,18 @@ public class BackGroundScript : MonoBehaviour
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
         player[1].decreaseHurtboxLifespan();
+
+        switch (stopNextFrame)
+        {
+            case 1:
+                stopNextFrame = 0;
+                hitStop((int)p1s.level(0));
+                break;
+            case 2:
+                stopNextFrame = 0;
+                hitStop((int)p2s.level(0));
+                break;
+        }
 
         if (hitStopped)
         {
@@ -146,7 +157,7 @@ public class BackGroundScript : MonoBehaviour
             p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
             if (!hitStopped)
             {
-                hitStop((int)p2s.level(0));
+                stopNextFrame = 2;
                 //Debug.Log("BACK FRAME: " + p1s.frameTimer);
             }
         }
@@ -158,7 +169,7 @@ public class BackGroundScript : MonoBehaviour
             p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
             if (!hitStopped)
             {
-                hitStop((int)p1s.level(0));
+                stopNextFrame = 1;
                 //Debug.Log("BACK FRAME: " + p2s.frameTimer);
             }
          }
