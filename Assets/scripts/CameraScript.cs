@@ -214,17 +214,13 @@ public class CameraScript : MonoBehaviour
 		if (now != history) {
 			if (getX(player1) < getX(player2))
 			{
-                player1.GetComponent<PlayerScript>().flipFacing = true;
-                player1.GetComponent<PlayerScript>().flip = true;
-                player2.GetComponent<PlayerScript>().flipFacing = false;
-                player2.GetComponent<PlayerScript>().flip = true;
+                player1.GetComponent<PlayerScript>().shouldFlip = true;
+                player2.GetComponent<PlayerScript>().shouldFlip = true;
             }
 			else
 			{
-                player1.GetComponent<PlayerScript>().flipFacing = false;
-                player1.GetComponent<PlayerScript>().flip = true;
-                player2.GetComponent<PlayerScript>().flipFacing = true;
-                player2.GetComponent<PlayerScript>().flip = true;
+                player1.GetComponent<PlayerScript>().shouldFlip = true;
+                player2.GetComponent<PlayerScript>().shouldFlip = true;
             }
 		}
 
@@ -241,8 +237,8 @@ public class CameraScript : MonoBehaviour
 
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{
-            shakeX = Random.Range(-0.5f, 0.5f);
-			shakeY = Random.Range(-0.5f, 0.5f);
+            shakeX = Random.Range(-0.75f, 0.75f);
+			shakeY = Random.Range(-0.75f, 0.75f);
 			setX(self, cx + shakeX);
 			setY(self, 12 + shakeY);
 		}

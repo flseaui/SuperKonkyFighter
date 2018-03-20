@@ -18,15 +18,18 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    public bool waitForGround;
-    public bool waitForEnd;
-    public bool air;
-    public bool hitStopped;
-    public bool stunned;
-    public bool flipFacing;
-    public bool flip;
-    public bool facingRight;
-    public bool onTheRight;
+    public bool passedPlayerInairborn; // true if pass other player while airborn
+    public bool passedPlayerInAction; // true if pass other player while they're in an action
+    public bool airborn; // true if in the air
+    public bool hitStopped; // true if in hitstop
+    public bool hitStunned; // true if in hitstun
+    public bool shouldFlip; // true when pass other player in air, signifying flipping upon landing
+    public bool facingRight; // true if the player is facing right
+    public bool playerSide; // true if left of the other player, false if right
+    public bool dashDirection; // true if dashing forward, false if dashing back
+    public bool airbornDashed;
+    public bool coll;
+    public bool damagedealt;
 
     public int bufferedMove;
     public int maxHealth;
@@ -42,12 +45,9 @@ public class PlayerScript : MonoBehaviour
     public int jump;
     public int dashTimer;
     public int currentAction;
-    public bool dashDirection; // false = left, true = right
-    public bool airDashed;
     public int stunTimer;
     public int updateEnd;
-    public bool coll;
-    public bool damagedealt;
+
 
     public int frameTimer;
 
@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
         frameTimer++;
         GameUpdate();
 
-        if (stunned)
+        if (hitStunned)
         {
 
         }
@@ -159,7 +159,7 @@ public class PlayerScript : MonoBehaviour
         basicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
 
-        if (AttackState % 10 >= 7 && !air)
+        if (AttackState % 10 >= 7 && !airborn)
             AttackState = 0;
         setAdvancedInput(inputManager.currentInput);
 
@@ -239,10 +239,10 @@ public class PlayerScript : MonoBehaviour
 
         if (y() <= FLOOR_HEIGHT) //ground snap
         {
-            if (air)
+            if (airborn)
             {
-                air = false;
-                airDashed = false;
+                airborn = false;
+                airbornDashed = false;
 
                 if (currentAction > 0)
                     ActionEnd();
@@ -252,7 +252,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            air = true;
+            airborn = true;
         }
     }
 
@@ -260,12 +260,12 @@ public class PlayerScript : MonoBehaviour
     public void onPush(float otherHVel, float otherVVelocity)
     {
         hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
-        vPush = air ? (vVelocity + otherVVelocity) / 2 : 0;
+        vPush = airborn ? (vVelocity + otherVVelocity) / 2 : 0;
     }
 
     private int inputConvert(bool[] input)
     {
-        if (!air)
+        if (!airborn)
         {
             if (input[0])
             {
@@ -309,12 +309,12 @@ public class PlayerScript : MonoBehaviour
             {
                 if (facingRight)
                 {
-                    if (air)
+                    if (airborn)
                     {
-                        if (!airDashed)
+                        if (!airbornDashed)
                         {
                             advState = 4;
-                            airDashed = true;
+                            airbornDashed = true;
                         }
                     }
                     else
@@ -322,12 +322,12 @@ public class PlayerScript : MonoBehaviour
                 }
                 else
                 {
-                    if (air)
+                    if (airborn)
                     {
-                        if (!airDashed)
+                        if (!airbornDashed)
                         {
                             advState = 3;
-                            airDashed = true;
+                            airbornDashed = true;
                         }
                     }
                     else
@@ -339,12 +339,12 @@ public class PlayerScript : MonoBehaviour
             {
                 if (facingRight)
                 {
-                    if (air)
+                    if (airborn)
                     {
-                        if (!airDashed)
+                        if (!airbornDashed)
                         {
                             advState = 3;
-                            airDashed = true;
+                            airbornDashed = true;
                         }
                     }
                     else
@@ -352,12 +352,12 @@ public class PlayerScript : MonoBehaviour
                 }
                 else
                 {
-                    if (air)
+                    if (airborn)
                     {
-                        if (!airDashed)
+                        if (!airbornDashed)
                         {
                             advState = 4;
-                            airDashed = true;
+                            airbornDashed = true;
                         }
                     }
                     else
@@ -366,9 +366,9 @@ public class PlayerScript : MonoBehaviour
                 dashTimer = 0;
             }
 
-            if (waitForGround && !air)
+            if (passedPlayerInairborn && !airborn)
             {
-                waitForGround = false;
+                passedPlayerInairborn = false;
                 advState = 9;
             }
 
@@ -385,16 +385,16 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (flip)
+        if (shouldFlip)
         {
-            flip = false;
+            shouldFlip = false;
             if (currentAction != 0)
-                waitForEnd = true;
+                passedPlayerInAction = true;
 
-            if (air)
-                waitForGround = true;
+            if (airborn)
+                passedPlayerInairborn = true;
 
-            if (!air && currentAction == 0)
+            if (!airborn && currentAction == 0)
             {
                 if (basicState <= 3)
                     advState = 10;
@@ -446,20 +446,20 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrameType == 3)
         {
-            if (!air && waitForEnd && !waitForGround && !behaviors.getAction(currentAction).infinite)
+            if (!airborn && passedPlayerInAction && !passedPlayerInairborn && !behaviors.getAction(currentAction).infinite)
             {
                 ActionEnd();
             }
-            else if (advState != 0 && !waitForEnd)
+            else if (advState != 0 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == advState + 40)
                         bufferedMove = advState + 40;
             }
-            else if (basicState >= 7 && !waitForEnd)
+            else if (basicState >= 7 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == 40 && inputManager.currentInput[12] && !airDashed)
+                    if (Actions == 40 && inputManager.currentInput[12] && !airbornDashed)
                     {
                         bufferedMove = 40;
                         if (basicState == 7)
@@ -472,14 +472,14 @@ public class PlayerScript : MonoBehaviour
 
                     }
             }
-            else if (AttackState != 0 && !waitForEnd)
+            else if (AttackState != 0 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
                     if (Actions == AttackState)
                         bufferedMove = AttackState;
             }
 
-            if (bufferedMove != 0 && !waitForEnd)
+            if (bufferedMove != 0 && !passedPlayerInAction)
             {
                 if (bufferedMove > 40)
                     advState = bufferedMove - 40;
@@ -649,7 +649,7 @@ public class PlayerScript : MonoBehaviour
         {
             advState = 0;
             AttackState = 0;
-            if (!air)
+            if (!airborn)
                 hVelocity = 0;
             if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
             {
@@ -675,7 +675,7 @@ public class PlayerScript : MonoBehaviour
 
     private void basicMove()
     {
-        if (!air)
+        if (!airborn)
         {
             jump = 0;
 
@@ -707,32 +707,32 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (air)
+        if (airborn)
         {
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
             {
                 jump = 7;
 
-                if (!airDashed)
+                if (!airbornDashed)
                     basicState = 7;
             }
             else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
             {
                 jump = 9;
 
-                if (!airDashed)
+                if (!airbornDashed)
                     basicState = 9;
             }
             else if (inputManager.currentInput[12])
             {
                 jump = 8;
-                if (!airDashed)
+                if (!airbornDashed)
                     basicState = 8;
             }
 
-            if (!airDashed && jump >= 7)
+            if (!airbornDashed && jump >= 7)
             {
-                airDashed = true;
+                airbornDashed = true;
 
                 if (jump == 7)
                 {
@@ -816,7 +816,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentAction == 49 || currentAction == 50)
         {
-            facingRight = flipFacing;
+            facingRight = !facingRight;
         }
 
         currentAction = 0;
@@ -827,10 +827,10 @@ public class PlayerScript : MonoBehaviour
         previousBasicState = 0;
         killAllBoxes();
 
-        if (waitForEnd && !waitForGround)
+        if (passedPlayerInAction && !passedPlayerInairborn)
         {
 
-            waitForEnd = false;
+            passedPlayerInAction = false;
             if (basicState <= 3)
                 currentAction = 50;
             else
@@ -904,7 +904,7 @@ public class PlayerScript : MonoBehaviour
 
         if (vKnockback > 0)
         {
-            air = true;
+            airborn = true;
         }
 
         vVelocity = 0;
@@ -925,7 +925,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (hKnockback != 0)
         {
-            if (!air)
+            if (!airborn)
             {
                 hKnockback *= .75f;
                 if (Mathf.Abs(hKnockback) < 0.005f)
