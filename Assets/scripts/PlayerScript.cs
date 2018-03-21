@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    float FLOOR_HEIGHT = 0;
-    float BASE_GRAVITY = -0.05f;
+    private float FLOOR_HEIGHT = 0;
+    private float BASE_GRAVITY = -0.05f;
 
-    public float[,] levelScaling = new float[,]
+    private float[,] levelScaling = new float[,]
     {
         { 8,  12, 23, 9,  .75f },
         { 10, 14, 26, 11, .8f  },
@@ -19,67 +19,92 @@ public class PlayerScript : MonoBehaviour
     };
 
     public bool passedPlayerInairborn; // true if pass other player while airborn
-    public bool passedPlayerInAction; // true if pass other player while they're in an action
-    public bool airborn; // true if in the air
-    public bool hitStopped; // true if in hitstop
-    public bool hitStunned; // true if in hitstun
-    public bool shouldFlip; // true when pass other player in air, signifying flipping upon landing
-    public bool facingRight; // true if the player is facing right
-    public bool playerSide; // true if left of the other player, false if right
-    public bool dashDirection; // true if dashing forward, false if dashing back
-    public bool airbornDashed;
-    public bool coll;
-    public bool damagedealt;
+    public bool passedPlayerInAction;  // true if pass other player while they're in an action
+    public bool airborn;               // true if in the air
+    public bool hitStopped;            // true if in hitstop
+    public bool hitStunned;            // true if in hitstun
+    public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing
+    public bool facingRight;           // true if the player is facing right
+    public bool playerSide;            // true if left of the other player, false if right
+    public bool dashDirection;         // true if dashing forward, false if dashing back
+    public bool airbornActionUsed;     // true if player has spent airial action
+    public bool damageDealt;           // true if damage was dealt this frame
 
-    public int bufferedMove;
-    public int maxHealth;
-    public int health;
-    public int currentFrameType;
-    public int currentActionFrame;
-    public int activeCounter;
-    public int playerID;
-    public int meter;
-    public int basicState;
-    public int AttackState;
-    public int advState;
-    public int jump;
-    public int dashTimer;
-    public int currentAction;
-    public int stunTimer;
-    public int updateEnd;
+    public int bufferedMove;           // the move currently buffered
+    public int maxHealth;              // starting health of the player
+    public int health;                 // current health of the player
+    public int currentFrameType;       // frame type of the currently executing action
+    public int actionFrameCounter;     // current frame number of the executing action
+    public int activeFrameCounter;     // current active frame number of the executing action
+    public int playerID;               // the players id, either 1 or 0
+    public int meterCharge;            // current meter charge
+    public int dashTimer;              // counts number of frames player has been dashing for
+    public int executingAction;        // currently executing action
+    public int stunTimer;              // timer counting down the time player has been in hitstun
+    public int updateState;            // keeps track of what type of update the player should execute
+    public int previousBasicState;     // basic state last frame
+    public int basicAnimFrame;         // current frame number of playing animation
 
+    /* MOVEMENT NUMPAD NOTATION
+     * [ jump back ][ jump ][ jump forwards ]
+     * [ walk back ][      ][ walk forwards ]
+     * [crouch back][crouch][crouch forwards]
+     */
+    public int basicState; // current movement state
 
-    public int frameTimer;
+    /* ATTACK NUMPAD NOTATION
+     * [       ][        ][       ]
+     * [ light ][ medium ][ heavy ]
+     * [       ][        ][       ]
+     */
+    public int attackState; // current attack state
 
-    public float hKnockback;
-    public float vKnockback;
-    public float gravity;
-    public float vVelocity;
-    public float hVelocity;
-    public float baseHeight;
-    public float width;
-    public float height;
-    public float hPush;
-    public float vPush;
-    private float forwardSpeed;
-    private float backwardSpeed;
-    private float jumpSpeed;
+    /* ADVANCED STATES
+     * 1 - forward dash
+     * 2 - back dash
+     * 3 - forward air dash
+     * 4 - forward back dash
+     * 5 - stun
+     */
+    public int advancedState; // current advanced state
 
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
-    public Behaviors behaviors;
+    /* JUMP STATES
+     * 0 - no jump
+     * 7 - back jump
+     * 8 - up jump
+     * 9 - forward jump
+     */
+    public int jumpDirection;   // current jump direction
+
+    /* UPDATE STATES
+     * 0 - ganeUpdate
+     * 1 - hitstop / no update
+     * 2 - updateEnd
+     */
+
+    public float hKnockback;          // horizontal knockback
+    public float vKnockback;          // vertical knockback
+    public float gravity;             // gravity constant, default to BASE_GRAVITY
+    public float vVelocity;           // vertical velocity
+    public float hVelocity;           // horizontal velocity
+    public float hPush;               // amount the player will be horizontally pushed
+    public float vPush;               // amount the player will be vertically pushed
+    public float forwardSpeed;        // forward movement speed constant
+    public float backwardSpeed;       // backwards movement speed constant
+    public float jumpDirectionSpeed;  // jump speed constant
+
+    public SpriteRenderer    spriteRenderer;
+    public Animator          animator;
+    public Behaviors         behaviors;
     public PolygonCollider2D hitbox;
-    public GameObject otherPlayer;
-    public JoyScript JoyScript;
-    InputManager inputManager;
+    public GameObject        otherPlayer;
+    public JoyScript         JoyScript;
+    public InputManager      inputManager;
 
     public List<float> livingHitboxesIds;
     public List<float> livingHitboxesLifespans;
     public List<float> livingHurtboxesIds;
     public List<float> livingHurtboxesLifespans;
-
-    public int previousBasicState;
-    public int basicAnimFrame;
 
     void OnDrawGizmos()
     {
@@ -92,7 +117,7 @@ public class PlayerScript : MonoBehaviour
 
     */
 
-        Gizmos.color = new Color(0, 1, 0, 0.5F);
+    //Gizmos.color = new Color(0, 1, 0, 0.5F);
     }
 
     void Start()
@@ -103,7 +128,7 @@ public class PlayerScript : MonoBehaviour
 
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
-        jumpSpeed = 1.25f;
+        jumpDirectionSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
         gravity = BASE_GRAVITY;
@@ -112,8 +137,7 @@ public class PlayerScript : MonoBehaviour
         maxHealth = 11000;
         health = maxHealth;
         behaviors = new KonkyBehaviours();
-        baseHeight = 8;
-        width = 4;
+      
 
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
@@ -127,7 +151,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frameTimer++;
         GameUpdate();
 
         if (hitStunned)
@@ -138,11 +161,10 @@ public class PlayerScript : MonoBehaviour
 
     public void updateAnimation()
     {
-        //Debug.Log("FRAME: " + frameTimer);
-        if (currentAction != 0)
+        if (executingAction != 0)
         {
-            Debug.Log("CURRENT ACTIONNN: " + currentAction);
-            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(currentAction)));
+            Debug.Log("CURRENT ACTIONNN: " + executingAction);
+            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
         else
@@ -159,8 +181,8 @@ public class PlayerScript : MonoBehaviour
         basicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
 
-        if (AttackState % 10 >= 7 && !airborn)
-            AttackState = 0;
+        if (attackState % 10 >= 7 && !airborn)
+            attackState = 0;
         setAdvancedInput(inputManager.currentInput);
 
         hPush = 0;
@@ -168,16 +190,16 @@ public class PlayerScript : MonoBehaviour
 
         if (hitStopped)
         {
-            if (advState != 0)
-                buffer(advState + 40);
-            else if (AttackState != 0)
-                buffer(currentAction = AttackState);
+            if (advancedState != 0)
+                buffer(advancedState + 40);
+            else if (attackState != 0)
+                buffer(executingAction = attackState);
 
-            updateEnd = 1;
+            updateState = 1;
         }
         else
         {
-            if (currentAction != 0)
+            if (executingAction != 0)
             {
                 if (previousBasicState != 0)
                 {
@@ -185,14 +207,14 @@ public class PlayerScript : MonoBehaviour
                     killAllBoxes();
                 }
 
-                incrementFrame(behaviors.getAction(currentAction).frames);
+                incrementFrame(behaviors.getAction(executingAction).frames);
             }
             stateCheck();
 
-            if (currentAction > 40)
+            if (executingAction > 40)
                 advancedMove();
 
-            updateEnd = 2;
+            updateState = 2;
         }
         Debug.Log("SDFSDFSDFSDFSDFSD: " + Time.timeScale);
     }
@@ -210,14 +232,14 @@ public class PlayerScript : MonoBehaviour
 
     private void buffer(int bufferedInput)
     {
-        foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
+        foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
             if (Actions == bufferedInput)
                 bufferedMove = bufferedInput;
     }
 
     private void movePlayer()
     {
-        if (currentAction != 43 && currentAction != 44)
+        if (executingAction != 43 && executingAction != 44)
             vVelocity += gravity;
 
         if (vVelocity < -1)
@@ -242,9 +264,9 @@ public class PlayerScript : MonoBehaviour
             if (airborn)
             {
                 airborn = false;
-                airbornDashed = false;
+                airbornActionUsed = false;
 
-                if (currentAction > 0)
+                if (executingAction > 0)
                     ActionEnd();
             }
             vVelocity = 0;
@@ -300,10 +322,10 @@ public class PlayerScript : MonoBehaviour
 
     private void setAdvancedInput(bool[] input)
     {
-        if (currentAction != 41)
+        if (executingAction != 41)
         {
-            if (dashTimer == 0 && advState <= 4)
-                advState = 0;
+            if (dashTimer == 0 && advancedState <= 4)
+                advancedState = 0;
 
             if (input[8] && !dashDirection && dashTimer != 0)
             {
@@ -311,27 +333,27 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (airborn)
                     {
-                        if (!airbornDashed)
+                        if (!airbornActionUsed)
                         {
-                            advState = 4;
-                            airbornDashed = true;
+                            advancedState = 4;
+                            airbornActionUsed = true;
                         }
                     }
                     else
-                        advState = 2;
+                        advancedState = 2;
                 }
                 else
                 {
                     if (airborn)
                     {
-                        if (!airbornDashed)
+                        if (!airbornActionUsed)
                         {
-                            advState = 3;
-                            airbornDashed = true;
+                            advancedState = 3;
+                            airbornActionUsed = true;
                         }
                     }
                     else
-                        advState = 1;
+                        advancedState = 1;
                 }
                 dashTimer = 0;
             }
@@ -341,27 +363,27 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (airborn)
                     {
-                        if (!airbornDashed)
+                        if (!airbornActionUsed)
                         {
-                            advState = 3;
-                            airbornDashed = true;
+                            advancedState = 3;
+                            airbornActionUsed = true;
                         }
                     }
                     else
-                        advState = 1;
+                        advancedState = 1;
                 }
                 else
                 {
                     if (airborn)
                     {
-                        if (!airbornDashed)
+                        if (!airbornActionUsed)
                         {
-                            advState = 4;
-                            airbornDashed = true;
+                            advancedState = 4;
+                            airbornActionUsed = true;
                         }
                     }
                     else
-                        advState = 2;
+                        advancedState = 2;
                 }
                 dashTimer = 0;
             }
@@ -369,7 +391,7 @@ public class PlayerScript : MonoBehaviour
             if (passedPlayerInairborn && !airborn)
             {
                 passedPlayerInairborn = false;
-                advState = 9;
+                advancedState = 9;
             }
 
             if ((!input[8] || !input[9]) && dashTimer != 0)
@@ -388,18 +410,18 @@ public class PlayerScript : MonoBehaviour
         if (shouldFlip)
         {
             shouldFlip = false;
-            if (currentAction != 0)
+            if (executingAction != 0)
                 passedPlayerInAction = true;
 
             if (airborn)
                 passedPlayerInairborn = true;
 
-            if (!airborn && currentAction == 0)
+            if (!airborn && executingAction == 0)
             {
                 if (basicState <= 3)
-                    advState = 10;
+                    advancedState = 10;
                 else
-                    advState = 9;
+                    advancedState = 9;
                 dashTimer = 0;
             }
         }
@@ -408,26 +430,26 @@ public class PlayerScript : MonoBehaviour
     private void setAttackInput(bool[] input)
     {
         if (input[4])
-            AttackState = basicState;
+            attackState = basicState;
         else if (input[5])
-            AttackState = basicState + 10;
+            attackState = basicState + 10;
         else if (input[6])
-            AttackState = basicState + 20;
+            attackState = basicState + 20;
         else if (input[7])
-            AttackState = basicState + 30;
+            attackState = basicState + 30;
         else
-            AttackState = 0;
+            attackState = 0;
     }
 
     private void incrementFrame(int[] frames)
     {
-        placeHurtboxes(currentActionFrame);
+        placeHurtboxes(actionFrameCounter);
 
         int previousFrame = currentFrameType;
-        currentFrameType = frames[currentActionFrame];
-        currentActionFrame++;
+        currentFrameType = frames[actionFrameCounter];
+        actionFrameCounter++;
 
-        // Debug.Log("currentActionFrame" + currentActionFrame);
+        // Debug.Log("actionFrameCounter" + actionFrameCounter);
         if (previousFrame != 1 && currentFrameType == 1)
         {
             otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
@@ -435,61 +457,61 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrameType == 1)
         {
-            if (currentAction < 40)
+            if (executingAction < 40)
                 placeHitboxes();
-            activeCounter++;
+            activeFrameCounter++;
         }
         else
         {
-            damagedealt = false;
+            damageDealt = false;
         }
 
         if (currentFrameType == 3)
         {
-            if (!airborn && passedPlayerInAction && !passedPlayerInairborn && !behaviors.getAction(currentAction).infinite)
+            if (!airborn && passedPlayerInAction && !passedPlayerInairborn && !behaviors.getAction(executingAction).infinite)
             {
                 ActionEnd();
             }
-            else if (advState != 0 && !passedPlayerInAction)
+            else if (advancedState != 0 && !passedPlayerInAction)
             {
-                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == advState + 40)
-                        bufferedMove = advState + 40;
+                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                    if (Actions == advancedState + 40)
+                        bufferedMove = advancedState + 40;
             }
             else if (basicState >= 7 && !passedPlayerInAction)
             {
-                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == 40 && inputManager.currentInput[12] && !airbornDashed)
+                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                    if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
                     {
                         bufferedMove = 40;
                         if (basicState == 7)
-                            jump = 7;
+                            jumpDirection = 7;
                         else if (basicState == 8)
-                            jump = 8;
+                            jumpDirection = 8;
                         else
-                            jump = 9;
+                            jumpDirection = 9;
 
 
                     }
             }
-            else if (AttackState != 0 && !passedPlayerInAction)
+            else if (attackState != 0 && !passedPlayerInAction)
             {
-                foreach (int Actions in behaviors.getAction(currentAction).actionCancels)
-                    if (Actions == AttackState)
-                        bufferedMove = AttackState;
+                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                    if (Actions == attackState)
+                        bufferedMove = attackState;
             }
 
             if (bufferedMove != 0 && !passedPlayerInAction)
             {
                 if (bufferedMove > 40)
-                    advState = bufferedMove - 40;
+                    advancedState = bufferedMove - 40;
                 else if (bufferedMove == 40)
                 {
-                    advState = 0;
-                    AttackState = 0;
+                    advancedState = 0;
+                    attackState = 0;
                 }
                 else
-                    AttackState = bufferedMove;
+                    attackState = bufferedMove;
                 bufferedMove = 0;
                 ActionEnd();
             }
@@ -498,11 +520,11 @@ public class PlayerScript : MonoBehaviour
 
     private void placeHitboxes()
     {
-        Action.rect[,] hitboxData = behaviors.getAction(currentAction).hitboxData;
+        Action.rect[,] hitboxData = behaviors.getAction(executingAction).hitboxData;
 
         for (int i = 0; i < hitboxData.GetLength(1); i++)
         {
-            Action.rect hitbox = hitboxData[activeCounter, i];
+            Action.rect hitbox = hitboxData[activeFrameCounter, i];
 
             if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
             {
@@ -532,9 +554,9 @@ public class PlayerScript : MonoBehaviour
     {
         Action.rect[,] hurtboxData;
 
-        if (currentAction != 0)
+        if (executingAction != 0)
         {
-            hurtboxData = behaviors.getAction(currentAction).hurtboxData;
+            hurtboxData = behaviors.getAction(executingAction).hurtboxData;
         }
         else
         {
@@ -645,27 +667,27 @@ public class PlayerScript : MonoBehaviour
 
     private void stateCheck()
     {
-        if (currentAction != 0)
+        if (executingAction != 0)
         {
-            advState = 0;
-            AttackState = 0;
+            advancedState = 0;
+            attackState = 0;
             if (!airborn)
                 hVelocity = 0;
-            if (currentActionFrame >= behaviors.getAction(currentAction).frames.Length)
+            if (actionFrameCounter >= behaviors.getAction(executingAction).frames.Length)
             {
-                if (behaviors.getAction(currentAction).infinite)
-                    currentActionFrame--;
+                if (behaviors.getAction(executingAction).infinite)
+                    actionFrameCounter--;
                 else
                     ActionEnd();
             }
         }
-        else if (advState != 0)
+        else if (advancedState != 0)
         {
-            currentAction = advState + 40;
+            executingAction = advancedState + 40;
         }
-        else if (AttackState != 0)
+        else if (attackState != 0)
         {
-            currentAction = AttackState;
+            executingAction = attackState;
         }
         else
         {
@@ -677,18 +699,18 @@ public class PlayerScript : MonoBehaviour
     {
         if (!airborn)
         {
-            jump = 0;
+            jumpDirection = 0;
 
             if (basicState == 8)
-                vVelocity = jumpSpeed;
+                vVelocity = jumpDirectionSpeed;
             else if (basicState == 7)
             {
-                vVelocity = jumpSpeed;
+                vVelocity = jumpDirectionSpeed;
                 hVelocity = backwardSpeed;
             }
             else if (basicState == 9)
             {
-                vVelocity = jumpSpeed;
+                vVelocity = jumpDirectionSpeed;
                 hVelocity = forwardSpeed;
             }
             else if (basicState == 5)
@@ -711,42 +733,42 @@ public class PlayerScript : MonoBehaviour
         {
             if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
             {
-                jump = 7;
+                jumpDirection = 7;
 
-                if (!airbornDashed)
+                if (!airbornActionUsed)
                     basicState = 7;
             }
             else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
             {
-                jump = 9;
+                jumpDirection = 9;
 
-                if (!airbornDashed)
+                if (!airbornActionUsed)
                     basicState = 9;
             }
             else if (inputManager.currentInput[12])
             {
-                jump = 8;
-                if (!airbornDashed)
+                jumpDirection = 8;
+                if (!airbornActionUsed)
                     basicState = 8;
             }
 
-            if (!airbornDashed && jump >= 7)
+            if (!airbornActionUsed && jumpDirection >= 7)
             {
-                airbornDashed = true;
+                airbornActionUsed = true;
 
-                if (jump == 7)
+                if (jumpDirection == 7)
                 {
-                    vVelocity = jumpSpeed;
+                    vVelocity = jumpDirectionSpeed;
                     hVelocity = backwardSpeed;
                 }
-                else if (jump == 9)
+                else if (jumpDirection == 9)
                 {
-                    vVelocity = jumpSpeed;
+                    vVelocity = jumpDirectionSpeed;
                     hVelocity = forwardSpeed;
                 }
                 else
                 {
-                    vVelocity = jumpSpeed;
+                    vVelocity = jumpDirectionSpeed;
                     hVelocity = 0;
                 }
             }
@@ -775,7 +797,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void advancedMove()
     {
-        switch (currentAction - 40)
+        switch (executingAction - 40)
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
@@ -814,15 +836,15 @@ public class PlayerScript : MonoBehaviour
     {
         Debug.Log("action end");
 
-        if (currentAction == 49 || currentAction == 50)
+        if (executingAction == 49 || executingAction == 50)
         {
             facingRight = !facingRight;
         }
 
-        currentAction = 0;
+        executingAction = 0;
         currentFrameType = 0;
-        currentActionFrame = 0;
-        activeCounter = 0;
+        actionFrameCounter = 0;
+        activeFrameCounter = 0;
         basicAnimFrame = 0;
         previousBasicState = 0;
         killAllBoxes();
@@ -832,9 +854,9 @@ public class PlayerScript : MonoBehaviour
 
             passedPlayerInAction = false;
             if (basicState <= 3)
-                currentAction = 50;
+                executingAction = 50;
             else
-                currentAction = 49;
+                executingAction = 49;
         }
     }
 
@@ -888,7 +910,7 @@ public class PlayerScript : MonoBehaviour
 
     public void stun()
     {
-        currentAction = 45;
+        executingAction = 45;
         stunTimer = (int) otherPlayer.GetComponent<PlayerScript>().level(1);
     }
 
@@ -917,7 +939,7 @@ public class PlayerScript : MonoBehaviour
 
     public float level(int wanted)
     {
-        return levelScaling[behaviors.getAction(currentAction).level, wanted];
+        return levelScaling[behaviors.getAction(executingAction).level, wanted];
     }
     
 

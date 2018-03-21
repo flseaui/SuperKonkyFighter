@@ -231,9 +231,9 @@ public class CameraScript : MonoBehaviour
 		uis.health2.maxValue = p2s.maxHealth;
 		uis.health2.minValue = 0;
 		uis.health1.value = p1s.health;
-        uis.meter1.value = p1s.meter;
+        uis.meter1.value = p1s.meterCharge;
 		uis.health2.value = p2s.health;
-        uis.meter2.value = p2s.meter;
+        uis.meter2.value = p2s.meterCharge;
 
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{

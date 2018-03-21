@@ -73,7 +73,7 @@ public class BackGroundScript : MonoBehaviour
     {
         float[] diff = new float[2];
 
-        if (p1s.coll)
+        if (p1s.GetComponentInChildren<CollisionScript>().colliding)
         {
 
             if (player[0].hPush < 0)
@@ -124,14 +124,14 @@ public class BackGroundScript : MonoBehaviour
         }
         for (int i = 0; i < 2; i++)
         {
-            if (player[i].updateEnd != 0)
+            if (player[i].updateState != 0)
             {
                 player[i].hPush += diff[i];
 
-                if (player[i].updateEnd == 2)
+                if (player[i].updateState == 2)
                 {
                     Debug.Log("ENDIN UPDATE WITH YA BOI SCOTT");
-                    player[i].updateEnd = 0;
+                    player[i].updateState = 0;
                     player[i].UpdateEnd();
                 }
             }
@@ -140,24 +140,24 @@ public class BackGroundScript : MonoBehaviour
 
     private void checkCollisions()
     {
-        if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
+        if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt)
         {
             Debug.Log("p1 hit");
-            Action action = p2s.behaviors.getAction(p2s.currentAction);
-            p2s.damagedealt = true;
-            p1s.damage(action.damage[p2s.currentActionFrame], action.gStrength, action.gAngle);
+            Action action = p2s.behaviors.getAction(p2s.executingAction);
+            p2s.damageDealt = true;
+            p1s.damage(action.damage[p2s.actionFrameCounter], action.gStrength, action.gAngle);
             if (!hitStopped)
             {
                 stopNextFrame = 2;
                 //Debug.Log("BACK FRAME: " + p1s.frameTimer);
             }
         }
-        if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damagedealt)
+        if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt)
         {
             Debug.Log("p2 hit");
-            Action action = p1s.behaviors.getAction(p1s.currentAction);
-            p1s.damagedealt = true;
-            p2s.damage(action.damage[p1s.currentActionFrame], action.gStrength, action.gAngle);
+            Action action = p1s.behaviors.getAction(p1s.executingAction);
+            p1s.damageDealt = true;
+            p2s.damage(action.damage[p1s.actionFrameCounter], action.gStrength, action.gAngle);
             if (!hitStopped)
             {
                 stopNextFrame = 1;
