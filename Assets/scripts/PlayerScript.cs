@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     public bool dashDirection;         // true if dashing forward, false if dashing back
     public bool airbornActionUsed;     // true if player has spent airial action
     public bool damageDealt;           // true if damage was dealt this frame
+    public bool coll;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player

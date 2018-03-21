@@ -73,7 +73,7 @@ public class BackGroundScript : MonoBehaviour
     {
         float[] diff = new float[2];
 
-        if (p1s.GetComponentInChildren<CollisionScript>().colliding)
+        if (p1s.coll)
         {
 
             if (player[0].hPush < 0)

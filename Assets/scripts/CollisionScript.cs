@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class CollisionScript : MonoBehaviour
 {
-	private PlayerScript s;
-	private PlayerScript os;
+    private PlayerScript s;
+    private PlayerScript os;
 
-	int selfID;
+    int selfID;
 
-	public bool hit;
+    public bool hit;
 
-	public bool initialFrame;
-	public bool colliding;
+    public bool initialFrame;
+    public bool colliding;
 
-	// Use this for initialization
-	void Start()
-	{
-		s = GetComponentInParent<PlayerScript>();
-		os = s.otherPlayer.GetComponent<PlayerScript>();
-	}
+    // Use this for initialization
+    void Start()
+    {
+        s = GetComponentInParent<PlayerScript>();
+        os = s.otherPlayer.GetComponent<PlayerScript>();
+    }
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
     {
 
-	}
+    }
 
-	private void OnCollisionStay2D(Collision2D col)
-	{
+    private void OnCollisionStay2D(Collision2D col)
+    {
         /*
          If ( player.y - otherplayer.y >= “triangle height) {
             If (player.x^2 + player.y^2 <= hitbox.width^2)
-	            player.onPush
+                player.onPush
          }
          else 
-	        player.onPush
+            player.onPush
 
     */
         if (!col.collider.CompareTag(tag) && (col.collider.CompareTag("collisionHitbox1") || col.collider.CompareTag("collisionHitbox2")))
@@ -47,6 +47,7 @@ public class CollisionScript : MonoBehaviour
 
             if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
             {
+                s.coll = false;
                 /*
                 if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
                 {
@@ -65,14 +66,16 @@ public class CollisionScript : MonoBehaviour
             {
                 //ground to ground collision
 
+                s.coll = true;
                 s.onPush(os.hVelocity, os.vVelocity);
             }
         }
-	}
+    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         os.hPush = 0;
         os.vPush = 0;
+        s.coll = false;
     }
 }
