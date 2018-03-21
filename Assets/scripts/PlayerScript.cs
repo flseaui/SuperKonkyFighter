@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    public bool passedPlayerInairborn; // true if pass other player while airborn
+    public bool passedPlayerInAir;     // true if pass other player while airborn
     public bool passedPlayerInAction;  // true if pass other player while they're in an action
     public bool airborn;               // true if in the air
     public bool hitStopped;            // true if in hitstop
@@ -388,9 +388,9 @@ public class PlayerScript : MonoBehaviour
                 dashTimer = 0;
             }
 
-            if (passedPlayerInairborn && !airborn)
+            if (passedPlayerInAir && !airborn)
             {
-                passedPlayerInairborn = false;
+                passedPlayerInAir = false;
                 advancedState = 9;
             }
 
@@ -414,7 +414,7 @@ public class PlayerScript : MonoBehaviour
                 passedPlayerInAction = true;
 
             if (airborn)
-                passedPlayerInairborn = true;
+                passedPlayerInAir = true;
 
             if (!airborn && executingAction == 0)
             {
@@ -468,7 +468,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentFrameType == 3)
         {
-            if (!airborn && passedPlayerInAction && !passedPlayerInairborn && !behaviors.getAction(executingAction).infinite)
+            if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
             {
                 ActionEnd();
             }
@@ -849,7 +849,7 @@ public class PlayerScript : MonoBehaviour
         previousBasicState = 0;
         killAllBoxes();
 
-        if (passedPlayerInAction && !passedPlayerInairborn)
+        if (passedPlayerInAction && !passedPlayerInAir)
         {
 
             passedPlayerInAction = false;
