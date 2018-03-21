@@ -73,7 +73,7 @@ public class BackGroundScript : MonoBehaviour
     {
         float[] diff = new float[2];
 
-        if (p1s.coll)
+        if (p1s.inPushCollision)
         {
 
             if (player[0].hPush < 0)

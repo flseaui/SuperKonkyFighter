@@ -21,6 +21,11 @@ public class CollisionScript : MonoBehaviour
         os = s.otherPlayer.GetComponent<PlayerScript>();
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,7 +52,7 @@ public class CollisionScript : MonoBehaviour
 
             if (Mathf.Abs(this.transform.position.y - os.hitbox.transform.position.y) >= 3)
             {
-                s.coll = false;
+                s.inPushCollision = false;
                 /*
                 if ((Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) * (Mathf.Abs(this.transform.position.x) - Mathf.Abs(os.hitbox.transform.position.x)) - (this.transform.position.y) * (this.transform.position.y) <= (os.hitbox.size.x) * (os.hitbox.size.x))
                 {
@@ -66,7 +71,7 @@ public class CollisionScript : MonoBehaviour
             {
                 //ground to ground collision
 
-                s.coll = true;
+                s.inPushCollision = true;
                 s.onPush(os.hVelocity, os.vVelocity);
             }
         }
@@ -76,6 +81,6 @@ public class CollisionScript : MonoBehaviour
     {
         os.hPush = 0;
         os.vPush = 0;
-        s.coll = false;
+        s.inPushCollision = false;
     }
 }

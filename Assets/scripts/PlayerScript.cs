@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
     public bool dashDirection;         // true if dashing forward, false if dashing back
     public bool airbornActionUsed;     // true if player has spent airial action
     public bool damageDealt;           // true if damage was dealt this frame
-    public bool coll;
+    public bool inPushCollision;       // true if player push boxes are currently colliding
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -42,7 +42,6 @@ public class PlayerScript : MonoBehaviour
     public int dashTimer;              // counts number of frames player has been dashing for
     public int executingAction;        // currently executing action
     public int stunTimer;              // timer counting down the time player has been in hitstun
-    public int updateState;            // keeps track of what type of update the player should execute
     public int previousBasicState;     // basic state last frame
     public int basicAnimFrame;         // current frame number of playing animation
 
@@ -82,6 +81,7 @@ public class PlayerScript : MonoBehaviour
      * 1 - hitstop / no update
      * 2 - updateEnd
      */
+    public int updateState;            // keeps track of what type of update the player should execute
 
     public float hKnockback;          // horizontal knockback
     public float vKnockback;          // vertical knockback
@@ -109,16 +109,8 @@ public class PlayerScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        /*
-        if (hurtbox.enabled)
-        {
-            Gizmos.color = new Color(1, 0, 0, 0.5F);
-            Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x * this.transform.localScale.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
-        }
-
-    */
-
-    //Gizmos.color = new Color(0, 1, 0, 0.5F);
+        Gizmos.color = Color.green;
+       // Gizmos.DrawWireCube(transform.position, transform.renderer.bounds.size);
     }
 
     void Start()
