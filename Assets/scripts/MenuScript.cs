@@ -35,18 +35,20 @@ public class MenuScript : MonoBehaviour {
 	private GameObject backgroundShowcase;
 	private GameObject backgroundGoButton;
 	private GameObject backgroundText;
+	private GameObject backgroundGotext;
 
 	//-----------------------------prefabs----------------------------//
 
 	public GameObject buttonPrefab;
 	public GameObject spritePrefab;
 	public GameObject textPrefab;
+	public GameObject textHolderPrefab;
 
 	//--------------------------------------------------------------//
 
 	public GameObject background;
 
-	public List<GameObject> buttons;
+	public List<GameObject> menuObjects;
 	public List<int> links;
 
 	private int screen;
@@ -97,7 +99,7 @@ public class MenuScript : MonoBehaviour {
 		Material mat = button.GetComponent<MeshRenderer>().material;
 		mat.color = color;
 
-		buttons.Add(button);
+		menuObjects.Add(button);
 
 		button.GetComponent<ButtonScript>().startFlags(flags);
 
@@ -130,7 +132,7 @@ public class MenuScript : MonoBehaviour {
 		{
 			spriteObject.GetComponent<Animator>().runtimeAnimatorController = playButtonAnimator;
 		}
-		buttons.Add(spriteObject);
+		menuObjects.Add(spriteObject);
 
 		return spriteObject;
 	}
@@ -150,39 +152,78 @@ public class MenuScript : MonoBehaviour {
 		return subSprite(x, y, w, h, s, null, c);
 	}
 
+	//just plain text, no movement
 	public GameObject makeText(float x, float y, string text)
 	{
 		GameObject ret = Instantiate(textPrefab);
-		Vector3 p = ret.GetComponent<Transform>().position;
-		p.x = x;
-		p.y = y;
+
+		//set position
+		Vector3 p = new Vector3(x, y, 0);
 		ret.GetComponent<Transform>().position = p;
 
+		//set text
 		ret.GetComponent<TextMesh>().text = text;
+
+		//add the text object to the list
+		menuObjects.Add(ret);
 
 		return ret;
 	}
 
-	public void clearButtons()
+	//make text that has an animation, moves up and down with different colors
+	public GameObject makeFancyText(float x, float y, float scale, string text)
 	{
-		foreach (GameObject i in buttons)
-		{
-			Destroy(i);
-		}
-		buttons.Clear();
+		GameObject ret = Instantiate(textHolderPrefab);
+
+		//set position and scale
+		Vector3 p = new Vector3(x, y, -8);
+		ret.GetComponent<Transform>().position = p;
+		Vector3 s = new Vector3(scale, scale, 1);
+		ret.GetComponent<Transform>().localScale = s;
+
+		//set all the text to the same thing
+		ret.transform.GetChild(0).GetComponent<TextMesh>().text = text;
+		ret.transform.GetChild(1).GetComponent<TextMesh>().text = text;
+		ret.transform.GetChild(2).GetComponent<TextMesh>().text = text;
+		ret.transform.GetChild(3).GetComponent<TextMesh>().text = text;
+
+		//add the text object to the list
+		menuObjects.Add(ret);
+
+		return ret;
 	}
 
-	void Update () {
-    }
+	//change the text of animated text objects
+	private void changeFancyText(GameObject textObject, string text)
+	{
+		textObject.transform.GetChild(0).GetComponent<TextMesh>().text = text;
+		textObject.transform.GetChild(1).GetComponent<TextMesh>().text = text;
+		textObject.transform.GetChild(2).GetComponent<TextMesh>().text = text;
+		textObject.transform.GetChild(3).GetComponent<TextMesh>().text = text;
+	}
 
+	//destroy all menu objects created by this script
+	public void menuClear()
+	{
+		foreach (GameObject i in menuObjects)
+		{
+			//destroy the gameObject in unity
+			Destroy(i);
+		}
+		//clear the list
+		menuObjects.Clear();
+	}
+
+	//switch to pre designated arrangements of menu objects and create them
 	public void startScreen(int no)
 	{
-		clearButtons();
+		menuClear();
 		switch (no) {
 			case TITLE_SCREEN:
-				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//play button
-				makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
-				makeSprite(0, 3, 26, 11, titleSprite);
+				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//hidden play button
+				//makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
+				makeFancyText(0, -5, 2f, "play");//play button (visible)
+				makeSprite(0, 3, 26, 11, titleSprite);//title logo
 				break;
 			case PLAYER_SELECT_SCREEN:
 
@@ -199,7 +240,7 @@ public class MenuScript : MonoBehaviour {
 				makeButton(new Vector3[] { new Vector2(  5, 7), new Vector2( 10, 7), new Vector2(  7, 0), new Vector2(  3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2( 10, 7), new Vector2( 15, 7), new Vector2( 11, 0), new Vector2(  7, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
 
-				makeSprite(-8.5f, 8f, 14, 2, PlayerSelectText);
+				makeFancyText(-7f, 8f, 1.25f, "player select");//screen description
 
 				break;
 			case STAGE_SELECT_SCREEN:
@@ -218,7 +259,10 @@ public class MenuScript : MonoBehaviour {
 				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 7, new int[] { ButtonScript.FLAG_STICKY });
 				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 8, new int[] { ButtonScript.FLAG_STICKY });
 
-				backgroundText = makeText(0, -7, "select a stage");
+				backgroundText = makeFancyText(0, -7.25f, 1.125f, "select a stage");
+
+				backgroundGotext = makeFancyText(0, 2, 2f, "fight!");
+				backgroundGotext.SetActive(false);
 
 				break;
 
@@ -246,52 +290,52 @@ public class MenuScript : MonoBehaviour {
 				unstickAll();
 				backgroundPass = 0;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background0Sprite;
-				backgroundText.GetComponent<TextMesh>().text = "twilight hills";
-				backgroundGoButton.GetComponent<ButtonScript>().show();
+				changeFancyText(backgroundText, "twlight hills");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGotext.SetActive(true);
 				break;
 			case 5:
 				unstickAll();
 				backgroundPass = 1;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background1Sprite;
-				backgroundText.GetComponent<TextMesh>().text = "desert";
-				backgroundGoButton.GetComponent<ButtonScript>().show();
+				changeFancyText(backgroundText, "africa");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
+				backgroundGotext.SetActive(true);
 				break;
 			case 6:
 				unstickAll();
 				backgroundPass = 2;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = backgroundRSprite;
-				backgroundText.GetComponent<TextMesh>().text = "random";
-				backgroundGoButton.GetComponent<ButtonScript>().show();
+				changeFancyText(backgroundText, "random");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
+				backgroundGotext.SetActive(true);
 				break;
 			case 7:
 				unstickAll();
 				backgroundPass = 3;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
-				backgroundText.GetComponent<TextMesh>().text = "midnight park";
-				backgroundGoButton.GetComponent<ButtonScript>().show();
+				changeFancyText(backgroundText, "midnight park");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
+				backgroundGotext.SetActive(true);
 				break;
 			case 8:
 				unstickAll();
 				backgroundPass = 4;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
-				backgroundText.GetComponent<TextMesh>().text = "caverns";
-				backgroundGoButton.GetComponent<ButtonScript>().show();
+				changeFancyText(backgroundText, "catacombs of carthus");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
+				backgroundGotext.SetActive(true);
 				break;
 		}
 	}
 
 	private void unstickAll()
 	{
-		foreach (GameObject i in buttons)
+		foreach (GameObject i in menuObjects)
 		{
 			try
 			{
