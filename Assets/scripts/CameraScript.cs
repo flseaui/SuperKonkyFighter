@@ -206,10 +206,17 @@ public class CameraScript : MonoBehaviour
         {
             cx = -42;
         }
+        float cy = ((getY(player1) + 13 / 2 - 8) + (getY(player2) + 13 / 2 - 8)) / 2f + 8;
+        if (cy < 12)
+        {
+            cy = 12;
+        }
+        setY(background, cy * 0.5f + 8);
+        setY(self, cy);
         setX(background, cx * 0.5f);
         setX(self, cx);
- 
-		bool now = getX(player1) < getX(player2);
+
+        bool now = getX(player1) < getX(player2);
 
 		if (now != history) {
 			if (getX(player1) < getX(player2))
@@ -254,6 +261,15 @@ public class CameraScript : MonoBehaviour
         return o.transform.position.x;
     }
 
+    private float getY(GameObject o)
+    {
+        return o.transform.position.y;
+    }
+    private float getY(Camera o)
+    {
+        return o.transform.position.y;
+    }
+
     private void moveX(Camera o, float amm)
     {
         Vector3 position = o.transform.position;
@@ -274,7 +290,14 @@ public class CameraScript : MonoBehaviour
         o.transform.position = position;
     }
 
-	private void setY(Camera o, float amm)
+    private void setY(GameObject o, float amm)
+    {
+        Vector3 position = o.transform.position;
+        position.y = amm;
+        o.transform.position = position;
+    }
+
+    private void setY(Camera o, float amm)
 	{
 		Vector3 position = o.transform.position;
 		position.y = amm;
