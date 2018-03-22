@@ -384,6 +384,7 @@ public class PlayerScript : MonoBehaviour
             if (passedPlayerInAir && !airborn)
             {
                 passedPlayerInAir = false;
+                ActionEnd();
                 advancedState = 9;
             }
 
