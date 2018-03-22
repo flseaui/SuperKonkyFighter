@@ -183,7 +183,7 @@ public class KonkyBehaviours : Behaviors {
         level = 0,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
-        gStrength   = 1,
+        gStrength   = .5f,
         aAngle      = 30,
         aStrength   = 1
     };
@@ -227,7 +227,7 @@ public class KonkyBehaviours : Behaviors {
         level       = 2,
         actionCancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
-        gStrength   = 2,
+        gStrength   = 1,
         aAngle      = 30,
         aStrength   = 2
     };
@@ -281,7 +281,7 @@ public class KonkyBehaviours : Behaviors {
         level       = 1,
         actionCancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
-        gStrength   = 4,
+        gStrength   = 2,
         aAngle      = 30,
         aStrength   = 4
     };
@@ -442,10 +442,10 @@ public class KonkyBehaviours : Behaviors {
         },
         level = 3,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
-        gAngle      = 80,
+        gAngle      = 45,
         gStrength   = 3,
         aAngle      = 80,
-        aStrength   = 4
+        aStrength   = 5
     };
 
     // Jumping Light
