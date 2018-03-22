@@ -110,7 +110,7 @@ public class PlayerScript : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-       // Gizmos.DrawWireCube(transform.position, transform.renderer.bounds.size);
+        //Gizmos.DrawWireCube(transform.position);
     }
 
     void Start()
@@ -186,7 +186,7 @@ public class PlayerScript : MonoBehaviour
             if (advancedState != 0)
                 buffer(advancedState + 40);
             else if (attackState != 0)
-                buffer(executingAction = attackState);
+                buffer(attackState);
 
             updateState = 1;
         }
@@ -225,8 +225,8 @@ public class PlayerScript : MonoBehaviour
 
     private void buffer(int bufferedInput)
     {
-        foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-            if (Actions == bufferedInput)
+        foreach (int action in behaviors.getAction(executingAction).actionCancels)
+            if (action == bufferedInput)
                 bufferedMove = bufferedInput;
     }
 
@@ -442,17 +442,26 @@ public class PlayerScript : MonoBehaviour
         int previousFrame = currentFrameType;
         currentFrameType = frames[actionFrameCounter];
         actionFrameCounter++;
-
-        // Debug.Log("actionFrameCounter" + actionFrameCounter);
+        
+        // if first active frame in action
         if (previousFrame != 1 && currentFrameType == 1)
         {
             otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
         }
 
+        // if active frame
         if (currentFrameType == 1)
         {
             if (executingAction < 40)
                 placeHitboxes();
+
+            // if not hitsopped buffer move
+            if (!hitStopped)
+                if (advancedState != 0)
+                    buffer(advancedState + 40);
+                else if (attackState != 0)
+                    buffer(attackState);
+
             activeFrameCounter++;
         }
         else
@@ -460,12 +469,15 @@ public class PlayerScript : MonoBehaviour
             damageDealt = false;
         }
 
+        // if recovery frame
         if (currentFrameType == 3)
         {
+            // if grounded from a non-infinite action that passed the other player
             if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
             {
                 ActionEnd();
             }
+            // if executing advanced action and not passed the other player
             else if (advancedState != 0 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
@@ -490,8 +502,8 @@ public class PlayerScript : MonoBehaviour
             }
             else if (attackState != 0 && !passedPlayerInAction)
             {
-                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                    if (Actions == attackState)
+                foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                    if (action == attackState)
                         bufferedMove = attackState;
             }
 
