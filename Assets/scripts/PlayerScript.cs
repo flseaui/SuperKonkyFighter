@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing
     public bool facingRight;           // true if the player is facing right
     public bool playerSide;            // true if left of the other player, false if right
-    public bool dashDirection;         // true if dashing forward, false if dashing back
+    public bool dashingForwards;       // true if dashing forward, false if dashing back
     public bool airbornActionUsed;     // true if player has spent airial action
     public bool damageDealt;           // true if damage was dealt this frame
     public bool inPushCollision;       // true if player push boxes are currently colliding
@@ -320,7 +320,7 @@ public class PlayerScript : MonoBehaviour
             if (dashTimer == 0 && advancedState <= 4)
                 advancedState = 0;
 
-            if (input[8] && !dashDirection && dashTimer != 0)
+            if (input[8] && !dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
                 {
@@ -350,7 +350,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 dashTimer = 0;
             }
-            else if (input[9] && dashDirection && dashTimer != 0)
+            else if (input[9] && dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
                 {
@@ -395,9 +395,9 @@ public class PlayerScript : MonoBehaviour
             {
                 dashTimer = 15;
                 if (input[8])
-                    dashDirection = false;
+                    dashingForwards = false;
                 else
-                    dashDirection = true;
+                    dashingForwards = true;
             }
         }
 
@@ -807,7 +807,7 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
+                if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
                 {
                     hVelocity = 0;
                     ActionEnd();
@@ -855,14 +855,16 @@ public class PlayerScript : MonoBehaviour
         previousBasicState = 0;
         killAllBoxes();
 
-        if (passedPlayerInAction && !passedPlayerInAir)
+        if (passedPlayerInAction)
         {
-
             passedPlayerInAction = false;
-            if (basicState <= 3)
-                executingAction = 50;
-            else
-                executingAction = 49;
+            if (!passedPlayerInAir)
+            {
+                if (basicState <= 3)
+                    executingAction = 50;
+                else
+                    executingAction = 49;
+            }
         }
     }
 
