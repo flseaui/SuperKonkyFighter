@@ -35,7 +35,6 @@ public class MenuScript : MonoBehaviour {
 	private GameObject backgroundShowcase;
 	private GameObject backgroundGoButton;
 	private GameObject backgroundText;
-	private GameObject backgroundGotext;
 
 	//-----------------------------prefabs----------------------------//
 
@@ -101,6 +100,7 @@ public class MenuScript : MonoBehaviour {
 
 		menuObjects.Add(button);
 
+		button.GetComponent<ButtonScript>().defaultColor = color;
 		button.GetComponent<ButtonScript>().startFlags(flags);
 
 		return button;
@@ -171,7 +171,7 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	//make text that has an animation, moves up and down with different colors
-	public GameObject makeFancyText(float x, float y, float scale, string text)
+	public GameObject makeFancyText(float x, float y, float scale, string text, int allignMode)
 	{
 		GameObject ret = Instantiate(textHolderPrefab);
 
@@ -187,6 +187,29 @@ public class MenuScript : MonoBehaviour {
 		ret.transform.GetChild(2).GetComponent<TextMesh>().text = text;
 		ret.transform.GetChild(3).GetComponent<TextMesh>().text = text;
 
+		//set the allignment of all the texts
+		switch (allignMode)
+		{
+			case 0:
+				ret.transform.GetChild(0).GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+				ret.transform.GetChild(1).GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+				ret.transform.GetChild(2).GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+				break;
+			case 1:
+				ret.transform.GetChild(0).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(1).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(2).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				break;
+			case 2:
+				ret.transform.GetChild(0).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(1).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(2).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				break;
+		}
+
 		//add the text object to the list
 		menuObjects.Add(ret);
 
@@ -196,6 +219,7 @@ public class MenuScript : MonoBehaviour {
 	//change the text of animated text objects
 	private void changeFancyText(GameObject textObject, string text)
 	{
+		
 		textObject.transform.GetChild(0).GetComponent<TextMesh>().text = text;
 		textObject.transform.GetChild(1).GetComponent<TextMesh>().text = text;
 		textObject.transform.GetChild(2).GetComponent<TextMesh>().text = text;
@@ -222,7 +246,7 @@ public class MenuScript : MonoBehaviour {
 			case TITLE_SCREEN:
 				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//hidden play button
 				//makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
-				makeFancyText(0, -5, 2f, "play");//play button (visible)
+				makeFancyText(0, -5, 2f, "play", 0);//play button (visible)
 				makeSprite(0, 3, 26, 11, titleSprite);//title logo
 				break;
 			case PLAYER_SELECT_SCREEN:
@@ -240,7 +264,7 @@ public class MenuScript : MonoBehaviour {
 				makeButton(new Vector3[] { new Vector2(  5, 7), new Vector2( 10, 7), new Vector2(  7, 0), new Vector2(  3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2( 10, 7), new Vector2( 15, 7), new Vector2( 11, 0), new Vector2(  7, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
 
-				makeFancyText(-7f, 8f, 1.25f, "player select");//screen description
+				makeFancyText(-16f, 9f, 1.25f, "player select", 1);//screen description
 
 				break;
 			case STAGE_SELECT_SCREEN:
@@ -251,19 +275,18 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sortingOrder = 0 ;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = BackgroundNSprite;
 
-				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-6, 4), new Vector2(6, 4), new Vector2(6, 0), new Vector2(-6, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 3, new int[] {ButtonScript.FLAG_HIDDEN, ButtonScript.FLAG_DUMMY});
+				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ButtonScript.FLAG_DUMMY, ButtonScript.FLAG_SHADE});
+				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 1;
 
-				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 4, new int[] {ButtonScript.FLAG_STICKY});
-				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 5, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 6, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 7, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.8f, 0f, 0f, 0.75f), 8, new int[] { ButtonScript.FLAG_STICKY });
+				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0f, 0.8f, 0f, 0.75f), 4, new int[] {ButtonScript.FLAG_STICKY});
+				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0.6f, 0f, 0.75f), 5, new int[] { ButtonScript.FLAG_STICKY });
+				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0.8f, 0.8f, 0.75f), 6, new int[] { ButtonScript.FLAG_STICKY });
+				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.4f, 0.0f, 0.2f, 0.75f), 7, new int[] { ButtonScript.FLAG_STICKY });
+				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.0f, 0f, 0.6f, 0.75f), 8, new int[] { ButtonScript.FLAG_STICKY });
 
-				backgroundText = makeFancyText(0, -7.25f, 1.125f, "select a stage");
+				backgroundText = makeFancyText(0, -7.25f, 1.125f, "please select a stage", 0);
 
-				backgroundGotext = makeFancyText(0, 2, 2f, "fight!");
-				backgroundGotext.SetActive(false);
-
+				makeFancyText(-16f, 9f, 1.25f, "stage select", 1);//screen description
 				break;
 
 		}
@@ -292,7 +315,6 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background0Sprite;
 				changeFancyText(backgroundText, "twlight hills");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
-				backgroundGotext.SetActive(true);
 				break;
 			case 5:
 				unstickAll();
@@ -300,8 +322,6 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background1Sprite;
 				changeFancyText(backgroundText, "africa");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
-				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
-				backgroundGotext.SetActive(true);
 				break;
 			case 6:
 				unstickAll();
@@ -309,8 +329,6 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = backgroundRSprite;
 				changeFancyText(backgroundText, "random");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
-				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
-				backgroundGotext.SetActive(true);
 				break;
 			case 7:
 				unstickAll();
@@ -318,8 +336,6 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
 				changeFancyText(backgroundText, "midnight park");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
-				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
-				backgroundGotext.SetActive(true);
 				break;
 			case 8:
 				unstickAll();
@@ -327,8 +343,6 @@ public class MenuScript : MonoBehaviour {
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
 				changeFancyText(backgroundText, "catacombs of carthus");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
-				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 4;
-				backgroundGotext.SetActive(true);
 				break;
 		}
 	}

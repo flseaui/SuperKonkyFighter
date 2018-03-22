@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 								  IPointerDownHandler, IPointerEnterHandler,
@@ -13,18 +12,23 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private Material color;
 
+	public Color defaultColor;
+	private Color highlightColor;
+
 	//-----------FLAGS------------------//
 
 	public const int FLAG_HIDDEN = 0;
 	public const int FLAG_STICKY = 1;
 	public const int FLAG_DUMMY  = 2;
 	public const int FLAG_STUCK  = 3;
+	public const int FLAG_SHADE  = 4;
 
 	//--------------line types----------//
 	public Material defaultMaterial;
 	public Material glowMaterial;
 	//------------------------------------//
 
+	private bool shade;
 	public bool disable;
 	public bool sticky;
 
@@ -42,8 +46,9 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		addEventSystem();
 		lineRenderer = GetComponent<LineRenderer>();
 		color = GetComponent<MeshRenderer>().material;
+		highlightColor = new Color(defaultColor.r + 0.2f, defaultColor.g + 0.2f, defaultColor.b + 0.2f, defaultColor.a);
 
-		unGlow();
+		modeNeutral();
 
 		foreach (int i in flags)
 		{
@@ -69,7 +74,10 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 					sticky = true;
 					disable = true;
-					glow();
+					modeHighlight();
+					break;
+				case FLAG_SHADE:
+					shade = true;
 					break;
 			}
 		}
@@ -101,11 +109,50 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	{
 		if (disable) {
 			disable = false;
-			unGlow();
+			modeNeutral();
 		}
 	}
 
-	private void glow()
+	private void modeHighlight()
+	{
+		lineRenderer.widthMultiplier = 0.3f;
+		lineRenderer.material = defaultMaterial;
+		lineRenderer.numCornerVertices = 0;
+		lineRenderer.sortingOrder = 2;
+		GradientColorKey gck = new GradientColorKey();
+		gck.color = Color.white;
+		GradientAlphaKey gak = new GradientAlphaKey();
+		gak.alpha = 0.75f;
+		Gradient g = new Gradient();
+		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+		lineRenderer.colorGradient = g;
+		if (shade)
+		{
+			color.color = new Color(defaultColor.r, defaultColor.g, defaultColor.b, 0.2f);
+		}
+		else
+		{
+			color.color = highlightColor;
+		}
+	}
+
+	private void modeNeutral()
+	{
+		lineRenderer.widthMultiplier = 0.3f;
+		lineRenderer.material = defaultMaterial;
+		lineRenderer.numCornerVertices = 0;
+		lineRenderer.sortingOrder = 2;
+		GradientColorKey gck = new GradientColorKey();
+		gck.color = Color.white;
+		GradientAlphaKey gak = new GradientAlphaKey();
+		gak.alpha = 0.75f;
+		Gradient g = new Gradient();
+		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+		lineRenderer.colorGradient = g;
+		color.color = defaultColor;
+	}
+
+	private void modeLock()
 	{
 		lineRenderer.widthMultiplier = 0.8f;
 		lineRenderer.material = glowMaterial;
@@ -130,21 +177,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		Gradient g = new Gradient();
 		g.SetKeys(new GradientColorKey[] { gck0, gck1, gck2 }, new GradientAlphaKey[] { gak });
 		lineRenderer.colorGradient = g;
-	}
-
-	private void unGlow()
-	{
-		lineRenderer.widthMultiplier = 0.3f;
-		lineRenderer.material = defaultMaterial;
-		lineRenderer.numCornerVertices = 0;
-		lineRenderer.sortingOrder = 2;
-		GradientColorKey gck = new GradientColorKey();
-		gck.color = Color.white;
-		GradientAlphaKey gak = new GradientAlphaKey();
-		gak.alpha = 0.75f;
-		Gradient g = new Gradient();
-		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-		lineRenderer.colorGradient = g;
+		color.color = highlightColor;
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
@@ -153,6 +186,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 			menuScript.triggerEvent(triggerID);
 			if (sticky)
 			{
+				modeLock();
 				disable = true;
 			}
 		}
@@ -166,7 +200,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (!disable) {
-			glow();
+			modeHighlight();
 		}
 	}
 
@@ -179,7 +213,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	{
 		if (!disable)
 		{
-			unGlow();
+			modeNeutral();
 		}
 	}
 
