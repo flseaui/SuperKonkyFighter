@@ -151,8 +151,8 @@ public class KonkyBehaviours : Behaviors {
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 3 | 9
-        damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 4 | 3 | 9
+        damage = new int[] { 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxFrames = 3,
         hurtboxFrames = 17,
         hitboxData = new Action.rect[,]
@@ -179,7 +179,6 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox }
         },
         level = 0,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -579,7 +578,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {new Action.rect(1.5f, 8.5f, 6, 12, 27, 2), new Action.rect(5, 4, 6, 4, 17, 2), },
+            {nullBox, new Action.rect(5, 4, 6, 4, 17, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -612,7 +611,7 @@ public class KonkyBehaviours : Behaviors {
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -80,
-        aStrength   = 6
+        aStrength   = 60
     };
 
     // Forward Medium
