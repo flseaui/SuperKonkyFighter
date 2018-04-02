@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 880323880}
   - component: {fileID: 880323879}
   - component: {fileID: 880323883}
+  - component: {fileID: 880323884}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -427,12 +428,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleSprite: {fileID: 21300000, guid: f9212b6797e8ced4b8351465c2ff20a9, type: 3}
   playButtonSprite: {fileID: 21300000, guid: 68633417014e0d841b55c41bbe4c8d59, type: 3}
-  playButtonAnimator: {fileID: 9100000, guid: c1d4751b4672f394bb5fb12de76af254, type: 2}
   platformSprite: {fileID: 21300000, guid: c155635ab4fbd324c9689450c9958402, type: 3}
   konkySelect: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
   GreyshirtSelect: {fileID: 21300000, guid: 74586aef65a341a42860a23afa6eb459, type: 3}
   PlayerSelectText: {fileID: 21300000, guid: d7c5180793f8068449f3ed336a17ca52, type: 3}
   StageSelectText: {fileID: 21300000, guid: 6bf3500f4670a9a4fadab2255f42a839, type: 3}
+  konkyGlobe: {fileID: 21300000, guid: 2c352fb167139fb4f9a388fd44188234, type: 3}
+  greyshirtGlobe: {fileID: 0}
+  konkyGlobeAnim: {fileID: 9100000, guid: 80ce49420553bdd499f075feea4a38e5, type: 2}
+  GreyshirtGlobeAnim: {fileID: 0}
   BackgroundNSprite: {fileID: 21300000, guid: 366e16781bf711548aa549d973509e53, type: 3}
   backgroundRSprite: {fileID: 21300000, guid: 8c8e9e2838d6d044b9bb4d15f3d8abbb, type: 3}
   background0Sprite: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
@@ -449,6 +453,23 @@ MonoBehaviour:
   background: {fileID: 505551293}
   menuObjects: []
   links: 
+--- !u!95 &880323884
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 880323878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 811cf817cb54cdc4da75959c479530fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &945590018
 GameObject:
   m_ObjectHideFlags: 0

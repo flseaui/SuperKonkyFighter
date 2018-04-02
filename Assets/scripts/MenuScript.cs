@@ -14,12 +14,16 @@ public class MenuScript : MonoBehaviour {
 
 	public Sprite titleSprite;
 	public Sprite playButtonSprite;
-	public RuntimeAnimatorController playButtonAnimator;
 	public Sprite platformSprite;
 	public Sprite konkySelect;
 	public Sprite GreyshirtSelect;
 	public Sprite PlayerSelectText;
 	public Sprite StageSelectText;
+
+	public Sprite konkyGlobe;
+	public Sprite greyshirtGlobe;
+	public RuntimeAnimatorController konkyGlobeAnim;
+	public RuntimeAnimatorController GreyshirtGlobeAnim;
 
 	//---------------------background sprites------------------//
 
@@ -35,6 +39,13 @@ public class MenuScript : MonoBehaviour {
 	private GameObject backgroundShowcase;
 	private GameObject backgroundGoButton;
 	private GameObject backgroundText;
+
+	private GameObject globe1;
+	private GameObject globe2;
+	private GameObject player1;
+	private GameObject player2;
+	private GameObject characterGoButton;
+	private GameObject characterGoText;
 
 	//-----------------------------prefabs----------------------------//
 
@@ -53,16 +64,14 @@ public class MenuScript : MonoBehaviour {
 	private int screen;
 
 	private int stageSelect;
-	private int player1Select;
-	private int player2Select;
+	private int player1c;
+	private int player2c;
+	private int player1ai;
+	private int player2ai;
 
 	private int backgroundPass;
 
 	void Start () {
-        PlayerPrefs.SetInt("stage", 0);
-		PlayerPrefs.SetInt("character1", 0);
-		PlayerPrefs.SetInt("character2", 0);
-
 		startScreen(TITLE_SCREEN);
 	}
 	
@@ -130,7 +139,7 @@ public class MenuScript : MonoBehaviour {
 
 		if (animator != null)
 		{
-			spriteObject.GetComponent<Animator>().runtimeAnimatorController = playButtonAnimator;
+			spriteObject.GetComponent<Animator>().runtimeAnimatorController = animator;
 		}
 		menuObjects.Add(spriteObject);
 
@@ -153,16 +162,32 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	//just plain text, no movement
-	public GameObject makeText(float x, float y, string text)
+	public GameObject makeText(float x, float y, float scale, string text, int allignMode)
 	{
 		GameObject ret = Instantiate(textPrefab);
 
 		//set position
 		Vector3 p = new Vector3(x, y, 0);
 		ret.GetComponent<Transform>().position = p;
+		Vector3 s = new Vector3(scale, scale, 1);
+		ret.GetComponent<Transform>().localScale = s;
 
 		//set text
 		ret.GetComponent<TextMesh>().text = text;
+
+		//set allignment
+		switch (allignMode)
+		{
+			case 0:
+				ret.GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+				break;
+			case 1:
+				ret.GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				break;
+			case 2:
+				ret.GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
+				break;
+		}
 
 		//add the text object to the list
 		menuObjects.Add(ret);
@@ -203,10 +228,10 @@ public class MenuScript : MonoBehaviour {
 				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
 				break;
 			case 2:
-				ret.transform.GetChild(0).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
-				ret.transform.GetChild(1).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
-				ret.transform.GetChild(2).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
-				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+				ret.transform.GetChild(0).GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
+				ret.transform.GetChild(1).GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
+				ret.transform.GetChild(2).GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
+				ret.transform.GetChild(3).GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
 				break;
 		}
 
@@ -224,6 +249,11 @@ public class MenuScript : MonoBehaviour {
 		textObject.transform.GetChild(1).GetComponent<TextMesh>().text = text;
 		textObject.transform.GetChild(2).GetComponent<TextMesh>().text = text;
 		textObject.transform.GetChild(3).GetComponent<TextMesh>().text = text;
+	}
+
+	private void changeText(GameObject textObject, string text)
+	{
+		textObject.GetComponent<TextMesh>().text = text;
 	}
 
 	//destroy all menu objects created by this script
@@ -244,6 +274,12 @@ public class MenuScript : MonoBehaviour {
 		menuClear();
 		switch (no) {
 			case TITLE_SCREEN:
+
+				player1ai = 0;
+				player2ai = 0;
+				player1c = -1;
+				player2c = -1;
+
 				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//hidden play button
 				//makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
 				makeFancyText(0, -5, 2f, "play", 0);//play button (visible)
@@ -251,20 +287,31 @@ public class MenuScript : MonoBehaviour {
 				break;
 			case PLAYER_SELECT_SCREEN:
 
-				makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
-				makeSprite(11, -6, 8, 2, platformSprite, Color.red);
-				makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { });
+				globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
+				makeButton(new Vector3[] { new Vector2(-15, -5), new Vector2(-7, -5), new Vector2(-7, -7), new Vector2(-15, -7) }, new Color(0.8f, 0f, 0f, 0.75f), 9, new int[] { ButtonScript.FLAG_HIDDEN });
+				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
+				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
+				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
+				makeButton(new Vector3[] { new Vector2(7, -5), new Vector2(15, -5), new Vector2(15, -7), new Vector2(7, -7) }, new Color(0.8f, 0f, 0f, 0.75f), 10, new int[] { ButtonScript.FLAG_HIDDEN });
+				globeShift();
+				charShift();
 
-				makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), -1, new int[] { });
+				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN });
+				characterGoText = makeFancyText(0, -3, 2, "go", 0);
+
+				makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ButtonScript.FLAG_STICKY });
 				makeSprite(-10, 4, 8, 8, konkySelect);//konky sprite
-				makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), -1, new int[] { });
+				makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ButtonScript.FLAG_STICKY });
 				makeSprite(-6, 4, 8, 8, GreyshirtSelect);//greyshirt sprite
 				makeButton(new Vector3[] { new Vector2( -5, 7), new Vector2(  0, 7), new Vector2(  0, 0), new Vector2( -3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  0, 7), new Vector2(  5, 7), new Vector2(  3, 0), new Vector2(  0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  5, 7), new Vector2( 10, 7), new Vector2(  7, 0), new Vector2(  3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2( 10, 7), new Vector2( 15, 7), new Vector2( 11, 0), new Vector2(  7, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
 
-				makeFancyText(-16f, 9f, 1.25f, "player select", 1);//screen description
+				makeText(-16f, 9f, 1.25f, "player select", 1);//screen description
+
+				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ButtonScript.FLAG_HIDDEN });
+				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
 
 				break;
 			case STAGE_SELECT_SCREEN:
@@ -284,9 +331,12 @@ public class MenuScript : MonoBehaviour {
 				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.4f, 0.0f, 0.2f, 0.75f), 7, new int[] { ButtonScript.FLAG_STICKY });
 				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.0f, 0f, 0.6f, 0.75f), 8, new int[] { ButtonScript.FLAG_STICKY });
 
-				backgroundText = makeFancyText(0, -7.25f, 1.125f, "please select a stage", 0);
+				backgroundText = makeText(0, -7.25f, 1.125f, "please select a stage", 0);//background text
 
-				makeFancyText(-16f, 9f, 1.25f, "stage select", 1);//screen description
+				makeButton(new Vector3[] { new Vector2(-16,-7), new Vector2(-11,-7), new Vector2(-11,-9), new Vector2(-16,-9) }, new Color(), 1, new int[] { ButtonScript.FLAG_HIDDEN });
+				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
+
+				makeText(-16f, 9f, 1.25f, "stage select", 1);//screen description
 				break;
 
 		}
@@ -313,36 +363,54 @@ public class MenuScript : MonoBehaviour {
 				unstickAll();
 				backgroundPass = 0;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background0Sprite;
-				changeFancyText(backgroundText, "twlight hills");
+				changeText(backgroundText, "twlight hills");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 5:
 				unstickAll();
 				backgroundPass = 1;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background1Sprite;
-				changeFancyText(backgroundText, "africa");
+				changeText(backgroundText, "africa");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 6:
 				unstickAll();
 				backgroundPass = 2;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = backgroundRSprite;
-				changeFancyText(backgroundText, "random");
+				changeText(backgroundText, "random");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 7:
 				unstickAll();
 				backgroundPass = 3;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
-				changeFancyText(backgroundText, "midnight park");
+				changeText(backgroundText, "midnight park");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 8:
 				unstickAll();
 				backgroundPass = 4;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
-				changeFancyText(backgroundText, "catacombs of carthus");
+				changeText(backgroundText, "catacombs of carthus");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				break;
+			case 9:
+				player1ai = (player1ai == 0) ? 1 : 0; 
+				globeShift();
+				break;
+			case 10:
+				player2ai = (player2ai == 0) ? 1 : 0; 
+				globeShift();
+				break;
+			case 11:
+				unstickAll();
+				player1c = 0;
+				charShift();
+				break;
+			case 12:
+				unstickAll();
+				player1c = 1;
+				charShift();
 				break;
 		}
 	}
@@ -370,9 +438,55 @@ public class MenuScript : MonoBehaviour {
 		SceneManager.LoadScene("SKF");
 		if (backgroundPass == 2)
 		{
-			backgroundPass = Random.Range(0,1);
+			backgroundPass = Random.Range(0,3);
 		}
 		PlayerPrefs.SetInt("stage", backgroundPass);
+		PlayerPrefs.SetInt("player1c", player1c);
+		PlayerPrefs.SetInt("player2c", player2c);
+		PlayerPrefs.SetInt("player1ai", player1ai);
+		PlayerPrefs.SetInt("player2ai", player2ai);
+	}
+
+	private void globeShift()
+	{
+		if (player1ai == 1)
+		{
+			changeSpriteColor(globe1, Color.grey);
+		}
+		else
+		{
+			changeSpriteColor(globe1, Color.red);
+		}
+		if (player2ai == 1)
+		{
+			changeSpriteColor(globe2, Color.grey);
+		}
+		else
+		{
+			changeSpriteColor(globe2, Color.red);
+		}
+	}
+
+	private void charShift()
+	{
+		switch (player1c) {
+			case 0:
+				player1.GetComponent<SpriteRenderer>().sprite = konkyGlobe;
+				changeSpriteColor(player1, Color.white);
+				break;
+			case 1:
+				player1.GetComponent<SpriteRenderer>().sprite = greyshirtGlobe;
+				changeSpriteColor(player1, Color.white);
+				break;
+			default:
+				changeSpriteColor(player1, Color.clear);
+				break;
+		}
+	}
+
+	private void changeSpriteColor(GameObject o, Color c)
+	{
+		o.GetComponent<SpriteRenderer>().color = c;
 	}
 }
 
