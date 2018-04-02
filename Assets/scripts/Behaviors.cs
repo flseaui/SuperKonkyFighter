@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class Behaviors {
 
     IDictionary<int, Action> ActionIds;
     IDictionary<Action, int> AnimAction;
+
+    public float forwardSpeed = 0.25f,
+                 backwardSpeed = -0.15f,
+                 jumpDirectionSpeed = 1.25f,
+                 gravity = -0.05f;
+    public int maxHealth = 11000;
 
     public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
 
@@ -22,10 +27,43 @@ public abstract class Behaviors {
         this.AnimAction = AnimAction;
     }
 
+    public void setStats()
+    {
+        forwardSpeed = 0.25f;
+        backwardSpeed = -0.15f;
+        jumpDirectionSpeed = 1.25f;
+        gravity = -0.05f;
+        maxHealth = 11000;
+    }
+
     public int getAnimAction(Action id)
     {
         return AnimAction[id];
     }
 
+    public float getForwardSpeed()
+    {
+        return forwardSpeed;
+    }
+
+    public float getBackwardSpeed()
+    {
+        return backwardSpeed;
+    }
+
+    public float getJumpDirectionSpeed()
+    {
+        return jumpDirectionSpeed;
+    }
+
+    public float getGravity()
+    {
+        return gravity;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
 }
 
