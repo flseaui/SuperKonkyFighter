@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
         { 18, 24, 40, 20, .94f }
     };
 
-    public bool passedPlayerInairborn; // true if pass other player while airborn
+    public bool passedPlayerInAir;     // true if pass other player while airborn
     public bool passedPlayerInAction;  // true if pass other player while they're in an action
     public bool airborn;               // true if in the air
     public bool hitStopped;            // true if in hitstop
@@ -26,9 +26,10 @@ public class PlayerScript : MonoBehaviour
     public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing
     public bool facingRight;           // true if the player is facing right
     public bool playerSide;            // true if left of the other player, false if right
-    public bool dashDirection;         // true if dashing forward, false if dashing back
+    public bool dashingForwards;       // true if dashing forward, false if dashing back
     public bool airbornActionUsed;     // true if player has spent airial action
     public bool damageDealt;           // true if damage was dealt this frame
+    public bool inPushCollision;       // true if player push boxes are currently colliding
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -80,7 +81,7 @@ public class PlayerScript : MonoBehaviour
      * 1 - hitstop / no update
      * 2 - updateEnd
      */
-    public int updateState;           // keeps track of what type of update the player should execute
+    public int updateState;            // keeps track of what type of update the player should execute
 
     public float hKnockback;          // horizontal knockback
     public float vKnockback;          // vertical knockback
@@ -108,16 +109,8 @@ public class PlayerScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        /*
-        if (hurtbox.enabled)
-        {
-            Gizmos.color = new Color(1, 0, 0, 0.5F);
-            Gizmos.DrawCube(new Vector2(transform.position.x + hurtbox.offset.x * this.transform.localScale.x, transform.position.y + hurtbox.offset.y), new Vector2(hurtbox.size.x, hurtbox.size.y));
-        }
-
-    */
-
-    //Gizmos.color = new Color(0, 1, 0, 0.5F);
+        Gizmos.color = Color.green;
+        //Gizmos.DrawWireCube(transform.position);
     }
 
     void Start()
@@ -126,11 +119,20 @@ public class PlayerScript : MonoBehaviour
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<PolygonCollider2D>();
 
+        //playerStats();
+
+        forwardSpeed = 0.25f;
+        backwardSpeed = -0.15f;
+        jumpDirectionSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
+        gravity = BASE_GRAVITY;
+
+        //konky specific things...
+        maxHealth = 11000;
         health = maxHealth;
         behaviors = new KonkyBehaviours();
-        behaviors.setStats();      
+      
 
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
@@ -175,7 +177,7 @@ public class PlayerScript : MonoBehaviour
             if (advancedState != 0)
                 buffer(advancedState + 40);
             else if (attackState != 0)
-                buffer(executingAction = attackState);
+                buffer(attackState);
 
             updateState = 1;
         }
@@ -214,8 +216,8 @@ public class PlayerScript : MonoBehaviour
 
     private void buffer(int bufferedInput)
     {
-        foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-            if (Actions == bufferedInput)
+        foreach (int action in behaviors.getAction(executingAction).actionCancels)
+            if (action == bufferedInput)
                 bufferedMove = bufferedInput;
     }
 
@@ -309,7 +311,7 @@ public class PlayerScript : MonoBehaviour
             if (dashTimer == 0 && advancedState <= 4)
                 advancedState = 0;
 
-            if (input[8] && !dashDirection && dashTimer != 0)
+            if (input[8] && !dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
                 {
@@ -339,7 +341,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 dashTimer = 0;
             }
-            else if (input[9] && dashDirection && dashTimer != 0)
+            else if (input[9] && dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
                 {
@@ -370,9 +372,10 @@ public class PlayerScript : MonoBehaviour
                 dashTimer = 0;
             }
 
-            if (passedPlayerInairborn && !airborn)
+            if (passedPlayerInAir && !airborn)
             {
-                passedPlayerInairborn = false;
+                passedPlayerInAir = false;
+                ActionEnd();
                 advancedState = 9;
             }
 
@@ -383,9 +386,9 @@ public class PlayerScript : MonoBehaviour
             {
                 dashTimer = 15;
                 if (input[8])
-                    dashDirection = false;
+                    dashingForwards = false;
                 else
-                    dashDirection = true;
+                    dashingForwards = true;
             }
         }
 
@@ -396,7 +399,7 @@ public class PlayerScript : MonoBehaviour
                 passedPlayerInAction = true;
 
             if (airborn)
-                passedPlayerInairborn = true;
+                passedPlayerInAir = true;
 
             if (!airborn && executingAction == 0)
             {
@@ -430,17 +433,26 @@ public class PlayerScript : MonoBehaviour
         int previousFrame = currentFrameType;
         currentFrameType = frames[actionFrameCounter];
         actionFrameCounter++;
-
-        // Debug.Log("actionFrameCounter" + actionFrameCounter);
+        
+        // if first active frame in action
         if (previousFrame != 1 && currentFrameType == 1)
         {
             otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
         }
 
+        // if active frame
         if (currentFrameType == 1)
         {
             if (executingAction < 40)
                 placeHitboxes();
+
+            // if not hitsopped buffer move
+            if (!hitStopped)
+                if (advancedState != 0)
+                    buffer(advancedState + 40);
+                else if (attackState != 0)
+                    buffer(attackState);
+
             activeFrameCounter++;
         }
         else
@@ -448,12 +460,15 @@ public class PlayerScript : MonoBehaviour
             damageDealt = false;
         }
 
+        // if recovery frame
         if (currentFrameType == 3)
         {
-            if (!airborn && passedPlayerInAction && !passedPlayerInairborn && !behaviors.getAction(executingAction).infinite)
+            // if grounded from a non-infinite action that passed the other player
+            if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
             {
                 ActionEnd();
             }
+            // if executing advanced action and not passed the other player
             else if (advancedState != 0 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
@@ -478,8 +493,8 @@ public class PlayerScript : MonoBehaviour
             }
             else if (attackState != 0 && !passedPlayerInAction)
             {
-                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                    if (Actions == attackState)
+                foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                    if (action == attackState)
                         bufferedMove = attackState;
             }
 
@@ -783,7 +798,7 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                if ((!inputManager.currentInput[2] && !dashDirection) || (!inputManager.currentInput[3] && dashDirection))
+                if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
                 {
                     hVelocity = 0;
                     ActionEnd();
@@ -831,14 +846,16 @@ public class PlayerScript : MonoBehaviour
         previousBasicState = 0;
         killAllBoxes();
 
-        if (passedPlayerInAction && !passedPlayerInairborn)
+        if (passedPlayerInAction)
         {
-
             passedPlayerInAction = false;
-            if (basicState <= 3)
-                executingAction = 50;
-            else
-                executingAction = 49;
+            if (!passedPlayerInAir)
+            {
+                if (basicState <= 3)
+                    executingAction = 50;
+                else
+                    executingAction = 49;
+            }
         }
     }
 
