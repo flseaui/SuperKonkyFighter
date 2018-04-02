@@ -61,7 +61,7 @@ public abstract class Behaviors {
         return gravity;
     }
 
-    public float getMaxHealth()
+    public int getMaxHealth()
     {
         return maxHealth;
     }

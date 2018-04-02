@@ -1169,7 +1169,14 @@ public class KonkyBehaviours : Behaviors {
 
 
 
-
+    new public void setStats()
+    {
+        forwardSpeed = 0.25f;
+        backwardSpeed = -0.15f;
+        jumpDirectionSpeed = 1.25f;
+        gravity = -0.05f;
+        maxHealth = 11000;
+    }
 
 
 

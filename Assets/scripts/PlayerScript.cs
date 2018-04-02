@@ -119,20 +119,16 @@ public class PlayerScript : MonoBehaviour
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<PolygonCollider2D>();
 
-        //playerStats();
-
-        forwardSpeed = 0.25f;
-        backwardSpeed = -0.15f;
-        jumpDirectionSpeed = 1.25f;
         vVelocity = 0;
         hVelocity = 0;
-        gravity = BASE_GRAVITY;
-
-        //konky specific things...
-        maxHealth = 11000;
-        health = maxHealth;
         behaviors = new KonkyBehaviours();
-      
+        behaviors.setStats();
+        forwardSpeed = behaviors.getForwardSpeed();
+        backwardSpeed = behaviors.getBackwardSpeed();
+        jumpDirectionSpeed = behaviors.getJumpDirectionSpeed();
+        maxHealth = behaviors.getMaxHealth();
+        gravity = behaviors.getGravity();
+        health = maxHealth;
 
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
