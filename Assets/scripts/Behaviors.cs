@@ -27,15 +27,5 @@ public abstract class Behaviors {
         return AnimAction[id];
     }
 
-    public void populateStunboxes(int numBoxes)
-    {
-       
-    }
-
-    public void populateHurtboxes()
-    {
-
-    }
-
 }
 

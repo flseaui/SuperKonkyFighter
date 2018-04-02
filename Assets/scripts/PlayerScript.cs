@@ -119,6 +119,8 @@ public class PlayerScript : MonoBehaviour
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<PolygonCollider2D>();
 
+        //playerStats();
+
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
         jumpDirectionSpeed = 1.25f;
@@ -141,17 +143,6 @@ public class PlayerScript : MonoBehaviour
             inputManager = new InputManager(2);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        GameUpdate();
-
-        if (hitStunned)
-        {
-
-        }
-    }
-
     public void updateAnimation()
     {
         if (executingAction != 0)
@@ -167,7 +158,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void GameUpdate()
+    private void Update()
     {
         inputManager.pollInput(0);
 
