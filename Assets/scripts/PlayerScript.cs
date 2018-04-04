@@ -102,10 +102,10 @@ public class PlayerScript : MonoBehaviour
     public JoyScript         JoyScript;
     public InputManager      inputManager;
 
-    public List<float> livingHitboxesIds;
-    public List<float> livingHitboxesLifespans;
-    public List<float> livingHurtboxesIds;
-    public List<float> livingHurtboxesLifespans;
+    public List<float> livingHitboxesIds;        // the ids of all living hitboxes
+    public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
+    public List<float> livingHurtboxesIds;       // the ids of all living hurtboxes
+    public List<float> livingHurtboxesLifespans; // the lifespans of all living hurtboxes
 
     void OnDrawGizmos()
     {
@@ -113,6 +113,7 @@ public class PlayerScript : MonoBehaviour
         //Gizmos.DrawWireCube(transform.position);
     }
 
+    // initialize variables based on current players character
     void Start()
     {
         this.tag = playerID.ToString();
@@ -139,20 +140,26 @@ public class PlayerScript : MonoBehaviour
             inputManager = new InputManager(2);
     }
 
+    // called 60 times per second
     private void Update()
     {
+        // get currently held keys or pressed buttons
         inputManager.pollInput(0);
 
+        // updates basic state accordingly
         basicState = inputConvert(inputManager.currentInput);
         setAttackInput(inputManager.currentInput);
 
+        // if jumping reset attackState
         if (attackState % 10 >= 7 && !airborn)
             attackState = 0;
         setAdvancedInput(inputManager.currentInput);
 
+        // zero horizontal and vertical push
         hPush = 0;
         vPush = 0;
 
+        // if in hitstop buffer current move
         if (hitStopped)
         {
             if (advancedState != 0)
@@ -162,8 +169,10 @@ public class PlayerScript : MonoBehaviour
 
             updateState = 1;
         }
+        // otherwise
         else
         {
+            // if there is a current action
             if (executingAction != 0)
             {
                 if (previousBasicState != 0)
