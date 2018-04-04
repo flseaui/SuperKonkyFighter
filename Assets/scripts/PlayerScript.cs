@@ -299,23 +299,28 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (shouldFlip)
+        if(shouldFlip)
+            firstTimeCheckForFlip();
+    }
+
+    private void firstTimeCheckForFlip()
+    {
+        shouldFlip = false;
+
+        if (executingAction != 0)
+            passedPlayerInAction = true;
+
+        if (airborn)
+            passedPlayerInAir = true;
+
+        if (!airborn && executingAction == 0)
         {
-            shouldFlip = false;
-            if (executingAction != 0)
-                passedPlayerInAction = true;
+            if (basicState <= 3)
+                advancedState = 10;
+            else
+                advancedState = 9;
 
-            if (airborn)
-                passedPlayerInAir = true;
-
-            if (!airborn && executingAction == 0)
-            {
-                if (basicState <= 3)
-                    advancedState = 10;
-                else
-                    advancedState = 9;
-                dashTimer = 0;
-            }
+            dashTimer = 0;
         }
     }
 
@@ -590,6 +595,7 @@ public class PlayerScript : MonoBehaviour
                 if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
                 {
                     hVelocity = 0;
+                    dashTimer = 0;
                     ActionEnd();
                 }
                 break;
