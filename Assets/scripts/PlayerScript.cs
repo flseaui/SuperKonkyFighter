@@ -195,6 +195,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    // update attackState from current input
     private void setAttackInput(bool[] input)
     {
         if (input[4])
@@ -209,6 +210,7 @@ public class PlayerScript : MonoBehaviour
             attackState = 0;
     }
 
+    // 
     private void setAdvancedInput(bool[] input)
     {
         if (executingAction != 41)
