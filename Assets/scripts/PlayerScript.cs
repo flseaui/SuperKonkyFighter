@@ -139,21 +139,6 @@ public class PlayerScript : MonoBehaviour
             inputManager = new InputManager(2);
     }
 
-    public void updateAnimation()
-    {
-        if (executingAction != 0)
-        {
-            Debug.Log("CURRENT ACTIONNN: " + executingAction);
-            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
-            animInt(Animator.StringToHash("Basic"), 0);
-        }
-        else
-        {
-            animInt(Animator.StringToHash("Basic"), basicState);
-            animInt(Animator.StringToHash("Action"), 0);
-        }
-    }
-
     private void Update()
     {
         inputManager.pollInput(0);
@@ -199,105 +184,18 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("SDFSDFSDFSDFSDFSD: " + Time.timeScale);
     }
 
-    public void UpdateEnd()
+    private void setAttackInput(bool[] input)
     {
-        GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
-
-        knockbackDecrease();
-
-        movePlayer();
-
-        updateAnimation();
-    }
-
-    private void buffer(int bufferedInput)
-    {
-        foreach (int action in behaviors.getAction(executingAction).actionCancels)
-            if (action == bufferedInput)
-                bufferedMove = bufferedInput;
-    }
-
-    private void movePlayer()
-    {
-        if (executingAction != 43 && executingAction != 44)
-            vVelocity += gravity;
-
-        if (vVelocity < -1)
-        {
-            vVelocity = -1;
-        }
-
-        moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback + vPush);
-
-        if (x() < -64f)
-        {
-            setX(-64);
-        }
-        else if (x() > 64f)
-        {
-            setX(64);
-        }
-
-        if (y() <= FLOOR_HEIGHT) //ground snap
-        {
-            if (airborn)
-            {
-                airborn = false;
-                airbornActionUsed = false;
-
-                if (executingAction > 0)
-                    ActionEnd();
-            }
-            vVelocity = 0;
-            setY(FLOOR_HEIGHT);
-        }
+        if (input[4])
+            attackState = basicState;
+        else if (input[5])
+            attackState = basicState + 10;
+        else if (input[6])
+            attackState = basicState + 20;
+        else if (input[7])
+            attackState = basicState + 30;
         else
-        {
-            airborn = true;
-        }
-    }
-
-
-    public void onPush(float otherHVel, float otherVVelocity)
-    {
-        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
-        vPush = airborn ? (vVelocity + otherVVelocity) / 2 : 0;
-    }
-
-    private int inputConvert(bool[] input)
-    {
-        if (!airborn)
-        {
-            if (input[0])
-            {
-                if (input[2])
-                    return (facingRight ? 7 : 9);
-                else if (input[3])
-                    return (facingRight ? 9 : 7);
-                else
-                    return 8;
-            }
-            else if (input[1])
-            {
-                if (input[2])
-                    return (facingRight ? 1 : 3);
-                else if (input[3])
-                    return (facingRight ? 3 : 1);
-                else
-                    return 2;
-            }
-            else if (input[2])
-                return (facingRight ? 4 : 6);
-            else if (input[3])
-                return (facingRight ? 6 : 4);
-            else
-                return 5;
-        }
-        else
-        {
-            return basicState;
-        }
+            attackState = 0;
     }
 
     private void setAdvancedInput(bool[] input)
@@ -408,18 +306,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void setAttackInput(bool[] input)
+    private void buffer(int bufferedInput)
     {
-        if (input[4])
-            attackState = basicState;
-        else if (input[5])
-            attackState = basicState + 10;
-        else if (input[6])
-            attackState = basicState + 20;
-        else if (input[7])
-            attackState = basicState + 30;
-        else
-            attackState = 0;
+        foreach (int action in behaviors.getAction(executingAction).actionCancels)
+            if (action == bufferedInput)
+                bufferedMove = bufferedInput;
     }
 
     private void incrementFrame(int[] frames)
@@ -429,7 +320,7 @@ public class PlayerScript : MonoBehaviour
         int previousFrame = currentFrameType;
         currentFrameType = frames[actionFrameCounter];
         actionFrameCounter++;
-        
+
         // if first active frame in action
         if (previousFrame != 1 && currentFrameType == 1)
         {
@@ -511,153 +402,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void placeHitboxes()
-    {
-        Action.rect[,] hitboxData = behaviors.getAction(executingAction).hitboxData;
-
-        for (int i = 0; i < hitboxData.GetLength(1); i++)
-        {
-            Action.rect hitbox = hitboxData[activeFrameCounter, i];
-
-            if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
-            {
-                livingHitboxesIds.Add(hitbox.id);
-                livingHitboxesLifespans.Add(hitbox.timeActive);
-                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
-            }
-        }
-    }
-
-    public void decreaseHitboxLifespan()
-    {
-        for (int j = livingHitboxesLifespans.Count; j > 0; j--)
-            if (livingHitboxesLifespans[j - 1] > 0)
-            {
-                livingHitboxesLifespans[j - 1]--;
-            }
-            else
-            {
-                removeBoxCollider2D(livingHitboxesIds[j - 1].ToString(), hitbox);
-                livingHitboxesIds.RemoveAt(j - 1);
-                livingHitboxesLifespans.RemoveAt(j - 1);
-            }
-    }
-
-    private void placeHurtboxes(int frame)
-    {
-        Action.rect[,] hurtboxData;
-
-        if (executingAction != 0)
-        {
-            hurtboxData = behaviors.getAction(executingAction).hurtboxData;
-        }
-        else
-        {
-            hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
-        }
-        for (int i = 0; i < hurtboxData.GetLength(1); i++)
-        {
-            Action.rect hurtbox = hurtboxData[frame, i];
-
-            if (!livingHurtboxesIds.Contains(hurtbox.id) && hurtbox.id != -1)
-            {
-                livingHurtboxesIds.Add(hurtbox.id);
-                livingHurtboxesLifespans.Add(hurtbox.timeActive);
-                addBoxCollider2D((hurtbox.id + 100).ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
-            }
-            else if (livingHurtboxesIds.Contains(hurtbox.id))
-            {
-                Debug.Log(livingHurtboxesIds.Count);
-                Debug.Log("repeat call");
-            }
-        }
-    }
-
-    public void decreaseHurtboxLifespan()
-    {
-        for (int j = livingHurtboxesLifespans.Count; j > 0; j--)
-        {
-            if (livingHurtboxesLifespans[j - 1] > 1)
-            {
-                livingHurtboxesLifespans[j - 1]--;
-            }
-            else
-            {
-                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString(), false);
-                livingHurtboxesIds.RemoveAt(j - 1);
-                livingHurtboxesLifespans.RemoveAt(j - 1);
-            }
-        }
-    }
-
-    private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
-    {
-        GameObject childbox = new GameObject(name);
-
-        childbox.transform.position = transform.position;
-        childbox.transform.SetParent(boxType ? transform.GetChild(1) : transform.GetChild(2));
-
-        childbox.tag = (boxType ? "hitbox" + playerID : "hurtbox" + playerID);
-
-        /*if (!boxType)
-            childbox.AddComponent<HurtboxScript>();
-        else
-            childbox.AddComponent<RealHitboxScript>();
-        */
-        childbox.AddComponent<BoxCollider2D>();
-        childbox.GetComponent<BoxCollider2D>().size = size;
-        childbox.GetComponent<BoxCollider2D>().offset = offset;
-        if (!boxType)
-            childbox.GetComponent<BoxCollider2D>().isTrigger = true;
-    }
-
-    private void removeBoxCollider2D(String name, bool boxType)
-    {
-        //boxType true = hitbox, false = hurtbox
-        foreach (Transform child in boxType ? transform.GetChild(1) : transform.GetChild(2))
-        {
-            if (child.gameObject.name.Equals(name))
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
-    private void killAllBoxes()
-    {
-        killAllHitboxes();
-        killAllHurtboxes();
-    }
-
-
-    private void killAllHurtboxes()
-    {
-        livingHurtboxesIds.Clear();
-        livingHurtboxesLifespans.Clear();
-
-        foreach (Transform child in transform.GetChild(2))
-        {
-            if (child.gameObject.tag.Equals("hurtbox1") || child.gameObject.tag.Equals("hurtbox2"))
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
-    private void killAllHitboxes()
-    {
-        livingHitboxesIds.Clear();
-        livingHitboxesLifespans.Clear();
-
-        foreach (Transform child in transform.GetChild(1))
-        {
-            if (child.gameObject.tag.Equals("hitbox1") || child.gameObject.tag.Equals("hitbox2"))
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
     private void stateCheck()
     {
         if (executingAction != 0)
@@ -685,6 +429,41 @@ public class PlayerScript : MonoBehaviour
         else
         {
             basicMove();
+        }
+    }
+
+    private int inputConvert(bool[] input)
+    {
+        if (!airborn)
+        {
+            if (input[0])
+            {
+                if (input[2])
+                    return (facingRight ? 7 : 9);
+                else if (input[3])
+                    return (facingRight ? 9 : 7);
+                else
+                    return 8;
+            }
+            else if (input[1])
+            {
+                if (input[2])
+                    return (facingRight ? 1 : 3);
+                else if (input[3])
+                    return (facingRight ? 3 : 1);
+                else
+                    return 2;
+            }
+            else if (input[2])
+                return (facingRight ? 4 : 6);
+            else if (input[3])
+                return (facingRight ? 6 : 4);
+            else
+                return 5;
+        }
+        else
+        {
+            return basicState;
         }
     }
 
@@ -788,6 +567,7 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
+
     private void advancedMove()
     {
         switch (executingAction - 40)
@@ -825,6 +605,253 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void UpdateEnd()
+    {
+        GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
+
+        knockbackDecrease();
+
+        movePlayer();
+
+        updateAnimation();
+    }
+
+    public void knockbackDecrease()
+    {
+        if (hKnockback != 0)
+        {
+            if (!airborn)
+            {
+                hKnockback *= .75f;
+                if (Mathf.Abs(hKnockback) < 0.005f)
+                    hKnockback = 0;
+            }
+            else
+            {
+                hKnockback *= .5f;
+                if (Mathf.Abs(hKnockback) < 0.005f)
+                    hKnockback = 0;
+            }
+        }
+
+        if (vKnockback != 0)
+        {
+            vKnockback *= .85f;
+            if (Mathf.Abs(vKnockback) < 0.005f)
+            {
+                vKnockback = 0;
+            }
+        }
+    }
+
+    private void movePlayer()
+    {
+        if (executingAction != 43 && executingAction != 44)
+            vVelocity += gravity;
+
+        if (vVelocity < -1)
+        {
+            vVelocity = -1;
+        }
+
+        moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
+        moveY(vVelocity + vKnockback + vPush);
+
+        if (x() < -64f)
+        {
+            setX(-64);
+        }
+        else if (x() > 64f)
+        {
+            setX(64);
+        }
+
+        if (y() <= FLOOR_HEIGHT) //ground snap
+        {
+            if (airborn)
+            {
+                airborn = false;
+                airbornActionUsed = false;
+
+                if (executingAction > 0)
+                    ActionEnd();
+            }
+            vVelocity = 0;
+            setY(FLOOR_HEIGHT);
+        }
+        else
+        {
+            airborn = true;
+        }
+    }
+
+    public void updateAnimation()
+    {
+        if (executingAction != 0)
+        {
+            Debug.Log("CURRENT ACTIONNN: " + executingAction);
+            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
+            animInt(Animator.StringToHash("Basic"), 0);
+        }
+        else
+        {
+            animInt(Animator.StringToHash("Basic"), basicState);
+            animInt(Animator.StringToHash("Action"), 0);
+        }
+    }  
+
+    private void placeHitboxes()
+    {
+        Action.rect[,] hitboxData = behaviors.getAction(executingAction).hitboxData;
+
+        for (int i = 0; i < hitboxData.GetLength(1); i++)
+        {
+            Action.rect hitbox = hitboxData[activeFrameCounter, i];
+
+            if (!livingHitboxesIds.Contains(hitbox.id) && hitbox.id != -1)
+            {
+                livingHitboxesIds.Add(hitbox.id);
+                livingHitboxesLifespans.Add(hitbox.timeActive);
+                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
+            }
+        }
+    }
+
+    private void placeHurtboxes(int frame)
+    {
+        Action.rect[,] hurtboxData;
+
+        if (executingAction != 0)
+        {
+            hurtboxData = behaviors.getAction(executingAction).hurtboxData;
+        }
+        else
+        {
+            hurtboxData = behaviors.getAction(basicState + 100).hurtboxData;
+        }
+        for (int i = 0; i < hurtboxData.GetLength(1); i++)
+        {
+            Action.rect hurtbox = hurtboxData[frame, i];
+
+            if (!livingHurtboxesIds.Contains(hurtbox.id) && hurtbox.id != -1)
+            {
+                livingHurtboxesIds.Add(hurtbox.id);
+                livingHurtboxesLifespans.Add(hurtbox.timeActive);
+                addBoxCollider2D((hurtbox.id + 100).ToString(), new Vector2(hurtbox.width, hurtbox.height), new Vector2((facingRight ? hurtbox.x : -hurtbox.x), hurtbox.y), false);
+            }
+            else if (livingHurtboxesIds.Contains(hurtbox.id))
+            {
+                Debug.Log(livingHurtboxesIds.Count);
+                Debug.Log("repeat call");
+            }
+        }
+    }
+
+    public void decreaseHitboxLifespan()
+    {
+        for (int j = livingHitboxesLifespans.Count; j > 0; j--)
+            if (livingHitboxesLifespans[j - 1] > 0)
+            {
+                livingHitboxesLifespans[j - 1]--;
+            }
+            else
+            {
+                removeBoxCollider2D(livingHitboxesIds[j - 1].ToString(), hitbox);
+                livingHitboxesIds.RemoveAt(j - 1);
+                livingHitboxesLifespans.RemoveAt(j - 1);
+            }
+    }
+
+    public void decreaseHurtboxLifespan()
+    {
+        for (int j = livingHurtboxesLifespans.Count; j > 0; j--)
+        {
+            if (livingHurtboxesLifespans[j - 1] > 1)
+            {
+                livingHurtboxesLifespans[j - 1]--;
+            }
+            else
+            {
+                removeBoxCollider2D((livingHurtboxesIds[j - 1] + 100).ToString(), false);
+                livingHurtboxesIds.RemoveAt(j - 1);
+                livingHurtboxesLifespans.RemoveAt(j - 1);
+            }
+        }
+    }
+
+    private void addBoxCollider2D(String name, Vector2 size, Vector2 offset, bool boxType)
+    {
+        GameObject childbox = new GameObject(name);
+
+        childbox.transform.position = transform.position;
+        childbox.transform.SetParent(boxType ? transform.GetChild(1) : transform.GetChild(2));
+
+        childbox.tag = (boxType ? "hitbox" + playerID : "hurtbox" + playerID);
+
+        /*if (!boxType)
+            childbox.AddComponent<HurtboxScript>();
+        else
+            childbox.AddComponent<RealHitboxScript>();
+        */
+        childbox.AddComponent<BoxCollider2D>();
+        childbox.GetComponent<BoxCollider2D>().size = size;
+        childbox.GetComponent<BoxCollider2D>().offset = offset;
+        if (!boxType)
+            childbox.GetComponent<BoxCollider2D>().isTrigger = true;
+    }
+
+    private void removeBoxCollider2D(String name, bool boxType)
+    {
+        //boxType true = hitbox, false = hurtbox
+        foreach (Transform child in boxType ? transform.GetChild(1) : transform.GetChild(2))
+        {
+            if (child.gameObject.name.Equals(name))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void killAllHurtboxes()
+    {
+        livingHurtboxesIds.Clear();
+        livingHurtboxesLifespans.Clear();
+
+        foreach (Transform child in transform.GetChild(2))
+        {
+            if (child.gameObject.tag.Equals("hurtbox1") || child.gameObject.tag.Equals("hurtbox2"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void killAllHitboxes()
+    {
+        livingHitboxesIds.Clear();
+        livingHitboxesLifespans.Clear();
+
+        foreach (Transform child in transform.GetChild(1))
+        {
+            if (child.gameObject.tag.Equals("hitbox1") || child.gameObject.tag.Equals("hitbox2"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void killAllBoxes()
+    {
+        killAllHitboxes();
+        killAllHurtboxes();
+    }
+
+    public void onPush(float otherHVel, float otherVVelocity)
+    {
+        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
+        vPush = airborn ? (vVelocity + otherVVelocity) / 2 : 0;
+    }
+
     private void ActionEnd()
     {
         Debug.Log("action end");
@@ -854,6 +881,41 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+    public void damage(int damage, float knockback, int angle)
+    {
+        health -= damage;
+        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
+        vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+
+        ActionEnd();
+
+        stun();
+
+        if (vKnockback > 0)
+        {
+            airborn = true;
+        }
+
+        vVelocity = 0;
+    }
+
+    public void stun()
+    {
+        executingAction = 45;
+        stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
+    }
+
+    public void block(int amm)
+    {
+
+    }
+
+    public float level(int wanted)
+    {
+        return levelScaling[behaviors.getAction(executingAction).level, wanted];
+    }
+
 
     private void animInt(int hash, int value)
     {
@@ -902,68 +964,4 @@ public class PlayerScript : MonoBehaviour
     {
         return this.transform.position.x;
     }
-
-    public void stun()
-    {
-        executingAction = 45;
-        stunTimer = (int) otherPlayer.GetComponent<PlayerScript>().level(1);
-    }
-
-    public void damage(int damage, float knockback, int angle)
-    {
-        health -= damage;
-        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
-        vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
-
-        ActionEnd();
-
-        stun();
-
-        if (vKnockback > 0)
-        {
-            airborn = true;
-        }
-
-        vVelocity = 0;
-    }
-
-    public void block(int amm)
-    {
-
-    }
-
-    public float level(int wanted)
-    {
-        return levelScaling[behaviors.getAction(executingAction).level, wanted];
-    }
-    
-
-    public void knockbackDecrease()
-    {
-        if (hKnockback != 0)
-        {
-            if (!airborn)
-            {
-                hKnockback *= .75f;
-                if (Mathf.Abs(hKnockback) < 0.005f)
-                    hKnockback = 0;
-            }
-            else
-            {
-                hKnockback *= .5f;
-                if (Mathf.Abs(hKnockback) < 0.005f)
-                    hKnockback = 0;
-            }
-        }
-
-        if (vKnockback != 0)
-        {
-            vKnockback *= .85f;
-            if (Mathf.Abs(vKnockback) < 0.005f)
-            {
-                vKnockback = 0;
-            }
-        }
-    }
-
 }
