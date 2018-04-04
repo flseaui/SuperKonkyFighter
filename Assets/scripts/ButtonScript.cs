@@ -105,12 +105,18 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		disable = true;
 	}
 
-	public void unlock()
+	public void unstick()
 	{
 		if (disable) {
 			disable = false;
 			modeNeutral();
 		}
+	}
+
+	public void stick()
+	{
+		disable = true;
+		modeLock();
 	}
 
 	private void modeHighlight()

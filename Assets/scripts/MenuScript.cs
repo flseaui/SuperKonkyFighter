@@ -46,6 +46,8 @@ public class MenuScript : MonoBehaviour {
 	private GameObject player2;
 	private GameObject characterGoButton;
 	private GameObject characterGoText;
+	private GameObject globeButton1;
+	private GameObject globeButton2;
 
 	//-----------------------------prefabs----------------------------//
 
@@ -70,6 +72,8 @@ public class MenuScript : MonoBehaviour {
 	private int player2ai;
 
 	private int backgroundPass;
+
+	private int globeSelect;
 
 	void Start () {
 		startScreen(TITLE_SCREEN);
@@ -279,25 +283,28 @@ public class MenuScript : MonoBehaviour {
 				player2ai = 0;
 				player1c = -1;
 				player2c = -1;
+				globeSelect = 0;
 
 				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//hidden play button
-				//makeSprite(0, -5, 12, 4, playButtonSprite, playButtonAnimator);
 				makeFancyText(0, -5, 2f, "play", 0);//play button (visible)
 				makeSprite(0, 3, 26, 11, titleSprite);//title logo
 				break;
 			case PLAYER_SELECT_SCREEN:
 
 				globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
-				makeButton(new Vector3[] { new Vector2(-15, -5), new Vector2(-7, -5), new Vector2(-7, -7), new Vector2(-15, -7) }, new Color(0.8f, 0f, 0f, 0.75f), 9, new int[] { ButtonScript.FLAG_HIDDEN });
+				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] {  });
 				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
-				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
-				makeButton(new Vector3[] { new Vector2(7, -5), new Vector2(15, -5), new Vector2(15, -7), new Vector2(7, -7) }, new Color(0.8f, 0f, 0f, 0.75f), 10, new int[] { ButtonScript.FLAG_HIDDEN });
-				globeShift();
-				charShift();
 
-				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN });
+				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
+				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { });
+				player2 = makeSprite(11, -6, 10, 10, konkyGlobe, konkyGlobeAnim);
+				player2.GetComponent<SpriteRenderer>().sortingOrder = 90;
+				player2.GetComponent<SpriteRenderer>().flipX = true;
+
+				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN, ButtonScript.FLAG_DUMMY });
 				characterGoText = makeFancyText(0, -3, 2, "go", 0);
+				characterGoText.SetActive(false);
 
 				makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ButtonScript.FLAG_STICKY });
 				makeSprite(-10, 4, 8, 8, konkySelect);//konky sprite
@@ -312,6 +319,9 @@ public class MenuScript : MonoBehaviour {
 
 				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ButtonScript.FLAG_HIDDEN });
 				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
+
+				globeShift();
+				charShift();
 
 				break;
 			case STAGE_SELECT_SCREEN:
@@ -395,21 +405,39 @@ public class MenuScript : MonoBehaviour {
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 9:
-				player1ai = (player1ai == 0) ? 1 : 0; 
+				globeSelect = 0;
+				player1ai = (player1ai == 0) ? 1 : 0;
+				unstickAll();
 				globeShift();
 				break;
 			case 10:
-				player2ai = (player2ai == 0) ? 1 : 0; 
+				globeSelect = 1;
+				player2ai = (player2ai == 0) ? 1 : 0;
+				unstickAll();
 				globeShift();
 				break;
 			case 11:
 				unstickAll();
-				player1c = 0;
+				if (globeSelect == 0)
+				{
+					player1c = 0;
+				}
+				else
+				{
+					player2c = 0;
+				}
 				charShift();
 				break;
 			case 12:
 				unstickAll();
-				player1c = 1;
+				if (globeSelect == 0)
+				{
+					player1c = 1;
+				}
+				else
+				{
+					player2c = 1;
+				}
 				charShift();
 				break;
 		}
@@ -423,7 +451,7 @@ public class MenuScript : MonoBehaviour {
 			{
 				ButtonScript b = i.GetComponent<ButtonScript>();
 				if (b.sticky) {
-					b.unlock();
+					b.unstick();
 				}
 			}
 			catch
@@ -449,6 +477,17 @@ public class MenuScript : MonoBehaviour {
 
 	private void globeShift()
 	{
+		if (globeSelect == 0)
+		{
+			globeButton1.GetComponent<ButtonScript>().stick();
+			globeButton2.GetComponent<ButtonScript>().unstick();
+		}
+		else
+		{
+			globeButton1.GetComponent<ButtonScript>().unstick();
+			globeButton2.GetComponent<ButtonScript>().stick();
+		}
+
 		if (player1ai == 1)
 		{
 			changeSpriteColor(globe1, Color.grey);
@@ -469,18 +508,40 @@ public class MenuScript : MonoBehaviour {
 
 	private void charShift()
 	{
+		bool showGo = true;
 		switch (player1c) {
 			case 0:
-				player1.GetComponent<SpriteRenderer>().sprite = konkyGlobe;
+				player1.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
 				changeSpriteColor(player1, Color.white);
 				break;
 			case 1:
-				player1.GetComponent<SpriteRenderer>().sprite = greyshirtGlobe;
+				player1.GetComponent<Animator>().runtimeAnimatorController = GreyshirtGlobeAnim;
 				changeSpriteColor(player1, Color.white);
 				break;
 			default:
 				changeSpriteColor(player1, Color.clear);
+				showGo = false;
 				break;
+		}
+		switch (player2c)
+		{
+			case 0:
+				player2.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
+				changeSpriteColor(player2, Color.white);
+				break;
+			case 1:
+				player2.GetComponent<Animator>().runtimeAnimatorController = GreyshirtGlobeAnim;
+				changeSpriteColor(player2, Color.white);
+				break;
+			default:
+				changeSpriteColor(player2, Color.clear);
+				showGo = false;
+				break;
+		}
+		if (showGo)
+		{
+			characterGoButton.GetComponent<ButtonScript>().enable();
+			characterGoText.SetActive(true);
 		}
 	}
 
