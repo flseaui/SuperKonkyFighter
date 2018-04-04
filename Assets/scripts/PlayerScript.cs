@@ -172,17 +172,20 @@ public class PlayerScript : MonoBehaviour
         // otherwise
         else
         {
-            // if there is a current action
+            // if executing an action
             if (executingAction != 0)
             {
                 if (previousBasicState != 0)
                 {
+                    // reset basic state and kill all boxes
                     previousBasicState = 0;
                     killAllBoxes();
                 }
 
+                // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
+            // check whether to continue or end action
             stateCheck();
 
             if (executingAction > 40)
@@ -190,7 +193,6 @@ public class PlayerScript : MonoBehaviour
 
             updateState = 2;
         }
-        Debug.Log("SDFSDFSDFSDFSDFSD: " + Time.timeScale);
     }
 
     private void setAttackInput(bool[] input)
