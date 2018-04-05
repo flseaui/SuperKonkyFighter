@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     public bool airborn;               // true if in the air
     public bool hitStopped;            // true if in hitstop
     public bool hitStunned;            // true if in hitstun
-    public bool shouldFlip;            // true when pass other player, only on the first frame, for example if the player flips in air it signifies that the player should flip upon landing
+    public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing
     public bool facingRight;           // true if the player is facing right
     public bool playerSide;            // true if left of the other player, false if right
     public bool dashingForwards;       // true if dashing forward, false if dashing back
@@ -172,9 +172,6 @@ public class PlayerScript : MonoBehaviour
         // otherwise
         else
         {
-            // check whether to start or end action
-            stateCheck();
-
             // if executing an action
             if (executingAction != 0)
             {
@@ -188,6 +185,8 @@ public class PlayerScript : MonoBehaviour
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
+            // check whether to continue or end action
+            stateCheck();
 
             if (executingAction > 40)
                 advancedMove();
@@ -211,12 +210,17 @@ public class PlayerScript : MonoBehaviour
             attackState = 0;
     }
 
-    // 
+    // updates advanced state and deals with advanced action stopping
     private void setAdvancedInput(bool[] input)
     {
-        if (executingAction != 41) //If not dashing run this
+        // if not dashing forwards
+        if (executingAction != 41)
         {
+            // if not dashing and not stunned reset advanced state
+            if (dashTimer == 0 && advancedState <= 4)
+                advancedState = 0;
 
+            // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
@@ -308,7 +312,7 @@ public class PlayerScript : MonoBehaviour
 
         if (executingAction != 0)
             passedPlayerInAction = true;
-
+        // gay method change name
         if (airborn)
             passedPlayerInAir = true;
 
@@ -391,6 +395,8 @@ public class PlayerScript : MonoBehaviour
                             jumpDirection = 8;
                         else
                             jumpDirection = 9;
+
+
                     }
             }
             else if (attackState != 0 && !passedPlayerInAction)
