@@ -216,9 +216,6 @@ public class PlayerScript : MonoBehaviour
         // if not dashing forwards
         if (executingAction != 41)
         {
-            // if not dashing and not stunned reset advanced state
-            if (dashTimer == 0 && advancedState <= 4)
-                advancedState = 0;
 
             // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
