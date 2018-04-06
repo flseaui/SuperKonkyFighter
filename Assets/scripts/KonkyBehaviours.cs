@@ -181,6 +181,8 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
         },
         level = 0,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = .5f,
@@ -225,7 +227,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox }
         },
         level       = 2,
-        actionCancels     = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -279,7 +283,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox }
         },
         level       = 1,
-        actionCancels     = new int[] { 22, 31, 32, 33, 34, 35, 36 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -326,7 +332,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox }
         },
         level       = 0,
-        actionCancels     = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = .5f,
         aAngle      = 30,
@@ -374,7 +382,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, }
         },
         level       = 1,
-        actionCancels     = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -441,6 +451,8 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox }
         },
         level = 3,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle      = 45,
         gStrength   = 3,
@@ -490,7 +502,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
         },
         level       = 2,
-        actionCancels     = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 45,
@@ -546,7 +560,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox}
         },
         level       = 2,
-        actionCancels     = new int[] { 27, 28, 29, 40, 43, 44 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 45,
@@ -607,7 +623,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
         },
         level       = 3,
-        actionCancels     = new int[] { 40, 43, 44 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 40, 43, 44 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = -80,
@@ -663,7 +681,9 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, }
         },
         level       = 0,
-        actionCancels     = new int[] { 25, 31, 32, 33, 34, 35, 36 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 25, 31, 32, 33, 34, 35, 36 },
         gAngle      = 180,
         gStrength   = 2,
         aAngle      = 330,
@@ -677,8 +697,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 3,
         frames      = new int[] { 0 },
         damage      = new int[] { 1200 },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 0,
-        actionCancels     = new int[] { 35 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 0,
@@ -691,8 +721,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 5,
-        actionCancels     = new int[] { 35, 41, 42 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35, 41, 42 },
         gAngle      = 0,
         gStrength   = 2,
         aAngle      = 30,
@@ -705,8 +745,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 4,
-        actionCancels     = new int[] { 35 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
         aAngle      = 30,
@@ -719,8 +769,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 3,
         frames      = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3 },
         damage      = new int[] { /*senbeans job*/ },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 2,
-        actionCancels     = new int[] { 35 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
         gAngle      = 45,
         gStrength   = 1,
         aAngle      = 45,
@@ -733,8 +793,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 4,
         frames      = new int[] { 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3 },
         damage      = new int[] { /*senbeans job*/ },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 0,
-        actionCancels     = new int[] { },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { },
         gAngle      = 0,
         gStrength   = 5,
         aAngle      = 0,
@@ -747,8 +817,18 @@ public class KonkyBehaviours : Behaviors {
         tier = 3,
         frames      = new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         damage      = new int[] { /*senbeans job*/ },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level       = 5,
-        actionCancels     = new int[] { 35 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
         gAngle      = 60,
         gStrength   = 8,
         aAngle      = 60,
@@ -762,7 +842,9 @@ public class KonkyBehaviours : Behaviors {
         frames      = new int[] { 0 },
         damage      = new int[] { /*senbeans job*/ },
         level       = 5,
-        actionCancels     = new int[] { 1, 2 },
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 1, 2 },
         gAngle      = 30,
         gStrength   = 10,
         aAngle      = 0,

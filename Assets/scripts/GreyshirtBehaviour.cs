@@ -134,14 +134,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new int[] {  },//  |  | 
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(0, 0, 20, 10, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            { new Action.rect(10, 15, 20, 10, 2, 1) } // Frame 2 - 1 hitbox lasts 2 frames
+
         },
-        damage = new int[] {  },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 0,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -153,9 +158,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 2,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -167,9 +182,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 1,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 4,
@@ -181,9 +206,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 0,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -195,9 +230,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 1,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -209,9 +254,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchH = new Action()
     {
         tier = 2,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 3,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle = 80,
         gStrength = 4,
@@ -223,9 +278,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 2,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -237,9 +302,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 2,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -251,9 +326,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 3,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] {  },
         gAngle = 0,
         gStrength = 2,
@@ -265,9 +350,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0 },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 0,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -279,9 +374,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 5,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 35, 41, 42 },
         gAngle = 0,
         gStrength = 2,
@@ -293,9 +398,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 4,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -307,9 +422,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 2,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 35 },
         gAngle = 45,
         gStrength = 1,
@@ -321,9 +446,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action fiveS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] { 0 },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 0,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { },
         gAngle = 0,
         gStrength = 5,
@@ -335,9 +470,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action sixS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 5,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -349,9 +494,19 @@ public class GreyshirtBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new int[] { 0 },//  |  | 
-        damage = new int[] {  },
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 5,
+        //hitstun = ,
+        //blockstun = ,
         actionCancels = new int[] { 1, 2 },
         gAngle = 30,
         gStrength = 10,
