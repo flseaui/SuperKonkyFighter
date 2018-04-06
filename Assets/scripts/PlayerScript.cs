@@ -169,7 +169,6 @@ public class PlayerScript : MonoBehaviour
 
             updateState = 1;
         }
-        // otherwise
         else
         {
             // if executing an action
@@ -216,7 +215,6 @@ public class PlayerScript : MonoBehaviour
         // if not dashing forwards
         if (executingAction != 41)
         {
-
             // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
             {
