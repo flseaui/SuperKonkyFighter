@@ -9,12 +9,14 @@ public abstract class Behaviors {
 
     public float forwardSpeed = 0.25f,
                  backwardSpeed = -0.15f,
-                 dashForwardSpeed = 0,
-                 dashBackSpeed = 0,
-                 airDashForwardSpeed = 0,
+                 dashForwardSpeed = 0.25f * 3f,
+                 dashBackSpeed = -0.15f * 3f,
+                 airDashForwardSpeed = 0.25f * 3f,
+                 airDashBackSpeed = -0.15f * 3f,
                  jumpDirectionSpeed = 1.25f,
                  gravity = -0.05f;
     public int maxHealth = 11000;
+    public bool infiniteDashForward = true;
 
     public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
 
@@ -35,8 +37,13 @@ public abstract class Behaviors {
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
         jumpDirectionSpeed = 1.25f;
+        dashForwardSpeed = 0.25f * 3f;
+        dashBackSpeed = -0.15f * 3f;
+        airDashForwardSpeed = 0.25f * 3f;
+        airDashBackSpeed = -0.15f * 3f;
         gravity = -0.05f;
         maxHealth = 11000;
+        infiniteDashForward = false;
     }
 
     public int getAnimAction(Action id)
@@ -57,6 +64,31 @@ public abstract class Behaviors {
     public float getJumpDirectionSpeed()
     {
         return jumpDirectionSpeed;
+    }
+
+    public float getDashForwardSpeed()
+    {
+        return dashForwardSpeed;
+    }
+
+    public float getDashBackSpeed()
+    {
+        return dashBackSpeed;
+    }
+
+    public float getAirDashForwardSpeed()
+    {
+        return airDashForwardSpeed;
+    }
+
+    public float getAirDashBackSpeed()
+    {
+        return airDashBackSpeed;
+    }
+
+    public bool getInfiniteDashForward()
+    {
+        return infiniteDashForward;
     }
 
     public float getGravity()
