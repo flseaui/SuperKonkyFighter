@@ -178,6 +178,18 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // if in hitstop buffer current move
         if (hitStopped)
         {
+            foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
+                {
+                    bufferedMove = 40;
+                    if (basicState == 7)
+                        jumpDirection = 7;
+                    else if (basicState == 8)
+                        jumpDirection = 8;
+                    else
+                        jumpDirection = 9;
+                }
+
             if (advancedState != 0)
                 buffer(advancedState + 40);
             else if (attackState != 0)
@@ -188,9 +200,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // otherwise
         else
         {
-            // check whether to continue or end action
-            stateCheck();
-
             // if executing an action
             if (executingAction != 0)
             {
@@ -209,6 +218,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
+
+            // check whether to continue or end action
+            stateCheck();
 
             updateState = 2;
         }
@@ -447,6 +459,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 {
                     advancedState = 0;
                     attackState = 0;
+                    basicState = jumpDirection;
+
                 }
                 else
                     attackState = bufferedMove;
