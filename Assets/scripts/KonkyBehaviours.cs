@@ -1270,8 +1270,87 @@ public class KonkyBehaviours : Behaviors {
     {
         switch (attackState) {
             case 1:
-                return 0;
+                return .1f;
                 break;
+            case 11:
+                return .1f;
+                break;
+            case 21:
+                return .1f;
+                break;
+            case 2:
+                return .1f;
+                break;
+            case 12:
+                return .1f;
+                break;
+            case 22:
+                return .1f;
+                break;
+            case 3:
+                return .1f;
+                break;
+            case 13:
+                return .1f;
+                break;
+            case 23:
+                return .1f;
+                break;
+            case 4:
+                return .1f;
+                break;
+            case 14:
+                return .1f;
+                break;
+            case 24:
+                return .1f;
+                break;
+            case 5:
+                return .1f;
+                break;
+            case 15:
+                return .1f;
+                break;
+            case 25:
+                return .1f;
+                break;
+            case 6:
+                return .1f;
+                break;
+            case 16:
+                return .1f;
+                break;
+            case 26:
+                return .1f;
+                break;
+            case 7:
+                return .2f;
+                break;
+            case 17:
+                return .2f;
+                break;
+            case 27:
+                return .2f;
+                break;
+            case 8:
+                return .2f;
+                break;
+            case 18:
+                return .2f;
+                break;
+            case 28:
+                return .2f;
+                break;
+            case 9:
+                return .2f;
+                break;
+            case 19:
+                return .2f;
+                break;
+            case 29:
+                return .2f;
+                break;
+
             default:
                 return 0;
                 break;
@@ -1283,9 +1362,34 @@ public class KonkyBehaviours : Behaviors {
     {
         switch (attackState)
         {
-            case 1:
-                return 0;
+            case 7:
+                return .2f;
                 break;
+            case 17:
+                return .2f;
+                break;
+            case 27:
+                return .2f;
+                break;
+            case 8:
+                return .2f;
+                break;
+            case 18:
+                return .2f;
+                break;
+            case 28:
+                return .2f;
+                break;
+            case 9:
+                return .2f;
+                break;
+            case 19:
+                return .2f;
+                break;
+            case 29:
+                return .2f;
+                break;
+
             default:
                 return 0;
                 break;

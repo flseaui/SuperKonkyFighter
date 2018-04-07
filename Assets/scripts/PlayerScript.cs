@@ -10,13 +10,24 @@ public class PlayerScript : MonoBehaviour
 
     private float[,] levelScaling = new float[,]
     {
-        { 8,  12, 23, 9,  .75f },
-        { 10, 14, 26, 11, .8f  },
-        { 12, 16, 28, 13, .85f },
-        { 14, 19, 33, 16, .89f },
-        { 16, 21, 36, 18, .92f },
-        { 18, 24, 40, 20, .94f }
+        //Hitstun | CH Hitstun | Untech Time | CH Untech Time | Hitstop	| CH Hitstop | Blockstun | P2 Scaling
+        { 10,       14,          12,           23,              8,        8,           9,          .75f },
+        { 12,       16,          12,           23,              9,        9,           11,         .8f  },
+        { 14,       18,          14,           26,              10,       11,          13,         .85f },
+        { 17,       22,          17,           31,              11,       13,          16,         .89f },
+        { 19,       24,          19,           34,              12,       17,          18,         .92f },
+        { 21,       27,          21,           36,              13,       21,          20,         .94f }
     };
+
+    /*
+Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun P2 Scaling
+0	  10	  14         12	         23	            8	    8	       9	     75
+1	  12	  16         12	         23	            9	    9	       11	     80
+2	  14	  18         14	         26	            10	    11	       13	     85
+3	  17	  22         17	         31	            11	    13	       16	     89
+4	  19	  24         19	         34	            12	    17	       18	     92
+5	  21	  27         21	         36	            13	    21	       20	     94 
+    */
 
     public bool passedPlayerInAir;     // true if pass other player while airborn
     public bool passedPlayerInAction;  // true if pass other player while they're in an action
