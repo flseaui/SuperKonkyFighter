@@ -624,11 +624,11 @@ public class PlayerScript : MonoBehaviour
                 break;
             case 3:
                 vVelocity = 0;
-                hVelocity = forwardSpeed * 3;
+                hVelocity = forwardSpeed * behaviors.getDashForwardSpeed();
                 break;
             case 4:
                 vVelocity = 0;
-                hVelocity = backwardSpeed * 3f;
+                hVelocity = backwardSpeed * behaviors.getAirDashBackSpeed();
                 break;
             case 5:
                 stunTimer--;
