@@ -7,12 +7,12 @@ public abstract class Behaviors {
     IDictionary<int, Action> ActionIds;
     IDictionary<Action, int> AnimAction;
 
-    private float forwardSpeed = 0.25f,
+    public float forwardSpeed = 0.25f,
                  backwardSpeed = -0.15f,
-                 dashForwardSpeed = 0.25f * 3f,
-                 dashBackSpeed = -0.15f * 3f,
-                 airDashForwardSpeed = 0.25f * 3f,
-                 airDashBackSpeed = -0.15f * 3f,
+                 dashForwardSpeed = 3f,
+                 dashBackSpeed = 3f,
+                 airDashForwardSpeed = 3f,
+                 airDashBackSpeed = 3f,
                  jumpDirectionSpeed = 1.25f,
                  gravity = -0.05f;
     public int maxHealth = 11000;
@@ -37,10 +37,10 @@ public abstract class Behaviors {
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
         jumpDirectionSpeed = 1.25f;
-        dashForwardSpeed = 0.25f * 3f;
-        dashBackSpeed = -0.15f * 3f;
-        airDashForwardSpeed = 0.25f * 3f;
-        airDashBackSpeed = -0.15f * 3f;
+        dashForwardSpeed = 3f;
+        dashBackSpeed = 3f;
+        airDashForwardSpeed = 3f;
+        airDashBackSpeed = 3f;
         gravity = -0.05f;
         maxHealth = 11000;
         infiniteDashForward = false;
