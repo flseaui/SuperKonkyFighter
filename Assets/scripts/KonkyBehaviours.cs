@@ -282,7 +282,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level       = 1,
+        level       = 4,
         //hitstun = ,
         //blockstun = ,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
@@ -394,7 +394,7 @@ public class KonkyBehaviours : Behaviors {
     // Crouching Heavy
     private Action crouchH = new Action()
     {
-        tier = 2,
+        tier = 3,
        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (1) 5 | 24
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 700, 700, 700, 700, 700, 700, 700, 700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
@@ -1270,31 +1270,31 @@ public class KonkyBehaviours : Behaviors {
     {
         switch (attackState) {
             case 2:
-                return .1f;
+                return 1;
                 break;
             case 12:
-                return .1f;
+                return 1;
                 break;
             case 22:
-                return .1f;
+                return 1;
                 break;
             case 15:
-                return .1f;
+                return 1;
                 break;
             case 25:
-                return .1f;
+                return 1;
                 break;
             case 16:
-                return .1f;
+                return 1;
                 break;
             case 8:
-                return .15f;
+                return 1.5f;
                 break;
             case 18:
-                return .15f;
+                return 1.5f;
                 break;
             case 28:
-                return .15f;
+                return 1.5f;
                 break;
 
             default:
@@ -1309,13 +1309,13 @@ public class KonkyBehaviours : Behaviors {
         switch (attackState)
         {
             case 8:
-                return .15f;
+                return 1.5f;
                 break;
             case 18:
-                return .15f;
+                return 1.5ff;
                 break;
             case 28:
-                return .15f;
+                return 1.5ff;
                 break;
 
             default:
