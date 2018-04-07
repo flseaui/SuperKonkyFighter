@@ -74,8 +74,6 @@ GameObject:
   - component: {fileID: 212080011780739976}
   - component: {fileID: 114237799369803098}
   - component: {fileID: 95060079290894174}
-  - component: {fileID: 82194400055516292}
-  - component: {fileID: 96837934551618854}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -184,86 +182,6 @@ PolygonCollider2D:
       - {x: 0, y: 13}
       - {x: 3.5, y: 6.5}
       - {x: 0, y: 0}
---- !u!82 &82194400055516292
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646981266529194}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3cccb2ba5e019eb40b22ad75ab82133f, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &95060079290894174
 Animator:
   serializedVersion: 3
@@ -281,93 +199,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!96 &96837934551618854
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646981266529194}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 5
-  m_Parameters:
-    serializedVersion: 2
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
 --- !u!114 &114047437690632120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2d06ce88e38b14bb1153f0724fda75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurt: 0
 --- !u!114 &114237799369803098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,46 +221,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114f736aeae7a9848a356000f45f6753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passedPlayerInAir: 0
-  passedPlayerInAction: 0
-  airborn: 0
+  waitForGround: 0
+  waitForEnd: 0
+  air: 0
   hitStopped: 0
-  hitStunned: 0
-  shouldFlip: 0
+  stunned: 0
+  flipFacing: 0
+  flip: 0
   facingRight: 0
-  playerSide: 0
-  dashingForwards: 0
-  airbornActionUsed: 0
-  damageDealt: 0
-  inPushCollision: 0
   bufferedMove: 0
   maxHealth: 0
   health: 0
-  currentFrameType: 0
-  actionFrameCounter: 0
-  activeFrameCounter: 0
+  currentFrame: 0
+  currentActionFrame: 0
+  damageCounter: 0
+  activeCounter: 0
   playerID: 0
-  meterCharge: 0
-  dashTimer: 0
-  executingAction: 0
-  stunTimer: 0
-  previousBasicState: 0
-  basicAnimFrame: 0
+  meter: 0
   basicState: 0
-  attackState: 0
-  advancedState: 0
-  jumpDirection: 0
-  updateState: 0
+  AttackState: 0
+  advState: 0
+  jump: 0
+  dashTimer: 0
+  currentAction: 0
+  dashDirection: 0
+  airDashed: 0
+  updateEnd: 0
+  coll: 0
   hKnockback: 0
   vKnockback: 0
   gravity: 0
   vVelocity: 0
   hVelocity: 0
+  baseHeight: 0
+  width: 0
+  height: 0
   hPush: 0
   vPush: 0
-  forwardSpeed: 0
-  backwardSpeed: 0
-  jumpDirectionSpeed: 0
   spriteRenderer: {fileID: 0}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 0}
@@ -440,7 +267,8 @@ MonoBehaviour:
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
   livingHurtboxesLifespans: []
-  hitSound: {fileID: 0}
+  previousBasicState: 0
+  basicAnimFrame: 0
 --- !u!114 &114336376607787406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -452,7 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3f3a993d6747546b48726744e7ce18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: 0
 --- !u!114 &114362091746053720
 MonoBehaviour:
   m_ObjectHideFlags: 1
