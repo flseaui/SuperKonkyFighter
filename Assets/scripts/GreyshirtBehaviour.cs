@@ -182,7 +182,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 10 | 3 (9) 3 | 17
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -206,7 +206,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 4 | 3 | 9
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -230,7 +230,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 6 | 5 | 12
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -254,7 +254,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchH = new Action()
     {
         tier = 2,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 15 | 6 | 10
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -264,7 +264,7 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
-        level = 3,
+        level = 4,
         //hitstun = ,
         //blockstun = ,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
@@ -278,7 +278,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 6 | 4 (6) 4 | 9
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -302,7 +302,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 8 | 10 | 13
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -326,7 +326,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 13 | 7 | 19
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -488,6 +488,126 @@ public class GreyshirtBehaviours : Behaviors
         gStrength = 8,
         aAngle = 60,
         aStrength = 8
+    };
+
+    // Rekka Bridge
+    private Action rekkaBridge = new Action()
+    {
+        tier = 3,
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 5,
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
+        gAngle = 60,
+        gStrength = 8,
+        aAngle = 60,
+        aStrength = 8
+    };
+
+    // L Ender
+    private Action rekkaL = new Action()
+    {
+        tier = 3,
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 5,
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
+        gAngle = 60,
+        gStrength = 8,
+        aAngle = 60,
+        aStrength = 8
+    };
+
+    // M Ender
+    private Action rekkaM = new Action()
+    {
+        tier = 3,
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 5,
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
+        gAngle = 60,
+        gStrength = 8,
+        aAngle = 60,
+        aStrength = 8
+    };
+
+    // H Ender
+    private Action rekkaH = new Action()
+    {
+        tier = 3,
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 5,
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
+        gAngle = 60,
+        gStrength = 8,
+        aAngle = 60,
+        aStrength = 8
+    };
+
+    // S Ender
+    private Action rekkaS = new Action()
+    {
+        tier = 3,
+        frames = new int[] { },//  |  | 
+        damage = new int[] { },
+        hitboxData = new Action.rect[,]
+        {
+
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 0,
+        //hitstun = ,
+        //blockstun = ,
+        actionCancels = new int[] { 35 },
+        gAngle = 0,
+        gStrength = 0,
+        aAngle = 0,
+        aStrength = 0
     };
 
     // Throw

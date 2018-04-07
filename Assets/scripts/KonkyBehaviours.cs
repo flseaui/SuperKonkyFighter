@@ -454,10 +454,10 @@ public class KonkyBehaviours : Behaviors {
         //hitstun = ,
         //blockstun = ,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
-        gAngle      = 45,
-        gStrength   = 3,
+        gAngle      = 80,
+        gStrength   = 4,
         aAngle      = 80,
-        aStrength   = 5
+        aStrength   = 6
     };
 
     // Jumping Light
