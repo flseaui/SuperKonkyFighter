@@ -1312,10 +1312,10 @@ public class KonkyBehaviours : Behaviors {
                 return 1.5f;
                 break;
             case 18:
-                return 1.5ff;
+                return 1.5f;
                 break;
             case 28:
-                return 1.5ff;
+                return 1.5f;
                 break;
 
             default:
