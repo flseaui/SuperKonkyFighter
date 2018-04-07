@@ -63,7 +63,7 @@ public class PlayerScript : MonoBehaviour
      * 1 - forward dash
      * 2 - back dash
      * 3 - forward air dash
-     * 4 - forward back dash
+     * 4 - backward air dash
      * 5 - stun
      */
     public int advancedState; // current advanced state
@@ -94,13 +94,13 @@ public class PlayerScript : MonoBehaviour
     public float backwardSpeed;       // backwards movement speed constant
     public float jumpDirectionSpeed;  // jump speed constant
 
-    public SpriteRenderer    spriteRenderer;
-    public Animator          animator;
-    public Behaviors         behaviors;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+    public Behaviors behaviors;
     public PolygonCollider2D hitbox;
-    public GameObject        otherPlayer;
-    public JoyScript         JoyScript;
-    public InputManager      inputManager;
+    public GameObject otherPlayer;
+    public JoyScript JoyScript;
+    public InputManager inputManager;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
@@ -169,6 +169,7 @@ public class PlayerScript : MonoBehaviour
 
             updateState = 1;
         }
+        // otherwise
         else
         {
             // if executing an action
@@ -215,6 +216,7 @@ public class PlayerScript : MonoBehaviour
         // if not dashing forwards
         if (executingAction != 41)
         {
+
             // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
             {
@@ -224,11 +226,13 @@ public class PlayerScript : MonoBehaviour
                     {
                         if (!airbornActionUsed)
                         {
+                            //backward air dash
                             advancedState = 4;
                             airbornActionUsed = true;
                         }
                     }
                     else
+                        // back dash
                         advancedState = 2;
                 }
                 else
@@ -237,15 +241,18 @@ public class PlayerScript : MonoBehaviour
                     {
                         if (!airbornActionUsed)
                         {
+                            //forward air dash
                             advancedState = 3;
                             airbornActionUsed = true;
                         }
                     }
                     else
+                        // forward dash
                         advancedState = 1;
                 }
                 dashTimer = 0;
             }
+            // if right held dashing and not facing forward
             else if (input[9] && dashingForwards && dashTimer != 0)
             {
                 if (facingRight)
@@ -254,11 +261,13 @@ public class PlayerScript : MonoBehaviour
                     {
                         if (!airbornActionUsed)
                         {
+                            // forward air dash
                             advancedState = 3;
                             airbornActionUsed = true;
                         }
                     }
                     else
+                        // forward dash
                         advancedState = 1;
                 }
                 else
@@ -267,16 +276,19 @@ public class PlayerScript : MonoBehaviour
                     {
                         if (!airbornActionUsed)
                         {
+                            // backward air dash
                             advancedState = 4;
                             airbornActionUsed = true;
                         }
                     }
                     else
+                        // backward dash
                         advancedState = 2;
                 }
                 dashTimer = 0;
             }
 
+            // if passed player and grounded: end dash
             if (passedPlayerInAir && !airborn)
             {
                 passedPlayerInAir = false;
@@ -284,9 +296,11 @@ public class PlayerScript : MonoBehaviour
                 advancedState = 9;
             }
 
+            // if not left or right held and dashing decrement timer
             if ((!input[8] || !input[9]) && dashTimer != 0)
                 dashTimer--;
 
+            // if left or right held set dash timer
             if (input[8] || input[9])
             {
                 dashTimer = 15;
@@ -297,10 +311,11 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if(shouldFlip)
+        if (shouldFlip)
             firstTimeCheckForFlip();
     }
 
+    // 
     private void firstTimeCheckForFlip()
     {
         shouldFlip = false;
@@ -322,6 +337,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    // if the inputted action can be cancelled into from the current action buffer it
     private void buffer(int bufferedInput)
     {
         foreach (int action in behaviors.getAction(executingAction).actionCancels)
@@ -329,6 +345,7 @@ public class PlayerScript : MonoBehaviour
                 bufferedMove = bufferedInput;
     }
 
+    // executes a frame of the current action
     private void incrementFrame(int[] frames)
     {
         placeHurtboxes(actionFrameCounter);
@@ -715,7 +732,7 @@ public class PlayerScript : MonoBehaviour
             animInt(Animator.StringToHash("Basic"), basicState);
             animInt(Animator.StringToHash("Action"), 0);
         }
-    }  
+    }
 
     private void placeHitboxes()
     {
@@ -729,7 +746,7 @@ public class PlayerScript : MonoBehaviour
             {
                 livingHitboxesIds.Add(hitbox.id);
                 livingHitboxesLifespans.Add(hitbox.timeActive);
-                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height),  new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
+                addBoxCollider2D(hitbox.id.ToString(), new Vector2(hitbox.width, hitbox.height), new Vector2((facingRight ? hitbox.x : -hitbox.x), hitbox.y), true);
             }
         }
     }
