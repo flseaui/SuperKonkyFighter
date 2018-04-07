@@ -611,20 +611,20 @@ public class PlayerScript : MonoBehaviour
         switch (executingAction - 40)
         {
             case 1:
-                hVelocity = forwardSpeed * behaviors.getDashForwardSpeed();
+                hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
                 if (behaviors.infiniteDashForward)
                     checkDashEnd();
                 break;
             case 2:
-                hVelocity = backwardSpeed * behaviors.getBackwardSpeed();
+                hVelocity = behaviors.getBackwardSpeed() * behaviors.getDashBackSpeed();
                 break;
             case 3:
                 vVelocity = 0;
-                hVelocity = forwardSpeed * behaviors.getDashForwardSpeed();
+                hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
                 break;
             case 4:
                 vVelocity = 0;
-                hVelocity = backwardSpeed * behaviors.getAirDashBackSpeed();
+                hVelocity = behaviors.getBackwardSpeed() * behaviors.getAirDashBackSpeed();
                 break;
             case 5:
                 stunTimer--;
