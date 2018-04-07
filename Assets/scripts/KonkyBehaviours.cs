@@ -1275,9 +1275,6 @@ public class KonkyBehaviours : Behaviors {
             case 12:
                 return 1;
                 break;
-            case 22:
-                return 1;
-                break;
             case 15:
                 return 1;
                 break;
