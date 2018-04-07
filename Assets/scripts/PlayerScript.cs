@@ -611,16 +611,12 @@ public class PlayerScript : MonoBehaviour
         switch (executingAction - 40)
         {
             case 1:
-                hVelocity = forwardSpeed * 3;
-                if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
-                {
-                    hVelocity = 0;
-                    dashTimer = 0;
-                    ActionEnd();
-                }
+                hVelocity = forwardSpeed * behaviors.getDashForwardSpeed();
+                if (behaviors.infiniteDashForward)
+                    checkDashEnd();
                 break;
             case 2:
-                hVelocity = backwardSpeed * 3f;
+                hVelocity = backwardSpeed * behaviors.getBackwardSpeed();
                 break;
             case 3:
                 vVelocity = 0;
@@ -641,6 +637,16 @@ public class PlayerScript : MonoBehaviour
                 break;
             case 7:
                 break;
+        }
+    }
+
+    public void checkDashEnd()
+    {
+        if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
+        {
+            hVelocity = 0;
+            dashTimer = 0;
+            ActionEnd();
         }
     }
 
