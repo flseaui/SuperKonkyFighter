@@ -134,7 +134,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3 },// 5 | 2 | 5
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -158,7 +158,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3,  },// 8 | 3 | 12
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {

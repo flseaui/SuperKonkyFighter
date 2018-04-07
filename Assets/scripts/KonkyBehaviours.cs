@@ -1324,31 +1324,31 @@ public class KonkyBehaviours : Behaviors {
                 return .1f;
                 break;
             case 7:
-                return .2f;
+                return .15f;
                 break;
             case 17:
-                return .2f;
+                return .15f;
                 break;
             case 27:
-                return .2f;
+                return .15f;
                 break;
             case 8:
-                return .2f;
+                return .15f;
                 break;
             case 18:
-                return .2f;
+                return .15f;
                 break;
             case 28:
-                return .2f;
+                return .15f;
                 break;
             case 9:
-                return .2f;
+                return .15f;
                 break;
             case 19:
-                return .2f;
+                return .15f;
                 break;
             case 29:
-                return .2f;
+                return .15f;
                 break;
 
             default:
@@ -1363,31 +1363,31 @@ public class KonkyBehaviours : Behaviors {
         switch (attackState)
         {
             case 7:
-                return .2f;
+                return .15f;
                 break;
             case 17:
-                return .2f;
+                return .15f;
                 break;
             case 27:
-                return .2f;
+                return .15f;
                 break;
             case 8:
-                return .2f;
+                return .15f;
                 break;
             case 18:
-                return .2f;
+                return .15f;
                 break;
             case 28:
-                return .2f;
+                return .15f;
                 break;
             case 9:
-                return .2f;
+                return .15f;
                 break;
             case 19:
-                return .2f;
+                return .15f;
                 break;
             case 29:
-                return .2f;
+                return .15f;
                 break;
 
             default:
