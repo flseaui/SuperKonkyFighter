@@ -192,7 +192,9 @@ public class PlayerScript : MonoBehaviour
             // check whether to continue or end action
             stateCheck();
 
-            if (executingAction > 40)
+            if (executingAction != 0 && executingAction < 40)
+                attackMove(executingAction);
+            else if (executingAction > 40)
                 advancedMove();
 
             updateState = 2;
@@ -604,6 +606,12 @@ public class PlayerScript : MonoBehaviour
             previousBasicState = basicState;
         }
 
+    }
+
+    private void attackMove(int action)
+    {
+        hKnockback -= behaviors.getAttackMovementHorizontal(action);
+        vKnockback += behaviors.getAttackMovementVertical(action);
     }
 
     private void advancedMove()

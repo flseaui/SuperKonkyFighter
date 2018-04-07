@@ -46,6 +46,16 @@ public abstract class Behaviors {
         infiniteDashForward = false;
     }
 
+    public float getAttackMovementHorizontal(int attackState)
+    {
+        return 0;
+    }
+
+    public float getAttackMovementVertical(int attackState)
+    {
+        return 0;
+    }
+
     public int getAnimAction(Action id)
     {
         return AnimAction[id];
