@@ -32,7 +32,7 @@ public abstract class Behaviors {
         this.AnimAction = AnimAction;
     }
 
-    public void setStats()
+    public virtual void setStats()
     {
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
@@ -46,12 +46,12 @@ public abstract class Behaviors {
         infiniteDashForward = false;
     }
 
-    public float getAttackMovementHorizontal(int attackState)
+    public virtual float getAttackMovementHorizontal(int attackState)
     {
         return 0;
     }
 
-    public float getAttackMovementVertical(int attackState)
+    public virtual float getAttackMovementVertical(int attackState)
     {
         return 0;
     }

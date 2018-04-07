@@ -1251,22 +1251,22 @@ public class KonkyBehaviours : Behaviors {
 
 
 
-    new public void setStats()
+    public override void setStats()
     {
         forwardSpeed = 0.25f;
         backwardSpeed = -0.15f;
         jumpDirectionSpeed = 1.25f;
-        dashForwardSpeed = 0.25f * 3f;
-        dashBackSpeed = -0.15f * 3f;
-        airDashForwardSpeed = 0.25f * 3f;
-        airDashBackSpeed = -0.15f * 3f;
+        dashForwardSpeed = 3f;
+        dashBackSpeed = 3f;
+        airDashForwardSpeed = 3f;
+        airDashBackSpeed = 3f;
         gravity = -0.05f;
         maxHealth = 11000;
         infiniteDashForward = true;
     }
 
 
-    new public float getAttackMovementHorizontal(int attackState)
+    public override float getAttackMovementHorizontal(int attackState)
     {
         switch (attackState) {
             case 1:
@@ -1279,7 +1279,7 @@ public class KonkyBehaviours : Behaviors {
         }
     }
 
-    new public float getAttackMovementVertical(int attackState)
+    public override float getAttackMovementVertical(int attackState)
     {
         switch (attackState)
         {
