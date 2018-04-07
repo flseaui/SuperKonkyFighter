@@ -41,6 +41,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool airbornActionUsed;     // true if player has spent airial action
     public bool damageDealt;           // true if damage was dealt this frame
     public bool inPushCollision;       // true if player push boxes are currently colliding
+    public bool alreadyExecutedAttackMove;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -187,6 +188,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // otherwise
         else
         {
+            // check whether to continue or end action
+            stateCheck();
+
             // if executing an action
             if (executingAction != 0)
             {
@@ -197,16 +201,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     killAllBoxes();
                 }
 
+                if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
+                    attackMove(executingAction);
+                else if (executingAction > 40)
+                    advancedMove();
+
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
-            // check whether to continue or end action
-            stateCheck();
-
-            if (executingAction != 0 && executingAction < 40)
-                attackMove(executingAction);
-            else if (executingAction > 40)
-                advancedMove();
 
             updateState = 2;
         }
@@ -395,6 +397,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else
         {
             damageDealt = false;
+            alreadyExecutedAttackMove = false;
         }
 
         // if recovery frame
@@ -621,8 +624,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void attackMove(int action)
     {
-        hKnockback -= behaviors.getAttackMovementHorizontal(action);
+        hKnockback += behaviors.getAttackMovementHorizontal(action);
         vKnockback += behaviors.getAttackMovementVertical(action);
+        alreadyExecutedAttackMove = true;
     }
 
     private void advancedMove()
