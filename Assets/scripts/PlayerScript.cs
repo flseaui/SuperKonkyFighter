@@ -607,12 +607,8 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
-                {
-                    hVelocity = 0;
-                    dashTimer = 0;
-                    ActionEnd();
-                }
+                //if infinite dash
+                checkEndDashForward();
                 break;
             case 2:
                 hVelocity = backwardSpeed * 3f;
@@ -636,6 +632,16 @@ public class PlayerScript : MonoBehaviour
                 break;
             case 7:
                 break;
+        }
+    }
+
+    private void checkEndDashForward()
+    {
+        if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
+        {
+            hVelocity = 0;
+            dashTimer = 0;
+            ActionEnd();
         }
     }
 
