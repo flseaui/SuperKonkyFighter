@@ -612,7 +612,7 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
-                if (behaviors.infiniteDashForward)
+                if (behaviors.getInfiniteDashForward())
                     checkDashEnd();
                 break;
             case 2:
