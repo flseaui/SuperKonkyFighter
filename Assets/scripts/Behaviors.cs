@@ -9,6 +9,9 @@ public abstract class Behaviors {
 
     public float forwardSpeed = 0.25f,
                  backwardSpeed = -0.15f,
+                 dashForwardSpeed = 0,
+                 dashBackSpeed = 0,
+                 airDashForwardSpeed = 0,
                  jumpDirectionSpeed = 1.25f,
                  gravity = -0.05f;
     public int maxHealth = 11000;

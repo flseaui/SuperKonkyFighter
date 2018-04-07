@@ -107,6 +107,8 @@ public class PlayerScript : MonoBehaviour
     public List<float> livingHurtboxesIds;       // the ids of all living hurtboxes
     public List<float> livingHurtboxesLifespans; // the lifespans of all living hurtboxes
 
+    public AudioSource hitSound;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -119,6 +121,8 @@ public class PlayerScript : MonoBehaviour
         this.tag = playerID.ToString();
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<PolygonCollider2D>();
+
+        hitSound = GetComponent<AudioSource>();
 
         vVelocity = 0;
         hVelocity = 0;
@@ -388,13 +392,14 @@ public class PlayerScript : MonoBehaviour
             {
                 ActionEnd();
             }
-            // if executing advanced action and not passed the other player
+            // if executing advanced action and not passed the other player buffer a cancelable move
             else if (advancedState != 0 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
                     if (Actions == advancedState + 40)
                         bufferedMove = advancedState + 40;
             }
+            //if jumping and not passed player set jump direction and buffer jump if needed
             else if (basicState >= 7 && !passedPlayerInAction)
             {
                 foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
@@ -607,8 +612,12 @@ public class PlayerScript : MonoBehaviour
         {
             case 1:
                 hVelocity = forwardSpeed * 3;
-                //if infinite dash
-                checkEndDashForward();
+                if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
+                {
+                    hVelocity = 0;
+                    dashTimer = 0;
+                    ActionEnd();
+                }
                 break;
             case 2:
                 hVelocity = backwardSpeed * 3f;
@@ -632,16 +641,6 @@ public class PlayerScript : MonoBehaviour
                 break;
             case 7:
                 break;
-        }
-    }
-
-    private void checkEndDashForward()
-    {
-        if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
-        {
-            hVelocity = 0;
-            dashTimer = 0;
-            ActionEnd();
         }
     }
 
@@ -927,6 +926,8 @@ public class PlayerScript : MonoBehaviour
         health -= damage;
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+
+        hitSound.Play();
 
         ActionEnd();
 
