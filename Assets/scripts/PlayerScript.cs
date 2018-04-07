@@ -624,7 +624,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void attackMove(int action)
     {
-        hKnockback += behaviors.getAttackMovementHorizontal(action);
+        hKnockback -= behaviors.getAttackMovementHorizontal(action);
         vKnockback += behaviors.getAttackMovementVertical(action);
         alreadyExecutedAttackMove = true;
     }
