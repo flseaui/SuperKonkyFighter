@@ -658,7 +658,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
             case 3:
                 vVelocity = 0;
-                hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
+                hVelocity = behaviors.getForwardSpeed() * behaviors.getAirDashForwardSpeed();
                 break;
             case 4:
                 vVelocity = 0;
