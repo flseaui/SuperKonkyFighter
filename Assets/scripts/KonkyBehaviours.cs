@@ -1265,7 +1265,6 @@ public class KonkyBehaviours : Behaviors {
         infiniteDashForward = true;
     }
 
-
     public override float getAttackMovementHorizontal(int attackState)
     {
         switch (attackState) {
