@@ -22,6 +22,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public const int FLAG_DUMMY  = 2;
 	public const int FLAG_STUCK  = 3;
 	public const int FLAG_SHADE  = 4;
+	public const int FLAG_NOLINE = 5;
 
 	//--------------line types----------//
 	public Material defaultMaterial;
@@ -31,6 +32,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	private bool shade;
 	public bool disable;
 	public bool sticky;
+	private bool noLine;
 
 	public int triggerID;
 
@@ -79,6 +81,10 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 				case FLAG_SHADE:
 					shade = true;
 					break;
+				case FLAG_NOLINE:
+					noLine = true;
+					modeNeutral();
+					break;
 			}
 		}
 	}
@@ -121,41 +127,54 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	private void modeHighlight()
 	{
-		lineRenderer.widthMultiplier = 0.3f;
-		lineRenderer.material = defaultMaterial;
-		lineRenderer.numCornerVertices = 0;
-		lineRenderer.sortingOrder = 2;
-		GradientColorKey gck = new GradientColorKey();
-		gck.color = Color.white;
-		GradientAlphaKey gak = new GradientAlphaKey();
-		gak.alpha = 0.75f;
-		Gradient g = new Gradient();
-		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-		lineRenderer.colorGradient = g;
-		if (shade)
+		if (!noLine)
 		{
-			color.color = new Color(defaultColor.r, defaultColor.g, defaultColor.b, 0.2f);
+			lineRenderer.widthMultiplier = 0.3f;
+			lineRenderer.material = defaultMaterial;
+			lineRenderer.numCornerVertices = 0;
+			lineRenderer.sortingOrder = 2;
+			GradientColorKey gck = new GradientColorKey();
+			gck.color = Color.white;
+			GradientAlphaKey gak = new GradientAlphaKey();
+			gak.alpha = 0.75f;
+			Gradient g = new Gradient();
+			g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+			lineRenderer.colorGradient = g;
+			if (shade)
+			{
+				color.color = new Color(defaultColor.r, defaultColor.g, defaultColor.b, 0.2f);
+			}
+			else
+			{
+				color.color = highlightColor;
+			}
 		}
 		else
 		{
-			color.color = highlightColor;
+			lineRenderer.widthMultiplier = 0f;
 		}
 	}
 
 	private void modeNeutral()
 	{
-		lineRenderer.widthMultiplier = 0.3f;
-		lineRenderer.material = defaultMaterial;
-		lineRenderer.numCornerVertices = 0;
-		lineRenderer.sortingOrder = 2;
-		GradientColorKey gck = new GradientColorKey();
-		gck.color = Color.white;
-		GradientAlphaKey gak = new GradientAlphaKey();
-		gak.alpha = 0.75f;
-		Gradient g = new Gradient();
-		g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
-		lineRenderer.colorGradient = g;
-		color.color = defaultColor;
+		if (!noLine) {
+			lineRenderer.widthMultiplier = 0.3f;
+			lineRenderer.material = defaultMaterial;
+			lineRenderer.numCornerVertices = 0;
+			lineRenderer.sortingOrder = 2;
+			GradientColorKey gck = new GradientColorKey();
+			gck.color = Color.white;
+			GradientAlphaKey gak = new GradientAlphaKey();
+			gak.alpha = 0.75f;
+			Gradient g = new Gradient();
+			g.SetKeys(new GradientColorKey[] { gck }, new GradientAlphaKey[] { gak });
+			lineRenderer.colorGradient = g;
+			color.color = defaultColor;
+		}
+		else
+		{
+			lineRenderer.widthMultiplier = 0f;
+		}
 	}
 
 	private void modeLock()

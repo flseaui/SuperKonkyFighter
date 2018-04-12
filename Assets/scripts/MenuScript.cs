@@ -48,6 +48,9 @@ public class MenuScript : MonoBehaviour {
 	private GameObject characterGoText;
 	private GameObject globeButton1;
 	private GameObject globeButton2;
+	private GameObject cpuButton1;
+	private GameObject cpuButton2;
+	private GameObject[] characterButtons;
 
 	//-----------------------------prefabs----------------------------//
 
@@ -292,23 +295,28 @@ public class MenuScript : MonoBehaviour {
 			case PLAYER_SELECT_SCREEN:
 
 				globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
-				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] {  });
+				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] { ButtonScript.FLAG_NOLINE });
 				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
+				cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] {});
+
 
 				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
-				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { });
+				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ButtonScript.FLAG_NOLINE });
 				player2 = makeSprite(11, -6, 10, 10, konkyGlobe, konkyGlobeAnim);
 				player2.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				player2.GetComponent<SpriteRenderer>().flipX = true;
+				cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
 
 				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN, ButtonScript.FLAG_DUMMY });
 				characterGoText = makeFancyText(0, -3, 2, "go", 0);
 				characterGoText.SetActive(false);
 
-				makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ButtonScript.FLAG_STICKY });
+				characterButtons = new GameObject[6];
+
+				characterButtons[0] = makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ButtonScript.FLAG_STICKY });
 				makeSprite(-10, 4, 8, 8, konkySelect);//konky sprite
-				makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ButtonScript.FLAG_STICKY });
+				characterButtons[1] = makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ButtonScript.FLAG_STICKY });
 				makeSprite(-6, 4, 8, 8, GreyshirtSelect);//greyshirt sprite
 				makeButton(new Vector3[] { new Vector2( -5, 7), new Vector2(  0, 7), new Vector2(  0, 0), new Vector2( -3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  0, 7), new Vector2(  5, 7), new Vector2(  3, 0), new Vector2(  0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
@@ -406,13 +414,11 @@ public class MenuScript : MonoBehaviour {
 				break;
 			case 9:
 				globeSelect = 0;
-				player1ai = (player1ai == 0) ? 1 : 0;
 				unstickAll();
 				globeShift();
 				break;
 			case 10:
 				globeSelect = 1;
-				player2ai = (player2ai == 0) ? 1 : 0;
 				unstickAll();
 				globeShift();
 				break;
@@ -439,6 +445,14 @@ public class MenuScript : MonoBehaviour {
 					player2c = 1;
 				}
 				charShift();
+				break;
+			case 13:
+				player1ai = (player1ai == 0) ? 1 : 0;
+				globeShift();
+				break;
+			case 14:
+				player2ai = (player2ai == 0) ? 1 : 0;
+				globeShift();
 				break;
 		}
 	}
@@ -479,11 +493,21 @@ public class MenuScript : MonoBehaviour {
 	{
 		if (globeSelect == 0)
 		{
+			if (player1c != -1)
+			{
+				//Debug.Log("p1c: " + player1c + " | length: " + characterButtons.Length);
+				characterButtons[player1c].GetComponent <ButtonScript> ().stick();
+			}
 			globeButton1.GetComponent<ButtonScript>().stick();
 			globeButton2.GetComponent<ButtonScript>().unstick();
 		}
 		else
 		{
+			if (player2c != -1)
+			{
+				//Debug.Log("p2c: "+player2c+" | length: "+characterButtons.Length);
+				characterButtons[player2c].GetComponent<ButtonScript>().stick();
+			}
 			globeButton1.GetComponent<ButtonScript>().unstick();
 			globeButton2.GetComponent<ButtonScript>().stick();
 		}
