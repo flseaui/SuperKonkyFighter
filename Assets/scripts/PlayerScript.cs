@@ -172,24 +172,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // if in hitstop buffer current move
         if (hitStopped)
         {
-         /*   foreach (int action in behaviors.getAction(executingAction).actionCancels)
-                if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
-                {
-                    bufferedMove = 40;
-                    if (basicState == 7)
-                        jumpDirection = 7;
-                    else if (basicState == 8)
-                        jumpDirection = 8;
-                    else
-                        jumpDirection = 9;
-                }
-
-            if (advancedState != 0)
-                buffer(advancedState + 40);
-            else if (attackState != 0)
-                buffer(attackState);
-         */
-
+        
             updateState = 1;
         }
         // otherwise
@@ -444,8 +427,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                                 jumpDirection = 8;
                             else
                                 jumpDirection = 9;
-
-
                         }
                 }
                 else if (attackState != 0 && !passedPlayerInAction)
@@ -479,6 +460,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             // buffer frames
             case 4:
                 foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                    //buffer jumps
                     if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
                     {
                         bufferedMove = 40;
@@ -489,7 +471,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         else
                             jumpDirection = 9;
                     }
-
+                //buffer attacks
                 if (advancedState != 0)
                     buffer(advancedState + 40);
                 else if (attackState != 0)
