@@ -218,8 +218,8 @@ public class CameraScript : MonoBehaviour
         {
             cy = 12;
         }
-        setY(background, cy * 0.5f + 8);
-        setY(self, cy);
+        //setY(background, cy * 0.5f + 8);
+        //setY(self, cy);
         setX(background, cx * 0.5f);
         setX(self, cx);
 

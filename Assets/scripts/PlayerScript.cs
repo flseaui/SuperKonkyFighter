@@ -162,14 +162,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // get currently held keys or pressed buttons
         inputManager.pollInput(0);
 
-        // updates basic state accordingly
-        basicState = inputConvert(inputManager.currentInput);
-        setAttackInput(inputManager.currentInput);
-
-        // if jumping reset attackState
-        if (attackState % 10 >= 7 && !airborn)
-            attackState = 0;
-        setAdvancedInput(inputManager.currentInput);
+        //set basic and attack states    
+        setStates();
 
         // zero horizontal and vertical push
         hPush = 0;
@@ -178,8 +172,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // if in hitstop buffer current move
         if (hitStopped)
         {
-            foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
+         /*   foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
                 {
                     bufferedMove = 40;
                     if (basicState == 7)
@@ -194,6 +188,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 buffer(advancedState + 40);
             else if (attackState != 0)
                 buffer(attackState);
+         */
 
             updateState = 1;
         }
@@ -224,6 +219,18 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
             updateState = 2;
         }
+    }
+
+    private void setStates()
+    {
+        // updates basic state accordingly
+        basicState = inputConvert(inputManager.currentInput);
+        setAttackInput(inputManager.currentInput);
+
+        // if jumping reset attackState
+        if (attackState % 10 >= 7 && !airborn)
+            attackState = 0;
+        setAdvancedInput(inputManager.currentInput);
     }
 
     // update attackState from current input
@@ -385,53 +392,94 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         currentFrameType = frames[actionFrameCounter];
         actionFrameCounter++;
 
-        // if first active frame in action
-        if (previousFrame != 1 && currentFrameType == 1)
+        switch (currentFrameType)
         {
-            otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
-        }
+            // if active frame
+            case 1:
+                // if first active frame in action
+                if (previousFrame != 1)
+                {
+                    otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
+                }
 
-        // if active frame
-        if (currentFrameType == 1)
-        {
-            if (executingAction < 40)
-                placeHitboxes();
+                {
+                    if (executingAction < 40)
+                        placeHitboxes();
 
-            // if not hitsopped buffer move
-            if (!hitStopped)
-                if (advancedState != 0)
-                    buffer(advancedState + 40);
-                else if (attackState != 0)
-                    buffer(attackState);
+                    // if not hitsopped buffer move
+                    if (!hitStopped)
+                        if (advancedState != 0)
+                            buffer(advancedState + 40);
+                        else if (attackState != 0)
+                            buffer(attackState);
 
-            activeFrameCounter++;
-        }
-        else
-        {
-            damageDealt = false;
-            alreadyExecutedAttackMove = false;
-        }
+                    activeFrameCounter++;
+                }
+                break;
 
-        // if recovery frame
-        if (currentFrameType == 3)
-        {
-            // if grounded from a non-infinite action that passed the other player
-            if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
-            {
-                ActionEnd();
-            }
-            // if executing advanced action and not passed the other player buffer a cancelable move
-            else if (advancedState != 0 && !passedPlayerInAction)
-            {
-                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                    if (Actions == advancedState + 40)
-                        bufferedMove = advancedState + 40;
-            }
-            //if jumping and not passed player set jump direction and buffer jump if needed
-            else if (basicState >= 7 && !passedPlayerInAction)
-            {
-                foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                    if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
+            // recovery frame
+            case 3:
+                // if grounded from a non-infinite action that passed the other player
+                if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
+                {
+                    ActionEnd();
+                }
+                // if executing advanced action and not passed the other player buffer a cancelable move
+                else if (advancedState != 0 && !passedPlayerInAction)
+                {
+                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                        if (Actions == advancedState + 40)
+                            bufferedMove = advancedState + 40;
+                }
+                //if jumping and not passed player set jump direction and buffer jump if needed
+                else if (basicState >= 7 && !passedPlayerInAction)
+                {
+                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                        if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
+                        {
+                            bufferedMove = 40;
+                            if (basicState == 7)
+                                jumpDirection = 7;
+                            else if (basicState == 8)
+                                jumpDirection = 8;
+                            else
+                                jumpDirection = 9;
+
+
+                        }
+                }
+                else if (attackState != 0 && !passedPlayerInAction)
+                {
+                    foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                        if (action == attackState)
+                            bufferedMove = attackState;
+                }
+
+                if (bufferedMove != 0 && !passedPlayerInAction)
+                {
+                    if (bufferedMove > 40)
+                        advancedState = bufferedMove - 40;
+                    else if (bufferedMove == 40)
+                    {
+                        advancedState = 0;
+                        attackState = 0;
+                        basicState = jumpDirection;
+
+                    }
+                    else
+                        attackState = bufferedMove;
+                    bufferedMove = 0;
+                    ActionEnd();
+                }
+
+                damageDealt = false;
+                alreadyExecutedAttackMove = false;
+                break;
+
+            // buffer frames
+            case 4:
+                foreach (int action in behaviors.getAction(executingAction).actionCancels)
+                    if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
                     {
                         bufferedMove = 40;
                         if (basicState == 7)
@@ -440,33 +488,20 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             jumpDirection = 8;
                         else
                             jumpDirection = 9;
-
-
                     }
-            }
-            else if (attackState != 0 && !passedPlayerInAction)
-            {
-                foreach (int action in behaviors.getAction(executingAction).actionCancels)
-                    if (action == attackState)
-                        bufferedMove = attackState;
-            }
 
-            if (bufferedMove != 0 && !passedPlayerInAction)
-            {
-                if (bufferedMove > 40)
-                    advancedState = bufferedMove - 40;
-                else if (bufferedMove == 40)
-                {
-                    advancedState = 0;
-                    attackState = 0;
-                    basicState = jumpDirection;
+                if (advancedState != 0)
+                    buffer(advancedState + 40);
+                else if (attackState != 0)
+                    buffer(attackState);
 
-                }
-                else
-                    attackState = bufferedMove;
-                bufferedMove = 0;
-                ActionEnd();
-            }
+                damageDealt = false;
+                alreadyExecutedAttackMove = false;
+                break;
+            default:
+                damageDealt = false;
+                alreadyExecutedAttackMove = false;
+                break;
         }
     }
 
@@ -638,7 +673,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void attackMove(int action)
     {
-        hKnockback += (facingRight? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
+        hKnockback += (facingRight ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
         alreadyExecutedAttackMove = true;
     }
