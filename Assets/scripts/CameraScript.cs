@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CameraScript : MonoBehaviour
 {
@@ -87,6 +88,12 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+        
 
      /*   if (p1h.hit)
         {
