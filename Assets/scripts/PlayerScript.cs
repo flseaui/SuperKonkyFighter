@@ -94,7 +94,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
      * 2 - updateEnd
      */
     public int updateState;            // keeps track of what type of update the player should execute
-    public int overrideState;          // highest level state that overrides every other state
+    public int overrideAction;          // highest level state that overrides every other state
 
     public float hKnockback;          // horizontal knockback
     public float vKnockback;          // vertical knockback
@@ -210,7 +210,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (currentFrameType)
         {
             case 3:
-
                 // if executing advanced action and not passed the other player buffer a cancelable move
                 if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
                 { }
@@ -229,7 +228,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
         }
 
-        overrideState = bufferedMove;
+        overrideAction = bufferedMove;
     }
 
     private void setStates()
@@ -428,11 +427,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
                 break;
-
             // buffer frames
             case 4:
-               
-
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
                 break;
@@ -440,6 +436,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
                 break;
+        }
+        advancedState = 0;
+        attackState = 0;
+        if (!airborn)
+            vVelocity = 0;
+        if (actionFrameCounter >= behaviors.getAction(executingAction).frames.Length)
+        {
+            if (behaviors.getAction(executingAction).infinite)
+                actionFrameCounter--;
+            else
+                ActionEnd();
         }
     }
 
@@ -490,16 +497,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (executingAction != 0)
         {
-            advancedState = 0;
-            attackState = 0;
-            if (!airborn)
-                vVelocity = 0;
-            if (actionFrameCounter >= behaviors.getAction(executingAction).frames.Length)
+            if (overrideAction != 0)
             {
-                if (behaviors.getAction(executingAction).infinite)
-                    actionFrameCounter--;
-                else
-                    ActionEnd();
+                ActionEnd();
+                executingAction = overrideAction;
             }
         }
         else if (advancedState != 0)
