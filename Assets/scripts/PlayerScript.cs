@@ -94,6 +94,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
      * 2 - updateEnd
      */
     public int updateState;            // keeps track of what type of update the player should execute
+    public int overrideState;          // highest level state that overrides every other state
 
     public float hKnockback;          // horizontal knockback
     public float vKnockback;          // vertical knockback
@@ -113,13 +114,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public GameObject otherPlayer;
     public JoyScript JoyScript;
     public InputManager inputManager;
+    public AudioSource hitSound;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
     public List<float> livingHurtboxesIds;       // the ids of all living hurtboxes
     public List<float> livingHurtboxesLifespans; // the lifespans of all living hurtboxes
-
-    public AudioSource hitSound;
 
     void OnDrawGizmos()
     {
@@ -169,6 +169,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hPush = 0;
         vPush = 0;
 
+        preAction();
+
         // if in hitstop buffer current move
         if (hitStopped)
         {
@@ -201,6 +203,33 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
             updateState = 2;
         }
+    }
+
+    private void preAction()
+    {
+        switch (currentFrameType)
+        {
+            case 3:
+
+                // if executing advanced action and not passed the other player buffer a cancelable move
+                if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
+                { }
+                else if (advancedState != 0 && !passedPlayerInAction)
+                {
+                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
+                        if (Actions == advancedState + 40)
+                            bufferedMove = advancedState + 40;
+                }
+
+                // cancel into buffered move
+                swapBuffers();
+                break;
+            case 4:
+                bufferAction();
+                break;
+        }
+
+        overrideState = bufferedMove;
     }
 
     private void setStates()
@@ -395,16 +424,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 {
                     ActionEnd();
                 }
-                // if executing advanced action and not passed the other player buffer a cancelable move
-                else if (advancedState != 0 && !passedPlayerInAction)
-                {
-                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                        if (Actions == advancedState + 40)
-                            bufferedMove = advancedState + 40;
-                }
-                
-                // cancel into buffered move
-                swapBuffers();
 
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
@@ -412,7 +431,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
             // buffer frames
             case 4:
-                bufferAction();
+               
 
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
