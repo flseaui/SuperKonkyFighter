@@ -172,7 +172,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // if in hitstop buffer current move
         if (hitStopped)
         {
-        
             updateState = 1;
         }
         // otherwise
@@ -415,7 +414,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             bufferedMove = advancedState + 40;
                 }
                 //if jumping and not passed player set jump direction and buffer jump if needed
-                else if (basicState >= 7 && !passedPlayerInAction)
+                /*else if (basicState >= 7 && !passedPlayerInAction)
                 {
                     foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
                         if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
@@ -435,23 +434,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         if (action == attackState)
                             bufferedMove = attackState;
                 }
+                */
 
-                if (bufferedMove != 0 && !passedPlayerInAction)
-                {
-                    if (bufferedMove > 40)
-                        advancedState = bufferedMove - 40;
-                    else if (bufferedMove == 40)
-                    {
-                        advancedState = 0;
-                        attackState = 0;
-                        basicState = jumpDirection;
-
-                    }
-                    else
-                        attackState = bufferedMove;
-                    bufferedMove = 0;
-                    ActionEnd();
-                }
+                swapBuffers();
 
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
@@ -459,23 +444,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
             // buffer frames
             case 4:
-                foreach (int action in behaviors.getAction(executingAction).actionCancels)
-                    //buffer jumps
-                    if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
-                    {
-                        bufferedMove = 40;
-                        if (basicState == 7)
-                            jumpDirection = 7;
-                        else if (basicState == 8)
-                            jumpDirection = 8;
-                        else
-                            jumpDirection = 9;
-                    }
-                //buffer attacks
-                if (advancedState != 0)
-                    buffer(advancedState + 40);
-                else if (attackState != 0)
-                    buffer(attackState);
+                bufferAction();
 
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
@@ -484,6 +453,49 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 damageDealt = false;
                 alreadyExecutedAttackMove = false;
                 break;
+        }
+    }
+
+    // buffer jump, advancedState, and attackState
+    private void bufferAction()
+    {
+        foreach (int action in behaviors.getAction(executingAction).actionCancels)
+            //buffer jumps
+            if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
+            {
+                bufferedMove = 40;
+                if (basicState == 7)
+                    jumpDirection = 7;
+                else if (basicState == 8)
+                    jumpDirection = 8;
+                else
+                    jumpDirection = 9;
+            }
+        //buffer attacks
+        if (advancedState != 0)
+            buffer(advancedState + 40);
+        else if (attackState != 0)
+            buffer(attackState);
+    }
+
+    // swap current state with buffered action
+    private void swapBuffers()
+    {
+        if (bufferedMove != 0 && !passedPlayerInAction)
+        {
+            if (bufferedMove > 40)
+                advancedState = bufferedMove - 40;
+            else if (bufferedMove == 40)
+            {
+                advancedState = 0;
+                attackState = 0;
+                basicState = jumpDirection;
+
+            }
+            else
+                attackState = bufferedMove;
+            bufferedMove = 0;
+            ActionEnd();
         }
     }
 
