@@ -171,6 +171,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         preAction();
 
+        // check whether to continue or end action
+        stateCheck();
+
         // if in hitstop buffer current move
         if (hitStopped)
         {
@@ -197,9 +200,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
-
-            // check whether to continue or end action
-            stateCheck();
 
             updateState = 2;
         }
