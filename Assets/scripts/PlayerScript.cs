@@ -380,23 +380,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             case 1:
                 // if first active frame in action
                 if (previousFrame != 1)
-                {
                     otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
-                }
 
-                {
-                    if (executingAction < 40)
-                        placeHitboxes();
+                if (executingAction < 40)
+                    placeHitboxes();
 
-                    // if not hitsopped buffer move
-                    if (!hitStopped)
-                        if (advancedState != 0)
-                            buffer(advancedState + 40);
-                        else if (attackState != 0)
-                            buffer(attackState);
-
-                    activeFrameCounter++;
-                }
+                activeFrameCounter++;
                 break;
 
             // recovery frame
@@ -413,29 +402,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         if (Actions == advancedState + 40)
                             bufferedMove = advancedState + 40;
                 }
-                //if jumping and not passed player set jump direction and buffer jump if needed
-                /*else if (basicState >= 7 && !passedPlayerInAction)
-                {
-                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                        if (Actions == 40 && inputManager.currentInput[12] && !airbornActionUsed)
-                        {
-                            bufferedMove = 40;
-                            if (basicState == 7)
-                                jumpDirection = 7;
-                            else if (basicState == 8)
-                                jumpDirection = 8;
-                            else
-                                jumpDirection = 9;
-                        }
-                }
-                else if (attackState != 0 && !passedPlayerInAction)
-                {
-                    foreach (int action in behaviors.getAction(executingAction).actionCancels)
-                        if (action == attackState)
-                            bufferedMove = attackState;
-                }
-                */
-
+                
+                // cancel into buffered move
                 swapBuffers();
 
                 damageDealt = false;
