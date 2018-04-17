@@ -29,12 +29,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 5	  21	  27         21	         36	            13	    21	       20	     94 
     */
 
-    public bool passedPlayerInAir;     // true if pass other player while airborn
-    public bool passedPlayerInAction;  // true if pass other player while they're in an action
+    public bool passedPlayerInAir;     // true if pass other player while airborn DEAD!!!!!!!!!!!!!!!!
+    public bool passedPlayerInAction;  // true if pass other player while they're in an action DEAD!!!!!!!!!!!!!!!!!!!!
     public bool airborn;               // true if in the air
     public bool hitStopped;            // true if in hitstop
     public bool hitStunned;            // true if in hitstun
-    public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing
+    public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing DEAD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public bool facingRight;           // true if the player is facing right
     public bool playerSide;            // true if left of the other player, false if right
     public bool dashingForwards;       // true if dashing forward, false if dashing back
@@ -199,6 +199,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (currentFrameType)
         {
             case 3:
+                checkForFlip(false);
+
                 bufferAction();
 
                 // cancel into buffered move
@@ -212,6 +214,20 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             case 1:
                 bufferAction();
                 break;
+        }
+
+        if (executingAction == 0)
+            checkForFlip(false);
+    }
+
+    public void checkForFlip( bool specialCase)
+    {
+        if(playerSide != facingRight)
+        {
+            if (!airborn || specialCase)
+                facingRight = !facingRight;
+
+            overrideAction = 50;
         }
     }
 
@@ -258,7 +274,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
             {
-                if (facingRight)
+                if (playerSide)
                 {
                     if (airborn)
                     {
@@ -293,7 +309,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             // if right held dashing and not facing forward
             else if (input[9] && dashingForwards && dashTimer != 0)
             {
-                if (facingRight)
+                if (playerSide)
                 {
                     if (airborn)
                     {
@@ -326,14 +342,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 dashTimer = 0;
             }
 
-            // if passed player and grounded: end dash
-            if (passedPlayerInAir && !airborn)
-            {
-                passedPlayerInAir = false;
-                ActionEnd();
-                advancedState = 9;
-            }
-
             // if not left or right held and dashing decrement timer
             if ((!input[8] || !input[9]) && dashTimer != 0)
                 dashTimer--;
@@ -348,32 +356,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     dashingForwards = true;
             }
         }
-
-        if (shouldFlip)
-            firstTimeCheckForFlip();
     }
 
     // 
-    private void firstTimeCheckForFlip()
-    {
-        shouldFlip = false;
-
-        if (executingAction != 0)
-            passedPlayerInAction = true;
-        // gay method change name
-        if (airborn)
-            passedPlayerInAir = true;
-
-        if (!airborn && executingAction == 0)
-        {
-            if (basicState <= 3)
-                advancedState = 10;
-            else
-                advancedState = 9;
-
-            dashTimer = 0;
-        }
-    }
 
     // if the inputted action can be cancelled into from the current action buffer it
     private void buffer(int bufferedInput)
@@ -510,25 +495,25 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (input[0])
             {
                 if (input[2])
-                    return (facingRight ? 7 : 9);
+                    return (playerSide ? 7 : 9);
                 else if (input[3])
-                    return (facingRight ? 9 : 7);
+                    return (playerSide ? 9 : 7);
                 else
                     return 8;
             }
             else if (input[1])
             {
                 if (input[2])
-                    return (facingRight ? 1 : 3);
+                    return (playerSide ? 1 : 3);
                 else if (input[3])
-                    return (facingRight ? 3 : 1);
+                    return (playerSide ? 3 : 1);
                 else
                     return 2;
             }
             else if (input[2])
-                return (facingRight ? 4 : 6);
+                return (playerSide ? 4 : 6);
             else if (input[3])
-                return (facingRight ? 6 : 4);
+                return (playerSide ? 6 : 4);
             else
                 return 5;
         }
@@ -574,14 +559,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         if (airborn)
         {
-            if ((inputManager.currentInput[12] && inputManager.currentInput[2] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !facingRight))
+            if ((inputManager.currentInput[12] && inputManager.currentInput[2] && playerSide) || (inputManager.currentInput[12] && inputManager.currentInput[3] && !playerSide))
             {
                 jumpDirection = 7;
 
                 if (!airbornActionUsed)
                     basicState = 7;
             }
-            else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && facingRight) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !facingRight))
+            else if ((inputManager.currentInput[12] && inputManager.currentInput[3] && playerSide) || (inputManager.currentInput[12] && inputManager.currentInput[2] && !playerSide))
             {
                 jumpDirection = 9;
 
@@ -641,7 +626,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void attackMove(int action)
     {
-        hKnockback += (facingRight ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
+        hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
         alreadyExecutedAttackMove = true;   
     }
@@ -932,18 +917,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void onPush(float otherHVel, float otherVVelocity)
     {
-        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
+        hPush = playerSide ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
         vPush = airborn ? (vVelocity + otherVVelocity) / 2 : 0;
     }
 
     private void ActionEnd()
     {
         Debug.Log("action end");
-
-        if (executingAction == 49 || executingAction == 50)
-        {
-            facingRight = !facingRight;
-        }
     
         animator.StopPlayback();
         executingAction = 0;
@@ -953,24 +933,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         basicAnimFrame = 0;
         previousBasicState = 0;
         killAllBoxes();
-
-        if (passedPlayerInAction)
-        {
-            passedPlayerInAction = false;
-            if (!passedPlayerInAir)
-            {
-                if (basicState <= 3)
-                    executingAction = 50;
-                else
-                    executingAction = 49;
-            }
-        }
     }
 
     public void damage(int damage, float knockback, int angle)
     {
         health -= damage;
-        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (facingRight ? -1 : 1);
+        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
         hitSound.Play();

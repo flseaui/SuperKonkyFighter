@@ -33,8 +33,6 @@ public class CameraScript : MonoBehaviour
 	public Sprite ground0;
 	public Sprite ground1;
 
-	public bool history;
-
 	public Sprite[] Background;
 	public Sprite[] Ground;
 
@@ -75,8 +73,6 @@ public class CameraScript : MonoBehaviour
         p1s.otherPlayer = player2;
 		p2s.otherPlayer = player1;
 
-		history = true;
-
         ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
 
         Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
@@ -112,28 +108,22 @@ public class CameraScript : MonoBehaviour
         setX(background, cx * 0.5f);
         setX(self, cx);
 
-        bool now = getX(player1) < getX(player2);
+        if(getX(player1) < getX(player2))
+        {
+            p1s.playerSide = true;
+            p2s.playerSide = false;
+        }
+        else
+        {
+            p1s.playerSide = false;
+            p2s.playerSide = true;
+        }
 
-		if (now != history) {
-			if (getX(player1) < getX(player2))
-			{
-                player1.GetComponent<PlayerScript>().shouldFlip = true;
-                player2.GetComponent<PlayerScript>().shouldFlip = true;
-            }
-			else
-			{
-                player1.GetComponent<PlayerScript>().shouldFlip = true;
-                player2.GetComponent<PlayerScript>().shouldFlip = true;
-            }
-		}
-
-		history = getX(player1) < getX(player2);
-
-		uis.health1.maxValue = p1s.maxHealth;
-		uis.health1.minValue = 0;
-		uis.health2.maxValue = p2s.maxHealth;
-		uis.health2.minValue = 0;
-		uis.health1.value = p1s.health;
+        uis.health1.maxValue = p1s.maxHealth;
+        uis.health1.minValue = 0;
+        uis.health2.maxValue = p2s.maxHealth;
+        uis.health2.minValue = 0;
+        uis.health1.value = p1s.health;
         uis.meter1.value = p1s.meterCharge;
 		uis.health2.value = p2s.health;
         uis.meter2.value = p2s.meterCharge;
