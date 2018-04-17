@@ -211,15 +211,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (currentFrameType)
         {
             case 3:
-                // if executing advanced action and not passed the other player buffer a cancelable move
-               if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
-                { }
-                else if (advancedState != 0 && !passedPlayerInAction)
-                {
-                    foreach (int Actions in behaviors.getAction(executingAction).actionCancels)
-                        if (Actions == advancedState + 40)
-                            bufferedMove = advancedState + 40;
-                }
+                bufferAction();
 
                 // cancel into buffered move
                 if (bufferedMove != 0)
