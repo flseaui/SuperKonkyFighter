@@ -757,7 +757,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             setX(64);
         }
 
-        if (y() <= FLOOR_HEIGHT) //ground snap
+        if (y() <= FLOOR_HEIGHT) //ground snappity
         {
             if (airborn)
             {
