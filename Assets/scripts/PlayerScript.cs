@@ -203,6 +203,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
             updateState = 2;
         }
+        cleanup();
     }
 
     private void preAction()
@@ -229,11 +230,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
 
         overrideAction = bufferedMove;
+        bufferedMove = 0;
     }
 
     private void cleanup()
     {
-
+        hPush = 0;
+        vPush = 0;
+        overrideAction = 0;
     }
 
     private void setStates()
