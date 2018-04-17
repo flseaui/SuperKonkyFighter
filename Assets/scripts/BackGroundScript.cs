@@ -58,6 +58,8 @@ public class BackGroundScript : MonoBehaviour
 
         checkCollisions();
         pushing();
+        p1s.cleanup();
+        p2s.cleanup();
     }
 
     private void hitStop(int stopLength)

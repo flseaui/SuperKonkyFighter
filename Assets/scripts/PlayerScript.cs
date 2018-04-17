@@ -174,24 +174,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // check whether to continue or end action
         stateCheck();
 
-        // if in hitstop buffer current move
-        if (hitStopped)
-        {
-            updateState = 1;
-        }
-        // otherwise
-        else
+        if (!hitStopped)
         {
             // if executing an action
             if (executingAction != 0)
             {
-                if (previousBasicState != 0)
-                {
-                    // reset basic state and kill all boxes
-                    previousBasicState = 0;
-                    killAllBoxes();
-                }
-
                 if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
                     attackMove(executingAction);
                 else if (executingAction > 40)
@@ -200,10 +187,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
-
             updateState = 2;
         }
-        cleanup();
+        else
+            updateState = 1;
     }
 
     private void preAction()
@@ -222,12 +209,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
 
             case 1:
-                bufferAction();
+                //bufferAction();
                 break;
         }
     }
 
-    private void cleanup()
+    public void cleanup()
     {
         hPush = 0;
         vPush = 0;
@@ -487,6 +474,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else
             overrideAction = bufferedMove;
         bufferedMove = 0;
+
+        GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     private void stateCheck()
@@ -976,7 +965,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     executingAction = 49;
             }
         }
-        GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     public void damage(int damage, float knockback, int angle)
