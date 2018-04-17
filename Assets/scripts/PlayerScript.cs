@@ -171,7 +171,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         preAction();
 
-        // check whether to continue or end action
+        // check whether to continue or end action 
         stateCheck();
 
         if (!hitStopped)
