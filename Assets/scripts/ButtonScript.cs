@@ -29,6 +29,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public Material glowMaterial;
 	//------------------------------------//
 
+	private bool mouseOn;
+
 	private bool shade;
 	public bool disable;
 	public bool sticky;
@@ -36,14 +38,23 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 
 	public int triggerID;
 
-	void Start()
+	public void setColor(Color c)
 	{
-		
+		defaultColor = c;
+		highlightColor = new Color(defaultColor.r + 0.2f, defaultColor.g + 0.2f, defaultColor.b + 0.2f, defaultColor.a);
+		if (mouseOn)
+		{
+			modeHighlight();
+		}
+		else
+		{
+			modeNeutral();
+		}
 	}
 
 	public void startFlags(int[] flags)
 	{
-
+		mouseOn = false;
 		Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
 		addEventSystem();
 		lineRenderer = GetComponent<LineRenderer>();
@@ -225,6 +236,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (!disable) {
+			mouseOn = true;
 			modeHighlight();
 		}
 	}
@@ -238,6 +250,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	{
 		if (!disable)
 		{
+			mouseOn = false;
 			modeNeutral();
 		}
 	}

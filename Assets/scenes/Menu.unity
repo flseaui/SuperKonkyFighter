@@ -443,6 +443,10 @@ MonoBehaviour:
   background1Sprite: {fileID: 21300000, guid: 495ac15a315ff38479eade0bb006874d, type: 3}
   background2Sprite: {fileID: 21300000, guid: 161c3a6413b662e40bd3a3b2c53f6a11, type: 3}
   background3Sprite: {fileID: 21300000, guid: cf9d9ecf9e82ed4428e0023d32a7886a, type: 3}
+  background0Button: {fileID: 21300000, guid: 939216bec0756b64bb23ce3987401ec6, type: 3}
+  background1Button: {fileID: 0}
+  background2Button: {fileID: 0}
+  background3Button: {fileID: 0}
   buttonPrefab: {fileID: 1790849469800962, guid: b5ae808477828444c961bcf44ad3eb77,
     type: 2}
   spritePrefab: {fileID: 1273148210904142, guid: 67579316177363f4eb5d4dadd8ee06d0,

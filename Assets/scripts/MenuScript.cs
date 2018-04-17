@@ -34,6 +34,11 @@ public class MenuScript : MonoBehaviour {
 	public Sprite background2Sprite;
 	public Sprite background3Sprite;
 
+	public Sprite background0Button;
+	public Sprite background1Button;
+	public Sprite background2Button;
+	public Sprite background3Button;
+
 	//----------------------screen specific key buttons----------------//
 
 	private GameObject backgroundShowcase;
@@ -49,7 +54,9 @@ public class MenuScript : MonoBehaviour {
 	private GameObject globeButton1;
 	private GameObject globeButton2;
 	private GameObject cpuButton1;
+	private GameObject cpuText1;
 	private GameObject cpuButton2;
+	private GameObject cpuText2;
 	private GameObject[] characterButtons;
 
 	//-----------------------------prefabs----------------------------//
@@ -299,7 +306,7 @@ public class MenuScript : MonoBehaviour {
 				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] {});
-
+				cpuText1 = makeFancyText(-8.5f, -7.75f, 0.5f, "", 0);
 
 				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
 				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ButtonScript.FLAG_NOLINE });
@@ -307,6 +314,7 @@ public class MenuScript : MonoBehaviour {
 				player2.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				player2.GetComponent<SpriteRenderer>().flipX = true;
 				cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
+				cpuText2 = makeFancyText(8.5f, -7.75f, 0.5f, "", 0);
 
 				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN, ButtonScript.FLAG_DUMMY });
 				characterGoText = makeFancyText(0, -3, 2, "go", 0);
@@ -515,18 +523,26 @@ public class MenuScript : MonoBehaviour {
 		if (player1ai == 1)
 		{
 			changeSpriteColor(globe1, Color.grey);
+			cpuButton1.GetComponent<ButtonScript>().setColor(new Color(0.5f,0.5f,0.5f,0.8f));
+			changeFancyText(cpuText1, "cpu1");
 		}
 		else
 		{
 			changeSpriteColor(globe1, Color.red);
+			cpuButton1.GetComponent<ButtonScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
+			changeFancyText(cpuText1, "player1");
 		}
 		if (player2ai == 1)
 		{
 			changeSpriteColor(globe2, Color.grey);
+			cpuButton2.GetComponent<ButtonScript>().setColor(new Color(0.5f, 0.5f, 0.5f, 0.8f));
+			changeFancyText(cpuText2, "cpu2");
 		}
 		else
 		{
 			changeSpriteColor(globe2, Color.red);
+			cpuButton2.GetComponent<ButtonScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
+			changeFancyText(cpuText2, "player2");
 		}
 	}
 
