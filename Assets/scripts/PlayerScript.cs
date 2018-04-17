@@ -231,6 +231,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         overrideAction = bufferedMove;
     }
 
+    private void cleanup()
+    {
+
+    }
+
     private void setStates()
     {
         // updates basic state accordingly
@@ -264,7 +269,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // if not dashing forwards
         if (executingAction != 41)
         {
-
             // if left held dashing and not facing forward
             if (input[8] && !dashingForwards && dashTimer != 0)
             {
