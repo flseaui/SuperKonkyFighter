@@ -195,7 +195,7 @@ public class KonkyBehaviours : Behaviors {
     private Action standM = new Action()
     {
         tier = 1,
-        frames      = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 | 12
+        frames      = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3 },// 8 | 2 | 12
         damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxData = new Action.rect[,]
         {
