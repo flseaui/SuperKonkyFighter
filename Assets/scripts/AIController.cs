@@ -23,7 +23,9 @@ public class AIController
         {
             // Konky
             case 0:
+                
                 break;
+            // Grey Shirt
             case 1:
                 break;
         }
