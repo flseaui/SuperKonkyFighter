@@ -220,6 +220,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             case 4:
                 bufferAction();
                 break;
+
+            case 1:
+                bufferAction();
+                break;
         }
     }
 
