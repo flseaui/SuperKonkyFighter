@@ -955,7 +955,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             facingRight = !facingRight;
         }
-
+    
+        animator.StopPlayback();
         executingAction = 0;
         currentFrameType = 0;
         actionFrameCounter = 0;
