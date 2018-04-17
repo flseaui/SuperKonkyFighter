@@ -171,7 +171,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         preAction();
 
-        // check whether to continue or end action 
+        // check whether to continue or end action
         stateCheck();
 
         if (!hitStopped)
@@ -773,7 +773,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (executingAction != 0)
         {
-            Debug.Log("CURRENT ACTIONNN: " + executingAction);
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
