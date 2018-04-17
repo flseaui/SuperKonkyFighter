@@ -241,8 +241,8 @@ public class KonkyBehaviours : Behaviors {
     private Action standH = new Action()
     {
         tier = 2,
-        frames      = new int[] { 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 9 | 4 | 17
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 12 | 4 | 12
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(8, 6.5f, 7, 2, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
