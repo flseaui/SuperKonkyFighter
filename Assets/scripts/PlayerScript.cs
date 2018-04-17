@@ -121,6 +121,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public List<float> livingHurtboxesIds;       // the ids of all living hurtboxes
     public List<float> livingHurtboxesLifespans; // the lifespans of all living hurtboxes
 
+    AIController testAI;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -150,6 +152,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
 
+        testAI = new AIController();
+
         if (CompareTag("1"))
             inputManager = new InputManager(1);
         else if (CompareTag("2"))
@@ -161,6 +165,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         // get currently held keys or pressed buttons
         inputManager.pollInput(0);
+
+        testAI.observe(0, otherPlayer.GetComponent<PlayerScript>().position(), otherPlayer.GetComponent<PlayerScript>().executingAction, position(), facingRight);
 
         //set basic and attack states    
         setStates();
@@ -241,13 +247,26 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     private void setStates()
     {
         // updates basic state accordingly
-        basicState = inputConvert(inputManager.currentInput);
-        setAttackInput(inputManager.currentInput);
+        if (playerID == 1)
+        {
+            basicState = inputConvert(testAI.getInput());
+            setAttackInput(testAI.getInput());
 
-        // if jumping reset attackState
-        if (attackState % 10 >= 7 && !airborn)
-            attackState = 0;
-        setAdvancedInput(inputManager.currentInput);
+            // if jumping reset attackState
+            if (attackState % 10 >= 7 && !airborn)
+                attackState = 0;
+            setAdvancedInput(testAI.getInput());
+        }
+        else
+        {
+            basicState = inputConvert(inputManager.currentInput);
+            setAttackInput(inputManager.currentInput);
+
+            // if jumping reset attackState
+            if (attackState % 10 >= 7 && !airborn)
+                attackState = 0;
+            setAdvancedInput(inputManager.currentInput);
+        }
     }
 
     // update attackState from current input
@@ -1018,5 +1037,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float x()
     {
         return this.transform.position.x;
+    }
+
+    public Vector2 position()
+    {
+        return new Vector2(this.transform.position.x, this.transform.position.y);
     }
 }
