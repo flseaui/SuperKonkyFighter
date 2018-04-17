@@ -191,6 +191,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else
             updateState = 1;
+        cleanup();
     }
 
     private void preAction()
@@ -642,7 +643,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hKnockback += (facingRight ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
-        alreadyExecutedAttackMove = true;
+        alreadyExecutedAttackMove = true;   
     }
 
     private void advancedMove()

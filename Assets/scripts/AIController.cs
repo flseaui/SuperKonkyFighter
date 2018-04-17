@@ -17,9 +17,16 @@ public class AIController
         this.difficulty = difficulty;
     }
 
-    void observe()
+    void observe(int oposingCharacter, Vector2 opponentPosition, int opposingAction)
     {
-
+        switch (oposingCharacter)
+        {
+            // Konky
+            case 0:
+                break;
+            case 1:
+                break;
+        }
     }
 
     int getInput()
