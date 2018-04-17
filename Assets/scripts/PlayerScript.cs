@@ -212,7 +212,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             case 3:
                 // if executing advanced action and not passed the other player buffer a cancelable move
-                if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
+               if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
                 { }
                 else if (advancedState != 0 && !passedPlayerInAction)
                 {
@@ -222,15 +222,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
 
                 // cancel into buffered move
-                swapBuffers();
+                if (bufferedMove != 0)
+                    swapBuffers();
                 break;
             case 4:
                 bufferAction();
                 break;
         }
-
-        overrideAction = bufferedMove;
-        bufferedMove = 0;
     }
 
     private void cleanup()
@@ -483,22 +481,16 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // swap current state with buffered action
     private void swapBuffers()
     {
-        if (bufferedMove != 0 && !passedPlayerInAction)
+        if (bufferedMove > 40)
+            overrideAction = bufferedMove - 40;
+        else if (bufferedMove == 40)
         {
-            if (bufferedMove > 40)
-                advancedState = bufferedMove - 40;
-            else if (bufferedMove == 40)
-            {
-                advancedState = 0;
-                attackState = 0;
-                basicState = jumpDirection;
-
-            }
-            else
-                attackState = bufferedMove;
-            bufferedMove = 0;
             ActionEnd();
+            basicState = jumpDirection;
         }
+        else
+            overrideAction = bufferedMove;
+        bufferedMove = 0;
     }
 
     private void stateCheck()
