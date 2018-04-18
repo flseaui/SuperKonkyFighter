@@ -121,7 +121,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public List<float> livingHurtboxesIds;       // the ids of all living hurtboxes
     public List<float> livingHurtboxesLifespans; // the lifespans of all living hurtboxes
 
+    //temp variables
     AIController testAI;
+    bool ai = false;
 
     void OnDrawGizmos()
     {
@@ -163,6 +165,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // called 60 times per second
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Y)) { ai = !ai; }
+
         // get currently held keys or pressed buttons
         inputManager.pollInput(0);
 
@@ -245,8 +249,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void setStates()
     {
-        // updates basic state accordingly
-        if (playerID == 1)
+        // updates basic state accordingly 
+        if (playerID == 1 && ai)
         {
             basicState = inputConvert(testAI.getInput());
             setAttackInput(testAI.getInput());
