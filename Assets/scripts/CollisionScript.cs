@@ -80,7 +80,6 @@ public class CollisionScript : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         os.hPush = 0;
-        os.vPush = 0;
         s.inPushCollision = false;
     }
 }
