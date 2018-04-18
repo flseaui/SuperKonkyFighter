@@ -147,6 +147,7 @@ MonoBehaviour:
   player: []
   hitStopped: 0
   shake: 0
+  isColliding: 0000
   stopTimer: 0
   stopNextFrame: 0
   playerOneLastX: 0

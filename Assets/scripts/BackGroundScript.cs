@@ -8,6 +8,7 @@ public class BackGroundScript : MonoBehaviour
     public PlayerScript p2s;
     public PlayerScript[] player;
     public bool hitStopped, shake;
+    public bool[] isColliding = new bool[2];
     public int stopTimer, stopNextFrame = 0;
     public float playerOneLastX;
     public float playerTwoLastX;
@@ -26,7 +27,6 @@ public class BackGroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
@@ -59,7 +59,7 @@ public class BackGroundScript : MonoBehaviour
         }
 
         checkCollisions();
-        push();
+        pushing();
 
         for (int i = 0; i < 2; i++)
         {
@@ -119,8 +119,29 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
+
         for (int i = 0; i < 2; i++)
         {
+            float xPos = player[i].hitbox.transform.position.x,
+
+            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity: -player[i].hVelocity),
+
+            otherXPos = player[i + 1].hitbox.transform.position.x,
+
+            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity: -player[i + 1].hVelocity);
+
+            if (((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture))) && (player[i].transform.position.y - 13 <= 0))
+                isColliding[i] = true;
+            else
+            {
+                Debug.Log("penis" + player[i].transform.position.y);
+                isColliding[i] = false;
+            }
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (isColliding[i])
             player[i].onPush(player[i+1].hVelocity , player[i + 1].vVelocity);
 
             if (player[i].hPush < 0)
@@ -140,15 +161,16 @@ public class BackGroundScript : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             float xPos = player[i].hitbox.transform.position.x,
-            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
-            otherXPos = player[i + 1].hitbox.transform.position.x,
-            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
-            hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
-            otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
 
-            if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
+            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
+
+            otherXPos = player[i + 1].hitbox.transform.position.x,
+
+            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
+
+            if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
             {
-                diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
+                diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture);
             }
         }
 
