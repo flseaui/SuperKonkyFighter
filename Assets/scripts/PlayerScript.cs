@@ -305,6 +305,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             //backward air dash
                             advancedState = 4;
                             airbornActionUsed = true;
+                            checkForFlip(true);
                         }
                     }
                     else
@@ -320,6 +321,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             //forward air dash
                             advancedState = 3;
                             airbornActionUsed = true;
+                            checkForFlip(true);
                         }
                     }
                     else
@@ -340,6 +342,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             // forward air dash
                             advancedState = 3;
                             airbornActionUsed = true;
+                            checkForFlip(true);
                         }
                     }
                     else
@@ -355,6 +358,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                             // backward air dash
                             advancedState = 4;
                             airbornActionUsed = true;
+                            checkForFlip(true);
                         }
                     }
                     else
@@ -605,6 +609,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (!airbornActionUsed && jumpDirection >= 7)
             {
                 airbornActionUsed = true;
+                checkForFlip(true);
 
                 if (jumpDirection == 7)
                 {
