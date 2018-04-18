@@ -315,6 +315,7 @@ MonoBehaviour:
   airbornActionUsed: 0
   damageDealt: 0
   inPushCollision: 0
+  alreadyExecutedAttackMove: 0
   bufferedMove: 0
   maxHealth: 0
   health: 0
@@ -333,13 +334,13 @@ MonoBehaviour:
   advancedState: 0
   jumpDirection: 0
   updateState: 0
+  overrideAction: 0
   hKnockback: 0
   vKnockback: 0
   gravity: 0
   vVelocity: 0
   hVelocity: 0
   hPush: 0
-  vPush: 0
   forwardSpeed: 0
   backwardSpeed: 0
   jumpDirectionSpeed: 0
@@ -348,11 +349,11 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
+  hitSound: {fileID: 0}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
   livingHurtboxesLifespans: []
-  hitSound: {fileID: 0}
 --- !u!114 &114336376607787406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +372,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110115492532184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 488e8d58442b79e4fa5a3e5f5163b14c, type: 3}
   m_Name: 
