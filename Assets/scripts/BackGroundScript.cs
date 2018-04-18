@@ -9,6 +9,8 @@ public class BackGroundScript : MonoBehaviour
     public PlayerScript[] player;
     public bool hitStopped, shake;
     public int stopTimer, stopNextFrame = 0;
+    public float playerOneLastX;
+    public float playerTwoLastX;
 
     // Use this for initialization
     void Start() { }
@@ -57,7 +59,7 @@ public class BackGroundScript : MonoBehaviour
         }
 
         checkCollisions();
-        pushing();
+        push();
         //p1s.cleanup();
         //p2s.cleanup();
     }
@@ -69,75 +71,6 @@ public class BackGroundScript : MonoBehaviour
         p2s.hitStopped = true;
         shake = true;
         stopTimer = stopLength;
-    }
-
-    private void pushing()
-    {
-        float[] diff = new float[2];
-
-        if (p1s.inPushCollision)
-        {
-
-            if (player[0].hPush < 0)
-                player[0].hPush = 0;
-            if (player[1].hPush < 0)
-                player[1].hPush = 0;
-
-            if (player[0].vPush < 0)
-                player[0].vPush = 0;
-            if (player[1].vPush < 0)
-                player[1].vPush = 0;
-
-            if (Mathf.Abs(player[0].x()) > 64)
-                player[1].hPush = -player[1].hPush;
-            if (Mathf.Abs(player[1].x()) > 64)
-                player[1].hPush = -player[0].hPush;
-
-            for (int i = 0; i < 2; i++)
-            {
-                float xPos = player[i].hitbox.transform.position.x,
-                xPosFuture = xPos + (player[i].facingRight ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
-                otherXPos = player[i + 1].hitbox.transform.position.x,
-                otherXPosFuture = otherXPos + (player[i + 1].facingRight ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
-                hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
-                otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
-
-                if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
-                {
-                    diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
-                }
-            }
-        }
-        else
-        {
-            diff[0] = 0;
-            diff[1] = 0;
-        }
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
-            {
-                if (Mathf.Abs(player[i + 1].x()) < 64)
-                    diff[i] = 0;
-            }
-            else if (player[i].hVelocity == player[i + 1].hVelocity)
-                diff[i] = diff[i] / 2;
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            if (player[i].updateState != 0)
-            {
-                player[i].hPush += diff[i];
-
-                if (player[i].updateState == 2)
-                {
-                    Debug.Log("ENDIN UPDATE WITH YA BOI SCOTT");
-                    player[i].updateState = 0;
-                    player[i].UpdateEnd();
-                }
-            }
-        }
     }
 
     private void checkCollisions()
@@ -165,7 +98,94 @@ public class BackGroundScript : MonoBehaviour
                 stopNextFrame = 1;
                 //Debug.Log("BACK FRAME: " + p2s.frameTimer);
             }
-         }
+        }
+    }
+
+    private void push()
+    {
+        if((playerOneLastX > playerTwoLastX && (player[1].hitbox.transform.position.x < player[2].hitbox.transform.position.x)) || (playerOneLastX < playerTwoLastX && (player[1].hitbox.transform.position.x > player[2].hitbox.transform.position.x)))
+        {
+            Debug.Log("PUSHERINO");
+        }
+
+        playerOneLastX = player[1].hitbox.transform.position.x;
+        playerTwoLastX = player[2].hitbox.transform.position.x;
+
+        pushing();
+    }
+
+    private void pushing()
+    {
+        
+        float[] diff = new float[2];
+
+        /*
+
+        if (p1s.inPushCollision
+        {
+
+            if (player[0].hPush < 0)
+                player[0].hPush = 0;
+            if (player[1].hPush < 0)
+                player[1].hPush = 0;
+
+            if (player[0].vPush < 0)
+                player[0].vPush = 0;
+            if (player[1].vPush < 0)
+                player[1].vPush = 0;
+
+            if (Mathf.Abs(player[0].x()) > 64)
+                player[1].hPush = -player[1].hPush;
+            if (Mathf.Abs(player[1].x()) > 64)
+                player[1].hPush = -player[0].hPush;
+
+            for (int i = 0; i < 2; i++)
+            {
+                float xPos = player[i].hitbox.transform.position.x,
+                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
+                otherXPos = player[i + 1].hitbox.transform.position.x,
+                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
+                hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
+                otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
+
+                if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
+                {
+                    diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
+                }
+            }
+        }
+        else
+        {
+            diff[0] = 0;
+            diff[1] = 0;
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
+            {
+                if (Mathf.Abs(player[i + 1].x()) < 64)
+                    diff[i] = 0;
+            }
+            else if (player[i].hVelocity == player[i + 1].hVelocity)
+                diff[i] = diff[i] / 2;
+        }
+
+    */
+        for (int i = 0; i < 2; i++)
+        {
+            if (player[i].updateState != 0)
+            {
+                player[i].hPush += diff[i];
+
+                if (player[i].updateState == 2)
+                {
+                    Debug.Log("ENDIN UPDATE WITH YA BOI SCOTT");
+                    player[i].updateState = 0;
+                    player[i].UpdateEnd();
+                }
+            }
+        }
     }
 
     private Vector2 diffBetweenPoints(Vector2 point1, Vector2 point2)

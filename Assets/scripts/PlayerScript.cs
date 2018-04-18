@@ -197,7 +197,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else
             updateState = 1;
-        cleanup();
     }
 
     private void preAction()
@@ -703,6 +702,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         movePlayer();
 
         updateAnimation();
+
+        cleanup();
     }
 
     public void knockbackDecrease()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -149,6 +149,8 @@ MonoBehaviour:
   shake: 0
   stopTimer: 0
   stopNextFrame: 0
+  playerOneLastX: 0
+  playerTwoLastX: 0
 --- !u!4 &78444082
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +836,6 @@ MonoBehaviour:
   background6: {fileID: 0}
   ground0: {fileID: 21300000, guid: f00b59a299d5aeb4eb7fdf1a7e8f7764, type: 3}
   ground1: {fileID: 21300000, guid: 6bb5a5035a4f7bf48a57d2ee4a63b091, type: 3}
-  history: 0
   Background: []
   Ground: []
   JoyScript: {fileID: 1338733470}

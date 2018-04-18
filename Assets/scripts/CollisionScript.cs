@@ -72,7 +72,7 @@ public class CollisionScript : MonoBehaviour
                 //ground to ground collision
 
                 s.inPushCollision = true;
-                s.onPush(os.hVelocity, os.vVelocity);
+                //s.onPush(os.hVelocity, os.vVelocity);
             }
         }
     }
