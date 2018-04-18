@@ -698,7 +698,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void UpdateEnd()
     {
-        GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
+        GetComponent<SpriteRenderer>().flipX = playerSide ? false : true;
 
         knockbackDecrease();
 

@@ -119,67 +119,68 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
-
-        for (int i = 0; i < 2; i++)
+        if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
         {
-            float xPos = player[i].hitbox.transform.position.x,
-
-            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity: -player[i].hVelocity),
-
-            otherXPos = player[i + 1].hitbox.transform.position.x,
-
-            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity: -player[i + 1].hVelocity);
-
-            if (((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture))) && (player[i].transform.position.y <= player[i+1].hitbox.bounds.size.y + player[i+1].transform.position.y))
-                isColliding[i] = true;
-            else
+            for (int i = 0; i < 2; i++)
             {
-                Debug.Log("penis" + player[i].hitbox.bounds.size.y);
-                isColliding[i] = false;
+                float xPos = player[i].hitbox.transform.position.x,
+
+                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity : -player[i].hVelocity),
+
+                otherXPos = player[i + 1].hitbox.transform.position.x,
+
+                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
+
+                if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
+                    isColliding[i] = true;
+                else
+                {
+                    isColliding[i] = false;
+                }
             }
-        }
 
-        for (int i = 0; i < 2; i++)
-        {
-            if (isColliding[i])
-            player[i].onPush(player[i+1].hVelocity);
-
-            if (player[i].hPush < 0)
-                player[i].hPush = 0;
-        }
-
-        float[] diff = new float[2];
-
-        if (Mathf.Abs(player[0].x()) > 64)
-            player[1].hPush = -player[1].hPush;
-        if (Mathf.Abs(player[1].x()) > 64)
-            player[1].hPush = -player[0].hPush;
-
-        for (int i = 0; i < 2; i++)
-        {
-            float xPos = player[i].hitbox.transform.position.x,
-
-            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
-
-            otherXPos = player[i + 1].hitbox.transform.position.x,
-
-            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
-
-            if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
+            for (int i = 0; i < 2; i++)
             {
-                diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture);
-            }
-        }
+                if (isColliding[i])
+                    player[i].onPush(player[i + 1].hVelocity);
 
-        for (int i = 0; i < 2; i++)
-        {
-            if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
-            {
-                if (Mathf.Abs(player[i + 1].x()) < 64)
-                    diff[i] = 0;
+                if (player[i].hPush < 0)
+                    player[i].hPush = 0;
             }
-            else if (player[i].hVelocity == player[i + 1].hVelocity)
-                diff[i] = diff[i] / 2;
+
+            float[] diff = new float[2];
+
+            if (Mathf.Abs(player[0].x()) > 64)
+                player[1].hPush = -player[1].hPush;
+            if (Mathf.Abs(player[1].x()) > 64)
+                player[1].hPush = -player[0].hPush;
+
+            for (int i = 0; i < 2; i++)
+            {
+                float xPos = player[i].hitbox.transform.position.x,
+
+                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
+
+                otherXPos = player[i + 1].hitbox.transform.position.x,
+
+                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
+
+                if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
+                {
+                    diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture);
+                }
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
+                {
+                    if (Mathf.Abs(player[i + 1].x()) < 64)
+                        diff[i] = 0;
+                }
+                else if (player[i].hVelocity == player[i + 1].hVelocity)
+                    diff[i] = diff[i] / 2;
+            }
         }
     }
 
