@@ -130,7 +130,7 @@ public class BackGroundScript : MonoBehaviour
 
             otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity: -player[i + 1].hVelocity);
 
-            if (((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture))) && (player[i].transform.position.y - player[i].hitbox.bounds.size.y <= 0))
+            if (((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture))) && (player[i].transform.position.y <= player[i+1].hitbox.bounds.size.y + player[i+1].transform.position.y))
                 isColliding[i] = true;
             else
             {
