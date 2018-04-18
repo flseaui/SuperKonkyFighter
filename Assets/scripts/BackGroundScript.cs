@@ -60,8 +60,12 @@ public class BackGroundScript : MonoBehaviour
 
         checkCollisions();
         push();
-        //p1s.cleanup();
-        //p2s.cleanup();
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (!player[i].hitStopped)
+                player[i].UpdateEnd();
+        }
     }
 
     private void hitStop(int stopLength)
@@ -105,59 +109,47 @@ public class BackGroundScript : MonoBehaviour
     {
         if((playerOneLastX > playerTwoLastX && (player[1].hitbox.transform.position.x < player[2].hitbox.transform.position.x)) || (playerOneLastX < playerTwoLastX && (player[1].hitbox.transform.position.x > player[2].hitbox.transform.position.x)))
         {
+            pushing();
             Debug.Log("PUSHERINO");
         }
 
         playerOneLastX = player[1].hitbox.transform.position.x;
         playerTwoLastX = player[2].hitbox.transform.position.x;
-
-        pushing();
     }
 
     private void pushing()
     {
-        
+        for (int i = 0; i < 2; i++)
+        {
+            player[i].onPush(player[i+1].hVelocity , player[i + 1].vVelocity);
+
+            if (player[i].hPush < 0)
+                player[i].hPush = 0;
+
+            if (player[i].vPush < 0)
+                player[i].vPush = 0;
+        }
+
         float[] diff = new float[2];
 
-        /*
+        if (Mathf.Abs(player[0].x()) > 64)
+            player[1].hPush = -player[1].hPush;
+        if (Mathf.Abs(player[1].x()) > 64)
+            player[1].hPush = -player[0].hPush;
 
-        if (p1s.inPushCollision
+        for (int i = 0; i < 2; i++)
         {
+            float xPos = player[i].hitbox.transform.position.x,
+            xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
+            otherXPos = player[i + 1].hitbox.transform.position.x,
+            otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
+            hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
+            otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
 
-            if (player[0].hPush < 0)
-                player[0].hPush = 0;
-            if (player[1].hPush < 0)
-                player[1].hPush = 0;
-
-            if (player[0].vPush < 0)
-                player[0].vPush = 0;
-            if (player[1].vPush < 0)
-                player[1].vPush = 0;
-
-            if (Mathf.Abs(player[0].x()) > 64)
-                player[1].hPush = -player[1].hPush;
-            if (Mathf.Abs(player[1].x()) > 64)
-                player[1].hPush = -player[0].hPush;
-
-            for (int i = 0; i < 2; i++)
+            if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
             {
-                float xPos = player[i].hitbox.transform.position.x,
-                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
-                otherXPos = player[i + 1].hitbox.transform.position.x,
-                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush),
-                hitboxWidth = player[i].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x,
-                otherHitboxWidth = player[i + 1].hitbox.GetComponent<PolygonCollider2D>().bounds.size.x;
-
-                if (Mathf.Abs((xPosFuture) - (otherXPosFuture)) <= (hitboxWidth / 2 + otherHitboxWidth / 2))
-                {
-                    diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
-                }
+                diff[i] = ((hitboxWidth / 2 + otherHitboxWidth / 2) - Mathf.Abs((xPosFuture) - (otherXPosFuture)));
             }
-        }
-        else
-        {
-            diff[0] = 0;
-            diff[1] = 0;
         }
 
         for (int i = 0; i < 2; i++)
@@ -169,22 +161,6 @@ public class BackGroundScript : MonoBehaviour
             }
             else if (player[i].hVelocity == player[i + 1].hVelocity)
                 diff[i] = diff[i] / 2;
-        }
-
-    */
-        for (int i = 0; i < 2; i++)
-        {
-            if (player[i].updateState != 0)
-            {
-                player[i].hPush += diff[i];
-
-                if (player[i].updateState == 2)
-                {
-                    Debug.Log("ENDIN UPDATE WITH YA BOI SCOTT");
-                    player[i].updateState = 0;
-                    player[i].UpdateEnd();
-                }
-            }
         }
     }
 

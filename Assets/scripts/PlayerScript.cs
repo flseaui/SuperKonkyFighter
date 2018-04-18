@@ -197,10 +197,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 // progress the current action
                 incrementFrame(behaviors.getAction(executingAction).frames);
             }
-            updateState = 2;
         }
-        else
-            updateState = 1;
     }
 
     private void preAction()
