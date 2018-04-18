@@ -142,13 +142,10 @@ public class BackGroundScript : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             if (isColliding[i])
-            player[i].onPush(player[i+1].hVelocity , player[i + 1].vVelocity);
+            player[i].onPush(player[i+1].hVelocity);
 
             if (player[i].hPush < 0)
                 player[i].hPush = 0;
-
-            if (player[i].vPush < 0)
-                player[i].vPush = 0;
         }
 
         float[] diff = new float[2];

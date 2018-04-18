@@ -102,7 +102,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float vVelocity;           // vertical velocity
     public float hVelocity;           // horizontal velocity
     public float hPush;               // amount the player will be horizontally pushed
-    public float vPush;               // amount the player will be vertically pushed
     public float forwardSpeed;        // forward movement speed constant
     public float backwardSpeed;       // backwards movement speed constant
     public float jumpDirectionSpeed;  // jump speed constant
@@ -177,7 +176,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         // zero horizontal and vertical push
         hPush = 0;
-        vPush = 0;
 
         preAction();
 
@@ -240,7 +238,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public void cleanup()
     {
         hPush = 0;
-        vPush = 0;
         overrideAction = 0;
     }
 
@@ -750,8 +747,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             vVelocity = -1;
         }
 
-        moveX((facingRight ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
-        moveY(vVelocity + vKnockback + vPush);
+        moveX((playerSide ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
+        moveY(vVelocity + vKnockback);
 
         if (x() < -64f)
         {
@@ -941,10 +938,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         killAllHurtboxes();
     }
 
-    public void onPush(float otherHVel, float otherVVelocity)
+    public void onPush(float otherHVel)
     {
         hPush = playerSide ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
-        vPush = airborn ? (vVelocity + otherVVelocity) / 2 : 0;
     }
 
     private void ActionEnd()
