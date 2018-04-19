@@ -503,6 +503,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 executingAction = overrideAction;
             }
         }
+        else if (overrideAction != 0)
+        {
+            executingAction = overrideAction;
+        }
         else if (advancedState != 0)
         {
             executingAction = advancedState + 40;
@@ -993,15 +997,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void stun()
     {
-        //should be override
-        executingAction = 45;
+        overrideAction = 45;
         stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
     }
 
     public void block()
     {
-        //should be override
-        executingAction = 46;
+        overrideAction = 46;
     }
 
     public float level(int wanted)
