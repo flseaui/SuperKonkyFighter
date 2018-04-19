@@ -59,7 +59,7 @@ public class BackGroundScript : MonoBehaviour
         }
 
         checkCollisions();
-        pushing();
+        push();
 
         for (int i = 0; i < 2; i++)
         {
