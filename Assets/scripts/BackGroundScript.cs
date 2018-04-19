@@ -119,6 +119,7 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
+        //THIS IF STATEMENT NEEDS WORK, IT IS FOR CHECKING IF IN AIR
         //if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) || (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
         if (player[1].transform.position.y == 0 && player[2].transform.position.y == 0)
         {

@@ -711,7 +711,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void UpdateEnd()
     {
-        GetComponent<SpriteRenderer>().flipX = playerSide ? false : true;
+        GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
 
         knockbackDecrease();
 
@@ -760,7 +760,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             vVelocity = -1;
         }
 
-        moveX((playerSide ? hVelocity - hPush : -hVelocity + hPush) + hKnockback);
+        moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
         if (x() < -64f)
