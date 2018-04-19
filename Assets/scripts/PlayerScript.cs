@@ -993,12 +993,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void stun()
     {
+        //should be override
         executingAction = 45;
         stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
     }
 
     public void block()
     {
+        //should be override
         executingAction = 46;
     }
 
