@@ -375,6 +375,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 else
                     dashingForwards = true;
             }
+
+            if (input[2] && facingRight)
+                advancedState = 6;
+            else if (input[3] && !facingRight)
+                advancedState = 6;
         }
     }
 
@@ -680,6 +685,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
                 break;
             case 6:
+
                 break;
             case 7:
                 break;
