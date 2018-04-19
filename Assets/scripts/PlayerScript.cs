@@ -35,6 +35,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool hitStopped;            // true if in hitstop
     public bool hitStunned;            // true if in hitstun
     public bool shouldFlip;            // true when pass other player in air, signifying flipping upon landing DEAD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public bool shouldBlock;           // true when the player should block this frame
     public bool facingRight;           // true if the player is facing right
     public bool playerSide;            // true if left of the other player, false if right
     public bool dashingForwards;       // true if dashing forward, false if dashing back
@@ -239,6 +240,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hPush = 0;
         overrideAction = 0;
+        damageDealt = false;
     }
 
     private void setStates()
@@ -377,9 +379,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             }
 
             if (input[2] && facingRight)
-                advancedState = 6;
+                shouldBlock = true;
             else if (input[3] && !facingRight)
-                advancedState = 6;
+                shouldBlock = true;
+            else
+                shouldBlock = false;
         }
     }
 
@@ -685,7 +689,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
                 break;
             case 6:
-
                 break;
             case 7:
                 break;
@@ -965,6 +968,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void damage(int damage, float knockback, int angle)
     {
+        damageDealt = true;
+
         health -= damage;
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
@@ -973,7 +978,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         ActionEnd();
 
-        stun();
+        if (shouldBlock)
+            block();
+        else
+            stun();
 
         if (vKnockback > 0)
         {
@@ -989,16 +997,15 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
     }
 
-    public void block(int amm)
+    public void block()
     {
-
+        executingAction = 46;
     }
 
     public float level(int wanted)
     {
         return levelScaling[behaviors.getAction(executingAction).level, wanted];
     }
-
 
     private void animInt(int hash, int value)
     {
