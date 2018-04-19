@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AIController
 {
-
     /*
      * 0  - getkey     up
      * 1  - getkey     down
@@ -35,31 +34,7 @@ public class AIController
         this.difficulty = difficulty;
     }
 
-    public void observe(int opposingCharacter, Vector2 opponentPosition, int opposingAction, Vector2 position, bool facingRight)
-    {
-        for (int i = 0; i < input.Length; i++) { input[i] = false; }
-
-        switch (opposingCharacter)
-        {
-            // Konky
-            case 0:
-                if (facingRight)
-                {
-                    if (Mathf.Abs(opponentPosition.x - position.x) < 20)
-                    {
-                        input[2] = true;
-                    }
-                    else if (Mathf.Abs(opponentPosition.x - position.x) > 30)
-                    {
-                        input[3] = true;
-                    }
-                }
-                break;
-            // Grey Shirt
-            case 1:
-                break;
-        }
-    }
+    public virtual void observe(int opposingCharacter, Vector2 opponentPosition, int opposingAction, Vector2 position, bool facingRight) { }
 
     public bool[] getInput()
     {

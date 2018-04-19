@@ -153,7 +153,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
 
-        testAI = new AIController();
+        testAI = new KonkyAI();
 
         if (CompareTag("1"))
             inputManager = new InputManager(1);
