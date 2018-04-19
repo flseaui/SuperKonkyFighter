@@ -59,7 +59,7 @@ public class BackGroundScript : MonoBehaviour
         }
 
         checkCollisions();
-        push();
+        pushing();
 
         for (int i = 0; i < 2; i++)
         {
@@ -119,7 +119,7 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
-        if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
+        if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) || (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
         {
             for (int i = 0; i < 2; i++)
             {
