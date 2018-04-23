@@ -713,6 +713,16 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
     }
 
+    public void checkBlockEnd()
+    {
+        if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
+        {
+            hVelocity = 0;
+            dashTimer = 0;
+            ActionEnd();
+        }
+    }
+
     public void UpdateEnd()
     {
         GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
