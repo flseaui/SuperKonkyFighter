@@ -29,7 +29,6 @@ public class CollisionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnCollisionStay2D(Collision2D col)

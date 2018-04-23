@@ -309,6 +309,7 @@ MonoBehaviour:
   hitStopped: 0
   hitStunned: 0
   shouldFlip: 0
+  shouldBlock: 0
   facingRight: 0
   playerSide: 0
   dashingForwards: 0
@@ -344,7 +345,7 @@ MonoBehaviour:
   forwardSpeed: 0
   backwardSpeed: 0
   jumpDirectionSpeed: 0
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110115492532184}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 488e8d58442b79e4fa5a3e5f5163b14c, type: 3}
   m_Name: 
