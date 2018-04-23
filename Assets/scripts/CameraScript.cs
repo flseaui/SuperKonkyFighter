@@ -111,35 +111,18 @@ public class CameraScript : MonoBehaviour
         setX(background, cx * 0.5f);
         setX(self, cx);
 
-        if (p2s.executingAction == 0 && p2s.basicState == 8)
-        {
-            if (p2s.playerSide)
-                p1s.playerSide = false;
-            else
-                p1s.playerSide = true;
-            Debug.Log("FLIPPO1");
-        }
-        else if (p1s.executingAction == 0 && p1s.basicState == 8)
-        {
-            if (p1s.playerSide)
-                p2s.playerSide = false;
-            else
-                p2s.playerSide = true;
-            Debug.Log("FLIPPO2");
-        }
-        else if (getX(player1) < getX(player2))
+        if (getX(player1) < getX(player2) - 1)
         {
             p1s.playerSide = true;
             p2s.playerSide = false;
             Debug.Log("FLIPPO3");
         }
-        else if (getX(player1) > getX(player2))
+        else if (getX(player1) > getX(player2) + 1)
         {
             p1s.playerSide = false;
             p2s.playerSide = true;
             Debug.Log("FLIPPO4");
         }
-
 
         uis.health1.maxValue = p1s.maxHealth;
         uis.health1.minValue = 0;
