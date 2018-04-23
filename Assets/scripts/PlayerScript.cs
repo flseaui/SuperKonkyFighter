@@ -787,9 +787,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             setX(-64);
         }
-        else if (x() > 64f + pushBuffer && playerSide)
+        else if (x() > 64f - pushBuffer && playerSide)
         {
-            setX(64f + pushBuffer);
+            setX(64f - pushBuffer);
         }
         else if (x() > 64f)
         {
