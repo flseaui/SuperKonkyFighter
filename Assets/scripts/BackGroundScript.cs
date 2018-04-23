@@ -136,7 +136,7 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
-                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture + buffer)))
+                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
                     isColliding[i] = true;
                 else
                 {
@@ -170,7 +170,7 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
 
-                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture + buffer)))
+                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
                 {
                     diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture) + buffer;
                 }
