@@ -16,7 +16,7 @@ public class BackGroundScript : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        buffer = 4;
+        buffer = p1s.pushBuffer;
     }
 
     public void setScripts(PlayerScript p1s, PlayerScript p2s)

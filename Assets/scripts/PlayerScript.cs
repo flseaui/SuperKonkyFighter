@@ -109,6 +109,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float forwardSpeed;        // forward movement speed constant
     public float backwardSpeed;       // backwards movement speed constant
     public float jumpDirectionSpeed;  // jump speed constant
+    public float pushBuffer;          // the buffer before pushing takes place
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -155,6 +156,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         maxHealth = behaviors.getMaxHealth();
         gravity = behaviors.getGravity();
         health = maxHealth;
+        pushBuffer = 4;
 
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
@@ -777,17 +779,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
-        if (x() < -60f && !playerSide)
+        if (x() < -64f + pushBuffer && !playerSide)
         {
-            setX(-60);
+            setX(-64f + pushBuffer);
         }
         if (x() < -64f)
         {
             setX(-64);
         }
-        else if (x() > 60f && playerSide)
+        else if (x() > 64f + pushBuffer && playerSide)
         {
-            setX(-60);
+            setX(64f + pushBuffer);
         }
         else if (x() > 64f)
         {
