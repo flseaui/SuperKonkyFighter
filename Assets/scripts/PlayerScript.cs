@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
+
+    #region VARIABLES
+
     private float FLOOR_HEIGHT = 0;
     private float BASE_GRAVITY = -0.05f;
 
@@ -124,6 +127,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     //temp variables
     AIController testAI;
     bool ai = false;
+
+    #endregion
 
     void OnDrawGizmos()
     {
@@ -386,8 +391,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 shouldBlock = false;
         }
     }
-
-    // 
 
     // if the inputted action can be cancelled into from the current action buffer it
     private void buffer(int bufferedInput)
