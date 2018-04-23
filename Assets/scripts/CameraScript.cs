@@ -108,15 +108,20 @@ public class CameraScript : MonoBehaviour
         setX(background, cx * 0.5f);
         setX(self, cx);
 
-        if(getX(player1) < getX(player2))
+        if(getX(player1) <  getX(player2))
         {
             p1s.playerSide = true;
             p2s.playerSide = false;
         }
-        else
+        else if (getX(player1) > getX(player2))
         {
             p1s.playerSide = false;
             p2s.playerSide = true;
+        }
+        else
+        {
+            p1s.playerSide = !p1s.playerSide;
+            p2s.playerSide = !p2s.playerSide;
         }
 
         uis.health1.maxValue = p1s.maxHealth;
