@@ -696,6 +696,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
                 break;
             case 6:
+                hVelocity = 0;
                 break;
             case 7:
                 break;
