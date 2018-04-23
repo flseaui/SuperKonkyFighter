@@ -122,8 +122,6 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
-        //THIS IF STATEMENT NEEDS WORK, IT IS FOR CHECKING IF IN AIR
-        //if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) || (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
         if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
         {
             for (int i = 0; i < 2; i++)
@@ -137,7 +135,19 @@ public class BackGroundScript : MonoBehaviour
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
                 if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
+                {
                     isColliding[i] = true;
+                    if (player[i].transform.position.x < player[i+1].transform.position.x)
+                    {
+                        player[i].playerSide = true;
+                        player[i+1].playerSide = false;
+                    }
+                    else
+                    {
+                        player[i].playerSide = true;
+                        player[i + 1].playerSide = false;
+                    }
+                }
                 else
                 {
                     isColliding[i] = false;
@@ -184,7 +194,11 @@ public class BackGroundScript : MonoBehaviour
                         diff[i] = 0;
                 }
                 else if (player[i].hVelocity == player[i + 1].hVelocity)
+                {
+
                     diff[i] = diff[i] / 2;
+
+                }
             }
         }
     }
