@@ -12,9 +12,12 @@ public class BackGroundScript : MonoBehaviour
     public int stopTimer, stopNextFrame = 0;
     public float playerOneLastX;
     public float playerTwoLastX;
+    public float buffer;
 
     // Use this for initialization
-    void Start() { }
+    void Start() {
+        buffer = 4;
+    }
 
     public void setScripts(PlayerScript p1s, PlayerScript p2s)
     {
@@ -133,7 +136,7 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
-                if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
+                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture + buffer)))
                     isColliding[i] = true;
                 else
                 {
@@ -167,9 +170,9 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
 
-                if ((player[i].playerSide && (xPosFuture > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture)))
+                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture < otherXPosFuture + buffer)))
                 {
-                    diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture);
+                    diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture) + buffer;
                 }
             }
 
