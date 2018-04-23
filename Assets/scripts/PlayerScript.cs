@@ -777,9 +777,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
+        if (x() < -60f && !playerSide)
+        {
+            setX(-60);
+        }
         if (x() < -64f)
         {
             setX(-64);
+        }
+        else if (x() > 60f && playerSide)
+        {
+            setX(-60);
         }
         else if (x() > 64f)
         {
