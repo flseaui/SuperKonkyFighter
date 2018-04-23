@@ -237,7 +237,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (!airborn || specialCase)
                 facingRight = !facingRight;
             if (!airborn && !specialCase)
-                overrideAction = 50;
+                overrideAction = 49;
         }
     }
 

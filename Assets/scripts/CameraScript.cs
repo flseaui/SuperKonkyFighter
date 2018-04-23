@@ -46,6 +46,9 @@ public class CameraScript : MonoBehaviour
 
 	public float shakeX;
 	public float shakeY;
+    public bool lastP1Side;
+    public bool lastP2Side;
+
 
 	void Start()
 	{
@@ -120,9 +123,12 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            p1s.playerSide = !p1s.playerSide;
-            p2s.playerSide = !p2s.playerSide;
+            p1s.playerSide = lastP1Side;
+            p2s.playerSide = lastP2Side;
         }
+
+        lastP1Side = p1s.playerSide;
+        lastP2Side = p2s.playerSide;
 
         uis.health1.maxValue = p1s.maxHealth;
         uis.health1.minValue = 0;
