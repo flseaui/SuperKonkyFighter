@@ -137,16 +137,6 @@ public class BackGroundScript : MonoBehaviour
                 if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
                 {
                     isColliding[i] = true;
-                    if (player[i].transform.position.x < player[i+1].transform.position.x)
-                    {
-                        player[i].playerSide = true;
-                        player[i+1].playerSide = false;
-                    }
-                    else
-                    {
-                        player[i].playerSide = true;
-                        player[i + 1].playerSide = false;
-                    }
                 }
                 else
                 {
