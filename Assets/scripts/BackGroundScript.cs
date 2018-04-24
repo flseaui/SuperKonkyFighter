@@ -35,20 +35,6 @@ public class BackGroundScript : MonoBehaviour
         player[0].decreaseHurtboxLifespan();
         player[1].decreaseHurtboxLifespan();
 
-        if (hitStopped)
-        {
-            stopTimer--;
-            Time.timeScale = 0;
-            if (stopTimer <= 0)
-            {
-                hitStopped = false;
-                p1s.hitStopped = false;
-                p2s.hitStopped = false;
-                shake = false;
-                Time.timeScale = 1;
-            }
-        }
-
         switch (stopNextFrame)
         {
             case 1:
@@ -59,6 +45,22 @@ public class BackGroundScript : MonoBehaviour
                 stopNextFrame = 0;
                 hitStop((int)p2s.level(0));
                 break;
+        }
+
+
+        if (hitStopped)
+        {
+            Debug.Log("Hitstopping with: " + p1s.executingAction + " and: " + p2s.executingAction);
+            stopTimer--;
+            Time.timeScale = 0;
+            if (stopTimer <= 0)
+            {
+                hitStopped = false;
+                p1s.hitStopped = false;
+                p2s.hitStopped = false;
+                shake = false;
+                Time.timeScale = 1;
+            }
         }
 
         checkCollisions();
@@ -73,6 +75,7 @@ public class BackGroundScript : MonoBehaviour
 
     private void hitStop(int stopLength)
     {
+        Debug.Log("About to hitstop with: " + p1s.executingAction + " and: " + p2s.executingAction);
         hitStopped = true;
         p1s.hitStopped = true;
         p2s.hitStopped = true;

@@ -115,13 +115,11 @@ public class CameraScript : MonoBehaviour
         {
             p1s.playerSide = true;
             p2s.playerSide = false;
-            Debug.Log("FLIPPO3");
         }
         else if (getX(player1) > getX(player2) + 1)
         {
             p1s.playerSide = false;
             p2s.playerSide = true;
-            Debug.Log("FLIPPO4");
         }
 
         uis.health1.maxValue = p1s.maxHealth;

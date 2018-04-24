@@ -821,6 +821,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
+            Debug.Log("Update anim");
         }
         else
         {
