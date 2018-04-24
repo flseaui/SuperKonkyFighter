@@ -699,6 +699,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
             case 6:
                 hVelocity = 0;
+                checkBlockEnd();
                 break;
             case 7:
                 break;
@@ -717,10 +718,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void checkBlockEnd()
     {
-        if ((!inputManager.currentInput[2] && !dashingForwards) || (!inputManager.currentInput[3] && dashingForwards))
+        PlayerScript os = otherPlayer.GetComponent<PlayerScript>();
+        if ((!inputManager.currentInput[2] && facingRight) || (!inputManager.currentInput[3] && !facingRight) || os.basicState != os.previousBasicState)
         {
-            hVelocity = 0;
-            dashTimer = 0;
             ActionEnd();
         }
     }
@@ -996,20 +996,25 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void damage(int damage, float knockback, int angle)
     {
-        damageDealt = true;
-
-        health -= damage;
-        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
-        vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
-
         hitSound.Play();
 
         ActionEnd();
 
+        hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
+        vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
+
         if (shouldBlock)
+        {
+            hKnockback /= 3;
+            vKnockback /= 3;
             block();
+        }
         else
+        {
+            damageDealt = true;
+            health -= damage;
             stun();
+        }
 
         if (vKnockback > 0)
         {
