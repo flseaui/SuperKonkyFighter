@@ -345,12 +345,13 @@ MonoBehaviour:
   forwardSpeed: 0
   backwardSpeed: 0
   jumpDirectionSpeed: 0
+  pushBuffer: 0
   spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 82813003963254516}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
