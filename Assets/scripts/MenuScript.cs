@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour {
 
+	Color KONKY_RED = new Color(0.9f, 0, 0, 1);
 	const int TITLE_SCREEN = 0;
 	const int PLAYER_SELECT_SCREEN = 1;
 	const int STAGE_SELECT_SCREEN = 2;
@@ -38,9 +39,11 @@ public class MenuScript : MonoBehaviour {
 	public Sprite background1Button;
 	public Sprite background2Button;
 	public Sprite background3Button;
+	public Sprite backgroundRButton;
 
 	//----------------------screen specific key buttons----------------//
 
+	private GameObject backgroundFrame;
 	private GameObject backgroundShowcase;
 	private GameObject backgroundGoButton;
 	private GameObject backgroundText;
@@ -58,6 +61,8 @@ public class MenuScript : MonoBehaviour {
 	private GameObject cpuButton2;
 	private GameObject cpuText2;
 	private GameObject[] characterButtons;
+
+	private GameObject[] stageSprites;
 
 	//-----------------------------prefabs----------------------------//
 
@@ -342,7 +347,8 @@ public class MenuScript : MonoBehaviour {
 				break;
 			case STAGE_SELECT_SCREEN:
 
-				makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), -1, new int[] { ButtonScript.FLAG_DUMMY });
+				backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ButtonScript.FLAG_DUMMY });
+				backgroundFrame.GetComponent<MeshRenderer>().sortingOrder = 1;
 
 				backgroundShowcase = makeSprite(0, 2, 32, 8, backgroundRSprite);
 				backgroundShowcase.GetComponent<SpriteRenderer>().sortingOrder = 0 ;
@@ -351,13 +357,30 @@ public class MenuScript : MonoBehaviour {
 				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ButtonScript.FLAG_DUMMY, ButtonScript.FLAG_SHADE});
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 1;
 
-				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0f, 0.8f, 0f, 0.75f), 4, new int[] {ButtonScript.FLAG_STICKY});
-				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0.6f, 0f, 0.75f), 5, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0.8f, 0.8f, 0.75f), 6, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.4f, 0.0f, 0.2f, 0.75f), 7, new int[] { ButtonScript.FLAG_STICKY });
-				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.0f, 0f, 0.6f, 0.75f), 8, new int[] { ButtonScript.FLAG_STICKY });
+				stageSprites = new GameObject[5];
 
-				backgroundText = makeText(0, -7.25f, 1.125f, "please select a stage", 0);//background text
+				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 4, new int[] {ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR}).GetComponent<MeshRenderer>().sortingOrder = 1;
+				stageSprites[0] = makeSprite(-7.5f, -4, 5, 4, background0Button);
+				stageSprites[0].GetComponent<SpriteRenderer>().sortingOrder = 1;
+				changeSpriteColor(stageSprites[0], KONKY_RED);
+				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 5, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				stageSprites[1] = makeSprite(-3.5f, -4, 5, 4, background1Button);
+				stageSprites[1].GetComponent<SpriteRenderer>().sortingOrder = 1;
+				changeSpriteColor(stageSprites[1], KONKY_RED);
+				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 6, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				stageSprites[2] = makeSprite(0, -4, 5, 4, backgroundRButton);
+				stageSprites[2].GetComponent<SpriteRenderer>().sortingOrder = 1;
+				changeSpriteColor(stageSprites[2], KONKY_RED);
+				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 7, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				stageSprites[3] = makeSprite(3.5f, -4, 5, 4, background2Button);
+				stageSprites[3].GetComponent<SpriteRenderer>().sortingOrder = 1;
+				changeSpriteColor(stageSprites[3], KONKY_RED);
+				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 8, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				stageSprites[4] = makeSprite(7.5f, -4, 5, 4, background3Button);
+				stageSprites[4].GetComponent<SpriteRenderer>().sortingOrder = 1;
+				changeSpriteColor(stageSprites[4], KONKY_RED);
+
+				backgroundText = makeText(0, -7.25f, 1.125f, "select a stage", 0);//background text
 
 				makeButton(new Vector3[] { new Vector2(-16,-7), new Vector2(-11,-7), new Vector2(-11,-9), new Vector2(-16,-9) }, new Color(), 1, new int[] { ButtonScript.FLAG_HIDDEN });
 				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
@@ -387,35 +410,50 @@ public class MenuScript : MonoBehaviour {
 				break;
 			case 4:
 				unstickAll();
+				changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
+				changeSpriteColor(stageSprites[0], Color.white);
 				backgroundPass = 0;
+				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background0Sprite;
 				changeText(backgroundText, "twlight hills");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 5:
 				unstickAll();
+				changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
+				changeSpriteColor(stageSprites[1], Color.white);
 				backgroundPass = 1;
+				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background1Sprite;
 				changeText(backgroundText, "africa");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 6:
 				unstickAll();
+				changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
+				changeSpriteColor(stageSprites[2], Color.white);
 				backgroundPass = 2;
+				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = backgroundRSprite;
 				changeText(backgroundText, "random");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 7:
 				unstickAll();
+				changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
+				changeSpriteColor(stageSprites[3], Color.white);
 				backgroundPass = 3;
+				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
 				changeText(backgroundText, "midnight park");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 8:
 				unstickAll();
+				changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
+				changeSpriteColor(stageSprites[4], Color.white);
 				backgroundPass = 4;
+				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
 				changeText(backgroundText, "catacombs of carthus");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();

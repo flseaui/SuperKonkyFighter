@@ -23,6 +23,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public const int FLAG_STUCK  = 3;
 	public const int FLAG_SHADE  = 4;
 	public const int FLAG_NOLINE = 5;
+	public const int FLAG_LOCK_CLEAR = 6;
 
 	//--------------line types----------//
 	public Material defaultMaterial;
@@ -35,6 +36,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 	public bool disable;
 	public bool sticky;
 	private bool noLine;
+	private bool clearLock;
 
 	public int triggerID;
 
@@ -95,6 +97,9 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 				case FLAG_NOLINE:
 					noLine = true;
 					modeNeutral();
+					break;
+				case FLAG_LOCK_CLEAR:
+					clearLock = true;
 					break;
 			}
 		}
@@ -213,7 +218,17 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		Gradient g = new Gradient();
 		g.SetKeys(new GradientColorKey[] { gck0, gck1, gck2 }, new GradientAlphaKey[] { gak });
 		lineRenderer.colorGradient = g;
-		color.color = highlightColor;
+
+		Debug.Log("kak");
+		if (clearLock) {
+			Debug.Log("kak2");
+			color.color = Color.clear;
+		}
+		else
+		{
+			Debug.Log("kak3");
+			color.color = highlightColor;
+		}
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
