@@ -252,7 +252,7 @@ public class KonkyBehaviours : Behaviors {
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(1.5f, 2.5f, 6.5f, 5, 28, 1), new Action.rect(2.5f, 9f, 4, 8, 28, 2), },
+            { new Action.rect(1.5f, 2.5f, 6.5f, 5, 12, 1), new Action.rect(2.5f, 9f, 4, 8, 12, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -264,6 +264,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
+            { new Action.rect(4, 2.5f, 6.5f, 5, 10, 1), new Action.rect(3, 9f, 4, 8, 10, 9), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -273,8 +274,7 @@ public class KonkyBehaviours : Behaviors {
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            { new Action.rect(1.5f, 2.5f, 6.5f, 5, 6, 1), new Action.rect(2.5f, 9f, 4, 8, 6, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
