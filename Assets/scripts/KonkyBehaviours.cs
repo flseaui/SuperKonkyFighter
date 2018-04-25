@@ -683,8 +683,8 @@ public class KonkyBehaviours : Behaviors {
         //hitstun = ,
         //blockstun = ,
         actionCancels = new int[] { 25, 31, 32, 33, 34, 35, 36 },
-        gAngle      = 180,
-        gStrength   = 2,
+        gAngle      = 0,
+        gStrength   = 1,
         aAngle      = 330,
         aStrength   = 5
     };
