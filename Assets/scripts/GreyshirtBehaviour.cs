@@ -135,7 +135,7 @@ public class GreyshirtBehaviours : Behaviors
     {
         tier = 0,
         frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3 },// 5 | 2 | 5
-        damage = new int[] { },
+        damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -159,7 +159,7 @@ public class GreyshirtBehaviours : Behaviors
     {
         tier = 1,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3,  },// 8 | 3 | 12
-        damage = new int[] { },
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -182,8 +182,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new int[] { },// 10 | 3 (9) 3 | 17
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 3 (9) 3 | 17
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -206,8 +206,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new int[] { },// 4 | 3 | 9
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 4 | 3 | 9
+        damage = new int[] { 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -230,8 +230,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new int[] { },// 6 | 5 | 12
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 6 | 5 | 12
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 500, 500, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -254,8 +254,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchH = new Action()
     {
         tier = 2,
-        frames = new int[] { },// 15 | 6 | 10
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 15 | 6 | 10
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -278,8 +278,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new int[] { },// 6 | 4 (6) 4 | 9
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 6 | 4 (6) 4 | 9
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 200, 200, 200, 200, 0, 0, 0, 0, 0, 0, 200, 200, 200, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -302,8 +302,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new int[] { },// 8 | 10 | 13
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 10 | 13
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -326,8 +326,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new int[] { },// 13 | 7 | 19
-        damage = new int[] { },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 13 | 7 | 19
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
