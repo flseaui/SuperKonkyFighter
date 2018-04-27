@@ -182,13 +182,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         //set basic and attack states    
         setStates();
 
-        // zero horizontal and vertical push
-        hPush = 0;
-
         preAction();
 
         // check whether to continue or end action
         stateCheck();
+
+    }
+
+    private void FixedUpdate()
+    {
+        // zero horizontal and vertical push
+        hPush = 0;
 
         if (!hitStopped)
         {
@@ -1055,30 +1059,22 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void moveX(float amm)
     {
-        Vector3 position = this.transform.position;
-        position.x += amm;
-        this.transform.position = position;
+        transform.Translate(amm, 0, 0);
     }
 
     public void moveY(float amm)
     {
-        Vector3 position = this.transform.position;
-        position.y += amm;
-        this.transform.position = position;
+        transform.Translate(0, amm, 0);
     }
 
     public void setY(float amm)
     {
-        Vector3 position = this.transform.position;
-        position.y = amm;
-        this.transform.position = position;
+        moveY(-transform.position.y + amm);
     }
 
     public void setX(float amm)
     {
-        Vector3 position = this.transform.position;
-        position.x = amm;
-        this.transform.position = position;
+        moveX(-transform.position.x + amm);
     }
 
     public float y()

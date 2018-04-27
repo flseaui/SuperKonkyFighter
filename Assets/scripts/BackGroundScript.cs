@@ -30,22 +30,7 @@ public class BackGroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player[0].decreaseHitboxLifespan();
-        player[1].decreaseHitboxLifespan();
-        player[0].decreaseHurtboxLifespan();
-        player[1].decreaseHurtboxLifespan();
-
-        switch (stopNextFrame)
-        {
-            case 1:
-                stopNextFrame = 0;
-                hitStop((int)p1s.level(0));
-                break;
-            case 2:
-                stopNextFrame = 0;
-                hitStop((int)p2s.level(0));
-                break;
-        }
+        
 
 
         if (hitStopped)
@@ -61,6 +46,29 @@ public class BackGroundScript : MonoBehaviour
                 shake = false;
                 Time.timeScale = 1;
             }
+        }
+
+       
+    }
+
+    void FixedUpdate()
+    {
+
+        player[0].decreaseHitboxLifespan();
+        player[1].decreaseHitboxLifespan();
+        player[0].decreaseHurtboxLifespan();
+        player[1].decreaseHurtboxLifespan();
+
+        switch (stopNextFrame)
+        {
+            case 1:
+                stopNextFrame = 0;
+                hitStop((int)p1s.level(0));
+                break;
+            case 2:
+                stopNextFrame = 0;
+                hitStop((int)p2s.level(0));
+                break;
         }
 
         checkCollisions();
