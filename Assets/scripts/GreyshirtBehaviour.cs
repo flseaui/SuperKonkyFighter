@@ -156,8 +156,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -180,8 +180,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -204,8 +204,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 1,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 4,
@@ -228,8 +228,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -252,8 +252,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 1,
-        //block = LOW;
-        //knockdown = NONE;
+        block = LOW,
+        knockdown = NONE,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -276,8 +276,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 4,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle = 80,
         gStrength = 4,
@@ -300,8 +300,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //block = HIGH;
-        //knockdown = NONE;
+        block = HIGH,
+        knockdown = NONE,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -324,8 +324,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //block = HIGH;
-        //knockdown = NONE;
+        block = HIGH,
+        knockdown = NONE,
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -348,8 +348,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 3,
-        //block = HIGH;
-        //knockdown = SOFTKD;
+        block = HIGH,
+        knockdown = SOFTKD,
         actionCancels = new int[] {  },
         gAngle = 0,
         gStrength = 2,
@@ -372,8 +372,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //block = LOW;
-        //knockdown = SOFTKD;
+        block = LOW,
+        knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -396,8 +396,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = LOW;
-        //knockdown = NONE;
+        block = LOW,
+        knockdown = NONE,
         actionCancels = new int[] { 35, 41, 42 },
         gAngle = 0,
         gStrength = 2,
@@ -420,8 +420,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 4,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -444,8 +444,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //block = MID;
-        //knockdown = SOFTKD;
+        block = MID,
+        knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
         gAngle = 45,
         gStrength = 1,
@@ -468,8 +468,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //block = HARDKD;
-        //knockdown = ;
+        block = MID,
+        knockdown = HARDKD,
         actionCancels = new int[] { },
         gAngle = 0,
         gStrength = 5,
@@ -492,8 +492,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = HIGH;
-        //knockdown = HARDKD;
+        block = HIGH,
+        knockdown = HARDKD,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -516,8 +516,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = MID;
-        //knockdown = NONE;
+        block = MID,
+        knockdown = NONE,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -540,8 +540,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = LOW;
-        //knockdown = NONE;
+        block = LOW,
+        knockdown = NONE,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -564,8 +564,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = MID;
-        //knockdown = SOFTWB;
+        block = MID,
+        knockdown = SOFTWB,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -588,8 +588,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = MID;
-        //knockdown = HARDWB;
+        block = MID,
+        knockdown = HARDWB,
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -636,8 +636,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //block = UNBLOCKABLE;
-        //knockdown = HARDKD;
+        block = UNBLOCKABLE,
+        knockdown = HARDKD,
         actionCancels = new int[] { 1, 2 },
         gAngle = 30,
         gStrength = 10,
