@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class GreyshirtBehaviours : Behaviors
 {
+    const int LOW = 1;//must be crouchblocked
+    const int MID = 2;//can be crouch or stand blocked
+    const int HIGH = 3;//must be stand blocked
+    const int UNBLOCKABLE = 4;//cannot be blocked
 
+    const int NONE = 0;//no knockdown (follows hitstun numbers)
+    const int SOFTKD = 1;//soft knockdown (techable)
+    const int HARDKD = 1;//hard knockdown (untechable for 20 frames, OTG possible)
+    const int SOFTGB = 1;//soft ground bounce (ground bounce with soft knockdown)
+    const int HARDGB = 1;//hard ground bounce (ground bounce with hard knockdown)
+    const int SOFTWB = 1;//soft wall bounce (wall bounce with soft knockdown)
+    const int HARDWB = 1;//hard wall bounce (wall bounce with hard knockdown)
     /* 
      * Action ID FORMAT
      * id = numpad + power
@@ -145,8 +156,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -169,8 +180,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -193,8 +204,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 1,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 4,
@@ -217,8 +228,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
@@ -241,8 +252,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 1,
-        //hitstun = ,
-        //blockstun = ,
+        //block = LOW;
+        //knockdown = NONE;
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 2,
@@ -265,8 +276,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 4,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle = 80,
         gStrength = 4,
@@ -289,8 +300,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //hitstun = ,
-        //blockstun = ,
+        //block = HIGH;
+        //knockdown = NONE;
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -313,8 +324,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //hitstun = ,
-        //blockstun = ,
+        //block = HIGH;
+        //knockdown = NONE;
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
         gAngle = 0,
         gStrength = 1,
@@ -337,8 +348,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 3,
-        //hitstun = ,
-        //blockstun = ,
+        //block = HIGH;
+        //knockdown = SOFTKD;
         actionCancels = new int[] {  },
         gAngle = 0,
         gStrength = 2,
@@ -350,8 +361,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new int[] { },//  |  | 
-        damage = new int[] { },
+        frames = new int[] {  },// 11 | 2 (1) 2 (1) 2 | 13
+        damage = new int[] {  },
         hitboxData = new Action.rect[,]
         {
 
@@ -361,8 +372,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //hitstun = ,
-        //blockstun = ,
+        //block = LOW;
+        //knockdown = SOFTKD;
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -374,7 +385,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 5 | 10 | 18
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -385,8 +396,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = LOW;
+        //knockdown = NONE;
         actionCancels = new int[] { 35, 41, 42 },
         gAngle = 0,
         gStrength = 2,
@@ -398,7 +409,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 11 | 3 | 18
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -409,8 +420,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 4,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 1,
@@ -422,7 +433,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new int[] { },//  |  | 
+        frames = new int[] { },// 16 | 6 | 21
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -433,8 +444,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 2,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = SOFTKD;
         actionCancels = new int[] { 35 },
         gAngle = 45,
         gStrength = 1,
@@ -457,8 +468,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //hitstun = ,
-        //blockstun = ,
+        //block = HARDKD;
+        //knockdown = ;
         actionCancels = new int[] { },
         gAngle = 0,
         gStrength = 5,
@@ -481,8 +492,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = HIGH;
+        //knockdown = HARDKD;
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -505,8 +516,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = NONE;
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -529,8 +540,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = LOW;
+        //knockdown = NONE;
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -553,8 +564,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = SOFTWB;
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -577,8 +588,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = MID;
+        //knockdown = HARDWB;
         actionCancels = new int[] { 35 },
         gAngle = 60,
         gStrength = 8,
@@ -591,7 +602,7 @@ public class GreyshirtBehaviours : Behaviors
     {
         tier = 3,
         frames = new int[] { },//  |  | 
-        damage = new int[] { },
+        damage = new int[] {  },
         hitboxData = new Action.rect[,]
         {
 
@@ -601,8 +612,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 0,
-        //hitstun = ,
-        //blockstun = ,
+        //block = ;
+        //knockdown = ;
         actionCancels = new int[] { 35 },
         gAngle = 0,
         gStrength = 0,
@@ -625,8 +636,8 @@ public class GreyshirtBehaviours : Behaviors
 
         },
         level = 5,
-        //hitstun = ,
-        //blockstun = ,
+        //block = UNBLOCKABLE;
+        //knockdown = HARDKD;
         actionCancels = new int[] { 1, 2 },
         gAngle = 30,
         gStrength = 10,
