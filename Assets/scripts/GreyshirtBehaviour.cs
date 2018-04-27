@@ -662,21 +662,3 @@ public class GreyshirtBehaviours : Behaviors
     private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
     private Action backAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
 }
-//Level | Hitstop | Hitstun | Counterhit | Blockstun | Scaling
-//0     | 8       | 12      | 23         | 9         | .75
-//1     | 10      | 14      | 26         | 11        | .8
-//2     | 12      | 16      | 28         | 13        | .85
-//3     | 14      | 19      | 33         | 16        | .89
-//4     | 16      | 21      | 36         | 18        | .92
-//5     | 18      | 24      | 40         | 20        | .94
-
-//Whiff Medium/Hard Normal: 1 point
-//Whiff Special Move: 4 points
-//Connect Light: 4 points
-//Connect Medium: 8 points
-//Connect Heavy: 12 points
-//Connect Special: 8 points
-//Land Throw: 5 points
-//Have an Action Blocked: 2 points
-//Take Damage: 2 points
-//Meter Size: 70
