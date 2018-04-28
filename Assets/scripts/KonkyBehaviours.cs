@@ -165,7 +165,7 @@ public class KonkyBehaviours : Behaviors
     {
         tier = 0,
         frames = new int[] { 4, 4, 4, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 4 | 3 | 9
-        damage = new int[] { 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        damage = new int[] { 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxFrames = 3,
         hurtboxFrames = 17,
         hitboxData = new Action.rect[,]
@@ -193,7 +193,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        level = 0,
+        level = 1,
+        p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -240,6 +241,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox }
         },
         level       = 2,
+        p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
@@ -293,7 +295,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level       = 4,
+        level       = 1,
+        p1scaling = 1f,
         block = MID,
         knockdown = SOFTWB,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
@@ -342,7 +345,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level       = 0,
+        level       = 1,
+        p1scaling = .9f,
         block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -392,7 +396,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             {nullBox, }
         },
-        level       = 1,
+        level       = 2,
+        p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
@@ -461,7 +466,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level = 3,
+        level = 5,
+        p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
@@ -512,7 +518,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        level       = 2,
+        level       = 3,
+        p1scaling = .8f,
         block =HIGH,
         knockdown = NONE,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
@@ -570,7 +577,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox},
             {nullBox, nullBox}
         },
-        level       = 2,
+        level       = 4,
+        p1scaling = .8f,
         block = HIGH,
         knockdown = NONE,
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
@@ -633,7 +641,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        level       = 3,
+        level       = 5,
+        p1scaling = .8f,
         block = HIGH,
         knockdown = SOFTKD,
         actionCancels = new int[] { 40, 43, 44 },
@@ -691,7 +700,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             {nullBox, }
         },
-        level       = 0,
+        level       = 1,
+        p1scaling = 1.1f,
         block = HIGH,
         knockdown = SOFTGB,
         actionCancels = new int[] { 25, 31, 32, 33, 34, 35, 36 },
@@ -717,6 +727,7 @@ public class KonkyBehaviours : Behaviors
 
         },
         level       = 0,
+        p1scaling = 1.1f,
         block = LOW,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
@@ -740,7 +751,8 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level       = 5,
+        level       = 4,
+        p1scaling = .5f,
         block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 35, 41, 42 },
@@ -765,6 +777,7 @@ public class KonkyBehaviours : Behaviors
 
         },
         level       = 4,
+        p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 35 },
@@ -788,7 +801,8 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level       = 2,
+        level       = 3,
+        p1scaling = 1f,
         block = MID,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
@@ -828,7 +842,8 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level       = 0,
+        level       = 3,
+        p1scaling = 1.5f,
         block = MID,
         knockdown = HARDKD,
         actionCancels = new int[] { },
@@ -853,6 +868,7 @@ public class KonkyBehaviours : Behaviors
 
         },
         level       = 5,
+        p1scaling = 1f,
         block = MID,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
@@ -869,6 +885,7 @@ public class KonkyBehaviours : Behaviors
         frames      = new int[] { 0 },
         damage      = new int[] { 1500 },
         level       = 5,
+        p1scaling = .5f,
         block = UNBLOCKABLE,
         knockdown = HARDKD,
         actionCancels = new int[] { 1, 2 },

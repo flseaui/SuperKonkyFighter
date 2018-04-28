@@ -17,6 +17,7 @@ public class Action {
     public int hurtboxFrames;
     public int block;
     public int knockdown;
+    public float p1scaling;
     public float gStrength;
     public float aStrength;
 
