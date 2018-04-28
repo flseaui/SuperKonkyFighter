@@ -706,8 +706,8 @@ public class KonkyBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames      = new int[] { 0 },
-        damage      = new int[] { 1200 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },//10 | 2*9 (8) 5 | 24
+        damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 3000, 3000, 3000, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -717,21 +717,21 @@ public class KonkyBehaviours : Behaviors
 
         },
         level       = 0,
-        block = UNBLOCKABLE,
-        knockdown = SOFTWB,
+        block = LOW,
+        knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
-        gAngle      = 0,
-        gStrength   = 1,
-        aAngle      = 0,
-        aStrength   = 0
+        gAngle      = 75,
+        gStrength   = 10,
+        aAngle      = 75,
+        aStrength   = 10
     };
 
     // Two Super
     private Action twoS = new Action()
     {
         tier = 3,
-        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 23 | 1 | 25
+        damage      = new int[] { 500, 500, 500 },
         hitboxData = new Action.rect[,]
         {
 
@@ -754,8 +754,8 @@ public class KonkyBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
+        damage      = new int[] { 600 },
         hitboxData = new Action.rect[,]
         {
 
@@ -770,7 +770,7 @@ public class KonkyBehaviours : Behaviors
         actionCancels = new int[] { 35 },
         gAngle      = 0,
         gStrength   = 1,
-        aAngle      = 30,
+        aAngle      = 45,
         aStrength   = 1
     };
 
@@ -819,7 +819,7 @@ public class KonkyBehaviours : Behaviors
                                         100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                        0, 500, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+                                        0, 5000, 5000, 5000, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         hitboxData = new Action.rect[,]
         {
 
@@ -842,8 +842,8 @@ public class KonkyBehaviours : Behaviors
     private Action sixS = new Action()
     {
         tier = 3,
-        frames      = new int[] { 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        damage      = new int[] { /*senbeans job*/ },
+        frames      = new int[] { 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        damage      = new int[] { 0, 0, 0, 0, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
