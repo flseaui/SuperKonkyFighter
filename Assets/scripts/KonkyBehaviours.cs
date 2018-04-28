@@ -741,10 +741,10 @@ public class KonkyBehaviours : Behaviors
 
         },
         level       = 5,
-        block = MID,
+        block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 35, 41, 42 },
-        gAngle      = 0,
+        gAngle      = 45,
         gStrength   = 2,
         aAngle      = 30,
         aStrength   = 2
