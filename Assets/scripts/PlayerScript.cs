@@ -999,7 +999,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         killAllBoxes();
     }
 
-    public void damage(int damage, float knockback, int angle)
+    public void damage(int damage, float knockback, int angle, int level, float p1scaling, float[,] levelScaling)
     {
         hitSound.Play();
 
@@ -1019,7 +1019,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else
         {
             damageDealt = true;
-            health -= damage;
+            health -= scaling(damage, p1scaling, levelScaling[level][8]);
             stun();
         }
 
@@ -1090,5 +1090,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public Vector2 position()
     {
         return new Vector2(this.transform.position.x, this.transform.position.y);
+    }
+
+    public int scaling(damage, p1scaling, levelScaling)
+    {
+        int scaledDamage = damage * .6  * p1scaling * levelScaling[level][8];
+        return scaledDamage;
     }
 }
