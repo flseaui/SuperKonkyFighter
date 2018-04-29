@@ -1092,9 +1092,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         return new Vector2(this.transform.position.x, this.transform.position.y);
     }
 
-    public int scaling(damage, p1scaling, levelScaling)
+    public double scaling(int damage, float p1scaling, float levelScaling, double scaleVal)
     {
-        int scaledDamage = damage * .6  * p1scaling * levelScaling[level][8];
-        return scaledDamage;
+        double damageDecimal = damage;
+        double scaledDamage = damageDecimal * .6  * p1scaling * scaleVal;
+        scaleVal = scaleVal * levelScaling;
+        double[] dab = new double[2];
+        dab[0] = scaledDamage;
+        dab[1] = scaleVal;
+        return dab[];
     }
 }
