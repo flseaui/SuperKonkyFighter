@@ -1103,6 +1103,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         scaleVal = scaleVal * levelScaling;
         dab[0] = scaledDamage;
         dab[1] = scaleVal;
-        return dab[];
+        return dab;
     }
 }
