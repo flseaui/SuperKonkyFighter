@@ -119,18 +119,6 @@ public class BackGroundScript : MonoBehaviour
         }
     }
 
-    private void push()
-    {
-        if((playerOneLastX > playerTwoLastX && (player[1].hitbox.transform.position.x < player[2].hitbox.transform.position.x)) || (playerOneLastX < playerTwoLastX && (player[1].hitbox.transform.position.x > player[2].hitbox.transform.position.x)))
-        {
-            pushing();
-            Debug.Log("PUSHERINO");
-        }
-
-        playerOneLastX = player[1].hitbox.transform.position.x;
-        playerTwoLastX = player[2].hitbox.transform.position.x;
-    }
-
     private void pushing()
     {
         if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2 + player[1].transform.position.y))
