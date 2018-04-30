@@ -18,7 +18,10 @@ public class KonkyAI : AIController {
         {
             // Konky
             case 0:
-                if (closeRange)
+
+               
+
+                /*if (closeRange)
                 {
                     if (opposingAction == 41)
                     {
@@ -38,7 +41,7 @@ public class KonkyAI : AIController {
                 else if (farRange)
                 {
                     input[facingRight ? 3 : 2] = true;
-                }
+                }*/
                 break;
             // Grey Shirt
             case 1:

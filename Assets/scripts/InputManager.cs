@@ -108,6 +108,7 @@ public class InputManager
                 currentInput[9] = (Input.GetKeyDown(rightKey));
                 currentInput[10] = (Input.GetKeyUp(leftKey));
                 currentInput[11] = (Input.GetKeyUp(rightKey));
+                currentInput[12] = (Input.GetKeyDown(upKey));
                 break;
         }
     }

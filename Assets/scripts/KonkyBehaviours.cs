@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class KonkyBehaviours : Behaviors
 {
-    const int LOW = 1;//must be crouchblocked
-    const int MID = 2;//can be crouch or stand blocked
-    const int HIGH = 3;//must be stand blocked
-    const int UNBLOCKABLE = 4;//cannot be blocked
+    const int LOW = 1; //must be crouchblocked
+    const int MID = 2; //can be crouch or stand blocked
+    const int HIGH = 3; //must be stand blocked
+    const int UNBLOCKABLE = 4; //cannot be blocked
 
-    const int NONE = 0;//no knockdown (follows hitstun numbers)
-    const int SOFTKD = 1;//soft knockdown (techable)
-    const int HARDKD = 2;//hard knockdown (untechable for 20 frames, OTG possible)
-    const int SOFTGB = 3;//soft ground bounce (ground bounce with soft knockdown)
-    const int HARDGB = 4;//hard ground bounce (ground bounce with hard knockdown)
-    const int SOFTWB = 5;//soft wall bounce (wall bounce with soft knockdown)
-    const int HARDWB = 6;//hard wall bounce (wall bounce with hard knockdown)
+    const int NONE = 0; //no knockdown (follows hitstun numbers)
+    const int SOFTKD = 1; //soft knockdown (techable)
+    const int HARDKD = 2; //hard knockdown (untechable for 20 frames, OTG possible)
+    const int SOFTGB = 3; //soft ground bounce (ground bounce with soft knockdown)
+    const int HARDGB = 4; //hard ground bounce (ground bounce with hard knockdown)
+    const int SOFTWB = 5; //soft wall bounce (wall bounce with soft knockdown)
+    const int HARDWB = 6; //hard wall bounce (wall bounce with hard knockdown)
     /* 
      * Action ID FORMAT
      * id = numpad + power
