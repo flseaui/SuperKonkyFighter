@@ -197,9 +197,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
                     attackMove(executingAction);
-                else if (executingAction > 40)
+                else if (executingAction >= 40)
                     advancedMove();
-
+                else
+                {
+                    hVelocity = 0;
+                    vVelocity = 0;
+                }
                 if (executingAction != 0)
                 {
                     // progress the current action
