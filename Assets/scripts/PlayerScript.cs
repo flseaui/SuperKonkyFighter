@@ -200,10 +200,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 else if (executingAction >= 40)
                     advancedMove();
                 else
-                {
                     hVelocity = 0;
-                    vVelocity = 0;
-                }
+
                 if (executingAction != 0)
                 {
                     // progress the current action
