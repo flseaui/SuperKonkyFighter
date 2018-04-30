@@ -1322,7 +1322,7 @@ public class KonkyBehaviours : Behaviors
                 return 1;
                 break;
             case 25:
-                return 1;
+                return 1000;
                 break;
             case 16:
                 return 1;

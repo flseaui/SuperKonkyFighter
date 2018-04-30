@@ -681,7 +681,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
         alreadyExecutedAttackMove = true;
-        Debug.Log("yeet");
     }
 
     private void advancedMove()
@@ -716,6 +715,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 checkBlockEnd();
                 break;
             case 7:
+                break;
+            case 11:
+                hVelocity = 0;
                 break;
         }
     }
