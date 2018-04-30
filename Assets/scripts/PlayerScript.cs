@@ -11,8 +11,6 @@ public class PlayerScript : MonoBehaviour
     private float FLOOR_HEIGHT = 0;
     private float BASE_GRAVITY = -0.05f;
 
-    public double[] dab = new double[2];
-
     private float[,] levelScaling = new float[,]
     {
         //Hitstun | CH Hitstun | Untech Time | CH Untech Time | Hitstop	| CH Hitstop | Blockstun | P2 Scaling
@@ -1001,7 +999,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         killAllBoxes();
     }
 
-    public void damage(int damage, float knockback, int angle, int level, float p1scaling, float[,] levelScaling)
+    public void damage(int damage, float knockback, int angle)
     {
         hitSound.Play();
 
@@ -1021,9 +1019,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else
         {
             damageDealt = true;
-            scaling(damage, p1scaling, levelScaling[level][8]);
-            int scaledDamage = System.Convert.ToInt32(System.Math.Floor(dab[0]));
-            health -= scaledDamage;
+            health -= damage;
             stun();
         }
 
@@ -1094,15 +1090,5 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public Vector2 position()
     {
         return new Vector2(this.transform.position.x, this.transform.position.y);
-    }
-
-    public List<double> scaling(int damage, float p1scaling, float levelScaling, double scaleVal)
-    {
-        double damageDecimal = damage;
-        double scaledDamage = damageDecimal * .6  * p1scaling * scaleVal;
-        scaleVal = scaleVal * levelScaling;
-        dab[0] = scaledDamage;
-        dab[1] = scaleVal;
-        return dab;
     }
 }
