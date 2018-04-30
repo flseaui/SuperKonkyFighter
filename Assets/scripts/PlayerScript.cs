@@ -296,7 +296,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (input[7])
         {
             attackState = basicState + 30;
-            Debug.Log(attackState);
         }
         else
             attackState = 0;
