@@ -10,7 +10,6 @@ public class HitboxScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         hurt = true;
-        Debug.Log("hittin with ya boi scott");
     }
 
     void OnTriggerExit2D(Collider2D other)

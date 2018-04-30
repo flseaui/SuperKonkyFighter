@@ -187,10 +187,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // check whether to continue or end action
         stateCheck();
 
-    }
-
-    private void FixedUpdate()
-    {
         // zero horizontal and vertical push
         hPush = 0;
 
@@ -204,10 +200,19 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 else if (executingAction > 40)
                     advancedMove();
 
-                // progress the current action
-                incrementFrame(behaviors.getAction(executingAction).frames);
+                if (executingAction != 0)
+                {
+                    // progress the current action
+                    incrementFrame(behaviors.getAction(executingAction).frames);
+                }
             }
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     private void preAction()
@@ -289,7 +294,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (input[6])
             attackState = basicState + 20;
         else if (input[7])
+        {
             attackState = basicState + 30;
+            Debug.Log(attackState);
+        }
         else
             attackState = 0;
     }
@@ -499,7 +507,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             overrideAction = bufferedMove;
         bufferedMove = 0;
 
-        GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        if (GetComponent<Animation>())
+            GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     private void stateCheck()
@@ -658,7 +667,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else
         {
-            Debug.Log("basic Move ran");
             killAllBoxes();
             placeHurtboxes(0);
             basicAnimFrame = 1;
@@ -825,7 +833,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
-            Debug.Log("Update anim");
         }
         else
         {
@@ -875,8 +882,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             }
             else if (livingHurtboxesIds.Contains(hurtbox.id))
             {
+                /*
                 Debug.Log(livingHurtboxesIds.Count);
                 Debug.Log("repeat call");
+                */
             }
         }
     }
@@ -987,8 +996,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void ActionEnd()
     {
-        Debug.Log("action end");
-    
         animator.StopPlayback();
         executingAction = 0;
         currentFrameType = 0;

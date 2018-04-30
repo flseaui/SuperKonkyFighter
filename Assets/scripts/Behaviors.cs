@@ -23,6 +23,8 @@ public abstract class Behaviors {
     // Returns Action object from given id
     public Action getAction(int id)
     {
+        if (!ActionIds.ContainsKey(id))
+            Debug.Log("Invalid Action: " + id);
         return ActionIds[id];
     }
 

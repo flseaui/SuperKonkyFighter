@@ -30,30 +30,6 @@ public class BackGroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-
-        if (hitStopped)
-        {
-            Debug.Log("Hitstopping with: " + p1s.executingAction + " and: " + p2s.executingAction);
-            stopTimer--;
-            Time.timeScale = 0;
-            if (stopTimer <= 0)
-            {
-                hitStopped = false;
-                p1s.hitStopped = false;
-                p2s.hitStopped = false;
-                shake = false;
-                Time.timeScale = 1;
-            }
-        }
-
-       
-    }
-
-    void FixedUpdate()
-    {
-
         player[0].decreaseHitboxLifespan();
         player[1].decreaseHitboxLifespan();
         player[0].decreaseHurtboxLifespan();
@@ -79,6 +55,29 @@ public class BackGroundScript : MonoBehaviour
             if (!player[i].hitStopped)
                 player[i].UpdateEnd();
         }
+
+        if (hitStopped)
+        {
+            Debug.Log("Hitstopping with: " + p1s.executingAction + " and: " + p2s.executingAction);
+            stopTimer--;
+            Time.timeScale = 0;
+            if (stopTimer <= 0)
+            {
+                hitStopped = false;
+                p1s.hitStopped = false;
+                p2s.hitStopped = false;
+                shake = false;
+                Time.timeScale = 1;
+            }
+        }
+
+       
+    }
+
+    void FixedUpdate()
+    {
+
+       
     }
 
     private void hitStop(int stopLength)

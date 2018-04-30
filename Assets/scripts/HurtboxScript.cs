@@ -12,7 +12,6 @@ public class HurtboxScript : MonoBehaviour {
     {
         tag = GetComponentInParent<PlayerScript>().playerID;
         oppositeBox = (tag == 1 ? "hitbox2" : "hitbox1");
-        Debug.Log(oppositeBox);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -20,7 +19,6 @@ public class HurtboxScript : MonoBehaviour {
         if (col.CompareTag(oppositeBox))
         {
             hit = true;
-            Debug.Log("gettin hit with ya boy scott " + oppositeBox);
         }
     }
 
