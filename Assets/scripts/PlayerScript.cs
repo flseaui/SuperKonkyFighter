@@ -199,7 +199,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     attackMove(executingAction);
                 else if (executingAction >= 40)
                     advancedMove();
-                else
+                else if (!airborn)
                     hVelocity = 0;
 
                 if (executingAction != 0)
@@ -680,7 +680,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
-        alreadyExecutedAttackMove = true;   
+        alreadyExecutedAttackMove = true;
+        Debug.Log("yeet");
     }
 
     private void advancedMove()
