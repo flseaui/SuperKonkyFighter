@@ -110,8 +110,8 @@ public class CameraScript : MonoBehaviour
         }
         //setY(background, cy * 0.5f + 8);
         //setY(self, cy);
-        //setX(background, cx * 0.5f);
-        //setX(self, cx);
+        setX(background, cx * 0.5f);
+        setX(self, cx);
 
         if (getX(player1) < getX(player2) - 1)
         {
