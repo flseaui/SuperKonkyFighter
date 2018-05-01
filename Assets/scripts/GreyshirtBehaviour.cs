@@ -70,6 +70,10 @@ public class GreyshirtBehaviours : Behaviors
             { 15, standM },
             { 25, standH },
 
+            { 6,  standL },
+            { 16, standM },
+            { 26, standH },
+
             { 7,  jumpL },
             { 17, jumpM },
             { 27, jumpH },
@@ -98,7 +102,17 @@ public class GreyshirtBehaviours : Behaviors
             { 47,   crouchBlock },
             { 48,      airBlock },
             { 49,          flip },
-            { 50,    crouchFlip }
+            { 50,    crouchFlip },
+
+            { 101, crouch},
+            { 102, crouch},
+            { 103, crouch},
+            { 104, walkBack},
+            { 105, idle},
+            { 106, walkForward},
+            { 107, jumpBack},
+            { 108, jump},
+            { 109, jumpForward}
         };
 
         greyshirtAnimAction = new Dictionary<Action, int>()
@@ -128,6 +142,7 @@ public class GreyshirtBehaviours : Behaviors
         };
 
         setIds(greyshirtActionIds, greyshirtAnimAction);
+        setDelegates();
     }
 
     //0 - Startup
@@ -155,6 +170,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         block = MID,
         knockdown = NONE,
@@ -179,6 +196,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = MID,
         knockdown = NONE,
@@ -203,6 +222,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 1,
         block = MID,
         knockdown = NONE,
@@ -227,6 +248,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         block = MID,
         knockdown = NONE,
@@ -251,6 +274,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 1,
         block = LOW,
         knockdown = NONE,
@@ -275,6 +300,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 4,
         block = MID,
         knockdown = NONE,
@@ -299,6 +326,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = HIGH,
         knockdown = NONE,
@@ -323,6 +352,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = HIGH,
         knockdown = NONE,
@@ -347,6 +378,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 3,
         block = HIGH,
         knockdown = SOFTKD,
@@ -371,6 +404,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         block = LOW,
         knockdown = SOFTKD,
@@ -395,6 +430,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 5,
         block = LOW,
         knockdown = NONE,
@@ -419,6 +456,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 4,
         block = MID,
         knockdown = NONE,
@@ -443,6 +482,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = MID,
         knockdown = SOFTKD,
@@ -467,6 +508,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         block = MID,
         knockdown = HARDKD,
@@ -491,6 +534,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 5,
         block = HIGH,
         knockdown = HARDKD,
@@ -621,44 +666,151 @@ public class GreyshirtBehaviours : Behaviors
         aStrength = 0
     };
 
-    // Throw
-    private Action Throw = new Action()
+    // Jump Squat
+    private Action jumpSquat = new Action()
     {
-        tier = 2,
-        frames = new int[] { },//  |  | 
-        damage = new int[] { },
-        hitboxData = new Action.rect[,]
-        {
-
-        },
+        frames = new int[] { 0, 0, 0 },
+        actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
-
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
         },
-        level = 5,
-        block = UNBLOCKABLE,
-        knockdown = HARDKD,
-        actionCancels = new int[] { 1, 2 },
-        gAngle = 30,
-        gStrength = 10,
-        aAngle = 0,
-        aStrength = 0
     };
 
     // Turns
-    private Action flip = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { } };
+    private Action flip = new Action()
+    {
+        frames = new int[] { 0, 0, 0 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
 
     // crouch Turns
-    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { } };
+    private Action crouchFlip = new Action()
+    {
+        frames = new int[] { 0, 0, 0, },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 4, 7, 8, 3, 5), },
+            {nullBox },
+            {nullBox },
+        },
+    };
 
     // Back Dash
-    private Action backDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new int[] { } };
+    private Action backDash = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0, 0, 0, 0, 10, 1), new Action.rect(0, 0, 0, 0, 10, 2), },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {new Action.rect(0.5f, 2.5f, 6.5f, 5, 10, 1), new Action.rect(-1.5f, 9f, 4, 8, 10, 2), },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, }
+        },
+    };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { 40 }, infinite = true };
+    private Action forwardDash = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 },
+        actionCancels = new int[] { 40 },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(-4, 2.5f, 8, 5, 14, 1), new Action.rect(2.5f, 7, 5, 8, 14, 2), },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            { new Action.rect(-4, 2.5f, 8, 5, 1, 1), new Action.rect(2.5f, 7, 5, 8, 1, 2), }
+        },
+    };
 
     // Stun
-    private Action stun = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { } };
+    private Action stun = new Action()
+    {
+        frames = new int[] { 3 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox }
+        },
+    };
 
     // Block
     private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
@@ -670,6 +822,467 @@ public class GreyshirtBehaviours : Behaviors
     private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
-    private Action backAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { } };
+    private Action forwardAirDash = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, },
+        actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
+        hurtboxData = new Action.rect[,]
+        {
+            //{ new Action.rect(2, 7, 14, 4, 15, 1),},
+            { new Action.rect(-4, 2.5f, 8, 5, 15, 1), new Action.rect(2.5f, 7, 5, 8, 15, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+        },
+    };
+    private Action backAirDash = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0, 0, 0, 0, 3, 1), new Action.rect(0, 0, 0, 0, 3, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(3, 3, 3, 6, 17, 1), new Action.rect(1, 9, 3, 6, 17, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private Action crouch = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 4, 7, 8, 40, 5), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox }
+        },
+    };
+    private Action walkBack = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 20, 3), new Action.rect(1.5f, 9f, 4, 8, 20, 4), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+        },
+    };
+    private Action idle = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
+    private Action walkForward = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 25, 6), new Action.rect(1.5f, 9f, 4, 8, 25, 7), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+        },
+    };
+    private Action jumpBack = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(3, 3, 3, 6, 10, 8), new Action.rect(1, 9, 3, 6, 10, 9), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
+    private Action jump = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(1, 6, 4, 12, 10, 10), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox }
+        },
+    };
+    private Action jumpForward = new Action()
+    {
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0, 3, 3, 6, 10, 11), new Action.rect(2, 9, 4, 8, 10, 12), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox }
+        },
+    };
+
+    public override void setDelegates()
+    {
+        onAdvancedActionCallbacks = new OnAdvancedAction[]
+        {
+             new OnAdvancedAction(advDashForward),
+             new OnAdvancedAction(advDashBack),
+             new OnAdvancedAction(advAirDashForward),
+             new OnAdvancedAction(advAirDashBack),
+             new OnAdvancedAction(advStun),
+             new OnAdvancedAction(advBlock),
+             new OnAdvancedAction(advJumpSquat)
+        };
+    }
+
+
+    // ADVANCED ACTIONS
+    public void advDashForward(PlayerScript player)
+    {
+        player.hVelocity = forwardSpeed * dashForwardSpeed;
+        if (infiniteDashForward)
+            player.checkDashEnd();
+    }
+
+    public void advDashBack(PlayerScript player)
+    {
+        player.hVelocity = backwardSpeed * dashBackSpeed;
+    }
+
+    public void advAirDashForward(PlayerScript player)
+    {
+        player.vVelocity = 0;
+        player.hVelocity = forwardSpeed * airDashForwardSpeed;
+    }
+
+    public void advAirDashBack(PlayerScript player)
+    {
+        player.vVelocity = 0;
+        player.hVelocity = backwardSpeed * airDashBackSpeed;
+    }
+
+    public void advStun(PlayerScript player)
+    {
+        player.stunTimer--;
+        if (player.stunTimer <= 0)
+        {
+            player.ActionEnd();
+        }
+    }
+
+    public void advBlock(PlayerScript player)
+    {
+        player.hVelocity = 0;
+        player.checkBlockEnd();
+    }
+
+    public void advJumpSquat(PlayerScript player)
+    {
+        player.hVelocity = 0;
+    }
+
+    public override void setStats()
+    {
+        forwardSpeed = 0.25f;
+        backwardSpeed = -0.15f;
+        jumpDirectionSpeed = 1.25f;
+        dashForwardSpeed = 3f;
+        dashBackSpeed = 3f;
+        airDashForwardSpeed = 3f;
+        airDashBackSpeed = 3f;
+        gravity = -0.05f;
+        maxHealth = 11000;
+        infiniteDashForward = true;
+    }
+
+    public override float getAttackMovementHorizontal(int attackState)
+    {
+        switch (attackState)
+        {
+            //Crouching Light
+            case 1:
+                return 1;
+            case 2:
+                return 1;
+            case 3:
+                return 1;
+
+            //Crouching Medium
+            case 11:
+                return 1;
+            case 12:
+                return 1;
+            case 13:
+                return 1;
+
+            //Crouching Heavy
+            case 21:
+                return 0;
+            case 22:
+                return 0;
+            case 23:
+                return 0;
+
+            //Standing Light
+            case 4:
+                return 0;
+            case 5:
+                return 0;
+            case 6:
+                return 0;
+
+            //Standing Medium
+            case 14:
+                return 1;
+            case 15:
+                return 1;
+
+            //Forward Medium
+            case 16:
+                return 1;
+
+            //Standing Heavy
+            case 24:
+                return 1;
+            case 25:
+                return 1;
+            case 26:
+                return 1;
+
+            //Jumping Light
+            case 7:
+                return 1.5f;
+            case 8:
+                return 1.5f;
+            case 9:
+                return 1.5f;
+
+            //Jumping Medium
+            case 17:
+                return .5f;
+            case 18:
+                return .5f;
+            case 19:
+                return .5f;
+
+            //Jumping Heavy
+            case 27:
+                return 0;
+            case 28:
+                return 0;
+            case 29:
+                return 0;
+
+            default:
+                return 0;
+
+        }
+    }
+
+    public override float getAttackMovementVertical(int attackState)
+    {
+        switch (attackState)
+        {
+            //Jumping Light
+            case 7:
+                return 1.5f;
+            case 8:
+                return 1.5f;
+            case 9:
+                return 1.5f;
+
+            //Jumping Medium
+            case 17:
+                return .5f;
+            case 18:
+                return .5f;
+            case 19:
+                return .5f;
+
+            //Jumping Heavy
+            case 27:
+                return 0f;
+            case 28:
+                return 0f;
+            case 29:
+                return 0f;
+
+            default:
+                return 0;
+
+        }
+    }
 }
