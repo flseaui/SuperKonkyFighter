@@ -742,7 +742,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 75,
         gStrength = 10,
         aAngle = 75,
-        aStrength = 10
+        aStrength = 10,
+        airOK = false,
     };
 
     // Two Super
@@ -767,7 +768,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 45,
         gStrength = 2,
         aAngle = 30,
-        aStrength = 2
+        aStrength = 2,
+        airOK = false,
     };
 
     // Three Super
@@ -792,7 +794,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 0,
         gStrength = 1,
         aAngle = 45,
-        aStrength = 1
+        aStrength = 1,
+        airOK = false,
     };
 
     // Four Super
@@ -817,7 +820,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 45,
         gStrength = 1,
         aAngle = 45,
-        aStrength = 1
+        aStrength = 1,
+        airOK = true,
     };
 
     // Five Super
@@ -858,7 +862,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 0,
         gStrength = 5,
         aAngle = 0,
-        aStrength = 0
+        aStrength = 0,
+        airOK = false,
     };
 
     // Six Super
@@ -883,7 +888,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 60,
         gStrength = 8,
         aAngle = 60,
-        aStrength = 8
+        aStrength = 8,
+        airOK = true,
     };
 
     // Throw
@@ -900,7 +906,8 @@ public class KonkyBehaviours : Behaviors
         gAngle = 30,
         gStrength = 10,
         aAngle = 0,
-        aStrength = 0
+        aStrength = 0,
+        airOK = false,
     };
 
 

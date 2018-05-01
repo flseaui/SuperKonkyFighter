@@ -9,6 +9,7 @@ public class Action {
     public int[] frames;
     public int[] damage;
 
+    public bool airOK;
     public int tier;
 	public int level;
     public int gAngle;
