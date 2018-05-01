@@ -474,7 +474,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (behaviors.getAction(executingAction).infinite)
                 actionFrameCounter--;
             else
+            {
                 ActionEnd();
+                basicBoxes();
+            }
         }
     }
 
@@ -528,26 +531,23 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 executingAction = overrideAction;
             }
         }
-
-        if (executingAction == 0)
+        else if (overrideAction != 0)
         {
-            if (overrideAction != 0)
-            {
-                executingAction = overrideAction;
-            }
-            else if (advancedState != 0)
-            {
-                executingAction = advancedState + 40;
-            }
-            else if (attackState != 0)
-            {
-                executingAction = attackState;
-            }
-            else
-            {
-                basicMove();
-            }
+            executingAction = overrideAction;
         }
+        else if (advancedState != 0)
+        {
+            executingAction = advancedState + 40;
+        }
+        else if (attackState != 0)
+        {
+            executingAction = attackState;
+        }
+        else
+        {
+            basicMove();
+        }
+
     }
 
     private int inputConvert(bool[] input)
@@ -667,7 +667,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
             }
         }
+    }
 
+    private void basicBoxes()
+    {
         if (previousBasicState == basicState)
         {
             if (basicAnimFrame >= behaviors.getAction(basicState + 100).hurtboxData.GetLength(0))
@@ -686,7 +689,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             basicAnimFrame = 1;
             previousBasicState = basicState;
         }
-
     }
 
     private void actionMove(int action)
