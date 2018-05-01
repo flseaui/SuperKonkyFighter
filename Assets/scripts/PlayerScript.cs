@@ -423,6 +423,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // executes a frame of the current action
     private void incrementFrame(int[] frames)
     {
+        if (actionFrameCounter == 1)
+            killAllBoxes();
+
         placeHurtboxes(actionFrameCounter);
 
         int previousFrame = currentFrameType;
