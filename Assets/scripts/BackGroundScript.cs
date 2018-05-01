@@ -58,6 +58,7 @@ public class BackGroundScript : MonoBehaviour
 
         if (hitStopped)
         {
+            Debug.Log("Hitstopping with: " + p1s.executingAction + " and: " + p2s.executingAction);
             stopTimer--;
             Time.timeScale = 0;
             if (stopTimer <= 0)
@@ -81,6 +82,7 @@ public class BackGroundScript : MonoBehaviour
 
     private void hitStop(int stopLength)
     {
+        Debug.Log("About to hitstop with: " + p1s.executingAction + " and: " + p2s.executingAction);
         hitStopped = true;
         p1s.hitStopped = true;
         p2s.hitStopped = true;
@@ -92,6 +94,7 @@ public class BackGroundScript : MonoBehaviour
     {
         if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt)
         {
+            Debug.Log("p1 hit");
             Action action = p2s.behaviors.getAction(p2s.executingAction);
             p2s.damageDealt = true;
             p1s.damage(action.damage[p2s.actionFrameCounter], action.gStrength, action.gAngle);
@@ -103,6 +106,7 @@ public class BackGroundScript : MonoBehaviour
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt)
         {
+            Debug.Log("p2 hit");
             Action action = p1s.behaviors.getAction(p1s.executingAction);
             p1s.damageDealt = true;
             p2s.damage(action.damage[p1s.actionFrameCounter], action.gStrength, action.gAngle);

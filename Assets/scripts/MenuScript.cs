@@ -393,6 +393,7 @@ public class MenuScript : MonoBehaviour {
 
 	public void triggerEvent(int id)
 	{
+		Debug.Log(id);
 		switch (id)
 		{
 			case 0:

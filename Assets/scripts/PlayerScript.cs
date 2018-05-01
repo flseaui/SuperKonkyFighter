@@ -197,10 +197,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
                     attackMove(executingAction);
-                else if (executingAction >= 40)
+                else if (executingAction > 40)
                     advancedMove();
-                else if (!airborn)
-                    hVelocity = 0;
 
                 if (executingAction != 0)
                 {
@@ -298,6 +296,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (input[7])
         {
             attackState = basicState + 30;
+            Debug.Log(attackState);
         }
         else
             attackState = 0;
@@ -508,7 +507,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             overrideAction = bufferedMove;
         bufferedMove = 0;
 
-        if (GetComponent<Animation>())
             GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
@@ -680,7 +678,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
-        alreadyExecutedAttackMove = true;
+        alreadyExecutedAttackMove = true;   
     }
 
     private void advancedMove()
@@ -688,34 +686,33 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (executingAction - 40)
         {
             case 1:
-                if (behaviors.onAdvancedActionCallbacks[0] != null)
-                    behaviors.onAdvancedActionCallbacks[0].Invoke(this);
+                hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
+                if (behaviors.getInfiniteDashForward())
+                    checkDashEnd();
                 break;
             case 2:
-                if (behaviors.onAdvancedActionCallbacks[1] != null)
-                    behaviors.onAdvancedActionCallbacks[1].Invoke(this);
+                hVelocity = behaviors.getBackwardSpeed() * behaviors.getDashBackSpeed();
                 break;
             case 3:
-                if (behaviors.onAdvancedActionCallbacks[2] != null)
-                    behaviors.onAdvancedActionCallbacks[2].Invoke(this);
+                vVelocity = 0;
+                hVelocity = behaviors.getForwardSpeed() * behaviors.getAirDashForwardSpeed();
                 break;
             case 4:
-                if (behaviors.onAdvancedActionCallbacks[3] != null)
-                    behaviors.onAdvancedActionCallbacks[3].Invoke(this);
+                vVelocity = 0;
+                hVelocity = behaviors.getBackwardSpeed() * behaviors.getAirDashBackSpeed();
                 break;
             case 5:
-                if (behaviors.onAdvancedActionCallbacks[4] != null)
-                    behaviors.onAdvancedActionCallbacks[4].Invoke(this);
+                stunTimer--;
+                if (stunTimer <= 0)
+                {
+                    ActionEnd();
+                }
                 break;
             case 6:
-                if (behaviors.onAdvancedActionCallbacks[5] != null)
-                    behaviors.onAdvancedActionCallbacks[5].Invoke(this);
+                hVelocity = 0;
+                checkBlockEnd();
                 break;
             case 7:
-                break;
-            case 11:
-                if (behaviors.onAdvancedActionCallbacks[6] != null)
-                    behaviors.onAdvancedActionCallbacks[6].Invoke(this);
                 break;
         }
     }
@@ -996,7 +993,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hPush = playerSide ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
     }
 
-    public void ActionEnd()
+    private void ActionEnd()
     {
         animator.StopPlayback();
         executingAction = 0;

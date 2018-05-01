@@ -118,34 +118,33 @@ public class KonkyBehaviours : Behaviors
 
         konkyAnimAction = new Dictionary<Action, int>()
         {
-            { crouchL, 2 },
-            { crouchM, 12 },
-            { crouchH, 22 },
+            {crouchL, 2 },
+            {crouchM, 12 },
+            {crouchH, 22 },
 
-            { standL, 5 },
-            { standM, 15 },
-            { forwardM, 16 },
-            { standH, 25 },
+            {standL, 5 },
+            {standM, 15 },
+            {forwardM, 16 },
+            {standH, 25 },
 
-            { jumpL, 8 },
-            { jumpM, 18 },
-            { jumpH, 28 },
+            {jumpL, 8 },
+            {jumpM, 18 },
+            {jumpH, 28 },
 
-            { forwardDash, 41},
-            { backDash, 42},
-            { forwardAirDash, 43},
-            { backAirDash, 44},
-            { stun, 45 },
-            { block, 46 },
-            { crouchBlock, 47 },
-            { airBlock, 48 },
-            { flip, 49 },
-            { crouchFlip, 50 },
-            { jumpSquat, 51 }
+            {forwardDash, 41},
+            {backDash, 42},
+            {forwardAirDash, 43},
+            {backAirDash, 44},
+            {stun, 45 },
+            {block, 46 },
+            {crouchBlock, 47 },
+            {airBlock, 48 },
+            {flip, 49 },
+            {crouchFlip, 50 },
+            {jumpSquat, 51 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
-        setDelegates();
     }
 
     //0 - Startup
@@ -199,18 +198,18 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = .5f,
-        aAngle = 30,
-        aStrength = 1
+        gAngle      = 0,
+        gStrength   = .5f,
+        aAngle      = 30,
+        aStrength   = 1
     };
 
     // Standing Medium
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 | 12
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 | 12
+        damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(5, 9, 6, 2, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
@@ -241,23 +240,23 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level = 2,
+        level       = 2,
         p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 30,
-        aStrength = 2
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 30,
+        aStrength   = 2
     };
 
     // Standing Heavy
     private Action standH = new Action()
     {
         tier = 2,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 12 | 4 | 12
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 12 | 4 | 12
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(8, 7.5f, 7.5f, 2, 4, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
@@ -296,22 +295,22 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level = 1,
+        level       = 1,
         p1scaling = 1f,
         block = MID,
         knockdown = SOFTWB,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 2,
-        aAngle = 30,
-        aStrength = 4
+        gAngle      = 0,
+        gStrength   = 2,
+        aAngle      = 30,
+        aStrength   = 4
     };
 
     // Crouching Light
     private Action crouchL = new Action()
     {
         tier = 0,
-        frames = new int[] { 0, 4, 4, 4, 4, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 6 | 3 | 10
+        frames      = new int[] { 0, 4, 4, 4, 4, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 6 | 3 | 10
         damage = new int[] { 0, 0, 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -346,22 +345,22 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox }
         },
-        level = 1,
+        level       = 1,
         p1scaling = .9f,
         block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = .5f,
-        aAngle = 30,
-        aStrength = .5f
+        gAngle      = 0,
+        gStrength   = .5f,
+        aAngle      = 30,
+        aStrength   = .5f
     };
 
     // Crouching Medium
     private Action crouchM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 4 | 13
+        frames      = new int[] { 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 4 | 13
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 250, 250, 250, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -397,15 +396,15 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             {nullBox, }
         },
-        level = 2,
+        level       = 2,
         p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 30,
-        aStrength = 1
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 30,
+        aStrength   = 1
     };
 
     // Crouching Heavy
@@ -472,17 +471,17 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
-        gAngle = 80,
-        gStrength = 4,
-        aAngle = 80,
-        aStrength = 6
+        gAngle      = 80,
+        gStrength   = 4,
+        aAngle      = 80,
+        aStrength   = 6
     };
 
     // Jumping Light
     private Action jumpL = new Action()
     {
         tier = 0,
-        frames = new int[] { 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 5 | 13
+        frames      = new int[] { 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 5 | 5 | 13
         damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -519,23 +518,23 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        level = 3,
+        level       = 3,
         p1scaling = .8f,
-        block = HIGH,
+        block =HIGH,
         knockdown = NONE,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 45,
-        aStrength = 1
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 45,
+        aStrength   = 1
     };
 
     // Jumping Medium
     private Action jumpM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 17
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 200, 200, 200, 200, 200, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 17
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 200, 200, 200, 200, 200, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(6, 8, 6, 7, 2, 0), }, // Frame 1 - 1 hitbox lasts 4 frames
@@ -578,22 +577,22 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox},
             {nullBox, nullBox}
         },
-        level = 4,
+        level       = 4,
         p1scaling = .8f,
         block = HIGH,
         knockdown = NONE,
         actionCancels = new int[] { 27, 28, 29, 40, 43, 44 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 45,
-        aStrength = 1
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 45,
+        aStrength   = 1
     };
 
     // Jumping Heavy
     private Action jumpH = new Action()
     {
         tier = 2,
-        frames = new int[] { 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 4 | 23
+        frames      = new int[] { 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 4 | 23
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -642,22 +641,22 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        level = 5,
+        level       = 5,
         p1scaling = .8f,
         block = HIGH,
         knockdown = SOFTKD,
         actionCancels = new int[] { 40, 43, 44 },
-        gAngle = 0,
-        gStrength = 2,
-        aAngle = -80,
-        aStrength = 60
+        gAngle      = 0,
+        gStrength   = 2,
+        aAngle      = -80,
+        aStrength   = 60
     };
 
     // Forward Medium
     private Action forwardM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 13 | 2 | 19
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 13 | 2 | 19
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -701,15 +700,15 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             {nullBox, }
         },
-        level = 1,
+        level       = 1,
         p1scaling = 1.1f,
         block = HIGH,
         knockdown = SOFTGB,
         actionCancels = new int[] { 25, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 330,
-        aStrength = 5
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 330,
+        aStrength   = 5
     };
 
 
@@ -717,8 +716,8 @@ public class KonkyBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },//10 | 2*9 (8) 5 | 24
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 3000, 3000, 3000, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },//10 | 2*9 (8) 5 | 24
+        damage      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 3000, 3000, 3000, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -727,23 +726,23 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 0,
+        level       = 0,
         p1scaling = 1.1f,
         block = LOW,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
-        gAngle = 75,
-        gStrength = 10,
-        aAngle = 75,
-        aStrength = 10
+        gAngle      = 75,
+        gStrength   = 10,
+        aAngle      = 75,
+        aStrength   = 10
     };
 
     // Two Super
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 23 | 1 | 25
-        damage = new int[] { 500, 500, 500 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 23 | 1 | 25
+        damage      = new int[] { 500, 500, 500 },
         hitboxData = new Action.rect[,]
         {
 
@@ -752,23 +751,23 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 4,
+        level       = 4,
         p1scaling = .5f,
         block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 35, 41, 42 },
-        gAngle = 45,
-        gStrength = 2,
-        aAngle = 30,
-        aStrength = 2
+        gAngle      = 45,
+        gStrength   = 2,
+        aAngle      = 30,
+        aStrength   = 2
     };
 
     // Three Super
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
-        damage = new int[] { 600 },
+        frames      = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
+        damage      = new int[] { 600 },
         hitboxData = new Action.rect[,]
         {
 
@@ -777,23 +776,23 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 4,
+        level       = 4,
         p1scaling = 1f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 35 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 45,
-        aStrength = 1
+        gAngle      = 0,
+        gStrength   = 1,
+        aAngle      = 45,
+        aStrength   = 1
     };
 
     // Four Super
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 4, 4, 4, 4, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        frames      = new int[] { 0, 4, 4, 4, 4, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        damage      = new int[] { 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         hitboxData = new Action.rect[,]
         {
 
@@ -802,22 +801,22 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 3,
+        level       = 3,
         p1scaling = 1f,
         block = MID,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
-        gAngle = 45,
-        gStrength = 1,
-        aAngle = 45,
-        aStrength = 1
+        gAngle      = 45,
+        gStrength   = 1,
+        aAngle      = 45,
+        aStrength   = 1
     };
 
     // Five Super
     private Action fiveS = new Action()
     {
         tier = 4,
-        frames = new int[] { 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+        frames      = new int[] { 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                                         1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                                         1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                                         1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
@@ -826,7 +825,7 @@ public class KonkyBehaviours : Behaviors
                                         1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                                         1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                                         2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        damage = new int[] { 0, 0, 300, 300, 300, 300, 0, 0, 0, 0, 0, 0,
+        damage      = new int[] { 0, 0, 300, 300, 300, 300, 0, 0, 0, 0, 0, 0,
                                         300, 300, 300, 300, 0, 0, 0, 0, 0, 0,
                                         300, 300, 300, 300, 0, 0, 0, 0, 0, 0,
                                         300, 300, 300, 300, 0, 0, 0, 0, 0, 0,
@@ -843,23 +842,23 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 3,
+        level       = 3,
         p1scaling = 1.5f,
         block = MID,
         knockdown = HARDKD,
         actionCancels = new int[] { },
-        gAngle = 0,
-        gStrength = 5,
-        aAngle = 0,
-        aStrength = 0
+        gAngle      = 0,
+        gStrength   = 5,
+        aAngle      = 0,
+        aStrength   = 0
     };
 
     // Six Super
     private Action sixS = new Action()
     {
         tier = 3,
-        frames = new int[] { 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        damage = new int[] { 0, 0, 0, 0, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames      = new int[] { 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        damage      = new int[] { 0, 0, 0, 0, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -868,37 +867,37 @@ public class KonkyBehaviours : Behaviors
         {
 
         },
-        level = 5,
+        level       = 5,
         p1scaling = 1f,
         block = MID,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
-        gAngle = 60,
-        gStrength = 8,
-        aAngle = 60,
-        aStrength = 8
+        gAngle      = 60,
+        gStrength   = 8,
+        aAngle      = 60,
+        aStrength   = 8
     };
 
     // Throw
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new int[] { 0 },
-        damage = new int[] { 1500 },
-        level = 5,
+        frames      = new int[] { 0 },
+        damage      = new int[] { 1500 },
+        level       = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
         knockdown = HARDKD,
         actionCancels = new int[] { 1, 2 },
-        gAngle = 30,
-        gStrength = 10,
-        aAngle = 0,
-        aStrength = 0
+        gAngle      = 30,
+        gStrength   = 10,
+        aAngle      = 0,
+        aStrength   = 0
     };
 
 
     // Jump Squat
-    private Action jumpSquat = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { },
+    private Action jumpSquat = new Action() {frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
@@ -908,7 +907,7 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Turns
-    private Action flip = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { },
+    private Action flip = new Action()       {frames = new int[] { 0, 0, 0                                                     }, actionCancels  = new int[] {       },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
@@ -918,7 +917,7 @@ public class KonkyBehaviours : Behaviors
     };
 
     // crouch Turns
-    private Action crouchFlip = new Action() { frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { },
+    private Action crouchFlip = new Action() {frames = new int[] { 0, 0, 0, }, actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 4, 7, 8, 3, 5), },
@@ -928,7 +927,7 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Back Dash
-    private Action backDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels = new int[] { },
+    private Action backDash = new Action()    {frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, actionCancels  = new int[] {  },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 0, 0, 10, 1), new Action.rect(0, 0, 0, 0, 10, 2), },
@@ -955,7 +954,7 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Forward Dash
-    private Action forwardDash = new Action() { frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 }, actionCancels = new int[] { 40 }, infinite = true,
+    private Action forwardDash = new Action() {frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 }, actionCancels = new int[] { 40 }, infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(-4, 2.5f, 8, 5, 14, 1), new Action.rect(2.5f, 7, 5, 8, 14, 2), },
@@ -977,7 +976,7 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Stun
-    private Action stun = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { },
+    private Action stun = new Action()        {frames = new int[] { 3                                                          }, actionCancels = new int[] {       },
         infinite = true,
         hurtboxData = new Action.rect[,]
         {
@@ -1025,16 +1024,16 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Block
-    private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action block = new Action()       {frames = new int[] { 0                                                          }, actionCancels = new int[] {       } };
 
     // Crouching Block
-    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action crouchBlock = new Action() {frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Block
-    private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action airBlock = new Action()    {frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, }, actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
+    private Action forwardAirDash = new Action() {frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, }, actionCancels = new int[] {       },
         hurtboxData = new Action.rect[,]
         {
             //{ new Action.rect(2, 7, 14, 4, 15, 1),},
@@ -1055,7 +1054,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
         },
     };
-    private Action backAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] { },
+    private Action backAirDash = new Action()    {frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, actionCancels = new int[] {       },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 0, 0, 3, 1), new Action.rect(0, 0, 0, 0, 3, 2), },
@@ -1096,7 +1095,7 @@ public class KonkyBehaviours : Behaviors
 
 
     private Action crouch = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 4, 7, 8, 40, 5), },
@@ -1142,7 +1141,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action walkBack = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 20, 3), new Action.rect(1.5f, 9f, 4, 8, 20, 4), },
@@ -1168,7 +1167,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action idle = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.rect(1.5f, 9f, 4, 8, 40, 2), },
@@ -1214,7 +1213,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action walkForward = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ,3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 25, 6), new Action.rect(1.5f, 9f, 4, 8, 25, 7), },
@@ -1245,7 +1244,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action jumpBack = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(3, 3, 3, 6, 10, 8), new Action.rect(1, 9, 3, 6, 10, 9), },
@@ -1261,7 +1260,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action jump = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(1, 6, 4, 12, 10, 10), },
@@ -1277,7 +1276,7 @@ public class KonkyBehaviours : Behaviors
         },
     };
     private Action jumpForward = new Action() {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+       frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 3, 3, 6, 10, 11), new Action.rect(2, 9, 4, 8, 10, 12), },
@@ -1293,65 +1292,8 @@ public class KonkyBehaviours : Behaviors
         },
     };
 
-    public override void setDelegates()
-    {
-        onAdvancedActionCallbacks = new OnAdvancedAction[]
-        {
-             new OnAdvancedAction(advDashForward),
-             new OnAdvancedAction(advDashBack),
-             new OnAdvancedAction(advAirDashForward),
-             new OnAdvancedAction(advAirDashBack),
-             new OnAdvancedAction(advStun),
-             new OnAdvancedAction(advBlock),
-             new OnAdvancedAction(advJumpSquat)
-        };
-    }
 
 
-    // ADVANCED ACTIONS
-    public void advDashForward(PlayerScript player)
-    {
-        player.hVelocity = forwardSpeed * dashForwardSpeed;
-        if (infiniteDashForward)
-            player.checkDashEnd();
-    }
-
-    public void advDashBack(PlayerScript player)
-    {
-        player.hVelocity = backwardSpeed * dashBackSpeed;
-    }
-
-    public void advAirDashForward(PlayerScript player)
-    {
-        player.vVelocity = 0;
-        player.hVelocity = forwardSpeed * airDashForwardSpeed;
-    }
-
-    public void advAirDashBack(PlayerScript player)
-    {
-        player.vVelocity = 0;
-        player.hVelocity = backwardSpeed * airDashBackSpeed;
-    }
-
-    public void advStun(PlayerScript player)
-    {
-        player.stunTimer--;
-        if (player.stunTimer <= 0)
-        {
-            player.ActionEnd();
-        }
-    }
-
-    public void advBlock(PlayerScript player)
-    {
-        player.hVelocity = 0;
-        player.checkBlockEnd();
-    }
-
-    public void advJumpSquat(PlayerScript player)
-    {
-        player.hVelocity = 0;
-    }
 
     public override void setStats()
     {
@@ -1370,82 +1312,34 @@ public class KonkyBehaviours : Behaviors
     public override float getAttackMovementHorizontal(int attackState)
     {
         switch (attackState) {
-            //Crouching Light
-            case 1:
-                return 1;
             case 2:
                 return 1;
-            case 3:
-                return 1;
-            
-            //Crouching Medium
-            case 11:
-                return 1;
+                break;
             case 12:
                 return 1;
-            case 13:
-                return 1;
-
-            //Crouching Heavy
-            case 21:
-                return 0;
-            case 22:
-                return 0;
-            case 23:
-                return 0;
-
-            //Standing Light
-            case 4:
-                return 0;
-            case 5:
-                return 0;
-            case 6:
-                return 0;
-
-            //Standing Medium
-            case 14:
-                return 1;
+                break;
             case 15:
                 return 1;
-
-            //Forward Medium
-            case 16:
-                return 1;
-
-            //Standing Heavy
-            case 24:
-                return 1;
+                break;
             case 25:
                 return 1;
-            case 26:
+                break;
+            case 16:
                 return 1;
-
-            //Jumping Light
-            case 7:
-                return 1.5f;
+                break;
             case 8:
                 return 1.5f;
-            case 9:
-                return 1.5f;
-
-            //Jumping Medium
-            case 17:
-                return .5f;
+                break;
             case 18:
-                return .5f;
-            case 19:
-                return .5f;
-
-            //Jumping Heavy
-            case 27:
-                return 0;
+                return 1.5f;
+                break;
             case 28:
-                return 0;
-            case 29:
-                return 0;
+                return 1.5f;
+                break;
 
             default:
                 return 0;
+                break;
 
         }
     }
@@ -1454,32 +1348,19 @@ public class KonkyBehaviours : Behaviors
     {
         switch (attackState)
         {
-            //Jumping Light
-            case 7:
-                return 1.5f;
             case 8:
                 return 1.5f;
-            case 9:
-                return 1.5f;
-
-            //Jumping Medium
-            case 17:
-                return 1.5f;
+                break;
             case 18:
                 return 1.5f;
-            case 19:
-                return 1.5f;
-
-            //Jumping Heavy
-            case 27:
-                return 1.5f;
+                break;
             case 28:
                 return 1.5f;
-            case 29:
-                return 1.5f;
+                break;
 
             default:
                 return 0;
+                break;
 
         }
     }
