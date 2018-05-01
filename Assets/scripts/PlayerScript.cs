@@ -246,12 +246,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public void checkForFlip( bool specialCase)
     {
         if(playerSide != facingRight && executingAction != 41)
-        {
             if (!airborn || specialCase)
                 facingRight = !facingRight;
             if (!airborn && !specialCase)
                 overrideAction = 49;
-        }
     }
 
     public void cleanup()
