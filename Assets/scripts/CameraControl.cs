@@ -54,7 +54,7 @@ public class CameraControl : MonoBehaviour
         Move();
 
         // Change the size of the camera based.
-        Zoom();
+        //Zoom();
     }
 
 
@@ -65,8 +65,8 @@ public class CameraControl : MonoBehaviour
 
         // Smoothly transition to that position.
         Vector3 pos = Vector3.SmoothDamp(new Vector3(transform.position.x, transform.position.y, 0), desiredPosition, ref moveVelocity, dampTime);
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        //pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        //pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
     }
 
