@@ -1369,24 +1369,81 @@ public class KonkyBehaviours : Behaviors
 
     public override float getAttackMovementHorizontal(int attackState)
     {
-        Debug.Log(attackState);
         switch (attackState) {
+            //Crouching Light
+            case 1:
+                return 1;
             case 2:
+                return 1;
+            case 3:
+                return 1;
+            
+            //Crouching Medium
+            case 11:
                 return 1;
             case 12:
                 return 1;
+            case 13:
+                return 1;
+
+            //Crouching Heavy
+            case 21:
+                return 0;
+            case 22:
+                return 0;
+            case 23:
+                return 0;
+
+            //Standing Light
+            case 4:
+                return 0;
+            case 5:
+                return 0;
+            case 6:
+                return 0;
+
+            //Standing Medium
+            case 14:
+                return 1;
             case 15:
                 return 1;
-            case 25:
-                return 1000;
+
+            //Forward Medium
             case 16:
                 return 1;
+
+            //Standing Heavy
+            case 24:
+                return 1;
+            case 25:
+                return 1;
+            case 26:
+                return 1;
+
+            //Jumping Light
+            case 7:
+                return 1.5f;
             case 8:
+                return 1.5f;
+            case 9:
+                return 1.5f;
+
+            //Jumping Medium
+            case 17:
                 return 1.5f;
             case 18:
                 return 1.5f;
+            case 19:
+                return 1.5f;
+
+            //Jumping Heavy
+            case 27:
+                return 1.5f;
             case 28:
                 return 1.5f;
+            case 29:
+                return 1.5f;
+
             default:
                 return 0;
 
@@ -1397,12 +1454,30 @@ public class KonkyBehaviours : Behaviors
     {
         switch (attackState)
         {
+            //Jumping Light
+            case 7:
+                return 1.5f;
             case 8:
+                return 1.5f;
+            case 9:
+                return 1.5f;
+
+            //Jumping Medium
+            case 17:
                 return 1.5f;
             case 18:
                 return 1.5f;
+            case 19:
+                return 1.5f;
+
+            //Jumping Heavy
+            case 27:
+                return 1.5f;
             case 28:
                 return 1.5f;
+            case 29:
+                return 1.5f;
+
             default:
                 return 0;
 
