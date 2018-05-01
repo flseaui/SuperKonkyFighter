@@ -1034,7 +1034,7 @@ public class KonkyBehaviours : Behaviors
     private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
 
     // Air Dash
-    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, }, actionCancels = new int[] { },
+    private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, }, actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         hurtboxData = new Action.rect[,]
         {
             //{ new Action.rect(2, 7, 14, 4, 15, 1),},
@@ -1430,19 +1430,19 @@ public class KonkyBehaviours : Behaviors
 
             //Jumping Medium
             case 17:
-                return 1.5f;
+                return .5f;
             case 18:
-                return 1.5f;
+                return .5f;
             case 19:
-                return 1.5f;
+                return .5f;
 
             //Jumping Heavy
             case 27:
-                return 1.5f;
+                return 0;
             case 28:
-                return 1.5f;
+                return 0;
             case 29:
-                return 1.5f;
+                return 0;
 
             default:
                 return 0;
