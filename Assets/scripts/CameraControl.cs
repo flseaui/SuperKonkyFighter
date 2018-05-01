@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
-
 public class CameraControl : MonoBehaviour
 {
     public float dampTime = 0.2f;                 // Approximate time for the camera to refocus.
     public float screenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float minSize = 6.5f;                  // The smallest orthographic size the camera can be.
-    public Transform[] targets; // All the targets the camera needs to encompass.
+    public Transform[] targets; 
 
 
-    private Camera camera;                        // Used for referencing the camera.
+    private Camera camera;                       
     private float zoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
     private Vector3 moveVelocity;                 // Reference velocity for the smooth damping of the position.
     private Vector3 desiredPosition;              // The position the camera is moving towards.
@@ -18,6 +17,15 @@ public class CameraControl : MonoBehaviour
     private float leftBound;
     private float topBound;
     private float bottomBound;
+
+    public float mapX = 61.4f;
+    public float mapY = 41.4f;
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+    private float vertExtent;
+    private float horzExtent;
 
     private void Awake()
     {
@@ -33,11 +41,20 @@ public class CameraControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        vertExtent = camera.orthographicSize;
+        horzExtent = vertExtent * Screen.width / Screen.height;
+
+        // Calculations assume map is position at the origin
+        minX = horzExtent - mapX / 2.0f;
+        maxX = mapX / 2.0f - horzExtent;
+        minY = vertExtent - mapY / 2.0f;
+        maxY = mapY / 2.0f - vertExtent;
+
         // Move the camera towards a desired position.
         Move();
 
         // Change the size of the camera based.
-       // Zoom();
+        Zoom();
     }
 
 
@@ -47,7 +64,10 @@ public class CameraControl : MonoBehaviour
         FindAveragePosition();
 
         // Smoothly transition to that position.
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref moveVelocity, dampTime);
+        Vector3 pos = Vector3.SmoothDamp(new Vector3(transform.position.x, transform.position.y, 0), desiredPosition, ref moveVelocity, dampTime);
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        transform.position = pos;
     }
 
 

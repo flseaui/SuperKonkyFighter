@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
 
     private float FLOOR_HEIGHT = 0;
     private float BASE_GRAVITY = -0.05f;
+    public float MAP_WITDH = 46f;
 
     private float[,] levelScaling = new float[,]
     {
@@ -828,21 +829,21 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
-        if (x() < -64f + pushBuffer && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        if (x() < -MAP_WITDH + pushBuffer && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
-            setX(-64f + pushBuffer);
+            setX(-MAP_WITDH + pushBuffer);
         }
-        if (x() < -64f)
+        if (x() < -MAP_WITDH)
         {
-            setX(-64);
+            setX(-MAP_WITDH);
         }
-        else if (x() > 64f - pushBuffer && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        else if (x() > MAP_WITDH - pushBuffer && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
-            setX(64f - pushBuffer);
+            setX(MAP_WITDH - pushBuffer);
         }
-        else if (x() > 64f)
+        else if (x() > MAP_WITDH)
         {
-            setX(64);
+            setX(MAP_WITDH);
         }
 
         if (y() <= FLOOR_HEIGHT) //ground snappity

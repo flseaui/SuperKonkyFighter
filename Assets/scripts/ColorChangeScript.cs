@@ -13,6 +13,7 @@ public class ColorChangeScript : MonoBehaviour
     private void Start()
     {
         StartCoroutine("UpdateColor");
+        
     }
 
     IEnumerator UpdateColor()
