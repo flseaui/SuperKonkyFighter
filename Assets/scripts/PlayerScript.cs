@@ -585,7 +585,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             jumpDirection = 0;
 
             if (basicState == 8)
+            {
+                hVelocity = 0;
                 vVelocity = jumpDirectionSpeed;
+            }
             else if (basicState == 7)
             {
                 vVelocity = jumpDirectionSpeed;
