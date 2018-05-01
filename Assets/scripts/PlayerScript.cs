@@ -195,8 +195,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             // if executing an action
             if (executingAction != 0)
             {
-                if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
-                    attackMove(executingAction);
+                if (executingAction < 40)
+                {
+                    actionMove(executingAction);
+
+                    if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
+                        attackMove(executingAction);
+                }                
                 else if (executingAction >= 40)
                     advancedMove();
                 else if (!airborn)
@@ -674,6 +679,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             previousBasicState = basicState;
         }
 
+    }
+
+    private void actionMove(int action)
+    {
+        hVelocity += behaviors.getAction(action).hMovement[actionFrameCounter];
+        vVelocity += behaviors.getAction(action).vMovement[actionFrameCounter];
     }
 
     private void attackMove(int action)

@@ -22,6 +22,9 @@ public class Action {
     public float gStrength;
     public float aStrength;
 
+    public float[] hMovement;
+    public float[] vMovement;
+
     public bool infinite;
 
     public rect[,] hitboxData;
