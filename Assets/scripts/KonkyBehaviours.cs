@@ -131,6 +131,13 @@ public class KonkyBehaviours : Behaviors
             { jumpM, 18 },
             { jumpH, 28 },
 
+            { oneS, 31   },
+            { twoS, 32   },
+            { threeS, 33 },
+            { fourS, 34  },
+            { fiveS, 35  },
+            { sixS, 36   },
+
             { forwardDash, 41},
             { backDash, 42},
             { forwardAirDash, 43},
