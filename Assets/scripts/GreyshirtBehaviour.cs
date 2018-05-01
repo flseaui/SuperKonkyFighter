@@ -129,6 +129,13 @@ public class GreyshirtBehaviours : Behaviors
             {jumpM, 18 },
             {jumpH, 28 },
 
+            { oneS, 31   },
+            { twoS, 32   },
+            { threeS, 33 },
+            { fourS, 34  },
+            { fiveS, 35  },
+            { sixS, 36   },
+
             {forwardDash, 41},
             {backDash, 42},
             {forwardAirDash, 43},
@@ -394,8 +401,8 @@ public class GreyshirtBehaviours : Behaviors
     private Action oneS = new Action()
     {
         tier = 3,
-        frames = new int[] {  },// 11 | 2 (1) 2 (1) 2 | 13
-        damage = new int[] {  },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 11 | 2 (1) 2 (1) 2 | 13
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -472,7 +479,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action fourS = new Action()
     {
         tier = 3,
-        frames = new int[] { },// 16 | 6 | 21
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 16 | 6 | 21
         damage = new int[] { },
         hitboxData = new Action.rect[,]
         {
@@ -482,7 +489,7 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = MID,
