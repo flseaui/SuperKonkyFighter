@@ -146,9 +146,19 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         hitSound = GetComponent<AudioSource>();
 
+        if (CompareTag("1"))
+        {
+            inputManager = new InputManager(1);
+            behaviors = new KonkyBehaviours();
+        }
+        else if (CompareTag("2"))
+        {
+            inputManager = new InputManager(2);
+            behaviors = new GreyshirtBehaviours();
+        }
+
         vVelocity = 0;
         hVelocity = 0;
-        behaviors = new KonkyBehaviours();
         behaviors.setStats();
         forwardSpeed = behaviors.getForwardSpeed();
         backwardSpeed = behaviors.getBackwardSpeed();
@@ -163,10 +173,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         testAI = new KonkyAI();
 
-        if (CompareTag("1"))
-            inputManager = new InputManager(1);
-        else if (CompareTag("2"))
-            inputManager = new InputManager(2);
     }
 
     // called 60 times per second
