@@ -1464,19 +1464,19 @@ public class KonkyBehaviours : Behaviors
 
             //Jumping Medium
             case 17:
-                return 1.5f;
+                return .5f;
             case 18:
-                return 1.5f;
+                return .5f;
             case 19:
-                return 1.5f;
+                return .5f;
 
             //Jumping Heavy
             case 27:
-                return 1.5f;
+                return 0f;
             case 28:
-                return 1.5f;
+                return 0f;
             case 29:
-                return 1.5f;
+                return 0f;
 
             default:
                 return 0;
