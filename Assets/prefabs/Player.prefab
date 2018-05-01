@@ -348,6 +348,10 @@ MonoBehaviour:
   pushBuffer: 0
   spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
+  konkyAnimationController: {fileID: 9100000, guid: 8efbe4cc9762cc54dbc95d13065249fe,
+    type: 2}
+  greyshirtAnimationController: {fileID: 9100000, guid: efe02631769fcd94d9053c285d188057,
+    type: 2}
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}

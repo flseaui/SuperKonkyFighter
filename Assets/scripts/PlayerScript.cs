@@ -113,6 +113,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public RuntimeAnimatorController konkyAnimationController;
+    public RuntimeAnimatorController greyshirtAnimationController;
     public Behaviors behaviors;
     public PolygonCollider2D hitbox;
     public GameObject otherPlayer;
@@ -150,11 +152,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             inputManager = new InputManager(1);
             behaviors = new KonkyBehaviours();
+            animator.runtimeAnimatorController = konkyAnimationController;
+            
         }
         else if (CompareTag("2"))
         {
             inputManager = new InputManager(2);
             behaviors = new GreyshirtBehaviours();
+            animator.runtimeAnimatorController = greyshirtAnimationController;
         }
 
         vVelocity = 0;
