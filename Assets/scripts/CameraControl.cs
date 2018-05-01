@@ -27,6 +27,8 @@ public class CameraControl : MonoBehaviour
     private float vertExtent;
     private float horzExtent;
 
+    public Transform leftEdge, rightEdge;
+
     private void Awake()
     {
         camera = GetComponentInChildren<Camera>();
@@ -54,7 +56,7 @@ public class CameraControl : MonoBehaviour
         Move();
 
         // Change the size of the camera based.
-        //Zoom();
+        Zoom();
     }
 
 
@@ -65,7 +67,7 @@ public class CameraControl : MonoBehaviour
 
         // Smoothly transition to that position.
         Vector3 pos = Vector3.SmoothDamp(new Vector3(transform.position.x, transform.position.y, 0), desiredPosition, ref moveVelocity, dampTime);
-        //pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.x = Mathf.Clamp(pos.x, leftEdge.position.x + horzExtent, rightEdge.position.x - horzExtent);
         //pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
     }
