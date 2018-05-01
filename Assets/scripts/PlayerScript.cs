@@ -528,21 +528,25 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 executingAction = overrideAction;
             }
         }
-        else if (overrideAction != 0)
+
+        if (executingAction == 0)
         {
-            executingAction = overrideAction;
-        }
-        else if (advancedState != 0)
-        {
-            executingAction = advancedState + 40;
-        }
-        else if (attackState != 0)
-        {
-            executingAction = attackState;
-        }
-        else
-        {
-            basicMove();
+            if (overrideAction != 0)
+            {
+                executingAction = overrideAction;
+            }
+            else if (advancedState != 0)
+            {
+                executingAction = advancedState + 40;
+            }
+            else if (attackState != 0)
+            {
+                executingAction = attackState;
+            }
+            else
+            {
+                basicMove();
+            }
         }
     }
 
