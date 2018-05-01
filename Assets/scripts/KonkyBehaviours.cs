@@ -1369,35 +1369,26 @@ public class KonkyBehaviours : Behaviors
 
     public override float getAttackMovementHorizontal(int attackState)
     {
+        Debug.Log(attackState);
         switch (attackState) {
             case 2:
                 return 1;
-                break;
             case 12:
                 return 1;
-                break;
             case 15:
                 return 1;
-                break;
             case 25:
                 return 1000;
-                break;
             case 16:
                 return 1;
-                break;
             case 8:
                 return 1.5f;
-                break;
             case 18:
                 return 1.5f;
-                break;
             case 28:
                 return 1.5f;
-                break;
-
             default:
                 return 0;
-                break;
 
         }
     }
@@ -1408,17 +1399,12 @@ public class KonkyBehaviours : Behaviors
         {
             case 8:
                 return 1.5f;
-                break;
             case 18:
                 return 1.5f;
-                break;
             case 28:
                 return 1.5f;
-                break;
-
             default:
                 return 0;
-                break;
 
         }
     }
