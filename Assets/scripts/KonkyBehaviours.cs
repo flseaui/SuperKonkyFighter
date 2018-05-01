@@ -748,8 +748,31 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 3000, 3000, 3000, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+            { new Action.rect(6, 9.5f, 4, 14, 5, 0), },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
 
-        },
+    },
         hurtboxData = new Action.rect[,]
         {
 
@@ -804,7 +827,8 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 600 },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -832,6 +856,16 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 400, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(5, 9, 7, 9, 4, 0),  },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
 
         },
         hurtboxData = new Action.rect[,]
@@ -876,7 +910,38 @@ public class KonkyBehaviours : Behaviors
                                                                              0, 5000, 5000, 5000, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(8, 7.5f, 7.5f, 2, 4, 0),  },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(8, 7.5f, 7.5f, 2, 4, 0),  },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(8, 7.5f, 7.5f, 2, 4, 0),  }, 
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(8, 7.5f, 7.5f, 2, 4, 0),  },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(2.5f, 2.5f, 5, 5, 3, 0),  },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(5, 9, 7, 9, 4, 0),  },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
         },
         hurtboxData = new Action.rect[,]
         {
@@ -886,7 +951,7 @@ public class KonkyBehaviours : Behaviors
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -895,7 +960,7 @@ public class KonkyBehaviours : Behaviors
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -920,11 +985,56 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(2, 6, 8, 7, 10, 0), },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
+            { nullBox, },
         },
         hurtboxData = new Action.rect[,]
         {
-
+            { new Action.rect(0, 0, 0, 0, 14, 0), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            { new Action.rect(1, 6, 4, 12, 20, 10), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            { new Action.rect(0.5f, 4, 7, 8, 4, 5), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
         },
         hMovement = new float[] { 0, 0, 0, 0, .25f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 1.25f, 0, 0, 0, 0, 0, 0, 0, 0, 0, -.5f , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
