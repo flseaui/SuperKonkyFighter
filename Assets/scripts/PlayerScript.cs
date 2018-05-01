@@ -498,7 +498,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     private void swapBuffers()
     {
         if (bufferedMove > 40)
-            overrideAction = bufferedMove - 40;
+            overrideAction = bufferedMove;
         else if (bufferedMove == 40)
         {
             ActionEnd();
