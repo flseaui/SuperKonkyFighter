@@ -20,6 +20,9 @@ public abstract class Behaviors {
 
     public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
 
+    public delegate void OnAdvancedAction(PlayerScript player);
+    public OnAdvancedAction[] onAdvancedActionCallbacks;
+
     // Returns Action object from given id
     public Action getAction(int id)
     {
@@ -33,6 +36,8 @@ public abstract class Behaviors {
         this.ActionIds = ActionIds;
         this.AnimAction = AnimAction;
     }
+
+    public virtual void setDelegates() { }
 
     public virtual void setStats()
     {

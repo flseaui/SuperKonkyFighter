@@ -197,8 +197,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
                     attackMove(executingAction);
-                else if (executingAction > 40)
+                else if (executingAction >= 40)
                     advancedMove();
+                else if (!airborn)
+                    hVelocity = 0;
 
                 if (executingAction != 0)
                 {
@@ -296,7 +298,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (input[7])
         {
             attackState = basicState + 30;
-            Debug.Log(attackState);
         }
         else
             attackState = 0;
@@ -678,7 +679,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
-        alreadyExecutedAttackMove = true;   
+        alreadyExecutedAttackMove = true;
     }
 
     private void advancedMove()
@@ -686,33 +687,34 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (executingAction - 40)
         {
             case 1:
-                hVelocity = behaviors.getForwardSpeed() * behaviors.getDashForwardSpeed();
-                if (behaviors.getInfiniteDashForward())
-                    checkDashEnd();
+                if (behaviors.onAdvancedActionCallbacks[0] != null)
+                    behaviors.onAdvancedActionCallbacks[0].Invoke(this);
                 break;
             case 2:
-                hVelocity = behaviors.getBackwardSpeed() * behaviors.getDashBackSpeed();
+                if (behaviors.onAdvancedActionCallbacks[1] != null)
+                    behaviors.onAdvancedActionCallbacks[1].Invoke(this);
                 break;
             case 3:
-                vVelocity = 0;
-                hVelocity = behaviors.getForwardSpeed() * behaviors.getAirDashForwardSpeed();
+                if (behaviors.onAdvancedActionCallbacks[2] != null)
+                    behaviors.onAdvancedActionCallbacks[2].Invoke(this);
                 break;
             case 4:
-                vVelocity = 0;
-                hVelocity = behaviors.getBackwardSpeed() * behaviors.getAirDashBackSpeed();
+                if (behaviors.onAdvancedActionCallbacks[3] != null)
+                    behaviors.onAdvancedActionCallbacks[3].Invoke(this);
                 break;
             case 5:
-                stunTimer--;
-                if (stunTimer <= 0)
-                {
-                    ActionEnd();
-                }
+                if (behaviors.onAdvancedActionCallbacks[4] != null)
+                    behaviors.onAdvancedActionCallbacks[4].Invoke(this);
                 break;
             case 6:
-                hVelocity = 0;
-                checkBlockEnd();
+                if (behaviors.onAdvancedActionCallbacks[5] != null)
+                    behaviors.onAdvancedActionCallbacks[5].Invoke(this);
                 break;
             case 7:
+                break;
+            case 11:
+                if (behaviors.onAdvancedActionCallbacks[6] != null)
+                    behaviors.onAdvancedActionCallbacks[6].Invoke(this);
                 break;
         }
     }
@@ -993,7 +995,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hPush = playerSide ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
     }
 
-    private void ActionEnd()
+    public void ActionEnd()
     {
         animator.StopPlayback();
         executingAction = 0;
