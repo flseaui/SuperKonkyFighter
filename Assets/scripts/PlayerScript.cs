@@ -466,8 +466,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         advancedState = 0;
         attackState = 0;
-        if (!airborn)
-            vVelocity = 0;
         if (actionFrameCounter >= behaviors.getAction(executingAction).frames.Length)
         {
             if (behaviors.getAction(executingAction).infinite)
