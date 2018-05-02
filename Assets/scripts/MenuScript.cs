@@ -527,6 +527,7 @@ public class MenuScript : MonoBehaviour {
 		{
 			backgroundPass = Random.Range(0,3);
 		}
+        Debug.Log("VACCCCCCCCCCCCCC: " + backgroundPass);
 		PlayerPrefs.SetInt("stage", backgroundPass);
 		PlayerPrefs.SetInt("player1c", player1c);
 		PlayerPrefs.SetInt("player2c", player2c);
