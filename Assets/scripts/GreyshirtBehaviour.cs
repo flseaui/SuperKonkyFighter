@@ -194,7 +194,7 @@ public class GreyshirtBehaviours : Behaviors
         level = 0,
         block = MID,
         knockdown = NONE,
-        actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = 0,
         gStrength = 1,
         aAngle = 30,
