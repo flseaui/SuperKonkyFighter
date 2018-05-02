@@ -426,15 +426,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd610497a3236544b5fcc1023b11478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleSprite: {fileID: 21300000, guid: f9212b6797e8ced4b8351465c2ff20a9, type: 3}
+  titleSprite: {fileID: 21300000, guid: 83d97e2fcdb66e8439f1b2958230a6e8, type: 3}
   playButtonSprite: {fileID: 21300000, guid: 68633417014e0d841b55c41bbe4c8d59, type: 3}
-  platformSprite: {fileID: 21300000, guid: c155635ab4fbd324c9689450c9958402, type: 3}
+  platformSprite: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   konkySelect: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
   GreyshirtSelect: {fileID: 21300000, guid: 74586aef65a341a42860a23afa6eb459, type: 3}
   PlayerSelectText: {fileID: 21300000, guid: d7c5180793f8068449f3ed336a17ca52, type: 3}
-  StageSelectText: {fileID: 21300000, guid: 6bf3500f4670a9a4fadab2255f42a839, type: 3}
+  StageSelectText: {fileID: 21300000, guid: 5ec4602800457184a8b6cad00866cfc4, type: 3}
   konkyGlobe: {fileID: 21300000, guid: 2c352fb167139fb4f9a388fd44188234, type: 3}
-  greyshirtGlobe: {fileID: 21300000, guid: 05e4a0fc57a861d4fa744076d150ac3e, type: 3}
+  greyshirtGlobe: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   konkyGlobeAnim: {fileID: 9100000, guid: 80ce49420553bdd499f075feea4a38e5, type: 2}
   GreyshirtGlobeAnim: {fileID: 9100000, guid: f8699d4f1668344458e8c2a89b0e3182, type: 2}
   BackgroundNSprite: {fileID: 21300000, guid: 453fbd965037b394bb328d2139f95662, type: 3}

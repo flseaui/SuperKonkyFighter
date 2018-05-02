@@ -454,7 +454,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundPass = 4;
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
-				changeText(backgroundText, "catacombs of carthus");
+				changeText(backgroundText, "training grounds");
 				backgroundGoButton.GetComponent<ButtonScript>().enable();
 				break;
 			case 9:
