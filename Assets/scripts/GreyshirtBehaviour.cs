@@ -521,8 +521,8 @@ public class GreyshirtBehaviours : Behaviors
         {
 
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 2,
         block = HIGH,
         knockdown = NONE,
@@ -573,7 +573,12 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 550, 550, 0, 0, 0, 0, 0, 0, 550, 550, 0, 0, 0, 0, 0, 0, 550, 550, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(7, 2.5f, 7, 5, 2, 0), },
+            {nullBox },
+            { new Action.rect(7, 2.5f, 7, 5, 2, 0), },
+            {nullBox },
+            { new Action.rect(7, 2.5f, 7, 5, 2, 0), },
+            {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
