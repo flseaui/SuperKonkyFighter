@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
 
         ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
 
-        Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
+        Background = new Sprite[] { background0, background1, background2, background3 };
 		Ground = new Sprite[] { ground0, ground1, ground2, ground3 };
 
         GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);

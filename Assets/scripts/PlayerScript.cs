@@ -864,7 +864,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             setX(MAP_WITDH);
         }
 
-        setX(Mathf.Clamp(x(), cameraLeft.position.x - 5, cameraRight.position.x + 5));
+        setX(Mathf.Clamp(x(), cameraLeft.position.x - (!playerSide && ((y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))? 5 - pushBuffer : 5 ), cameraRight.position.x + 
+            (playerSide && ((y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y())) ? 5 - pushBuffer : 5 )));
 
         if (y() <= FLOOR_HEIGHT) //ground snappity
         {
