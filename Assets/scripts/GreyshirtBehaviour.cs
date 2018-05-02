@@ -730,7 +730,12 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 800, 800, 800, 800, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            
+            { new Action.rect(4, 5, 5, 10, 6, 0), new Action.rect(2, 10, 8, 4, 6, 1), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -784,10 +789,10 @@ public class GreyshirtBehaviours : Behaviors
         block = MID,
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
-        gAngle = 45,
-        gStrength = 1,
-        aAngle = 45,
-        aStrength = 1
+        gAngle = 60,
+        gStrength = 4,
+        aAngle = 60,
+        aStrength = 4
     };
 
     // Five Super
