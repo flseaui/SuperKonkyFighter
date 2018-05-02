@@ -11,8 +11,8 @@ public class Follow : MonoBehaviour
 
     public float speed = 2.0f;
     public float dampTime = 0.2f;
-    private float vertExtent;
-    private float horzExtent;
+    public float vertExtent;
+    public float horzExtent;
 
     private void Awake()
     {

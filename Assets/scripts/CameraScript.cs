@@ -43,6 +43,9 @@ public class CameraScript : MonoBehaviour
 	public Button heavyButton;
 
     public Transform cameraLeft, cameraRight;
+    public Transform leftEdge, rightEdge, topEdge, bottomEdge;
+
+    float vertExtent, horzExtent;
 
 	private int megaKek;
 
@@ -90,9 +93,12 @@ public class CameraScript : MonoBehaviour
 
         GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);
 
-		//background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
-		//ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
-	}
+        vertExtent = GetComponentInParent<Follow>().vertExtent;
+        horzExtent = GetComponentInParent<Follow>().horzExtent;
+
+        //background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
+        //ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
+    }
 
     void Update()
     {
@@ -102,7 +108,7 @@ public class CameraScript : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
         
-		/*float cx = (getX(player1) + getX(player2)) / 2f;
+		float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
             cx = 42;
@@ -115,11 +121,11 @@ public class CameraScript : MonoBehaviour
         {
             cy = 12;
         }
-        setY(background, cy * 0.5f + 8);
-        setY(self, cy);
-        setX(background, cx * 0.5f);
-        setX(self, cx);
-        */
+        //setY(background, cy * 0.5f + 8);
+        //setY(self, cy);
+        //setX(background, cx * 0.5f);
+        //setX(self, cx);
+        
 
         if (getX(player1) < getX(player2) - 1)
         {
@@ -142,14 +148,17 @@ public class CameraScript : MonoBehaviour
         uis.meter2.value = p2s.meterCharge;
 
         if (ghost.GetComponent<BackGroundScript>().shake)
-		{
-            EZCameraShake.CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
-            /*
+		{   
             shakeX = Random.Range(-0.75f, 0.75f);
 			shakeY = Random.Range(-0.75f, 0.75f);
-			setX(self, cx + shakeX);
+
+            float camX = transform.parent.transform.position.x + shakeX;
+            if (camX - (horzExtent ) < leftEdge.position.x)
+                camX = leftEdge.position.x + (horzExtent );
+            else if (camX + (horzExtent ) > rightEdge.position.x)
+                camX = rightEdge.position.x - (horzExtent );
+            setX(self, camX);
 			setY(self, 12 + shakeY);
-            */
 		}
 
 	}
