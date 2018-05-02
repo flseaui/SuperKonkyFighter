@@ -357,6 +357,8 @@ MonoBehaviour:
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
   hitSound: {fileID: 82813003963254516}
+  cameraLeft: {fileID: 0}
+  cameraRight: {fileID: 0}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []

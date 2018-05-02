@@ -42,6 +42,8 @@ public class CameraScript : MonoBehaviour
 	public Button mediumButton;
 	public Button heavyButton;
 
+    public Transform cameraLeft, cameraRight;
+
 	private int megaKek;
 
 	public float shakeX;
@@ -49,6 +51,7 @@ public class CameraScript : MonoBehaviour
     public bool lastP1Side;
     public bool lastP2Side;
 
+    public float magnitude, roughness, fadeIn, fadeOut;
 
 	void Start()
 	{
@@ -62,6 +65,8 @@ public class CameraScript : MonoBehaviour
 		p1s.facingRight = true;
 		p1s.playerID = 1;
 		p1s.JoyScript = JoyScript;
+        p1s.cameraLeft = cameraLeft;
+        p1s.cameraRight = cameraRight;
         //p1s.lightButton = lightButton;
         //p1s.mediumButton = mediumButton;
         //p1s.heavyButton = heavyButton;
@@ -72,6 +77,8 @@ public class CameraScript : MonoBehaviour
         p2h = player2.GetComponentInChildren<CollisionScript>();
         p2s.facingRight = false;
 		p2s.playerID = 2;
+        p2s.cameraLeft = cameraLeft;
+        p2s.cameraRight = cameraRight;
 
         p1s.otherPlayer = player2;
 		p2s.otherPlayer = player1;
@@ -81,7 +88,7 @@ public class CameraScript : MonoBehaviour
         Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
 		Ground = new Sprite[] { ground0, ground1 };
 
-        GetComponentInParent<CameraControl>().setTargets(player1.transform, player2.transform);
+        GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);
 
 		//background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
 		//ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
@@ -95,7 +102,7 @@ public class CameraScript : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
         
-		float cx = (getX(player1) + getX(player2)) / 2f;
+		/*float cx = (getX(player1) + getX(player2)) / 2f;
         if (cx > 42)
         {
             cx = 42;
@@ -108,10 +115,11 @@ public class CameraScript : MonoBehaviour
         {
             cy = 12;
         }
-        //setY(background, cy * 0.5f + 8);
-        //setY(self, cy);
-        //setX(background, cx * 0.5f);
-        //setX(self, cx);
+        setY(background, cy * 0.5f + 8);
+        setY(self, cy);
+        setX(background, cx * 0.5f);
+        setX(self, cx);
+        */
 
         if (getX(player1) < getX(player2) - 1)
         {
@@ -135,10 +143,13 @@ public class CameraScript : MonoBehaviour
 
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{
+            EZCameraShake.CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
+            /*
             shakeX = Random.Range(-0.75f, 0.75f);
 			shakeY = Random.Range(-0.75f, 0.75f);
 			setX(self, cx + shakeX);
 			setY(self, 12 + shakeY);
+            */
 		}
 
 	}

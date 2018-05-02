@@ -122,6 +122,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public JoyScript JoyScript;
     public InputManager inputManager;
     public AudioSource hitSound;
+    public Transform cameraLeft, cameraRight;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
@@ -845,6 +846,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             setX(MAP_WITDH);
         }
+
+        setX(Mathf.Clamp(x(), cameraLeft.position.x - 5, cameraRight.position.x + 5));
 
         if (y() <= FLOOR_HEIGHT) //ground snappity
         {
