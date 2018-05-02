@@ -1124,13 +1124,15 @@ MonoBehaviour:
   p2h: {fileID: 0}
   background0: {fileID: 21300000, guid: 9f8ac068cc521004cb2d316824b24df1, type: 3}
   background1: {fileID: 21300000, guid: 495ac15a315ff38479eade0bb006874d, type: 3}
-  background2: {fileID: 0}
-  background3: {fileID: 0}
-  background4: {fileID: 0}
-  background5: {fileID: 0}
-  background6: {fileID: 0}
+  background2: {fileID: 21300000, guid: 161c3a6413b662e40bd3a3b2c53f6a11, type: 3}
+  background3: {fileID: 21300000, guid: 9f8ac068cc521004cb2d316824b24df1, type: 3}
+  background4: {fileID: 21300000, guid: 14ce2032cacd46a4fb52498d527fd838, type: 3}
+  background5: {fileID: 21300000, guid: cf9d9ecf9e82ed4428e0023d32a7886a, type: 3}
+  background6: {fileID: 21300000, guid: 075255fdc894fbf42b473b48b21a92c8, type: 3}
   ground0: {fileID: 21300000, guid: f00b59a299d5aeb4eb7fdf1a7e8f7764, type: 3}
   ground1: {fileID: 21300000, guid: 6bb5a5035a4f7bf48a57d2ee4a63b091, type: 3}
+  ground2: {fileID: 21300000, guid: e6c2ba048110b4048b87352f04281524, type: 3}
+  ground3: {fileID: 21300000, guid: fea4f1db133121347bd73c6b6505f5f0, type: 3}
   Background: []
   Ground: []
   JoyScript: {fileID: 1338733470}
@@ -2088,7 +2090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1717751413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2123,7 +2125,7 @@ SpriteRenderer:
   m_SortingLayerID: -2035806667
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f00b59a299d5aeb4eb7fdf1a7e8f7764, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fea4f1db133121347bd73c6b6505f5f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2140,7 +2142,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717751412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 3.8593712}
+  m_LocalPosition: {x: 0, y: -0, z: 7}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children: []
   m_Father: {fileID: 0}

@@ -153,15 +153,32 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (CompareTag("1"))
         {
             inputManager = new InputManager(1);
-            behaviors = new KonkyBehaviours();
-            animator.runtimeAnimatorController = konkyAnimationController;
-            
+            switch (PlayerPrefs.GetInt("player1c"))
+            {
+                case 0:
+                    behaviors = new KonkyBehaviours();
+                    animator.runtimeAnimatorController = konkyAnimationController;
+                    break;
+                case 1:
+                    behaviors = new GreyshirtBehaviours();
+                    animator.runtimeAnimatorController = greyshirtAnimationController;
+                    break;
+            }
         }
         else if (CompareTag("2"))
         {
             inputManager = new InputManager(2);
-            behaviors = new GreyshirtBehaviours();
-            animator.runtimeAnimatorController = greyshirtAnimationController;
+            switch (PlayerPrefs.GetInt("player2c"))
+            {
+                case 0:
+                    behaviors = new KonkyBehaviours();
+                    animator.runtimeAnimatorController = konkyAnimationController;
+                    break;
+                case 1:
+                    behaviors = new GreyshirtBehaviours();
+                    animator.runtimeAnimatorController = greyshirtAnimationController;
+                    break;
+            }
         }
 
         vVelocity = 0;

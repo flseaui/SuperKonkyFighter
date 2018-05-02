@@ -32,8 +32,11 @@ public class CameraScript : MonoBehaviour
 
 	public Sprite ground0;
 	public Sprite ground1;
+    public Sprite ground2;
+    public Sprite ground3;
 
-	public Sprite[] Background;
+
+    public Sprite[] Background;
 	public Sprite[] Ground;
 
 	public JoyScript JoyScript;
@@ -89,12 +92,15 @@ public class CameraScript : MonoBehaviour
         ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
 
         Background = new Sprite[] { background0, background1, background2, background3, background4, background5, background6 };
-		Ground = new Sprite[] { ground0, ground1 };
+		Ground = new Sprite[] { ground0, ground1, ground2, ground3 };
 
         GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);
 
         vertExtent = GetComponentInParent<Follow>().vertExtent;
         horzExtent = GetComponentInParent<Follow>().horzExtent;
+
+        background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("stage")];
+        ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("stage")];
 
         //background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
         //ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
