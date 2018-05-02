@@ -1016,7 +1016,6 @@ public class GreyshirtBehaviours : Behaviors
     {
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 },
         actionCancels = new int[] { 40 },
-        infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(-4, 2.5f, 8, 5, 14, 1), new Action.rect(2.5f, 7, 5, 8, 14, 2), },
