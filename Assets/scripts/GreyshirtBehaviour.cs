@@ -171,7 +171,8 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            
+            { new Action.rect(6, 7, 7, 2, 2, 0), },
+            {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -208,7 +209,9 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            
+            { new Action.rect(6, 10, 5, 5, 3, 0), },
+            {nullBox },
+            {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -256,7 +259,12 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(25, 10, 40, 2, 3, 0), },
+            {nullBox },
+            {nullBox },
+            { new Action.rect(25, 10, 40, 2, 3, 0), },
+            {nullBox },
+            {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -554,7 +562,48 @@ public class GreyshirtBehaviours : Behaviors
         },
         hurtboxData = new Action.rect[,]
         {
-
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 42, 1), new Action.rect(1.5f, 9f, 4, 8, 42, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
         hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -563,9 +612,9 @@ public class GreyshirtBehaviours : Behaviors
         knockdown = SOFTKD,
         actionCancels = new int[] { 35 },
         gAngle = 0,
-        gStrength = 1,
-        aAngle = 0,
-        aStrength = 0
+        gStrength = .5f,
+        aAngle = -45,
+        aStrength = .5f,
     };
 
     // Two Super
@@ -580,7 +629,40 @@ public class GreyshirtBehaviours : Behaviors
         },
         hurtboxData = new Action.rect[,]
         {
-
+            { new Action.rect(1, 4.5f, 7, 9, 5, 0), new Action.rect(0, 0, 0, 0, 0, 1), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(.5f, 4, 5, 8, 10, 0), new Action.rect(3.5f, 1, 8, 2, 10, 1), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(1, 4.5f, 7, 9, 16, 5), new Action.rect(0, 0, 0, 0, 0, 1),},
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
         hMovement = new float[] { 0, 0, 0, 0, 0, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -628,11 +710,53 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 800, 800, 800, 800, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-
+            
         },
         hurtboxData = new Action.rect[,]
         {
-
+            { new Action.rect(1, 4.5f, 7, 9, 16, 0), new Action.rect(0, 0, 0, 0, 0, 1)},
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 6, 0), new Action.rect(2.5f, 7, 6, 5, 6, 1), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 21, 0), new Action.rect(1.5f, 9f, 4, 8, 21, 1), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
         hMovement = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -1350,29 +1474,27 @@ public class GreyshirtBehaviours : Behaviors
 
             //Standing Light
             case 4:
-                return 0;
+                return 1.5f;
             case 5:
-                return 0;
+                return 1.5f;
             case 6:
-                return 0;
+                return 1.5f;
 
             //Standing Medium
             case 14:
                 return 1;
             case 15:
                 return 1;
-
-            //Forward Medium
             case 16:
                 return 1;
 
             //Standing Heavy
             case 24:
-                return 1;
+                return 0;
             case 25:
-                return 1;
+                return 0;
             case 26:
-                return 1;
+                return 0;
 
             //Jumping Light
             case 7:
