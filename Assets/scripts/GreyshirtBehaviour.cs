@@ -1540,16 +1540,16 @@ public class GreyshirtBehaviours : Behaviors
 
     public override void setStats()
     {
-        forwardSpeed = 0.25f;
-        backwardSpeed = -0.15f;
+        forwardSpeed = 0.2f;
+        backwardSpeed = -0.2f;
         jumpDirectionSpeed = 1.25f;
         dashForwardSpeed = 3f;
-        dashBackSpeed = 3f;
-        airDashForwardSpeed = 3f;
-        airDashBackSpeed = 3f;
+        dashBackSpeed = 2.9f;
+        airDashForwardSpeed = 3.1f;
+        airDashBackSpeed = 2.5f;
         gravity = -0.05f;
-        maxHealth = 11000;
-        infiniteDashForward = true;
+        maxHealth = 10000;
+        infiniteDashForward = false;
     }
 
     public override float getAttackMovementHorizontal(int attackState)
