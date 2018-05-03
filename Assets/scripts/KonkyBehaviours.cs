@@ -1227,13 +1227,37 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Block
-    private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action block = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
+        }
+    };
 
     // Crouching Block
-    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action crouchBlock = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 4, 7, 8, 1, 5), },
+        }
+    };
 
     // Air Block
-    private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action airBlock = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(1, 6, 4, 12, 10, 10), },
+        }
+    };
 
     // Air Dash
     private Action forwardAirDash = new Action() { frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, }, actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
