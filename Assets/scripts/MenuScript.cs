@@ -26,6 +26,8 @@ public class MenuScript : MonoBehaviour {
 	public RuntimeAnimatorController konkyGlobeAnim;
 	public RuntimeAnimatorController GreyshirtGlobeAnim;
 
+	public Sprite bkgMask;
+
 	//---------------------background sprites------------------//
 
 	public Sprite BackgroundNSprite;
@@ -91,6 +93,7 @@ public class MenuScript : MonoBehaviour {
 	private int globeSelect;
 
 	void Start () {
+		ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject);
 		startScreen(TITLE_SCREEN);
 	}
 	
@@ -98,9 +101,9 @@ public class MenuScript : MonoBehaviour {
 	{
 		GameObject button = Instantiate(buttonPrefab);
 
-		button.GetComponent<ButtonScript>().menuScript = this;
+		button.GetComponent<ComponentScript>().menuScript = this;
 
-		button.GetComponent<ButtonScript>().triggerID = triggerID;
+		button.GetComponent<ComponentScript>().triggerID = triggerID;
 
 		Vector2[] l = button.GetComponent<PolygonCollider2D>().points;
 		for (int i =0; i < points.Length; ++i)
@@ -108,12 +111,6 @@ public class MenuScript : MonoBehaviour {
 			l[i] = points[i];
 		}
 		button.GetComponent<PolygonCollider2D>().points = l;
-
-		LineRenderer line = button.GetComponent<LineRenderer>();
-		line.SetPosition(0, points[0]);
-		line.SetPosition(1, points[1]);
-		line.SetPosition(2, points[2]);
-		line.SetPosition(3, points[3]);
 
 		Mesh m = button.GetComponent<MeshFilter>().mesh;
 		m = new Mesh();
@@ -128,8 +125,8 @@ public class MenuScript : MonoBehaviour {
 
 		menuObjects.Add(button);
 
-		button.GetComponent<ButtonScript>().defaultColor = color;
-		button.GetComponent<ButtonScript>().startFlags(flags);
+		button.GetComponent<ComponentScript>().defaultColor = color;
+		button.GetComponent<ComponentScript>().setup(flags, points);
 
 		return button;
 	}
@@ -300,36 +297,36 @@ public class MenuScript : MonoBehaviour {
 				player2c = -1;
 				globeSelect = 0;
 
-				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ButtonScript.FLAG_HIDDEN });//hidden play button
+				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ComponentScript.FLAG_HIDDEN });//hidden play button
 				makeFancyText(0, -5, 2f, "play", 0);//play button (visible)
 				makeSprite(0, 3, 26, 11, titleSprite);//title logo
 				break;
 			case PLAYER_SELECT_SCREEN:
 
 				globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
-				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] { ButtonScript.FLAG_NOLINE });
+				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] { ComponentScript.FLAG_NOLINE });
 				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] {});
 				cpuText1 = makeFancyText(-8.5f, -7.75f, 0.5f, "", 0);
 
 				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
-				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ButtonScript.FLAG_NOLINE });
+				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ComponentScript.FLAG_NOLINE });
 				player2 = makeSprite(11, -6, 10, 10, konkyGlobe, konkyGlobeAnim);
 				player2.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				player2.GetComponent<SpriteRenderer>().flipX = true;
 				cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
 				cpuText2 = makeFancyText(8.5f, -7.75f, 0.5f, "", 0);
 
-				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ButtonScript.FLAG_HIDDEN, ButtonScript.FLAG_DUMMY });
+				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ComponentScript.FLAG_HIDDEN, ComponentScript.FLAG_DUMMY });
 				characterGoText = makeFancyText(0, -3, 2, "go", 0);
 				characterGoText.SetActive(false);
 
 				characterButtons = new GameObject[6];
 
-				characterButtons[0] = makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ButtonScript.FLAG_STICKY });
+				characterButtons[0] = makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ComponentScript.FLAG_STICKY });
 				makeSprite(-10, 4, 8, 8, konkySelect);//konky sprite
-				characterButtons[1] = makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ButtonScript.FLAG_STICKY });
+				characterButtons[1] = makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ComponentScript.FLAG_STICKY });
 				makeSprite(-6, 4, 8, 8, GreyshirtSelect);//greyshirt sprite
 				makeButton(new Vector3[] { new Vector2( -5, 7), new Vector2(  0, 7), new Vector2(  0, 0), new Vector2( -3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  0, 7), new Vector2(  5, 7), new Vector2(  3, 0), new Vector2(  0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
@@ -338,7 +335,7 @@ public class MenuScript : MonoBehaviour {
 
 				makeText(-16f, 9f, 1.25f, "player select", 1);//screen description
 
-				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ButtonScript.FLAG_HIDDEN });
+				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ComponentScript.FLAG_HIDDEN });
 				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
 
 				globeShift();
@@ -347,42 +344,45 @@ public class MenuScript : MonoBehaviour {
 				break;
 			case STAGE_SELECT_SCREEN:
 
-				backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ButtonScript.FLAG_DUMMY });
+				backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ComponentScript.FLAG_DUMMY });
 				backgroundFrame.GetComponent<MeshRenderer>().sortingOrder = 1;
 
-				backgroundShowcase = makeSprite(0, 2, 32, 8, backgroundRSprite);
+				backgroundShowcase = makeSprite(0, 2, 32, 18, backgroundRSprite);
 				backgroundShowcase.GetComponent<SpriteRenderer>().sortingOrder = 0 ;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = BackgroundNSprite;
+				backgroundShowcase.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+				SpriteMask ma = backgroundShowcase.AddComponent(typeof(SpriteMask)) as SpriteMask;
+				ma.sprite = bkgMask;
 
-				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ButtonScript.FLAG_DUMMY, ButtonScript.FLAG_SHADE});
+				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_SHADE});
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 1;
 
 				stageSprites = new GameObject[5];
 
-				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 4, new int[] {ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR}).GetComponent<MeshRenderer>().sortingOrder = 1;
+				makeButton(new Vector3[] { new Vector2(-10, -2), new Vector2(-6, -2), new Vector2(-5, -6), new Vector2(-9, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 4, new int[] {ComponentScript.FLAG_STICKY, ComponentScript.FLAG_CLEAR_LOCK}).GetComponent<MeshRenderer>().sortingOrder = 1;
 				stageSprites[0] = makeSprite(-7.5f, -4, 5, 4, background0Button);
 				stageSprites[0].GetComponent<SpriteRenderer>().sortingOrder = 1;
 				changeSpriteColor(stageSprites[0], KONKY_RED);
-				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 5, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				makeButton(new Vector3[] { new Vector2(-6, -2), new Vector2(-2, -2), new Vector2(-1, -6), new Vector2(-5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 5, new int[] { ComponentScript.FLAG_STICKY, ComponentScript.FLAG_CLEAR_LOCK }).GetComponent<MeshRenderer>().sortingOrder = 1;
 				stageSprites[1] = makeSprite(-3.5f, -4, 5, 4, background1Button);
 				stageSprites[1].GetComponent<SpriteRenderer>().sortingOrder = 1;
 				changeSpriteColor(stageSprites[1], KONKY_RED);
-				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 6, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				makeButton(new Vector3[] { new Vector2(-2, -2), new Vector2(2, -2), new Vector2(1, -6), new Vector2(-1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 6, new int[] { ComponentScript.FLAG_STICKY, ComponentScript.FLAG_CLEAR_LOCK }).GetComponent<MeshRenderer>().sortingOrder = 1;
 				stageSprites[2] = makeSprite(0, -4, 5, 4, backgroundRButton);
 				stageSprites[2].GetComponent<SpriteRenderer>().sortingOrder = 1;
 				changeSpriteColor(stageSprites[2], KONKY_RED);
-				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 7, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				makeButton(new Vector3[] { new Vector2(2, -2), new Vector2(6, -2), new Vector2(5, -6), new Vector2(1, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 7, new int[] { ComponentScript.FLAG_STICKY, ComponentScript.FLAG_CLEAR_LOCK }).GetComponent<MeshRenderer>().sortingOrder = 1;
 				stageSprites[3] = makeSprite(3.5f, -4, 5, 4, background2Button);
 				stageSprites[3].GetComponent<SpriteRenderer>().sortingOrder = 1;
 				changeSpriteColor(stageSprites[3], KONKY_RED);
-				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 8, new int[] { ButtonScript.FLAG_STICKY, ButtonScript.FLAG_LOCK_CLEAR }).GetComponent<MeshRenderer>().sortingOrder = 1;
+				makeButton(new Vector3[] { new Vector2(6, -2), new Vector2(10, -2), new Vector2(9, -6), new Vector2(5, -6) }, new Color(0.8f, 0.0f, 0f, 0f), 8, new int[] { ComponentScript.FLAG_STICKY, ComponentScript.FLAG_CLEAR_LOCK }).GetComponent<MeshRenderer>().sortingOrder = 1;
 				stageSprites[4] = makeSprite(7.5f, -4, 5, 4, background3Button);
 				stageSprites[4].GetComponent<SpriteRenderer>().sortingOrder = 1;
 				changeSpriteColor(stageSprites[4], KONKY_RED);
 
 				backgroundText = makeText(0, -7.25f, 1.125f, "select a stage", 0);//background text
 
-				makeButton(new Vector3[] { new Vector2(-16,-7), new Vector2(-11,-7), new Vector2(-11,-9), new Vector2(-16,-9) }, new Color(), 1, new int[] { ButtonScript.FLAG_HIDDEN });
+				makeButton(new Vector3[] { new Vector2(-16,-7), new Vector2(-11,-7), new Vector2(-11,-9), new Vector2(-16,-9) }, new Color(), 1, new int[] { ComponentScript.FLAG_HIDDEN });
 				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
 
 				makeText(-16f, 9f, 1.25f, "stage select", 1);//screen description
@@ -416,7 +416,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background0Sprite;
 				changeText(backgroundText, "twlight hills");
-				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGoButton.GetComponent<ComponentScript>().unstick();
 				break;
 			case 5:
 				unstickAll();
@@ -426,7 +426,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background1Sprite;
 				changeText(backgroundText, "africa");
-				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGoButton.GetComponent<ComponentScript>().unstick();
 				break;
 			case 6:
 				unstickAll();
@@ -436,7 +436,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = backgroundRSprite;
 				changeText(backgroundText, "random");
-				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGoButton.GetComponent<ComponentScript>().unstick();
 				break;
 			case 7:
 				unstickAll();
@@ -446,7 +446,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background2Sprite;
 				changeText(backgroundText, "midnight park");
-				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGoButton.GetComponent<ComponentScript>().unstick();
 				break;
 			case 8:
 				unstickAll();
@@ -456,7 +456,7 @@ public class MenuScript : MonoBehaviour {
 				backgroundFrame.GetComponent<MeshRenderer>().material.color = Color.clear;
 				backgroundShowcase.GetComponent<SpriteRenderer>().sprite = background3Sprite;
 				changeText(backgroundText, "catacombs of carthus");
-				backgroundGoButton.GetComponent<ButtonScript>().enable();
+				backgroundGoButton.GetComponent<ComponentScript>().unstick();
 				break;
 			case 9:
 				globeSelect = 0;
@@ -509,7 +509,7 @@ public class MenuScript : MonoBehaviour {
 		{
 			try
 			{
-				ButtonScript b = i.GetComponent<ButtonScript>();
+				ComponentScript b = i.GetComponent<ComponentScript>();
 				if (b.sticky) {
 					b.unstick();
 				}
@@ -542,44 +542,44 @@ public class MenuScript : MonoBehaviour {
 			if (player1c != -1)
 			{
 				//Debug.Log("p1c: " + player1c + " | length: " + characterButtons.Length);
-				characterButtons[player1c].GetComponent <ButtonScript> ().stick();
+				characterButtons[player1c].GetComponent <ComponentScript> ().stick();
 			}
-			globeButton1.GetComponent<ButtonScript>().stick();
-			globeButton2.GetComponent<ButtonScript>().unstick();
+			globeButton1.GetComponent<ComponentScript>().stick();
+			globeButton2.GetComponent<ComponentScript>().unstick();
 		}
 		else
 		{
 			if (player2c != -1)
 			{
 				//Debug.Log("p2c: "+player2c+" | length: "+characterButtons.Length);
-				characterButtons[player2c].GetComponent<ButtonScript>().stick();
+				characterButtons[player2c].GetComponent<ComponentScript>().stick();
 			}
-			globeButton1.GetComponent<ButtonScript>().unstick();
-			globeButton2.GetComponent<ButtonScript>().stick();
+			globeButton1.GetComponent<ComponentScript>().unstick();
+			globeButton2.GetComponent<ComponentScript>().stick();
 		}
 
 		if (player1ai == 1)
 		{
 			changeSpriteColor(globe1, Color.grey);
-			cpuButton1.GetComponent<ButtonScript>().setColor(new Color(0.5f,0.5f,0.5f,0.8f));
+			cpuButton1.GetComponent<ComponentScript>().setColor(new Color(0.5f,0.5f,0.5f,0.8f));
 			changeFancyText(cpuText1, "cpu1");
 		}
 		else
 		{
 			changeSpriteColor(globe1, Color.red);
-			cpuButton1.GetComponent<ButtonScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
+			cpuButton1.GetComponent<ComponentScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
 			changeFancyText(cpuText1, "player1");
 		}
 		if (player2ai == 1)
 		{
 			changeSpriteColor(globe2, Color.grey);
-			cpuButton2.GetComponent<ButtonScript>().setColor(new Color(0.5f, 0.5f, 0.5f, 0.8f));
+			cpuButton2.GetComponent<ComponentScript>().setColor(new Color(0.5f, 0.5f, 0.5f, 0.8f));
 			changeFancyText(cpuText2, "cpu2");
 		}
 		else
 		{
 			changeSpriteColor(globe2, Color.red);
-			cpuButton2.GetComponent<ButtonScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
+			cpuButton2.GetComponent<ComponentScript>().setColor(new Color(1f, 0f, 0f, 0.8f));
 			changeFancyText(cpuText2, "player2");
 		}
 	}
@@ -618,7 +618,7 @@ public class MenuScript : MonoBehaviour {
 		}
 		if (showGo)
 		{
-			characterGoButton.GetComponent<ButtonScript>().enable();
+			characterGoButton.GetComponent<ComponentScript>().unstick();
 			characterGoText.SetActive(true);
 		}
 	}

@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuScript: {fileID: 0}
-  defaultMaterial: {fileID: 2100000, guid: 3e49644a383012a489ae6410cf94f027, type: 2}
-  glowMaterial: {fileID: 2100000, guid: 954d80c3fadded949a60a8e40fcf77bb, type: 2}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  disable: 0
+  sticky: 0
   triggerID: 0
 --- !u!120 &120842669755777684
 LineRenderer:
@@ -148,7 +149,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Positions:
   - {x: -5, y: -1, z: 0}
   - {x: -5, y: 1, z: 0}
