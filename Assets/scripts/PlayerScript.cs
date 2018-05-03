@@ -767,6 +767,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     behaviors.onAdvancedActionCallbacks[5].Invoke(this);
                 break;
             case 7:
+                if (behaviors.onAdvancedActionCallbacks[7] != null)
+                    behaviors.onAdvancedActionCallbacks[7].Invoke(this);
+                break;
+            case 8:
+                if (behaviors.onAdvancedActionCallbacks[8] != null)
+                    behaviors.onAdvancedActionCallbacks[8].Invoke(this);
                 break;
             case 11:
                 if (behaviors.onAdvancedActionCallbacks[6] != null)
@@ -1104,8 +1110,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void block()
     {
-        blockTimer = (int)level(6);
         executingAction = 46;
+        blockTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(6);
+        Debug.Log(blockTimer);
     }
 
     public float level(int wanted)
