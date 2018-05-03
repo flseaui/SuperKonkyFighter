@@ -16,6 +16,7 @@ public class GreyshirtBehaviours : Behaviors
     const int HARDGB = 1;//hard ground bounce (ground bounce with hard knockdown)
     const int SOFTWB = 1;//soft wall bounce (wall bounce with soft knockdown)
     const int HARDWB = 1;//hard wall bounce (wall bounce with hard knockdown)
+
     /* 
      * Action ID FORMAT
      * id = numpad + power
