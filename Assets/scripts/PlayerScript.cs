@@ -61,6 +61,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int stunTimer;              // timer counting down the time player has been in hitstun
     public int previousBasicState;     // basic state last frame
     public int basicAnimFrame;         // current frame number of playing animation
+    public int blockTimer;             // Timer for counting down block stun
 
     /* MOVEMENT NUMPAD NOTATION
      * [ jump back ][ jump ][ jump forwards ]
@@ -432,9 +433,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     dashingForwards = true;
             }
 
-            if (input[2] && facingRight)
+            if (input[2] && facingRight && executingAction == 0)
                 shouldBlock = true;
-            else if (input[3] && !facingRight)
+            else if (input[3] && !facingRight && executingAction == 0)
                 shouldBlock = true;
             else
                 shouldBlock = false;
@@ -786,8 +787,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void checkBlockEnd()
     {
-        PlayerScript os = otherPlayer.GetComponent<PlayerScript>();
-        if ((!inputManager.currentInput[2] && facingRight) || (!inputManager.currentInput[3] && !facingRight) || os.basicState != os.previousBasicState)
+        blockTimer--;
+        if(blockTimer == 0)
         {
             ActionEnd();
         }
@@ -1103,6 +1104,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void block()
     {
+        blockTimer = (int)level(6);
         executingAction = 46;
     }
 
