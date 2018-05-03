@@ -101,9 +101,6 @@ public class CameraScript : MonoBehaviour
 
         background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("stage")];
         ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("stage")];
-
-        //background.GetComponent<SpriteRenderer>().sprite = Background[PlayerPrefs.GetInt("background", 0)];
-        //ground.GetComponent<SpriteRenderer>().sprite = Ground[PlayerPrefs.GetInt("ground", 0)];
     }
 
     void Update()

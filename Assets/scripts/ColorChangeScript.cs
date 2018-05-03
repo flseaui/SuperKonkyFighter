@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ColorChangeScript : MonoBehaviour
 {
-
+    public SpriteRenderer sr;
     public Gradient gradient;
+
     public float strobeDuration = 2f;
 
-    public SpriteRenderer sr;
-
-    private void Start()
+    private void Update()
     {
-        StartCoroutine("UpdateColor");
-        
+        // if on training grounds
+        if (PlayerPrefs.GetInt("stage") == 4)
+            StartCoroutine("UpdateColor");
     }
 
     IEnumerator UpdateColor()
@@ -22,10 +22,5 @@ public class ColorChangeScript : MonoBehaviour
         sr.color = gradient.Evaluate(t);
         
         yield return null;
-    }
-
-    private void Update()
-    {
-        StartCoroutine("UpdateColor");
     }
 }

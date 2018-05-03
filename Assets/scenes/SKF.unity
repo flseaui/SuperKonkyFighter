@@ -2882,6 +2882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec46da3308e80574a83190f196f280e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 1976528748}
   gradient:
     serializedVersion: 2
     key0: {r: 0.7647059, g: 1, b: 0.97741175, a: 1}
@@ -2912,7 +2913,6 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   strobeDuration: 60
-  sr: {fileID: 1976528748}
 --- !u!1 &2036922357
 GameObject:
   m_ObjectHideFlags: 0
