@@ -733,7 +733,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void attackMove(int action)
     {
-        if (!((playerSide && (x() + behaviors.getAttackMovementHorizontal(action) + pushBuffer > otherPlayer.GetComponent<PlayerScript>().x() + otherPlayer.GetComponent<PlayerScript>().hVelocity)) || (!playerSide && (x() - pushBuffer > otherPlayer.GetComponent<PlayerScript>().x() + otherPlayer.GetComponent<PlayerScript>().hVelocity))))
+        if (!((playerSide && (x() + behaviors.getAttackMovementHorizontal(action) + pushBuffer < otherPlayer.GetComponent<PlayerScript>().x() + otherPlayer.GetComponent<PlayerScript>().hVelocity)) || (!playerSide && (x() - pushBuffer > otherPlayer.GetComponent<PlayerScript>().x() - otherPlayer.GetComponent<PlayerScript>().hVelocity))))
             hKnockback += (playerSide ? behaviors.getAttackMovementHorizontal(action) : -behaviors.getAttackMovementHorizontal(action));
         vKnockback += behaviors.getAttackMovementVertical(action);
         alreadyExecutedAttackMove = true;
