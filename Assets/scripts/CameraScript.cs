@@ -59,6 +59,9 @@ public class CameraScript : MonoBehaviour
 
     public float magnitude, roughness, fadeIn, fadeOut;
 
+    private bool justShook;
+    private Vector3 preShakePos;
+
 	void Start()
 	{
 		uis = canvas.GetComponent<UIScript>();
@@ -133,6 +136,12 @@ public class CameraScript : MonoBehaviour
 
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{   
+            if (justShook == false)
+            {
+                preShakePos = transform.position;
+                justShook = true;
+            }
+
             shakeX = Random.Range(-0.75f, 0.75f);
 			shakeY = Random.Range(-0.75f, 0.75f);
 
@@ -143,8 +152,13 @@ public class CameraScript : MonoBehaviour
                 camX = rightEdge.position.x - (horzExtent );
             setX(self, camX);
 			setY(self, 12 + shakeY);
+            
 		}
-
+        else if (justShook)
+        {
+            transform.position = preShakePos;
+            justShook = false;
+        }
 	}
 
     private float getX(GameObject o)
