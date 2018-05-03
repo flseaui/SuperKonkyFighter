@@ -1197,13 +1197,34 @@ public class GreyshirtBehaviours : Behaviors
     };
 
     // Block
-    private Action block = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action block = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 1), new Action.rect(1.5f, 9f, 4, 8, 1, 2), },
+        }
+    };
 
     // Crouching Block
-    private Action crouchBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action crouchBlock = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(1, 4.5f, 7, 9, 1, 5), },
+        }
+    };
 
     // Air Block
-    private Action airBlock = new Action() { frames = new int[] { 0 }, actionCancels = new int[] { } };
+    private Action airBlock = new Action() {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(1, 6, 4, 12, 10, 10), },
+        }
+    };
 
     // Air Dash
     private Action forwardAirDash = new Action()
@@ -1230,13 +1251,13 @@ public class GreyshirtBehaviours : Behaviors
     };
     private Action backAirDash = new Action()
     {
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 0, 0, 2, 1), new Action.rect(0, 0, 0, 0, 2, 2), },
             {nullBox, nullBox, },
-            { new Action.rect(0, 2.5f, 6, 5, 22, 1), new Action.rect(-2.5f, 7, 5, 6, 22, 2), },
+            { new Action.rect(0, 2.5f, 6, 5, 20, 1), new Action.rect(-2.5f, 7, 5, 6, 20, 2), },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
