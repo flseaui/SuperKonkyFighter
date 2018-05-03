@@ -30,10 +30,13 @@ public class BackGroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player[0].decreaseHitboxLifespan();
-        player[1].decreaseHitboxLifespan();
-        player[0].decreaseHurtboxLifespan();
-        player[1].decreaseHurtboxLifespan();
+        if (!player[0].hitStopped)
+        {
+            player[0].decreaseHitboxLifespan();
+            player[1].decreaseHitboxLifespan();
+            player[0].decreaseHurtboxLifespan();
+            player[1].decreaseHurtboxLifespan();
+        }
 
         switch (stopNextFrame)
         {
