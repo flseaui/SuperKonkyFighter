@@ -1092,7 +1092,7 @@ public class GreyshirtBehaviours : Behaviors
     // Back Dash
     private Action backDash = new Action()
     {
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
@@ -1124,11 +1124,11 @@ public class GreyshirtBehaviours : Behaviors
     // Forward Dash
     private Action forwardDash = new Action()
     {
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 },
-        actionCancels = new int[] { 40 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] {  },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(1, 2.5f, 4, 5, 14, 1), new Action.rect(2.5f, 6, 5, 6, 14, 2), },
+            { new Action.rect(0, 2.5f, 6, 5, 14, 1), new Action.rect(2.5f, 7, 5, 6, 14, 2), },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
@@ -1208,12 +1208,11 @@ public class GreyshirtBehaviours : Behaviors
     // Air Dash
     private Action forwardAirDash = new Action()
     {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, },
+        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
         hurtboxData = new Action.rect[,]
         {
-            //{ new Action.rect(2, 7, 14, 4, 15, 1),},
-            { new Action.rect(1, 2.5f, 4, 5, 14, 1), new Action.rect(2.5f, 6, 5, 6, 14, 2), },
+            { new Action.rect(0, 2.5f, 6, 5, 14, 1), new Action.rect(2.5f, 7, 5, 6, 14, 2), },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
@@ -1231,13 +1230,13 @@ public class GreyshirtBehaviours : Behaviors
     };
     private Action backAirDash = new Action()
     {
-        frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0, 0, 0, 0, 2, 1), new Action.rect(0, 0, 0, 0, 2, 2), },
             {nullBox, nullBox, },
-            {new Action.rect(0.5f, 2.5f, 6.5f, 5, 20, 1), new Action.rect(-1.5f, 9f, 4, 8, 20, 2), },
+            { new Action.rect(0, 2.5f, 6, 5, 22, 1), new Action.rect(-2.5f, 7, 5, 6, 22, 2), },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
