@@ -208,10 +208,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = .5f,
-        aAngle = 30,
-        aStrength = 1
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        gStrength = new float[] { .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, },
+        aStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, },
     };
 
     // Standing Medium
@@ -257,10 +257,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 30,
-        aStrength = 2
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
+        aStrength = new float[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }
     };
 
     // Standing Heavy
@@ -314,10 +314,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = SOFTWB,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 2,
-        aAngle = 30,
-        aStrength = 4
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
+        aStrength = new float[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, }
     };
 
     // Crouching Light
@@ -366,10 +366,10 @@ public class KonkyBehaviours : Behaviors
         block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = .5f,
-        aAngle = 30,
-        aStrength = .5f
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
+        aStrength = new float[] { .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f },
     };
 
     // Crouching Medium
@@ -419,10 +419,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = 0,
-        gStrength = 1,
-        aAngle = 30,
-        aStrength = 1
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
+        aStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, }
     };
 
     // Crouching Heavy
@@ -491,10 +491,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
-        gAngle = 80,
-        gStrength = 4,
-        aAngle = 80,
-        aStrength = 6
+        gAngle = new int[] { 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80 },
+        gStrength = new float[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
+        aAngle = new int[] { 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80 },
+        aStrength = new float[] { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     };
 
     // Jumping Light
@@ -545,7 +545,7 @@ public class KonkyBehaviours : Behaviors
         block = HIGH,
         knockdown = NONE,
         actionCancels = new int[] { 17, 18, 19, 27, 28, 29, 40, 43, 44 },
-        gAngle = 0,
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = 1,
         aAngle = 45,
         aStrength = 1
