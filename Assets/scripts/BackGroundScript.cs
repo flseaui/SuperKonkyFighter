@@ -125,8 +125,9 @@ public class BackGroundScript : MonoBehaviour
 
     private void pushing()
     {
-        if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y + player[1].transform.position.y))
+        if ((player[1].transform.position.y <= player[2].hitbox.bounds.size.y / 2 + player[2].transform.position.y) && (player[2].transform.position.y <= player[1].hitbox.bounds.size.y / 2+ player[1].transform.position.y))
         {
+
             for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
@@ -137,14 +138,10 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
-                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
-                {
+                if ((player[i].playerSide && (xPosFuture + buffer + 1> otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer  - 1 < otherXPosFuture)))
                     isColliding[i] = true;
-                }
                 else
-                {
                     isColliding[i] = false;
-                }
             }
 
             for (int i = 0; i < 2; i++)
@@ -154,6 +151,27 @@ public class BackGroundScript : MonoBehaviour
 
                 if (player[i].hPush < 0)
                     player[i].hPush = 0;
+
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                float xPos = player[i].hitbox.transform.position.x,
+
+                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity : -player[i].hVelocity),
+
+                otherXPos = player[i + 1].hitbox.transform.position.x,
+
+                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
+
+                if (isColliding[i] && player[i].transform.position.y >= player[i+1].transform.position.y)
+                {
+                    if ((player[i].playerSide && xPosFuture + buffer - otherXPosFuture - 1 >= buffer/2) || (!player[i].playerSide && xPosFuture - buffer + otherXPosFuture + 1 >= buffer / 2))
+                        player[i].hPush -= ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i].vVelocity + .25f / 2);
+                    else
+                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i].vVelocity + .25f / 2);
+                }
+
             }
 
             float[] diff = new float[2];
