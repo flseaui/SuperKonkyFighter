@@ -142,7 +142,7 @@ public class CameraScript : MonoBehaviour
             else if (camX + (horzExtent ) > rightEdge.position.x)
                 camX = rightEdge.position.x - (horzExtent );
             setX(self, camX);
-			setY(self, shakeY);
+			setY(self, 12 + shakeY);
 		}
 
 	}
