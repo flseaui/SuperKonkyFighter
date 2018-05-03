@@ -1078,13 +1078,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             hKnockback /= 3;
             vKnockback /= 3;
-            damageDealt = true;
             health -= damage / 4;
             block();
         }
         else
         {
-            damageDealt = true;
             health -= damage;
             stun();
         }

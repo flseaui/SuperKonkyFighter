@@ -12,16 +12,17 @@ public class Action {
     public bool airOK;
     public int tier;
 	public int level;
-    public int gAngle;
-    public int aAngle;
     public int hitboxFrames;
     public int hurtboxFrames;
     public int block;
     public int knockdown;
     public float p1scaling;
-    public float gStrength;
-    public float aStrength;
 
+    public int[] gAngle;
+    public int[] aAngle;
+
+    public float[] gStrength;
+    public float[] aStrength;
     public float[] hMovement;
     public float[] vMovement;
 
