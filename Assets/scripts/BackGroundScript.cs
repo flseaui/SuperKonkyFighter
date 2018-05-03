@@ -154,6 +154,8 @@ public class BackGroundScript : MonoBehaviour
 
             }
 
+            //antichariot mesures
+
             for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
