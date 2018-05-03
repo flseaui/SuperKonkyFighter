@@ -1200,6 +1200,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action block = new Action() {
         frames = new int[] { 0 },
         actionCancels = new int[] { },
+        infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 1), new Action.rect(1.5f, 9f, 4, 8, 1, 2), },
@@ -1210,6 +1211,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action crouchBlock = new Action() {
         frames = new int[] { 0 },
         actionCancels = new int[] { },
+        infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(1, 4.5f, 7, 9, 1, 5), },
@@ -1220,6 +1222,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action airBlock = new Action() {
         frames = new int[] { 0 },
         actionCancels = new int[] { },
+        infinite = true,
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(1, 6, 4, 12, 10, 10), },
