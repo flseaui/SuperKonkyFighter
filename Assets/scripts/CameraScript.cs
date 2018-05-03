@@ -109,26 +109,7 @@ public class CameraScript : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.R))
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        }
-        
-		float cx = (getX(player1) + getX(player2)) / 2f;
-        if (cx > 42)
-        {
-            cx = 42;
-        } else if (cx < -42)
-        {
-            cx = -42;
-        }
-        float cy = ((getY(player1) + 13 / 2 - 8) + (getY(player2) + 13 / 2 - 8)) / 2f + 8;
-        if (cy < 12)
-        {
-            cy = 12;
-        }
-        //setY(background, cy * 0.5f + 8);
-        //setY(self, cy);
-        //setX(background, cx * 0.5f);
-        //setX(self, cx);
-        
+        }        
 
         if (getX(player1) < getX(player2) - 1)
         {
@@ -161,7 +142,7 @@ public class CameraScript : MonoBehaviour
             else if (camX + (horzExtent ) > rightEdge.position.x)
                 camX = rightEdge.position.x - (horzExtent );
             setX(self, camX);
-			setY(self, 12 + shakeY);
+			setY(self, shakeY);
 		}
 
 	}
