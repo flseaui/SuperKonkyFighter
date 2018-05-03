@@ -548,7 +548,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         if (GetComponent<Animation>())
             GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        GetComponent<Animator>().enabled = false;
+        //GetComponent<Animator>().enabled = false;
     }
 
     private void stateCheck()
