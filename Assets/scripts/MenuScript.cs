@@ -91,10 +91,15 @@ public class MenuScript : MonoBehaviour {
 	private int globeSelect;
 
 	void Start () {
-		startScreen(TITLE_SCREEN);
-	}
-	
-	public GameObject makeButton(Vector3[] points, Color color, int triggerID, int[] flags)
+        startScreen(PlayerPrefs.GetInt("menu_state"));
+    }
+
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+        public GameObject makeButton(Vector3[] points, Color color, int triggerID, int[] flags)
 	{
 		GameObject button = Instantiate(buttonPrefab);
 
@@ -527,7 +532,6 @@ public class MenuScript : MonoBehaviour {
 		{
 			backgroundPass = Random.Range(0,3);
 		}
-        Debug.Log("VACCCCCCCCCCCCCC: " + backgroundPass);
 		PlayerPrefs.SetInt("stage", backgroundPass);
 		PlayerPrefs.SetInt("player1c", player1c);
 		PlayerPrefs.SetInt("player2c", player2c);
@@ -542,7 +546,7 @@ public class MenuScript : MonoBehaviour {
 			if (player1c != -1)
 			{
 				//Debug.Log("p1c: " + player1c + " | length: " + characterButtons.Length);
-				characterButtons[player1c].GetComponent <ButtonScript> ().stick();
+				characterButtons[player1c].GetComponent<ButtonScript>().stick();
 			}
 			globeButton1.GetComponent<ButtonScript>().stick();
 			globeButton2.GetComponent<ButtonScript>().unstick();
