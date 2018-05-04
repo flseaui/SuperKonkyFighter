@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerScript : MonoBehaviour
 {
     public IntVariable time;
-    public Text timerText;
+    public TMPro.TMP_Text timerText;
 
     public int startTime;
 

@@ -219,14 +219,11 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 		g.SetKeys(new GradientColorKey[] { gck0, gck1, gck2 }, new GradientAlphaKey[] { gak });
 		lineRenderer.colorGradient = g;
 
-		Debug.Log("kak");
 		if (clearLock) {
-			Debug.Log("kak2");
 			color.color = Color.clear;
 		}
 		else
 		{
-			Debug.Log("kak3");
 			color.color = highlightColor;
 		}
 	}
