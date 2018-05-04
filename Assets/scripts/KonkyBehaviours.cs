@@ -1426,20 +1426,6 @@ public class KonkyBehaviours : Behaviors
         },
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private Action crouch = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1486,6 +1472,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox }
         },
     };
+
     private Action walkBack = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1512,6 +1499,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
         },
     };
+
     private Action idle = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1558,6 +1546,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox }
         },
     };
+
     private Action walkForward = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1589,6 +1578,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
         },
     };
+
     private Action jumpBack = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1605,6 +1595,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox }
         },
     };
+
     private Action jump = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1621,6 +1612,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox }
         },
     };
+
     private Action jumpForward = new Action() {
         frames = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         hurtboxData = new Action.rect[,]
@@ -1651,7 +1643,6 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advJumpSquat)
         };
     }
-
 
     // ADVANCED ACTIONS
     public void advDashForward(PlayerScript player)
