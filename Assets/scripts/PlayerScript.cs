@@ -1073,6 +1073,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         activeFrameCounter = 0;
         basicAnimFrame = 0;
         previousBasicState = 0;
+        damageDealt = false;
         killAllBoxes();
     }
 
