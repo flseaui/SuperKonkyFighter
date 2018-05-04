@@ -286,7 +286,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (!airborn || specialCase)
                 facingRight = !facingRight;
             if (!airborn && !specialCase)
-                if (inputManager.currentInput[1])
+                if (basicState < 4)
                     overrideAction = 50;
                 else
                     overrideAction = 49;
