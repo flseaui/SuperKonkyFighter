@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour {
 	const int TITLE_SCREEN = 0;
 	const int PLAYER_SELECT_SCREEN = 1;
 	const int STAGE_SELECT_SCREEN = 2;
+	const int SETTINGS_SCREEN = 3;
 
 	//---------------------misc sprites-----------------//
 
@@ -82,11 +83,18 @@ public class MenuScript : MonoBehaviour {
 
 	private int screen;
 
+	//--------------------prefs--------------------------------------//
+
 	private int stageSelect;
 	private int player1c;
 	private int player2c;
 	private int player1ai;
 	private int player2ai;
+
+	//settings
+	private bool onlineMode;
+
+	//-----------------------------------------------------------------//
 
 	private int backgroundPass;
 
@@ -94,6 +102,10 @@ public class MenuScript : MonoBehaviour {
 
 	void Start () {
 		ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject);
+
+		//set default settings
+		onlineMode = false;
+
 		startScreen(TITLE_SCREEN);
 	}
 	
@@ -297,8 +309,12 @@ public class MenuScript : MonoBehaviour {
 				player2c = -1;
 				globeSelect = 0;
 
-				makeButton(new Vector3[] { new Vector2(-6, -7), new Vector2(6, -7), new Vector2(6, -2), new Vector2(-6, -2) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ComponentScript.FLAG_HIDDEN });//hidden play button
-				makeFancyText(0, -5, 2f, "play", 0);//play button (visible)
+				makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ComponentScript.FLAG_HIDDEN });//hidden play button
+				makeFancyText(0, -3, 2f, "play", 0);//play button text
+
+				makeButton(new Vector3[] { new Vector2(-6, -5), new Vector2(6, -5), new Vector2(6, -9), new Vector2(-6, -9) }, new Color(0.8f, 0f, 0f, 0.75f), 15, new int[] { ComponentScript.FLAG_HIDDEN });//hidden play button
+				makeFancyText(0, -7, 1.5f, "settings", 0);//settings button text
+
 				makeSprite(0, 3, 26, 11, titleSprite);//title logo
 				break;
 			case PLAYER_SELECT_SCREEN:
@@ -389,7 +405,18 @@ public class MenuScript : MonoBehaviour {
 
 				makeText(-16f, 9f, 1.25f, "stage select", 1);//screen description
 				break;
+			case SETTINGS_SCREEN:
 
+				makeText(-16f, 9f, 1.25f, "settings", 1);//screen description
+
+				makeText(-14f, 6.5f, 1f, "multiplayer mode", 1);
+
+				makeButton(new Vector3[] { new Vector2(-14, 5), new Vector2(-7, 5), new Vector2(-7, 3), new Vector2(-14, 3) }, new Color(0.8f, 0f, 0f, 0.75f), -1, new int[] { });
+				makeFancyText(-10.5f, 4, 1f, "local", 0);
+
+				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ComponentScript.FLAG_HIDDEN });
+				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
+				break;
 		}
 	}
 
@@ -501,6 +528,9 @@ public class MenuScript : MonoBehaviour {
 			case 14:
 				player2ai = (player2ai == 0) ? 1 : 0;
 				globeShift();
+				break;
+			case 15:
+				startScreen(SETTINGS_SCREEN);
 				break;
 		}
 	}
@@ -621,6 +651,11 @@ public class MenuScript : MonoBehaviour {
 			characterGoButton.GetComponent<ComponentScript>().unstick();
 			characterGoText.SetActive(true);
 		}
+	}
+
+	private void settingsShift()
+	{
+
 	}
 
 	private void changeSpriteColor(GameObject o, Color c)
