@@ -8,6 +8,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
 	private static LineRenderer blackLine;
 	private static LineRenderer glowLine;
+	private static LineRenderer noLine;
 
 	public MenuScript menuScript;
 
@@ -26,6 +27,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 	public const int FLAG_SHADE  = 4;
 	public const int FLAG_NOLINE = 5;
 	public const int FLAG_CLEAR_LOCK = 6;
+	public const int FLAG_DECORATION = 7;
 
 	//------------------------------------//
 
@@ -34,41 +36,63 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 	private bool shade;
 	public bool disable;
 	public bool sticky;
-	private bool noLine;
+	private bool noDefault;
 	private bool clearLock;
+	private bool hidden;
+	private bool decoration;
 
 	public int triggerID;
 
 	//should be called by the menuScript once
-	public static void init(GameObject lhb, GameObject lhg)
+	public static void init(GameObject lhb, GameObject lhg, GameObject lhn)
 	{
 		blackLine = lhb.GetComponent<LineRenderer>();
 		glowLine = lhg.GetComponent<LineRenderer>();
+		noLine = lhn.GetComponent<LineRenderer>();
+
+		/*blackLine.startWidth = 0.3f;           this doesn't work
+		blackLine.endWidth = 0.3f;
+
+		glowLine.startWidth = 1.2f;
+		glowLine.endWidth = 1.2f;
+
+		noLine.startWidth = 0.3f;
+		noLine.endWidth = 0.3f;*/
 	}
 
 	//call whenever the component needs to be updated graphically
 	public void revalidate()
 	{
-		if (noLine)
+		if (hidden)
 		{
-			lineRenderer.widthMultiplier = 0f;
-		}
-		else if (disable)
-		{
-			modeLock();
+			Debug.Log("ended on hidden");
+			hide();
 		}
 		else
 		{
-			if (mouseOn)
+			show();
+			if (disable && !decoration)
 			{
+				//Debug.Log("("+triggerID+") ended on disable");
+				modeLock();
+			}
+			else if (noDefault)
+			{
+				//Debug.Log("(" + triggerID + ") ended on none");
+				modeNone();
+			}
+			else if (mouseOn)
+			{
+				//Debug.Log("(" + triggerID + ") ended on highlight");
 				modeHighlight();
 			}
 			else
 			{
+				//Debug.Log("(" + triggerID + ") ended on neutral");
 				modeNeutral();
 			}
+			lineRenderer.SetPositions(points);
 		}
-		lineRenderer.SetPositions(points);
 	}
 
 	public void setColor(Color c)
@@ -99,8 +123,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 			switch (i)
 			{
 				case FLAG_HIDDEN:
-					lineRenderer.enabled = false;
-					GetComponent<MeshRenderer>().enabled = false;
+					hidden = true;
 					break;
 				case FLAG_STICKY:
 					sticky = true;
@@ -116,10 +139,13 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 					shade = true;
 					break;
 				case FLAG_NOLINE:
-					noLine = true;
+					noDefault = true;
 					break;
 				case FLAG_CLEAR_LOCK:
 					clearLock = true;
+					break;
+				case FLAG_DECORATION:
+					decoration = true;
 					break;
 			}
 		}
@@ -153,9 +179,18 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 		revalidate();
 	}
 
+	private void modeNone()
+	{
+		lineRenderer = CopyComponent<LineRenderer>(noLine, gameObject);
+		lineRenderer.startWidth = 0.3f;
+		lineRenderer.endWidth = 0.3f;
+	}
+
 	private void modeHighlight()
 	{
-		lineRenderer = blackLine;
+		lineRenderer = CopyComponent<LineRenderer>(blackLine, gameObject);
+		lineRenderer.startWidth = 0.3f;
+		lineRenderer.endWidth = 0.3f;
 		if (shade)
 		{
 			meshMaterial.color = new Color(defaultColor.r, defaultColor.g, defaultColor.b, 0.2f);
@@ -168,13 +203,17 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
 	private void modeNeutral()
 	{
-		lineRenderer = blackLine;
+		lineRenderer = CopyComponent<LineRenderer>(blackLine, gameObject);
+		lineRenderer.startWidth = 0.3f;
+		lineRenderer.endWidth = 0.3f;
 		meshMaterial.color = defaultColor;
 	}
 
 	private void modeLock()
 	{
-		lineRenderer = glowLine;
+		lineRenderer = CopyComponent<LineRenderer>(glowLine, gameObject);
+		lineRenderer.startWidth = 1.2f;
+		lineRenderer.endWidth = 1.2f;
 		if (clearLock) {
 			meshMaterial.color = Color.clear;
 		}
@@ -182,6 +221,26 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 		{
 			meshMaterial.color = highlightColor;
 		}
+	}
+
+	T CopyComponent<T>(T original, GameObject destination) where T : Component
+	{
+		System.Type type = original.GetType();
+		var dst = destination.GetComponent(type) as T;
+		if (!dst) dst = destination.AddComponent(type) as T;
+		var fields = type.GetFields();
+		foreach (var field in fields)
+		{
+			if (field.IsStatic) continue;
+			field.SetValue(dst, field.GetValue(original));
+		}
+		var props = type.GetProperties();
+		foreach (var prop in props)
+		{
+			if (!prop.CanWrite || !prop.CanWrite || prop.Name == "name") continue;
+			prop.SetValue(dst, prop.GetValue(original, null), null);
+		}
+		return dst as T;
 	}
 
 	public void OnPointerClick(PointerEventData eventData)

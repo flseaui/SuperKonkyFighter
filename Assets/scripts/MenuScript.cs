@@ -93,7 +93,7 @@ public class MenuScript : MonoBehaviour {
 	private int globeSelect;
 
 	void Start () {
-		ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject);
+		ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject);
 		startScreen(TITLE_SCREEN);
 	}
 	
@@ -304,17 +304,18 @@ public class MenuScript : MonoBehaviour {
 			case PLAYER_SELECT_SCREEN:
 
 				globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
-				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] { ComponentScript.FLAG_NOLINE });
+				globe1.GetComponent<SpriteRenderer>().sortingOrder = 7;
+				globeButton1 = makeButton(new Vector3[] { new Vector2(-11, -4.75f), new Vector2(-6f, -6f), new Vector2(-11, -7.25f), new Vector2(-16f, -6) }, new Color(0f, 0f, 0f, 0f), 9, new int[] { ComponentScript.FLAG_NOLINE });//
 				player1 = makeSprite(-11,-6,10,10, konkyGlobe, konkyGlobeAnim);
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] {});
 				cpuText1 = makeFancyText(-8.5f, -7.75f, 0.5f, "", 0);
 
 				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
-				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ComponentScript.FLAG_NOLINE });
+				globe2.GetComponent<SpriteRenderer>().sortingOrder = 7;
+				globeButton2 = makeButton(new Vector3[] { new Vector2(11, -4.75f), new Vector2(6f, -6f), new Vector2(11, -7.25f), new Vector2(16f, -6) }, new Color(0f, 0f, 0f, 0f), 10, new int[] { ComponentScript.FLAG_NOLINE });// 
 				player2 = makeSprite(11, -6, 10, 10, konkyGlobe, konkyGlobeAnim);
-				player2.GetComponent<SpriteRenderer>().sortingOrder = 90;
-				player2.GetComponent<SpriteRenderer>().flipX = true;
+				player2.GetComponent<SpriteRenderer>().sortingOrder = 90; player2.GetComponent<SpriteRenderer>().flipX = true;
 				cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
 				cpuText2 = makeFancyText(8.5f, -7.75f, 0.5f, "", 0);
 
@@ -325,9 +326,9 @@ public class MenuScript : MonoBehaviour {
 				characterButtons = new GameObject[6];
 
 				characterButtons[0] = makeButton(new Vector3[] { new Vector2(-15, 7), new Vector2(-10, 7), new Vector2( -7, 0), new Vector2(-11, 0) }, new Color(0.25f, 0.2f, 0.2f, 0.75f), 11, new int[] { ComponentScript.FLAG_STICKY });
-				makeSprite(-10, 4, 8, 8, konkySelect);//konky sprite
+				makeSprite(-10, 4, 8, 8, konkySelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//konky sprite
 				characterButtons[1] = makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2( -5, 7), new Vector2( -3, 0), new Vector2( -7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ComponentScript.FLAG_STICKY });
-				makeSprite(-6, 4, 8, 8, GreyshirtSelect);//greyshirt sprite
+				makeSprite(-6, 4, 8, 8, GreyshirtSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//greyshirt sprite
 				makeButton(new Vector3[] { new Vector2( -5, 7), new Vector2(  0, 7), new Vector2(  0, 0), new Vector2( -3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  0, 7), new Vector2(  5, 7), new Vector2(  3, 0), new Vector2(  0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
 				makeButton(new Vector3[] { new Vector2(  5, 7), new Vector2( 10, 7), new Vector2(  7, 0), new Vector2(  3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
@@ -340,11 +341,12 @@ public class MenuScript : MonoBehaviour {
 
 				globeShift();
 				charShift();
+				globeShift();
 
 				break;
 			case STAGE_SELECT_SCREEN:
 
-				backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ComponentScript.FLAG_DUMMY });
+				backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] {ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_DECORATION });
 				backgroundFrame.GetComponent<MeshRenderer>().sortingOrder = 1;
 
 				backgroundShowcase = makeSprite(0, 2, 32, 18, backgroundRSprite);
@@ -354,7 +356,7 @@ public class MenuScript : MonoBehaviour {
 				SpriteMask ma = backgroundShowcase.AddComponent(typeof(SpriteMask)) as SpriteMask;
 				ma.sprite = bkgMask;
 
-				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_SHADE});
+				backgroundGoButton = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, new Color(1f, 1f, 1f, 0f), 3, new int[] {ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_SHADE, ComponentScript.FLAG_DECORATION });
 				backgroundGoButton.GetComponent<MeshRenderer>().sortingOrder = 1;
 
 				stageSprites = new GameObject[5];
@@ -541,7 +543,6 @@ public class MenuScript : MonoBehaviour {
 		{
 			if (player1c != -1)
 			{
-				//Debug.Log("p1c: " + player1c + " | length: " + characterButtons.Length);
 				characterButtons[player1c].GetComponent <ComponentScript> ().stick();
 			}
 			globeButton1.GetComponent<ComponentScript>().stick();
@@ -551,7 +552,6 @@ public class MenuScript : MonoBehaviour {
 		{
 			if (player2c != -1)
 			{
-				//Debug.Log("p2c: "+player2c+" | length: "+characterButtons.Length);
 				characterButtons[player2c].GetComponent<ComponentScript>().stick();
 			}
 			globeButton1.GetComponent<ComponentScript>().unstick();
