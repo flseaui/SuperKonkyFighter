@@ -155,7 +155,7 @@ public class BackGroundScript : MonoBehaviour
             }
 
             //antichariot mesures
-            /*
+
             for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
@@ -166,16 +166,16 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
-                if (isColliding[i] && player[i].transform.position.y >= player[i+1].transform.position.y)
+                if (isColliding[i] && player[i].transform.position.y < player[i+1].transform.position.y)
                 {
-                    if ((player[i].playerSide && xPosFuture + buffer - otherXPosFuture - 1 >= buffer / 2) || (!player[i].playerSide && xPosFuture - buffer + otherXPosFuture + 1 >= buffer / 2))
-                        player[i].hPush -= ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i].vVelocity + .25f / 2);
+                    if ((player[i+1].playerSide && xPosFuture + buffer - otherXPosFuture - 1 >= buffer / 2) || (!player[i+1].playerSide && xPosFuture - buffer + otherXPosFuture + 1 >= buffer / 2))
+                        player[i].hPush -= ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i+1].vVelocity + .25f / 2);
                     else
-                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i].vVelocity + .25f / 2);
+                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i+1].vVelocity + .25f / 2);
                 }
 
             }
-            */
+
 
             float[] diff = new float[2];
 
