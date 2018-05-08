@@ -118,7 +118,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public RuntimeAnimatorController konkyAnimationController;
     public RuntimeAnimatorController greyshirtAnimationController;
     public Behaviors behaviors;
-    public PolygonCollider2D hitbox;
+    public BoxCollider2D hitbox;
     public GameObject otherPlayer;
     public JoyScript JoyScript;
     public InputManager inputManager;
@@ -147,7 +147,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         this.tag = playerID.ToString();
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
-        hitbox = GetComponentInChildren<PolygonCollider2D>();
+        hitbox = GetComponentInChildren<BoxCollider2D>();
 
         hitSound = GetComponent<AudioSource>();
 

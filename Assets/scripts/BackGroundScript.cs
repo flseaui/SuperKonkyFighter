@@ -156,7 +156,7 @@ public class BackGroundScript : MonoBehaviour
 
             //antichariot mesures
 
-            for (int i = 0; i < 2; i++)
+            /*for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
 
@@ -174,8 +174,7 @@ public class BackGroundScript : MonoBehaviour
                         player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i+1].vVelocity + .25f / 2);
                 }
 
-            }
-
+            }*/
 
             float[] diff = new float[2];
 
