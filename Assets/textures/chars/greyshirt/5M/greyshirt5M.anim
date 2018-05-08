@@ -20,15 +20,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: b4a1c18e69904b64f85ea21dfec71ef8, type: 3}
-    - time: 0.05
+    - time: 0.033333335
       value: {fileID: 21300000, guid: dc5dccbfe9a8de34fa59e7558278d4e0, type: 3}
-    - time: 0.13333334
+    - time: 0.11666667
       value: {fileID: 21300000, guid: 5ea1d08e33e975f45996e108639ccfbf, type: 3}
-    - time: 0.18333334
+    - time: 0.16666667
       value: {fileID: 21300000, guid: bca61a7e43c71e941b758986f4266b45, type: 3}
-    - time: 0.25
+    - time: 0.26666668
       value: {fileID: 21300000, guid: 958d8db8800691c4f9b2f5677a230c96, type: 3}
-    - time: 0.31666666
+    - time: 0.33333334
       value: {fileID: 21300000, guid: e2710362b1a3c8341901d747473a8f17, type: 3}
     - time: 0.38333333
       value: {fileID: 21300000, guid: e2710362b1a3c8341901d747473a8f17, type: 3}
