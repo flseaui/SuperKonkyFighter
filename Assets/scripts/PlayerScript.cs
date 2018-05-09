@@ -1059,7 +1059,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
-        if (shouldBlock && ((otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 3 && basicState < 4) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 1 && basicState > 3 && basicState < 7) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 2) || (basicState > 6)))
+        if (shouldBlock && ((otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 3 && basicState > 3) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 1 && basicState < 4 && basicState < 7) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 2) || (basicState > 6)))
         {
             hKnockback /= 3;
             vKnockback /= 3;
@@ -1088,7 +1088,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void block()
     {
-        executingAction = 46;
+        if (basicState >= 7)
+            executingAction = 48;
+        else if (basicState <= 3)
+            executingAction = 47;
+        else
+            executingAction = 46;
+
         blockTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(6);
         Debug.Log(blockTimer);
     }
