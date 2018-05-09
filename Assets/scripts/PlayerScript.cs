@@ -443,6 +443,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 shouldBlock = true;
             else if (input[3] && !facingRight && executingAction == 0)
                 shouldBlock = true;
+            else if ((executingAction >= 46 && executingAction <= 48))
+                shouldBlock = true;
             else
                 shouldBlock = false;
         }
