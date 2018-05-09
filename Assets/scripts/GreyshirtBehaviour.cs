@@ -9,13 +9,13 @@ public class GreyshirtBehaviours : Behaviors
     const int HIGH = 3;//must be stand blocked
     const int UNBLOCKABLE = 4;//cannot be blocked
 
-    const int NONE = 0;//no knockdown (follows hitstun numbers)
-    const int SOFTKD = 1;//soft knockdown (techable)
-    const int HARDKD = 1;//hard knockdown (untechable for 20 frames, OTG possible)
-    const int SOFTGB = 1;//soft ground bounce (ground bounce with soft knockdown)
-    const int HARDGB = 1;//hard ground bounce (ground bounce with hard knockdown)
-    const int SOFTWB = 1;//soft wall bounce (wall bounce with soft knockdown)
-    const int HARDWB = 1;//hard wall bounce (wall bounce with hard knockdown)
+    const int NONE = 0; //no knockdown (follows hitstun numbers)
+    const int SOFTKD = 1; //soft knockdown (techable)
+    const int HARDKD = 2; //hard knockdown (untechable for 20 frames, OTG possible)
+    const int SOFTGB = 3; //soft ground bounce (ground bounce with soft knockdown)
+    const int HARDGB = 4; //hard ground bounce (ground bounce with hard knockdown)
+    const int SOFTWB = 5; //soft wall bounce (wall bounce with soft knockdown)
+    const int HARDWB = 6; //hard wall bounce (wall bounce with hard knockdown)
 
     /* 
      * Action ID FORMAT
