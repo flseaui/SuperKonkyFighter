@@ -616,13 +616,13 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 900, 900, 900, 900, 900, 900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(4, 5, 5, 10, 7, 0), new Action.rect(6, 1, 5, 5, 7, 1), },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
+            { new Action.rect(4, 5, 5, 10, 7, 0), new Action.rect(6, 1, 5, 5, 7, 1),  new Action.rect(9, -2, 5, 5, 7, 2), },
+            {nullBox, nullBox, nullBox },
+            {nullBox, nullBox, nullBox },
+            {nullBox, nullBox, nullBox },
+            {nullBox, nullBox, nullBox },
+            {nullBox, nullBox, nullBox },
+            {nullBox, nullBox, nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
