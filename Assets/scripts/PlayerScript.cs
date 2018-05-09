@@ -1064,7 +1064,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (shouldBlock && ((otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 3 && basicState > 3) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 1 && basicState < 4 && basicState < 7) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 2) || (basicState > 6)))
         {
             hKnockback /= 3;
-            vKnockback /= 3;
+            vKnockback = 0;
             health -= damage / 4;
             block();
         }
