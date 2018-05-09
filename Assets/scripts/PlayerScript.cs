@@ -436,9 +436,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     dashingForwards = true;
             }
 
-            if (input[6] && (input[2] || input[3]) && !input[1])
-                advancedState = 11;
-
             if (input[2] && facingRight && executingAction == 0)
                 shouldBlock = true;
             else if (input[3] && !facingRight && executingAction == 0)
@@ -447,6 +444,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 shouldBlock = true;
             else
                 shouldBlock = false;
+
+            if (!airborn && input[6] && (input[2] || input[3]) && !input[1])
+                advancedState = 11;
         }
     }
 
@@ -752,7 +752,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (behaviors.onAdvancedActionCallbacks[executingAction - 41] != null)
         {
             behaviors.onAdvancedActionCallbacks[executingAction - 41].Invoke(this);
-            Debug.Log("advanced move: " + (executingAction - 41));
+            Debug.Log("advanced move: " + (behaviors.onAdvancedActionCallbacks[executingAction - 41].Method.Name.ToString()));
         }
     }
 
