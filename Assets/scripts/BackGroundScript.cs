@@ -154,9 +154,18 @@ public class BackGroundScript : MonoBehaviour
 
             }
 
+            float[] diff = new float[2];
+
+            if (Mathf.Abs(player[0].x()) > 64)
+                player[1].hPush = -player[1].hPush;
+            if (Mathf.Abs(player[1].x()) > 64)
+                player[1].hPush = -player[0].hPush;
+
+
+
             //antichariot mesures
 
-            /*for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 float xPos = player[i].hitbox.transform.position.x,
 
@@ -166,53 +175,16 @@ public class BackGroundScript : MonoBehaviour
 
                 otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity : -player[i + 1].hVelocity);
 
-                if (isColliding[i] && player[i].transform.position.y < player[i+1].transform.position.y)
+                if (isColliding[i] && player[i].transform.position.y < player[i + 1].transform.position.y)
                 {
-                    if ((player[i+1].playerSide && xPosFuture + buffer - otherXPosFuture - 1 >= buffer / 2) || (!player[i+1].playerSide && xPosFuture - buffer + otherXPosFuture + 1 >= buffer / 2))
-                        player[i].hPush -= ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i+1].vVelocity + .25f / 2);
+                    if ((player[i].playerSide && xPosFuture + buffer - otherXPosFuture - 1 >= buffer / 2) || (!player[i].playerSide && xPosFuture - buffer + otherXPosFuture + 1 >= buffer / 2))
+                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i + 1].vVelocity + .25f / 2);
                     else
-                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i+1].vVelocity + .25f / 2);
+                        player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i + 1].vVelocity + .25f / 2);
                 }
 
-            }*/
-
-            float[] diff = new float[2];
-
-            if (Mathf.Abs(player[0].x()) > 64)
-                player[1].hPush = -player[1].hPush;
-            if (Mathf.Abs(player[1].x()) > 64)
-                player[1].hPush = -player[0].hPush;
-
-            for (int i = 0; i < 2; i++)
-            {
-                float xPos = player[i].hitbox.transform.position.x,
-
-                xPosFuture = xPos + (player[i].playerSide ? player[i].hVelocity - player[i].hPush : -player[i].hVelocity + player[i].hPush),
-
-                otherXPos = player[i + 1].hitbox.transform.position.x,
-
-                otherXPosFuture = otherXPos + (player[i + 1].playerSide ? player[i + 1].hVelocity - player[i + 1].hPush : -player[i + 1].hVelocity + player[i + 1].hPush);
-
-                if ((player[i].playerSide && (xPosFuture + buffer > otherXPosFuture)) || (!player[i].playerSide && (xPosFuture - buffer < otherXPosFuture)))
-                {
-                    diff[i] = Mathf.Abs(xPosFuture - otherXPosFuture) + buffer;
-                }
             }
 
-            for (int i = 0; i < 2; i++)
-            {
-                if (Mathf.Abs(player[i].hVelocity) > Mathf.Abs(player[i + 1].hVelocity))
-                {
-                    if (Mathf.Abs(player[i + 1].x()) < 64)
-                        diff[i] = 0;
-                }
-                else if (player[i].hVelocity == player[i + 1].hVelocity)
-                {
-
-                    diff[i] = diff[i] / 2;
-
-                }
-            }
         }
     }
 
