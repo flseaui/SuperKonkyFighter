@@ -436,6 +436,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     dashingForwards = true;
             }
 
+            if (input[6] && (input[2] || input[3]) && !input[1])
+                advancedState = 11;
+
             if (input[2] && facingRight && executingAction == 0)
                 shouldBlock = true;
             else if (input[3] && !facingRight && executingAction == 0)
@@ -744,45 +747,16 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void advancedMove()
     {
-        switch (executingAction - 40)
+        if (behaviors.onAdvancedActionCallbacks[executingAction - 41] != null)
         {
-            case 1:
-                if (behaviors.onAdvancedActionCallbacks[0] != null)
-                    behaviors.onAdvancedActionCallbacks[0].Invoke(this);
-                break;
-            case 2:
-                if (behaviors.onAdvancedActionCallbacks[1] != null)
-                    behaviors.onAdvancedActionCallbacks[1].Invoke(this);
-                break;
-            case 3:
-                if (behaviors.onAdvancedActionCallbacks[2] != null)
-                    behaviors.onAdvancedActionCallbacks[2].Invoke(this);
-                break;
-            case 4:
-                if (behaviors.onAdvancedActionCallbacks[3] != null)
-                    behaviors.onAdvancedActionCallbacks[3].Invoke(this);
-                break;
-            case 5:
-                if (behaviors.onAdvancedActionCallbacks[4] != null)
-                    behaviors.onAdvancedActionCallbacks[4].Invoke(this);
-                break;
-            case 6:
-                if (behaviors.onAdvancedActionCallbacks[5] != null)
-                    behaviors.onAdvancedActionCallbacks[5].Invoke(this);
-                break;
-            case 7:
-                if (behaviors.onAdvancedActionCallbacks[7] != null)
-                    behaviors.onAdvancedActionCallbacks[7].Invoke(this);
-                break;
-            case 8:
-                if (behaviors.onAdvancedActionCallbacks[8] != null)
-                    behaviors.onAdvancedActionCallbacks[8].Invoke(this);
-                break;
-            case 11:
-                if (behaviors.onAdvancedActionCallbacks[6] != null)
-                    behaviors.onAdvancedActionCallbacks[6].Invoke(this);
-                break;
+            behaviors.onAdvancedActionCallbacks[executingAction - 41].Invoke(this);
+            Debug.Log("advanced move: " + (executingAction - 41));
         }
+    }
+
+    public void throwThatMfOtherPlayer()
+    {
+        otherPlayer.GetComponent<PlayerScript>().hVelocity += playerSide ? 100 : -100;
     }
 
     public void checkDashEnd()

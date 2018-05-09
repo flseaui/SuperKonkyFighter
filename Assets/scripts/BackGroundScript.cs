@@ -182,9 +182,7 @@ public class BackGroundScript : MonoBehaviour
                     else
                         player[i].hPush += ((player[i + 1].hitbox.bounds.size.x + buffer) / (player[i + 1].hitbox.bounds.size.y / 2)) * Mathf.Abs(player[i + 1].vVelocity + .25f / 2);
                 }
-
             }
-
         }
     }
 

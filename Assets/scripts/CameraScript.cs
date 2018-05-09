@@ -104,8 +104,6 @@ public class CameraScript : MonoBehaviour
         vertExtent = GetComponentInParent<Follow>().vertExtent;
         horzExtent = GetComponentInParent<Follow>().horzExtent;
 
-        Debug.Log("SADSDSDA" + PlayerPrefs.GetInt("stage"));
-
         int stage = PlayerPrefs.GetInt("stage");
 
         background.GetComponent<SpriteRenderer>().sprite = Background[stage < 2 ? stage : stage - 1];

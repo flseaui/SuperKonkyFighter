@@ -42,6 +42,8 @@ public class KonkyBehaviours : Behaviors
        * 8 - airBlock
        * 9 - flip
        * 10 - crouchFlip
+       * 11 - jumpSquat
+       * 12 - throw
        * Other
        * 0 - Jump
        */
@@ -104,6 +106,7 @@ public class KonkyBehaviours : Behaviors
             { 49,          flip },
             { 50,    crouchFlip },
             { 51,     jumpSquat },
+            { 52,         Throw }, 
 
             { 101, crouch},
             { 102, crouch},
@@ -148,7 +151,8 @@ public class KonkyBehaviours : Behaviors
             { airBlock, 48 },
             { flip, 49 },
             { crouchFlip, 50 },
-            { jumpSquat, 51 }
+            { jumpSquat, 51 },
+            { Throw, 51 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1640,7 +1644,12 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advAirDashBack),
              new OnAdvancedAction(advStun),
              new OnAdvancedAction(advBlock),
-             new OnAdvancedAction(advJumpSquat)
+             new OnAdvancedAction(advCrouchBlock),
+             new OnAdvancedAction(advAirBlock),
+             new OnAdvancedAction(advFlip),
+             new OnAdvancedAction(advCrouchFlip),
+             new OnAdvancedAction(advJumpSquat),
+             new OnAdvancedAction(advThrow)
         };
     }
 
@@ -1684,9 +1693,35 @@ public class KonkyBehaviours : Behaviors
         player.checkBlockEnd();
     }
 
+    public void advCrouchBlock(PlayerScript player)
+    {
+
+    }
+
+    public void advAirBlock(PlayerScript player)
+    {
+
+    }
+
+    public void advFlip(PlayerScript player)
+    {
+
+    }
+
+    public void advCrouchFlip(PlayerScript player)
+    {
+
+    }
+
     public void advJumpSquat(PlayerScript player)
     {
         player.hVelocity = 0;
+    }
+
+    public void advThrow(PlayerScript player)
+    {
+        Debug.Log("TEETET");
+        player.throwThatMfOtherPlayer();
     }
 
     public override void setStats()
