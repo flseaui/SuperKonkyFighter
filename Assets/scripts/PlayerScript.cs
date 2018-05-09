@@ -749,11 +749,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void advancedMove()
     {
-        int advancedAction = executingAction < 50 ? executingAction - 41 : executingAction - 40;
-        if (behaviors.onAdvancedActionCallbacks[advancedAction] != null)
+        if (behaviors.onAdvancedActionCallbacks[executingAction - 41] != null)
         {
-            behaviors.onAdvancedActionCallbacks[advancedAction].Invoke(this);
-            Debug.Log("advanced move: " + (behaviors.onAdvancedActionCallbacks[advancedAction].Method.Name.ToString()));
+            behaviors.onAdvancedActionCallbacks[executingAction - 41].Invoke(this);
+            //Debug.Log("advanced move: " + (behaviors.onAdvancedActionCallbacks[advancedAction].Method.Name.ToString()));
         }
     }
 

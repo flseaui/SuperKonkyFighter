@@ -152,7 +152,7 @@ public class KonkyBehaviours : Behaviors
             { flip, 49 },
             { crouchFlip, 50 },
             { jumpSquat, 51 },
-            { Throw, 51 }
+            { Throw, 52 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1723,7 +1723,7 @@ public class KonkyBehaviours : Behaviors
 
     public void advThrow(PlayerScript player)
     {
-        Debug.Log("TEETET");
+        Debug.Log("Throw Executed");
         player.throwThatMfOtherPlayer();
     }
 
