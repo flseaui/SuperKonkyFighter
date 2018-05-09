@@ -1098,7 +1098,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             executingAction = 46;
 
         blockTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(6);
-        Debug.Log(blockTimer);
     }
 
     public float level(int wanted)
