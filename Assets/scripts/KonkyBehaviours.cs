@@ -1695,12 +1695,15 @@ public class KonkyBehaviours : Behaviors
 
     public void advCrouchBlock(PlayerScript player)
     {
-
+        player.hVelocity = 0;
+        player.checkBlockEnd();
     }
 
     public void advAirBlock(PlayerScript player)
     {
-
+        player.hVelocity = 0;
+        player.vVelocity = 0;
+        player.checkBlockEnd();
     }
 
     public void advFlip(PlayerScript player)
