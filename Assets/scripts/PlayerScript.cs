@@ -1138,7 +1138,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (comboTimer == 0)
             p1Scale = otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).p1scaling;
 
-        comboTimer = 15;
+        comboTimer = 1;
     }
 
     public void block()
