@@ -1093,7 +1093,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (comboTimer > 0)
         {
             p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
-            damage = (int)(p1Scale * p2Scale * .6f);
+            damage = (int)(p1Scale * p2Scale);
         }
 
 
