@@ -63,6 +63,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int basicAnimFrame;         // current frame number of playing animation
     public int blockTimer;             // Timer for counting down block stun
     public int throwType;
+    public int comboTimer;
+    public int comboCounter;
 
     /* MOVEMENT NUMPAD NOTATION
      * [ jump back ][ jump ][ jump forwards ]
@@ -113,6 +115,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float backwardSpeed;       // backwards movement speed constant
     public float jumpDirectionSpeed;  // jump speed constant
     public float pushBuffer;          // the buffer before pushing takes place
+    public float p1Scale;
+    public float p2Scale;
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -298,6 +302,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hPush = 0;
         overrideAction = 0;
+        if (comboTimer > 0 && executingAction != 45)
+            comboTimer--;
+        if (comboTimer == 0)
+        {
+            otherPlayer.GetComponent<PlayerScript>().comboCounter = 0;
+            p1Scale = 0;
+            p2Scale = 1;
+        }
     }
 
     private void setStates()
@@ -1069,7 +1081,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         killAllBoxes();
     }
 
-    public void damage(int damage, float knockback, int angle)
+    public void damage(int damage, float knockback, int angle, int blck, float p1)
     {
         hitSound.Play();
 
@@ -1078,7 +1090,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
 
-        if (shouldBlock && ((otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 3 && basicState > 3) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 1 && basicState < 4 && basicState < 7) || (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).block == 2) || (basicState > 6)))
+        if (comboTimer > 0)
+        {
+            p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
+            damage = (int)(p1Scale * p2Scale * .6f);
+        }
+
+
+        if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))
         {
             hKnockback /= 3;
             vKnockback = 0;
@@ -1103,6 +1122,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         executingAction = 45;
         stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
+
+        otherPlayer.GetComponent<PlayerScript>().comboCounter++;
+
+        if (comboTimer == 0)
+            p1Scale = otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).p1scaling;
+
+        comboTimer = 15;
     }
 
     public void block()
