@@ -863,7 +863,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
-        if (x() < -MAP_WITDH + pushBuffer && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        if (x() < -MAP_WITDH + pushBuffer + 1 && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
             setX(-MAP_WITDH + pushBuffer);
         }
@@ -871,7 +871,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             setX(-MAP_WITDH);
         }
-        else if (x() > MAP_WITDH - pushBuffer && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        else if (x() > MAP_WITDH - pushBuffer - 1 && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
             setX(MAP_WITDH - pushBuffer);
         }
