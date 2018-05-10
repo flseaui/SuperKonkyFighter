@@ -62,6 +62,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int previousBasicState;     // basic state last frame
     public int basicAnimFrame;         // current frame number of playing animation
     public int blockTimer;             // Timer for counting down block stun
+    public int throwType;
 
     /* MOVEMENT NUMPAD NOTATION
      * [ jump back ][ jump ][ jump forwards ]
@@ -446,7 +447,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 shouldBlock = false;
 
             if (!airborn && input[6] && (input[2] || input[3]) && !input[1])
+            {
+                if (input[2])
+                    throwType = 0;
+                else if (input[3])
+                    throwType = 1;
                 advancedState = 11;
+            }
         }
     }
 
@@ -749,17 +756,27 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void advancedMove()
     {
-        Debug.LogFormat("index {0} in {1} length array", executingAction - 41, behaviors.onAdvancedActionCallbacks.Length);
-        if (behaviors.onAdvancedActionCallbacks[executingAction - 41] != null)
+        int advancedAction = executingAction < 50 ? executingAction - 41 : executingAction - 40;
+        Debug.LogFormat("index {0} in {1} length array", advancedAction, behaviors.onAdvancedActionCallbacks.Length);
+        if (behaviors.onAdvancedActionCallbacks[advancedAction] != null)
         {
-            behaviors.onAdvancedActionCallbacks[executingAction - 41].Invoke(this);
+            behaviors.onAdvancedActionCallbacks[advancedAction].Invoke(this);
             //Debug.Log("advanced move: " + (behaviors.onAdvancedActionCallbacks[advancedAction].Method.Name.ToString()));
         }
     }
 
     public void throwThatMfOtherPlayer()
     {
-        otherPlayer.GetComponent<PlayerScript>().hVelocity += playerSide ? 100 : -100;
+        switch (throwType)
+        {
+            case 0:
+                otherPlayer.GetComponent<PlayerScript>().hVelocity = -100;
+                break;
+            case 1:
+                otherPlayer.GetComponent<PlayerScript>().hVelocity = 100;
+                break;
+        }
+        throwType = 0;
     }
 
     public void checkDashEnd()
