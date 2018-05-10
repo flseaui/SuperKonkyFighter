@@ -15,12 +15,12 @@ public class PlayerScript : MonoBehaviour
     private float[,] levelScaling = new float[,]
     {
         //Hitstun | CH Hitstun | Untech Time | CH Untech Time | Hitstop	| CH Hitstop | Blockstun | P2 Scaling
-        { 10,       14,          12,           23,              8,        8,           9,          .84f },
-        { 12,       16,          12,           23,              9,        9,           11,         .87f },
-        { 14,       18,          14,           26,              10,       11,          13,         .90f },
-        { 17,       22,          17,           31,              11,       13,          16,         .93f },
-        { 19,       24,          19,           34,              12,       17,          18,         .96f },
-        { 21,       27,          21,           36,              13,       21,          20,         .99f }
+        { 10,       14,          12,           23,              8,        8,           9,          .92f },
+        { 12,       16,          12,           23,              9,        9,           11,         .94f },
+        { 14,       18,          14,           26,              10,       11,          13,         .96f },
+        { 17,       22,          17,           31,              11,       13,          16,         .98f },
+        { 19,       24,          19,           34,              12,       17,          18,         .99f },
+        { 21,       27,          21,           36,              13,       21,          20,         1f }
     };
 
     /*
@@ -1093,7 +1093,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (comboTimer > 0)
         {
             p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
-            damage = (int)(p1Scale * p2Scale * .6);
+            damage = (int)(p1Scale * p2Scale * damage * .6);
 
             if (damage <= 50)
             {
