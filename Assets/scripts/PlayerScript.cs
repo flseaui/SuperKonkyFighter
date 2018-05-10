@@ -1094,6 +1094,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
             damage = (int)(p1Scale * p2Scale);
+
+            if (damage <= 50)
+            {
+                damage = 50;
+            }
         }
 
 
