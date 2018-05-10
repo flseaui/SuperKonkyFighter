@@ -1185,14 +1185,14 @@ public class KonkyBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new int[] { 0 },
+        frames = new int[] { 1 },
         damage = new int[] { 1500 },
         level = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
         knockdown = HARDKD,
-        actionCancels = new int[] { 1, 2 },
-        gAngle = new int[] { 30 },
+        actionCancels = new int[] {  },
+        gAngle = new int[] { 0 },
         gStrength = new float[] { 10 },
         aAngle = new int[] { 0 } ,
         aStrength = new float[] { 0 },
