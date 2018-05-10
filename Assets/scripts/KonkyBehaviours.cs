@@ -208,7 +208,7 @@ public class KonkyBehaviours : Behaviors
         hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 1,
-        p1scaling = 1f,
+        p1scaling = .9f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
