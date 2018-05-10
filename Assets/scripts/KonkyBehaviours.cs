@@ -211,7 +211,7 @@ public class KonkyBehaviours : Behaviors
         p1scaling = .9f,
         block = MID,
         knockdown = NONE,
-        actionCancels = new int[] { 5, 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         gStrength = new float[] { .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f },
         aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, },
