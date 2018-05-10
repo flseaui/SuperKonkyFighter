@@ -222,6 +222,30 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+--- !u!1101 &1101262256326163032
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: Action
+    m_EventTreshold: 52
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102792648944719774}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &1101273077018896300
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1482,7 +1506,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: JumpCrouch
+  m_Name: JumpSquat
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1782,7 +1806,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KonkyThroe
+  m_Name: KonkyThrow
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2181,7 +2205,7 @@ AnimatorStateMachine:
     m_Position: {x: -276, y: -600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102792648944719774}
-    m_Position: {x: -241, y: -535, z: 0}
+    m_Position: {x: -276, y: -480, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1101773739298551560}
@@ -2218,6 +2242,7 @@ AnimatorStateMachine:
   - {fileID: 1101319990925514226}
   - {fileID: 1101654386424864418}
   - {fileID: 1101353768996859204}
+  - {fileID: 1101262256326163032}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

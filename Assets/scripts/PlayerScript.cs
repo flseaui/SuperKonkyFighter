@@ -129,6 +129,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public InputManager inputManager;
     public AudioSource hitSound;
     public Transform cameraLeft, cameraRight;
+    public IntVariable comboCounterText;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
@@ -779,6 +780,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void throwThatMfOtherPlayer()
     {
+        hVelocity = 0;
         switch (throwType)
         {
             case 0:
@@ -906,7 +908,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (executingAction != 0)
         {
-            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
+            int action = executingAction > 50 ? executingAction + 1 : executingAction;
+            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(action)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
         else
@@ -1129,6 +1132,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
 
         otherPlayer.GetComponent<PlayerScript>().comboCounter++;
+
+        comboCounterText.value = otherPlayer.GetComponent<PlayerScript>().comboCounter;
 
         if (comboTimer == 0)
             p1Scale = otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).p1scaling;

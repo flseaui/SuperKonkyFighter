@@ -345,6 +345,9 @@ MonoBehaviour:
   previousBasicState: 0
   basicAnimFrame: 0
   blockTimer: 0
+  throwType: 0
+  comboTimer: 0
+  comboCounter: 0
   basicState: 0
   attackState: 0
   advancedState: 0
@@ -361,6 +364,8 @@ MonoBehaviour:
   backwardSpeed: 0
   jumpDirectionSpeed: 0
   pushBuffer: 0
+  p1Scale: 0
+  p2Scale: 0
   spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
   konkyAnimationController: {fileID: 9100000, guid: 8efbe4cc9762cc54dbc95d13065249fe,
@@ -373,6 +378,7 @@ MonoBehaviour:
   hitSound: {fileID: 82813003963254516}
   cameraLeft: {fileID: 0}
   cameraRight: {fileID: 0}
+  comboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []

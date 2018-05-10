@@ -1185,6 +1185,32 @@ public class KonkyBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        damage = new int[] { 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(2, 6, 2, 12, 1, 0), },
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
+        level = 5,
+        p1scaling = .5f,
+        block = UNBLOCKABLE,
+        knockdown = HARDKD,
+        actionCancels = new int[] { },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        airOK = false,
+    };
+
+    // Throw
+    private Action grab = new Action()
+    {
+        tier = 2,
         frames = new int[] { 1 },
         damage = new int[] { 1500 },
         hitboxData = new Action.rect[,]
@@ -1709,7 +1735,7 @@ public class KonkyBehaviours : Behaviors
 
     public void advThrow(PlayerScript player)
     {
-        Debug.Log("Throw Executed");
+        
         player.throwThatMfOtherPlayer();
     }
 
