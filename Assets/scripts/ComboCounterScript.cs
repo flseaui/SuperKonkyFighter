@@ -24,9 +24,9 @@ public class ComboCounterScript : MonoBehaviour {
 
     private IEnumerator fade()
     {
-        for (float t = 0.01f; t < 3; t += Time.deltaTime)
+        for (float t = 0.01f; t < 2; t += Time.deltaTime)
         {
-            timerText.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / 3));
+            timerText.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / 2));
             yield return null;
         }
     }
