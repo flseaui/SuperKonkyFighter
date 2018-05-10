@@ -129,7 +129,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public InputManager inputManager;
     public AudioSource hitSound;
     public Transform cameraLeft, cameraRight;
-    public IntVariable comboCounterText;
+    public IntVariable p1ComboCounterText, p2ComboCounterText;
+    private IntVariable comboCounterText;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
@@ -159,6 +160,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         if (CompareTag("1"))
         {
+            comboCounterText = p1ComboCounterText;
             inputManager = new InputManager(1);
             switch (PlayerPrefs.GetInt("player1c"))
             {
@@ -174,6 +176,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else if (CompareTag("2"))
         {
+            comboCounterText = p2ComboCounterText;
             inputManager = new InputManager(2);
             switch (PlayerPrefs.GetInt("player2c"))
             {

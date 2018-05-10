@@ -24,7 +24,6 @@ public class ComboCounterScript : MonoBehaviour {
 
     private IEnumerator fade()
     {
-        
         for (float t = 0.01f; t < 3; t += Time.deltaTime)
         {
             timerText.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / 3));
@@ -33,13 +32,19 @@ public class ComboCounterScript : MonoBehaviour {
     }
 
 
-    void Update () {
-        if (comboCounterText.value != lastValue)
+    void Update() {
+        if (comboCounterText.value > 1)
         {
-            timerText.text = comboCounterText.value.ToString();
-            lastValue = comboCounterText.value;
-            timerText.color = originalColor;
-            StartCoroutine("fade");
+            if (comboCounterText.value != lastValue)
+            {
+                timerText.text = comboCounterText.value.ToString();
+                lastValue = comboCounterText.value;
+                timerText.color = originalColor;
+                StopCoroutine("fade");
+                StartCoroutine("fade");
+            }
         }
+        else
+            timerText.color = Color.clear;
     }
 }

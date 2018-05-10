@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11f7e267c755c434f9dfcaa8c8d74acc, type: 3}
-  m_Name: combo_counter
+  m_Name: combo_counter_1
   m_EditorClassIdentifier: 
   value: 0

@@ -378,7 +378,8 @@ MonoBehaviour:
   hitSound: {fileID: 82813003963254516}
   cameraLeft: {fileID: 0}
   cameraRight: {fileID: 0}
-  comboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}
+  p1ComboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}
+  p2ComboCounterText: {fileID: 11400000, guid: bcbc3d47bc4851748bb99f13a9ab15b6, type: 2}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
