@@ -115,6 +115,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float backwardSpeed;       // backwards movement speed constant
     public float jumpDirectionSpeed;  // jump speed constant
     public float pushBuffer;          // the buffer before pushing takes place
+    public float wallBuffer;
     public float p1Scale;
     public float p2Scale;
 
@@ -201,6 +202,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         gravity = behaviors.getGravity();
         health = maxHealth;
         pushBuffer = 4;
+        wallBuffer = 3.5f;
 
         livingHitboxesIds = new List<float>();
         livingHitboxesLifespans = new List<float>();
@@ -868,17 +870,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         moveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
         moveY(vVelocity + vKnockback);
 
-        if (x() < -MAP_WITDH + pushBuffer + 100 && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        if (x() < -MAP_WITDH + pushBuffer + wallBuffer && !playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
-            setX(-MAP_WITDH + pushBuffer);
+            setX(-MAP_WITDH + pushBuffer + wallBuffer);
         }
         if (x() < -MAP_WITDH)
         {
             setX(-MAP_WITDH);
         }
-        else if (x() > MAP_WITDH - pushBuffer - 100 && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
+        else if (x() > MAP_WITDH - pushBuffer - wallBuffer && playerSide && (y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().y() && otherPlayer.GetComponent<PlayerScript>().y() <= hitbox.bounds.size.y + y()))
         {
-            setX(MAP_WITDH - pushBuffer);
+            setX(MAP_WITDH - pushBuffer - wallBuffer);
         }
         else if (x() > MAP_WITDH)
         {
