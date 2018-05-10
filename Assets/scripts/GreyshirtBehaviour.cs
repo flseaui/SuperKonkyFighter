@@ -43,6 +43,8 @@ public class GreyshirtBehaviours : Behaviors
        * 8 - airBlock
        * 9 - flip
        * 10 - crouchFlip
+       * 11 - jumpSquat
+       * 12 - throw
        * Other
        * 0 - Jump
        */
@@ -104,6 +106,8 @@ public class GreyshirtBehaviours : Behaviors
             { 48,      airBlock },
             { 49,          flip },
             { 50,    crouchFlip },
+            { 51,     jumpSquat },
+            { 52,         Throw },
 
             { 101, crouch},
             { 102, crouch},
@@ -137,16 +141,18 @@ public class GreyshirtBehaviours : Behaviors
             { fiveS, 35  },
             { sixS, 36   },
 
-            {forwardDash, 41},
-            {backDash, 42},
-            {forwardAirDash, 43},
-            {backAirDash, 44},
-            {stun, 45 },
-            {block, 46 },
-            {crouchBlock, 47 },
-            {airBlock, 48 },
-            {flip, 49 },
-            {crouchFlip, 50 },
+            { forwardDash, 41},
+            { backDash, 42},
+            { forwardAirDash, 43},
+            { backAirDash, 44},
+            { stun, 45 },
+            { block, 46 },
+            { crouchBlock, 47 },
+            { airBlock, 48 },
+            { flip, 49 },
+            { crouchFlip, 50 },
+            { jumpSquat, 51 },
+            { Throw, 52 }
         };
 
         setIds(greyshirtActionIds, greyshirtAnimAction);
@@ -1051,6 +1057,24 @@ public class GreyshirtBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     };
 
+    // Throw
+    private Action Throw = new Action()
+    {
+        tier = 2,
+        frames = new int[] { 0 },
+        damage = new int[] { 1500 },
+        level = 5,
+        p1scaling = .5f,
+        block = UNBLOCKABLE,
+        knockdown = HARDKD,
+        actionCancels = new int[] { 1, 2 },
+        gAngle = new int[] { 30 },
+        gStrength = new float[] { 10 },
+        aAngle = new int[] { 0 },
+        aStrength = new float[] { 0 },
+        airOK = false,
+    };
+
     // Jump Squat
     private Action jumpSquat = new Action()
     {
@@ -1513,7 +1537,12 @@ public class GreyshirtBehaviours : Behaviors
              new OnAdvancedAction(advAirDashBack),
              new OnAdvancedAction(advStun),
              new OnAdvancedAction(advBlock),
-             new OnAdvancedAction(advJumpSquat)
+             new OnAdvancedAction(advCrouchBlock),
+             new OnAdvancedAction(advAirBlock),
+             new OnAdvancedAction(advFlip),
+             new OnAdvancedAction(advCrouchFlip),
+             new OnAdvancedAction(advJumpSquat),
+             new OnAdvancedAction(advThrow)
         };
     }
 
@@ -1558,9 +1587,38 @@ public class GreyshirtBehaviours : Behaviors
         player.checkBlockEnd();
     }
 
+    public void advCrouchBlock(PlayerScript player)
+    {
+        player.hVelocity = 0;
+        player.checkBlockEnd();
+    }
+
+    public void advAirBlock(PlayerScript player)
+    {
+        player.hVelocity = 0;
+        player.vVelocity = 0;
+        player.checkBlockEnd();
+    }
+
+    public void advFlip(PlayerScript player)
+    {
+
+    }
+
+    public void advCrouchFlip(PlayerScript player)
+    {
+
+    }
+
     public void advJumpSquat(PlayerScript player)
     {
         player.hVelocity = 0;
+    }
+
+    public void advThrow(PlayerScript player)
+    {
+        Debug.Log("Throw Executed");
+        player.throwThatMfOtherPlayer();
     }
 
     public override void setStats()

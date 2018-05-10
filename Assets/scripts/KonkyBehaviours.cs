@@ -1687,7 +1687,7 @@ public class KonkyBehaviours : Behaviors
 
     public void advCrouchFlip(PlayerScript player)
     {
-
+        
     }
 
     public void advJumpSquat(PlayerScript player)
