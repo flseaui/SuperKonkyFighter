@@ -770,10 +770,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         switch (throwType)
         {
             case 0:
-                otherPlayer.GetComponent<PlayerScript>().hVelocity = -100;
+                otherPlayer.GetComponent<PlayerScript>().hKnockback = -5;
                 break;
             case 1:
-                otherPlayer.GetComponent<PlayerScript>().hVelocity = 100;
+                otherPlayer.GetComponent<PlayerScript>().hKnockback = 5;
                 break;
         }
         throwType = 0;
