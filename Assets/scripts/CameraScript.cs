@@ -108,12 +108,13 @@ public class CameraScript : MonoBehaviour
 
         background.GetComponent<SpriteRenderer>().sprite = Background[stage < 2 ? stage : stage - 1];
         ground.GetComponent<SpriteRenderer>().sprite = Ground[stage < 2 ? stage : stage - 1];
+
+        Debug.LogFormat("STAGE {0}", stage);
     }
 
     void Update()
     {
-
-        if(Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }        
