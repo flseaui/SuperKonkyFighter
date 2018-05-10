@@ -1187,6 +1187,14 @@ public class KonkyBehaviours : Behaviors
         tier = 2,
         frames = new int[] { 1 },
         damage = new int[] { 1500 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(2, 6, 2, 12, 1, 0), },
+        },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0, 0, 0, 0, 1, 0), },
+        },
         level = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
