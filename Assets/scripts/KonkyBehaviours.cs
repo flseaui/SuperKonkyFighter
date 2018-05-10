@@ -752,7 +752,7 @@ public class KonkyBehaviours : Behaviors
     {
         tier = 3,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },//10 | 2*9 (8) 5 | 24
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 3000, 3000, 3000, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 2000, 2000, 2000, 2000, 2000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
@@ -782,7 +782,7 @@ public class KonkyBehaviours : Behaviors
     },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2, 7, 4, 36, 0), nullBox },
+            { new Action.rect(0.5f, 2, 7, 4, 41, 0), nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -818,8 +818,12 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            { new Action.rect(2, 2.5f, 8, 5, 27, 0), new Action.rect(3.5f, 9f, 4, 8, 27, 1), },
             {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(2, 2.5f, 8, 5, 24, 0), new Action.rect(3.5f, 9f, 4, 8, 24, 1), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
