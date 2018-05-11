@@ -928,8 +928,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (executingAction != 0)
         {
-            int action = executingAction > 50 ? executingAction + 1 : executingAction;
-            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(action)));
+            animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }
         else
