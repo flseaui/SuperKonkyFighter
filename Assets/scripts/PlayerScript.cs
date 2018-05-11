@@ -506,7 +506,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
                     if (behaviors.getAction(executingAction).projectileLocation.HasValue)
                     {
-                        var shotProjectile = Instantiate(projectile);
+                        var shotProjectile = Instantiate(projectile, transform);
                         shotProjectile.transform.position.Set(x() + behaviors.getAction(executingAction).projectileLocation.Value.x, y() + behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
                         shotProjectile.GetComponent<Projectile>().speed = behaviors.getAction(executingAction).projectileSpeed;
                         shotProjectile.GetComponent<Projectile>().strength = behaviors.getAction(executingAction).projectileStrength;

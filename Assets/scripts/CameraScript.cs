@@ -66,7 +66,7 @@ public class CameraScript : MonoBehaviour
 
 	void Start()
 	{
-		uis = canvas.GetComponent<UIScript>();
+        uis = canvas.GetComponent<UIScript>();
 
 		player1 = Instantiate(playerPrefab);
 
