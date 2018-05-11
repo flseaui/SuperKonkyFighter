@@ -94,6 +94,9 @@ public class KonkyBehaviours : Behaviors
             { 34, fourS  },
             { 35, fiveS  },
             { 36, sixS   },
+            { 37,  fourS },
+            { 38,  fourS },
+            { 39,  fourS },
 
             { 41,    forwardDash},
             { 42,       backDash},
