@@ -912,7 +912,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 airborn = false;
                 airbornActionUsed = false;
 
-                if (executingAction > 0)
+                if (executingAction == 54)
+                    executingAction = 53;
+                else if (executingAction > 0)
                     ActionEnd();
             }
             vVelocity = 0;
