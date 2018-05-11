@@ -16,10 +16,19 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (this?.player)
+        if (this?.player)   
         {
-            player.otherPlayer.GetComponent<PlayerScript>().health -= strength;
-            Destroy(this.gameObject);
+            if (!col.transform.parent.parent.tag.Equals(player.tag))
+            {
+                player.otherPlayer.GetComponent<PlayerScript>().health -= strength;
+                Destroy(this.gameObject);
+                PlayerScript other = player.otherPlayer.GetComponent<PlayerScript>();
+                Action action = player.behaviors.getAction(player.executingAction);
+                if (!other.airborn)
+                    other.damage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling);
+                else
+                    other.damage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling);
+            }
         }
     }
 }
