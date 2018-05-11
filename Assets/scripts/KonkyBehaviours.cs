@@ -868,7 +868,7 @@ public class KonkyBehaviours : Behaviors
     {
         tier = 3,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 23 | 1 | 25
-        damage = new int[] { 500, 500, 500 },
+        damage = new int[] { 0 },
         hitboxData = new Action.rect[,]
         {
 
@@ -890,8 +890,9 @@ public class KonkyBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         airOK = false,
         projectileLocation = new Vector2(0, 0),
-        projectileSpeed = 2,
-        projectileStrength = 200,
+        projectileSpeed = 1,
+        projectileStrength = 500*3, 
+        //projectileHits = 3,
     };
 
     // Three Super
@@ -899,7 +900,7 @@ public class KonkyBehaviours : Behaviors
     {
         tier = 3,
         frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
-        damage = new int[] { 600 },
+        damage = new int[] { 0 },
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
@@ -922,8 +923,9 @@ public class KonkyBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         airOK = false,
         projectileLocation = new Vector2(0, 0),
-        projectileSpeed = 2,
-        projectileStrength = 200,
+        projectileSpeed = 3,
+        projectileStrength = 600,
+        //projectileHits = 1,
     };
 
     // Four Super
