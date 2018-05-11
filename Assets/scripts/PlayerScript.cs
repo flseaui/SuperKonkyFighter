@@ -317,6 +317,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             p1Scale = 0;
             p2Scale = 1;
         }
+        if (airborn && basicState < 7)
+            basicState = 8;
+        if (!airborn && executingAction == 54)
+            executingAction = 53;
     }
 
     private void setStates()
@@ -1144,8 +1148,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void stun()
     {
-        executingAction = 45;
-        stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
+        if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0)
+            executingAction = 54;
+        else
+        {
+            executingAction = 45;
+            stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
+        }
 
         otherPlayer.GetComponent<PlayerScript>().comboCounter++;
 

@@ -106,7 +106,9 @@ public class KonkyBehaviours : Behaviors
             { 49,          flip },
             { 50,    crouchFlip },
             { 51,     jumpSquat },
-            { 52,         Throw }, 
+            { 52,         Throw },
+            { 53,      knockdown },
+            { 54,  knockdownFall },
 
             { 101, crouch},
             { 102, crouch},
@@ -152,7 +154,9 @@ public class KonkyBehaviours : Behaviors
             { flip, 49 },
             { crouchFlip, 50 },
             { jumpSquat, 51 },
-            { Throw, 52 }
+            { Throw, 52 },
+            { knockdown, 53 },
+            { knockdownFall, 54 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1368,6 +1372,49 @@ public class KonkyBehaviours : Behaviors
             {nullBox }
         },
     };
+
+    private Action knockdown = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+       {
+            { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
+             {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+
+       },
+    };
+
+    private Action knockdownFall = new Action()
+    {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+    {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
+    }
+    };
+
 
     // Block
     private Action block = new Action() {
