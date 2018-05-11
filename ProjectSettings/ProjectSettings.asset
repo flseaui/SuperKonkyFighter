@@ -538,15 +538,13 @@ PlayerSettings:
   webGLLinkerTarget: 0
   scriptingDefineSymbols: {}
   platformArchitecture: {}
-  scriptingBackend:
-    Standalone: 0
+  scriptingBackend: {Standalone: 0}
   il2cppCompilerConfiguration: {}
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
-  apiCompatibilityLevelPerPlatform:
-    Standalone: 1
+  apiCompatibilityLevelPerPlatform: {Standalone: 1}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: KonkyFixBuild
