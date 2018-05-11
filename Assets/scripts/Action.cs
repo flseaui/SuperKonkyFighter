@@ -10,6 +10,9 @@ public class Action {
     public int[] damage;
 
     public bool airOK;
+    public Vector2? projectileLocation;
+    public int projectileSpeed;
+    public int projectileStrength;
     public int tier;
 	public int level;
     public int hitboxFrames;

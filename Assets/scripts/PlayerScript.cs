@@ -132,6 +132,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public Transform cameraLeft, cameraRight;
     public IntVariable p1ComboCounterText, p2ComboCounterText;
     private IntVariable comboCounterText;
+    public GameObject projectile;
 
     public List<float> livingHitboxesIds;        // the ids of all living hitboxes
     public List<float> livingHitboxesLifespans;  // the lifespans of all living hitboxes
@@ -501,7 +502,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             case 1:
                 // if first active frame in action
                 if (previousFrame != 1)
+                {
                     otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
+                    if (behaviors.getAction(executingAction).projectileLocation.HasValue)
+                    {
+                        var shotProjectile = Instantiate(projectile);
+                        shotProjectile.transform.position.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
+                        shotProjectile.GetComponent<Projectile>().speed = behaviors.getAction(executingAction).projectileSpeed;
+                        shotProjectile.GetComponent<Projectile>().strength = behaviors.getAction(executingAction).projectileStrength;
+                        shotProjectile.GetComponent<Projectile>().player = this;
+                    }
+                }
 
                 if (executingAction < 40)
                     placeHitboxes();

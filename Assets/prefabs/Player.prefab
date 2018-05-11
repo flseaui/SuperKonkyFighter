@@ -364,6 +364,7 @@ MonoBehaviour:
   backwardSpeed: 0
   jumpDirectionSpeed: 0
   pushBuffer: 0
+  wallBuffer: 0
   p1Scale: 0
   p2Scale: 0
   spriteRenderer: {fileID: 212080011780739976}
@@ -380,6 +381,7 @@ MonoBehaviour:
   cameraRight: {fileID: 0}
   p1ComboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}
   p2ComboCounterText: {fileID: 11400000, guid: bcbc3d47bc4851748bb99f13a9ab15b6, type: 2}
+  projectile: {fileID: 1097477757155876, guid: dd492fcb7a7768644953e2cb4f668eb4, type: 2}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []
