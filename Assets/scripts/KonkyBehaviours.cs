@@ -1708,6 +1708,7 @@ public class KonkyBehaviours : Behaviors
     {
         onAdvancedActionCallbacks = new OnAdvancedAction[]
         {
+             new OnAdvancedAction(advJump),
              new OnAdvancedAction(advDashForward),
              new OnAdvancedAction(advDashBack),
              new OnAdvancedAction(advAirDashForward),
@@ -1726,6 +1727,11 @@ public class KonkyBehaviours : Behaviors
     }
 
     // ADVANCED ACTIONS
+    public void advJump(PlayerScript player)
+    {
+
+    }
+
     public void advDashForward(PlayerScript player)
     {
         player.hVelocity = forwardSpeed * dashForwardSpeed;
