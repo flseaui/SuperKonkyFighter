@@ -1719,7 +1719,9 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advFlip),
              new OnAdvancedAction(advCrouchFlip),
              new OnAdvancedAction(advJumpSquat),
-             new OnAdvancedAction(advThrow)
+             new OnAdvancedAction(advThrow),
+             new OnAdvancedAction(advKnockdown),
+             new OnAdvancedAction(advKnockdownFall)
         };
     }
 
@@ -1795,6 +1797,15 @@ public class KonkyBehaviours : Behaviors
     {
         
         player.throwThatMfOtherPlayer();
+    }
+
+    public void advKnockdown(PlayerScript player)
+    {
+
+    }
+    public void advKnockdownFall(PlayerScript player)
+    {
+
     }
 
     public override void setStats()
