@@ -789,7 +789,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void advancedMove()
     {
-        int advancedAction = executingAction -40;
+        int advancedAction = executingAction <= 50 ? executingAction - 41 : executingAction - 40;
         Debug.LogFormat("index {0} in {1} length array", advancedAction, behaviors.onAdvancedActionCallbacks.Length);
         if (behaviors.onAdvancedActionCallbacks[advancedAction] != null)
         {
