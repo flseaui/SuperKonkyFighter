@@ -120,8 +120,6 @@ public class GreyshirtBehaviours : Behaviors
             { 107, jumpBack},
             { 108, jump},
             { 109, jumpForward},
-            { 108, jump},
-            { 109, jumpForward},
         };
 
         greyshirtAnimAction = new Dictionary<Action, int>()
