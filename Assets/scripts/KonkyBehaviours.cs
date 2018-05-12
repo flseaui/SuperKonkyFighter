@@ -1203,8 +1203,8 @@ public class KonkyBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        damage = new int[] { 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        damage = new int[] { 1500 },
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(2, 6, 2, 12, 1, 0), },
@@ -1230,7 +1230,7 @@ public class KonkyBehaviours : Behaviors
     {
         tier = 2,
         frames = new int[] { 1, 1 },
-        damage = new int[] { 1500, 1500 },
+        damage = new int[] { 0, 0 },
         hitboxData = new Action.rect[,]
         {
             { new Action.rect(2, 6, 2, 12, 2, 0), },
