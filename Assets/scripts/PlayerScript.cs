@@ -209,7 +209,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         livingHitboxesLifespans = new List<float>();
 
         testAI = new KonkyAI();
-
     }
 
     // called 60 times per second
