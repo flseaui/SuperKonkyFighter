@@ -15,7 +15,8 @@ public abstract class Behaviors {
                  airDashBackSpeed = 3f,
                  jumpDirectionSpeed = 1.25f,
                  gravity = -0.05f;
-    public int maxHealth = 11000;
+    public int maxHealth = 11000,
+               maxMeter = 8000;
     public bool infiniteDashForward = true;
 
     public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
@@ -50,6 +51,7 @@ public abstract class Behaviors {
         airDashBackSpeed = 3f;
         gravity = -0.05f;
         maxHealth = 11000;
+        maxMeter = 8000;
         infiniteDashForward = true;
     }
 
@@ -116,6 +118,11 @@ public abstract class Behaviors {
     public int getMaxHealth()
     {
         return maxHealth;
+    }
+
+    public int getMaxMeter()
+    {
+        return maxMeter;
     }
 }
 

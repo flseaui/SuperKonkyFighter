@@ -50,6 +50,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
+    public int maxMeter;
     public int health;                 // current health of the player
     public int currentFrameType;       // frame type of the currently executing action
     public int actionFrameCounter;     // current frame number of the executing action
@@ -200,6 +201,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         backwardSpeed = behaviors.getBackwardSpeed();
         jumpDirectionSpeed = behaviors.getJumpDirectionSpeed();
         maxHealth = behaviors.getMaxHealth();
+        maxMeter = behaviors.getMaxMeter();
         gravity = behaviors.getGravity();
         health = maxHealth;
         pushBuffer = 4;
@@ -1125,17 +1127,20 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             }
         }
 
-
         if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))
         {
             hKnockback /= 3;
             vKnockback = 0;
             health -= damage / 4;
+            meterCharge += (int)(damage * .2f);
+            otherPlayer.GetComponent<PlayerScript>().meterCharge += (int)(damage * .1f);
             block();
         }
         else
         {
             health -= damage;
+            meterCharge += (int)(damage * .4f);
+            otherPlayer.GetComponent<PlayerScript>().meterCharge += (int)(damage * .7f);
             stun();
         }
 

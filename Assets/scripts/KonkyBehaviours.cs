@@ -1846,6 +1846,7 @@ public class KonkyBehaviours : Behaviors
         airDashBackSpeed = 3f;
         gravity = -0.05f;
         maxHealth = 11000;
+        maxMeter = 8000;
         infiniteDashForward = true;
     }
 
