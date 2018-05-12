@@ -1822,7 +1822,7 @@ public class KonkyBehaviours : Behaviors
     public void advGrab(PlayerScript player)
     {
         player.hVelocity = 0;
-        if (player.actionFrameCounter > 15)
+        if (player.actionFrameCounter > 0)
         {
             if (player.damageDealt)
                 player.executingAction = 52;
