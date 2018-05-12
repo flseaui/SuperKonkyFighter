@@ -1245,7 +1245,7 @@ public class KonkyBehaviours : Behaviors
         level = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
-        knockdown = HARDKD,
+        knockdown = NONE,
         actionCancels = new int[] {  },
         gAngle = new int[] { 0, 0 },
         gStrength = new float[] { 10, 10 },
