@@ -108,6 +108,8 @@ public class GreyshirtBehaviours : Behaviors
             { 50,    crouchFlip },
             { 51,     jumpSquat },
             { 52,         Throw },
+            { 53,      knockdown },
+            { 54,  knockdownFall },
 
             { 101, crouch},
             { 102, crouch},
@@ -117,7 +119,9 @@ public class GreyshirtBehaviours : Behaviors
             { 106, walkForward},
             { 107, jumpBack},
             { 108, jump},
-            { 109, jumpForward}
+            { 109, jumpForward},
+            { 108, jump},
+            { 109, jumpForward},
         };
 
         greyshirtAnimAction = new Dictionary<Action, int>()
@@ -152,7 +156,9 @@ public class GreyshirtBehaviours : Behaviors
             { flip, 49 },
             { crouchFlip, 50 },
             { jumpSquat, 51 },
-            { Throw, 52 }
+            { Throw, 52 },
+            { knockdown, 53 },
+            { knockdownFall, 54 }
         };
 
         setIds(greyshirtActionIds, greyshirtAnimAction);
@@ -1072,6 +1078,48 @@ public class GreyshirtBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     };
 
+    private Action knockdown = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+      {
+            { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
+             {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+
+      },
+    };
+
+    private Action knockdownFall = new Action()
+    {
+        frames = new int[] { 0 },
+        actionCancels = new int[] { },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+    {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
+    }
+    };
+
     // Throw
     private Action Throw = new Action()
     {
@@ -1546,6 +1594,7 @@ public class GreyshirtBehaviours : Behaviors
     {
         onAdvancedActionCallbacks = new OnAdvancedAction[]
         {
+             new OnAdvancedAction(advJump),
              new OnAdvancedAction(advDashForward),
              new OnAdvancedAction(advDashBack),
              new OnAdvancedAction(advAirDashForward),
@@ -1557,12 +1606,19 @@ public class GreyshirtBehaviours : Behaviors
              new OnAdvancedAction(advFlip),
              new OnAdvancedAction(advCrouchFlip),
              new OnAdvancedAction(advJumpSquat),
-             new OnAdvancedAction(advThrow)
+             new OnAdvancedAction(advThrow),
+             new OnAdvancedAction(advKnockdown),
+             new OnAdvancedAction(advKnockdownFall)
         };
     }
 
 
     // ADVANCED ACTIONS
+    public void advJump(PlayerScript player)
+    {
+
+    }
+
     public void advDashForward(PlayerScript player)
     {
         player.hVelocity = forwardSpeed * dashForwardSpeed;
@@ -1634,6 +1690,16 @@ public class GreyshirtBehaviours : Behaviors
     {
         Debug.Log("Throw Executed");
         player.throwThatMfOtherPlayer();
+    }
+
+    public void advKnockdown(PlayerScript player)
+    {
+
+    }
+
+    public void advKnockdownFall(PlayerScript player)
+    {
+
     }
 
     public override void setStats()
