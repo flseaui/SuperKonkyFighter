@@ -1211,7 +1211,7 @@ public class KonkyBehaviours : Behaviors
         },
         hurtboxData = new Action.rect[,]
         {
-
+             
         },
         level = 5,
         p1scaling = .5f,
@@ -1248,7 +1248,7 @@ public class KonkyBehaviours : Behaviors
         knockdown = NONE,
         actionCancels = new int[] {  },
         gAngle = new int[] { 0, 0 },
-        gStrength = new float[] { 10, 10 },
+        gStrength = new float[] { 0, 0 },
         aAngle = new int[] { 0, 0 },
         aStrength = new float[] { 0, 0  },
         airOK = false,
@@ -1807,8 +1807,9 @@ public class KonkyBehaviours : Behaviors
     }
 
     public void advThrow(PlayerScript player)
-    {        
-        player.throwThatMfOtherPlayer();
+    {
+        if (player.currentFrameType == 1)     
+            player.throwThatMfOtherPlayer();
     }
 
     public void advKnockdown(PlayerScript player)
