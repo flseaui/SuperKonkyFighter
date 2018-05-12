@@ -474,7 +474,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     throwType = 0;
                 else if (input[3])
                     throwType = 1;
-                advancedState = 12;
+                advancedState = 15;
             }
         }
     }
@@ -517,7 +517,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     }
                 }
 
-                if (executingAction < 40)
+                if (executingAction < 40 || executingAction == 55)
                     placeHitboxes();
 
                 activeFrameCounter++;

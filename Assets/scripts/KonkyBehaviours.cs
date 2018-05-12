@@ -111,8 +111,9 @@ public class KonkyBehaviours : Behaviors
             { 50,    crouchFlip },
             { 51,     jumpSquat },
             { 52,         Throw },
-            { 53,      knockdown },
-            { 54,  knockdownFall },
+            { 53,     knockdown },
+            { 54, knockdownFall },
+            { 55,          grab },
 
             { 101, crouch},
             { 102, crouch},
@@ -160,7 +161,8 @@ public class KonkyBehaviours : Behaviors
             { jumpSquat, 51 },
             { Throw, 52 },
             { knockdown, 53 },
-            { knockdownFall, 54 }
+            { knockdownFall, 54 },
+            { grab, 55 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1227,25 +1229,63 @@ public class KonkyBehaviours : Behaviors
     private Action grab = new Action()
     {
         tier = 2,
-        frames = new int[] { 1 },
-        damage = new int[] { 1500 },
+        frames = new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1  },
+        damage = new int[] { 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(2, 6, 2, 12, 1, 0), },
+            { new Action.rect(2, 6, 20, 120, 20, 0), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0, 0, 0, 0, 1, 0), },
+            { new Action.rect(0, 0, 0, 0, 20, 0), },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
+            {nullBox },
         },
         level = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
         knockdown = HARDKD,
         actionCancels = new int[] {  },
-        gAngle = new int[] { 0 },
-        gStrength = new float[] { 10 },
-        aAngle = new int[] { 0 } ,
-        aStrength = new float[] { 0 },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        gStrength = new float[] { 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         airOK = false,
     };
 
@@ -1723,7 +1763,8 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advJumpSquat),
              new OnAdvancedAction(advThrow),
              new OnAdvancedAction(advKnockdown),
-             new OnAdvancedAction(advKnockdownFall)
+             new OnAdvancedAction(advKnockdownFall),
+             new OnAdvancedAction(advGrab)
         };
     }
 
@@ -1801,8 +1842,7 @@ public class KonkyBehaviours : Behaviors
     }
 
     public void advThrow(PlayerScript player)
-    {
-        
+    {        
         player.throwThatMfOtherPlayer();
     }
 
@@ -1813,6 +1853,20 @@ public class KonkyBehaviours : Behaviors
     public void advKnockdownFall(PlayerScript player)
     {
 
+    }
+    public void advGrab(PlayerScript player)
+    {
+        player.hVelocity = 0;
+        if (player.actionFrameCounter > 15)
+        {
+            if (player.damageDealt)
+                player.executingAction = 52;
+            else
+            {
+                Debug.Log("penis");
+                player.executingAction = 25;
+            }
+        }
     }
 
     public override void setStats()
