@@ -1341,7 +1341,7 @@ public class KonkyBehaviours : Behaviors
         infinite = true,
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
+            { new Action.rect(0.5f, 6, 4, 12, 40, 9)},
             {nullBox },
             {nullBox },
             {nullBox },
@@ -1897,11 +1897,14 @@ public class KonkyBehaviours : Behaviors
 
     public void advWallbounce(PlayerScript player)
     {
-        if (player.actionFrameCounter > 5)
+        if (player.actionFrameCounter == 3)
+            player.hKnockback *= -1;
+
+        if (player.actionFrameCounter == 5)
         {
             player.ActionEnd();
             player.executingAction = 45;
-            player.stunTimer -= 6;
+            player.stunTimer -= 5;
         }
     }
 

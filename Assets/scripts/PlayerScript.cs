@@ -1182,8 +1182,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown >= 5)
         {
+            Debug.Log("clayton gay");
             executingAction = 45;
             shouldWallbounce = true;
+            stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
         }
         else
         {
