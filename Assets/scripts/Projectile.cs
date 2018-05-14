@@ -16,9 +16,19 @@ public class Projectile : MonoBehaviour {
         GetComponent<SpriteRenderer>().flipX = player.facingRight ? false : true;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("faggot____");
+        if (collision.gameObject.tag.Equals("projectile"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (this?.player)   
+        if (this?.player)
         {
             if (!col.transform.parent.parent.tag.Equals(player.tag))
             {

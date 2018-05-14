@@ -16,6 +16,7 @@ TagManager:
   - hurtbox2
   - hitboxes
   - hurtboxes
+  - projectile
   layers:
   - Default
   - TransparentFX
