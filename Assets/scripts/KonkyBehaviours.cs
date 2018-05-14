@@ -1233,12 +1233,12 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(2, 6, 2, 12, 2, 0), },
+            { new Action.rect(2, 6, 2, 12, 2, 6), },
             {nullBox },
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0, 0, 0, 0, 2, 0), },
+            { new Action.rect(0, 0, 0, 0, 2, 6), },
             {nullBox },
 
         },
@@ -1856,10 +1856,13 @@ public class KonkyBehaviours : Behaviors
         if (player.actionFrameCounter > 0)
         {
             if (player.damageDealt)
+            {
+                player.ActionEnd();
                 player.executingAction = 52;
+            }
             else
             {
-                Debug.Log("penis");
+                player.ActionEnd();
                 player.executingAction = 25;
             }
         }
