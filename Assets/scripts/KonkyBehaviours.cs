@@ -114,6 +114,7 @@ public class KonkyBehaviours : Behaviors
             { 53,     knockdown },
             { 54, knockdownFall },
             { 55,          grab },
+            { 56,    wallbounce },
 
             { 101, crouch},
             { 102, crouch},
@@ -162,7 +163,8 @@ public class KonkyBehaviours : Behaviors
             { Throw, 52 },
             { knockdown, 53 },
             { knockdownFall, 54 },
-            { grab, 55 }
+            { grab, 55 },
+            { wallbounce, 56 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1454,6 +1456,22 @@ public class KonkyBehaviours : Behaviors
     }
     };
 
+    private Action wallbounce = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+        {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+        }
+    };
+
 
     // Block
     private Action block = new Action() {
@@ -1759,7 +1777,8 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advThrow),
              new OnAdvancedAction(advKnockdown),
              new OnAdvancedAction(advKnockdownFall),
-             new OnAdvancedAction(advGrab)
+             new OnAdvancedAction(advGrab),
+             new OnAdvancedAction(advWallbounce)
         };
     }
 
@@ -1795,6 +1814,12 @@ public class KonkyBehaviours : Behaviors
 
     public void advStun(PlayerScript player)
     {
+        if(player.shouldWallbounce && (player.transform.position.x <= player.cameraLeft.position.x || player.transform.position.x >= player.cameraRight.position.x))
+        {
+            player.ActionEnd();
+            player.executingAction = 56;
+        }
+
         player.stunTimer--;
         if (player.stunTimer <= 0)
         {
@@ -1846,10 +1871,12 @@ public class KonkyBehaviours : Behaviors
     {
 
     }
+
     public void advKnockdownFall(PlayerScript player)
     {
 
     }
+
     public void advGrab(PlayerScript player)
     {
         player.hVelocity = 0;
@@ -1865,6 +1892,16 @@ public class KonkyBehaviours : Behaviors
                 player.ActionEnd();
                 player.executingAction = 25;
             }
+        }
+    }
+
+    public void advWallbounce(PlayerScript player)
+    {
+        if (player.actionFrameCounter > 5)
+        {
+            player.ActionEnd();
+            player.executingAction = 45;
+            player.stunTimer -= 6;
         }
     }
 
@@ -1999,8 +2036,4 @@ public class KonkyBehaviours : Behaviors
 
         }
     }
-
-
-
-
 }

@@ -47,6 +47,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool damageDealt;           // true if damage was dealt this frame
     public bool inPushCollision;       // true if player push boxes are currently colliding
     public bool alreadyExecutedAttackMove;
+    public bool shouldWallbounce;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -321,7 +322,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (airborn && basicState < 7)
             basicState = 8;
         if (!airborn && executingAction == 54)
+        {
+            ActionEnd();
             executingAction = 53;
+        }
     }
 
     private void setStates()
@@ -927,7 +931,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 airbornActionUsed = false;
 
                 if (executingAction == 54)
+                {
+                    ActionEnd();
                     executingAction = 53;
+                }
                 else if (executingAction > 0)
                     ActionEnd();
             }
@@ -1116,6 +1123,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         basicAnimFrame = 0;
         previousBasicState = 0;
         damageDealt = false;
+        shouldWallbounce = false;
         killAllBoxes();
     }
 
@@ -1166,8 +1174,17 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void stun()
     {
-        if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0)
+        ActionEnd();
+
+        if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 2)
+        {
             executingAction = 54;
+        }
+        else if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown >= 5)
+        {
+            executingAction = 45;
+            shouldWallbounce = true;
+        }
         else
         {
             executingAction = 45;
@@ -1186,6 +1203,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void block()
     {
+        ActionEnd();
+
         if (basicState >= 7)
             executingAction = 48;
         else if (basicState <= 3)
