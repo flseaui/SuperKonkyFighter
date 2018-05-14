@@ -366,6 +366,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             attackState = 0;
     }
 
+    private void setSpecialInput(bool[] input)
+    {
+        if (airborn)
+        {
+
+        }
+    }
+
     // updates advanced state and deals with advanced action stopping
     private void setAdvancedInput(bool[] input)
     {
