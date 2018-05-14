@@ -11,7 +11,9 @@ public class Projectile : MonoBehaviour {
 
     void Update()
     {
-        transform.position += new Vector3(speed, 0, 0);
+        transform.position += player.facingRight ? new Vector3(speed, 0, 0) : new Vector3(-speed, 0, 0);
+
+        GetComponent<SpriteRenderer>().flipX = player.facingRight ? false : true;
     }
 
     void OnTriggerEnter2D(Collider2D col)

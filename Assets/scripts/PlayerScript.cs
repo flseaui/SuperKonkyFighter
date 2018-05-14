@@ -511,11 +511,15 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
                     if (behaviors.getAction(executingAction).projectileLocation.HasValue)
                     {
-                        var shotProjectile = Instantiate(projectile, transform);
-                        shotProjectile.transform.position.Set(x() + behaviors.getAction(executingAction).projectileLocation.Value.x, y() + behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
-                        shotProjectile.GetComponent<Projectile>().speed = behaviors.getAction(executingAction).projectileSpeed;
-                        shotProjectile.GetComponent<Projectile>().strength = behaviors.getAction(executingAction).projectileStrength;
-                        shotProjectile.GetComponent<Projectile>().player = this;
+                        var projectileX = behaviors.getAction(executingAction).projectileLocation.Value.x;
+                        var shotProjectile = Instantiate(projectile, new Vector3(x() + (facingRight ? projectileX : -projectileX), y() + behaviors.getAction(executingAction).projectileLocation.Value.y, 69), Quaternion.identity);
+                        shotProjectile.GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
+                        Projectile shotProjectileScript = shotProjectile.GetComponent<Projectile>();
+                        //shotProjectile.transform.position.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
+                        shotProjectile.transform.localPosition.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
+                        shotProjectileScript.speed = behaviors.getAction(executingAction).projectileSpeed;
+                        shotProjectileScript.strength = behaviors.getAction(executingAction).projectileStrength;
+                        shotProjectileScript.player = this;
                     }
                 }
 
@@ -791,7 +795,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     private void advancedMove()
     {
         int advancedAction = executingAction - 40;
-        Debug.LogFormat("index {0} in {1} length array", advancedAction, behaviors.onAdvancedActionCallbacks.Length);
+        //Debug.LogFormat("index {0} in {1} length array", advancedAction, behaviors.onAdvancedActionCallbacks.Length);
         if (behaviors.onAdvancedActionCallbacks[advancedAction] != null)
         {
             behaviors.onAdvancedActionCallbacks[advancedAction].Invoke(this);
