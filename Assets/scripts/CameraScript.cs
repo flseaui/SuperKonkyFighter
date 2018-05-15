@@ -150,10 +150,19 @@ public class CameraScript : MonoBehaviour
         }
 
         if (ghost.GetComponent<BackGroundScript>().shake)
-		{   
+		{
+            horzExtent = 26.66667f;
+
             if (justShook == false)
             {
                 preShakePos = transform.position;
+
+                p1s.camLeft = preShakePos.x - horzExtent;
+                p2s.camLeft = preShakePos.x - horzExtent;
+
+                p1s.camRight = preShakePos.x + horzExtent;
+                p2s.camRight = preShakePos.x + horzExtent;
+                
                 justShook = true;
             }
 
@@ -167,11 +176,13 @@ public class CameraScript : MonoBehaviour
             else if (camX + (horzExtent) > rightEdge.position.x)
                 camX = rightEdge.position.x - (horzExtent);
 
-            if (camX > rightEdge.position.x)
-                camX = rightEdge.position.x;
-            else if (camX < leftEdge.position.x)
-                camX = leftEdge.position.x;
+            Debug.Log(horzExtent);
+            //Debug.LogFormat("x:{0}, width: {1}, leftEdge: {2}, rightEdge: {3}", camX, horzExtent, leftEdge.position.x, rightEdge.position.x);
 
+            if (camX + horzExtent > rightEdge.position.x)
+                camX = rightEdge.position.x - horzExtent;
+            else if (camX - horzExtent < leftEdge.position.x)
+                camX = leftEdge.position.x - horzExtent;
 
             setX(self, camX);
 			setY(self, 12 + shakeY);
