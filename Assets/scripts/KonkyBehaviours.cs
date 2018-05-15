@@ -1452,7 +1452,7 @@ public class KonkyBehaviours : Behaviors
         infinite = true,
         hurtboxData = new Action.rect[,]
     {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 2, 9), new Action.rect(1.5f, 9f, 4, 8, 2, 10), },
     }
     };
 
