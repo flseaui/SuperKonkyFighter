@@ -311,7 +311,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hPush = 0;
         overrideAction = 0;
-        if (comboTimer > 0 && executingAction != 45)
+        if (comboTimer > 0 && (executingAction != 45 || executingAction != 56))
             comboTimer--;
         if (comboTimer == 0)
         {
