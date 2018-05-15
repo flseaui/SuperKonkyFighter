@@ -185,7 +185,7 @@ public class CameraScript : MonoBehaviour
                 camX = leftEdge.position.x - horzExtent;
 
             setX(self, camX);
-			setY(self, transform.position.y + shakeY);
+			setY(self, preShakePos.y + shakeY);
             
 		}
         else if (justShook)
