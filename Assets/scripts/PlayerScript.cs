@@ -340,6 +340,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (attackState % 10 >= 7 && !airborn)
                 attackState = 0;
             setAdvancedInput(testAI.getInput());
+            setSpecialInput(testAI.getInput());
         }
         else
         {
@@ -350,6 +351,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (attackState % 10 >= 7 && !airborn)
                 attackState = 0;
             setAdvancedInput(inputManager.currentInput);
+            setSpecialInput(inputManager.currentInput);
         }
     }
 
@@ -363,9 +365,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (input[6])
             attackState = basicState + 20;
         else if (input[7])
-        {
             attackState = basicState + 30;
-        }
         else
             attackState = 0;
     }
@@ -374,7 +374,62 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (airborn)
         {
-
+            if (input[7])
+            {
+                if (behaviors.getAction(executingAction).airOK)
+                {
+                    if (playerSide)
+                    {
+                        if (input[1])
+                        {
+                            if (input[2])
+                            {
+                                attackState = 31;
+                            }
+                            else if (input[3])
+                            {
+                                attackState = 33;
+                            }
+                        }
+                        else
+                        {
+                            if (input[2])
+                            {
+                                attackState = 34;
+                            }
+                            else if (input[3])
+                            {
+                                attackState = 36;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (input[1])
+                        {
+                            if (input[3])
+                            {
+                                attackState = 31;
+                            }
+                            else if (input[2])
+                            {
+                                attackState = 33;
+                            }
+                        }
+                        else
+                        {
+                            if (input[3])
+                            {
+                                attackState = 34;
+                            }
+                            else if (input[2])
+                            {
+                                attackState = 36;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
