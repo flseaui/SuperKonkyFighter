@@ -784,12 +784,11 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
             {nullBox, },
-            { new Action.rect(7, 9.5f, 6, 14, 5, 0) },
+            { new Action.rect(8, 9.5f, 8, 14, 5, 0) },
             {nullBox, },
             {nullBox, },
             {nullBox, },
             {nullBox, }
-
     },
         hurtboxData = new Action.rect[,]
         {
@@ -934,7 +933,7 @@ public class KonkyBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
         airOK = false,
         projectileLocation = new Vector2(7, 0),
-        projectileSpeed = 3,
+        projectileSpeed = 2,
         projectileStrength = 600,
         //projectileHits = 1,
     };
