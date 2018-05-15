@@ -194,7 +194,7 @@ public class KonkyBehaviours : Behaviors
         hurtboxFrames = 17,
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(4.5f, 9, 5, 2, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            { new Action.rect( 6, 3, 5, 2, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
             {nullBox, },
             {nullBox, }
         },
@@ -221,7 +221,7 @@ public class KonkyBehaviours : Behaviors
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 1,
         p1scaling = .9f,
-        block = MID,
+        block = LOW,
         knockdown = NONE,
         actionCancels = new int[] { 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
@@ -234,7 +234,7 @@ public class KonkyBehaviours : Behaviors
     private Action standM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 3 | 12
+        frames = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 3 | 11
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -245,7 +245,6 @@ public class KonkyBehaviours : Behaviors
         hurtboxData = new Action.rect[,]
         {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 23, 1), new Action.rect(1.5f, 9f, 4, 8, 23, 2), },
-            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
