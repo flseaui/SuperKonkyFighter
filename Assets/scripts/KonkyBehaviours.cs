@@ -1903,11 +1903,13 @@ public class KonkyBehaviours : Behaviors
 
         if(player.actionFrameCounter == 1)
         {
+            player.stored = player.vKnockback;
             player.vKnockback = 0;
         }
 
         if (player.actionFrameCounter == 9)
         {
+            player.vKnockback = player.stored;
             player.hKnockback *= -1;
             player.ActionEnd();
             player.executingAction = 54;

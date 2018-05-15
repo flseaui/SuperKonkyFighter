@@ -120,6 +120,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public float wallBuffer;
     public float p1Scale;
     public float p2Scale;
+    public float stored;
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -295,7 +296,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void checkForFlip( bool specialCase)
     {
-        if(playerSide != facingRight && executingAction != 41 && executingAction != 52  && executingAction != 54)
+        if(playerSide != facingRight && executingAction != 41 && executingAction != 52)
         {
             if (!airborn || specialCase)
                 facingRight = !facingRight;
@@ -311,7 +312,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         hPush = 0;
         overrideAction = 0;
-        if (comboTimer > 0 && (executingAction != 45 && executingAction != 56))
+        if (comboTimer > 0 && (executingAction != 45 && executingAction != 56 && executingAction != 54))
             comboTimer--;
         if (comboTimer == 0)
         {
