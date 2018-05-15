@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2130,7 +2130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.315979, y: 2.1660004}
+  m_AnchoredPosition: {x: -1.315979, y: 2.1660156}
   m_SizeDelta: {x: 0.421, y: 0.698}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1916469837
@@ -2286,7 +2286,7 @@ SpriteRenderer:
   m_SortingLayerID: -2035806667
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e635424fc1bce0418b9f60a5904c4de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3142da080cb4470439a6fd910cb6480f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

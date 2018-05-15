@@ -12,6 +12,9 @@ public class MenuScript : MonoBehaviour {
 	const int STAGE_SELECT_SCREEN = 2;
 	const int SETTINGS_SCREEN = 3;
 
+	private readonly int[] TIMES = {99, 120, 60, 69, 420, -1};
+	private readonly int[] BESTOFS = { 3, 5, 7, 9};
+
 	//---------------------misc sprites-----------------//
 
 	public Sprite titleSprite;
@@ -67,6 +70,15 @@ public class MenuScript : MonoBehaviour {
 
 	private GameObject[] stageSprites;
 
+	private GameObject onlineButton;
+	private GameObject onlineText;
+	private GameObject hitboxButton;
+	private GameObject hitboxText;
+	private GameObject matchTimeButton;
+	private GameObject matchTimeText;
+	private GameObject bestOfButton;
+	private GameObject bestOfText;
+
 	//-----------------------------prefabs----------------------------//
 
 	public GameObject buttonPrefab;
@@ -82,8 +94,7 @@ public class MenuScript : MonoBehaviour {
 	public List<int> links;
 
 	private int screen;
-
-	//--------------------prefs--------------------------------------//
+	//--------------------prefs----------------------------------------//
 
 	private int stageSelect;
 	private int player1c;
@@ -93,6 +104,13 @@ public class MenuScript : MonoBehaviour {
 
 	//settings
 	private bool onlineMode;
+	private bool showHitboxes;
+	private int matchTime;
+	private int bestOf;
+
+	//win screen
+	private int player1w;
+	private int player2w;
 
 	//-----------------------------------------------------------------//
 
@@ -309,6 +327,10 @@ public class MenuScript : MonoBehaviour {
 				player2c = -1;
 				globeSelect = 0;
 
+				//reset player wins
+				PlayerPrefs.SetInt("player1w", 0);
+				PlayerPrefs.SetInt("player2w", 0);
+
 				makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 1, new int[] { ComponentScript.FLAG_HIDDEN });//hidden play button
 				makeFancyText(0, -3, 2f, "play", 0);//play button text
 
@@ -326,6 +348,8 @@ public class MenuScript : MonoBehaviour {
 				player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
 				cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] {});
 				cpuText1 = makeFancyText(-8.5f, -7.75f, 0.5f, "", 0);
+				makeText(-14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player1w"), 0);
+
 
 				globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
 				globe2.GetComponent<SpriteRenderer>().sortingOrder = 7;
@@ -334,6 +358,7 @@ public class MenuScript : MonoBehaviour {
 				player2.GetComponent<SpriteRenderer>().sortingOrder = 90; player2.GetComponent<SpriteRenderer>().flipX = true;
 				cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
 				cpuText2 = makeFancyText(8.5f, -7.75f, 0.5f, "", 0);
+				makeText(14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player2w"), 0);
 
 				characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ComponentScript.FLAG_HIDDEN, ComponentScript.FLAG_DUMMY });
 				characterGoText = makeFancyText(0, -3, 2, "go", 0);
@@ -409,13 +434,31 @@ public class MenuScript : MonoBehaviour {
 
 				makeText(-16f, 9f, 1.25f, "settings", 1);//screen description
 
-				makeText(-14f, 6.5f, 1f, "multiplayer mode", 1);
+				//makeText(-14f, 6.5f, 1f, "multiplayer mode", 1);
 
-				makeButton(new Vector3[] { new Vector2(-14, 5), new Vector2(-7, 5), new Vector2(-7, 3), new Vector2(-14, 3) }, new Color(0.8f, 0f, 0f, 0.75f), -1, new int[] { });
-				makeFancyText(-10.5f, 4, 1f, "local", 0);
+				//onlineButton = makeButton(new Vector3[] { new Vector2(-14, 5), new Vector2(-7, 5), new Vector2(-7, 3), new Vector2(-14, 3) }, new Color(0.8f, 0f, 0f, 0.75f), -1, new int[] { });
+				//onlineText = makeFancyText(-10.5f, 4, 1f, "local", 0);
+
+				makeText(-14f, 6.5f, 1f, "hitboxes", 1);
+
+				hitboxButton = makeButton(new Vector3[] { new Vector2(-14, 5), new Vector2(-7, 5), new Vector2(-7, 3), new Vector2(-14, 3) }, new Color(0.8f, 0f, 0f, 0.75f), 16, new int[] { });
+				hitboxText = makeFancyText(-10.5f, 4, 1f, "hidden", 0);
+
+				makeText(-14f, 2.5f, 1f, "match time", 1);
+
+				matchTimeButton = makeButton(new Vector3[] { new Vector2(-14, 1), new Vector2(-7, 1), new Vector2(-7, -1), new Vector2(-14, -1) }, new Color(0.8f, 0f, 0f, 0.75f), 17, new int[] { });
+				matchTimeText = makeFancyText(-10.5f, 0, 1f, "99", 0);
+
+				makeText(-14f, -1.5f, 1f, "best out of", 1);
+
+				bestOfButton = makeButton(new Vector3[] { new Vector2(-14, -3), new Vector2(-7, -3), new Vector2(-7, -5), new Vector2(-14, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 18, new int[] { });
+				bestOfText = makeFancyText(-10.5f, -4, 1f, "3", 0);
 
 				makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ComponentScript.FLAG_HIDDEN });
 				makeFancyText(-16f, -9f, 1f, "back", 2);//back button
+
+				settingsShift();
+
 				break;
 		}
 	}
@@ -532,6 +575,20 @@ public class MenuScript : MonoBehaviour {
 			case 15:
 				startScreen(SETTINGS_SCREEN);
 				break;
+			case 16:
+				showHitboxes = !showHitboxes;
+				settingsShift();
+				break;
+			case 17:
+				++matchTime;
+				matchTime %= TIMES.Length;
+				settingsShift();
+				break;
+			case 18:
+				++bestOf;
+				bestOf %= BESTOFS.Length;
+				settingsShift();
+				break;
 		}
 	}
 
@@ -565,6 +622,10 @@ public class MenuScript : MonoBehaviour {
 		PlayerPrefs.SetInt("player2c", player2c);
 		PlayerPrefs.SetInt("player1ai", player1ai);
 		PlayerPrefs.SetInt("player2ai", player2ai);
+
+		PlayerPrefs.SetInt("settingShowHitboxes", showHitboxes ? 0 : 1 );
+		PlayerPrefs.SetInt("settingMatchTime", TIMES[matchTime]);
+		PlayerPrefs.SetInt("settingBestOf", BESTOFS[bestOf]);
 	}
 
 	private void globeShift()
@@ -653,9 +714,26 @@ public class MenuScript : MonoBehaviour {
 		}
 	}
 
+	/*
+	private bool showHitboxes;
+	private int matchTime;
+	private int bestOf;
+	 **/
+
 	private void settingsShift()
 	{
+		if (showHitboxes)
+			changeFancyText(hitboxText, "shown");
+		else
+			changeFancyText(hitboxText, "hidden");
 
+		int tempTime = TIMES[matchTime];
+		if (tempTime == -1)
+			changeFancyText(matchTimeText, "inf");
+		else
+			changeFancyText(matchTimeText, tempTime.ToString());
+
+		changeFancyText(bestOfText, BESTOFS[bestOf].ToString());
 	}
 
 	private void changeSpriteColor(GameObject o, Color c)
