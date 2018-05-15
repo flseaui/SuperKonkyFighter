@@ -376,56 +376,61 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             if (input[7])
             {
-                if (behaviors.getAction(executingAction).airOK)
+                if (playerSide)
                 {
-                    if (playerSide)
+                    if (input[1])
                     {
-                        if (input[1])
+                        if (input[2])
                         {
-                            if (input[2])
-                            {
+                            if (behaviors.getAction(31).airOK)
                                 attackState = 31;
-                            }
-                            else if (input[3])
-                            {
-                                attackState = 33;
-                            }
                         }
-                        else
+                        else if (input[3])
                         {
-                            if (input[2])
-                            {
-                                attackState = 34;
-                            }
-                            else if (input[3])
-                            {
-                                attackState = 36;
-                            }
+                        if (behaviors.getAction(33).airOK)
+                            attackState = 33;
                         }
                     }
                     else
                     {
-                        if (input[1])
+                        if (input[2])
                         {
-                            if (input[3])
-                            {
-                                attackState = 31;
-                            }
-                            else if (input[2])
-                            {
-                                attackState = 33;
-                            }
+                        if (behaviors.getAction(34).airOK)
+                            attackState = 34;
                         }
-                        else
+                        else if (input[3])
                         {
-                            if (input[3])
-                            {
-                                attackState = 34;
-                            }
-                            else if (input[2])
-                            {
-                                attackState = 36;
-                            }
+                        if (behaviors.getAction(35).airOK)
+                            attackState = 36;
+                        }
+                    }
+                }
+                else
+                {
+                    if (input[1])
+                    {
+                        if (input[3])
+                        {
+                        if (behaviors.getAction(31).airOK)
+                            attackState = 31;
+                        }
+                        else if (input[2])
+                        {
+                        if (behaviors.getAction(33).airOK)
+                            attackState = 33;
+                        }
+                    }
+                    else
+                    {
+                        if (input[3])
+                        {
+                        if (behaviors.getAction(34).airOK)
+                            attackState = 34;
+                        }
+                        else if (input[2])
+                        {
+                        if (behaviors.getAction(36).airOK)
+                            attackState = 36;
                         }
                     }
                 }
