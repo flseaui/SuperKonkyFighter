@@ -1212,9 +1212,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))
         {
-            hKnockback /= 3;
+            hKnockback /= 4;
             vKnockback = 0;
-            health -= damage / 4;
+            health -= damage / 10;
             meterCharge += (int)(damage * .4f);
             otherPlayer.GetComponent<PlayerScript>().meterCharge += (int)(damage * .2f);
             block();
