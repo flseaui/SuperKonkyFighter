@@ -1904,11 +1904,10 @@ public class KonkyBehaviours : Behaviors
         if (player.actionFrameCounter == 3)
             player.hKnockback *= -1;
 
-        if (player.actionFrameCounter == 5)
+        if (player.actionFrameCounter == 9)
         {
             player.ActionEnd();
-            player.executingAction = 45;
-            player.stunTimer -= 5;
+            player.executingAction = 54;
         }
     }
 
