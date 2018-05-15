@@ -1900,11 +1900,15 @@ public class KonkyBehaviours : Behaviors
 
     public void advWallbounce(PlayerScript player)
     {
-        if (player.actionFrameCounter == 3)
-            player.hKnockback *= -1;
+
+        if(player.actionFrameCounter == 1)
+        {
+            player.vKnockback = 0;
+        }
 
         if (player.actionFrameCounter == 9)
         {
+            player.hKnockback *= -1;
             player.ActionEnd();
             player.executingAction = 54;
         }
