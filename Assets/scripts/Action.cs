@@ -11,7 +11,7 @@ public class Action {
 
     public bool airOK;
     public Vector2? projectileLocation;
-    public int projectileSpeed;
+    public float projectileSpeed;
     public int projectileStrength;
     public int tier;
 	public int level;
