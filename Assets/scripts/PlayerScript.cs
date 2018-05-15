@@ -295,7 +295,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void checkForFlip( bool specialCase)
     {
-        if(playerSide != facingRight && executingAction != 41 && executingAction != 52 )
+        if(playerSide != facingRight && executingAction != 41 && executingAction != 52  && executingAction != 54)
         {
             if (!airborn || specialCase)
                 facingRight = !facingRight;
