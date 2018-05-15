@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 114237799369803098}
   - component: {fileID: 95060079290894174}
   - component: {fileID: 82813003963254516}
-  - component: {fileID: 114084658075311190}
   m_Layer: 0
   m_Name: NetworkedPlayer
   m_TagString: Player
@@ -306,38 +305,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurt: 0
---- !u!114 &114084658075311190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646981266529194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 240
-    i1: 15
-    i2: 218
-    i3: 56
-    i4: 81
-    i5: 80
-    i6: 10
-    i7: 212
-    i8: 203
-    i9: 149
-    i10: 119
-    i11: 2
-    i12: 83
-    i13: 116
-    i14: 234
-    i15: 86
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114237799369803098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,8 +331,10 @@ MonoBehaviour:
   damageDealt: 0
   inPushCollision: 0
   alreadyExecutedAttackMove: 0
+  shouldWallbounce: 0
   bufferedMove: 0
   maxHealth: 0
+  maxMeter: 0
   health: 0
   currentFrameType: 0
   actionFrameCounter: 0
@@ -397,8 +366,12 @@ MonoBehaviour:
   backwardSpeed: 0
   jumpDirectionSpeed: 0
   pushBuffer: 0
+  wallBuffer: 0
   p1Scale: 0
   p2Scale: 0
+  stored: 0
+  camRight: 0
+  camLeft: 0
   spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
   konkyAnimationController: {fileID: 9100000, guid: 8efbe4cc9762cc54dbc95d13065249fe,
@@ -413,6 +386,7 @@ MonoBehaviour:
   cameraRight: {fileID: 0}
   p1ComboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}
   p2ComboCounterText: {fileID: 11400000, guid: bcbc3d47bc4851748bb99f13a9ab15b6, type: 2}
+  projectile: {fileID: 1097477757155876, guid: dd492fcb7a7768644953e2cb4f668eb4, type: 2}
   livingHitboxesIds: []
   livingHitboxesLifespans: []
   livingHurtboxesIds: []

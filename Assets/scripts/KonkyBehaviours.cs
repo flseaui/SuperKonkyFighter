@@ -1864,8 +1864,8 @@ public class KonkyBehaviours : Behaviors
 
     public void advBlock(PlayerScript player)
     {
-        if (player.attackState > 30)
-            player.otherPlayer.GetComponent<PlayerScript>().hKnockback += (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -4 : 4);
+        if (player.inputManager.currentInput[7])
+            player.otherPlayer.GetComponent<PlayerScript>().hKnockback += (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
 
         player.hVelocity = 0;
         player.checkBlockEnd();
