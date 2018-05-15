@@ -110,6 +110,8 @@ public class GreyshirtBehaviours : Behaviors
             { 52,         Throw },
             { 53,      knockdown },
             { 54,  knockdownFall },
+            { 55,          grab },
+            { 56,    wallbounce },
 
             { 101, crouch},
             { 102, crouch},
@@ -156,7 +158,9 @@ public class GreyshirtBehaviours : Behaviors
             { jumpSquat, 51 },
             { Throw, 52 },
             { knockdown, 53 },
-            { knockdownFall, 54 }
+            { knockdownFall, 54 },
+            { grab, 55 },
+            { wallbounce, 56 }
         };
 
         setIds(greyshirtActionIds, greyshirtAnimAction);
@@ -1116,6 +1120,54 @@ public class GreyshirtBehaviours : Behaviors
     {
             { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
     }
+    };
+
+    private Action wallbounce = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+       {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+       }
+    };
+
+    private Action grab = new Action()
+    {
+        tier = 2,
+        frames = new int[] { 1, 1 },
+        damage = new int[] { 0, 0 },
+        hitboxData = new Action.rect[,]
+       {
+            { new Action.rect(2, 6, 2, 12, 2, 6), },
+            {nullBox },
+       },
+        hurtboxData = new Action.rect[,]
+       {
+            { new Action.rect(0, 0, 0, 0, 2, 6), },
+            {nullBox },
+
+       },
+        level = 5,
+        p1scaling = .5f,
+        block = UNBLOCKABLE,
+        knockdown = NONE,
+        actionCancels = new int[] { },
+        gAngle = new int[] { 0, 0 },
+        gStrength = new float[] { 0, 0 },
+        aAngle = new int[] { 0, 0 },
+        aStrength = new float[] { 0, 0 },
+        airOK = false,
     };
 
     // Throw
