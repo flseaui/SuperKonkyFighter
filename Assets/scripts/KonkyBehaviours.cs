@@ -333,10 +333,10 @@ public class KonkyBehaviours : Behaviors
         block = MID,
         knockdown = SOFTWB,
         actionCancels = new int[] { 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        gStrength = new float[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
-        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        aStrength = new float[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 }
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
     };
 
     // Crouching Light
@@ -1458,11 +1458,15 @@ public class KonkyBehaviours : Behaviors
 
     private Action wallbounce = new Action()
     {
-        frames = new int[] { 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         actionCancels = new int[] { },
         infinite = false,
         hurtboxData = new Action.rect[,]
         {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
