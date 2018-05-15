@@ -161,10 +161,18 @@ public class CameraScript : MonoBehaviour
 			shakeY = Random.Range(-0.75f, 0.75f);
 
             float camX = transform.parent.transform.position.x + shakeX;
-            if (camX - (horzExtent ) < leftEdge.position.x)
-                camX = leftEdge.position.x + (horzExtent );
-            else if (camX + (horzExtent ) > rightEdge.position.x)
-                camX = rightEdge.position.x - (horzExtent );
+
+            if (camX - (horzExtent) < leftEdge.position.x)
+                camX = leftEdge.position.x + (horzExtent);
+            else if (camX + (horzExtent) > rightEdge.position.x)
+                camX = rightEdge.position.x - (horzExtent);
+
+            if (camX > rightEdge.position.x)
+                camX = rightEdge.position.x;
+            else if (camX < leftEdge.position.x)
+                camX = leftEdge.position.x;
+
+
             setX(self, camX);
 			setY(self, 12 + shakeY);
             
