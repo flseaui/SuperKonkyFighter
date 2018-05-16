@@ -1450,11 +1450,10 @@ public class KonkyBehaviours : Behaviors
     };
 
     // Stun
-    private Action stun = new Action() { frames = new int[] { 3, 3 }, actionCancels = new int[] { },
+    private Action stun = new Action() { frames = new int[] { 3 }, actionCancels = new int[] { },
         infinite = true,
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 6, 4, 12, 1, 9)},
             { new Action.rect(0.5f, 6, 4, 12, 1, 9)},
         },
     };
@@ -1893,10 +1892,11 @@ public class KonkyBehaviours : Behaviors
 
     public void advStun(PlayerScript player)
     {
-        if(player.actionFrameCounter == 0)
+        if(player.firstStun)
         {
             player.hVelocity = 0;
             player.vVelocity = 0;
+            player.firstStun = false;
         }
 
         if(player.shouldWallbounce && (player.transform.position.x <= player.cameraLeft.position.x || player.transform.position.x >= player.cameraRight.position.x))

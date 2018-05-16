@@ -48,6 +48,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool inPushCollision;       // true if player push boxes are currently colliding
     public bool alreadyExecutedAttackMove;
     public bool shouldWallbounce;
+    public bool firstStun;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -1273,6 +1274,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public void stun()
     {
         ActionEnd();
+        firstStun = true;
 
         if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 2)
         {
