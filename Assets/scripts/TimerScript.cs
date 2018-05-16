@@ -12,7 +12,7 @@ public class TimerScript : MonoBehaviour
 
 	void Start()
     {
-        time.value = startTime;
+        time.value = PlayerPrefs.GetInt("settingMatchTime");
         StartCoroutine("tickDown");
 	}
 	

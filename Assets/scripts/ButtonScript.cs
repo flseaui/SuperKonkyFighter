@@ -6,7 +6,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler,
 								  IPointerUpHandler, IPointerExitHandler
 {
 
-	public MenuScript menuScript;
+	public OldMenuScript menuScript;
 
 	private LineRenderer lineRenderer;
 

@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224031612940923264}
-  - component: {fileID: 114835232099985644}
   - component: {fileID: 120842669755777684}
   - component: {fileID: 60293587100452462}
   - component: {fileID: 33215350600962810}
   - component: {fileID: 23498259944455242}
+  - component: {fileID: 114182754863675614}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -44,6 +44,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: fd4f6a4dada0695459281244d570ef8a, type: 2}
   m_StaticBatchInfo:
@@ -100,7 +101,7 @@ PolygonCollider2D:
       - {x: 0.08, y: -0.08}
       - {x: 0.08, y: 0.08}
       - {x: -0.08, y: 0.08}
---- !u!114 &114835232099985644
+--- !u!114 &114182754863675614
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,12 +109,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1790849469800962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebc9ef8235993443b3238906a1291f5, type: 3}
+  m_Script: {fileID: 11500000, guid: bf0a1d6e816016f43bb6f5bc40a6c2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuScript: {fileID: 0}
-  defaultMaterial: {fileID: 2100000, guid: 3e49644a383012a489ae6410cf94f027, type: 2}
-  glowMaterial: {fileID: 2100000, guid: 954d80c3fadded949a60a8e40fcf77bb, type: 2}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  disable: 0
+  sticky: 0
   triggerID: 0
 --- !u!120 &120842669755777684
 LineRenderer:
@@ -128,6 +130,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 954d80c3fadded949a60a8e40fcf77bb, type: 2}
   m_StaticBatchInfo:
@@ -148,7 +151,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Positions:
   - {x: -5, y: -1, z: 0}
   - {x: -5, y: 1, z: 0}
@@ -160,12 +163,15 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
+      - serializedVersion: 3
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
