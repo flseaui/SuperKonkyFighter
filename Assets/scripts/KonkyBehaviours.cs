@@ -1931,6 +1931,12 @@ public class KonkyBehaviours : Behaviors
 
     public void advStun(PlayerScript player)
     {
+        if(player.actionFrameCounter == 0)
+        {
+            player.hVelocity = 0;
+            player.vVelocity = 0;
+        }
+
         if(player.shouldWallbounce && (player.transform.position.x <= player.cameraLeft.position.x || player.transform.position.x >= player.cameraRight.position.x))
         {
             player.ActionEnd();
