@@ -604,6 +604,32 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
 
             // recovery frame
+            case 5:
+                // if first active frame in action
+                if (previousFrame != 1)
+                {
+                    otherPlayer.GetComponentInChildren<CollisionScript>().initialFrame = false;
+                    if (behaviors.getAction(executingAction).projectileLocation.HasValue)
+                    {
+                        var projectileX = behaviors.getAction(executingAction).projectileLocation.Value.x;
+                        var shotProjectile = Instantiate(projectile, new Vector3(x() + (facingRight ? projectileX : -projectileX), y() + behaviors.getAction(executingAction).projectileLocation.Value.y, 69), Quaternion.identity);
+                        shotProjectile.GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
+                        Projectile shotProjectileScript = shotProjectile.GetComponent<Projectile>();
+                        //shotProjectile.transform.position.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
+                        shotProjectile.transform.localPosition.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
+                        shotProjectileScript.speed = behaviors.getAction(executingAction).projectileSpeed;
+                        shotProjectileScript.strength = behaviors.getAction(executingAction).projectileStrength;
+                        shotProjectileScript.player = this;
+                    }
+                }
+
+                if (executingAction < 40 || executingAction == 55)
+                    placeHitboxes();
+
+                activeFrameCounter++;
+                break;
+
+            // recovery frame
             case 3:
                 // if grounded from a non-infinite action that passed the other player
                 if (!airborn && passedPlayerInAction && !passedPlayerInAir && !behaviors.getAction(executingAction).infinite)
