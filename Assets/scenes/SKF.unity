@@ -2732,8 +2732,8 @@ MonoBehaviour:
   rightEdge: {fileID: 1871470649}
   topEdge: {fileID: 278839109}
   bottomEdge: {fileID: 695250950}
-  speed: 2
-  dampTime: 0.2
+  speed: 10
+  dampTime: 0.01
   vertExtent: 0
   horzExtent: 0
 --- !u!1 &1812468542

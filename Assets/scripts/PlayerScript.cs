@@ -1221,7 +1221,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void damage(int damage, float knockback, int angle, int blck, float p1, int overrideDamageAction)
     {
-
+        otherPlayer.GetComponent<PlayerScript>().executingAction = 45;
         this.damage(damage, knockback, angle, blck, p1);
     }
 

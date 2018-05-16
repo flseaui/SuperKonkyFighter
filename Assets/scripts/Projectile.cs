@@ -36,14 +36,15 @@ public class Projectile : MonoBehaviour {
                 Destroy(this.gameObject);
                 PlayerScript other = player.otherPlayer.GetComponent<PlayerScript>();
                 Action action = player.behaviors.getAction(player.executingAction);
-                other.executingAction = 32;
                 if (!other.airborn)
                 {
-                    other.damage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling);
+                    if (action != null)
+                        other.damage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling);
                 }
                 else
                 {
-                    other.damage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling);
+                    if (action != null)
+                        other.damage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling);
                 }
             }
         }
