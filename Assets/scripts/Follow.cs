@@ -59,7 +59,7 @@ public class Follow : MonoBehaviour
                 highest = target.transform.position.y;
         }
 
-        averagePos.y = highest;
+        //averagePos.y = highest;
 
         Vector3 pos = Vector3.SmoothDamp(new Vector3(transform.position.x, transform.position.y, 0), averagePos, ref moveVelocity, dampTime);
         pos.x = Mathf.Clamp(pos.x, leftEdge.position.x + horzExtent, rightEdge.position.x - horzExtent);
