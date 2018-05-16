@@ -1217,6 +1217,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         previousBasicState = 0;
         damageDealt = false;
         shouldWallbounce = false;
+        shouldGroundbounce = false;
         killAllBoxes();
     }
 
