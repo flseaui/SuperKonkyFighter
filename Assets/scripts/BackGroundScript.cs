@@ -93,7 +93,7 @@ public class BackGroundScript : MonoBehaviour
 
     private void checkCollisions()
     {
-        if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt && p2s.currentFrameType == 1)
+        if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt && (p2s.currentFrameType == 1 || p2s.currentFrameType == 5))
         {
             Action action = p2s.behaviors.getAction(p2s.executingAction);
             p2s.damageDealt = true;
@@ -107,7 +107,7 @@ public class BackGroundScript : MonoBehaviour
                 //Debug.Log("BACK FRAME: " + p1s.frameTimer);
             }
         }
-        if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p1s.damageDealt && p1s.currentFrameType == 1)
+        if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p1s.damageDealt && (p1s.currentFrameType == 1 || p1s.currentFrameType == 5))
         {
             Action action = p1s.behaviors.getAction(p1s.executingAction);
             p1s.damageDealt = true;

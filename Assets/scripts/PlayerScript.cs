@@ -287,7 +287,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 break;
 
             case 1:
-                    bufferAction();
+                bufferAction();
+                break;              
+            case 5:
+                bufferAction();
                 break;
         }
 
@@ -1271,11 +1274,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         ActionEnd();
 
-        if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 2)
+        if (currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 2)
         {
             executingAction = 54;
         }
-        else if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown >= 5)
+        else if (currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown >= 5)
         {
             executingAction = 45;
             shouldWallbounce = true;

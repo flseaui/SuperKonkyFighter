@@ -1983,7 +1983,7 @@ public class KonkyBehaviours : Behaviors
 
     public void advThrow(PlayerScript player)
     {
-        if (player.currentFrameType == 1)     
+        if (player.currentFrameType == 1 || player.currentFrameType == 5)     
             player.throwThatMfOtherPlayer();
     }
 
