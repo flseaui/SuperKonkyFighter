@@ -262,7 +262,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
             }
         }
-
     }
 
     private void FixedUpdate()

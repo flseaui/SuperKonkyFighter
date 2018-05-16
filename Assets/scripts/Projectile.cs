@@ -37,9 +37,13 @@ public class Projectile : MonoBehaviour {
                 PlayerScript other = player.otherPlayer.GetComponent<PlayerScript>();
                 Action action = player.behaviors.getAction(player.executingAction);
                 if (!other.airborn)
+                {
                     other.damage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling);
+                }
                 else
+                {
                     other.damage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling);
+                }
             }
         }
     }
