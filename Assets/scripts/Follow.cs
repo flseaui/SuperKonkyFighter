@@ -52,6 +52,14 @@ public class Follow : MonoBehaviour
         //position.y = Mathf.Lerp(this.transform.position.y, targets.transform.position.y, interpolation);
         //position.x = Mathf.Lerp(this.transform.position.x, targets.transform.position.x, interpolation);
 
+        float highest = 0;
+        foreach(Transform target in targets)
+        {
+            if (target.transform.position.y > highest)
+                highest = target.transform.position.y;
+        }
+
+        averagePos.y = highest;
 
         Vector3 pos = Vector3.SmoothDamp(new Vector3(transform.position.x, transform.position.y, 0), averagePos, ref moveVelocity, dampTime);
         pos.x = Mathf.Clamp(pos.x, leftEdge.position.x + horzExtent, rightEdge.position.x - horzExtent);
