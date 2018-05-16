@@ -115,6 +115,7 @@ public class KonkyBehaviours : Behaviors
             { 54, knockdownFall },
             { 55,          grab },
             { 56,    wallbounce },
+            { 57,  groundbounce },
 
             { 101, crouch},
             { 102, crouch},
@@ -164,7 +165,8 @@ public class KonkyBehaviours : Behaviors
             { knockdown, 53 },
             { knockdownFall, 54 },
             { grab, 55 },
-            { wallbounce, 56 }
+            { wallbounce, 56 },
+            { groundbounce, 57 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1532,7 +1534,7 @@ public class KonkyBehaviours : Behaviors
 
     private Action wallbounce = new Action()
     {
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         actionCancels = new int[] { },
         infinite = false,
         hurtboxData = new Action.rect[,]
@@ -1547,7 +1549,47 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         }
+    };
+
+    private Action groundbounce = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+    {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+    }
     };
 
 
@@ -1856,7 +1898,8 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advKnockdown),
              new OnAdvancedAction(advKnockdownFall),
              new OnAdvancedAction(advGrab),
-             new OnAdvancedAction(advWallbounce)
+             new OnAdvancedAction(advWallbounce),
+             new OnAdvancedAction(advGroundbounce)
         };
     }
 
@@ -1903,6 +1946,11 @@ public class KonkyBehaviours : Behaviors
         {
             player.ActionEnd();
             player.executingAction = 56;
+        }
+        if (player.shouldGroundbounce && player.transform.position.y <= 0)
+        {
+            player.ActionEnd();
+            player.executingAction = 57;
         }
 
         player.stunTimer--;
@@ -2000,6 +2048,25 @@ public class KonkyBehaviours : Behaviors
             player.executingAction = 54;
         }
     }
+
+    public void advGroundbounce(PlayerScript player)
+    {
+        if (player.actionFrameCounter == 1)
+        {
+            player.stored = player.vKnockback;
+            player.vKnockback = 0;
+            player.hKnockback = 0;
+        }
+
+        if (player.actionFrameCounter == 9)
+        {
+            player.hKnockback = player.stored;
+            player.hKnockback *= -1;
+            player.ActionEnd();
+            player.executingAction = 54;
+        }
+    }
+
 
     public override void setStats()
     {

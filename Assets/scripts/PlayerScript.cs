@@ -48,6 +48,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool inPushCollision;       // true if player push boxes are currently colliding
     public bool alreadyExecutedAttackMove;
     public bool shouldWallbounce;
+    public bool shouldGroundbounce;
     public bool firstStun;
 
     public int bufferedMove;           // the move currently buffered
@@ -1279,6 +1280,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 2)
         {
             executingAction = 54;
+        }
+        else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown <= 4)
+        {
+            executingAction = 45;
+            shouldGroundbounce = true;
+            stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().level(1);
+
         }
         else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).knockdown >= 5)
         {
