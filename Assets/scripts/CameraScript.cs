@@ -46,6 +46,8 @@ public class CameraScript : MonoBehaviour
 	public Button heavyButton;
 
     public Transform cameraLeft, cameraRight;
+    public Transform cameraFarLeft, cameraFarRight;
+    public Transform farLeft, farRight;
     public Transform leftEdge, rightEdge, topEdge, bottomEdge;
 
     public IntVariable time;
@@ -66,6 +68,8 @@ public class CameraScript : MonoBehaviour
 
 	void Start()
 	{
+        farLeft = cameraLeft;
+        farRight = cameraRight;
         uis = canvas.GetComponent<UIScript>();
 
 		player1 = Instantiate(playerPrefab);
@@ -123,12 +127,33 @@ public class CameraScript : MonoBehaviour
         {
             p1s.playerSide = true;
             p2s.playerSide = false;
+
+            if (getX(player1) < farLeft.position.x)
+                cameraLeft = cameraFarLeft;
+            else
+                cameraLeft = farLeft;
+
+            if (getX(player2) > farRight.position.x)
+                cameraRight = cameraFarRight;
+            else
+                cameraRight = farRight;
         }
         else if (getX(player1) > getX(player2) + 1)
         {
             p1s.playerSide = false;
             p2s.playerSide = true;
+
+            if (getX(player2) < farLeft.position.x)
+                cameraLeft = cameraFarLeft;
+            else
+                cameraLeft = farLeft;
+
+            if (getX(player1) > farRight.position.x)
+                cameraRight = cameraFarRight;
+            else
+                cameraRight = farRight;
         }
+
 
         uis.health1.maxValue = p1s.maxHealth;
         uis.health1.minValue = 0;
