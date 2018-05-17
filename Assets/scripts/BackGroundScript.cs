@@ -42,11 +42,11 @@ public class BackGroundScript : MonoBehaviour
         {
             case 1:
                 stopNextFrame = 0;
-                hitStop((int)p1s.level(0));
+                hitStop((int)p1s.level(4));
                 break;
             case 2:
                 stopNextFrame = 0;
-                hitStop((int)p2s.level(0));
+                hitStop((int)p2s.level(4));
                 break;
         }
 
