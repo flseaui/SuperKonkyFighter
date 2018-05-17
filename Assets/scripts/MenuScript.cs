@@ -244,6 +244,7 @@ public class MenuScript : MonoBehaviour {
 	//make text that has an animation, moves up and down with different colors
 	public GameObject makeFancyText(float x, float y, float scale, string text, int allignMode)
 	{
+
 		GameObject ret = Instantiate(textHolderPrefab);
 
 		//set position and scale
