@@ -2041,7 +2041,7 @@ public class KonkyBehaviours : Behaviors
 
         if (player.actionFrameCounter == 9)
         {
-            player.hKnockback = player.stored * -1;
+            player.hKnockback = player.stored * -.5f;
             player.ActionEnd();
             player.executingAction = 54;
         }
