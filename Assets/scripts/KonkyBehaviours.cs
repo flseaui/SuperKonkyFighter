@@ -116,6 +116,8 @@ public class KonkyBehaviours : Behaviors
             { 55,          grab },
             { 56,    wallbounce },
             { 57,  groundbounce },
+            { 58,       victory },
+            { 59,        defeat },
 
             { 101, crouch},
             { 102, crouch},
@@ -166,7 +168,9 @@ public class KonkyBehaviours : Behaviors
             { knockdownFall, 54 },
             { grab, 55 },
             { wallbounce, 56 },
-            { groundbounce, 57 }
+            { groundbounce, 57 },
+            { victory, 58 },
+            { defeat, 59 }
         };
 
         setIds(konkyActionIds, konkyAnimAction);
@@ -1593,6 +1597,26 @@ public class KonkyBehaviours : Behaviors
     }
     };
 
+    private Action victory = new Action()
+    {
+        frames = new int[] { 0 },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            {nullBox, nullBox }
+        },
+    };
+
+    private Action defeat = new Action()
+    {
+        frames = new int[] { 0 },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            {nullBox, nullBox }
+        },
+    };
+
 
     // Block
     private Action block = new Action() {
@@ -1900,7 +1924,9 @@ public class KonkyBehaviours : Behaviors
              new OnAdvancedAction(advKnockdownFall),
              new OnAdvancedAction(advGrab),
              new OnAdvancedAction(advWallbounce),
-             new OnAdvancedAction(advGroundbounce)
+             new OnAdvancedAction(advGroundbounce),
+             new OnAdvancedAction(advVictory),
+             new OnAdvancedAction(advDeath)
         };
     }
 
@@ -2064,6 +2090,16 @@ public class KonkyBehaviours : Behaviors
             player.ActionEnd();
             player.executingAction = 54;
         }
+    }
+
+    public void advVictory(PlayerScript player)
+    {
+
+    }
+
+    public void advDeath(PlayerScript player)
+    {
+
     }
 
 

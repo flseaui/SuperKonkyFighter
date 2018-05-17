@@ -173,12 +173,6 @@ public class CameraScript : MonoBehaviour
 		uis.health2.value = p2s.health;
         uis.meter2.value = p2s.meterCharge;
 
-        if (p1s.health <= 0 || p2s.health <= 0 || time.value < 1)
-        {
-            PlayerPrefs.SetInt("menu_state", 1);
-            SceneManager.LoadScene("Menu");
-        }
-
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{
             horzExtent = 26.66667f;

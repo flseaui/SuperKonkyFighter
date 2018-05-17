@@ -330,13 +330,35 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             otherPlayer.GetComponent<PlayerScript>().comboCounter = 0;
             p1Scale = 0;
             p2Scale = 1;
+            if (health <= 0)
+            {
+                if (airborn)
+                    executingAction = 54;
+                else
+                    executingAction = 59;
+            }
         }
         if (airborn && basicState < 7)
             basicState = 8;
         if (!airborn && executingAction == 54)
         {
             ActionEnd();
-            executingAction = 53;
+            if (health <= 0)
+                executingAction = 59;
+            else
+                executingAction = 53;
+        }
+
+        if (otherPlayer.GetComponent<PlayerScript>().executingAction == 59 && !airborn)
+        {
+            ActionEnd();
+
+            hVelocity = 0;
+            vVelocity = 0;
+            hKnockback = 0;
+            vKnockback = 0;
+
+            executingAction = 58;
         }
     }
 
@@ -1022,7 +1044,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 if (executingAction == 54)
                 {
                     ActionEnd();
-                    executingAction = 53;
+                    if (health <= 0)
+                        executingAction = 59;
+                    else
+                        executingAction = 53;
                 }
                 else if (executingAction > 0)
                     ActionEnd();
