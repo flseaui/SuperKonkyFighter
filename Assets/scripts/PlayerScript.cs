@@ -317,6 +317,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public void cleanup()
     {
         hPush = 0;
+        vKnockback = 0;
         overrideAction = 0;
         if (comboTimer > 0 && (executingAction != 45 && executingAction != 56 && executingAction != 54))
             comboTimer--;
@@ -966,18 +967,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             }
             else
             {
-                hKnockback *= .5f;
+                hKnockback *= .75f;
                 if (Mathf.Abs(hKnockback) < 0.005f)
                     hKnockback = 0;
-            }
-        }
-
-        if (vKnockback != 0)
-        {
-            vKnockback *= .85f;
-            if (Mathf.Abs(vKnockback) < 0.005f)
-            {
-                vKnockback = 0;
             }
         }
     }
