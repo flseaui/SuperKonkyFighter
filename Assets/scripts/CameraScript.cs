@@ -47,7 +47,7 @@ public class CameraScript : MonoBehaviour
 
     public Transform cameraLeft, cameraRight;
     public Transform cameraFarLeft, cameraFarRight;
-    public Transform farLeft, farRight;
+    public Transform cameraLeftPos, cameraRightPos;
     public Transform leftEdge, rightEdge, topEdge, bottomEdge;
 
     public IntVariable time;
@@ -68,8 +68,8 @@ public class CameraScript : MonoBehaviour
 
 	void Start()
 	{
-        farLeft = cameraLeft;
-        farRight = cameraRight;
+        cameraLeftPos.position = cameraLeft.position;
+        cameraRightPos.position = cameraRight.position;
         uis = canvas.GetComponent<UIScript>();
 
 		player1 = Instantiate(playerPrefab);
@@ -80,8 +80,8 @@ public class CameraScript : MonoBehaviour
 		p1s.facingRight = true;
 		p1s.playerID = 1;
 		p1s.JoyScript = JoyScript;
-        p1s.cameraLeft = cameraLeft;
-        p1s.cameraRight = cameraRight;
+        p1s.cameraLeft = cameraLeftPos;
+        p1s.cameraRight = cameraRightPos;
         //p1s.lightButton = lightButton;
         //p1s.mediumButton = mediumButton;
         //p1s.heavyButton = heavyButton;
@@ -92,8 +92,8 @@ public class CameraScript : MonoBehaviour
         p2h = player2.GetComponentInChildren<CollisionScript>();
         p2s.facingRight = false;
 		p2s.playerID = 2;
-        p2s.cameraLeft = cameraLeft;
-        p2s.cameraRight = cameraRight;
+        p2s.cameraLeft = cameraLeftPos;
+        p2s.cameraRight = cameraRightPos;
 
         p1s.otherPlayer = player2;
 		p2s.otherPlayer = player1;
@@ -128,32 +128,37 @@ public class CameraScript : MonoBehaviour
             p1s.playerSide = true;
             p2s.playerSide = false;
 
-            if (getX(player1) < farLeft.position.x)
-                cameraLeft = cameraFarLeft;
+            if (getX(player1) < cameraLeft.position.x)
+                cameraLeftPos.position = cameraLeft.position;
             else
-                cameraLeft = farLeft;
+                cameraLeftPos.position = cameraFarLeft.position;
 
-            if (getX(player2) > farRight.position.x)
-                cameraRight = cameraFarRight;
+            if (getX(player2) > cameraRight.position.x)
+                cameraRightPos.position = cameraRight.position;
             else
-                cameraRight = farRight;
+                cameraRightPos.position = cameraFarRight.position;
         }
         else if (getX(player1) > getX(player2) + 1)
         {
             p1s.playerSide = false;
             p2s.playerSide = true;
 
-            if (getX(player2) < farLeft.position.x)
-                cameraLeft = cameraFarLeft;
+            if (getX(player2) < cameraLeft.position.x)
+                cameraLeftPos.position = cameraLeft.position;
             else
-                cameraLeft = farLeft;
+                cameraLeftPos.position = cameraFarLeft.position;
 
-            if (getX(player1) > farRight.position.x)
-                cameraRight = cameraFarRight;
+            if (getX(player1) > cameraRight.position.x)
+                cameraRightPos.position = cameraRight.position;
             else
-                cameraRight = farRight;
+                cameraRightPos.position = cameraFarRight.position;
         }
 
+        p1s.cameraLeft.position = cameraLeftPos.position;
+        p1s.cameraRight.position = cameraRightPos.position;
+
+        p2s.cameraLeft.position = cameraLeftPos.position;
+        p2s.cameraRight.position = cameraRightPos.position;
 
         uis.health1.maxValue = p1s.maxHealth;
         uis.health1.minValue = 0;
