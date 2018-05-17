@@ -152,6 +152,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     #endregion
 
+    /*
+     * AND IF YOU WIN YOU CAN FUCK GREYSHIRT IN THE SPECIAL FEATURES
+     */
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -1091,7 +1095,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 Debug.Log(livingHurtboxesIds.Count);
                 Debug.Log("repeat call");
                 */
-            }
+}
         }
     }
 
