@@ -317,7 +317,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public void cleanup()
     {
         hPush = 0;
-        vKnockback = 0;
+        vKnockback *= .5f;
         overrideAction = 0;
         if (comboTimer > 0 && (executingAction != 45 && executingAction != 56 && executingAction != 54))
             comboTimer--;
