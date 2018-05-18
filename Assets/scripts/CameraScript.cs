@@ -254,7 +254,13 @@ public class CameraScript : MonoBehaviour
 
     private void nextRound()
     {
-        SceneManager.LoadScene("SKF");
+        if (RoundManager.instance.roundCounter.value < 2)
+            SceneManager.LoadScene("SKF");
+        else
+        {
+            StartCoroutine(RoundManager.instance.FadeInWin());
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     private float getX(GameObject o)

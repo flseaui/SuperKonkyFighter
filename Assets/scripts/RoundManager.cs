@@ -26,6 +26,7 @@ public class RoundManager : MonoBehaviour
     public GameObject roundManager;
 
     public IntVariable roundCounter, p1Wins, p2Wins;
+    bool stop = false;
 
     [SerializeField] private Image p1Win1, p1Win2, p2Win1, p2Win2;
     [SerializeField] private TextMeshProUGUI roundText;
@@ -58,7 +59,7 @@ public class RoundManager : MonoBehaviour
         if (p1Wins.value > 1)
         {
             p1Win2.enabled = true;
-            StartCoroutine(FadeInWin());
+            stop = true;
         }
 
         p2Win1.enabled = false;
@@ -68,12 +69,15 @@ public class RoundManager : MonoBehaviour
         if (p2Wins.value > 1)
         {
             p2Win2.enabled = true;
-            StartCoroutine(FadeInWin());
+            stop = true;
         }
 
-        ++roundCounter.value;
-        roundText.SetText("round " + roundCounter.value.ToString());
-        StartCoroutine(FadeInRound());
+        if (!stop)
+        {
+            ++roundCounter.value;
+            roundText.SetText("round " + roundCounter.value.ToString());
+            StartCoroutine(FadeInRound());
+        }
     }
 
     private IEnumerator FadeInRound()
@@ -89,7 +93,7 @@ public class RoundManager : MonoBehaviour
         StartCoroutine(FadeInFight());
     }
 
-    private IEnumerator FadeInWin()
+    public IEnumerator FadeInWin()
     {
         winText.color = new Color(winText.color.r, winText.color.g, winText.color.b, 0);
         while (roundText.color.a < 1.0f)
@@ -98,7 +102,6 @@ public class RoundManager : MonoBehaviour
 
             yield return null;
         }
-        SceneManager.LoadScene("Menu");
     }
 
     private IEnumerator FadeInFight()
