@@ -112,6 +112,9 @@ public class GreyshirtBehaviours : Behaviors
             { 54,  knockdownFall },
             { 55,          grab },
             { 56,    wallbounce },
+            { 57,  groundbounce },
+            { 58,       victory },
+            { 59,        defeat },
 
             { 101, crouch},
             { 102, crouch},
@@ -160,7 +163,10 @@ public class GreyshirtBehaviours : Behaviors
             { knockdown, 53 },
             { knockdownFall, 54 },
             { grab, 55 },
-            { wallbounce, 56 }
+            { wallbounce, 56 },
+            { groundbounce, 57 },
+            { victory, 58 },
+            { defeat, 59 }
         };
 
         setIds(greyshirtActionIds, greyshirtAnimAction);
@@ -1330,6 +1336,57 @@ public class GreyshirtBehaviours : Behaviors
         },
     };
 
+    private Action groundbounce = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+    {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+    }
+    };
+
+    private Action victory = new Action()
+    {
+        frames = new int[] { 0 },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            {nullBox, nullBox }
+        },
+    };
+
+    private Action defeat = new Action()
+    {
+        frames = new int[] { 0 },
+        infinite = true,
+        hurtboxData = new Action.rect[,]
+        {
+            {nullBox, nullBox }
+        },
+    };
+
+
     // Block
     private Action block = new Action() {
         frames = new int[] { 0 },
@@ -1654,10 +1711,14 @@ public class GreyshirtBehaviours : Behaviors
              new OnAdvancedAction(advJumpSquat),
              new OnAdvancedAction(advThrow),
              new OnAdvancedAction(advKnockdown),
-             new OnAdvancedAction(advKnockdownFall)
+             new OnAdvancedAction(advKnockdownFall),
+             new OnAdvancedAction(advGrab),
+             new OnAdvancedAction(advWallbounce),
+             new OnAdvancedAction(advGroundbounce),
+             new OnAdvancedAction(advVictory),
+             new OnAdvancedAction(advDeath)
         };
     }
-
 
     // ADVANCED ACTIONS
     public void advJump(PlayerScript player)
@@ -1691,6 +1752,24 @@ public class GreyshirtBehaviours : Behaviors
 
     public void advStun(PlayerScript player)
     {
+        if (player.firstStun)
+        {
+            player.hVelocity = 0;
+            player.vVelocity = 0;
+            player.firstStun = false;
+        }
+
+        if (player.shouldWallbounce && (player.transform.position.x <= player.cameraLeft.position.x || player.transform.position.x >= player.cameraRight.position.x))
+        {
+            player.ActionEnd();
+            player.executingAction = 56;
+        }
+        if (player.shouldGroundbounce && player.transform.position.y <= 0)
+        {
+            player.ActionEnd();
+            player.executingAction = 57;
+        }
+
         player.stunTimer--;
         if (player.stunTimer <= 0)
         {
@@ -1700,6 +1779,9 @@ public class GreyshirtBehaviours : Behaviors
 
     public void advBlock(PlayerScript player)
     {
+        if (player.inputManager.currentInput[7])
+            player.otherPlayer.GetComponent<PlayerScript>().hKnockback += (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
+
         player.hVelocity = 0;
         player.checkBlockEnd();
     }
@@ -1734,19 +1816,86 @@ public class GreyshirtBehaviours : Behaviors
 
     public void advThrow(PlayerScript player)
     {
-        Debug.Log("Throw Executed");
-        player.throwThatMfOtherPlayer();
+        if (player.currentFrameType == 1 || player.currentFrameType == 5)
+            player.throwThatMfOtherPlayer();
     }
 
     public void advKnockdown(PlayerScript player)
     {
-
+        player.hVelocity = 0;
+        player.hKnockback = 0;
+        player.vVelocity = 0;
+        player.vKnockback = 0;
     }
 
     public void advKnockdownFall(PlayerScript player)
     {
+        player.hVelocity = 0;
+        player.hKnockback = 0;
 
     }
+
+    public void advGrab(PlayerScript player)
+    {
+        player.hVelocity = 0;
+        if (player.actionFrameCounter > 0)
+        {
+            if (player.damageDealt)
+            {
+                player.ActionEnd();
+                player.executingAction = 52;
+            }
+            else
+            {
+                player.ActionEnd();
+                player.executingAction = 25;
+            }
+        }
+    }
+
+    public void advWallbounce(PlayerScript player)
+    {
+
+        if (player.actionFrameCounter == 1)
+        {
+            player.stored = player.hKnockback;
+        }
+
+        if (player.actionFrameCounter == 9)
+        {
+            player.hKnockback = player.stored * -.5f;
+            player.ActionEnd();
+            player.executingAction = 54;
+        }
+    }
+
+    public void advGroundbounce(PlayerScript player)
+    {
+        if (player.actionFrameCounter == 1)
+        {
+            player.stored = player.vKnockback * -1;
+            player.vKnockback = 0;
+            player.hKnockback = 0;
+        }
+
+        if (player.actionFrameCounter == 9)
+        {
+            player.vKnockback = player.stored + 3;
+            player.ActionEnd();
+            player.executingAction = 54;
+        }
+    }
+
+    public void advVictory(PlayerScript player)
+    {
+
+    }
+
+    public void advDeath(PlayerScript player)
+    {
+
+    }
+
 
     public override void setStats()
     {
