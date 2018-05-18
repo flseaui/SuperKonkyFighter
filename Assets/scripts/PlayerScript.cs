@@ -60,6 +60,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int activeFrameCounter;     // current active frame number of the executing action
     public int playerID;               // the players id, either 1 or 0
     public int meterCharge;            // current meter charge
+    public int meterStore;
     public int dashTimer;              // counts number of frames player has been dashing for
     public int executingAction;        // currently executing action
     public int stunTimer;              // timer counting down the time player has been in hitstun
@@ -363,6 +364,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             vKnockback = 0;
 
             executingAction = 58;
+        }
+        
+        if (meterStore > 0)
+        {
+            meterStore--;
+            meterCharge++;
         }
     }
 
@@ -1277,15 +1284,15 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             hKnockback /= 4;
             vKnockback = 0;
             health -= damage / 10;
-            meterCharge += (int)(damage * .4f);
-            otherPlayer.GetComponent<PlayerScript>().meterCharge += (int)(damage * .2f);
+            meterStore += (int)(damage * .4f);
+            otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * .2f);
             block();
         }
         else
         {
             health -= damage;
-            meterCharge += (int)(damage * .8f);
-            otherPlayer.GetComponent<PlayerScript>().meterCharge += (int)(damage * 1.4f);
+            meterStore += (int)(damage * .8f);
+            otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * 1.4f);
             stun();
         }
 
