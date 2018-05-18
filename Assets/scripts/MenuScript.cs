@@ -120,6 +120,7 @@ public class MenuScript : MonoBehaviour
     private int globeSelect;
 
     public IntVariable roundCounter, player1Wins, player2Wins;
+    bool cameFromSettings = false;
 
     void Start()
     {
@@ -332,7 +333,10 @@ public class MenuScript : MonoBehaviour
         switch (no)
         {
             case TITLE_SCREEN:
-                AudioManager.Instance.PlayMusic(AudioManager.Music.MENU_THEME);
+                if (!cameFromSettings)
+                    AudioManager.Instance.PlayMusic(AudioManager.Music.MENU_THEME);
+                else
+                    cameFromSettings = false;
 
                 player1ai = 0;
                 player2ai = 0;
@@ -448,7 +452,7 @@ public class MenuScript : MonoBehaviour
                 makeText(-16f, 9f, 1.25f, "stage select", 1);//screen description
                 break;
             case SETTINGS_SCREEN:
-
+                cameFromSettings = true;
                 makeText(-16f, 9f, 1.25f, "settings", 1);//screen description
 
                 //makeText(-14f, 6.5f, 1f, "multiplayer mode", 1);
