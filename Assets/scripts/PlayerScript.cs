@@ -69,6 +69,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int throwType;
     public int comboTimer;
     public int comboCounter;
+    public int cancelLimit = 0;
 
     /* MOVEMENT NUMPAD NOTATION
      * [ jump back ][ jump ][ jump forwards ]
@@ -1258,7 +1259,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);
         vKnockback = knockback * Mathf.Sin(((float)angle / 180f) * Mathf.PI);
-
+        
         if (comboTimer > 0)
         {
             p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
