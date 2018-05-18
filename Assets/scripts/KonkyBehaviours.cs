@@ -2032,11 +2032,16 @@ public class KonkyBehaviours : Behaviors
 
     public void advKnockdown(PlayerScript player)
     {
-
+        player.hVelocity = 0;
+        player.hKnockback = 0;
+        player.vVelocity = 0;
+        player.vKnockback = 0;
     }
 
     public void advKnockdownFall(PlayerScript player)
     {
+        player.hVelocity = 0;
+        player.hKnockback = 0;
 
     }
 
