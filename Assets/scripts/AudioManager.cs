@@ -42,7 +42,8 @@ public class AudioManager : MonoBehaviour
         MEDIUM,
         HEAVY,
         BLOCK,
-        FIREBALL
+        FIREBALL,
+        KONKY_SUPER
     }
 
     public void PlaySound(Sound? sound)

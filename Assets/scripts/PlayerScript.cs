@@ -166,6 +166,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // initialize variables based on current players character
     void Start()
     {
+
         this.tag = playerID.ToString();
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<BoxCollider2D>();
