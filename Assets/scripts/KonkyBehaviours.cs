@@ -447,7 +447,7 @@ public class KonkyBehaviours : Behaviors
         p1scaling = 1f,
         block = MID,
         knockdown = NONE,
-        actionCancels = new int[] { 25, 22, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 15, 25, 22, 31, 32, 33, 34, 35, 36 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
         aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
@@ -641,7 +641,7 @@ public class KonkyBehaviours : Behaviors
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
         aAngle = new int[] { 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45 },
-        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         sound = AudioManager.Sound.MEDIUM
     };
 
@@ -1126,15 +1126,21 @@ public class KonkyBehaviours : Behaviors
     private Action fiveS = new Action()
     {
         tier = 4,
-        frames = new int[] { 0, 0, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 4 | 12 | 55
+        frames = new int[] { 0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 4 | 12 | 55
         damage = new int[] { 0, 0, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(4, 10, 4, 12, 4, 0), },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
             { nullBox, },
-            { new Action.rect(4, 10, 4, 12, 4, 0), },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
             { nullBox, },
-            { new Action.rect(4, 10, 4, 12, 4, 0), },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
+            { nullBox, },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
+            { nullBox, },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
+            { nullBox, },
+            { new Action.rect(4, 10, 4, 12, 2, 0), },
             { nullBox, },
         },
         hurtboxData = new Action.rect[,]
