@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class InputManager
 {
 
+    public static bool isInputEnabled = false;
+
     public bool[] currentInput = new bool[13];
 
     public bool up = false,
@@ -65,51 +67,54 @@ public class InputManager
      */
     public void pollInput(int inputType)
     {
-        switch (inputType)
+        if (isInputEnabled)
         {
-            case 0:
-                // Keyboard
-                currentInput[0] = (Input.GetKey(upKey));
-                currentInput[1] = (Input.GetKey(downKey));
-                currentInput[2] = (Input.GetKey(leftKey));
-                currentInput[3] = (Input.GetKey(rightKey));
-                currentInput[4] = (Input.GetKeyDown(lightKey));
-                currentInput[5] = (Input.GetKeyDown(mediumKey));
-                currentInput[6] = (Input.GetKeyDown(heavyKey));
-                currentInput[7] = (Input.GetKeyDown(specialKey));
-                currentInput[8] = (Input.GetKeyDown(leftKey));
-                currentInput[9] = (Input.GetKeyDown(rightKey));
-                currentInput[10] = (Input.GetKeyUp(leftKey));
-                currentInput[11] = (Input.GetKeyUp(rightKey));
-                currentInput[12] = (Input.GetKeyDown(upKey));
-                break;
-            case 1:
-                // Joystick
-                currentInput[0] = (joyScript.Up);
-                currentInput[1] = (joyScript.Down);
-                currentInput[2] = (joyScript.Left);
-                currentInput[3] = (joyScript.Right);
-                //currentInput[4] = (light button);
-                //currentInput[5] = (medium button);
-                //currentInput[6] = (heavy button);
-                //currentInput[7] = (specialbutton);
-                break;
-            default:
-                // Default - Keyboard
-                currentInput[0] = (Input.GetKey(upKey));
-                currentInput[1] = (Input.GetKey(downKey));
-                currentInput[2] = (Input.GetKey(leftKey));
-                currentInput[3] = (Input.GetKey(rightKey));
-                currentInput[4] = (Input.GetKeyDown(lightKey));
-                currentInput[5] = (Input.GetKeyDown(mediumKey));
-                currentInput[6] = (Input.GetKeyDown(heavyKey));
-                currentInput[7] = (Input.GetKeyDown(specialKey));
-                currentInput[8] = (Input.GetKeyDown(leftKey));
-                currentInput[9] = (Input.GetKeyDown(rightKey));
-                currentInput[10] = (Input.GetKeyUp(leftKey));
-                currentInput[11] = (Input.GetKeyUp(rightKey));
-                currentInput[12] = (Input.GetKeyDown(upKey));
-                break;
+            switch (inputType)
+            {
+                case 0:
+                    // Keyboard
+                    currentInput[0] = (Input.GetKey(upKey));
+                    currentInput[1] = (Input.GetKey(downKey));
+                    currentInput[2] = (Input.GetKey(leftKey));
+                    currentInput[3] = (Input.GetKey(rightKey));
+                    currentInput[4] = (Input.GetKeyDown(lightKey));
+                    currentInput[5] = (Input.GetKeyDown(mediumKey));
+                    currentInput[6] = (Input.GetKeyDown(heavyKey));
+                    currentInput[7] = (Input.GetKeyDown(specialKey));
+                    currentInput[8] = (Input.GetKeyDown(leftKey));
+                    currentInput[9] = (Input.GetKeyDown(rightKey));
+                    currentInput[10] = (Input.GetKeyUp(leftKey));
+                    currentInput[11] = (Input.GetKeyUp(rightKey));
+                    currentInput[12] = (Input.GetKeyDown(upKey));
+                    break;
+                case 1:
+                    // Joystick
+                    currentInput[0] = (joyScript.Up);
+                    currentInput[1] = (joyScript.Down);
+                    currentInput[2] = (joyScript.Left);
+                    currentInput[3] = (joyScript.Right);
+                    //currentInput[4] = (light button);
+                    //currentInput[5] = (medium button);
+                    //currentInput[6] = (heavy button);
+                    //currentInput[7] = (specialbutton);
+                    break;
+                default:
+                    // Default - Keyboard
+                    currentInput[0] = (Input.GetKey(upKey));
+                    currentInput[1] = (Input.GetKey(downKey));
+                    currentInput[2] = (Input.GetKey(leftKey));
+                    currentInput[3] = (Input.GetKey(rightKey));
+                    currentInput[4] = (Input.GetKeyDown(lightKey));
+                    currentInput[5] = (Input.GetKeyDown(mediumKey));
+                    currentInput[6] = (Input.GetKeyDown(heavyKey));
+                    currentInput[7] = (Input.GetKeyDown(specialKey));
+                    currentInput[8] = (Input.GetKeyDown(leftKey));
+                    currentInput[9] = (Input.GetKeyDown(rightKey));
+                    currentInput[10] = (Input.GetKeyUp(leftKey));
+                    currentInput[11] = (Input.GetKeyUp(rightKey));
+                    currentInput[12] = (Input.GetKeyDown(upKey));
+                    break;
+            }
         }
     }
 

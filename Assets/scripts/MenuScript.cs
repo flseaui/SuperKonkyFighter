@@ -119,8 +119,12 @@ public class MenuScript : MonoBehaviour
 
     private int globeSelect;
 
+    public IntVariable roundCounter, player1Wins, player2Wins;
+
     void Start()
     {
+        roundCounter.value = 0;
+
         ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject);
 
         //set default settings
@@ -348,6 +352,9 @@ public class MenuScript : MonoBehaviour
                 makeSprite(0, 3, 26, 11, titleSprite);//title logo
                 break;
             case PLAYER_SELECT_SCREEN:
+
+                player1Wins.value = 0;
+                player2Wins.value = 0;
 
                 globe1 = makeSprite(-11, -6, 8, 2, platformSprite, Color.red);
                 globe1.GetComponent<SpriteRenderer>().sortingOrder = 7;

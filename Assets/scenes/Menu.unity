@@ -710,6 +710,9 @@ MonoBehaviour:
   background: {fileID: 505551293}
   menuObjects: []
   links: 
+  roundCounter: {fileID: 11400000, guid: 795776f2b352f234b82c6e955e4146f2, type: 2}
+  player1Wins: {fileID: 11400000, guid: 85492b34ac5667b49b2c370b2744c8ff, type: 2}
+  player2Wins: {fileID: 11400000, guid: d81cf3c13fd6fdc4084ebc234f859278, type: 2}
 --- !u!95 &880323884
 Animator:
   serializedVersion: 3

@@ -50,7 +50,7 @@ public class CameraScript : MonoBehaviour
     public Transform cameraLeftPos, cameraRightPos;
     public Transform leftEdge, rightEdge, topEdge, bottomEdge;
 
-    public IntVariable time;
+    public IntVariable time, p1Wins, p2Wins;
 
     float vertExtent, horzExtent;
 
@@ -63,7 +63,7 @@ public class CameraScript : MonoBehaviour
 
     public float magnitude, roughness, fadeIn, fadeOut;
 
-    private bool justShook;
+    private bool justShook, justWon = false;
     private Vector3 preShakePos;
 
 	void Start()
@@ -173,6 +173,39 @@ public class CameraScript : MonoBehaviour
 		uis.health2.value = p2s.health;
         uis.meter2.value = p2s.meterCharge;
 
+        if (p1s.health <= 0)
+        {
+            //RoundManager.instance.nextRound();
+            //PlayerPrefs.SetInt("menu_state", 1);
+            if (!justWon)
+            {
+                justWon = true;
+                p2Wins.value++;
+                Invoke("nextRound", 2);
+            }
+        }
+        else if (p2s.health <= 0)
+        {
+            if (!justWon)
+            {
+                justWon = true;
+                p1Wins.value++;
+                Invoke("nextRound", 2);
+            }
+        }
+        else if (time.value < 1)
+        {
+            if (!justWon)
+            {
+                justWon = true;
+                if (p1s.health > p2s.health)
+                    p1Wins.value++;
+                else
+                    p2Wins.value++;
+                Invoke("nextRound", 2);
+            }
+        }
+
         if (ghost.GetComponent<BackGroundScript>().shake)
 		{
             horzExtent = 26.66667f;
@@ -218,6 +251,11 @@ public class CameraScript : MonoBehaviour
             justShook = false;
         }
 	}
+
+    private void nextRound()
+    {
+        SceneManager.LoadScene("SKF");
+    }
 
     private float getX(GameObject o)
     {
