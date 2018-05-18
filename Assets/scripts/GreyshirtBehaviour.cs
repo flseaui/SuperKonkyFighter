@@ -1177,17 +1177,25 @@ public class GreyshirtBehaviours : Behaviors
     private Action Throw = new Action()
     {
         tier = 2,
-        frames = new int[] { 1 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
         damage = new int[] { 1500 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(2, 6, 2, 12, 1, 0), },
+        },
+        hurtboxData = new Action.rect[,]
+        {
+
+        },
         level = 5,
         p1scaling = .5f,
         block = UNBLOCKABLE,
         knockdown = HARDKD,
-        actionCancels = new int[] {  },
-        gAngle = new int[] { 0 },
-        gStrength = new float[] { 0 },
-        aAngle = new int[] { 0 },
-        aStrength = new float[] { 0 },
+        actionCancels = new int[] { },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = false,
     };
 
