@@ -1968,7 +1968,7 @@ public class KonkyBehaviours : Behaviors
             player.vVelocity = 0;
             player.firstStun = false;
         }
-
+         
         if(player.shouldWallbounce && (player.transform.position.x <= player.cameraLeft.position.x || player.transform.position.x >= player.cameraRight.position.x))
         {
             player.ActionEnd();
