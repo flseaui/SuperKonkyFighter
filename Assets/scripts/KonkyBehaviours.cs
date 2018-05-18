@@ -2083,15 +2083,14 @@ public class KonkyBehaviours : Behaviors
     {
         if (player.actionFrameCounter == 1)
         {
-            player.stored = player.vKnockback;
+            player.stored = player.vKnockback * -1;
             player.vKnockback = 0;
             player.hKnockback = 0;
         }
 
         if (player.actionFrameCounter == 9)
         {
-            player.hKnockback = player.stored;
-            player.hKnockback *= -1;
+            player.vKnockback = player.stored + 3;
             player.ActionEnd();
             player.executingAction = 54;
         }
