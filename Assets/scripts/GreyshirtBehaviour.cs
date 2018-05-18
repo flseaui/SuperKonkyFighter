@@ -1086,7 +1086,7 @@ public class GreyshirtBehaviours : Behaviors
         hurtboxData = new Action.rect[,]
       {
             { new Action.rect(0.5f, 6, 4, 12, 40, 1)},
-             {nullBox },
+            {nullBox },
             {nullBox },
             {nullBox },
             {nullBox },
@@ -1116,7 +1116,7 @@ public class GreyshirtBehaviours : Behaviors
         infinite = true,
         hurtboxData = new Action.rect[,]
     {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 1, 3), new Action.rect(1.5f, 9f, 4, 8, 1, 4), },
+            { new Action.rect(0.5f, 4, 14, 8, 1, 3), },
     }
     };
 
