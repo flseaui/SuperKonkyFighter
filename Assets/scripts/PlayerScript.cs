@@ -171,6 +171,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         hitSound = GetComponent<AudioSource>();
 
+        AudioManager.Instance.PlayMusic((AudioManager.Music) UnityEngine.Random.Range(2, 4));
+
         if (CompareTag("1"))
         {
             comboCounterText = p1ComboCounterText;
@@ -599,7 +601,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     private void incrementFrame(int[] frames)
     {
         if (actionFrameCounter == 0)
+        {
+            if (behaviors.getAction(executingAction).sound != null)
+                AudioManager.Instance.PlaySound(behaviors.getAction(executingAction).sound);
             killAllBoxes();
+        }
 
         placeHurtboxes(actionFrameCounter);
 
@@ -619,6 +625,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     {
                         var projectileX = behaviors.getAction(executingAction).projectileLocation.Value.x;
                         var shotProjectile = Instantiate(projectile, new Vector3(x() + (facingRight ? projectileX : -projectileX), y() + behaviors.getAction(executingAction).projectileLocation.Value.y, 69), Quaternion.identity);
+                        shotProjectile.GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
                         shotProjectile.GetComponent<SpriteRenderer>().flipX = facingRight ? false : true;
                         Projectile shotProjectileScript = shotProjectile.GetComponent<Projectile>();
                         //shotProjectile.transform.position.Set(behaviors.getAction(executingAction).projectileLocation.Value.x, behaviors.getAction(executingAction).projectileLocation.Value.y, 0);
@@ -1245,17 +1252,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         killAllBoxes();
     }
 
-
-    public void damage(int damage, float knockback, int angle, int blck, float p1, int overrideDamageAction)
+    public void damage(int damage, float knockback, int angle, int blck, float p1, int tier)
     {
-        otherPlayer.GetComponent<PlayerScript>().executingAction = 45;
-        this.damage(damage, knockback, angle, blck, p1);
-    }
-
-    public void damage(int damage, float knockback, int angle, int blck, float p1)
-    {
-        hitSound.Play();
-
         ActionEnd();
 
         hKnockback = knockback * Mathf.Cos(((float)angle / 180f) * Mathf.PI) * (playerSide ? -1 : 1);

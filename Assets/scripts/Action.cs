@@ -36,6 +36,8 @@ public class Action {
 
     public List<rect> currentStun;
 
+    public AudioManager.Sound? sound;
+
     public struct rect
     {
         public float x, y, width, height, timeActive;

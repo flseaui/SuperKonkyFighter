@@ -332,6 +332,7 @@ public class MenuScript : MonoBehaviour
         switch (no)
         {
             case TITLE_SCREEN:
+                AudioManager.Instance.PlayMusic(AudioManager.Music.MENU_THEME);
 
                 player1ai = 0;
                 player2ai = 0;
@@ -352,6 +353,7 @@ public class MenuScript : MonoBehaviour
                 makeSprite(0, 3, 26, 11, titleSprite);//title logo
                 break;
             case PLAYER_SELECT_SCREEN:
+                AudioManager.Instance.PlayMusic(AudioManager.Music.VS_THEME);
 
                 player1Wins.value = 0;
                 player2Wins.value = 0;

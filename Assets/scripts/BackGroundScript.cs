@@ -98,9 +98,9 @@ public class BackGroundScript : MonoBehaviour
             Action action = p2s.behaviors.getAction(p2s.executingAction);
             p2s.damageDealt = true;
             if(!p1s.airborn)
-                p1s.damage(action.damage[p2s.actionFrameCounter], action.gStrength[p2s.actionFrameCounter], action.gAngle[p2s.actionFrameCounter], action.block, action.p1scaling);
+                p1s.damage(action.damage[p2s.actionFrameCounter], action.gStrength[p2s.actionFrameCounter], action.gAngle[p2s.actionFrameCounter], action.block, action.p1scaling, action.tier);
             else
-                p1s.damage(action.damage[p2s.actionFrameCounter], action.aStrength[p2s.actionFrameCounter], action.aAngle[p2s.actionFrameCounter], action.block, action.p1scaling);
+                p1s.damage(action.damage[p2s.actionFrameCounter], action.aStrength[p2s.actionFrameCounter], action.aAngle[p2s.actionFrameCounter], action.block, action.p1scaling, action.tier);
             if (!hitStopped)
             {
                 stopNextFrame = 2;
@@ -112,9 +112,9 @@ public class BackGroundScript : MonoBehaviour
             Action action = p1s.behaviors.getAction(p1s.executingAction);
             p1s.damageDealt = true;
             if (!p2s.airborn) 
-                p2s.damage(action.damage[p1s.actionFrameCounter], action.gStrength[p1s.actionFrameCounter], action.gAngle[p1s.actionFrameCounter], action.block, action.p1scaling);
+                p2s.damage(action.damage[p1s.actionFrameCounter], action.gStrength[p1s.actionFrameCounter], action.gAngle[p1s.actionFrameCounter], action.block, action.p1scaling, action.tier);
             else
-                p2s.damage(action.damage[p1s.actionFrameCounter], action.aStrength[p1s.actionFrameCounter], action.aAngle[p1s.actionFrameCounter], action.block, action.p1scaling);
+                p2s.damage(action.damage[p1s.actionFrameCounter], action.aStrength[p1s.actionFrameCounter], action.aAngle[p1s.actionFrameCounter], action.block, action.p1scaling, action.tier);
             if (!hitStopped)
             {
                 stopNextFrame = 1;
