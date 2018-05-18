@@ -1225,7 +1225,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void onPush(float otherHVel)
     {
-        hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
+        if (executingAction == 53)
+            hPush = 0;
+        else
+            hPush = facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
     }
 
     public void ActionEnd()
