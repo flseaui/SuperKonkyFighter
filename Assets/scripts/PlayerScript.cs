@@ -174,7 +174,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         hitSound = GetComponent<AudioSource>();
 
-        AudioManager.Instance.PlayMusic((AudioManager.Music) UnityEngine.Random.Range(2, 5));
+        AudioManager.Instance.PlayMusic((AudioManager.Music) UnityEngine.Random.Range(2, 8));
 
         if (CompareTag("1"))
         {

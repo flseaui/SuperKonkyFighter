@@ -33,7 +33,10 @@ public class AudioManager : MonoBehaviour
         VS_THEME,
         KONKYS_THEME,
         GREYSHIRTS_THEME,
-        SHRULKS_THEME
+        SHRULKS_THEME,
+        SHRULKS_ALT,
+        SHRULKS_ALT_ALT,
+        SHRULKS_ALT_ALT_RIGHT
     }
 
     public enum Sound

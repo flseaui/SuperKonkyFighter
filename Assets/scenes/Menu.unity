@@ -957,6 +957,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 52917bb4a175d0e42a030cb29641bda1, type: 3}
   - {fileID: 8300000, guid: 263f0e4375fade44392c8c3f59a501e0, type: 3}
   - {fileID: 8300000, guid: 58f8082ef3934c14785a7db732b9c85d, type: 3}
+  - {fileID: 8300000, guid: e59f842d27c59674e942c313beab9847, type: 3}
+  - {fileID: 8300000, guid: 62e89bed89ed8374a87acd041ceaa4e3, type: 3}
+  - {fileID: 8300000, guid: 7afc6c3bea97faf409e7271db37dce27, type: 3}
   - {fileID: 8300000, guid: f26181cea41d38c4bbd4a18acbcb6f3c, type: 3}
   soundClips:
   - {fileID: 8300000, guid: 45a64f288ba228e49b4172c3c660ee5c, type: 3}
