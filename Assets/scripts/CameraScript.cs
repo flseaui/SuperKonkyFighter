@@ -51,7 +51,7 @@ public class CameraScript : MonoBehaviour
     public Transform cameraLeftPos, cameraRightPos;
     public Transform leftEdge, rightEdge, topEdge, bottomEdge;
 
-    public IntVariable time, p1Wins, p2Wins;
+    public IntVariable time, p1Wins, p2Wins, roundCounter;
 
     float vertExtent, horzExtent;
 
@@ -69,7 +69,15 @@ public class CameraScript : MonoBehaviour
 
     public Image playerPortrait1, playerPortrait2;
 
-	void Start()
+    void OnApplicationQuit()
+    {
+        roundCounter.value = 0;
+        p1Wins.value = 0;
+        p2Wins.value = 0;
+        PlayerPrefs.DeleteAll();
+    }
+
+    void Start()
 	{
         cameraLeftPos.position = cameraLeft.position;
         cameraRightPos.position = cameraRight.position;

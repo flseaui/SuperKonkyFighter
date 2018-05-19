@@ -136,6 +136,9 @@ public class MenuScript : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        roundCounter.value = 0;
+        player1Wins.value = 0;
+        player2Wins.value = 0;
         PlayerPrefs.DeleteAll();
     }
 
