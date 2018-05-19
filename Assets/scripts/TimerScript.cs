@@ -31,8 +31,11 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
-        timerText.text = time.value.ToString();
-        if (!started && InputManager.isInputEnabled)
+        if(time.value < 0)
+            timerText.text = "∞";
+        else
+            timerText.text = time.value.ToString();
+        if (!started && InputManager.isInputEnabled && time.value >= 0)
         {
             started = true;
             StartCoroutine("tickDown");

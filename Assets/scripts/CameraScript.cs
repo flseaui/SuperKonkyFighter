@@ -225,7 +225,7 @@ public class CameraScript : MonoBehaviour
                 Invoke("nextRound", 2);
             }
         }
-        else if (time.value < 1)
+        else if (time.value == 0)
         {
             if (!justWon)
             {

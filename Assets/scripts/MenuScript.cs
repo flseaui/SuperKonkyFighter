@@ -13,7 +13,7 @@ public class MenuScript : MonoBehaviour
     const int STAGE_SELECT_SCREEN = 2;
     const int SETTINGS_SCREEN = 3;
 
-    private readonly int[] TIMES = { 99, 120, 60, 69, 420, -1 };
+    private readonly int[] TIMES = { 99, 120, 60, -1 };
     private readonly int[] BESTOFS = { 3, 5, 7, 9 };
 
     //---------------------misc sprites-----------------//
