@@ -35,9 +35,10 @@ public class CameraScript : MonoBehaviour
     public Sprite ground2;
     public Sprite ground3;
 
-
     public Sprite[] Background;
 	public Sprite[] Ground;
+
+    public Sprite konkyPortrait, greyshirtPortrait;
 
 	public JoyScript JoyScript;
 
@@ -65,6 +66,8 @@ public class CameraScript : MonoBehaviour
 
     private bool justShook, justWon = false;
     private Vector3 preShakePos;
+
+    public Image playerPortrait1, playerPortrait2;
 
 	void Start()
 	{
@@ -112,6 +115,25 @@ public class CameraScript : MonoBehaviour
 
         background.GetComponent<SpriteRenderer>().sprite = Background[stage < 2 ? stage : stage - 1];
         ground.GetComponent<SpriteRenderer>().sprite = Ground[stage < 2 ? stage : stage - 1];
+
+        switch (PlayerPrefs.GetInt("player1c"))
+        {
+            case 0:
+                playerPortrait1.sprite = konkyPortrait;
+                break;
+            case 1:
+                playerPortrait1.sprite = greyshirtPortrait;
+                break;
+        }
+        switch (PlayerPrefs.GetInt("player2c"))
+        {
+            case 0:
+                playerPortrait2.sprite = konkyPortrait;
+                break;
+            case 1:
+                playerPortrait2.sprite = greyshirtPortrait;
+                break;
+        }
 
         Debug.LogFormat("STAGE {0}", stage);
     }
