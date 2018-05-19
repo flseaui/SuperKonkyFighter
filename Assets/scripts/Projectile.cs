@@ -6,14 +6,20 @@ public class Projectile : MonoBehaviour {
 
     public float speed;
     public int strength;
+    public bool faceWhenShot = default(bool);
 
     public PlayerScript player { get; set; } = default(PlayerScript);
 
+    private void Start()
+    {
+        faceWhenShot = player.facingRight;
+    }
+
     void Update()
     {
-        transform.position += player.facingRight ? new Vector3(speed, 0, 0) : new Vector3(-speed, 0, 0);
+        transform.position += faceWhenShot ? new Vector3(speed, 0, 0) : new Vector3(-speed, 0, 0);
 
-        GetComponent<SpriteRenderer>().flipX = player.facingRight ? false : true;
+        GetComponent<SpriteRenderer>().flipX = faceWhenShot ? false : true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
