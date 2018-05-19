@@ -14,6 +14,7 @@ public class TimerScript : MonoBehaviour
 
 	void Start()
     {
+        
         time.value = PlayerPrefs.GetInt("settingMatchTime");
 	}
 	
@@ -32,7 +33,7 @@ public class TimerScript : MonoBehaviour
     void Update()
     {
         if(time.value < 0)
-            timerText.text = "∞";
+            timerText.text = "8";
         else
             timerText.text = time.value.ToString();
         if (!started && InputManager.isInputEnabled && time.value >= 0)
