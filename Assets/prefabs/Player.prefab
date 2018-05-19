@@ -331,14 +331,19 @@ MonoBehaviour:
   damageDealt: 0
   inPushCollision: 0
   alreadyExecutedAttackMove: 0
+  shouldWallbounce: 0
+  shouldGroundbounce: 0
+  firstStun: 0
   bufferedMove: 0
   maxHealth: 0
+  maxMeter: 0
   health: 0
   currentFrameType: 0
   actionFrameCounter: 0
   activeFrameCounter: 0
   playerID: 0
   meterCharge: 0
+  meterStore: 0
   dashTimer: 0
   executingAction: 0
   stunTimer: 0
@@ -348,6 +353,7 @@ MonoBehaviour:
   throwType: 0
   comboTimer: 0
   comboCounter: 0
+  cancelLimit: 0
   basicState: 0
   attackState: 0
   advancedState: 0
@@ -367,6 +373,9 @@ MonoBehaviour:
   wallBuffer: 0
   p1Scale: 0
   p2Scale: 0
+  stored: 0
+  camRight: 0
+  camLeft: 0
   spriteRenderer: {fileID: 212080011780739976}
   animator: {fileID: 95060079290894174}
   konkyAnimationController: {fileID: 9100000, guid: 8efbe4cc9762cc54dbc95d13065249fe,
@@ -427,7 +436,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
