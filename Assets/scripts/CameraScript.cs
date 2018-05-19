@@ -74,7 +74,9 @@ public class CameraScript : MonoBehaviour
         roundCounter.value = 0;
         p1Wins.value = 0;
         p2Wins.value = 0;
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("player1w");
+        PlayerPrefs.DeleteKey("player2w");
+        PlayerPrefs.GetInt("loadedFromEditor");
     }
 
     void Start()

@@ -10,10 +10,11 @@ public class TimerScript : MonoBehaviour
 
     public int startTime;
 
+    private bool started;
+
 	void Start()
     {
         time.value = PlayerPrefs.GetInt("settingMatchTime");
-        StartCoroutine("tickDown");
 	}
 	
 	IEnumerator tickDown()
@@ -21,7 +22,7 @@ public class TimerScript : MonoBehaviour
         while (true)
         {
             if (time.value > 0)
-                time.value--;
+               time.value--;
             else
                 StopCoroutine("tickDown");
             yield return new WaitForSeconds(1);
@@ -31,6 +32,11 @@ public class TimerScript : MonoBehaviour
     void Update()
     {
         timerText.text = time.value.ToString();
+        if (!started && InputManager.isInputEnabled)
+        {
+            started = true;
+            StartCoroutine("tickDown");
+        }
     }
 
 }
