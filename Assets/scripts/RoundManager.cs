@@ -27,7 +27,6 @@ public class RoundManager : MonoBehaviour
 
     public IntVariable roundCounter, p1Wins, p2Wins;
     bool stop = false;
-    public bool? loadedFromEditor;
 
     [SerializeField] private Image p1Win1, p1Win2, p2Win1, p2Win2;
     [SerializeField] private TextMeshProUGUI roundText;
@@ -40,13 +39,6 @@ public class RoundManager : MonoBehaviour
 
     private void Start()
     {
-        if (!loadedFromEditor.HasValue)
-        {
-            roundCounter.value = 0;
-            p1Wins.value = 0;
-            p2Wins.value = 0;
-        }
-
         roundText.color = Color.clear;
         fightText.color = Color.clear;
         nextRound();
@@ -54,6 +46,13 @@ public class RoundManager : MonoBehaviour
 
     public void nextRound()
     {
+        if (PlayerPrefs.GetInt("loadedFromEditor") == 0)
+        {
+            roundCounter.value = 0;
+            p1Wins.value = 0;
+            p2Wins.value = 0;
+        }
+
         InputManager.isInputEnabled = false;
         if (roundCounter.value <= 0)
         {

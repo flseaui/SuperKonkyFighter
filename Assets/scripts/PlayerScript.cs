@@ -176,6 +176,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayMusic((AudioManager.Music) UnityEngine.Random.Range(2, 8));
+        
 
         if (CompareTag("1"))
         {

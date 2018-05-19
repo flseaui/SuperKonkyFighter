@@ -254,7 +254,7 @@ public class CameraScript : MonoBehaviour
 
     private void nextRound()
     {
-        RoundManager.instance.loadedFromEditor = false;
+        PlayerPrefs.SetInt("loadedFromEditor", 1);
         if (RoundManager.instance.roundCounter.value < 2)
             SceneManager.LoadScene("SKF");
         else
