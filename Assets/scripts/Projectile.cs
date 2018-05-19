@@ -7,12 +7,14 @@ public class Projectile : MonoBehaviour {
     public float speed;
     public int strength;
     public bool faceWhenShot = default(bool);
+    public int shotAction;
 
     public PlayerScript player { get; set; } = default(PlayerScript);
 
     private void Start()
     {
         faceWhenShot = player.facingRight;
+        shotAction = player.executingAction;
     }
 
     void Update()
@@ -41,16 +43,16 @@ public class Projectile : MonoBehaviour {
                 player.otherPlayer.GetComponent<PlayerScript>().health -= strength;
                 Destroy(this.gameObject);
                 PlayerScript other = player.otherPlayer.GetComponent<PlayerScript>();
-                Action action = player.behaviors.getAction(player.executingAction);
+                Action action = player.behaviors.getAction(shotAction);
                 if (!other.airborn)
                 {
                     if (action != null)
-                        other.damage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling, action.tier);
+                        other.overrideDamage(action.projectileStrength, action.gStrength[player.actionFrameCounter], action.gAngle[player.actionFrameCounter], action.block, action.p1scaling, action.tier, shotAction);
                 }
                 else
                 {
                     if (action != null)
-                        other.damage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling, action.tier);
+                        other.overrideDamage(action.projectileStrength, action.aStrength[player.actionFrameCounter], action.aAngle[player.actionFrameCounter], action.block, action.p1scaling, action.tier, shotAction);
                 }
             }
         }
