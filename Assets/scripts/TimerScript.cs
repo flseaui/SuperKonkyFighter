@@ -14,7 +14,7 @@ public class TimerScript : MonoBehaviour
 
 	void Start()
     {
-        
+        this.transform.rotation.Set(0, 0, 90, Quaternion.identity.w);
         time.value = PlayerPrefs.GetInt("settingMatchTime");
 	}
 	
