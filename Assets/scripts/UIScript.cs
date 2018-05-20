@@ -9,6 +9,8 @@ public class UIScript : MonoBehaviour {
     public Slider health2;
     public Slider meter1;
     public Slider meter2;
+    public Slider meter1p;
+    public Slider meter2p;
 
     public GameObject back;
 

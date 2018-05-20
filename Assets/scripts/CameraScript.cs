@@ -208,12 +208,18 @@ public class CameraScript : MonoBehaviour
         uis.health2.minValue = 0;
         uis.meter1.maxValue = p1s.maxMeter;
         uis.meter1.minValue = 0;
+        uis.meter1p.maxValue = p1s.maxMeter;
+        uis.meter1p.minValue = 0;
         uis.meter2.maxValue = p2s.maxMeter;
         uis.meter2.minValue = 0;
+        uis.meter2p.maxValue = p2s.maxMeter;
+        uis.meter2p.minValue = 0;
         uis.health1.value = p1s.health;
         uis.meter1.value = p1s.meterCharge;
+        uis.meter1p.value = p1s.meterCharge + p1s.meterStore;
 		uis.health2.value = p2s.health;
         uis.meter2.value = p2s.meterCharge;
+        uis.meter2p.value = p2s.meterCharge + p2s.meterStore;
 
         if (p1s.health <= 0)
         {
