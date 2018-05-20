@@ -108,7 +108,6 @@ public class BackGroundScript : MonoBehaviour
             if (!hitStopped)
             {
                 stopNextFrame = 2;
-                //Debug.Log("BACK FRAME: " + p1s.frameTimer);
             }
         }
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p1s.damageDealt && (p1s.currentFrameType == 1 || p1s.currentFrameType == 5))
@@ -126,7 +125,6 @@ public class BackGroundScript : MonoBehaviour
             if (!hitStopped)
             {
                 stopNextFrame = 1;
-                //Debug.Log("BACK FRAME: " + p2s.frameTimer);
             }
         }
     }
