@@ -36,7 +36,7 @@ public class Action {
 
     public List<rect> currentStun;
 
-    public AudioManager.Sound? sound;
+    public AudioManager.Sound? hitSound, whiffSound;
 
     public struct rect
     {

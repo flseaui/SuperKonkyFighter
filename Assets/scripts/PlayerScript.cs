@@ -137,7 +137,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public GameObject otherPlayer;
     public JoyScript JoyScript;
     public InputManager inputManager;
-    public AudioSource hitSound;
     public Transform cameraLeft, cameraRight;
     public IntVariable p1ComboCounterText, p2ComboCounterText;
     private IntVariable comboCounterText;
@@ -171,8 +170,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         this.tag = playerID.ToString();
         this.transform.GetChild(0).tag = "collisionHitbox" + playerID.ToString();
         hitbox = GetComponentInChildren<BoxCollider2D>();
-
-        hitSound = GetComponent<AudioSource>();
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayMusic((AudioManager.Music) UnityEngine.Random.Range(2, 8));
@@ -613,13 +610,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     private void incrementFrame(int[] frames)
     {
         if (actionFrameCounter == 0)
-        {
-            if (behaviors.getAction(executingAction).sound != null)
-                AudioManager.Instance.PlaySound(behaviors.getAction(executingAction).sound);
             killAllBoxes();
-        }
+        else if (actionFrameCounter == 1 && !damageDealt)
+            if (behaviors.getAction(executingAction).whiffSound != null)
+                AudioManager.Instance.PlaySound(behaviors.getAction(executingAction).whiffSound);
 
-        placeHurtboxes(actionFrameCounter);
+         placeHurtboxes(actionFrameCounter);
 
         int previousFrame = currentFrameType;
         currentFrameType = frames[actionFrameCounter];
