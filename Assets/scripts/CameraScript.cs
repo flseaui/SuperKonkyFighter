@@ -130,9 +130,13 @@ public class CameraScript : MonoBehaviour
         {
             case 0:
                 playerPortrait1.sprite = konkyPortrait;
+                if (PlayerPrefs.GetInt("player1c") == PlayerPrefs.GetInt("player2c"))
+                    p2s.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case 1:
                 playerPortrait1.sprite = greyshirtPortrait;
+                if (PlayerPrefs.GetInt("player1c") == PlayerPrefs.GetInt("player2c"))
+                    p2s.GetComponent<SpriteRenderer>().color = Color.cyan;
                 break;
         }
         switch (PlayerPrefs.GetInt("player2c"))
