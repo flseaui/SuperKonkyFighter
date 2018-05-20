@@ -1082,8 +1082,22 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void updateAnimation()
     {
+        PlayerScript other = otherPlayer.GetComponent<PlayerScript>();
         if (executingAction != 0)
         {
+            if (executingAction == 45)
+                if (inputManager.currentInput[1])
+                    animInt(Animator.StringToHash("StunType"), 3);
+                else if (other.airborn)
+                    animInt(Animator.StringToHash("StunType"), 4);
+                else if (other.inputManager.currentInput[1])
+                    animInt(Animator.StringToHash("StunType"), 0);
+                else if (other.behaviors.getAction(other.executingAction).tier == 2)
+                    animInt(Animator.StringToHash("StunType"), 2);
+                else
+                    animInt(Animator.StringToHash("StunType"), 1);
+
+
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
             animInt(Animator.StringToHash("Basic"), 0);
         }

@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KonkyHitstun
+  m_Name: KonkyAirbornHitstun
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f8afc910186c4d0499e5c2ae2df04cae, type: 3}
+      value: {fileID: 21300000, guid: 57ae02b9a10e15c4781a57704da326e7, type: 3}
     - time: 3
-      value: {fileID: 21300000, guid: f8afc910186c4d0499e5c2ae2df04cae, type: 3}
+      value: {fileID: 21300000, guid: d9100cdba5029b345b3b5baec4b2689f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,8 +41,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f8afc910186c4d0499e5c2ae2df04cae, type: 3}
-    - {fileID: 21300000, guid: f8afc910186c4d0499e5c2ae2df04cae, type: 3}
+    - {fileID: 21300000, guid: 57ae02b9a10e15c4781a57704da326e7, type: 3}
+    - {fileID: 21300000, guid: d9100cdba5029b345b3b5baec4b2689f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
