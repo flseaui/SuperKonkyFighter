@@ -461,6 +461,8 @@ public class MenuScript : MonoBehaviour
                 makeText(-16f, 9f, 1.25f, "stage select", 1);//screen description
                 break;
             case SETTINGS_SCREEN:
+                controller1Id = InputManager.c1id;
+                controller2Id = InputManager.c2id;
                 cameFromSettings = true;
                 makeText(-16f, 9f, 1.25f, "settings", 1);//screen description
 
@@ -479,7 +481,7 @@ public class MenuScript : MonoBehaviour
                 matchTimeButton = makeButton(new Vector3[] { new Vector2(-14, 1), new Vector2(-7, 1), new Vector2(-7, -1), new Vector2(-14, -1) }, new Color(0.8f, 0f, 0f, 0.75f), 17, new int[] { });
                 matchTimeText = makeFancyText(-10.5f, 0, 1f, "99", 0);
 
-                makeText(-14f, -1.5f, 1f, "best out of", 1);
+                makeText(-14f, -1.5f, 1f, "best of", 1);
 
                 bestOfButton = makeButton(new Vector3[] { new Vector2(-14, -3), new Vector2(-7, -3), new Vector2(-7, -5), new Vector2(-14, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 18, new int[] { });
                 bestOfText = makeFancyText(-10.5f, -4, 1f, "3", 0);
@@ -678,9 +680,6 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.SetInt("player1ai", player1ai);
         PlayerPrefs.SetInt("player2ai", player2ai);
 
-        InputManager.c1id = controller1Id;
-        InputManager.c2id = controller2Id;
-
         PlayerPrefs.SetInt("settingShowHitboxes", showHitboxes ? 0 : 1);
         PlayerPrefs.SetInt("settingMatchTime", TIMES[matchTime]);
         PlayerPrefs.SetInt("settingBestOf", BESTOFS[bestOf]);
@@ -802,6 +801,9 @@ public class MenuScript : MonoBehaviour
             changeFancyText(controller2Text, "key");
         else
             changeFancyText(controller2Text, controller2Id.ToString());
+            
+        InputManager.c1id = controller1Id;
+        InputManager.c2id = controller2Id;
     }
 
     private void changeSpriteColor(GameObject o, Color c)

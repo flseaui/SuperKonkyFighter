@@ -8,7 +8,7 @@ public class InputManager
     public static bool isInputEnabled = false;
 
     // controller 1 and 2 ids
-    public static int c1id, c2id;
+    public static int c1id = 1, c2id = 1;
 
     public bool[] currentInput = new bool[13];
 

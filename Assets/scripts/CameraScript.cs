@@ -303,7 +303,23 @@ public class CameraScript : MonoBehaviour
     private void nextRound()
     {
         PlayerPrefs.SetInt("loadedFromEditor", 1);
-        if (RoundManager.instance.roundCounter.value < 2)
+        int limit = 2;
+        switch (PlayerPrefs.GetInt("settingBestOf"))
+        {
+            case 3:
+                limit = 2;
+                break;
+            case 5:
+                limit = 3;
+                break;
+            case 7:
+                limit = 4;
+                break;
+            case 9:   
+                limit = 5;
+                break;
+        }
+        if (RoundManager.instance.roundCounter.value < limit)
             SceneManager.LoadScene("SKF");
         else
         {
