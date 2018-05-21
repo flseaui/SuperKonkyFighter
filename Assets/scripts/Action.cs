@@ -10,6 +10,7 @@ public class Action {
     public int[] damage;
 
     public bool airOK;
+    public bool super;
     public Vector2? projectileLocation;
     public float projectileSpeed;
     public int projectileStrength;

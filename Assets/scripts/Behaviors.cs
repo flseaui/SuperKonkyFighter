@@ -19,6 +19,7 @@ public abstract class Behaviors {
                maxMeter = 8000;
     public bool infiniteDashForward = true;
 
+
     public static Action.rect nullBox = new Action.rect(0, 0, -100, -100, 0, -1);
 
     public delegate void OnAdvancedAction(PlayerScript player);
