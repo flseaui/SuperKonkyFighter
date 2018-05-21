@@ -1087,9 +1087,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     animInt(Animator.StringToHash("StunType"), 3);
                 else if (basicState >= 7)
                     animInt(Animator.StringToHash("StunType"), 4);
-                else if (other.behaviors.getAction(executingAction).block == 1)
+                else if (other.behaviors.getAction(other.executingAction).block == 1)
                     animInt(Animator.StringToHash("StunType"), 0);
-                else if (other.behaviors.getAction(executingAction).block == 3)
+                else if (other.behaviors.getAction(other.executingAction).block == 3)
                     animInt(Animator.StringToHash("StunType"), 2);
                 else
                     animInt(Animator.StringToHash("StunType"), 1);
