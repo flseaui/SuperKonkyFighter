@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InputManager
 {
-
     public static bool isInputEnabled = false;
 
     public bool[] currentInput = new bool[13];
@@ -34,6 +33,8 @@ public class InputManager
                   mediumButton,
                   heavyButton;
 
+    public float hAxis, vAxis, dhAxis, dvAxis, aAxis, htAxis, vtAxis;
+    public float hAxisPrev, vAxisPrev, dhAxisPrev, dvAxisPrev;
     public InputManager(int playerID)
     {
         if (playerID == 1)
@@ -60,6 +61,40 @@ public class InputManager
         }
     }
 
+    public bool justPressed(string direction)
+    {
+        switch (direction)
+        {
+            case "left":
+                return (hAxisPrev == 0 && hAxis < 0) || (dhAxisPrev == 0 && dhAxis < 0);
+            case "right":
+                return (hAxisPrev == 0 && hAxis > 0) || (dhAxisPrev == 0 && dhAxis > 0);
+            case "up":
+                return (vAxisPrev == 0 && vAxis < 0) || (dvAxisPrev == 0 && dvAxis > 0);
+            case "down":
+                return (vAxisPrev == 0 && vAxis > 0) || (dvAxisPrev == 0 && dvAxis < 0);
+            default:
+                return false;
+        }
+    }
+
+    public bool justReleased(string direction)
+    {
+        switch (direction)
+        {
+            case "left":
+                return (hAxisPrev < 0 && hAxis == 0) || (dhAxisPrev < 0 && dhAxis == 0);
+            case "right":
+                return (hAxisPrev > 0 && hAxis == 0) || (dhAxisPrev > 0 && dhAxis == 0);
+            case "up":
+                return (vAxisPrev < 0 && vAxis == 0) || (dvAxisPrev > 0 && dvAxis == 0);
+            case "down":
+                return (vAxisPrev > 0 && vAxis == 0) || (dvAxisPrev < 0 && dvAxis == 0);
+            default:
+                return false;
+        }
+    }
+
     /* 
      * Polls user input
      * inputType = 0 : keyboard
@@ -69,6 +104,19 @@ public class InputManager
     {
         if (isInputEnabled)
         {
+            hAxisPrev = hAxis;
+            vAxisPrev = vAxis;
+            dhAxisPrev = dhAxis;
+            dvAxisPrev = dvAxis;
+            hAxis = Input.GetAxis("Horizontal");
+            vAxis = Input.GetAxis("Vertical");
+            htAxis = Input.GetAxis("HorizontalTurn");
+            vtAxis = Input.GetAxis("VerticalTurn");
+            dhAxis = Input.GetAxis("XboxDpadHorizontal");
+            dvAxis = Input.GetAxis("XboxDpadVertical");
+
+            ControllerCheck();
+
             switch (inputType)
             {
                 case 0:
@@ -88,6 +136,21 @@ public class InputManager
                     currentInput[12] = (Input.GetKeyDown(upKey));
                     break;
                 case 1:
+                    currentInput[0] = vAxis < 0 || dvAxis > 0;
+                    currentInput[1] = vAxis > 0 || dvAxis < 0;
+                    currentInput[2] = hAxis < 0 || dhAxis < 0;
+                    currentInput[3] = hAxis > 0 || dhAxis > 0;
+                    currentInput[4] = (Input.GetButton("XboxX"));
+                    currentInput[5] = (Input.GetButton("XboxY"));
+                    currentInput[6] = (Input.GetButton("XboxRB"));
+                    currentInput[7] = (Input.GetButton("XboxA"));
+                    currentInput[8] = justPressed("left");
+                    currentInput[9] = justPressed("right");
+                    currentInput[10] = justReleased("left");
+                    currentInput[11] = justReleased("right");
+                    currentInput[12] = justPressed("up");
+                    break;
+                case 2:
                     // Joystick
                     currentInput[0] = (joyScript.Up);
                     currentInput[1] = (joyScript.Down);
@@ -118,6 +181,25 @@ public class InputManager
         }
     }
 
+    void ControllerCheck()
+    {
+        float ltaxis = Input.GetAxis("XboxLeftTrigger");
+        float rtaxis = Input.GetAxis("XboxRightTrigger");
+
+        bool xbox_a = Input.GetButton("XboxA");
+        bool xbox_b = Input.GetButton("XboxB");
+        bool xbox_x = Input.GetButton("XboxX");
+        bool xbox_y = Input.GetButton("XboxY");
+        bool xbox_lb = Input.GetButton("XboxLB");
+        bool xbox_rb = Input.GetButton("XboxRB");
+        bool xbox_ls = Input.GetButton("XboxLS");
+        bool xbox_rs = Input.GetButton("XboxRS");
+        bool xbox_view = Input.GetButton("XboxView");
+        bool xbox_menu = Input.GetButton("XboxMenu");
+
+        //Debug.LogFormat("h: {0}, v: {1}", dhAxis, dvAxis);
+    }
+
     // Handles player input
     public void handleInput()
     {
@@ -133,9 +215,4 @@ public class InputManager
         special = currentInput[7];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
