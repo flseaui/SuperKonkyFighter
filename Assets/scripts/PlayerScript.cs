@@ -234,7 +234,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         // get currently held keys or pressed buttons
         if (InputManager.isInputEnabled)
-            inputManager.pollInput(0, playerID);
+            inputManager.pollInput(1, playerID);
  
 
         testAI.observe(0, otherPlayer.GetComponent<PlayerScript>().position(), otherPlayer.GetComponent<PlayerScript>().executingAction, position(), facingRight);

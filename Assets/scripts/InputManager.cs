@@ -7,6 +7,9 @@ public class InputManager
 {
     public static bool isInputEnabled = false;
 
+    // controller 1 and 2 ids
+    public static int c1id, c2id;
+
     public bool[] currentInput = new bool[13];
 
     public bool up = false,
@@ -72,6 +75,11 @@ public class InputManager
      */
     public void pollInput(int inputType, int playerID)
     {
+        if (c1id >= 3 && playerID == 1)
+            inputType = 0;
+        if (c2id >= 3 && playerID == 2)
+            inputType = 0;
+
         if (isInputEnabled)
         {
             foreach (string name in Input.GetJoystickNames())
@@ -82,27 +90,58 @@ public class InputManager
             dhAxisPrev = dhAxis;
             dvAxisPrev = dvAxis;
 
-            if (playerID == 1)
+            if (inputType == 1)
             {
-                hAxis = Input.GetAxis("Horizontal");
-                vAxis = Input.GetAxis("Vertical");
-                dhAxis = Input.GetAxis("XboxDpadHorizontal");
-                dvAxis = Input.GetAxis("XboxDpadVertical");
-                x = (Input.GetButton("XboxX"));
-                y = (Input.GetButton("XboxY"));
-                rb = (Input.GetButton("XboxRB"));
-                a = (Input.GetButton("XboxA"));
-            }
-            else if (playerID == 2)
-            {
-                hAxis = Input.GetAxis("Horizontal_2");
-                vAxis = Input.GetAxis("Vertical_2");
-                dhAxis = Input.GetAxis("XboxDpadHorizontal_2");
-                dvAxis = Input.GetAxis("XboxDpadVertical_2");
-                x = (Input.GetButton("XboxX_2"));
-                y = (Input.GetButton("XboxY_2"));
-                rb = (Input.GetButton("XboxRB_2"));
-                a = (Input.GetButton("XboxA_2"));
+                if (playerID == 1)
+                {
+                    if (c1id == 1)
+                    {
+                        hAxis = Input.GetAxis("Horizontal");
+                        vAxis = Input.GetAxis("Vertical");
+                        dhAxis = Input.GetAxis("XboxDpadHorizontal");
+                        dvAxis = Input.GetAxis("XboxDpadVertical");
+                        x = (Input.GetButton("XboxX"));
+                        y = (Input.GetButton("XboxY"));
+                        rb = (Input.GetButton("XboxRB"));
+                        a = (Input.GetButton("XboxA"));
+                    }
+                    else if (c2id == 1)
+                    {
+                        hAxis = Input.GetAxis("Horizontal_2");
+                        vAxis = Input.GetAxis("Vertical_2");
+                        dhAxis = Input.GetAxis("XboxDpadHorizontal_2");
+                        dvAxis = Input.GetAxis("XboxDpadVertical_2");
+                        x = (Input.GetButton("XboxX_2"));
+                        y = (Input.GetButton("XboxY_2"));
+                        rb = (Input.GetButton("XboxRB_2"));
+                        a = (Input.GetButton("XboxA_2"));
+                    }
+                }
+                else if (playerID == 2)
+                {
+                    if (c1id == 2)
+                    {
+                        hAxis = Input.GetAxis("Horizontal");
+                        vAxis = Input.GetAxis("Vertical");
+                        dhAxis = Input.GetAxis("XboxDpadHorizontal");
+                        dvAxis = Input.GetAxis("XboxDpadVertical");
+                        x = (Input.GetButton("XboxX"));
+                        y = (Input.GetButton("XboxY"));
+                        rb = (Input.GetButton("XboxRB"));
+                        a = (Input.GetButton("XboxA"));
+                    }
+                    else if (c2id == 2)
+                    {
+                        hAxis = Input.GetAxis("Horizontal_2");
+                        vAxis = Input.GetAxis("Vertical_2");
+                        dhAxis = Input.GetAxis("XboxDpadHorizontal_2");
+                        dvAxis = Input.GetAxis("XboxDpadVertical_2");
+                        x = (Input.GetButton("XboxX_2"));
+                        y = (Input.GetButton("XboxY_2"));
+                        rb = (Input.GetButton("XboxRB_2"));
+                        a = (Input.GetButton("XboxA_2"));
+                    }
+                }
             }
 
             switch (inputType)

@@ -79,6 +79,10 @@ public class MenuScript : MonoBehaviour
     private GameObject matchTimeText;
     private GameObject bestOfButton;
     private GameObject bestOfText;
+    private GameObject controller1Button;
+    private GameObject controller1Text;
+    private GameObject controller2Button;
+    private GameObject controller2Text;
 
     //-----------------------------prefabs----------------------------//
 
@@ -108,6 +112,8 @@ public class MenuScript : MonoBehaviour
     private bool showHitboxes;
     private int matchTime;
     private int bestOf;
+    private int controller1Id = 1;
+    private int controller2Id = 2;
 
     //win screen
     private int player1w;
@@ -481,6 +487,14 @@ public class MenuScript : MonoBehaviour
                 makeButton(new Vector3[] { new Vector2(-16, -7), new Vector2(-11, -7), new Vector2(-11, -9), new Vector2(-16, -9) }, new Color(), 0, new int[] { ComponentScript.FLAG_HIDDEN });
                 makeFancyText(-16f, -9f, 1f, "back", 2);//back button
 
+                makeText(0f, 6.5f, 1f, "controller 1", 1);
+                controller1Button = makeButton(new Vector3[] { new Vector2(9f, 4), new Vector2(2, 4), new Vector2(2, 2), new Vector2(9f, 2) }, new Color(0.8f, 0f, 0f, 0.75f), 19, new int[] { });
+                controller1Text = makeFancyText(5.5f, 3, 1f, "1", 0);
+
+                makeText(0f, 0f, 1f, "controller 2", 1);
+                controller2Button = makeButton(new Vector3[] { new Vector2(9f, -2.5f), new Vector2(2, -2.5f), new Vector2(2, -4.5f), new Vector2(9f, -4.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 20, new int[] { });
+                controller2Text = makeFancyText(5.5f, -3.5f, 1f, "2", 0);
+
                 settingsShift();
 
                 break;
@@ -613,6 +627,18 @@ public class MenuScript : MonoBehaviour
                 bestOf %= BESTOFS.Length;
                 settingsShift();
                 break;
+            case 19:
+                controller1Id++;
+                if (controller1Id > 3)
+                    controller1Id = 1;
+                settingsShift();
+                break;
+            case 20:
+                controller2Id++;
+                if (controller2Id > 3)
+                    controller2Id = 1;
+                settingsShift();
+                break;
         }
     }
 
@@ -647,6 +673,9 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.SetInt("player2c", player2c);
         PlayerPrefs.SetInt("player1ai", player1ai);
         PlayerPrefs.SetInt("player2ai", player2ai);
+
+        InputManager.c1id = controller1Id;
+        InputManager.c2id = controller2Id;
 
         PlayerPrefs.SetInt("settingShowHitboxes", showHitboxes ? 0 : 1);
         PlayerPrefs.SetInt("settingMatchTime", TIMES[matchTime]);
@@ -760,6 +789,15 @@ public class MenuScript : MonoBehaviour
             changeFancyText(matchTimeText, tempTime.ToString());
 
         changeFancyText(bestOfText, BESTOFS[bestOf].ToString());
+        if (controller1Id >= 3)
+            changeFancyText(controller1Text, "key");
+        else
+            changeFancyText(controller1Text, controller1Id.ToString());
+
+        if (controller2Id >= 3)
+            changeFancyText(controller2Text, "key");
+        else
+            changeFancyText(controller2Text, controller2Id.ToString());
     }
 
     private void changeSpriteColor(GameObject o, Color c)
