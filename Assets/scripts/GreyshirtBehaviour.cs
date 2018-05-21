@@ -773,7 +773,7 @@ public class GreyshirtBehaviours : Behaviors
         },
         hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        level = 0,
+        level = 3,
         p1scaling = .9f,
         block = LOW,
         knockdown = SOFTGB,
@@ -1239,7 +1239,7 @@ public class GreyshirtBehaviours : Behaviors
         infinite = true,
         hurtboxData = new Action.rect[,]
     {
-            { new Action.rect(1, 6, 14, 8, 1, 8), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 2, 9), new Action.rect(1.5f, 9f, 4, 8, 2, 10), },
     }
     };
 
