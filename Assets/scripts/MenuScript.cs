@@ -112,8 +112,8 @@ public class MenuScript : MonoBehaviour
     private bool showHitboxes;
     private int matchTime;
     private int bestOf;
-    private int controller1Id = 1;
-    private int controller2Id = 2;
+    private int controller1Id = 3;
+    private int controller2Id = 3;
 
     //win screen
     private int player1w;
