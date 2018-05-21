@@ -369,6 +369,30 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+--- !u!1101 &1101470378372091772
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: Action
+    m_EventTreshold: 35
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102758246745958410}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &1101475148627765324
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1850,6 +1874,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &1102758246745958410
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: greyshirtSuper
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 19563272638186348accd9a53f9c41f7, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102776480432687952
 AnimatorState:
   serializedVersion: 5
@@ -2208,7 +2257,7 @@ AnimatorStateMachine:
     m_Position: {x: 1584, y: -96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102283072075608122}
-    m_Position: {x: 1620, y: 384, z: 0}
+    m_Position: {x: 1500, y: 432, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102240190352049646}
     m_Position: {x: 1648.3121, y: 256.5782, z: 0}
@@ -2218,6 +2267,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102237305012482654}
     m_Position: {x: 1559.0173, y: 313.00278, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102758246745958410}
+    m_Position: {x: 1428, y: 168, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1101043569238716694}
@@ -2256,6 +2308,7 @@ AnimatorStateMachine:
   - {fileID: 1101227033533932884}
   - {fileID: 1101913782352265044}
   - {fileID: 1101317325034965308}
+  - {fileID: 1101470378372091772}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
