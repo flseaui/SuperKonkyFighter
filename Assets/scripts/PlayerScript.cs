@@ -418,7 +418,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             attackState = basicState + 30;
             if (attackState == 35) {
-                if (meterCharge != maxMeter)
+                if (meterCharge < maxMeter)
                     attackState = 0;
                 else
                 {
