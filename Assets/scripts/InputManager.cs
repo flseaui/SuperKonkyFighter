@@ -39,11 +39,8 @@ public class InputManager
 
     public bool x, y, a, b, rb;
 
-    int playerID;
-
     public InputManager(int playerID)
     {
-        this.playerID = playerID;
         if (playerID == 1)
         {
             upKey = KeyCode.W;
@@ -70,10 +67,10 @@ public class InputManager
 
     /* 
      * Polls user input
-     * inputType = 0 : keyboard
+     * inputType = 0 : keyboards
      * inputType = 1 : joystick 
      */
-    public void pollInput(int inputType)
+    public void pollInput(int inputType, int playerID)
     {
         if (isInputEnabled)
         {
@@ -133,8 +130,8 @@ public class InputManager
                     currentInput[3] = hAxis > 0 || dhAxis > 0;
                     currentInput[4] = x;
                     currentInput[5] = y;
-                    currentInput[6] = a;
-                    currentInput[7] = b;
+                    currentInput[6] = rb;
+                    currentInput[7] = a;
                     currentInput[8] = justPressed("left");
                     currentInput[9] = justPressed("right");
                     currentInput[10] = justReleased("left");
@@ -204,21 +201,6 @@ public class InputManager
             default:
                 return false;
         }
-    }
-
-    // Handles player input
-    public void handleInput()
-    {
-        pollInput(0);
-
-        up      = currentInput[0];
-        down    = currentInput[1];
-        left    = currentInput[2];
-        right   = currentInput[3];
-        light   = currentInput[4];
-        medium  = currentInput[5];
-        heavy   = currentInput[6];
-        special = currentInput[7];
     }
 
 }

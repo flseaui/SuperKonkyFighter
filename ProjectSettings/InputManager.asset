@@ -10,7 +10,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: joystick 3 button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -20,13 +20,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxA_2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: joystick 8 button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -36,13 +36,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxB
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: joystick 3 button 1
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -52,13 +52,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxB_2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: joystick 8 button 1
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -68,13 +68,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxX
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: joystick 3 button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -84,13 +84,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxX_2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: joystick 8 button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -100,13 +100,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxY
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 3
+    positiveButton: joystick 3 button 3
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -116,13 +116,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxY_2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 3
+    positiveButton: joystick 8 button 3
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -132,7 +132,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxLB
     descriptiveName: 
@@ -154,7 +154,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 5
+    positiveButton: joystick 3 button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -164,13 +164,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxRB_2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 5
+    positiveButton: joystick 8 button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -180,7 +180,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxView
     descriptiveName: 
@@ -260,7 +260,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: Horizontal_2
     descriptiveName: Xbox LeftStick Horizontal
@@ -276,7 +276,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: Xbox LeftStick Vertical
@@ -292,7 +292,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: Vertical_2
     descriptiveName: Xbox LeftStick Vertical
@@ -308,7 +308,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 1
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: HorizontalTurn
     descriptiveName: 
@@ -356,7 +356,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 5
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxDpadHorizontal_2
     descriptiveName: 
@@ -372,7 +372,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 5
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxDpadVertical
     descriptiveName: 
@@ -388,7 +388,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 6
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: XboxDpadVertical_2
     descriptiveName: 
@@ -404,7 +404,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 6
-    joyNum: 2
+    joyNum: 8
   - serializedVersion: 3
     m_Name: XboxLeftTrigger
     descriptiveName: 
