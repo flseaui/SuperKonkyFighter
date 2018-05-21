@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
         GREYSHIRTS_THEME,
         SHRULKS_THEME,
         SHRULKS_ALT,
-        SHRULKS_ALT_ALT,
+        TRAINING,
         SHRULKS_ALT_ALT_RIGHT
     }
 

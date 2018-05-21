@@ -58,6 +58,10 @@ public class RoundManager : MonoBehaviour
         {
             p1Wins.value = 0;
             p2Wins.value = 0;
+
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayMusic((AudioManager.Music)UnityEngine.Random.Range(2, 8));
         }
         p1Win1.enabled = false;
         p1Win2.enabled = false;
