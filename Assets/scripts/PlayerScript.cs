@@ -747,8 +747,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             overrideAction = bufferedMove;
         bufferedMove = 0;
 
-        if (GetComponent<Animation>())
-            GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+       // if (GetComponent<Animation>())
+         //   GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         //GetComponent<Animator>().enabled = false;
     }
 
@@ -1082,16 +1082,18 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         if (executingAction != 0)
         {
             if (executingAction == 45)
-                if (inputManager.currentInput[1])
+            {
+                if (basicState >= 3)
                     animInt(Animator.StringToHash("StunType"), 3);
-                else if (other.airborn)
+                else if (basicState <= 7)
                     animInt(Animator.StringToHash("StunType"), 4);
-                else if (other.inputManager.currentInput[1])
+                else if (other.behaviors.getAction(executingAction).block == 1)
                     animInt(Animator.StringToHash("StunType"), 0);
-                else if (other.behaviors.getAction(other.executingAction).tier == 2)
+                else if (other.behaviors.getAction(executingAction).block == 3)
                     animInt(Animator.StringToHash("StunType"), 2);
                 else
                     animInt(Animator.StringToHash("StunType"), 1);
+            }
 
 
             animInt(Animator.StringToHash("Action"), behaviors.getAnimAction(behaviors.getAction(executingAction)));
