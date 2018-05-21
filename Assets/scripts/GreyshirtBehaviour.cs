@@ -504,7 +504,7 @@ public class GreyshirtBehaviours : Behaviors
         level = 4,
         p1scaling = 1.1f,
         block = MID,
-        knockdown = SOFTKD,
+        knockdown = NONE,
         actionCancels = new int[] { 31, 32, 33, 34, 35, 36, 40 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
