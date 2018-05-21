@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
         SHRULKS_ALT,
         TRAINING,
         SHRULKS_ALT_ALT_RIGHT
-    }
+    } 
 
     public enum Sound
     {
