@@ -1631,36 +1631,6 @@ public class GreyshirtBehaviours : Behaviors
         },
     };
 
-    private Action groundbounce = new Action()
-    {
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-        actionCancels = new int[] { },
-        infinite = false,
-        hurtboxData = new Action.rect[,]
-    {
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-    }
-    };
-
     private Action victory = new Action()
     {
         frames = new int[] { 0 },

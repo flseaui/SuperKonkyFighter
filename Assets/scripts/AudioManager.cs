@@ -46,7 +46,10 @@ public class AudioManager : MonoBehaviour
         HEAVY,
         BLOCK,
         FIREBALL,
-        KONKY_SUPER
+        KONKY_SUPER,
+        WHIFF,
+        SUPER,
+        PUSHBLOCK
     }
 
     public void PlaySound(Sound? sound)
