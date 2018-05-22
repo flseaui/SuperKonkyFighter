@@ -949,8 +949,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void actionMove(int action)
     {
-        hVelocity += behaviors.getAction(action).hMovement[actionFrameCounter];
-        vVelocity += behaviors.getAction(action).vMovement[actionFrameCounter];
+        hVelocity = behaviors.getAction(action).hMovement[actionFrameCounter];
+        vVelocity = behaviors.getAction(action).vMovement[actionFrameCounter];
     }
 
     private void attackMove(int action)
