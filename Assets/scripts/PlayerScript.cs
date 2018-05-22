@@ -1300,10 +1300,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void overrideDamage(int dmg, float knockback, int angle, int blck, float p1, int tier, int newAction)
     {
-        int action = executingAction;
-        executingAction = newAction;
+        int action = otherPlayer.GetComponent<PlayerScript>().executingAction;
+        otherPlayer.GetComponent<PlayerScript>().executingAction = newAction;
         damage(dmg, knockback, angle, blck, p1, tier);
-        executingAction = action;
+        otherPlayer.GetComponent<PlayerScript>().executingAction = action;
     }
 
     public void damage(int damage, float knockback, int angle, int blck, float p1, int tier)
