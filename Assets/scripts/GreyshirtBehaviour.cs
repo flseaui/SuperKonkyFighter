@@ -188,7 +188,7 @@ public class GreyshirtBehaviours : Behaviors
     private Action standL = new Action()
     {
         tier = 0,
-        frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3 },// 5 | 2 | 5
+        frames = new int[] { 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3 },// 5 | 2 | 7
         damage = new int[] { 0, 0, 0, 0, 0, 300, 300, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
@@ -208,19 +208,21 @@ public class GreyshirtBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox }
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         p1scaling = .9f,
         block = MID,
         knockdown = NONE,
         actionCancels = new int[] { 2, 15, 12, 16, 25, 22, 31, 32, 33, 34, 35, 36 },
-        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-        gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, },
-        aStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+        aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0 },
+        aStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
     };
 
     // Standing Medium
@@ -1125,7 +1127,7 @@ public class GreyshirtBehaviours : Behaviors
         level = 2,
         p1scaling = 1.5f,
         block = MID,
-        knockdown = HARDKD,
+        knockdown = SOFTGB,
         super = true,
         actionCancels = new int[] { },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -1282,6 +1284,36 @@ public class GreyshirtBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
        }
+    };
+
+    private Action groundbounce = new Action()
+    {
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        actionCancels = new int[] { },
+        infinite = false,
+        hurtboxData = new Action.rect[,]
+    {
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+    }
     };
 
     private Action grab = new Action()
