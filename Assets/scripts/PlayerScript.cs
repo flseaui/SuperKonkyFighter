@@ -50,6 +50,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool shouldWallbounce;
     public bool shouldGroundbounce;
     public bool firstStun;
+    public bool intialBound;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -949,13 +950,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void actionMove(int action)
     {
-        if (actionFrameCounter == 0)
+        if (!intialBound && (behaviors.getAction(action).hMovement[actionFrameCounter] > 0 || behaviors.getAction(action).vMovement[actionFrameCounter] > 0))
         {
-            if (behaviors.getAction(action).hMovement[actionFrameCounter] > 0)
-                hVelocity = behaviors.getAction(action).hMovement[actionFrameCounter];
+            intialBound = true;
 
-            if (behaviors.getAction(action).vMovement[actionFrameCounter] > 0)
-                vVelocity = behaviors.getAction(action).vMovement[actionFrameCounter];
+            hVelocity = behaviors.getAction(action).hMovement[actionFrameCounter];
+            vVelocity = behaviors.getAction(action).vMovement[actionFrameCounter];
         }
         else
         {
@@ -1306,6 +1306,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         damageDealt = false;
         shouldWallbounce = false;
         shouldGroundbounce = false;
+        intialBound = false;
         killAllBoxes();
     }
 
