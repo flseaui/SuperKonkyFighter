@@ -55,6 +55,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public int maxHealth;              // starting health of the player
     public int maxMeter;
     public int health;                 // current health of the player
+    public int healthStore;
     public int currentFrameType;       // frame type of the currently executing action
     public int actionFrameCounter;     // current frame number of the executing action
     public int activeFrameCounter;     // current active frame number of the executing action
@@ -337,6 +338,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             comboTimer--;
         if (comboTimer == 0)
         {
+            if (healthStore > 0)
+            {
+                healthStore -= (healthStore >= 25 ? 25 : healthStore);
+            }
+
             otherPlayer.GetComponent<PlayerScript>().comboCounter = 0;
             p1Scale = 0;
             p2Scale = 1;
@@ -1316,6 +1322,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 damage = 50;
             }
+
+            healthStore += damage;
         }
 
         if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))

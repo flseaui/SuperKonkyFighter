@@ -7,6 +7,8 @@ public class UIScript : MonoBehaviour {
 
     public Slider health1;
     public Slider health2;
+    public Slider health1p;
+    public Slider health2p;
     public Slider meter1;
     public Slider meter2;
     public Slider meter1p;
