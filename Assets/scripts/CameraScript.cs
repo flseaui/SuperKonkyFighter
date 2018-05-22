@@ -313,16 +313,16 @@ public class CameraScript : MonoBehaviour
         switch (PlayerPrefs.GetInt("settingBestOf"))
         {
             case 3:
-                limit = 2;
-                break;
-            case 5:
                 limit = 3;
                 break;
-            case 7:
+            case 5:
                 limit = 4;
                 break;
-            case 9:   
+            case 7:
                 limit = 5;
+                break;
+            case 9:   
+                limit = 6;
                 break;
         }
         if (RoundManager.instance.roundCounter.value < limit)
