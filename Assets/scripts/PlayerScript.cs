@@ -1322,8 +1322,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 damage = 50;
             }
-
-            healthStore += damage;
         }
 
         if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))
@@ -1331,6 +1329,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             hKnockback /= 4;
             vKnockback = 0;
             health -= damage / 10;
+            healthStore += damage / 10;
             meterStore += (int)(damage * .4f);
             if (!otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).super)
                 otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * .2f);
@@ -1339,6 +1338,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else
         {
             health -= damage;
+            healthStore += damage;
             meterStore += (int)(damage * .8f);
             if (!otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).super)
                 otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * 1.4f);
