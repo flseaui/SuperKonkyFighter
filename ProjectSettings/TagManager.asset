@@ -17,6 +17,8 @@ TagManager:
   - hitboxes
   - hurtboxes
   - projectile
+  - stageRight
+  - stageLeft
   layers:
   - Default
   - TransparentFX
