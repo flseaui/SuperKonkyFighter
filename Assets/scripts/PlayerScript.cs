@@ -338,9 +338,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             comboTimer--;
         if (comboTimer == 0)
         {
-            if (healthStore > 0)
+            if (otherPlayer.GetComponent<PlayerScript>().healthStore > 0)
             {
-                healthStore -= (healthStore >= 25 ? 25 : healthStore);
+                otherPlayer.GetComponent<PlayerScript>().healthStore -= (otherPlayer.GetComponent<PlayerScript>().healthStore >= 25 ? 25 : otherPlayer.GetComponent<PlayerScript>().healthStore);
             }
 
             otherPlayer.GetComponent<PlayerScript>().comboCounter = 0;
