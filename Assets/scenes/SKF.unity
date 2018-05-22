@@ -2632,7 +2632,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 58f8082ef3934c14785a7db732b9c85d, type: 3}
   - {fileID: 8300000, guid: e59f842d27c59674e942c313beab9847, type: 3}
   - {fileID: 8300000, guid: 62e89bed89ed8374a87acd041ceaa4e3, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 0c978b7c6f2401441a28fcfddb219c87, type: 3}
   - {fileID: 8300000, guid: f26181cea41d38c4bbd4a18acbcb6f3c, type: 3}
   soundClips:
   - {fileID: 8300000, guid: 45a64f288ba228e49b4172c3c660ee5c, type: 3}
