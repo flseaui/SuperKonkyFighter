@@ -951,9 +951,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (actionFrameCounter == 0)
         {
-            if (!airborn)
+            if (behaviors.getAction(action).hMovement[actionFrameCounter] > 0)
                 hVelocity = behaviors.getAction(action).hMovement[actionFrameCounter];
-            vVelocity = behaviors.getAction(action).vMovement[actionFrameCounter];
+
+            if (behaviors.getAction(action).vMovement[actionFrameCounter] > 0)
+                vVelocity = behaviors.getAction(action).vMovement[actionFrameCounter];
         }
         else
         {
