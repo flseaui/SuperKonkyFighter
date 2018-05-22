@@ -784,11 +784,11 @@ public class KonkyBehaviours : Behaviors
         hitboxData = new Action.rect[,]
         {
             { new Action.rect( 2.5f, 2.5f, 5, 5, 6, 0), new Action.rect( 7.5f, 7.5f, 5, 5, 6, 1), },
-            {nullBox, nullbox, },
-            {nullBox, nullbox, },
-            {nullBox, nullbox, },
-            {nullBox, nullbox, },
-            {nullBox, nullbox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
+            {nullBox, nullBox, },
         },
         hurtboxData = new Action.rect[,]
         {
