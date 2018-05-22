@@ -1324,14 +1324,16 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             vKnockback = 0;
             health -= damage / 10;
             meterStore += (int)(damage * .4f);
-            otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * .2f);
+            if (!otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).super)
+                otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * .2f);
             block();
         }
         else
         {
             health -= damage;
             meterStore += (int)(damage * .8f);
-            otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * 1.4f);
+            if (!otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).super)
+                otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * 1.4f);
             stun();
         }
 
