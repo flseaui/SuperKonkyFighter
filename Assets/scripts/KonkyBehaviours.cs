@@ -783,7 +783,7 @@ public class KonkyBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect( 2.5f, 2.5f, 5, 5, 6, 0), new Action.rect( 7.5f, 7.5f, 5, 5, 6, 1), },
+            { new Action.rect( 2.5f, 5, 5, 5, 6, 0), new Action.rect( 7.5f, 10, 5, 5, 6, 1), },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
@@ -792,7 +792,7 @@ public class KonkyBehaviours : Behaviors
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect( 0, 5, 10, 10, 8, 2 ), },//startup
+            { new Action.rect( .5f, 6, 9, 9, 8, 2 ), },//startup
             {nullBox, },
             {nullBox, },
             {nullBox, },
@@ -806,7 +806,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, },
             {nullBox, },
             {nullBox, },
-            { new Action.rect( 0, 5, 10, 10, 30, 2 ), },//recovery
+            { new Action.rect( .5f, 6, 9, 9, 30, 2 ), },//recovery
             {nullBox, },
             {nullBox, },
             {nullBox, },
@@ -887,8 +887,8 @@ public class KonkyBehaviours : Behaviors
             {nullBox },
             {nullBox },
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1.25f, 0, 0, 0, 0, 0, -.5f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1.25f, 0, 0, 0, 0, 0, -.5f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 0,
         p1scaling = 1.1f,
         block = LOW,
