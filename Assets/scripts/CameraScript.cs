@@ -223,6 +223,7 @@ public class CameraScript : MonoBehaviour
         uis.meter1.value = p1s.meterCharge;
         uis.meter1p.value = p1s.meterCharge + p1s.meterStore;
 		uis.health2.value = p2s.health;
+        uis.health2p.value = p2s.health + p2s.healthStore;
         uis.meter2.value = p2s.meterCharge;
         uis.meter2p.value = p2s.meterCharge + p2s.meterStore;
 
