@@ -460,7 +460,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: Action
     m_EventTreshold: 45
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: StunType
     m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
@@ -778,7 +778,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: Action
     m_EventTreshold: 45
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: StunType
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -832,7 +832,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: Action
     m_EventTreshold: 45
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: StunType
     m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
