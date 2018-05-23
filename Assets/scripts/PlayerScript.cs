@@ -1359,9 +1359,14 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (!otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).super)
                 otherPlayer.GetComponent<PlayerScript>().meterStore += (int)(damage * .2f);
             block();
+            AudioManager.Instance.PlaySound(AudioManager.Sound.BLOCK);
         }
         else
         {
+            if (otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).hitSound != null)
+            {
+                AudioManager.Instance.PlaySound(otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(otherPlayer.GetComponent<PlayerScript>().executingAction).hitSound);
+            }
             health -= damage;
             healthStore += damage;
             meterStore += (int)(damage * .8f);

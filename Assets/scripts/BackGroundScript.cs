@@ -96,10 +96,6 @@ public class BackGroundScript : MonoBehaviour
         if (p1s.GetComponentInChildren<HurtboxScript>().hit && !p2s.damageDealt && (p2s.currentFrameType == 1 || p2s.currentFrameType == 5))
         {
             Action action = p2s.behaviors.getAction(p2s.executingAction);
-            if (action.hitSound != null)
-            {
-                AudioManager.Instance.PlaySound(action.hitSound);
-            }
             p2s.damageDealt = true;
             if(!p1s.airborn)
                 p1s.damage(action.damage[p2s.actionFrameCounter], action.gStrength[p2s.actionFrameCounter], action.gAngle[p2s.actionFrameCounter], action.block, action.p1scaling, action.tier);
@@ -113,10 +109,6 @@ public class BackGroundScript : MonoBehaviour
         if (p2s.GetComponentInChildren<HurtboxScript>().hit && !p1s.damageDealt && (p1s.currentFrameType == 1 || p1s.currentFrameType == 5))
         {
             Action action = p1s.behaviors.getAction(p1s.executingAction);
-            if (action.hitSound != null)
-            {
-                AudioManager.Instance.PlaySound(action.hitSound);
-            }
             p1s.damageDealt = true;
             if (!p2s.airborn) 
                 p2s.damage(action.damage[p1s.actionFrameCounter], action.gStrength[p1s.actionFrameCounter], action.gAngle[p1s.actionFrameCounter], action.block, action.p1scaling, action.tier);

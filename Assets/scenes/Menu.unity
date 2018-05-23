@@ -943,8 +943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 342293454}
-  state: 0
-  state2: 1
   menu: 0
 --- !u!1 &945590018
 GameObject:

@@ -2063,7 +2063,10 @@ public class GreyshirtBehaviours : Behaviors
     public void advBlock(PlayerScript player)
     {
         if (player.inputManager.currentInput[7])
-            player.otherPlayer.GetComponent<PlayerScript>().hKnockback += (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
+        {
+            player.otherPlayer.GetComponent<PlayerScript>().hKnockback = (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
+            AudioManager.Instance.PlaySound(AudioManager.Sound.PUSHBLOCK);
+        }
 
         player.hVelocity = 0;
         player.checkBlockEnd();
