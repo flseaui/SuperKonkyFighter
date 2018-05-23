@@ -626,6 +626,42 @@ public class MenuScript : MonoBehaviour
         }
     }
 
+    public void updateChar(int state)
+    {
+        switch (state)
+        {
+            // 0  0
+            case 0:
+                globeSelect = 0;
+                player1c = 0;
+                player2c = 0;
+                break;
+
+            // 0  1
+            case 1:
+                globeSelect = 0;
+                player1c = 0;
+                player2c = 1;
+                break;
+
+            // 1  0
+            case 2:
+                globeSelect = 0;
+                player1c = 1;
+                player2c = 0;
+                break;
+
+            // 1  1
+            case 3:
+                globeSelect = 0;
+                player1c = 1;
+                player2c = 1;
+                break;
+        }
+        charShift();
+        globeShift();
+    }
+
     public void updateSelection(int state)
     {
         characterButtons[0].GetComponent<ComponentScript>().unstick();

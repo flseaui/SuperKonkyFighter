@@ -51,6 +51,7 @@ public class MenuOverlay : MonoBehaviour
         {
             switch (menu)
             {
+                // main menu
                 case 0:
                     switch (state)
                     {
@@ -69,6 +70,7 @@ public class MenuOverlay : MonoBehaviour
                             break;
                     }
                     break;
+                // settings
                 case 1:
                     switch (state)
                     {
@@ -105,6 +107,11 @@ public class MenuOverlay : MonoBehaviour
                     menu = 0;
                     selector.SetActive(true);
                     break;
+                case 3:
+                    GetComponentInParent<MenuScript>().triggerEvent(1);
+                    state = 0;
+                    menu = 2;
+                    break;
             }
 
         switch (menu)
@@ -132,6 +139,12 @@ public class MenuOverlay : MonoBehaviour
                     state2 = 0;
                 else if (state2 < 0)
                     state2 = 1;
+                break;
+            case 3:
+                if (state > 4)
+                    state = 0;
+                else if (state < 0)
+                    state = 4;
                 break;
         }
 
@@ -189,42 +202,48 @@ public class MenuOverlay : MonoBehaviour
                 if (state == 0 && state2 == 0)
                 {
                     GetComponentInParent<MenuScript>().updateSelection(0);
+                    if (inputManager.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(0);
                 }
                 else if (state == 0 && state2 == 1)
                 {
                     GetComponentInParent<MenuScript>().updateSelection(1);
+                    if (inputManager.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(1);
                 }
                 else if (state == 1 && state2 == 0)
                 {
                     GetComponentInParent<MenuScript>().updateSelection(2);
+                    if (inputManager.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(2);
                 }
                 else if (state == 1 && state2 == 1)
                 {
                     GetComponentInParent<MenuScript>().updateSelection(3);
+                    if (inputManager.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(3);
                 }
+                break;
+            case 3:
+                switch (state)
+                {
+                    case 0:
+                        GetComponentInParent<MenuScript>().triggerEvent(4);
+                        break;
+                    case 1:
+                        GetComponentInParent<MenuScript>().triggerEvent(5);
+                        break;
+                    case 2:
+                        GetComponentInParent<MenuScript>().triggerEvent(6);
+                        break;
+                    case 3:
+                        GetComponentInParent<MenuScript>().triggerEvent(7);
+                        break;
+                    case 4:
+                        GetComponentInParent<MenuScript>().triggerEvent(8);
+                        break;
 
-                /*switch (state)
-                {
-                    case 0:
-                        GetComponentInParent<MenuScript>().triggerEvent(9);
-                        GetComponentInParent<MenuScript>().characterButtons[0].GetComponent<ComponentScript>().click();
-                        break;
-                    case 1:
-                        GetComponentInParent<MenuScript>().triggerEvent(9);
-                        GetComponentInParent<MenuScript>().characterButtons[1].GetComponent<ComponentScript>().click();
-                        break;
                 }
-                switch (state2)
-                {
-                    case 0:
-                        GetComponentInParent<MenuScript>().triggerEvent(10);
-                        GetComponentInParent<MenuScript>().characterButtons[0].GetComponent<ComponentScript>().click();
-                        break;
-                    case 1:
-                        GetComponentInParent<MenuScript>().triggerEvent(10);
-                        GetComponentInParent<MenuScript>().characterButtons[1].GetComponent<ComponentScript>().click();
-                        break;
-                }*/
                 break;
         }
     }
