@@ -275,7 +275,7 @@ public class GreyshirtBehaviours : Behaviors
         p1scaling = 1,
         block = MID,
         knockdown = NONE,
-        actionCancels = new int[] { 12, 25, 31, 32, 33, 34, 35, 36 },
+        actionCancels = new int[] { 12, 22, 25, 31, 32, 33, 34, 35, 36 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = new float[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0 },
         aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0, 0, 0 },
