@@ -160,10 +160,12 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyUp(KeyCode.R))
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        }        
+        } 
+        */
 
         if (getX(player1) < getX(player2) - 1)
         {

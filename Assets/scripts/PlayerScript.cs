@@ -233,7 +233,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // called 60 times per second
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Y)) { ai = !ai; }
+        //if (Input.GetKeyUp(KeyCode.Y)) { ai = !ai; }
 
         // get currently held keys or pressed buttons
         if (InputManager.isInputEnabled)
