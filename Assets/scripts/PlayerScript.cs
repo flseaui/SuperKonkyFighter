@@ -634,7 +634,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     {
         if (actionFrameCounter == 0)
             killAllBoxes();
-        else if (actionFrameCounter == 1 && !damageDealt)
+
+        if ((currentFrameType == 1 || currentFrameType == 5) && (frames[actionFrameCounter + 1] != 1 && frames[actionFrameCounter + 1] != 5) && !damageDealt)
             if (behaviors.getAction(executingAction).whiffSound != null)
                 AudioManager.Instance.PlaySound(behaviors.getAction(executingAction).whiffSound);
 
