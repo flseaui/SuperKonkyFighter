@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: greyshirtAirHitstun
+  m_Name: greyshirtStandLowHitstun
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 7a4fef2867a522e41ba7182e3b47c36f, type: 3}
-    - time: 0.8666667
-      value: {fileID: 21300000, guid: 7a4fef2867a522e41ba7182e3b47c36f, type: 3}
+      value: {fileID: 21300000, guid: 9e189744232e23942b13721fcd540f6f, type: 3}
+    - time: 1.65
+      value: {fileID: 21300000, guid: 9e189744232e23942b13721fcd540f6f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,14 +41,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 7a4fef2867a522e41ba7182e3b47c36f, type: 3}
-    - {fileID: 21300000, guid: 7a4fef2867a522e41ba7182e3b47c36f, type: 3}
+    - {fileID: 21300000, guid: 9e189744232e23942b13721fcd540f6f, type: 3}
+    - {fileID: 21300000, guid: 9e189744232e23942b13721fcd540f6f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8833333
+    m_StopTime: 1.6666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
