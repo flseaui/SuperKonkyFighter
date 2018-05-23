@@ -414,7 +414,9 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 500, 500, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(4.25f, 1.25f, 8.5f, 2.5f, 3, 0), },
+            { new Action.rect(4.25f, 1.25f, 8.5f, 2.5f, 5, 0), },
+            {nullBox },
+            {nullBox },
             {nullBox },
             {nullBox },
         },
@@ -442,7 +444,9 @@ public class GreyshirtBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            {nullBox, nullBox }
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
         },
         hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -1350,14 +1354,6 @@ public class GreyshirtBehaviours : Behaviors
         infinite = false,
         hurtboxData = new Action.rect[,]
     {
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
-            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },

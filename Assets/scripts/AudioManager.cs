@@ -46,7 +46,6 @@ public class AudioManager : MonoBehaviour
         HEAVY,
         BLOCK,
         FIREBALL,
-        KONKY_SUPER,
         WHIFF,
         SUPER,
         PUSHBLOCK,
