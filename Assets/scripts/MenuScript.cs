@@ -573,11 +573,15 @@ public class MenuScript : MonoBehaviour
             case 9:
                 globeSelect = 0;
                 unstickAll(false);
+                player1c = MenuOverlay.state;
+                charShift();
                 globeShift();
                 break;
             case 10:
                 globeSelect = 1;
                 unstickAll(true);
+                player1c = MenuOverlay.state2;
+                charShift();
                 globeShift();
                 break;
             case 11:

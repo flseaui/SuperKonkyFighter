@@ -99,8 +99,7 @@ public class RoundManager : MonoBehaviour
         if (!stop)
         {
             ++roundCounter.value;
-            //roundText.SetText("round " + roundCounter.value.ToString());
-            roundText.SetText("Cant escape from crossing fates!");
+            roundText.SetText("round " + roundCounter.value.ToString());
             StartCoroutine(FadeInRound());
         }
     }

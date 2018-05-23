@@ -270,7 +270,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
     {
         if (!disable)
         {
-            menuScript.triggerEvent(triggerID);
+            //menuScript.triggerEvent(triggerID);
             if (sticky)
             {
                 disable = true;
