@@ -2129,6 +2129,12 @@ public class KonkyBehaviours : Behaviors
     public void advJumpSquat(PlayerScript player)
     {
         player.hVelocity = 0;
+        player.vVelocity = 0;
+        
+        if (player.actionFrameCounter == 2)
+        {
+            player.jumpSquated = true;
+        }
     }
 
     public void advThrow(PlayerScript player)

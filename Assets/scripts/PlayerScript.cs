@@ -51,6 +51,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public bool shouldGroundbounce;
     public bool firstStun;
     public bool intialBound;
+    public bool jumpSquated;
 
     public int bufferedMove;           // the move currently buffered
     public int maxHealth;              // starting health of the player
@@ -766,6 +767,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             ActionEnd();
             basicState = jumpDirection;
+            if (!jumpSquated)
+                overrideAction = 51;
         }
         else
             overrideAction = bufferedMove;
@@ -800,7 +803,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
         else
         {
-            basicMove();
+            if (basicState >= 7 && !airborn && !jumpSquated)
+                executingAction = 51;
+            else
+                basicMove();
         }
 
     }
@@ -1087,6 +1093,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (airborn)
             {
                 airborn = false;
+                jumpSquated = false;
                 vKnockback = 0;
                 airbornActionUsed = false;
 
@@ -1298,6 +1305,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     public void ActionEnd()
     {
+        if (executingAction != 51)
+            jumpSquated = false;
+
         executingAction = 0;
         currentFrameType = 0;
         actionFrameCounter = 0;
