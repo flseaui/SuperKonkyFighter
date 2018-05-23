@@ -49,7 +49,8 @@ public class AudioManager : MonoBehaviour
         KONKY_SUPER,
         WHIFF,
         SUPER,
-        PUSHBLOCK
+        PUSHBLOCK,
+        GUN_SHOT,
     }
 
     public void PlaySound(Sound? sound)

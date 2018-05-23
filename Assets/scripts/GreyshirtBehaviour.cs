@@ -223,6 +223,8 @@ public class GreyshirtBehaviours : Behaviors
         gStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
         aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0 },
         aStrength = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+        hitSound = AudioManager.Sound.LIGHT,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Standing Medium
@@ -278,6 +280,8 @@ public class GreyshirtBehaviours : Behaviors
         gStrength = new float[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0 },
         aAngle = new int[] { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0, 0, 0 },
         aStrength = new float[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0 },
+        hitSound = AudioManager.Sound.MEDIUM,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Standing Heavy
@@ -288,10 +292,10 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(28, 8, 50, 4, 3, 0), },
+            { new Action.rect(28, 8, 50, 4, 2, 0), },
             {nullBox },
             {nullBox },
-            { new Action.rect(28, 8, 50, 4, 3, 0), },
+            { new Action.rect(28, 8, 50, 4, 2, 0), },
             {nullBox },
             {nullBox },
         },
@@ -352,6 +356,8 @@ public class GreyshirtBehaviours : Behaviors
         gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hitSound = AudioManager.Sound.GUN_SHOT,
+        whiffSound = AudioManager.Sound.GUN_SHOT,
     };
 
     // Crouching Light
