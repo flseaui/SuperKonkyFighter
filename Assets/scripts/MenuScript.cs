@@ -717,6 +717,9 @@ public class MenuScript : MonoBehaviour
 
     private void globeShift()
     {
+
+        globeButton1.GetComponent<ComponentScript>().setGlow(0);
+        globeButton2.GetComponent<ComponentScript>().setGlow(1);
         if (globeSelect == 0)
         {
             if (player1c != -1)
