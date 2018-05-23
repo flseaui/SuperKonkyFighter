@@ -61,7 +61,20 @@ public class RoundManager : MonoBehaviour
 
 
             if (AudioManager.Instance != null)
+            {
+                switch(PlayerPrefs.GetInt("stage"))
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
                 AudioManager.Instance.PlayMusic((AudioManager.Music)UnityEngine.Random.Range(2, 8));
+            }
         }
         p1Win1.enabled = false;
         p1Win2.enabled = false;
@@ -86,7 +99,8 @@ public class RoundManager : MonoBehaviour
         if (!stop)
         {
             ++roundCounter.value;
-            roundText.SetText("round " + roundCounter.value.ToString());
+            //roundText.SetText("round " + roundCounter.value.ToString());
+            roundText.SetText("Cant escape from crossing fates!");
             StartCoroutine(FadeInRound());
         }
     }

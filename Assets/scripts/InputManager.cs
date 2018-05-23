@@ -10,7 +10,7 @@ public class InputManager
     // controller 1 and 2 ids
     public static int c1id = 3, c2id = 3;
 
-    public bool[] currentInput = new bool[13];
+    public bool[] currentInput = new bool[14];
 
     public bool up = false,
                 right = false,
@@ -161,6 +161,7 @@ public class InputManager
                     currentInput[10] = (Input.GetKeyUp(leftKey));
                     currentInput[11] = (Input.GetKeyUp(rightKey));
                     currentInput[12] = (Input.GetKeyDown(upKey));
+                    currentInput[13] = (Input.GetKeyDown(downKey));
                     break;
                 case 1:
                     currentInput[0] = vAxis < 0 || dvAxis > 0;
@@ -176,6 +177,7 @@ public class InputManager
                     currentInput[10] = justReleased("left");
                     currentInput[11] = justReleased("right");
                     currentInput[12] = justPressed("up");
+                    currentInput[13] = justPressed("down");
                     break;
                 case 2:
                     // Joystick
@@ -203,6 +205,7 @@ public class InputManager
                     currentInput[10] = (Input.GetKeyUp(leftKey));
                     currentInput[11] = (Input.GetKeyUp(rightKey));
                     currentInput[12] = (Input.GetKeyDown(upKey));
+                    currentInput[13] = (Input.GetKeyDown(downKey));
                     break;
             }
         }

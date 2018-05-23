@@ -67,7 +67,7 @@ public class MenuScript : MonoBehaviour
     private GameObject cpuText1;
     private GameObject cpuButton2;
     private GameObject cpuText2;
-    private GameObject[] characterButtons;
+    public GameObject[] characterButtons;
 
     private GameObject[] stageSprites;
 
@@ -132,7 +132,7 @@ public class MenuScript : MonoBehaviour
     {
         roundCounter.value = 0;
 
-        ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject);
+        ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject, transform.GetChild(3).gameObject);
 
         //set default settings
         onlineMode = false;
@@ -521,7 +521,7 @@ public class MenuScript : MonoBehaviour
                 beginGame();
                 break;
             case 4:
-                unstickAll();
+                unstickAll(false);
                 changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
                 changeSpriteColor(stageSprites[0], Color.white);
                 backgroundPass = 0;
@@ -531,7 +531,7 @@ public class MenuScript : MonoBehaviour
                 backgroundGoButton.GetComponent<ComponentScript>().unstick();
                 break;
             case 5:
-                unstickAll();
+                unstickAll(false);
                 changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
                 changeSpriteColor(stageSprites[1], Color.white);
                 backgroundPass = 1;
@@ -541,7 +541,7 @@ public class MenuScript : MonoBehaviour
                 backgroundGoButton.GetComponent<ComponentScript>().unstick();
                 break;
             case 6:
-                unstickAll();
+                unstickAll(false);
                 changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
                 changeSpriteColor(stageSprites[2], Color.white);
                 backgroundPass = 2;
@@ -551,7 +551,7 @@ public class MenuScript : MonoBehaviour
                 backgroundGoButton.GetComponent<ComponentScript>().unstick();
                 break;
             case 7:
-                unstickAll();
+                unstickAll(false);
                 changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
                 changeSpriteColor(stageSprites[3], Color.white);
                 backgroundPass = 3;
@@ -561,7 +561,7 @@ public class MenuScript : MonoBehaviour
                 backgroundGoButton.GetComponent<ComponentScript>().unstick();
                 break;
             case 8:
-                unstickAll();
+                unstickAll(false);
                 changeSpriteColor(stageSprites[backgroundPass], KONKY_RED);
                 changeSpriteColor(stageSprites[4], Color.white);
                 backgroundPass = 4;
@@ -572,16 +572,16 @@ public class MenuScript : MonoBehaviour
                 break;
             case 9:
                 globeSelect = 0;
-                unstickAll();
+                unstickAll(false);
                 globeShift();
                 break;
             case 10:
                 globeSelect = 1;
-                unstickAll();
+                unstickAll(true);
                 globeShift();
                 break;
             case 11:
-                unstickAll();
+                unstickAll(false);
                 if (globeSelect == 0)
                 {
                     player1c = 0;
@@ -593,7 +593,7 @@ public class MenuScript : MonoBehaviour
                 charShift();
                 break;
             case 12:
-                unstickAll();
+                unstickAll(false);
                 if (globeSelect == 0)
                 {
                     player1c = 1;
@@ -648,7 +648,7 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-    private void unstickAll()
+    public void unstickAll(bool player)
     {
         foreach (GameObject i in menuObjects)
         {
@@ -657,6 +657,8 @@ public class MenuScript : MonoBehaviour
                 ComponentScript b = i.GetComponent<ComponentScript>();
                 if (b.sticky)
                 {
+                    b.setPlayer(player);
+                    
                     b.unstick();
                 }
             }

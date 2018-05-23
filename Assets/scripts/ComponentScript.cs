@@ -7,7 +7,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
     private Vector3[] points;
 
     private static LineRenderer blackLine;
-    private static LineRenderer glowLine;
+    private static LineRenderer glowLine1, glowLine2;
     private static LineRenderer noLine;
 
     public MenuScript menuScript;
@@ -43,11 +43,19 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public int triggerID;
 
+    public bool player = false;
+
+    public void setPlayer(bool val)
+    {
+        player = val;
+    }
+
     //should be called by the menuScript once
-    public static void init(GameObject lhb, GameObject lhg, GameObject lhn)
+    public static void init(GameObject lhb, GameObject lhg, GameObject lhn, GameObject lhg2)
     {
         blackLine = lhb.GetComponent<LineRenderer>();
-        glowLine = lhg.GetComponent<LineRenderer>();
+        glowLine1 = lhg.GetComponent<LineRenderer>();
+        glowLine2 = lhg2.GetComponent<LineRenderer>();
         noLine = lhn.GetComponent<LineRenderer>();
 
         /*blackLine.startWidth = 0.3f;           this doesn't work
@@ -212,7 +220,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     private void modeLock()
     {
-        lineRenderer = CopyComponent<LineRenderer>(glowLine, gameObject);
+        lineRenderer = CopyComponent<LineRenderer>(player ? glowLine1 : glowLine2, gameObject);
         lineRenderer.startWidth = 1.2f;
         lineRenderer.endWidth = 1.2f;
         if (clearLock)
@@ -246,6 +254,19 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
     }
 
     public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!disable)
+        {
+            menuScript.triggerEvent(triggerID);
+            if (sticky)
+            {
+                disable = true;
+                revalidate();
+            }
+        }
+    }
+
+    public void click()
     {
         if (!disable)
         {
