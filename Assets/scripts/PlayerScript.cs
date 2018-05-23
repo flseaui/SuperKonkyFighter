@@ -997,9 +997,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             case 0:
                 otherPlayer.GetComponent<PlayerScript>().hKnockback = -6;
+                facingRight = false;
                 break;
             case 1:
                 otherPlayer.GetComponent<PlayerScript>().hKnockback = 6;
+                facingRight = true;
                 break;
         }
     }
