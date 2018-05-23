@@ -743,7 +743,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             //buffer jumps
             if (action == 40 && inputManager.currentInput[12] && !airbornActionUsed)
             {
-                bufferedMove = 40;
+                bufferedMove = 51;
                 if (basicState == 7)
                     jumpDirection = 7;
                 else if (basicState == 8)
