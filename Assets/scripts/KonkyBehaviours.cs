@@ -146,8 +146,8 @@ public class KonkyBehaviours : Behaviors
             { jumpH, 28 },
 
             { oneS, 31   },
-            { twoS, 32   },
-            { threeS, 33 },
+            { threeS, 32   },
+            { twoS, 33 },
             { fourS, 34  },
             { fiveS, 35  },
             { sixS, 36   },
