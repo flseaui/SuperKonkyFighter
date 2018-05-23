@@ -572,15 +572,35 @@ public class MenuScript : MonoBehaviour
                 break;
             case 9:
                 globeSelect = 0;
-                unstickAll(false);
+                //unstickAll(false);
                 player1c = MenuOverlay.state;
+                if (MenuOverlay.state == 0)
+                {
+                    characterButtons[0].GetComponent<ComponentScript>().unstick();
+                    characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
+                }
+                else
+                {
+                    characterButtons[1].GetComponent<ComponentScript>().unstick();
+                    characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
+                }
                 charShift();
                 globeShift();
                 break;
             case 10:
                 globeSelect = 1;
-                unstickAll(true);
-                player1c = MenuOverlay.state2;
+                //unstickAll(true);
+                player2c = MenuOverlay.state2;
+                if (MenuOverlay.state2 == 0)
+                {
+                    characterButtons[0].GetComponent<ComponentScript>().unstick();
+                    characterButtons[1].GetComponent<ComponentScript>().setPlayer(true);
+                }
+                else
+                {
+                    characterButtons[1].GetComponent<ComponentScript>().unstick();
+                    characterButtons[0].GetComponent<ComponentScript>().setPlayer(true);
+                }
                 charShift();
                 globeShift();
                 break;
@@ -652,6 +672,52 @@ public class MenuScript : MonoBehaviour
         }
     }
 
+    public void updateSelection(int state)
+    {
+        characterButtons[0].GetComponent<ComponentScript>().unstick();
+        characterButtons[1].GetComponent<ComponentScript>().unstick();
+        switch (state)
+        {
+            case 0:
+                globeSelect = 0;
+                player1c = 0;
+                player2c = 0;
+                characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[0].GetComponent<ComponentScript>().stick();
+                break;
+
+            case 1:
+                globeSelect = 0;
+                player1c = 0;
+                player2c = 1;
+                characterButtons[1].GetComponent<ComponentScript>().setPlayer(true);
+                characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[1].GetComponent<ComponentScript>().stick();
+                characterButtons[0].GetComponent<ComponentScript>().stick();
+                break;
+
+            case 2:
+                globeSelect = 0;
+                player1c = 1;
+                player2c = 0;
+                characterButtons[0].GetComponent<ComponentScript>().setPlayer(true);
+                characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[1].GetComponent<ComponentScript>().stick();
+                characterButtons[0].GetComponent<ComponentScript>().stick();
+                break;
+
+            case 3:
+                globeSelect = 0;
+                player1c = 1;
+                player2c = 1;
+                characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[1].GetComponent<ComponentScript>().stick();
+                break;
+        }
+        charShift();
+        globeShift();
+    }
+
     public void unstickAll(bool player)
     {
         foreach (GameObject i in menuObjects)
@@ -661,7 +727,7 @@ public class MenuScript : MonoBehaviour
                 ComponentScript b = i.GetComponent<ComponentScript>();
                 if (b.sticky)
                 {
-                    b.setPlayer(player);
+                    //b.setPlayer(player);
                     
                     b.unstick();
                 }
@@ -697,7 +763,7 @@ public class MenuScript : MonoBehaviour
         {
             if (player1c != -1)
             {
-                characterButtons[player1c].GetComponent<ComponentScript>().stick();
+                //characterButtons[player1c].GetComponent<ComponentScript>().stick();
             }
             globeButton1.GetComponent<ComponentScript>().stick();
             globeButton2.GetComponent<ComponentScript>().unstick();
@@ -706,7 +772,7 @@ public class MenuScript : MonoBehaviour
         {
             if (player2c != -1)
             {
-                characterButtons[player2c].GetComponent<ComponentScript>().stick();
+                //characterButtons[player2c].GetComponent<ComponentScript>().stick();
             }
             globeButton1.GetComponent<ComponentScript>().unstick();
             globeButton2.GetComponent<ComponentScript>().stick();

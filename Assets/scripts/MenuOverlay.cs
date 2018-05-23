@@ -14,6 +14,8 @@ public class MenuOverlay : MonoBehaviour
     public static int state2 = 1;
     public int menu = 0;
 
+    public int s, s2;
+
     void Start ()
     {
         inputManager = new InputManager(1);
@@ -23,7 +25,8 @@ public class MenuOverlay : MonoBehaviour
 
     void Update()
     {
-
+        s = state;
+        s2 = state2;
         inputManager.pollInput(0, 1);
         inputManager2.pollInput(0, 2);
 
@@ -183,7 +186,24 @@ public class MenuOverlay : MonoBehaviour
                 }
                 break;
             case 2:
-                switch (state)
+                if (state == 0 && state2 == 0)
+                {
+                    GetComponentInParent<MenuScript>().updateSelection(0);
+                }
+                else if (state == 0 && state2 == 1)
+                {
+                    GetComponentInParent<MenuScript>().updateSelection(1);
+                }
+                else if (state == 1 && state2 == 0)
+                {
+                    GetComponentInParent<MenuScript>().updateSelection(2);
+                }
+                else if (state == 1 && state2 == 1)
+                {
+                    GetComponentInParent<MenuScript>().updateSelection(3);
+                }
+
+                /*switch (state)
                 {
                     case 0:
                         GetComponentInParent<MenuScript>().triggerEvent(9);
@@ -204,7 +224,7 @@ public class MenuOverlay : MonoBehaviour
                         GetComponentInParent<MenuScript>().triggerEvent(10);
                         GetComponentInParent<MenuScript>().characterButtons[1].GetComponent<ComponentScript>().click();
                         break;
-                }
+                }*/
                 break;
         }
     }
