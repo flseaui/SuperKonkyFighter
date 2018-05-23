@@ -7,7 +7,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
     private Vector3[] points;
 
     private static LineRenderer blackLine;
-    private static LineRenderer glowLine1, glowLine2;
+    private static LineRenderer glowLine1, glowLine2, glowLine3, glowLine4;
     private static LineRenderer noLine;
 
     public MenuScript menuScript;
@@ -43,19 +43,22 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public int triggerID;
 
-    public bool player = false;
+    public int glow = 0;
 
-    public void setPlayer(bool val)
+    // 0 - blue, 1 - red, 2 - whitish, 3 - purple
+    public void setGlow(int val)
     {
-        player = val;
+        glow = val;
     }
 
     //should be called by the menuScript once
-    public static void init(GameObject lhb, GameObject lhg, GameObject lhn, GameObject lhg2)
+    public static void init(GameObject lhb, GameObject lhg, GameObject lhn, GameObject lhg2, GameObject lhg3, GameObject lhg4)
     {
         blackLine = lhb.GetComponent<LineRenderer>();
         glowLine1 = lhg.GetComponent<LineRenderer>();
         glowLine2 = lhg2.GetComponent<LineRenderer>();
+        glowLine3 = lhg3.GetComponent<LineRenderer>();
+        glowLine4 = lhg4.GetComponent<LineRenderer>();
         noLine = lhn.GetComponent<LineRenderer>();
 
         /*blackLine.startWidth = 0.3f;           this doesn't work
@@ -220,7 +223,24 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     private void modeLock()
     {
-        lineRenderer = CopyComponent<LineRenderer>(player ? glowLine1 : glowLine2, gameObject);
+        switch (glow)
+        {
+            case 0:
+                lineRenderer = CopyComponent<LineRenderer>(glowLine1, gameObject);
+                break;
+            case 1:
+                lineRenderer = CopyComponent<LineRenderer>(glowLine2, gameObject);
+                break;
+            case 2:
+                lineRenderer = CopyComponent<LineRenderer>(glowLine3, gameObject);
+                break;
+            case 3:
+                lineRenderer = CopyComponent<LineRenderer>(glowLine4, gameObject);
+                break;
+            default:
+                lineRenderer = CopyComponent<LineRenderer>(glowLine1, gameObject);
+                break;
+        }
         lineRenderer.startWidth = 1.2f;
         lineRenderer.endWidth = 1.2f;
         if (clearLock)

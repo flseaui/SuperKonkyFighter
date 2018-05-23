@@ -132,7 +132,7 @@ public class MenuScript : MonoBehaviour
     {
         roundCounter.value = 0;
 
-        ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject, transform.GetChild(3).gameObject);
+        ComponentScript.init(transform.GetChild(0).gameObject, transform.GetChild(1).gameObject, transform.GetChild(2).gameObject, transform.GetChild(3).gameObject, transform.GetChild(4).gameObject, transform.GetChild(5).gameObject);
 
         //set default settings
         onlineMode = false;
@@ -571,62 +571,16 @@ public class MenuScript : MonoBehaviour
                 backgroundGoButton.GetComponent<ComponentScript>().unstick();
                 break;
             case 9:
-                globeSelect = 0;
-                //unstickAll(false);
-                player1c = MenuOverlay.state;
-                if (MenuOverlay.state == 0)
-                {
-                    characterButtons[0].GetComponent<ComponentScript>().unstick();
-                    characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
-                }
-                else
-                {
-                    characterButtons[1].GetComponent<ComponentScript>().unstick();
-                    characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
-                }
-                charShift();
-                globeShift();
+               
                 break;
             case 10:
-                globeSelect = 1;
-                //unstickAll(true);
-                player2c = MenuOverlay.state2;
-                if (MenuOverlay.state2 == 0)
-                {
-                    characterButtons[0].GetComponent<ComponentScript>().unstick();
-                    characterButtons[1].GetComponent<ComponentScript>().setPlayer(true);
-                }
-                else
-                {
-                    characterButtons[1].GetComponent<ComponentScript>().unstick();
-                    characterButtons[0].GetComponent<ComponentScript>().setPlayer(true);
-                }
-                charShift();
-                globeShift();
+                
                 break;
             case 11:
-                unstickAll(false);
-                if (globeSelect == 0)
-                {
-                    player1c = 0;
-                }
-                else
-                {
-                    player2c = 0;
-                }
-                charShift();
+               
                 break;
             case 12:
-                unstickAll(false);
-                if (globeSelect == 0)
-                {
-                    player1c = 1;
-                }
-                else
-                {
-                    player2c = 1;
-                }
-                charShift();
+               
                 break;
             case 13:
                 player1ai = (player1ai == 0) ? 1 : 0;
@@ -678,39 +632,43 @@ public class MenuScript : MonoBehaviour
         characterButtons[1].GetComponent<ComponentScript>().unstick();
         switch (state)
         {
+            // 0  0
             case 0:
                 globeSelect = 0;
                 player1c = 0;
                 player2c = 0;
-                characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[0].GetComponent<ComponentScript>().setGlow(3);
                 characterButtons[0].GetComponent<ComponentScript>().stick();
                 break;
 
+            // 0  1
             case 1:
                 globeSelect = 0;
                 player1c = 0;
                 player2c = 1;
-                characterButtons[1].GetComponent<ComponentScript>().setPlayer(true);
-                characterButtons[0].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[1].GetComponent<ComponentScript>().setGlow(1);
+                characterButtons[0].GetComponent<ComponentScript>().setGlow(0);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
                 characterButtons[0].GetComponent<ComponentScript>().stick();
                 break;
 
+            // 1  0
             case 2:
                 globeSelect = 0;
                 player1c = 1;
                 player2c = 0;
-                characterButtons[0].GetComponent<ComponentScript>().setPlayer(true);
-                characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[0].GetComponent<ComponentScript>().setGlow(1);
+                characterButtons[1].GetComponent<ComponentScript>().setGlow(0);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
                 characterButtons[0].GetComponent<ComponentScript>().stick();
                 break;
 
+            // 1  1
             case 3:
                 globeSelect = 0;
                 player1c = 1;
                 player2c = 1;
-                characterButtons[1].GetComponent<ComponentScript>().setPlayer(false);
+                characterButtons[1].GetComponent<ComponentScript>().setGlow(3);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
                 break;
         }

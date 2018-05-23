@@ -150,12 +150,12 @@ public class MenuOverlay : MonoBehaviour
                     // play button
                     case 0:
                         selector.transform.position = new Vector3(0.3f, -3.1f, 0);
-                        selector.transform.localScale = new Vector3(11, 42, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(10.4f, 4.2f);
                         break;
                     // settings button
                     case 1:
                         selector.transform.position = new Vector3(0.2f, -7, 0);
-                        selector.transform.localScale = new Vector3(13.5f, 33, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(12.4f, 3.5f);
                         break;
                 }
                 break;
@@ -164,24 +164,24 @@ public class MenuOverlay : MonoBehaviour
                 switch (state)
                 {
                     case 0:
-                        selector.transform.position = new Vector3(-10.5f, 4, 0);
-                        selector.transform.localScale = new Vector3(7.9f, 21.5f, 0);
+                        selector.transform.position = new Vector3(-10.5f, 4, 0);                        
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(7.44f, 2.68f);
                         break;
                     case 1:
                         selector.transform.position = new Vector3(-10.5f, 0, 0);
-                        selector.transform.localScale = new Vector3(7.9f, 21.5f, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(7.44f, 2.68f);
                         break;
                     case 2:
                         selector.transform.position = new Vector3(-10.5f, -4, 0);
-                        selector.transform.localScale = new Vector3(7.9f, 21.5f, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(7.44f, 2.68f);
                         break;
                     case 3:
                         selector.transform.position = new Vector3(5.5f, 3, 0);
-                        selector.transform.localScale = new Vector3(8.24f, 25, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(7.79f, 2.8f);
                         break;
                     case 4:
                         selector.transform.position = new Vector3(5.5f, -3.51f, 0);
-                        selector.transform.localScale = new Vector3(8.24f, 25, 0);
+                        selector.GetComponent<SpriteRenderer>().size = new Vector2(7.79f, 2.8f);
                         break;
                 }
                 break;
