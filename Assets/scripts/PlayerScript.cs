@@ -456,8 +456,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         }
                         else if (input[3])
                         {
-                        if (behaviors.getAction(33).airOK)
-                            attackState = 33;
+                            if (behaviors.getAction(33).airOK)
+                                attackState = 33;
                         }
                     }
                     else
@@ -469,8 +469,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         }
                         else if (input[3])
                         {
-                        if (behaviors.getAction(35).airOK)
-                            attackState = 36;
+                            if (behaviors.getAction(35).airOK)
+                                attackState = 36;
                         }
                     }
                 }
