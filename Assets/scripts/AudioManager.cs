@@ -51,6 +51,7 @@ public class AudioManager : MonoBehaviour
         SUPER,
         PUSHBLOCK,
         GUN_SHOT,
+        DP,
     }
 
     public void PlaySound(Sound? sound)
