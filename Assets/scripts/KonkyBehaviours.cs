@@ -1444,12 +1444,11 @@ public class KonkyBehaviours : Behaviors
 
 
     // Jump Squat
-    private Action jumpSquat = new Action() { frames = new int[] { 0, 0, 0 }, actionCancels = new int[] { },
+    private Action jumpSquat = new Action() { frames = new int[] { 0, 0}, actionCancels = new int[] { },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 3, 1), new Action.rect(0.5f, 9f, 4, 8, 3, 2), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 2, 1), new Action.rect(0.5f, 9f, 4, 8, 2, 2), },
             {nullBox, nullBox },
-            {nullBox, nullBox }
         },
     };
 
@@ -2092,7 +2091,7 @@ public class KonkyBehaviours : Behaviors
         player.hVelocity = 0;
         player.vVelocity = 0;
         
-        if (player.actionFrameCounter == 2)
+        if (player.actionFrameCounter == 1)
         {
             player.jumpSquated = true;
         }
