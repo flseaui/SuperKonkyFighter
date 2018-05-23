@@ -146,8 +146,8 @@ public class KonkyBehaviours : Behaviors
             { jumpH, 28 },
 
             { oneS, 31   },
-            { threeS, 32   },
-            { twoS, 33 },
+            { twoS, 32   },
+            { threeS, 33 },
             { fourS, 34  },
             { fiveS, 35  },
             { sixS, 36   },
@@ -915,10 +915,82 @@ public class KonkyBehaviours : Behaviors
     private Action twoS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2,  2, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (2) 2 (2) 2 (2) 2 (2) 2 (2) 2 (8) 3 | 21
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 200, 200, 0, 0, 200, 200, 0, 0, 200, 200, 0, 0, 200, 200, 0, 0, 200, 200, 0, 0, 200, 200, 0, 0,  0, 0, 0, 0, 0, 0, 1000, 1000, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
+        damage = new int[] { 0 },
         hitboxData = new Action.rect[,]
         {
+            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
+            {nullBox, },
+        },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(-0.5f, 7, 6, 14, 12, 1), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(4, 4, 15, 8, 19, 1), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            { new Action.rect(-0.5f, 7, 6, 14, 6, 1), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
+        },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        level = 4,
+        p1scaling = 1f,
+        block = MID,
+        knockdown = NONE,
+        actionCancels = new int[] { 35 },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+        airOK = false,
+        projectileLocation = new Vector2(7, 0),
+        projectileSpeed = 2,
+        projectileStrength = 500,
+        //projectileHits = 1,
+        hitSound = AudioManager.Sound.FIREBALL
+    };
+
+    // Three Super
+    private Action threeS = new Action()
+    {
+        tier = 3,
+        frames = new int[] { 0, 0, 0, 4, 4, 4, 4, 4, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 8 | 2 (2) 2 (2) 2 (2) 2 (2) 2 (2) 2 (8) 3 | 21
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 180, 180, 0, 0, 0, 0, 1200, 1200, 1200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(5, 9, 6, 2, 2, 0),  },
+            {nullBox, },
             { new Action.rect(5, 9, 6, 2, 2, 0),  },
             {nullBox, },
             { new Action.rect(5, 9, 6, 2, 2, 0),  },
@@ -1008,81 +1080,11 @@ public class KonkyBehaviours : Behaviors
         knockdown = HARDKD,
         actionCancels = new int[] { 35 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, .75f, .75f, 0, 0, 0, 0, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = false,
         hitSound = AudioManager.Sound.MEDIUM
-    };
-
-    // Three Super
-    private Action threeS = new Action()
-    {
-        tier = 3,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 11 | 1 | 25
-        damage = new int[] { 0 },
-        hitboxData = new Action.rect[,]
-        {
-            { new Action.rect(3, 0.5f, 8, 1, 2, 0),  },
-            {nullBox, },
-        },
-        hurtboxData = new Action.rect[,]
-        {
-            { new Action.rect(-0.5f, 7, 6, 14, 12, 1), },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            { new Action.rect(4, 4, 15, 8, 19, 1), },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            { new Action.rect(-0.5f, 7, 6, 14, 6, 1), },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, },
-            {nullBox, }
-        },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        level = 4,
-        p1scaling = 1f,
-        block = MID,
-        knockdown = NONE,
-        actionCancels = new int[] { 35 },
-        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        airOK = false,
-        projectileLocation = new Vector2(7, 0),
-        projectileSpeed = 2,
-        projectileStrength = 500,
-        //projectileHits = 1,
-        hitSound = AudioManager.Sound.FIREBALL
     };
 
     // Four Super
