@@ -41,7 +41,7 @@ public class InputManager
                  hAxisPrev, vAxisPrev, dhAxisPrev, dvAxisPrev;
 
     public bool x, y, a, b, rb;
-    public bool xPrev, yPrev, aPrev, rbPrev;
+    public bool xPrev, yPrev, aPrev, bPrev, rbPrev;
 
     public InputManager(int playerID)
     {
@@ -94,6 +94,7 @@ public class InputManager
             xPrev = x;
             yPrev = y;
             rbPrev = rb;
+            bPrev = b;
             aPrev = a;
 
             if (inputType == 1)
@@ -109,6 +110,7 @@ public class InputManager
                         x = (Input.GetButton("XboxX"));
                         y = (Input.GetButton("XboxY"));
                         rb = (Input.GetButton("XboxRB"));
+                        b = (Input.GetButton("XboxB"));
                         a = (Input.GetButton("XboxA"));
                     }
                     else if (c2id == 1)
@@ -120,6 +122,7 @@ public class InputManager
                         x = (Input.GetButton("XboxX_2"));
                         y = (Input.GetButton("XboxY_2"));
                         rb = (Input.GetButton("XboxRB_2"));
+                        b = (Input.GetButton("XboxB_2"));
                         a = (Input.GetButton("XboxA_2"));
                     }
                 }
@@ -134,6 +137,7 @@ public class InputManager
                         x = (Input.GetButton("XboxX"));
                         y = (Input.GetButton("XboxY"));
                         rb = (Input.GetButton("XboxRB"));
+                        b = (Input.GetButton("XboxB"));
                         a = (Input.GetButton("XboxA"));
                     }
                     else if (c2id == 2)
@@ -145,6 +149,7 @@ public class InputManager
                         x = (Input.GetButton("XboxX_2"));
                         y = (Input.GetButton("XboxY_2"));
                         rb = (Input.GetButton("XboxRB_2"));
+                        b = (Input.GetButton("XboxB_2"));
                         a = (Input.GetButton("XboxA_2"));
                     }
                 }
@@ -176,7 +181,7 @@ public class InputManager
                     currentInput[3] = hAxis > 0 || dhAxis > 0;
                     currentInput[4] = justPressedButton("x");
                     currentInput[5] = justPressedButton("y");
-                    currentInput[6] = justPressedButton("rb");
+                    currentInput[6] = justPressedButton("rb") || justPressedButton("b");
                     currentInput[7] = justPressedButton("a");
                     currentInput[8] = justPressed("left");
                     currentInput[9] = justPressed("right");
@@ -227,6 +232,8 @@ public class InputManager
                 return (yPrev == false && y);
             case "rb":
                 return (rbPrev == false && rb);
+            case "b":
+                return (bPrev == false && b);
             case "a":
                 return (aPrev == false && a);
             default:
