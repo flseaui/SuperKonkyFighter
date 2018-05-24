@@ -111,6 +111,9 @@ public class CameraScript : MonoBehaviour
         p1s.otherPlayer = player2;
 		p2s.otherPlayer = player1;
 
+        p1s.meterCharge = PlayerPrefs.GetInt("P1Meter");
+        p2s.meterCharge = PlayerPrefs.GetInt("P2Meter");
+
         ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
 
         Background = new Sprite[] { background0, background1, background2, background3 };
@@ -328,7 +331,11 @@ public class CameraScript : MonoBehaviour
                 break;
         }
         if (!RoundManager.instance.stop)
+        {
+            PlayerPrefs.SetInt("P1Meter", p1s.meterCharge + p1s.meterStore);
+            PlayerPrefs.SetInt("P2Meter", p2s.meterCharge + p2s.meterStore);
             SceneManager.LoadScene("SKF");
+        }
         else
         {
             StartCoroutine(RoundManager.instance.FadeInWin());

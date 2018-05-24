@@ -59,6 +59,8 @@ public class RoundManager : MonoBehaviour
             p1Wins.value = 0;
             p2Wins.value = 0;
 
+            PlayerPrefs.SetInt("P1Meter", 0);
+            PlayerPrefs.SetInt("P2Meter", 0);
 
             if (AudioManager.Instance != null)
             {
