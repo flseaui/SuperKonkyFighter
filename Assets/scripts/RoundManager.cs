@@ -117,7 +117,12 @@ public class RoundManager : MonoBehaviour
         if (!stop)
         {
             ++roundCounter.value;
-            roundText.SetText("round " + roundCounter.value.ToString());
+            if (roundCounter.value >= PlayerPrefs.GetInt("settingBestOf"))
+            {
+                roundText.SetText("final round");
+            }
+            else
+                roundText.SetText("round " + roundCounter.value.ToString());
             StartCoroutine(FadeInRound());
         }
         else
