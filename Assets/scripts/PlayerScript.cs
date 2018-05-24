@@ -428,11 +428,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (attackState == 35) {
                 if (meterCharge < maxMeter)
                     attackState = 0;
-                else
-                {
-                    meterCharge = 0;
-                    meterStore = 0;
-                }
             }
         }
         else
@@ -800,6 +795,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (attackState != 0)
         {
             executingAction = attackState;
+
+            if (attackState == 35)
+            {
+                meterCharge = 0;
+                meterStore = 0;
+            }
+            
         }
         else
         {

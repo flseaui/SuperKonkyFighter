@@ -26,7 +26,7 @@ public class RoundManager : MonoBehaviour
     public GameObject roundManager;
 
     public IntVariable roundCounter, p1Wins, p2Wins;
-    bool stop = false;
+    public bool stop = false;
 
     [SerializeField] private Image p1Win1, p1Win2, p2Win1, p2Win2;
     [SerializeField] private TextMeshProUGUI roundText;
@@ -76,25 +76,40 @@ public class RoundManager : MonoBehaviour
                 AudioManager.Instance.PlayMusic((AudioManager.Music)UnityEngine.Random.Range(2, 8));
             }
         }
+        int limit = 2;
+        switch (PlayerPrefs.GetInt("settingBestOf"))
+        {
+            case 3:
+                limit = 2;
+                break;
+            case 5:
+                limit = 3;
+                break;
+            case 7:
+                limit = 4;
+                break;
+            case 9:
+                limit = 5;
+                break;
+        }
+
         p1Win1.enabled = false;
         p1Win2.enabled = false;
         if (p1Wins.value > 0)
             p1Win1.enabled = true;
         if (p1Wins.value > 1)
-        {
             p1Win2.enabled = true;
+        if (p1Wins.value >= limit)
             stop = true;
-        }
 
         p2Win1.enabled = false;
         p2Win2.enabled = false;
         if (p2Wins.value > 0)
             p2Win1.enabled = true;
         if (p2Wins.value > 1)
-        {
             p2Win2.enabled = true;
+        if (p2Wins.value >= limit)
             stop = true;
-        }
 
         if (!stop)
         {
