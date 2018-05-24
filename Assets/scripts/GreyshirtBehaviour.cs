@@ -292,10 +292,10 @@ public class GreyshirtBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(28, 8, 50, 4, 2, 0), },
+            { new Action.rect(28, 10, 50, 2, 2, 0), },
             {nullBox },
             {nullBox },
-            { new Action.rect(28, 8, 50, 4, 2, 0), },
+            { new Action.rect(28, 10, 50, 2, 2, 0), },
             {nullBox },
             {nullBox },
         },
