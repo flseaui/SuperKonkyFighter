@@ -909,7 +909,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = true,
-        hitSound = AudioManager.Sound.DP
+        hitSound = AudioManager.Sound.DP,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Two Super
@@ -979,7 +980,8 @@ public class KonkyBehaviours : Behaviors
         projectileSpeed = 2,
         projectileStrength = 500,
         //projectileHits = 1,
-        hitSound = AudioManager.Sound.FIREBALL
+        hitSound = AudioManager.Sound.FIREBALL,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Three Super
@@ -1085,7 +1087,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 45, 45, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = false,
-        hitSound = AudioManager.Sound.MEDIUM
+        hitSound = AudioManager.Sound.MEDIUM,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Four Super
@@ -1170,8 +1173,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -45, -45, -45, -45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = true,
-        hitSound = AudioManager.Sound.MEDIUM
-
+        hitSound = AudioManager.Sound.MEDIUM,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Five Super
@@ -1268,7 +1271,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 5, 5, 4, 4, 4, 4, 4, 4, 30, 30, 30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = false,
-        hitSound = AudioManager.Sound.SUPER
+        hitSound = AudioManager.Sound.SUPER,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Six Super
@@ -1405,7 +1409,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 0, 0, 0, 0, 0, 0, 0, 0, -80, -80, -80, -80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = true,
-        hitSound = AudioManager.Sound.DP
+        hitSound = AudioManager.Sound.DP,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Throw
@@ -1480,6 +1485,8 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = true,
+        hitSound = AudioManager.Sound.HEAVY,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Throw
