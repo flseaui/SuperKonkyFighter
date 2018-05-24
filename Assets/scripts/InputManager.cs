@@ -224,7 +224,7 @@ public class InputManager
             case "x":
                 return (xPrev == false && x);
             case "y":
-                return (yPrev == false && a);
+                return (yPrev == false && y);
             case "rb":
                 return (rbPrev == false && rb);
             case "a":

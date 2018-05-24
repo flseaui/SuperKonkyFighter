@@ -53,8 +53,6 @@ public class CameraScript : MonoBehaviour
 
     public IntVariable time, p1Wins, p2Wins, roundCounter;
 
-    public int winTimer = 0;
-
     float vertExtent, horzExtent;
 
 	private int megaKek;
@@ -63,8 +61,6 @@ public class CameraScript : MonoBehaviour
 	public float shakeY;
     public bool lastP1Side;
     public bool lastP2Side;
-
-    int whoWon;
 
     public float magnitude, roughness, fadeIn, fadeOut;
 
@@ -85,7 +81,6 @@ public class CameraScript : MonoBehaviour
 
     void Start()
 	{
-        winTimer = 0;
         cameraLeftPos.position = cameraLeft.position;
         cameraRightPos.position = cameraRight.position;
         uis = canvas.GetComponent<UIScript>();
@@ -245,7 +240,6 @@ public class CameraScript : MonoBehaviour
             {
                 justWon = true;
                 p2Wins.value++;
-                whoWon = 2;
                 Invoke("nextRound", 2);
             }
         }
@@ -255,7 +249,6 @@ public class CameraScript : MonoBehaviour
             {
                 justWon = true;
                 p1Wins.value++;
-                whoWon = 1;
                 Invoke("nextRound", 2);
             }
         }
@@ -265,15 +258,9 @@ public class CameraScript : MonoBehaviour
             {
                 justWon = true;
                 if (p1s.health > p2s.health)
-                {
                     p1Wins.value++;
-                    whoWon = 1;
-                }
                 else
-                { 
                     p2Wins.value++;
-                    whoWon = 2;
-                 }
                 Invoke("nextRound", 2);
             }
         }
@@ -351,16 +338,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            RoundManager.instance.roundManager.SetActive(true);
-            RoundManager.instance.winText.text =  "player " + whoWon.ToString() + " wins";
-            RoundManager.instance.StartCoroutine("FadeInWin");
-
-            winTimer++;
-            if (winTimer > 300)
-                SceneManager.LoadScene("Menu");
-
-            if (RoundManager.instance.stopping)
-                SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Menu");
         }
     }
 

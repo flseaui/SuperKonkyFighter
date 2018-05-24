@@ -30,8 +30,8 @@ public class MenuOverlay : MonoBehaviour
         bool skip = false;
         s = state;
         s2 = state2;
-        inputManager.pollInput(0, 1);
-        inputManager2.pollInput(0, 2);
+        inputManager.pollInput(1, 1);
+        inputManager2.pollInput(1, 2);
 
         if (inputManager2.currentInput[8])
         {
