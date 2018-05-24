@@ -348,6 +348,12 @@ public class MenuScript : MonoBehaviour
                 else
                     cameFromSettings = false;
 
+                controller1Id = 1;
+                controller2Id = 2;
+                InputManager.c1id = controller1Id;
+                InputManager.c2id = controller2Id;
+                
+
                 player1ai = 0;
                 player2ai = 0;
                 player1c = -1;

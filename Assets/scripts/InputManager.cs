@@ -41,6 +41,7 @@ public class InputManager
                  hAxisPrev, vAxisPrev, dhAxisPrev, dvAxisPrev;
 
     public bool x, y, a, b, rb;
+    public bool xPrev, yPrev, aPrev, rbPrev;
 
     public InputManager(int playerID)
     {
@@ -89,6 +90,11 @@ public class InputManager
             vAxisPrev = vAxis;
             dhAxisPrev = dhAxis;
             dvAxisPrev = dvAxis;
+
+            xPrev = x;
+            yPrev = y;
+            rbPrev = rb;
+            aPrev = a;
 
             if (inputType == 1)
             {
@@ -168,10 +174,10 @@ public class InputManager
                     currentInput[1] = vAxis > 0 || dvAxis < 0;
                     currentInput[2] = hAxis < 0 || dhAxis < 0;
                     currentInput[3] = hAxis > 0 || dhAxis > 0;
-                    currentInput[4] = x;
-                    currentInput[5] = y;
-                    currentInput[6] = rb;
-                    currentInput[7] = a;
+                    currentInput[4] = justPressedButton("x");
+                    currentInput[5] = justPressedButton("y");
+                    currentInput[6] = justPressedButton("rb");
+                    currentInput[7] = justPressedButton("a");
                     currentInput[8] = justPressed("left");
                     currentInput[9] = justPressed("right");
                     currentInput[10] = justReleased("left");
@@ -208,6 +214,23 @@ public class InputManager
                     currentInput[13] = (Input.GetKeyDown(downKey));
                     break;
             }
+        }
+    }
+
+    public bool justPressedButton(string name)
+    {
+        switch (name)
+        {
+            case "x":
+                return (xPrev == false && x);
+            case "y":
+                return (yPrev == false && a);
+            case "rb":
+                return (rbPrev == false && rb);
+            case "a":
+                return (aPrev == false && a);
+            default:
+                return false;
         }
     }
 
