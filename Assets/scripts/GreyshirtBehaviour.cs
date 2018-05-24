@@ -2296,7 +2296,7 @@ public class GreyshirtBehaviours : Behaviors
         player.hVelocity = 0;
         if (player.actionFrameCounter > 0)
         {
-            if (player.damageDealt)
+            if (player.damageDealt && !player.otherPlayer.GetComponent<PlayerScript>().airborn)
             {
                 player.ActionEnd();
                 player.executingAction = 52;
