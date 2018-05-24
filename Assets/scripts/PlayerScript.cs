@@ -787,6 +787,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         else if (overrideAction != 0)
         {
             executingAction = overrideAction;
+
+            if (overrideAction == 35)
+            {
+                meterCharge = 0;
+                meterStore = 0;
+            }
         }
         else if (advancedState != 0)
         {
