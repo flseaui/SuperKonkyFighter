@@ -61,6 +61,7 @@ public class MenuOverlay : MonoBehaviour
                         case 0:
                             GetComponentInParent<MenuScript>().triggerEvent(1);
                             selector.SetActive(false);
+                            firstLoad = false;
                             state = 0;
                             menu = 2;
                             break;
@@ -92,6 +93,16 @@ public class MenuOverlay : MonoBehaviour
                             GetComponentInParent<MenuScript>().triggerEvent(20);
                             break;
                     }
+                    break;
+                case 3:
+                    GetComponentInParent<MenuScript>().beginGame();
+                    break;
+                // player select go button
+                case 10:
+                    GetComponentInParent<MenuScript>().triggerEvent(2);
+                    selector.SetActive(false);
+                    state = 0;
+                    menu = 3;
                     break;
             }
         }
@@ -148,6 +159,10 @@ public class MenuOverlay : MonoBehaviour
                 else if (state < 0)
                     state = 4;
                 break;
+            case 10:
+                state = 0;
+                break;
+
         }
 
         moveSelector();
@@ -203,41 +218,38 @@ public class MenuOverlay : MonoBehaviour
             case 2:
                 if (firstLoad)
                 {
+                    if (inputManager.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(state, false);
+                    if (inputManager2.currentInput[4])
+                        GetComponentInParent<MenuScript>().updateChar(state2, true);
                     if (state == 0 && state2 == 0)
                     {
                         GetComponentInParent<MenuScript>().updateSelection(0);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(0);
-                        if (inputManager2.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(4);
                     }
                     else if (state == 0 && state2 == 1)
                     {
                         GetComponentInParent<MenuScript>().updateSelection(1);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(1);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(5);
                     }
                     else if (state == 1 && state2 == 0)
                     {
                         GetComponentInParent<MenuScript>().updateSelection(2);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(2);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(6);
                     }
                     else if (state == 1 && state2 == 1)
                     {
                         GetComponentInParent<MenuScript>().updateSelection(3);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(3);
-                        if (inputManager.currentInput[4])
-                            GetComponentInParent<MenuScript>().updateChar(7);
                     }
                 }
                 else
                     firstLoad = true;
+
+                if (GetComponentInParent<MenuScript>().player1c != -1 && GetComponentInParent<MenuScript>().player2c != -1)
+                {
+                    selector.transform.position = new Vector3(0.27f, -3.17f, 0);
+                    selector.GetComponent<SpriteRenderer>().size = new Vector2(5.8f, 3.9f);
+                    state = 0;
+                    menu = 10;
+                    selector.SetActive(true);
+                }
                 break;
             case 3:
                 switch (state)

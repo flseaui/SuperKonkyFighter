@@ -275,6 +275,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        /*
         if (!disable)
         {
             menuScript.triggerEvent(triggerID);
@@ -283,7 +284,7 @@ public class ComponentScript : MonoBehaviour, IPointerClickHandler, IPointerDown
                 disable = true;
                 revalidate();
             }
-        }
+        }*/
     }
 
     public void click()

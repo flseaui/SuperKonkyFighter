@@ -632,44 +632,13 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-    public void updateChar(int state)
+    public void updateChar(int state, bool player)
     {
-        Debug.Log("ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-        switch (state)
-        {
-            case 0:
-                player1c = 0;
-                break;
-
-            case 1:
-                player1c = 0;
-                break;
-
-            case 2:
-                player1c = 1;
-                break;
-
-            case 3:
-                player1c = 1;
-                break;
-
-            case 4:
-                player2c = 0;
-                break;
-
-            case 5:
-                player2c = 1;
-                break;
-
-            case 6:
-                player2c = 0;
-                break;
-
-            case 7:
-                player2c = 1;
-                break;
-        }
-        charShift();
+        if (player)
+            player2c = state;
+        else
+            player1c = state;
+            charShift();
         globeShift();
     }
 
@@ -733,7 +702,7 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-    private void beginGame()
+    public void beginGame()
     {
         SceneManager.LoadScene("SKF");
         if (backgroundPass == 2)
@@ -808,6 +777,7 @@ public class MenuScript : MonoBehaviour
         {
             case -1:
                 changeSpriteColor(player1, Color.clear);
+                showGo = false;
                 break;
             case 0:
                 player1.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
@@ -826,6 +796,7 @@ public class MenuScript : MonoBehaviour
         {
             case -1:
                 changeSpriteColor(player2, Color.clear);
+                showGo = false;
                 break;
             case 0:
                 player2.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
