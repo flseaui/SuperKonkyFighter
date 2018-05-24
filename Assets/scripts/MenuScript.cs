@@ -432,7 +432,7 @@ public class MenuScript : MonoBehaviour
                 backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_DECORATION });
                 backgroundFrame.GetComponent<MeshRenderer>().sortingOrder = 1;
 
-                backgroundShowcase = makeSprite(0, 2, 32, 18, backgroundRSprite);
+                backgroundShowcase = makeSprite(0, 2, 32, 8, backgroundRSprite);
                 backgroundShowcase.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 backgroundShowcase.GetComponent<SpriteRenderer>().sprite = BackgroundNSprite;
                 backgroundShowcase.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
