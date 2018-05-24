@@ -58,6 +58,7 @@ public class RoundManager : MonoBehaviour
         {
             p1Wins.value = 0;
             p2Wins.value = 0;
+            stop = false;
 
             PlayerPrefs.SetInt("P1Meter", 0);
             PlayerPrefs.SetInt("P2Meter", 0);
@@ -118,6 +119,10 @@ public class RoundManager : MonoBehaviour
             ++roundCounter.value;
             roundText.SetText("round " + roundCounter.value.ToString());
             StartCoroutine(FadeInRound());
+        }
+        else
+        {
+            StartCoroutine(FadeInWin());
         }
     }
 

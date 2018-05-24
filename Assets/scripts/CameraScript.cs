@@ -330,7 +330,7 @@ public class CameraScript : MonoBehaviour
                 limit = 5; 
                 break;
         }
-        if (!RoundManager.instance.stop)
+        if (!(p1Wins.value >= limit || p2Wins.value >= limit))
         {
             PlayerPrefs.SetInt("P1Meter", p1s.meterCharge + p1s.meterStore);
             PlayerPrefs.SetInt("P2Meter", p2s.meterCharge + p2s.meterStore);
@@ -338,7 +338,6 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            StartCoroutine(RoundManager.instance.FadeInWin());
             SceneManager.LoadScene("Menu");
         }
     }

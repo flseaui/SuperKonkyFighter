@@ -350,7 +350,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1fb203cfe3954e4a9dfdbe4fe8fdf09, type: 3}
   - {fileID: 8300000, guid: e2ad2b2172c35ad43b50e4f414cbcf9f, type: 3}
   - {fileID: 8300000, guid: a76fb4018759f5d488977995ee1c550c, type: 3}
-  - {fileID: 8300000, guid: 2c2dd8f3ec969834280581b3b99e6c94, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 7752328d9508d3a4ab3c44bf87583414, type: 3}
   - {fileID: 8300000, guid: 3145ce42cbd47ab49986d553882ac100, type: 3}
   - {fileID: 8300000, guid: cb373bdad8f914543af28d09c0c8bce3, type: 3}
@@ -365,7 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &73652500
 GameObject:
@@ -2380,6 +2380,7 @@ MonoBehaviour:
   roundCounter: {fileID: 11400000, guid: 795776f2b352f234b82c6e955e4146f2, type: 2}
   p1Wins: {fileID: 11400000, guid: 85492b34ac5667b49b2c370b2744c8ff, type: 2}
   p2Wins: {fileID: 11400000, guid: d81cf3c13fd6fdc4084ebc234f859278, type: 2}
+  stop: 0
   p1Win1: {fileID: 2089752409}
   p1Win2: {fileID: 1390026091}
   p2Win1: {fileID: 482783197}
@@ -4572,7 +4573,7 @@ Transform:
   - {fileID: 881797778}
   - {fileID: 1440851369}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1741460082
 MonoBehaviour:
