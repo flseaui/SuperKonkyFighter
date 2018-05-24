@@ -16,6 +16,8 @@ public class MenuOverlay : MonoBehaviour
 
     public int s, s2;
 
+    bool firstLoad = false;
+
     void Start ()
     {
         inputManager = new InputManager(1);
@@ -199,30 +201,43 @@ public class MenuOverlay : MonoBehaviour
                 }
                 break;
             case 2:
-                if (state == 0 && state2 == 0)
+                if (firstLoad)
                 {
-                    GetComponentInParent<MenuScript>().updateSelection(0);
-                    if (inputManager.currentInput[4])
-                        GetComponentInParent<MenuScript>().updateChar(0);
+                    if (state == 0 && state2 == 0)
+                    {
+                        GetComponentInParent<MenuScript>().updateSelection(0);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(0);
+                        if (inputManager2.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(4);
+                    }
+                    else if (state == 0 && state2 == 1)
+                    {
+                        GetComponentInParent<MenuScript>().updateSelection(1);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(1);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(5);
+                    }
+                    else if (state == 1 && state2 == 0)
+                    {
+                        GetComponentInParent<MenuScript>().updateSelection(2);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(2);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(6);
+                    }
+                    else if (state == 1 && state2 == 1)
+                    {
+                        GetComponentInParent<MenuScript>().updateSelection(3);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(3);
+                        if (inputManager.currentInput[4])
+                            GetComponentInParent<MenuScript>().updateChar(7);
+                    }
                 }
-                else if (state == 0 && state2 == 1)
-                {
-                    GetComponentInParent<MenuScript>().updateSelection(1);
-                    if (inputManager.currentInput[4])
-                        GetComponentInParent<MenuScript>().updateChar(1);
-                }
-                else if (state == 1 && state2 == 0)
-                {
-                    GetComponentInParent<MenuScript>().updateSelection(2);
-                    if (inputManager.currentInput[4])
-                        GetComponentInParent<MenuScript>().updateChar(2);
-                }
-                else if (state == 1 && state2 == 1)
-                {
-                    GetComponentInParent<MenuScript>().updateSelection(3);
-                    if (inputManager.currentInput[4])
-                        GetComponentInParent<MenuScript>().updateChar(3);
-                }
+                else
+                    firstLoad = true;
                 break;
             case 3:
                 switch (state)

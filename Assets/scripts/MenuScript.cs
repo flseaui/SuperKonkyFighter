@@ -102,8 +102,8 @@ public class MenuScript : MonoBehaviour
     //--------------------prefs----------------------------------------//
 
     private int stageSelect;
-    private int player1c;
-    private int player2c;
+    public int player1c;
+    public int player2c;
     private int player1ai;
     private int player2ai;
 
@@ -127,6 +127,7 @@ public class MenuScript : MonoBehaviour
 
     public IntVariable roundCounter, player1Wins, player2Wins;
     bool cameFromSettings = false;
+    
 
     void Start()
     {
@@ -368,6 +369,9 @@ public class MenuScript : MonoBehaviour
             case PLAYER_SELECT_SCREEN:
                 AudioManager.Instance.PlayMusic(AudioManager.Music.VS_THEME);
 
+                player1c = -1;
+                player2c = -1;
+
                 player1Wins.value = 0;
                 player2Wins.value = 0;
 
@@ -416,6 +420,8 @@ public class MenuScript : MonoBehaviour
 
                 break;
             case STAGE_SELECT_SCREEN:
+
+                
 
                 backgroundFrame = makeButton(new Vector3[] { new Vector2(-16, 6), new Vector2(16, 6), new Vector2(16, -2), new Vector2(-16, -2) }, KONKY_RED, -1, new int[] { ComponentScript.FLAG_DUMMY, ComponentScript.FLAG_DECORATION });
                 backgroundFrame.GetComponent<MeshRenderer>().sortingOrder = 1;
@@ -628,33 +634,38 @@ public class MenuScript : MonoBehaviour
 
     public void updateChar(int state)
     {
+        Debug.Log("ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
         switch (state)
         {
-            // 0  0
             case 0:
-                globeSelect = 0;
                 player1c = 0;
+                break;
+
+            case 1:
+                player1c = 0;
+                break;
+
+            case 2:
+                player1c = 1;
+                break;
+
+            case 3:
+                player1c = 1;
+                break;
+
+            case 4:
                 player2c = 0;
                 break;
 
-            // 0  1
-            case 1:
-                globeSelect = 0;
-                player1c = 0;
+            case 5:
                 player2c = 1;
                 break;
 
-            // 1  0
-            case 2:
-                globeSelect = 0;
-                player1c = 1;
+            case 6:
                 player2c = 0;
                 break;
 
-            // 1  1
-            case 3:
-                globeSelect = 0;
-                player1c = 1;
+            case 7:
                 player2c = 1;
                 break;
         }
@@ -670,18 +681,12 @@ public class MenuScript : MonoBehaviour
         {
             // 0  0
             case 0:
-                globeSelect = 0;
-                player1c = 0;
-                player2c = 0;
                 characterButtons[0].GetComponent<ComponentScript>().setGlow(3);
                 characterButtons[0].GetComponent<ComponentScript>().stick();
                 break;
 
             // 0  1
             case 1:
-                globeSelect = 0;
-                player1c = 0;
-                player2c = 1;
                 characterButtons[1].GetComponent<ComponentScript>().setGlow(1);
                 characterButtons[0].GetComponent<ComponentScript>().setGlow(0);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
@@ -690,9 +695,6 @@ public class MenuScript : MonoBehaviour
 
             // 1  0
             case 2:
-                globeSelect = 0;
-                player1c = 1;
-                player2c = 0;
                 characterButtons[0].GetComponent<ComponentScript>().setGlow(1);
                 characterButtons[1].GetComponent<ComponentScript>().setGlow(0);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
@@ -701,15 +703,13 @@ public class MenuScript : MonoBehaviour
 
             // 1  1
             case 3:
-                globeSelect = 0;
-                player1c = 1;
-                player2c = 1;
                 characterButtons[1].GetComponent<ComponentScript>().setGlow(3);
                 characterButtons[1].GetComponent<ComponentScript>().stick();
                 break;
         }
         charShift();
         globeShift();
+
     }
 
     public void unstickAll(bool player)
@@ -806,6 +806,9 @@ public class MenuScript : MonoBehaviour
         bool showGo = true;
         switch (player1c)
         {
+            case -1:
+                changeSpriteColor(player1, Color.clear);
+                break;
             case 0:
                 player1.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
                 changeSpriteColor(player1, Color.white);
@@ -821,6 +824,9 @@ public class MenuScript : MonoBehaviour
         }
         switch (player2c)
         {
+            case -1:
+                changeSpriteColor(player2, Color.clear);
+                break;
             case 0:
                 player2.GetComponent<Animator>().runtimeAnimatorController = konkyGlobeAnim;
                 changeSpriteColor(player2, Color.white);

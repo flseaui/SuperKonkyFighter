@@ -233,7 +233,7 @@ public class CameraScript : MonoBehaviour
         {
             //RoundManager.instance.nextRound();
             //PlayerPrefs.SetInt("menu_state", 1);
-            if (!justWon)
+            if (!justWon && p2s.executingAction == 58)
             {
                 justWon = true;
                 p2Wins.value++;
@@ -242,7 +242,7 @@ public class CameraScript : MonoBehaviour
         }
         else if (p2s.health <= 0)
         {
-            if (!justWon)
+            if (!justWon && p1s.executingAction == 58)
             {
                 justWon = true;
                 p1Wins.value++;
