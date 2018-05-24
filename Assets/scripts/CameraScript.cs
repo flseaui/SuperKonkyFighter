@@ -69,6 +69,8 @@ public class CameraScript : MonoBehaviour
 
     public Image playerPortrait1, playerPortrait2;
 
+    public int whoWon;
+
     void OnApplicationQuit()
     {
         roundCounter.value = 0;
@@ -239,6 +241,7 @@ public class CameraScript : MonoBehaviour
             if (!justWon && p2s.executingAction == 58)
             {
                 justWon = true;
+                whoWon = 2;
                 p2Wins.value++;
                 Invoke("nextRound", 2);
             }
@@ -248,6 +251,7 @@ public class CameraScript : MonoBehaviour
             if (!justWon && p1s.executingAction == 58)
             {
                 justWon = true;
+                whoWon = 1;
                 p1Wins.value++;
                 Invoke("nextRound", 2);
             }
@@ -258,9 +262,15 @@ public class CameraScript : MonoBehaviour
             {
                 justWon = true;
                 if (p1s.health > p2s.health)
+                {
                     p1Wins.value++;
+                    whoWon = 1;
+                }
                 else
+                {
                     p2Wins.value++;
+                    whoWon = 2;
+                }
                 Invoke("nextRound", 2);
             }
         }
@@ -338,7 +348,9 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Menu");
+            RoundManager.instance.roundManager.SetActive(true);
+            RoundManager.instance.StopAllCoroutines();
+            RoundManager.instance.StartCoroutine(RoundManager.instance.FadeInRound(true, whoWon));
         }
     }
 
