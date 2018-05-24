@@ -382,7 +382,7 @@ public class MenuScript : MonoBehaviour
                 player1.GetComponent<SpriteRenderer>().sortingOrder = 90;
                 cpuButton1 = makeButton(new Vector3[] { new Vector2(-10.5f, -7f), new Vector2(-6.5f, -7f), new Vector2(-6.5f, -8.5f), new Vector2(-10.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 13, new int[] { });
                 cpuText1 = makeFancyText(-8.5f, -7.75f, 0.5f, "", 0);
-                makeText(-14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player1w"), 0);
+                //makeText(-14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player1w"), 0);
 
 
                 globe2 = makeSprite(11, -6, 8, 2, platformSprite, Color.red);
@@ -392,7 +392,7 @@ public class MenuScript : MonoBehaviour
                 player2.GetComponent<SpriteRenderer>().sortingOrder = 90; player2.GetComponent<SpriteRenderer>().flipX = true;
                 cpuButton2 = makeButton(new Vector3[] { new Vector2(6.5f, -7f), new Vector2(10.5f, -7f), new Vector2(10.5f, -8.5f), new Vector2(6.5f, -8.5f) }, new Color(0.8f, 0f, 0f, 0.75f), 14, new int[] { });
                 cpuText2 = makeFancyText(8.5f, -7.75f, 0.5f, "", 0);
-                makeText(14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player2w"), 0);
+                //makeText(14, 0, 0.75f, "wins\n" + PlayerPrefs.GetInt("player2w"), 0);
 
                 characterGoButton = makeButton(new Vector3[] { new Vector2(-6, -1), new Vector2(6, -1), new Vector2(6, -5), new Vector2(-6, -5) }, new Color(0.8f, 0f, 0f, 0.75f), 2, new int[] { ComponentScript.FLAG_HIDDEN, ComponentScript.FLAG_DUMMY });
                 characterGoText = makeFancyText(0, -3, 2, "go", 0);

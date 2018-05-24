@@ -16,7 +16,7 @@ public class MenuOverlay : MonoBehaviour
 
     public int s, s2;
 
-    bool firstLoad = false;
+    bool firstLoad = false, cameFromNext = false;
 
     void Start ()
     {
@@ -27,6 +27,7 @@ public class MenuOverlay : MonoBehaviour
 
     void Update()
     {
+        bool skip = false;
         s = state;
         s2 = state2;
         inputManager.pollInput(0, 1);
@@ -49,6 +50,7 @@ public class MenuOverlay : MonoBehaviour
         {
             state++;
         }
+        //if pressed light (confirm)
         else if (inputManager.currentInput[4])
         {
             switch (menu)
@@ -62,6 +64,7 @@ public class MenuOverlay : MonoBehaviour
                             GetComponentInParent<MenuScript>().triggerEvent(1);
                             selector.SetActive(false);
                             firstLoad = false;
+                            cameFromNext = false;
                             state = 0;
                             menu = 2;
                             break;
@@ -101,11 +104,11 @@ public class MenuOverlay : MonoBehaviour
                 case 10:
                     GetComponentInParent<MenuScript>().triggerEvent(2);
                     selector.SetActive(false);
-                    state = 0;
                     menu = 3;
                     break;
             }
         }
+        // if pressed medium (back)
         else if (inputManager.currentInput[5])
             switch (menu)
             {
@@ -122,48 +125,67 @@ public class MenuOverlay : MonoBehaviour
                     break;
                 case 3:
                     GetComponentInParent<MenuScript>().triggerEvent(1);
-                    state = 0;
                     menu = 2;
+                    state = GetComponentInParent<MenuScript>().player1c;
+                    state2 = GetComponentInParent<MenuScript>().player2c;
+                    GetComponentInParent<MenuScript>().player1c = -1;
+                    GetComponentInParent<MenuScript>().player2c = -1;
+                    cameFromNext = true;
+                    skip = true;
+                    selector.SetActive(false);
+                    break;
+                case 10:
+                    menu = 2;
+                    state = GetComponentInParent<MenuScript>().player1c;
+                    state2 = GetComponentInParent<MenuScript>().player2c;
+                    GetComponentInParent<MenuScript>().player1c = -1;
+                    GetComponentInParent<MenuScript>().player2c = -1;
+                    GetComponentInParent<MenuScript>().updateChar(state, false);
+                    GetComponentInParent<MenuScript>().updateChar(state2, true);
+                    cameFromNext = true;
+                    selector.SetActive(false);
+                    skip = true;
                     break;
             }
 
-        switch (menu)
+        if (!skip)
         {
-            case 0:
-                if (state > 1)
-                    state = 0;
-                else if (state < 0)
-                    state = 1;
-                break;
-            case 1:
-                if (state > 4)
-                    state = 0;
-                else if (state < 0)
-                    state = 4;
-                break;
-            case 2:
-                if (state > 1)
-                    state = 0;
-                else if (state < 0)
-                    state = 1;
+            switch (menu)
+            {
+                case 0:
+                    if (state > 1)
+                        state = 0;
+                    else if (state < 0)
+                        state = 1;
+                    break;
+                case 1:
+                    if (state > 4)
+                        state = 0;
+                    else if (state < 0)
+                        state = 4;
+                    break;
+                case 2:
+                    if (state > 1)
+                        state = 0;
+                    else if (state < 0)
+                        state = 1;
 
 
-                if (state2 > 1)
-                    state2 = 0;
-                else if (state2 < 0)
-                    state2 = 1;
-                break;
-            case 3:
-                if (state > 4)
-                    state = 0;
-                else if (state < 0)
-                    state = 4;
-                break;
-            case 10:
-                state = 0;
-                break;
-
+                    if (state2 > 1)
+                        state2 = 0;
+                    else if (state2 < 0)
+                        state2 = 1;
+                    break;
+                case 3:
+                    if (state > 4)
+                        state = 0;
+                    else if (state < 0)
+                        state = 4;
+                    break;
+            }
         }
+        else
+            skip = false;
 
         moveSelector();
 
@@ -246,7 +268,6 @@ public class MenuOverlay : MonoBehaviour
                 {
                     selector.transform.position = new Vector3(0.27f, -3.17f, 0);
                     selector.GetComponent<SpriteRenderer>().size = new Vector2(5.8f, 3.9f);
-                    state = 0;
                     menu = 10;
                     selector.SetActive(true);
                 }
