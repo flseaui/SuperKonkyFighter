@@ -1181,9 +1181,9 @@ MonoBehaviour:
   bkgMask: {fileID: 21300000, guid: 0b3b4773e285c8a469ef6fb5880475ea, type: 3}
   BackgroundNSprite: {fileID: 21300000, guid: b43242cde5af98948b9f11e67f258a8c, type: 3}
   backgroundRSprite: {fileID: 21300000, guid: 8c8e9e2838d6d044b9bb4d15f3d8abbb, type: 3}
-  background0Sprite: {fileID: 21300000, guid: 1eee4a199aca31b41889f72316bd556a, type: 3}
-  background1Sprite: {fileID: 21300000, guid: 1a5467461e08f4f43a20bd3941e9fa8f, type: 3}
-  background2Sprite: {fileID: 21300000, guid: 873fe94afbf2aa741b6cff3157abe2c9, type: 3}
+  background0Sprite: {fileID: 21300000, guid: 23386567819e5e8449fc74ba94985a2c, type: 3}
+  background1Sprite: {fileID: 21300000, guid: e017a9dbefad99e4890ec89ee831bf71, type: 3}
+  background2Sprite: {fileID: 21300000, guid: 41f6118bb6ebed14ab01a78078075162, type: 3}
   background3Sprite: {fileID: 21300000, guid: 9f8ac068cc521004cb2d316824b24df1, type: 3}
   background0Button: {fileID: 21300000, guid: 5f714b832ef861742ba69597e01dbe95, type: 3}
   background1Button: {fileID: 21300000, guid: d576a89b01786d44b9e7baf90332cd6f, type: 3}
