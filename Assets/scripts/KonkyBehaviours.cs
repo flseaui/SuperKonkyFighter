@@ -1596,7 +1596,7 @@ public class KonkyBehaviours : Behaviors
             {nullBox, nullBox, },
             {nullBox, nullBox, },
             {nullBox, nullBox, },
-            { new Action.rect(-4, 2.5f, 8, 5, 1, 1), new Action.rect(2.5f, 7, 5, 8, 1, 2), }
+            { new Action.rect(-4, 2.5f, 8, 5, 1000, 1), new Action.rect(2.5f, 7, 5, 8, 1000, 2), }
         },
     };
 
