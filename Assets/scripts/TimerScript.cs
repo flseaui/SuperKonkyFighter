@@ -14,7 +14,6 @@ public class TimerScript : MonoBehaviour
 
 	void Start()
     {
-        timerText.transform.rotation = new Quaternion(0, 0, 90, Quaternion.identity.w);
         time.value = PlayerPrefs.GetInt("settingMatchTime");
     }
 	
@@ -33,7 +32,10 @@ public class TimerScript : MonoBehaviour
     void Update()
     {
         if (time.value < 0)
+        {
             timerText.text = "8";
+            timerText.transform.rotation = new Quaternion(0, 0, 90, Quaternion.identity.w);
+        }
         else
             timerText.text = time.value.ToString();
         if (!started && InputManager.isInputEnabled && time.value >= 0)
