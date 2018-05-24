@@ -27,11 +27,12 @@ public class RoundManager : MonoBehaviour
 
     public IntVariable roundCounter, p1Wins, p2Wins;
     public bool stop = false;
+    public bool stopping = false;
 
     [SerializeField] private Image p1Win1, p1Win2, p2Win1, p2Win2;
     [SerializeField] private TextMeshProUGUI roundText;
     [SerializeField] private TextMeshProUGUI fightText;
-    [SerializeField] private TextMeshProUGUI winText;
+   public TextMeshProUGUI winText;
     [SerializeField] private float roundTimeMultiplier;
     [SerializeField] private float fightInTimeMultiplier;
     [SerializeField] private float fightOutTimeMultiplier;
@@ -122,6 +123,7 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
+            winText.enabled = true;
             StartCoroutine(FadeInWin());
         }
     }
@@ -148,6 +150,9 @@ public class RoundManager : MonoBehaviour
 
             yield return null;
         }
+        stopping = true;
+
+
     }
 
     private IEnumerator FadeInFight()
