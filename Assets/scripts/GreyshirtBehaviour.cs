@@ -358,6 +358,7 @@ public class GreyshirtBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitSound = AudioManager.Sound.GUN_SHOT,
         whiffSound = AudioManager.Sound.GUN_SHOT,
+        nonPushBlockable = true,
     };
 
     // Crouching Light
@@ -733,6 +734,7 @@ public class GreyshirtBehaviours : Behaviors
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitSound = AudioManager.Sound.GUN_SHOT,
         whiffSound = AudioManager.Sound.GUN_SHOT,
+        nonPushBlockable = true,
     };
 
     // One Super
@@ -1159,6 +1161,7 @@ public class GreyshirtBehaviours : Behaviors
         block = MID,
         knockdown = SOFTGB,
         super = true,
+        nonPushBlockable = true,
         actionCancels = new int[] { },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -2226,7 +2229,7 @@ public class GreyshirtBehaviours : Behaviors
 
     public void advBlock(PlayerScript player)
     {
-        if (player.inputManager.currentInput[7])
+        if (player.inputManager.currentInput[7] && !player.otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(player.otherPlayer.GetComponent<PlayerScript>().executingAction).nonPushBlockable)
         {
             player.otherPlayer.GetComponent<PlayerScript>().hKnockback = (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
             AudioManager.Instance.PlaySound(AudioManager.Sound.PUSHBLOCK);

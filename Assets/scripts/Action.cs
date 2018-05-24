@@ -31,6 +31,7 @@ public class Action {
     public float[] vMovement;
 
     public bool infinite;
+    public bool nonPushBlockable;
 
     public rect[,] hitboxData;
     public rect[,] hurtboxData;

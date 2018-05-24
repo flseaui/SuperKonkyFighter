@@ -976,6 +976,7 @@ public class KonkyBehaviours : Behaviors
         aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = false,
+        nonPushBlockable = true,
         projectileLocation = new Vector2(7, 0),
         projectileSpeed = 2,
         projectileStrength = 500,
@@ -2134,7 +2135,7 @@ public class KonkyBehaviours : Behaviors
 
     public void advBlock(PlayerScript player)
     {
-        if (player.inputManager.currentInput[7])
+        if (player.inputManager.currentInput[7] && !player.otherPlayer.GetComponent<PlayerScript>().behaviors.getAction(player.otherPlayer.GetComponent<PlayerScript>().executingAction).nonPushBlockable)
         {
             player.otherPlayer.GetComponent<PlayerScript>().hKnockback = (player.otherPlayer.GetComponent<PlayerScript>().playerSide ? -2 : 2);
             AudioManager.Instance.PlaySound(AudioManager.Sound.PUSHBLOCK);
