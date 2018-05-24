@@ -616,17 +616,27 @@ public class MenuScript : MonoBehaviour
             case 19:
                 controller1Id++;
                 if (controller1Id > 3)
-                    controller1Id = 1;
-                if (controller1Id == 1 && controller2Id == 1)
+                    if (controller2Id > 1)
+                        controller1Id = 1;
+                    else
+                        controller1Id = 2;
+
+                if (controller1Id == controller2Id && controller1Id < 3)
+                    triggerEvent(19);
                     
                 settingsShift();
                 break;
             case 20:
                 controller2Id++;
                 if (controller2Id > 3)
-                    controller2Id = 1;
-                if (controller1Id == controller2Id && controller1Id != 3)
-                    triggerEvent(19);
+                    if (controller1Id > 1)
+                        controller2Id = 1;
+                    else
+                        controller2Id = 2;
+
+                if (controller1Id == controller2Id && controller1Id < 3)
+                    triggerEvent(20);
+
                 settingsShift();
                 break;
         }
