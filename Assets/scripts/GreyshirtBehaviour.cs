@@ -963,7 +963,7 @@ public class GreyshirtBehaviours : Behaviors
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(1, 4.5f, 7, 9, 16, 0), new Action.rect(0, 0, 0, 0, 0, 1)},
+            { new Action.rect(0, 0, 0, 0, 16, 0), new Action.rect(0, 0, 0, 0, 16, 1)},
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
