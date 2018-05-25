@@ -1172,12 +1172,14 @@ MonoBehaviour:
   platformSprite: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   konkySelect: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
   GreyshirtSelect: {fileID: 21300000, guid: 74586aef65a341a42860a23afa6eb459, type: 3}
+  DKSelect: {fileID: 21300000, guid: c449902211ea5c445933d7e32e195311, type: 3}
   PlayerSelectText: {fileID: 21300000, guid: d7c5180793f8068449f3ed336a17ca52, type: 3}
   StageSelectText: {fileID: 21300000, guid: 5ec4602800457184a8b6cad00866cfc4, type: 3}
   konkyGlobe: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   greyshirtGlobe: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   konkyGlobeAnim: {fileID: 9100000, guid: 80ce49420553bdd499f075feea4a38e5, type: 2}
   GreyshirtGlobeAnim: {fileID: 9100000, guid: f8699d4f1668344458e8c2a89b0e3182, type: 2}
+  DKGlobeAnim: {fileID: 0}
   bkgMask: {fileID: 21300000, guid: 0b3b4773e285c8a469ef6fb5880475ea, type: 3}
   BackgroundNSprite: {fileID: 21300000, guid: b43242cde5af98948b9f11e67f258a8c, type: 3}
   backgroundRSprite: {fileID: 21300000, guid: 8c8e9e2838d6d044b9bb4d15f3d8abbb, type: 3}

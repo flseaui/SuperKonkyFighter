@@ -334,10 +334,13 @@ MonoBehaviour:
   shouldWallbounce: 0
   shouldGroundbounce: 0
   firstStun: 0
+  intialBound: 0
+  jumpSquated: 0
   bufferedMove: 0
   maxHealth: 0
   maxMeter: 0
   health: 0
+  healthStore: 0
   currentFrameType: 0
   actionFrameCounter: 0
   activeFrameCounter: 0
@@ -382,10 +385,11 @@ MonoBehaviour:
     type: 2}
   greyshirtAnimationController: {fileID: 9100000, guid: efe02631769fcd94d9053c285d188057,
     type: 2}
+  dkAnimationController: {fileID: 9100000, guid: 9acc976315a994c48aafa69966274efc,
+    type: 2}
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
   JoyScript: {fileID: 0}
-  hitSound: {fileID: 82813003963254516}
   cameraLeft: {fileID: 0}
   cameraRight: {fileID: 0}
   p1ComboCounterText: {fileID: 11400000, guid: b0f9d5c614102594b8e99ad59c77039f, type: 2}

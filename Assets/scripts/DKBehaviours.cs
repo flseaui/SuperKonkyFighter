@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KonkyBehaviours : Behaviors
+public class DKBehaviours : Behaviors
 {
     const int LOW = 1; //must be crouchblocked
     const int MID = 2; //can be crouch or stand blocked
@@ -27,8 +27,8 @@ public class KonkyBehaviours : Behaviors
      * example: standM = 5 + 10 = 15
      */
 
-    IDictionary<int, Action> konkyActionIds;
-    IDictionary<Action, int> konkyAnimAction;
+    IDictionary<int, Action> dkActionIds;
+    IDictionary<Action, int> dkAnimAction;
 
     /* 
        * ADVANCED ID FORMAT
@@ -48,9 +48,9 @@ public class KonkyBehaviours : Behaviors
        * 0 - Jump
        */
 
-    public KonkyBehaviours()
+    public DKBehaviours()
     {
-        konkyActionIds = new Dictionary<int, Action>()
+        dkActionIds = new Dictionary<int, Action>()
         {
             { 1,  crouchL },
             { 11, crouchM },
@@ -130,7 +130,7 @@ public class KonkyBehaviours : Behaviors
             { 109, jumpForward}
         };
 
-        konkyAnimAction = new Dictionary<Action, int>()
+        dkAnimAction = new Dictionary<Action, int>()
         {
             { crouchL, 2 },
             { crouchM, 12 },
@@ -173,7 +173,7 @@ public class KonkyBehaviours : Behaviors
             { defeat, 59 }
         };
 
-        setIds(konkyActionIds, konkyAnimAction);
+        setIds(dkActionIds, dkAnimAction);
         setDelegates();
     }
 

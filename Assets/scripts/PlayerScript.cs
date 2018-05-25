@@ -135,6 +135,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public Animator animator;
     public RuntimeAnimatorController konkyAnimationController;
     public RuntimeAnimatorController greyshirtAnimationController;
+    public RuntimeAnimatorController dkAnimationController;
     public Behaviors behaviors;
     public BoxCollider2D hitbox;
     public GameObject otherPlayer;
@@ -237,7 +238,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         // get currently held keys or pressed buttons
         if (InputManager.isInputEnabled)
-            inputManager.pollInput(1, playerID);
+            inputManager.pollInput(0, playerID);
 
 
         testAI.observe(0, otherPlayer.GetComponent<PlayerScript>().position(), otherPlayer.GetComponent<PlayerScript>().executingAction, position(), facingRight);

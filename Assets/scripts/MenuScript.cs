@@ -23,6 +23,7 @@ public class MenuScript : MonoBehaviour
     public Sprite platformSprite;
     public Sprite konkySelect;
     public Sprite GreyshirtSelect;
+    public Sprite DKSelect;
     public Sprite PlayerSelectText;
     public Sprite StageSelectText;
 
@@ -30,6 +31,7 @@ public class MenuScript : MonoBehaviour
     public Sprite greyshirtGlobe;
     public RuntimeAnimatorController konkyGlobeAnim;
     public RuntimeAnimatorController GreyshirtGlobeAnim;
+    public RuntimeAnimatorController DKGlobeAnim;
 
     public Sprite bkgMask;
 
@@ -411,6 +413,7 @@ public class MenuScript : MonoBehaviour
                 characterButtons[1] = makeButton(new Vector3[] { new Vector2(-10, 7), new Vector2(-5, 7), new Vector2(-3, 0), new Vector2(-7, 0) }, new Color(1f, 0.5f, 0.5f, 0.75f), 12, new int[] { ComponentScript.FLAG_STICKY });
                 makeSprite(-6, 4, 8, 8, GreyshirtSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//greyshirt sprite
                 makeButton(new Vector3[] { new Vector2(-5, 7), new Vector2(0, 7), new Vector2(0, 0), new Vector2(-3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
+                makeSprite(-2, 4, 8, 8, DKSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//dk sprite
                 makeButton(new Vector3[] { new Vector2(0, 7), new Vector2(5, 7), new Vector2(3, 0), new Vector2(0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
                 makeButton(new Vector3[] { new Vector2(5, 7), new Vector2(10, 7), new Vector2(7, 0), new Vector2(3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
                 makeButton(new Vector3[] { new Vector2(10, 7), new Vector2(15, 7), new Vector2(11, 0), new Vector2(7, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
