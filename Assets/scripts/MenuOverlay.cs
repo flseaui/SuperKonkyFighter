@@ -171,10 +171,10 @@ public class MenuOverlay : MonoBehaviour
                         state = 1;
 
 
-                    if (state2 > 1)
+                    if (state2 > 2)
                         state2 = 0;
                     else if (state2 < 0)
-                        state2 = 1;
+                        state2 = 2;
                     break;
                 case 3:
                     if (state > 4)
@@ -251,6 +251,10 @@ public class MenuOverlay : MonoBehaviour
                     else if (state == 0 && state2 == 1)
                     {
                         GetComponentInParent<MenuScript>().updateSelection(1);
+                    }
+                    else if (state == 0 && state2 == 2)
+                    {
+                        //nohting
                     }
                     else if (state == 1 && state2 == 0)
                     {
