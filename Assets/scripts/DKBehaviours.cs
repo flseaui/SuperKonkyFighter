@@ -892,15 +892,19 @@ public class DKBehaviours : Behaviors
     private Action threeS = new Action()
     {
         tier = 3,
-        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },// 15 | 5 | 15
-        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        frames = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }// 15 | 5 | 15
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 800, 800, 800, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-
+            { new Action.rect(6, 10, 6, 6, 2, 0), },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, }
         },
         hurtboxData = new Action.rect[,]
         {
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 15, 1), new Action.rect(1.5f, 9f, 4, 8, 15, 2), },
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 35, 1), new Action.rect(2, 9f, 7, 8, 35, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -915,12 +919,12 @@ public class DKBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            { new Action.rect(0, 0, 0, 0, 5, 1), new Action.rect(0, 0, 0, 0, 5, 2), },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
-            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 15, 1), new Action.rect(1.5f, 9f, 4, 8, 15, 2), },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
             {nullBox, nullBox },
@@ -936,20 +940,20 @@ public class DKBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        level = 5,
+        level = 3,
         p1scaling = 1,
         block = MID,
-        knockdown = SOFTWB,
+        knockdown = NONE,
         actionCancels = new int[] { 35 },
         gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 45, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         airOK = true,
-        hitSound = AudioManager.Sound.DP,
-        whiffSound = AudioManager.Sound.WHIFF,
+        hitSound = AudioManager.Sound.FIREBALL,
+        whiffSound = AudioManager.Sound.FIREBALL,
     };
 
     // Four Super
