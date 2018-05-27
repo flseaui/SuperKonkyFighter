@@ -38,7 +38,7 @@ public class CameraScript : MonoBehaviour
     public Sprite[] Background;
 	public Sprite[] Ground;
 
-    public Sprite konkyPortrait, greyshirtPortrait;
+    public Sprite konkyPortrait, greyshirtPortrait, dkPortrait;
 
 	public JoyScript JoyScript;
 
@@ -149,6 +149,14 @@ public class CameraScript : MonoBehaviour
                     playerPortrait2.color = Color.cyan;
                 }
                 break;
+            case 2:
+                playerPortrait1.sprite = dkPortrait;
+                if (PlayerPrefs.GetInt("player1c") == PlayerPrefs.GetInt("player2c"))
+                {
+                    p2s.GetComponent<SpriteRenderer>().color = Color.green;
+                    playerPortrait2.color = Color.green;
+                }
+                break;
         }
         switch (PlayerPrefs.GetInt("player2c"))
         {
@@ -157,6 +165,9 @@ public class CameraScript : MonoBehaviour
                 break;
             case 1:
                 playerPortrait2.sprite = greyshirtPortrait;
+                break;
+            case 2:
+                playerPortrait2.sprite = dkPortrait;
                 break;
         }
 

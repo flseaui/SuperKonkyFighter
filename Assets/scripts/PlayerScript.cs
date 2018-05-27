@@ -193,6 +193,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     behaviors = new GreyshirtBehaviours();
                     animator.runtimeAnimatorController = greyshirtAnimationController;
                     break;
+                case 2:
+                    behaviors = new DKBehaviours();
+                    animator.runtimeAnimatorController = dkAnimationController;
+                    break;
             }
         }
         else if (CompareTag("2"))
@@ -208,6 +212,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 case 1:
                     behaviors = new GreyshirtBehaviours();
                     animator.runtimeAnimatorController = greyshirtAnimationController;
+                    break;
+                case 2:
+                    behaviors = new DKBehaviours();
+                    animator.runtimeAnimatorController = dkAnimationController;
                     break;
             }
         }
@@ -241,7 +249,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             inputManager.pollInput(0, playerID);
 
 
-        testAI.observe(0, otherPlayer.GetComponent<PlayerScript>().position(), otherPlayer.GetComponent<PlayerScript>().executingAction, position(), facingRight);
+        //testAI.observe(0, otherPlayer.GetComponent<PlayerScript>().position(), otherPlayer.GetComponent<PlayerScript>().executingAction, position(), facingRight);
         if (!hitStopped)
         {
 

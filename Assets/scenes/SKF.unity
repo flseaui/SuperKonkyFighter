@@ -2932,6 +2932,7 @@ MonoBehaviour:
   Ground: []
   konkyPortrait: {fileID: 21300000, guid: 8a915443ea338814fae3fbe36a88475b, type: 3}
   greyshirtPortrait: {fileID: 21300000, guid: 74586aef65a341a42860a23afa6eb459, type: 3}
+  dkPortrait: {fileID: 21300000, guid: c449902211ea5c445933d7e32e195311, type: 3}
   JoyScript: {fileID: 1338733470}
   lightButton: {fileID: 0}
   mediumButton: {fileID: 0}

@@ -1179,7 +1179,7 @@ MonoBehaviour:
   greyshirtGlobe: {fileID: 21300000, guid: a41a2604e66c4764ca3c175da94afca3, type: 3}
   konkyGlobeAnim: {fileID: 9100000, guid: 80ce49420553bdd499f075feea4a38e5, type: 2}
   GreyshirtGlobeAnim: {fileID: 9100000, guid: f8699d4f1668344458e8c2a89b0e3182, type: 2}
-  DKGlobeAnim: {fileID: 0}
+  DKGlobeAnim: {fileID: 9100000, guid: c7c64306951b3c24095979951121aeba, type: 2}
   bkgMask: {fileID: 21300000, guid: 0b3b4773e285c8a469ef6fb5880475ea, type: 3}
   BackgroundNSprite: {fileID: 21300000, guid: b43242cde5af98948b9f11e67f258a8c, type: 3}
   backgroundRSprite: {fileID: 21300000, guid: 8c8e9e2838d6d044b9bb4d15f3d8abbb, type: 3}
