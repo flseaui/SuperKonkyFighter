@@ -709,7 +709,7 @@ public class DKBehaviours : Behaviors
     private Action forwardM = new Action()
     {
         tier = 1,
-        frames = new int[] { 0, 0, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 18
+        frames = new int[] { 0, 0, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 7 | 6 | 18
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
