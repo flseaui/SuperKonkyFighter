@@ -385,7 +385,7 @@ MonoBehaviour:
     type: 2}
   greyshirtAnimationController: {fileID: 9100000, guid: efe02631769fcd94d9053c285d188057,
     type: 2}
-  dkAnimationController: {fileID: 9100000, guid: 9acc976315a994c48aafa69966274efc,
+  dkAnimationController: {fileID: 9100000, guid: f6644ed48f08be14da1164e5e082900f,
     type: 2}
   hitbox: {fileID: 0}
   otherPlayer: {fileID: 0}
