@@ -708,8 +708,11 @@ public class DKBehaviours : Behaviors
         damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 600, 600, 600, 600, 600, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         hitboxData = new Action.rect[,]
         {
-            { new Action.rect(5, 9, 12, 4, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-            {nullBox, }
+            { new Action.rect(5, 9, 12, 4, 5, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
+            {nullBox, },
         },
         hurtboxData = new Action.rect[,]
         {
@@ -808,7 +811,7 @@ public class DKBehaviours : Behaviors
             {nullBox, nullBox },
             {nullBox, nullBox },
         },
-        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         level = 5,
         p1scaling = 1,
@@ -959,7 +962,113 @@ public class DKBehaviours : Behaviors
     // Four Super
     private Action fourS = new Action()
     {
-        //1S Script
+        tier = 3,
+        frames = new int[] { 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },// 10 | 2 2 2 2 2 2 2 2 2 (8) 3 | 26
+        damage = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 0, 0, 0, 0, 0, 0, 0, 0, 1500, 1500, 1500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        hitboxData = new Action.rect[,]
+        {
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(2, 6, 8, 6, 2, 0), },
+            {nullBox, },
+            { new Action.rect(6, 9.5f, 4, 14, 3, 0) },
+            {nullBox, },
+            {nullBox, },
+        },
+        hurtboxData = new Action.rect[,]
+        {
+            { new Action.rect(0.5f, 2.5f, 6.5f, 5, 10, 1), new Action.rect(1.5f, 9f, 4, 8, 10, 2), },//startup
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 4, 7, 8, 18, 5), nullBox },//active
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 4, 7, 8, 8, 5), nullBox },//gap
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 4, 7, 8, 3, 5), nullBox },//active
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            { new Action.rect(0.5f, 4, 7, 8, 26, 5), nullBox },//recovery
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+            {nullBox, nullBox },
+        },
+        hMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        vMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, -20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        level = 5,
+        p1scaling = 1,
+        block = MID,
+        knockdown = SOFTWB,
+        actionCancels = new int[] { 35 },
+        gAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        gStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aAngle = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        aStrength = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        airOK = true,
+        hitSound = AudioManager.Sound.DP,
+        whiffSound = AudioManager.Sound.WHIFF,
     };
 
     // Five Super
