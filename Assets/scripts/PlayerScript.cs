@@ -1082,8 +1082,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
     private void movePlayer()
     {
-        if (executingAction != 43 && executingAction != 44)
-            vVelocity += gravity;
+        if (executingAction != 43 && executingAction != 44 && executingAction != 48)
+                vVelocity += gravity;
 
         if (vVelocity < -1)
         {
