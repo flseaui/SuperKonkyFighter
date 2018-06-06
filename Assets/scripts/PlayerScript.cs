@@ -1365,11 +1365,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             p2Scale *= otherPlayer.GetComponent<PlayerScript>().level(7);
             damage = (int)(p1Scale * p2Scale * damage * .6);
-
-            if (damage <= 50)
-            {
-                damage = 50;
-            }
+            calculateGuts(damage);
         }
 
         if (shouldBlock && ((blck == 3 && basicState > 3) || (blck == 1 && basicState < 4 && basicState < 7) || (blck == 2) || (basicState > 6)))
@@ -1404,6 +1400,27 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         }
 
         vVelocity = 0;
+    }
+
+    public int calculateGuts(int damage)
+    {
+        if (health / maxHealth <= .5 && health / maxHealth > .4)
+        {
+            damage = (int)(damage * .94f);
+        }
+        else if (health / maxHealth <= .4 && health / maxHealth > .35)
+        {
+            damage = (int)(damage * .85f);
+        }
+        else if (health / maxHealth <= .35 && health / maxHealth > .15)
+        {
+            damage = (int)(damage * .78f);
+        }
+        else if (health / maxHealth <= .15)
+        {
+            damage = (int)(damage * .66f);
+        }
+        return damage;
     }
 
     public void stun()
