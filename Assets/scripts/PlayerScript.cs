@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -154,6 +155,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     //temp variables
     AIController testAI;
     bool ai = false;
+    private bool notSpawned = true;
 
     #endregion
 
@@ -168,7 +170,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     }
 
     // initialize variables based on current players character
-    void Start()
+    void playerStart()
     {
 
         this.tag = playerID.ToString();
@@ -242,9 +244,16 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // called 60 times per second
     private void Update()
     {
+        if (!CameraScript.BOTH_SPAWNED)
+            return;
+        else if (notSpawned)
+        {
+            playerStart();
+            notSpawned = false;
+        }
         //if (Input.GetKeyUp(KeyCode.Y)) { ai = !ai; }
 
-        // get currently held keys or pressed buttons
+            // get currently held keys or pressed buttons
         if (InputManager.isInputEnabled)
             inputManager.pollInput(0, playerID);
 
