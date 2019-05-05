@@ -24,6 +24,7 @@ public class MenuScript : MonoBehaviour
     public Sprite konkySelect;
     public Sprite GreyshirtSelect;
     public Sprite DKSelect;
+    public Sprite ShrulkSelect;
     public Sprite PlayerSelectText;
     public Sprite StageSelectText;
 
@@ -32,6 +33,7 @@ public class MenuScript : MonoBehaviour
     public RuntimeAnimatorController konkyGlobeAnim;
     public RuntimeAnimatorController GreyshirtGlobeAnim;
     public RuntimeAnimatorController DKGlobeAnim;
+    public RuntimeAnimatorController ShrulkGlobeAnim;
 
     public Sprite bkgMask;
 
@@ -414,9 +416,13 @@ public class MenuScript : MonoBehaviour
                 makeSprite(-6, 4, 8, 8, GreyshirtSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//greyshirt sprite
                 characterButtons[2] = makeButton(new Vector3[] { new Vector2(-5, 7), new Vector2(0, 7), new Vector2(0, 0), new Vector2(-3, 0) }, new Color(0.1f, 0.9f, 0.1f, 0.75f), -1, new int[] { });
                 makeSprite(-2, 4, 8, 8, DKSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//dk sprite
-                makeButton(new Vector3[] { new Vector2(0, 7), new Vector2(5, 7), new Vector2(3, 0), new Vector2(0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
+                characterButtons[3] = makeButton(new Vector3[] { new Vector2(0, 7), new Vector2(5, 7), new Vector2(3, 0), new Vector2(0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -3, new int[] { });
+                makeSprite(2, 4, 8, 8, ShrulkSelect).GetComponent<SpriteRenderer>().sortingOrder = 5;//shrulk sprite
+
+                //makeButton(new Vector3[] { new Vector2(0, 7), new Vector2(5, 7), new Vector2(3, 0), new Vector2(0, 0) }, new Color(0.9f, 0.6f, 0.1f, 0.75f), -1, new int[] { });
                 makeButton(new Vector3[] { new Vector2(5, 7), new Vector2(10, 7), new Vector2(7, 0), new Vector2(3, 0) }, new Color(0.00f, 0.1f, 0.9f, 0.75f), -1, new int[] { });
                 makeButton(new Vector3[] { new Vector2(10, 7), new Vector2(15, 7), new Vector2(11, 0), new Vector2(7, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
+               // makeButton(new Vector3[] { new Vector2(15, 7), new Vector2(20, 7), new Vector2(15, 0), new Vector2(10, 0) }, new Color(0.6f, 0.6f, 0.6f, 0.75f), -1, new int[] { });
 
                 makeText(-16f, 9f, 1.25f, "player select", 1);//screen description
 
@@ -661,12 +667,26 @@ public class MenuScript : MonoBehaviour
         globeShift();
     }
 
-    public void updateSelection(int state)
+    public void updateSelection(int state1, int state2)
     {
         characterButtons[0].GetComponent<ComponentScript>().unstick();
         characterButtons[1].GetComponent<ComponentScript>().unstick();
         characterButtons[2].GetComponent<ComponentScript>().unstick();
-        switch (state)
+        characterButtons[3].GetComponent<ComponentScript>().unstick();
+
+        if (state1 == state2)
+        {
+            characterButtons[state1].GetComponent<ComponentScript>().setGlow(3);
+        }
+        else
+        {
+            characterButtons[state1].GetComponent<ComponentScript>().setGlow(1);
+            characterButtons[state2].GetComponent<ComponentScript>().setGlow(2);
+        }
+
+        characterButtons[state1].GetComponent<ComponentScript>().stick();
+        characterButtons[state2].GetComponent<ComponentScript>().stick();
+        /*switch (state)
         {
             // 0  0
             case 0:
@@ -733,7 +753,7 @@ public class MenuScript : MonoBehaviour
                 characterButtons[2].GetComponent<ComponentScript>().setGlow(3);
                 characterButtons[2].GetComponent<ComponentScript>().stick();
                 break;
-        }
+        }*/
         charShift();
         globeShift();
 
@@ -849,6 +869,10 @@ public class MenuScript : MonoBehaviour
                 player1.GetComponent<Animator>().runtimeAnimatorController = DKGlobeAnim;
                 changeSpriteColor(player1, Color.white);
                 break;
+            case 3:
+                player1.GetComponent<Animator>().runtimeAnimatorController = ShrulkGlobeAnim;
+                changeSpriteColor(player1, Color.white);
+                break;
             default:
                 changeSpriteColor(player1, Color.clear);
                 showGo = false;
@@ -870,6 +894,10 @@ public class MenuScript : MonoBehaviour
                 break;
             case 2:
                 player2.GetComponent<Animator>().runtimeAnimatorController = DKGlobeAnim;
+                changeSpriteColor(player2, Color.white);
+                break;
+            case 3:
+                player2.GetComponent<Animator>().runtimeAnimatorController = ShrulkGlobeAnim;
                 changeSpriteColor(player2, Color.white);
                 break;
             default:

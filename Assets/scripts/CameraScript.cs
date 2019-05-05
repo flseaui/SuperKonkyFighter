@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CameraScript : NetworkManager
+public class CameraScript : MonoBehaviour
 {
 	public Canvas canvas;
 	public UIScript uis;
@@ -39,7 +38,7 @@ public class CameraScript : NetworkManager
     public Sprite[] Background;
 	public Sprite[] Ground;
 
-    public Sprite konkyPortrait, greyshirtPortrait, dkPortrait;
+    public Sprite konkyPortrait, greyshirtPortrait, dkPortrait, shrulkPortrait;
 
 	public JoyScript JoyScript;
 
@@ -72,8 +71,6 @@ public class CameraScript : NetworkManager
 
     public int whoWon;
 
-    public static bool BOTH_SPAWNED;
-
     void OnApplicationQuit()
     {
         roundCounter.value = 0;
@@ -84,46 +81,55 @@ public class CameraScript : NetworkManager
         PlayerPrefs.GetInt("loadedFromEditor");
     }
 
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        ClientScene.AddPlayer(conn, (short)conn.connectionId);
-    }
+    void Start()
+	{
+        cameraLeftPos.position = cameraLeft.position;
+        cameraRightPos.position = cameraRight.position;
+        uis = canvas.GetComponent<UIScript>();
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-    {
-        Debug.Log(playerControllerId);
-        if (playerControllerId == 0)
-        {
-            setupp1();
+		player1 = Instantiate(playerPrefab);
 
-            NetworkServer.AddPlayerForConnection(conn, player1, playerControllerId);
-        }
-        else
-        {
-            setupp2();
-
-            NetworkServer.AddPlayerForConnection(conn, player2, playerControllerId);
-        }
-
-    }
-
-    void setupp1()
-    {
-        player1 = Instantiate(playerPrefab);
-
-        setX(player1, -16f);
-        p1s = player1.GetComponent<PlayerScript>();
+		setX(player1, -16f);
+		p1s = player1.GetComponent<PlayerScript>();
         p1h = player1.GetComponentInChildren<CollisionScript>();
-        p1s.facingRight = true;
-        p1s.playerID = 1;
-        p1s.JoyScript = JoyScript;
+		p1s.facingRight = true;
+		p1s.playerID = 1;
+		p1s.JoyScript = JoyScript;
         p1s.cameraLeft = cameraLeftPos;
         p1s.cameraRight = cameraRightPos;
         //p1s.lightButton = lightButton;
         //p1s.mediumButton = mediumButton;
         //p1s.heavyButton = heavyButton;
 
+        player2 = Instantiate(playerPrefab);
+		setX(player2, 16f);
+		p2s = player2.GetComponent<PlayerScript>();
+        p2h = player2.GetComponentInChildren<CollisionScript>();
+        p2s.facingRight = false;
+		p2s.playerID = 2;
+        p2s.cameraLeft = cameraLeftPos;
+        p2s.cameraRight = cameraRightPos;
+
+        p1s.otherPlayer = player2;
+		p2s.otherPlayer = player1;
+
         p1s.meterCharge = PlayerPrefs.GetInt("P1Meter");
+        p2s.meterCharge = PlayerPrefs.GetInt("P2Meter");
+
+        ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
+
+        Background = new Sprite[] { background0, background1, background2, background3 };
+		Ground = new Sprite[] { ground0, ground1, ground2, ground3 };
+
+        GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);
+
+        vertExtent = GetComponentInParent<Follow>().vertExtent;
+        horzExtent = GetComponentInParent<Follow>().horzExtent;
+
+        int stage = PlayerPrefs.GetInt("stage");
+
+        background.GetComponent<SpriteRenderer>().sprite = Background[stage < 2 ? stage : stage - 1];
+        ground.GetComponent<SpriteRenderer>().sprite = Ground[stage < 2 ? stage : stage - 1];
 
         switch (PlayerPrefs.GetInt("player1c"))
         {
@@ -152,26 +158,6 @@ public class CameraScript : NetworkManager
                 }
                 break;
         }
-    }
-
-    void setupp2()
-    {
-        player2 = Instantiate(playerPrefab);
-        setX(player2, 16f);
-        p2s = player2.GetComponent<PlayerScript>();
-        p2h = player2.GetComponentInChildren<CollisionScript>();
-        p2s.facingRight = false;
-        p2s.playerID = 2;
-        p2s.cameraLeft = cameraLeftPos;
-        p2s.cameraRight = cameraRightPos;
-
-        p1s.otherPlayer = player2;
-        p2s.otherPlayer = player1;
-
-        p2s.meterCharge = PlayerPrefs.GetInt("P2Meter");
-
-        ghost.GetComponent<BackGroundScript>().setScripts(p1s, p2s);
-
         switch (PlayerPrefs.GetInt("player2c"))
         {
             case 0:
@@ -184,42 +170,12 @@ public class CameraScript : NetworkManager
                 playerPortrait2.sprite = dkPortrait;
                 break;
         }
-        matchStart();
-        BOTH_SPAWNED = true;
-    }
-
-    void matchStart()
-	{
-        cameraLeftPos.position = cameraLeft.position;
-        cameraRightPos.position = cameraRight.position;
-        uis = canvas.GetComponent<UIScript>();
-
-		
-
-        
-
-        Background = new Sprite[] { background0, background1, background2, background3 };
-		Ground = new Sprite[] { ground0, ground1, ground2, ground3 };
-
-        GetComponentInParent<Follow>().setTargets(player1.transform, player2.transform);
-
-        vertExtent = GetComponentInParent<Follow>().vertExtent;
-        horzExtent = GetComponentInParent<Follow>().horzExtent;
-
-        int stage = PlayerPrefs.GetInt("stage");
-
-        background.GetComponent<SpriteRenderer>().sprite = Background[stage < 2 ? stage : stage - 1];
-        ground.GetComponent<SpriteRenderer>().sprite = Ground[stage < 2 ? stage : stage - 1];
-
-        
-       
 
         Debug.LogFormat("STAGE {0}", stage);
     }
 
     void Update()
     {
-        if (!BOTH_SPAWNED) return;
         /*
         if (Input.GetKeyUp(KeyCode.R))
         {
@@ -460,6 +416,4 @@ public class CameraScript : NetworkManager
 		position.y = amm;
 		o.transform.position = position;
 	}
-
-    
 }

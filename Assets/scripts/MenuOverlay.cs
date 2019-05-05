@@ -165,16 +165,16 @@ public class MenuOverlay : MonoBehaviour
                         state = 4;
                     break;
                 case 2:
-                    if (state > 2)
+                    if (state > 3)
                         state = 0;
                     else if (state < 0)
-                        state = 2;
+                        state = 3;
 
 
-                    if (state2 > 2)
+                    if (state2 > 3)
                         state2 = 0;
                     else if (state2 < 0)
-                        state2 = 2;
+                        state2 = 3;
                     break;
                 case 3:
                     if (state > 4)
@@ -244,42 +244,7 @@ public class MenuOverlay : MonoBehaviour
                         GetComponentInParent<MenuScript>().updateChar(state, false);
                     if (inputManager2.currentInput[4])
                         GetComponentInParent<MenuScript>().updateChar(state2, true);
-                    if (state == 0 && state2 == 0)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(0);
-                    }
-                    else if (state == 0 && state2 == 1)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(1);
-                    }
-                    else if (state == 0 && state2 == 2)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(2);
-                    }
-                    else if (state == 1 && state2 == 0)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(3);
-                    }
-                    else if (state == 1 && state2 == 1)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(4);
-                    }
-                    else if (state == 1 && state2 == 2)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(5);
-                    }
-                    else if (state == 2 && state2 == 0)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(6);
-                    }
-                    else if (state == 2 && state2 == 1)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(7);
-                    }
-                    else if (state == 2 && state2 == 2)
-                    {
-                        GetComponentInParent<MenuScript>().updateSelection(8);
-                    }
+                    GetComponentInParent<MenuScript>().updateSelection(state, state2);
                 }
                 else
                     firstLoad = true;

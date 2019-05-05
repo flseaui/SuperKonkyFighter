@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -137,6 +136,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     public RuntimeAnimatorController konkyAnimationController;
     public RuntimeAnimatorController greyshirtAnimationController;
     public RuntimeAnimatorController dkAnimationController;
+    public RuntimeAnimatorController shrulkAnimationController;
     public Behaviors behaviors;
     public BoxCollider2D hitbox;
     public GameObject otherPlayer;
@@ -155,7 +155,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     //temp variables
     AIController testAI;
     bool ai = false;
-    private bool notSpawned = true;
 
     #endregion
 
@@ -170,7 +169,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     }
 
     // initialize variables based on current players character
-    void playerStart()
+    void Start()
     {
 
         this.tag = playerID.ToString();
@@ -199,6 +198,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     behaviors = new DKBehaviours();
                     animator.runtimeAnimatorController = dkAnimationController;
                     break;
+                case 3:
+                    behaviors = new ShrulkBehaviours();
+                    animator.runtimeAnimatorController = shrulkAnimationController;
+                    break;
             }
         }
         else if (CompareTag("2"))
@@ -218,6 +221,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 case 2:
                     behaviors = new DKBehaviours();
                     animator.runtimeAnimatorController = dkAnimationController;
+                    break;
+                case 3:
+                    behaviors = new ShrulkBehaviours();
+                    animator.runtimeAnimatorController = shrulkAnimationController;
                     break;
             }
         }
@@ -244,16 +251,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
     // called 60 times per second
     private void Update()
     {
-        if (!CameraScript.BOTH_SPAWNED)
-            return;
-        else if (notSpawned)
-        {
-            playerStart();
-            notSpawned = false;
-        }
         //if (Input.GetKeyUp(KeyCode.Y)) { ai = !ai; }
 
-            // get currently held keys or pressed buttons
+        // get currently held keys or pressed buttons
         if (InputManager.isInputEnabled)
             inputManager.pollInput(0, playerID);
 

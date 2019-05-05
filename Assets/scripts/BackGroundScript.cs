@@ -30,7 +30,6 @@ public class BackGroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!CameraScript.BOTH_SPAWNED) return;
         if (!player[0].hitStopped)
         {
             player[0].decreaseHitboxLifespan();
