@@ -10,6 +10,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using static Misc.Constants;
 
 namespace Player
 {
@@ -168,10 +169,6 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         #endregion
 
-        /*
-     * AND IF YOU WIN YOU CAN FUCK GREYSHIRT IN THE SPECIAL FEATURES
-     */
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
@@ -286,21 +283,21 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             if (!hitStopped)
             {
                 // if executing an action
-                if (executingAction != 0)
+                if (executingAction != NoAction)
                 {
-                    if (executingAction < 40)
+                    if (executingAction < Advanced)
                     {
                         if (!airborn)
                             hVelocity = 0;
                         ActionMove(executingAction);
 
-                        if (executingAction < 40 && damageDealt && !alreadyExecutedAttackMove)
+                        if (executingAction < Advanced && damageDealt && !alreadyExecutedAttackMove)
                             AttackMove(executingAction);
                     }                
-                    else if (executingAction >= 40)
+                    else if (executingAction >= Advanced)
                         AdvancedMove();
 
-                    if (executingAction != 0)
+                    if (executingAction != NoAction)
                     {
                         // progress the current action
                         IncrementFrame(behaviors.GetAction(executingAction).Frames);
@@ -319,7 +316,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     BufferAction();
 
                     // cancel into buffered move
-                    if (bufferedMove != 0)
+                    if (bufferedMove != NoAction)
                         SwapBuffers();
                     break;
                 case 4:
@@ -340,19 +337,19 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         private void CheckForFlip( bool specialCase)
         {
-            if (playerSide == facingRight || executingAction == 41 || executingAction == 52) return;
+            if (playerSide == facingRight || executingAction == ForwardDash || executingAction == Throw) return;
             if (!airborn || specialCase)
                 facingRight = !facingRight;
             if (airborn || specialCase) return;
-            overrideAction = basicState < 4 ? 50 : 49;
+            overrideAction = basicState < 4 ? CrouchFlip : Flip;
         }
 
         private void Cleanup()
         {
             hPush = 0;
             vKnockback *= .5f;
-            overrideAction = 0;
-            if (comboTimer > 0 && executingAction != 45 && executingAction != 56 && executingAction != 54)
+            overrideAction = NoAction;
+            if (comboTimer > 0 && executingAction != Constants.Stun && executingAction != WallBounce && executingAction != KnockdownFall)
                 comboTimer--;
             if (comboTimer == 0)
             {
@@ -366,18 +363,18 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 p2Scale = 1;
                 if (health <= 0)
                 {
-                    executingAction = airborn ? 54 : 59;
+                    executingAction = airborn ? KnockdownFall : Defeat;
                 }
             }
             if (airborn && basicState < 7)
                 basicState = 8;
-            if (!airborn && executingAction == 54)
+            if (!airborn && executingAction == KnockdownFall)
             {
                 ActionEnd();
-                executingAction = health <= 0 ? 59 : 53;
+                executingAction = health <= 0 ? Defeat : Knockdown;
             }
 
-            if (otherPlayer.GetComponent<PlayerScript>().executingAction == 59 && !airborn)
+            if (otherPlayer.GetComponent<PlayerScript>().executingAction == Defeat && !airborn)
             {
                 ActionEnd();
 
@@ -386,12 +383,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 hKnockback = 0;
                 vKnockback = 0;
 
-                executingAction = 58;
+                executingAction = Victory;
             }
         
             if (meterStore > 0)
             {
-                meterCharge += meterStore >= 25? 25 : meterStore;
+                meterCharge += meterStore >= 25 ? 25 : meterStore;
                 meterStore -= meterStore >= 25 ? 25 : meterStore;
             }
         }
@@ -406,7 +403,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
                 // if jumping reset attackState
                 if (attackState % 10 >= 7 && !airborn)
-                    attackState = 0;
+                    attackState = NoAction;
                 SetAdvancedInput(_testAi.getInput());
                 SetSpecialInput(_testAi.getInput());
             }
@@ -417,7 +414,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
                 // if jumping reset attackState
                 if (attackState % 10 >= 7 && !airborn)
-                    attackState = 0;
+                    attackState = NoAction;
                 SetAdvancedInput(inputManager.CurrentInput);
                 SetSpecialInput(inputManager.CurrentInput);
             }
@@ -435,13 +432,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             else if (input[7])
             {
                 attackState = basicState + 30;
-                if (attackState == 35) {
+                if (attackState == FiveS) {
                     if (meterCharge < maxMeter)
-                        attackState = 0;
+                        attackState = NoAction;
                 }
             }
             else
-                attackState = 0;
+                attackState = NoAction;
         }
 
         private void SetSpecialInput(IReadOnlyList<bool> input)
@@ -456,26 +453,26 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         {
                             if (input[2])
                             {
-                                if (behaviors.GetAction(31).AirOk)
-                                    attackState = 31;
+                                if (behaviors.GetAction(OneS).AirOk)
+                                    attackState = OneS;
                             }
                             else if (input[3])
                             {
-                                if (behaviors.GetAction(33).AirOk)
-                                    attackState = 33;
+                                if (behaviors.GetAction(ThreeS).AirOk)
+                                    attackState = ThreeS;
                             }
                         }
                         else
                         {
                             if (input[2])
                             {
-                                if (behaviors.GetAction(34).AirOk)
-                                    attackState = 34;
+                                if (behaviors.GetAction(FourS).AirOk)
+                                    attackState = FourS;
                             }
                             else if (input[3])
                             {
-                                if (behaviors.GetAction(35).AirOk)
-                                    attackState = 36;
+                                if (behaviors.GetAction(FiveS).AirOk)
+                                    attackState = FiveS;
                             }
                         }
                     }
@@ -485,26 +482,26 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         {
                             if (input[3])
                             {
-                                if (behaviors.GetAction(31).AirOk)
-                                    attackState = 31;
+                                if (behaviors.GetAction(OneS).AirOk)
+                                    attackState = OneS;
                             }
                             else if (input[2])
                             {
-                                if (behaviors.GetAction(33).AirOk)
-                                    attackState = 33;
+                                if (behaviors.GetAction(ThreeS).AirOk)
+                                    attackState = ThreeS;
                             }
                         }
                         else
                         {
                             if (input[3])
                             {
-                                if (behaviors.GetAction(34).AirOk)
-                                    attackState = 34;
+                                if (behaviors.GetAction(FourS).AirOk)
+                                    attackState = FourS;
                             }
                             else if (input[2])
                             {
-                                if (behaviors.GetAction(36).AirOk)
-                                    attackState = 36;
+                                if (behaviors.GetAction(SixS).AirOk)
+                                    attackState = SixS;
                             }
                         }
                     }
@@ -516,7 +513,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         private void SetAdvancedInput(IReadOnlyList<bool> input)
         {
             // if not dashing forwards
-            if (executingAction != 41)
+            if (executingAction != ForwardDash)
             {
                 // if left held dashing and not facing forward
                 if (input[8] && !dashingForwards && dashTimer != 0)
@@ -604,11 +601,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     dashingForwards = !input[8];
                 }
 
-                if (input[2] && facingRight && executingAction == 0)
+                if (input[2] && facingRight && executingAction == NoAction)
                     shouldBlock = true;
-                else if (input[3] && !facingRight && executingAction == 0)
+                else if (input[3] && !facingRight && executingAction == NoAction)
                     shouldBlock = true;
-                else if (executingAction >= 46 && executingAction <= 48)
+                else if (executingAction >= 46 && executingAction <= AirBlock)
                     shouldBlock = true;
                 else
                     shouldBlock = false;
@@ -675,7 +672,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         }
                     }
 
-                    if (executingAction < 40 || executingAction == 55 || executingAction == 52)
+                    if (executingAction < Advanced || executingAction == Grab || executingAction == Throw)
                         PlaceHitboxes();
 
                     activeFrameCounter++;
@@ -705,7 +702,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                         }
                     }
 
-                    if (executingAction < 40 || executingAction == 55 || executingAction == 52)
+                    if (executingAction < Advanced || executingAction == Grab || executingAction == Throw)
                         PlaceHitboxes();
 
                     activeFrameCounter++;
@@ -733,7 +730,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     break;
             }
             advancedState = 0;
-            attackState = 0;
+            attackState = NoAction;
             if (actionFrameCounter >= behaviors.GetAction(executingAction).Frames.Length)
             {
                 if (behaviors.GetAction(executingAction).Infinite)
@@ -751,9 +748,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             foreach (var action in behaviors.GetAction(executingAction).ActionCancels)
                 //buffer jumps
-                if (action == 40 && inputManager.CurrentInput[12] && !airbornActionUsed)
+                if (action == Advanced && inputManager.CurrentInput[12] && !airbornActionUsed)
                 {
-                    bufferedMove = 51;
+                    bufferedMove = JumpSquat;
                     switch (basicState)
                     {
                         case 7:
@@ -769,7 +766,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 }
             //buffer attacks
             if (advancedState != 0)
-                Buffer(advancedState + 40);
+                Buffer(advancedState + Advanced);
             else if (attackState != 0)
                 Buffer(attackState);
         }
@@ -777,18 +774,18 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         // swap current state with buffered action
         private void SwapBuffers()
         {
-            if (bufferedMove > 40)
+            if (bufferedMove > Advanced)
                 overrideAction = bufferedMove;
-            else if (bufferedMove == 40)
+            else if (bufferedMove == Advanced)
             {
                 ActionEnd();
                 basicState = jumpDirection;
                 if (!jumpSquated)
-                    overrideAction = 51;
+                    overrideAction = JumpSquat;
             }
             else
                 overrideAction = bufferedMove;
-            bufferedMove = 0;
+            bufferedMove = NoAction;
 
             // if (GetComponent<Animation>())
             //   GetComponent<Animation>().Stop(this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
@@ -797,25 +794,25 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         private void StateCheck()
         {
-            if (executingAction != 0)
+            if (executingAction != NoAction)
             {
-                if (overrideAction != 0)
+                if (overrideAction != NoAction)
                 {
                     ActionEnd();
                     executingAction = overrideAction;
 
-                    if (overrideAction == 35)
+                    if (overrideAction == FiveS)
                     {
                         meterCharge = 0;
                         meterStore = 0;
                     }
                 }
             }
-            else if (overrideAction != 0)
+            else if (overrideAction != NoAction)
             {
                 executingAction = overrideAction;
 
-                if (overrideAction == 35)
+                if (overrideAction == FiveS)
                 {
                     meterCharge = 0;
                     meterStore = 0;
@@ -823,13 +820,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             }
             else if (advancedState != 0)
             {
-                executingAction = advancedState + 40;
+                executingAction = advancedState + Advanced;
             }
-            else if (attackState != 0)
+            else if (attackState != NoAction)
             {
                 executingAction = attackState;
 
-                if (attackState == 35)
+                if (attackState == FiveS)
                 {
                     meterCharge = 0;
                     meterStore = 0;
@@ -839,7 +836,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             else
             {
                 if (basicState >= 7 && !airborn && !jumpSquated)
-                    executingAction = 51;
+                    executingAction = JumpSquat;
                 else
                     BasicMove();
             }
@@ -1005,7 +1002,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         private void AttackMove(int action)
         {
-            if (playerSide && X() + behaviors.GetAttackMovementHorizontal(action) + pushBuffer < otherPlayer.GetComponent<PlayerScript>().X() + otherPlayer.GetComponent<PlayerScript>().hVelocity || !playerSide && X() - pushBuffer - behaviors.GetAttackMovementHorizontal(action) > otherPlayer.GetComponent<PlayerScript>().X() + otherPlayer.GetComponent<PlayerScript>().hVelocity)
+            if (playerSide && X() + behaviors.GetAttackMovementHorizontal(action) + pushBuffer <
+                otherPlayer.GetComponent<PlayerScript>().X() + otherPlayer.GetComponent<PlayerScript>().hVelocity ||
+                !playerSide && X() - pushBuffer - behaviors.GetAttackMovementHorizontal(action) >
+                otherPlayer.GetComponent<PlayerScript>().X() + otherPlayer.GetComponent<PlayerScript>().hVelocity)
                 hKnockback += playerSide ? behaviors.GetAttackMovementHorizontal(action) : -behaviors.GetAttackMovementHorizontal(action);
             vKnockback += behaviors.GetAttackMovementVertical(action);
             alreadyExecutedAttackMove = true;
@@ -1013,7 +1013,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         private void AdvancedMove()
         {
-            var advancedAction = executingAction - 40;
+            var advancedAction = executingAction - Advanced;
             //Debug.LogFormat("index {0} in {1} length array", advancedAction, behaviors.onAdvancedActionCallbacks.Length);
             if (behaviors.OnAdvancedActionCallbacks[advancedAction] != null)
             {
@@ -1091,7 +1091,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         private void MovePlayer()
         {
-            if (executingAction != 43 && executingAction != 44 && executingAction != 48)
+            if (executingAction != ForwardAirDash && executingAction != BackAirDash && executingAction != AirBlock)
                 vVelocity += gravity;
 
             if (vVelocity < -1)
@@ -1102,7 +1102,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             MoveX((facingRight ? hVelocity : -hVelocity) + (playerSide ? -hPush :hPush) + hKnockback);
             MoveY(vVelocity + vKnockback);
 
-            if (X() < -mapWitdh + pushBuffer + wallBuffer && !playerSide && Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().Y() && otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y())
+            if (X() < -mapWitdh + pushBuffer + wallBuffer && !playerSide &&
+                Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y +
+                otherPlayer.GetComponent<PlayerScript>().Y() &&
+                otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y())
             {
                 SetX(-mapWitdh + pushBuffer + wallBuffer);
             }
@@ -1110,7 +1113,10 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             {
                 SetX(-mapWitdh);
             }
-            else if (X() > mapWitdh - pushBuffer - wallBuffer && playerSide && Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().Y() && otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y())
+            else if (X() > mapWitdh - pushBuffer - wallBuffer && playerSide &&
+                     Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y +
+                     otherPlayer.GetComponent<PlayerScript>().Y() &&
+                     otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y())
             {
                 SetX(mapWitdh - pushBuffer - wallBuffer);
             }
@@ -1119,7 +1125,13 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 SetX(mapWitdh);
             }
 
-            SetX(Mathf.Clamp(X(), cameraLeft.position.x - (!playerSide && Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().Y() && otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y()? 5 - pushBuffer : 5 ), cameraRight.position.x + 
+            SetX(Mathf.Clamp(X(),
+                cameraLeft.position.x - (!playerSide &&
+                                         Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y +
+                                         otherPlayer.GetComponent<PlayerScript>().Y() &&
+                                         otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y()
+                    ? 5 - pushBuffer
+                    : 5), cameraRight.position.x + 
                                                                                                                                                                                                                                                                                                    (playerSide && Y() <= otherPlayer.GetComponent<PlayerScript>().hitbox.bounds.size.y + otherPlayer.GetComponent<PlayerScript>().Y() && otherPlayer.GetComponent<PlayerScript>().Y() <= hitbox.bounds.size.y + Y() ? 5 - pushBuffer : 5 )));
 
             if (Y() <= _floorHeight) //ground snappity
@@ -1131,12 +1143,12 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                     vKnockback = 0;
                     airbornActionUsed = false;
 
-                    if (executingAction == 54)
+                    if (executingAction == KnockdownFall)
                     {
                         ActionEnd();
-                        executingAction = health <= 0 ? 59 : 53;
+                        executingAction = health <= 0 ? Defeat : Knockdown;
                     }
-                    else if (executingAction > 0)
+                    else if (executingAction > NoAction)
                         ActionEnd();
                 }
                 vVelocity = 0;
@@ -1151,9 +1163,9 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         public void UpdateAnimation()
         {
             var other = otherPlayer.GetComponent<PlayerScript>();
-            if (executingAction != 0)
+            if (executingAction != NoAction)
             {
-                if (executingAction == 45)
+                if (executingAction == Constants.Stun)
                 {
                     if (basicState <= 3)
                         AnimInt(Animator.StringToHash("StunType"), 3);
@@ -1190,7 +1202,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 {
                     livingHitboxesIds.Add(hitbox.Id);
                     livingHitboxesLifespans.Add(hitbox.TimeActive);
-                    AddBoxCollider2D(hitbox.Id.ToString(), new Vector2(hitbox.Width, hitbox.Height), new Vector2(facingRight ? hitbox.X : -hitbox.X, hitbox.Y), true);
+                    AddBoxCollider2D(hitbox.Id.ToString(), new Vector2(hitbox.Width, hitbox.Height),
+                        new Vector2(facingRight ? hitbox.X : -hitbox.X, hitbox.Y), true);
                 }
             }
         }
@@ -1199,7 +1212,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
         {
             Action.Rect[,] hurtboxData;
 
-            if (executingAction != 0)
+            if (executingAction != NoAction)
             {
                 hurtboxData = behaviors.GetAction(executingAction).HurtboxData;
             }
@@ -1215,7 +1228,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
                 {
                     livingHurtboxesIds.Add(hurtbox.Id);
                     livingHurtboxesLifespans.Add(hurtbox.TimeActive);
-                    AddBoxCollider2D((hurtbox.Id + 100).ToString(), new Vector2(hurtbox.Width, hurtbox.Height), new Vector2(facingRight ? hurtbox.X : -hurtbox.X, hurtbox.Y), false);
+                    AddBoxCollider2D((hurtbox.Id + 100).ToString(), new Vector2(hurtbox.Width, hurtbox.Height),
+                        new Vector2(facingRight ? hurtbox.X : -hurtbox.X, hurtbox.Y), false);
                 }
                 else if (livingHurtboxesIds.Contains(hurtbox.Id))
                 {
@@ -1328,7 +1342,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         public void OnPush(float otherHVel)
         {
-            if (executingAction == 53)
+            if (executingAction == Knockdown)
                 otherPlayer.GetComponent<PlayerScript>().hPush += facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
             else
                 hPush += facingRight ? (hVelocity + otherHVel) / 2 : (otherHVel + hVelocity) / 2;
@@ -1336,7 +1350,7 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
 
         public void ActionEnd()
         {
-            if (executingAction != 51)
+            if (executingAction != JumpSquat)
                 jumpSquated = false;
 
             executingAction = 0;
@@ -1434,26 +1448,34 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             ActionEnd();
             firstStun = true;
 
-            if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown > 0 && otherPlayer.GetComponent<PlayerScript>().behaviors.GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown <= 2)
+            if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 &&
+                otherPlayer.GetComponent<PlayerScript>().behaviors
+                    .GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown > 0 && otherPlayer
+                    .GetComponent<PlayerScript>().behaviors
+                    .GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown <= 2)
             {
-                executingAction = 54;
+                executingAction = KnockdownFall;
             }
-            else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown <= 4)
+            else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer
+                         .GetComponent<PlayerScript>().behaviors
+                         .GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown <= 4)
             {
-                executingAction = 45;
+                executingAction = Constants.Stun;
                 shouldGroundbounce = true;
                 stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().Level(1);
 
             }
-            else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer.GetComponent<PlayerScript>().behaviors.GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown >= 5)
+            else if (otherPlayer.GetComponent<PlayerScript>().currentFrameType == 5 && otherPlayer
+                         .GetComponent<PlayerScript>().behaviors
+                         .GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).Knockdown >= 5)
             {
-                executingAction = 45;
+                executingAction = Constants.Stun;
                 shouldWallbounce = true;
                 stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().Level(1);
             }
             else
             {
-                executingAction = 45;
+                executingAction = Constants.Stun;
                 stunTimer = (int)otherPlayer.GetComponent<PlayerScript>().Level(1);
             }
 
@@ -1462,7 +1484,8 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             _comboCounterText.Value = otherPlayer.GetComponent<PlayerScript>().comboCounter;
 
             if (comboTimer == 0)
-                p1Scale = otherPlayer.GetComponent<PlayerScript>().behaviors.GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).P1Scaling;
+                p1Scale = otherPlayer.GetComponent<PlayerScript>().behaviors
+                    .GetAction(otherPlayer.GetComponent<PlayerScript>().executingAction).P1Scaling;
 
             comboTimer = 1;
         }
@@ -1472,11 +1495,11 @@ Level Hitstun CH Hitstun Untech Time CH Untech Time	Hitstop	CH Hitstop Blockstun
             ActionEnd();
 
             if (basicState >= 7)
-                executingAction = 48;
+                executingAction = AirBlock;
             else if (basicState <= 3)
-                executingAction = 47;
+                executingAction = CrouchBlock;
             else
-                executingAction = 46;
+                executingAction = Constants.Block;
 
             blockTimer = (int)otherPlayer.GetComponent<PlayerScript>().Level(6);
         }

@@ -85,9 +85,6 @@ namespace Core
 
             if (IsInputEnabled)
             {
-                foreach (var name in Input.GetJoystickNames())
-                    Debug.Log(name);
-
                 _hAxisPrev = _hAxis;
                 _vAxisPrev = _vAxis;
                 _dhAxisPrev = _dhAxis;
