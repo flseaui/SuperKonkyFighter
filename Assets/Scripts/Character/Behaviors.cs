@@ -1,10 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Player;
 using UnityEngine;
 
 namespace Character
 {
     public abstract class Behaviors {
+        
+        protected const int Low = 1;//must be crouchblocked
+        protected const int Mid = 2;//can be crouch or stand blocked
+        protected const int High = 3;//must be stand blocked
+        protected const int Unblockable = 4;//cannot be blocked
+
+        protected const int None = 0; //no knockdown (follows hitstun numbers)
+        protected const int Softkd = 1; //soft knockdown (techable)
+        protected const int Hardkd = 2; //hard knockdown (untechable for 20 frames, OTG possible)
+        protected const int Softgb = 3; //soft ground bounce (ground bounce with soft knockdown)
+        protected const int Hardgb = 4; //hard ground bounce (ground bounce with hard knockdown)
+        protected const int Softwb = 5; //soft wall bounce (wall bounce with soft knockdown)
+        protected const int Hardwb = 6; //hard wall bounce (wall bounce with hard knockdown)
+
+        
         private IDictionary<int, Action> _actionIds;
         private IDictionary<Action, int> _animAction;
 
@@ -25,6 +41,30 @@ namespace Character
         public delegate void OnAdvancedAction(PlayerScript player);
         public OnAdvancedAction[] OnAdvancedActionCallbacks;
 
+        protected static Action.Rect[,] CreateBoxes(int length, (int frame, Action.Rect[] boxes)[] frames)
+        {
+            var longest = frames.Select(frame => frame.boxes.Length).Concat(new[] {0}).Max();
+            var boxes = new Action.Rect[longest, length];
+
+            for (var i = 0; i < longest; ++i)
+            {
+                for (var j = 0; j < length; j++)
+                {
+                    boxes[i, j] = NullBox;
+                }
+            }
+
+            foreach (var (frame, rects) in frames)
+            {
+                for (var i = 0; i < longest; ++i)
+                {
+                    boxes[i, frame] = rects[i];
+                }
+            }
+
+            return boxes;
+        }
+        
         // Returns Action object from given id
         public Action GetAction(int id)
         {

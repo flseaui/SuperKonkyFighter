@@ -8,47 +8,6 @@ namespace Character.Konky
 {
     public class KonkyBehaviours : Behaviors
     {
-        const int Low = 1; //must be crouchblocked
-        const int Mid = 2; //can be crouch or stand blocked
-        const int High = 3; //must be stand blocked
-        const int Unblockable = 4; //cannot be blocked
-
-        const int None = 0; //no knockdown (follows hitstun numbers)
-        const int Softkd = 1; //soft knockdown (techable)
-        const int Hardkd = 2; //hard knockdown (untechable for 20 frames, OTG possible)
-        const int Softgb = 3; //soft ground bounce (ground bounce with soft knockdown)
-        const int Hardgb = 4; //hard ground bounce (ground bounce with hard knockdown)
-        const int Softwb = 5; //soft wall bounce (wall bounce with soft knockdown)
-        const int Hardwb = 6; //hard wall bounce (wall bounce with hard knockdown)
-        /* 
-     * Action ID FORMAT
-     * id = numpad + power
-     * - light    = + 0
-     * - medium   = + 10
-     * - heavy    = + 20
-     * - special  = + 30
-     * - advanced = + 40
-     * example: standM = 5 + 10 = 15
-     */
-
-        /* 
-       * ADVANCED ID FORMAT
-       * 1 - Forward Dash
-       * 2 - Back Dash
-       * 3 - Forward Air Dash
-       * 4 - Back Air Dash
-       * 5 - Stun
-       * 6 - Block
-       * 7 - crouchBlock
-       * 8 - airBlock
-       * 9 - flip
-       * 10 - crouchFlip
-       * 11 - jumpSquat
-       * 12 - throw
-       * Other
-       * 0 - Jump
-       */
-
         public KonkyBehaviours()
         {
             IDictionary<int, Action> konkyActionIds = new Dictionary<int, Action>
@@ -1932,53 +1891,14 @@ namespace Character.Konky
                 {NullBox, NullBox },
             },
         };
-
+        
         private readonly Action _idle = new Action
         {
             Frames = new[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-            HurtboxData = new[,]
+            HurtboxData = CreateBoxes(40, new[]
             {
-                { new Action.Rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.Rect(1.5f, 9f, 4, 8, 40, 2), },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox }
-            },
+                (0, new[] {new Action.Rect(0.5f, 2.5f, 6.5f, 5, 40, 1), new Action.Rect(1.5f, 9f, 4, 8, 40, 2)}),
+            })
         };
 
         private readonly Action _walkForward = new Action

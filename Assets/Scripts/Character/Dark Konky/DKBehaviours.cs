@@ -7,48 +7,6 @@ namespace Character.Dark_Konky
 {
     public class DkBehaviours : Behaviors
     {
-        private const int Low = 1; //must be crouchblocked
-        private const int Mid = 2; //can be crouch or stand blocked
-        private const int High = 3; //must be stand blocked
-        private const int Unblockable = 4; //cannot be blocked
-
-        private const int None = 0; //no knockdown (follows hitstun numbers)
-        private const int Softkd = 1; //soft knockdown (techable)
-        private const int Hardkd = 2; //hard knockdown (untechable for 20 frames, OTG possible)
-        private const int Softgb = 3; //soft ground bounce (ground bounce with soft knockdown)
-        private const int Hardgb = 4; //hard ground bounce (ground bounce with hard knockdown)
-        private const int Softwb = 5; //soft wall bounce (wall bounce with soft knockdown)
-
-        private const int Hardwb = 6; //hard wall bounce (wall bounce with hard knockdown)
-        /* 
-     * Action ID FORMAT
-     * id = numpad + power
-     * - light    = + 0
-     * - medium   = + 10
-     * - heavy    = + 20
-     * - special  = + 30
-     * - advanced = + 40
-     * example: standM = 5 + 10 = 15
-     */
-
-        /* 
-       * ADVANCED ID FORMAT
-       * 1 - Forward Dash
-       * 2 - Back Dash
-       * 3 - Forward Air Dash
-       * 4 - Back Air Dash
-       * 5 - Stun
-       * 6 - Block
-       * 7 - crouchBlock
-       * 8 - airBlock
-       * 9 - flip
-       * 10 - crouchFlip
-       * 11 - jumpSquat
-       * 12 - throw
-       * Other
-       * 0 - Jump
-       */
-
         public DkBehaviours()
         {
             IDictionary<int, Action> dkActionIds = new Dictionary<int, Action>
