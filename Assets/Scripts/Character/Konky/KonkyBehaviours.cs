@@ -158,32 +158,14 @@ namespace Character.Konky
             Damage = new[] { 0, 0, 0, 0, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             HitboxFrames = 3,
             HurtboxFrames = 17,
-            HitboxData = new[,]
+            HitboxData = CreateBoxes(3, new []
             {
-                { new Action.Rect( 6, 3, 5, 2, 2, 0),  }, // Frame 1 - 1 hitbox lasts 4 frames
-                {NullBox, },
-                {NullBox, }
-            },
-            HurtboxData = new[,]
+                (0, new [] { new Action.Rect( 6, 3, 5, 2, 2, 0) })
+            }),
+            HurtboxData = CreateBoxes(17, new []
             {
-                { new Action.Rect(0.5f, 2.5f, 6.5f, 5, 12, 0), new Action.Rect(1.5f, 9f, 4, 8, 12, 1), },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-                {NullBox, NullBox },
-            },
+                (0, new [] { new Action.Rect(0.5f, 2.5f, 6.5f, 5, 12, 0), new Action.Rect(1.5f, 9f, 4, 8, 12, 1) })
+            }),
             HMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             VMovement = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             Level = 1,

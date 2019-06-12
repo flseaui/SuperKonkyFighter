@@ -44,11 +44,11 @@ namespace Character
         protected static Action.Rect[,] CreateBoxes(int length, (int frame, Action.Rect[] boxes)[] frames)
         {
             var longest = frames.Select(frame => frame.boxes.Length).Concat(new[] {0}).Max();
-            var boxes = new Action.Rect[longest, length];
+            var boxes = new Action.Rect[length, longest];
 
-            for (var i = 0; i < longest; ++i)
+            for (var i = 0; i < length; ++i)
             {
-                for (var j = 0; j < length; j++)
+                for (var j = 0; j < longest; j++)
                 {
                     boxes[i, j] = NullBox;
                 }
@@ -58,7 +58,7 @@ namespace Character
             {
                 for (var i = 0; i < longest; ++i)
                 {
-                    boxes[i, frame] = rects[i];
+                    boxes[frame, i] = rects[i];
                 }
             }
 
